@@ -23,13 +23,21 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class JannocessorProcessor extends JannocessorProcessorBase {
+
+	private final Logger logger = LoggerFactory.getLogger("Jannocessor");
 
 	@Override
 	public boolean process(Set<? extends TypeElement> annotations,
 			RoundEnvironment roundEnv) {
+		logger.info("Processing annotation...");
+
 		// FIXME: Implement this
+
 		return false;
 	}
 
