@@ -19,7 +19,7 @@ package org.jannocessor.model;
 import java.util.Collections;
 import java.util.Map;
 
-import org.jannocessor.facade.JannocessorException;
+import org.jannocessor.service.api.JannocessorException;
 
 public class Config {
 
