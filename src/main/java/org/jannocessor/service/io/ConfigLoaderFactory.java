@@ -21,6 +21,7 @@ import org.jannocessor.service.api.ConfigLoader;
 import org.jannocessor.service.api.Configuratîr;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
+import org.jannocessor.service.configuration.ConfiguratorImpl;
 
 public class ConfigLoaderFactory {
 
@@ -36,6 +37,6 @@ public class ConfigLoaderFactory {
 		Config annotations = new Config(
 				loader.loadProperties(annotationsFilename));
 
-		return null; // FIXME
+		return new ConfiguratorImpl(general, annotations);
 	}
 }
