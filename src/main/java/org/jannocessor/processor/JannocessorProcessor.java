@@ -1,99 +1,138 @@
-/**
- * Copyright 2011 jannocessor.org
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.jannocessor.processor;
 
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import javax.tools.JavaFileManager.Location;
+import javax.tools.StandardLocation;
 
-import org.jannocessor.engine.EngineInput;
-import org.jannocessor.model.Config;
+import org.jannocessor.model.File;
+import org.jannocessor.model.Mark;
+import org.jannocessor.model.Root;
 import org.jannocessor.service.api.JannocessorException;
-import org.jannocessor.service.api.PathLocator;
-import org.jannocessor.service.configuration.EngineInputImpl;
-import org.jannocessor.service.configuration.PathLocatorFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
-@SupportedAnnotationTypes("*")
 public class JannocessorProcessor extends JannocessorProcessorBase {
 
-	private final Logger logger = LoggerFactory.getLogger("Jannocessor");
-
-	private Config options;
-
-	private PathLocator locations;
-
 	@Override
-	public synchronized void init(ProcessingEnvironment env) {
-		super.init(env);
-		options = new Config(env.getOptions());
+	protected void processAnnotations(Set<? extends TypeElement> annotations,
+			RoundEnvironment env) throws JannocessorException {
+		// prepare the facts
+		List<Object> facts = initFacts(annotations, env);
+
+		// prepare the globals
+		Map<String, Object> globals = initGlobals();
+
+		// run the rules on the facts
+		engine.executeRules(facts, globals);
+
+		// generate files
+		generateFiles();
 	}
 
-	@Override
-	public boolean process(Set<? extends TypeElement> annotations,
-			RoundEnvironment roundEnv) {
-		logger.info("Processing annotation...");
+	private void generateFiles() throws JannocessorException {
+		Collection<File> allFiles = files.getAll();
+		logger.info("Generating {} files...", allFiles.size());
 
-		try {
-			logger.info("Initializing services...");
-
-			processOptions();
-
-			makeContract();
-
-			showConfiguration();
-
-			logger.info("Initialization finished.");
-		} catch (JannocessorException e) {
-			throw new RuntimeException(e);
+		for (File file : allFiles) {
+			generateFile(file);
 		}
 
-		return false;
+		logger.info("Total {} files were generated.", allFiles.size());
 	}
 
-	private void makeContract() throws JannocessorException {
-		EngineInput input = new EngineInputImpl(options);
-		locations = PathLocatorFactory.createPathService(input);
+	private void generateFile(File file) throws JannocessorException {
+		Location location = StandardLocation.SOURCE_OUTPUT;
+
+		String filename = file.getName() + "." + file.getExtension();
+		String template = file.getTemplate();
+		String pkg = file.getPackage();
+
+		String info = fileInfo(location, pkg, filename);
+		logger.debug("- Generating file '{}' from template '{}'", info,
+				template);
+
+		Map<String, Object> attributes = initAttributes(file);
+
+		String text = engine.renderText(template, attributes);
+
+		writeToFile(location, pkg, filename, text);
 	}
 
-	private void showConfiguration() throws JannocessorException {
-		logger.info("Project path: {}", locations.getProjectPath());
-		logger.info("Resources path: {}", locations.getResourcesPath());
-		logger.info("Config path: {}", locations.getConfigPath());
-		logger.info("Rules path: {}", locations.getRulesPath());
-		logger.info("Templates path: {}", locations.getTemplatesPath());
+	private Map<String, Object> initAttributes(File file) {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("file", file);
+		attributes.put("data", file.getData());
+
+		return attributes;
 	}
 
-	private void processOptions() throws JannocessorException {
-		logger.info("Options:");
-		Set<Entry<String, String>> entries = options.getAllProperties()
-				.entrySet();
-		for (Entry<String, String> entry : entries) {
-			logger.debug("- Option: {} = '{}'", entry.getKey(),
-					entry.getValue());
+	private Map<String, Object> initGlobals() {
+		Map<String, Object> globals = new HashMap<String, Object>();
+
+		globals.put("logger", logger);
+		globals.put("elements", elementUtils);
+		globals.put("types", typeUtils);
+
+		globals.put("files", files);
+		globals.put("problems", problems);
+
+		return globals;
+	}
+
+	private List<Object> initFacts(Set<? extends TypeElement> annotations,
+			RoundEnvironment env) throws JannocessorException {
+		List<Object> facts = new ArrayList<Object>();
+
+		// construct "root" facts
+		Set<? extends Element> roots = env.getRootElements();
+		for (Element rootElement : roots) {
+			// add new "root" wrapper fact for each root element
+			Root root = new Root(rootElement);
+			facts.add(root);
 		}
+
+		// construct "mark" facts
+		for (TypeElement annotation : annotations) {
+			Set<? extends Element> annotatedElements = env
+					.getElementsAnnotatedWith(annotation);
+			for (Element annotatedElement : annotatedElements) {
+				// create mark for each annotation X for each annotated element
+				Mark mark = createMark(annotation, annotatedElement);
+				facts.add(mark);
+			}
+		}
+		return facts;
+	}
+
+	protected Mark createMark(TypeElement annotation, Element annotatedElement)
+			throws JannocessorException {
+		// annotation label is the annotation key in annotations configuration
+		String cannonicalName = annotation.getQualifiedName().toString();
+		String annotationLabel = engine.getAnnotationLabel(cannonicalName);
+
+		Mark mark = new Mark(annotation, annotatedElement, annotationLabel);
+		return mark;
+	}
+
+	@Override
+	protected Set<String> retrieveSupportedAnnotations()
+			throws JannocessorException {
+		Set<String> supportedAnnotations = engine.getSupportedAnnotations();
+		for (String annotation : supportedAnnotations) {
+			logger.debug("- Supported annotation: " + annotation);
+		}
+		return supportedAnnotations;
 	}
 
 }
