@@ -31,7 +31,8 @@ public class EngineInputImpl implements EngineInput, Settings {
 
 	@Override
 	public String getProject() throws JannocessorException {
-		return options.getMandatoryValue("project");
+		//return options.getMandatoryValue("project");
+		return "";
 	}
 
 }

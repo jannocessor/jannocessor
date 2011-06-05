@@ -33,7 +33,7 @@ public class ConfigLoaderServiceImpl implements ConfigLoader, Settings {
 	public Map<String, String> loadProperties(String filename)
 			throws JannocessorException {
 		try {
-			Resource resource = ResourceFactory.newFileResource(filename);
+			Resource resource = ResourceFactory.newClassPathResource(filename);
 			Properties properties = new Properties();
 			properties.load(resource.getInputStream());
 

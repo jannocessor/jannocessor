@@ -143,7 +143,7 @@ public class RulesServiceImpl implements RuleExecutor, Settings {
 		for (String name : names) {
 			String fileName = path + "/" + name + "." + ext;
 			logger.info("- Loading resource: {}", fileName);
-			Resource resource = ResourceFactory.newFileResource(fileName);
+			Resource resource = ResourceFactory.newClassPathResource(fileName);
 			resources.add(resource);
 		}
 		logger.info("Finished loading resources.");

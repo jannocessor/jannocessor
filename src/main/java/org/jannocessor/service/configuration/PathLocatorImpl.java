@@ -31,22 +31,22 @@ public class PathLocatorImpl implements PathLocator, Settings {
 
 	@Override
 	public String getResourcesPath() throws JannocessorException {
-		return getProjectPath() + "/src/main/resources";
+		return getProjectPath() + "";
 	}
 
 	@Override
 	public String getRulesPath() throws JannocessorException {
-		return getResourcesPath() + "/rules";
+		return getResourcesPath() + "rules";
 	}
 
 	@Override
 	public String getConfigPath() throws JannocessorException {
-		return getResourcesPath() + "/config";
+		return getResourcesPath() + "config";
 	}
 
 	@Override
 	public String getTemplatesPath() throws JannocessorException {
-		return getResourcesPath() + "/templates";
+		return getResourcesPath() + "templates";
 	}
 
 	@Override
