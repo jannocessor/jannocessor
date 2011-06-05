@@ -23,7 +23,7 @@ import javax.lang.model.element.Element;
 
 import org.jannocessor.domain.JavaElement;
 
-class ElementAdapter extends AbstractAdapter implements JavaElement,
+public class ElementAdapter extends AbstractAdapter implements JavaElement,
 		SourceHolder {
 
 	private final Element element;
