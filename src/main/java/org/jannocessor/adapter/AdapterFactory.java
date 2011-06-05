@@ -20,9 +20,9 @@ import javax.lang.model.element.Element;
 
 import org.jannocessor.domain.JavaElement;
 
-abstract class AbstractAdapter {
+public class AdapterFactory {
 
-	protected JavaElement getAdapterFor(Element element) {
-		return AdapterFactory.getAdapterFor(element);
+	public static JavaElement getAdapterFor(Element element) {
+		return new ElementAdapter(element);
 	}
 }

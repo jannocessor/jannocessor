@@ -23,7 +23,7 @@ import javax.lang.model.element.Element;
 
 import org.jannocessor.domain.JavaElement;
 
-public class ElementAdapter extends AbstractAdapter implements JavaElement,
+class ElementAdapter extends AbstractAdapter implements JavaElement,
 		SourceHolder {
 
 	private final Element element;
@@ -36,7 +36,7 @@ public class ElementAdapter extends AbstractAdapter implements JavaElement,
 	public JavaElement getParent() {
 		Element parent = element.getEnclosingElement();
 		if (parent != null) {
-			return new ElementAdapter(parent);
+			return getAdapterFor(parent);
 		} else {
 			return null;
 		}
@@ -47,7 +47,7 @@ public class ElementAdapter extends AbstractAdapter implements JavaElement,
 		List<JavaElement> children = new ArrayList<JavaElement>();
 
 		for (Element enclosedElement : element.getEnclosedElements()) {
-			children.add(new ElementAdapter(enclosedElement));
+			children.add(getAdapterFor(enclosedElement));
 		}
 
 		return children;
