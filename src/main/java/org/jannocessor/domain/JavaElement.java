@@ -14,32 +14,17 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.domain;
 
-import org.jannocessor.domain.JavaElement;
+import java.util.List;
 
-public class Problem {
+public interface JavaElement {
 
-	private final JavaElement element;
+	JavaElement getParent();
 
-	private final String message;
+	List<JavaElement> getChildren();
 
-	public Problem(JavaElement element, String message) {
-		this.element = element;
-		this.message = message;
-	}
+	String getName();
 
-	public JavaElement getElement() {
-		return element;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	@Override
-	public String toString() {
-		return "Problem [element=" + element + ", message=" + message + "]";
-	}
-
+	String getKind();
 }

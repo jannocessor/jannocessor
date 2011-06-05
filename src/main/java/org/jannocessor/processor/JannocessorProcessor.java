@@ -15,6 +15,8 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
 
+import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.domain.JavaElement;
 import org.jannocessor.model.File;
 import org.jannocessor.model.Mark;
 import org.jannocessor.model.Root;
@@ -98,7 +100,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		Set<? extends Element> roots = env.getRootElements();
 		for (Element rootElement : roots) {
 			// add new "root" wrapper fact for each root element
-			Root root = new Root(rootElement);
+			Root root = new Root(new ElementAdapter(rootElement));
 			facts.add(root);
 		}
 
@@ -108,14 +110,14 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 					.getElementsAnnotatedWith(annotation);
 			for (Element annotatedElement : annotatedElements) {
 				// create mark for each annotation X for each annotated element
-				Mark mark = createMark(annotation, annotatedElement);
+				Mark mark = createMark(annotation, new ElementAdapter(annotatedElement));
 				facts.add(mark);
 			}
 		}
 		return facts;
 	}
 
-	protected Mark createMark(TypeElement annotation, Element annotatedElement)
+	protected Mark createMark(TypeElement annotation, JavaElement annotatedElement)
 			throws JannocessorException {
 		// annotation label is the annotation key in annotations configuration
 		String cannonicalName = annotation.getQualifiedName().toString();

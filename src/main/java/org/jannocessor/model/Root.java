@@ -16,17 +16,17 @@
 
 package org.jannocessor.model;
 
-import javax.lang.model.element.Element;
+import org.jannocessor.domain.JavaElement;
 
 public class Root {
 
-	private final Element element;
+	private final JavaElement element;
 
-	public Root(Element element) {
+	public Root(JavaElement element) {
 		this.element = element;
 	}
 
-	public Element getElement() {
+	public JavaElement getElement() {
 		return element;
 	}
 

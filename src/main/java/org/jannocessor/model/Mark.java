@@ -16,16 +16,17 @@
 
 package org.jannocessor.model;
 
-import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+
+import org.jannocessor.domain.JavaElement;
 
 public class Mark {
 
 	private final TypeElement annotation;
-	private final Element element;
+	private final JavaElement element;
 	private final String label;
 
-	public Mark(TypeElement annotation, Element element, String label) {
+	public Mark(TypeElement annotation, JavaElement element, String label) {
 		this.annotation = annotation;
 		this.element = element;
 		this.label = label;
@@ -35,7 +36,7 @@ public class Mark {
 		return annotation;
 	}
 
-	public Element getElement() {
+	public JavaElement getElement() {
 		return element;
 	}
 

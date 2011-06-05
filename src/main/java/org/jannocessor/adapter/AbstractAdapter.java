@@ -14,32 +14,8 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.adapter;
 
-import org.jannocessor.domain.JavaElement;
-
-public class Problem {
-
-	private final JavaElement element;
-
-	private final String message;
-
-	public Problem(JavaElement element, String message) {
-		this.element = element;
-		this.message = message;
-	}
-
-	public JavaElement getElement() {
-		return element;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	@Override
-	public String toString() {
-		return "Problem [element=" + element + ", message=" + message + "]";
-	}
+abstract class AbstractAdapter {
 
 }

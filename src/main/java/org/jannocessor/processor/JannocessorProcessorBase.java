@@ -21,6 +21,7 @@ import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.JavaFileManager.Location;
 
+import org.jannocessor.adapter.SourceHolder;
 import org.jannocessor.engine.EngineInput;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.engine.impl.JannocessorEngineFactory;
@@ -189,11 +190,22 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	private void processProblems(RoundEnvironment env) {
 		for (Problem error : problems.getErrors()) {
-			error(error.getMessage(), error.getElement());
+			if (error.getElement() instanceof SourceHolder) {
+				SourceHolder sourceHolder = (SourceHolder) error.getElement();
+				error(error.getMessage(), sourceHolder.retrieveSourceElement());
+			} else {
+				throw new IllegalStateException("Expected source holder");
+			}
 		}
 
 		for (Problem warning : problems.getWarnings()) {
-			warning(warning.getMessage(), warning.getElement());
+			if (warning.getElement() instanceof SourceHolder) {
+				SourceHolder sourceHolder = (SourceHolder) warning.getElement();
+				warning(warning.getMessage(),
+						sourceHolder.retrieveSourceElement());
+			} else {
+				throw new IllegalStateException("Expected source holder");
+			}
 		}
 
 		Set<? extends Element> roots = env.getRootElements();

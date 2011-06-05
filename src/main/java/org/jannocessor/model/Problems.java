@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.lang.model.element.Element;
+import org.jannocessor.domain.JavaElement;
 
 public class Problems {
 
@@ -28,13 +28,13 @@ public class Problems {
 
 	private List<Problem> warnings = new ArrayList<Problem>();
 
-	private void addError(Element element, String message, Object... args) {
+	private void addError(JavaElement element, String message, Object... args) {
 		String msg = String.format(message, args);
 		Problem error = new Problem(element, msg);
 		errors.add(error);
 	}
 
-	private void addWarning(Element element, String message, Object... args) {
+	private void addWarning(JavaElement element, String message, Object... args) {
 		String msg = String.format(message, args);
 		Problem warning = new Problem(element, msg);
 		warnings.add(warning);
@@ -48,57 +48,58 @@ public class Problems {
 		return Collections.unmodifiableList(warnings);
 	}
 
-	public void error(Element element, String message) {
+	public void error(JavaElement element, String message) {
 		addError(element, message);
 	}
 
-	public void error(Element element, String message, Object arg1) {
+	public void error(JavaElement element, String message, Object arg1) {
 		addError(element, message, arg1);
 	}
 
-	public void error(Element element, String message, Object arg1, Object arg2) {
+	public void error(JavaElement element, String message, Object arg1,
+			Object arg2) {
 		addError(element, message, arg1, arg2);
 	}
 
-	public void error(Element element, String message, Object arg1,
+	public void error(JavaElement element, String message, Object arg1,
 			Object arg2, Object arg3) {
 		addError(element, message, arg1, arg2, arg3);
 	}
 
-	public void error(Element element, String message, Object arg1,
+	public void error(JavaElement element, String message, Object arg1,
 			Object arg2, Object arg3, Object arg4) {
 		addError(element, message, arg1, arg2, arg3, arg4);
 	}
 
-	public void error(Element element, String message, Object arg1,
+	public void error(JavaElement element, String message, Object arg1,
 			Object arg2, Object arg3, Object arg4, Object arg5) {
 		addError(element, message, arg1, arg2, arg3, arg4, arg5);
 	}
 
-	public void warning(Element element, String message) {
+	public void warning(JavaElement element, String message) {
 		addWarning(element, message);
 	}
 
-	public void warning(Element element, String message, Object arg1) {
+	public void warning(JavaElement element, String message, Object arg1) {
 		addWarning(element, message, arg1);
 	}
 
-	public void warning(Element element, String message, Object arg1,
+	public void warning(JavaElement element, String message, Object arg1,
 			Object arg2) {
 		addWarning(element, message, arg1, arg2);
 	}
 
-	public void warning(Element element, String message, Object arg1,
+	public void warning(JavaElement element, String message, Object arg1,
 			Object arg2, Object arg3) {
 		addWarning(element, message, arg1, arg2, arg3);
 	}
 
-	public void warning(Element element, String message, Object arg1,
+	public void warning(JavaElement element, String message, Object arg1,
 			Object arg2, Object arg3, Object arg4) {
 		addWarning(element, message, arg1, arg2, arg3, arg4);
 	}
 
-	public void warning(Element element, String message, Object arg1,
+	public void warning(JavaElement element, String message, Object arg1,
 			Object arg2, Object arg3, Object arg4, Object arg5) {
 		addWarning(element, message, arg1, arg2, arg3, arg4, arg5);
 	}
