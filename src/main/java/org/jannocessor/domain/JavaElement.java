@@ -24,7 +24,10 @@ public interface JavaElement {
 
 	List<JavaElement> getChildren();
 
-	String getName();
+	Text getName();
 
-	String getKind();
+	Text getKind();
+
+	JavaElementType getType();
+
 }

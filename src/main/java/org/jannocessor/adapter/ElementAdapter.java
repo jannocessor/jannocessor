@@ -22,9 +22,11 @@ import java.util.List;
 import javax.lang.model.element.Element;
 
 import org.jannocessor.domain.JavaElement;
+import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.Text;
 
-public class ElementAdapter extends AbstractAdapter implements JavaElement,
-		SourceHolder {
+public abstract class ElementAdapter extends AbstractAdapter implements
+		JavaElement, SourceHolder {
 
 	private final Element element;
 
@@ -36,7 +38,7 @@ public class ElementAdapter extends AbstractAdapter implements JavaElement,
 	public JavaElement getParent() {
 		Element parent = element.getEnclosingElement();
 		if (parent != null) {
-			return getAdapterFor(parent);
+			return getElementAdapter(parent);
 		} else {
 			return null;
 		}
@@ -47,20 +49,20 @@ public class ElementAdapter extends AbstractAdapter implements JavaElement,
 		List<JavaElement> children = new ArrayList<JavaElement>();
 
 		for (Element enclosedElement : element.getEnclosedElements()) {
-			children.add(getAdapterFor(enclosedElement));
+			children.add(getElementAdapter(enclosedElement));
 		}
 
 		return children;
 	}
 
 	@Override
-	public String getName() {
-		return element.getSimpleName().toString();
+	public Text getName() {
+		return getTextAdapter(element.getSimpleName().toString());
 	}
 
 	@Override
-	public String getKind() {
-		return element.getKind().toString().toLowerCase();
+	public Text getKind() {
+		return getTextAdapter(element.getKind().toString().toLowerCase());
 	}
 
 	@Override
@@ -69,31 +71,20 @@ public class ElementAdapter extends AbstractAdapter implements JavaElement,
 	}
 
 	@Override
-	public String toString() {
-		return "{name=" + getName() + ", children=" + show(getChildren())
-				+ ", parent=" + show(getParent()) + ", kind=" + getKind() + "}";
+	public JavaElementType getType() {
+		return getTypeAdapter(element.asType());
 	}
 
-	private String show(List<JavaElement> children) {
-		StringBuilder sb = new StringBuilder();
+	@SuppressWarnings("unchecked")
+	protected <T> List<T> findChildrenByType(Class<T> clazz) {
+		List<T> results = new ArrayList<T>();
 
-		sb.append("[");
-
-		for (int i = 0; i < children.size(); i++) {
-			JavaElement element = children.get(i);
-			sb.append(show(element));
-			if (i < children.size() - 1) {
-				sb.append(", ");
+		for (JavaElement child : getChildren()) {
+			if (clazz.isAssignableFrom(child.getClass())) {
+				results.add((T) child);
 			}
 		}
-		sb.append("]");
-
-		return sb.toString();
-	}
-
-	private String show(JavaElement element) {
-		return "{name=" + element.getName() + ", kind=" + element.getKind()
-				+ "}";
+		return results;
 	}
 
 }

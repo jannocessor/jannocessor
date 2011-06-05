@@ -14,26 +14,20 @@
  * limitations under the License.
  */
 
-package org.jannocessor.domain.type;
+package org.jannocessor.domain;
 
-import java.util.List;
+public interface Text {
 
-import org.jannocessor.domain.executable.JavaConstructor;
-import org.jannocessor.domain.executable.JavaInstanceInit;
-import org.jannocessor.domain.executable.JavaMethod;
-import org.jannocessor.domain.executable.JavaStaticInit;
-import org.jannocessor.domain.variable.JavaField;
+	String getText();
+	
+	String getValue();
 
-public interface JavaClass extends JavaType {
+	Text getUpper();
 
-	List<JavaField> getFields();
+	Text getLower();
 
-	List<JavaConstructor> getConstructors();
+	Text getCapitalized();
 
-	List<JavaMethod> getMethods();
-
-	List<JavaStaticInit> getStaticInits();
-
-	List<JavaInstanceInit> getInstanceInits();
+	Text getUncapitalized();
 
 }

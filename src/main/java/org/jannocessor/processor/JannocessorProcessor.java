@@ -116,7 +116,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		Set<? extends Element> roots = env.getRootElements();
 		for (Element rootElement : roots) {
 			// add new "root" wrapper fact for each root element
-			Root root = new Root(AdapterFactory.getAdapterFor(rootElement));
+			Root root = new Root(AdapterFactory.getElementAdapter(rootElement));
 			facts.add(root);
 		}
 
@@ -127,7 +127,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 			for (Element annotatedElement : annotatedElements) {
 				// create mark for each annotation X for each annotated element
 				Mark mark = createMark(annotation,
-						AdapterFactory.getAdapterFor(annotatedElement));
+						AdapterFactory.getElementAdapter(annotatedElement));
 				facts.add(mark);
 			}
 		}

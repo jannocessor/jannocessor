@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.domain.type;
+package org.jannocessor.adapter;
 
-import java.util.List;
+import javax.lang.model.type.TypeMirror;
 
-import org.jannocessor.domain.executable.JavaConstructor;
-import org.jannocessor.domain.executable.JavaInstanceInit;
-import org.jannocessor.domain.executable.JavaMethod;
-import org.jannocessor.domain.executable.JavaStaticInit;
-import org.jannocessor.domain.variable.JavaField;
+import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.JavaTypeName;
 
-public interface JavaClass extends JavaType {
+public final class ElementTypeAdapter extends AbstractAdapter implements
+		JavaElementType {
 
-	List<JavaField> getFields();
+	private final TypeMirror typeMirror;
 
-	List<JavaConstructor> getConstructors();
+	public ElementTypeAdapter(TypeMirror typeMirror) {
+		this.typeMirror = typeMirror;
+	}
 
-	List<JavaMethod> getMethods();
-
-	List<JavaStaticInit> getStaticInits();
-
-	List<JavaInstanceInit> getInstanceInits();
+	@Override
+	public JavaTypeName getName() {
+		return getTypeNameAdapter(typeMirror.toString());
+	}
 
 }

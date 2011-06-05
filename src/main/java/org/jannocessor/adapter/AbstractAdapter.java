@@ -16,13 +16,157 @@
 
 package org.jannocessor.adapter;
 
-import javax.lang.model.element.Element;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.Iterator;
 
+import javax.lang.model.element.Element;
+import javax.lang.model.type.TypeMirror;
+
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.jannocessor.domain.JavaElement;
+import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 abstract class AbstractAdapter {
 
-	protected JavaElement getAdapterFor(Element element) {
-		return AdapterFactory.getAdapterFor(element);
+	enum TextMode {
+		FULL, UP, DOWN
 	}
+
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
+
+	private final BeanUtilsBean beanUtils = BeanUtilsBean.getInstance();
+
+	private final PropertyUtilsBean propertyUtils = beanUtils
+			.getPropertyUtils();
+
+	protected JavaElement getElementAdapter(Element element) {
+		return AdapterFactory.getElementAdapter(element);
+	}
+
+	protected JavaElementType getTypeAdapter(TypeMirror typeMirror) {
+		return AdapterFactory.getTypeAdapter(typeMirror);
+	}
+
+	protected JavaTypeName getTypeNameAdapter(String typeName) {
+		return AdapterFactory.getTypeNameAdapter(typeName);
+	}
+
+	protected Text getTextAdapter(String text) {
+		return AdapterFactory.getTextAdapter(text);
+	}
+
+	@Override
+	public String toString() {
+		return asText(TextMode.FULL);
+	}
+
+	private String showAsParent() {
+		return asText(TextMode.UP);
+	}
+
+	private String showAsChild() {
+		return asText(TextMode.DOWN);
+	}
+
+	private String asText(TextMode mode) {
+		try {
+			StringBuilder sb = new StringBuilder();
+
+			PropertyDescriptor[] descriptors = propertyUtils
+					.getPropertyDescriptors(this);
+
+			sb.append("{");
+			boolean isFirst = true;
+			for (int i = 0; i < descriptors.length; i++) {
+				String name = descriptors[i].getName();
+				Object value = propertyUtils.getProperty(this, name);
+
+				if (!isPropertyForbidden(name, value, mode)) {
+					if (!isFirst) {
+						sb.append(", ");
+					}
+					isFirst = false;
+
+					sb.append(name + "=" + showProperty(name, value));
+				}
+			}
+			sb.append("}");
+
+			return sb.toString();
+		} catch (Exception e) {
+			logger.error(
+					"Error occured while constructing element textual representation",
+					e);
+			e.printStackTrace();
+			return "ERROR";
+		}
+
+	}
+
+	private boolean isPropertyForbidden(String name, Object value, TextMode mode) {
+		if (name.equals("class")) {
+			return true;
+		} else {
+			if (mode.equals(TextMode.FULL)) {
+				return false;
+			} else {
+				return (value == null) || (value instanceof Collection)
+						|| (value instanceof JavaElement);
+			}
+		}
+	}
+
+	private String showProperty(String name, Object value)
+			throws IllegalAccessException, InvocationTargetException,
+			NoSuchMethodException {
+		if (value != null) {
+			if (value instanceof AbstractAdapter && !(value instanceof Text)) {
+				AbstractAdapter adapter = (AbstractAdapter) value;
+				if (name.equals("parent")) {
+					return adapter.showAsParent();
+				} else {
+					return adapter.showAsChild();
+				}
+			} else if (value instanceof Collection) {
+				Collection<?> collection = (Collection<?>) value;
+				return showChildCollection(collection);
+			} else {
+				return value.toString();
+			}
+		} else {
+			return "NULL";
+		}
+	}
+
+	private String showChildCollection(Collection<?> collection) {
+		StringBuilder sb = new StringBuilder();
+
+		Iterator<?> iterator = collection.iterator();
+		sb.append("[");
+
+		while (iterator.hasNext()) {
+			Object item = iterator.next();
+			if (item instanceof AbstractAdapter && !(item instanceof Text)) {
+				AbstractAdapter adapter = (AbstractAdapter) item;
+				sb.append(adapter.showAsChild());
+			} else {
+				sb.append(item.toString());
+			}
+
+			if (iterator.hasNext()) {
+				sb.append(", ");
+			}
+		}
+		sb.append("]");
+
+		return sb.toString();
+	}
+
 }

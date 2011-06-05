@@ -23,6 +23,7 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeMirror;
 
 import org.jannocessor.adapter.executable.JavaConstructorAdapter;
 import org.jannocessor.adapter.executable.JavaInstanceInitAdapter;
@@ -40,87 +41,123 @@ import org.jannocessor.adapter.variable.JavaFieldAdapter;
 import org.jannocessor.adapter.variable.JavaLocalVariableAdapter;
 import org.jannocessor.adapter.variable.JavaParameterAdapter;
 import org.jannocessor.domain.JavaElement;
+import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Text;
 
 public class AdapterFactory {
 
-	public static JavaElement getAdapterFor(Element element) {
-		ElementAdapter adapter;
+	public static JavaElement getElementAdapter(Element element) {
 
-		ElementKind kind = element.getKind();
-		switch (kind) {
+		if (element != null) {
 
-		/* Package and types */
+			ElementAdapter adapter;
 
-		case PACKAGE:
-			adapter = new JavaPackageAdapter((PackageElement) element);
-			break;
+			ElementKind kind = element.getKind();
+			switch (kind) {
 
-		case ENUM:
-			adapter = new JavaEnumAdapter((TypeElement) element);
-			break;
+			/* Package and types */
 
-		case CLASS:
-			adapter = new JavaClassAdapter((TypeElement) element);
-			break;
+			case PACKAGE:
+				adapter = new JavaPackageAdapter((PackageElement) element);
+				break;
 
-		case ANNOTATION_TYPE:
-			adapter = new JavaAnnotationAdapter((TypeElement) element);
-			break;
+			case ENUM:
+				adapter = new JavaEnumAdapter((TypeElement) element);
+				break;
 
-		case INTERFACE:
-			adapter = new JavaInterfaceAdapter((TypeElement) element);
-			break;
+			case CLASS:
+				adapter = new JavaClassAdapter((TypeElement) element);
+				break;
 
-		case TYPE_PARAMETER:
-			adapter = new JavaTypeParameterAdapter(
-					(TypeParameterElement) element);
-			break;
+			case ANNOTATION_TYPE:
+				adapter = new JavaAnnotationAdapter((TypeElement) element);
+				break;
 
-		/* Variables */
+			case INTERFACE:
+				adapter = new JavaInterfaceAdapter((TypeElement) element);
+				break;
 
-		case ENUM_CONSTANT:
-			adapter = new JavaEnumConstantAdapter((VariableElement) element);
-			break;
+			case TYPE_PARAMETER:
+				adapter = new JavaTypeParameterAdapter(
+						(TypeParameterElement) element);
+				break;
 
-		case FIELD:
-			adapter = new JavaFieldAdapter((VariableElement) element);
-			break;
+			/* Variables */
 
-		case PARAMETER:
-			adapter = new JavaParameterAdapter((VariableElement) element);
-			break;
+			case ENUM_CONSTANT:
+				adapter = new JavaEnumConstantAdapter((VariableElement) element);
+				break;
 
-		case LOCAL_VARIABLE:
-			adapter = new JavaLocalVariableAdapter((VariableElement) element);
-			break;
+			case FIELD:
+				adapter = new JavaFieldAdapter((VariableElement) element);
+				break;
 
-		case EXCEPTION_PARAMETER:
-			adapter = new JavaExceptionParameterAdapter(
-					(VariableElement) element);
-			break;
+			case PARAMETER:
+				adapter = new JavaParameterAdapter((VariableElement) element);
+				break;
 
-		/* Executables */
+			case LOCAL_VARIABLE:
+				adapter = new JavaLocalVariableAdapter(
+						(VariableElement) element);
+				break;
 
-		case METHOD:
-			adapter = new JavaMethodAdapter((ExecutableElement) element);
-			break;
+			case EXCEPTION_PARAMETER:
+				adapter = new JavaExceptionParameterAdapter(
+						(VariableElement) element);
+				break;
 
-		case CONSTRUCTOR:
-			adapter = new JavaConstructorAdapter((ExecutableElement) element);
-			break;
+			/* Executables */
 
-		case STATIC_INIT:
-			adapter = new JavaStaticInitAdapter((ExecutableElement) element);
-			break;
+			case METHOD:
+				adapter = new JavaMethodAdapter((ExecutableElement) element);
+				break;
 
-		case INSTANCE_INIT:
-			adapter = new JavaInstanceInitAdapter((ExecutableElement) element);
-			break;
+			case CONSTRUCTOR:
+				adapter = new JavaConstructorAdapter(
+						(ExecutableElement) element);
+				break;
 
-		default:
-			throw new IllegalStateException();
+			case STATIC_INIT:
+				adapter = new JavaStaticInitAdapter((ExecutableElement) element);
+				break;
+
+			case INSTANCE_INIT:
+				adapter = new JavaInstanceInitAdapter(
+						(ExecutableElement) element);
+				break;
+
+			default:
+				throw new IllegalStateException();
+			}
+
+			return adapter;
+		} else {
+			return null;
 		}
+	}
 
-		return adapter;
+	public static JavaElementType getTypeAdapter(TypeMirror typeMirror) {
+		if (typeMirror != null) {
+			return new ElementTypeAdapter(typeMirror);
+		} else {
+			return null;
+		}
+	}
+
+	public static JavaTypeName getTypeNameAdapter(String typeName) {
+		if (typeName != null) {
+			return new TypeNameAdapter(typeName);
+		} else {
+			return null;
+		}
+	}
+
+	public static Text getTextAdapter(String text) {
+		if (text != null) {
+			return new TextAdapter(text);
+		} else {
+			return null;
+		}
 	}
 }

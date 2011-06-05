@@ -16,9 +16,16 @@
 
 package org.jannocessor.adapter.type;
 
+import java.util.List;
+
 import javax.lang.model.element.TypeElement;
 
+import org.jannocessor.domain.executable.JavaConstructor;
+import org.jannocessor.domain.executable.JavaInstanceInit;
+import org.jannocessor.domain.executable.JavaMethod;
+import org.jannocessor.domain.executable.JavaStaticInit;
 import org.jannocessor.domain.type.JavaClass;
+import org.jannocessor.domain.variable.JavaField;
 
 public final class JavaClassAdapter extends JavaTypeAdapter implements
 		JavaClass {
@@ -29,6 +36,31 @@ public final class JavaClassAdapter extends JavaTypeAdapter implements
 	public JavaClassAdapter(TypeElement tclass) {
 		super(tclass);
 		this.tclass = tclass;
+	}
+
+	@Override
+	public List<JavaField> getFields() {
+		return findChildrenByType(JavaField.class);
+	}
+
+	@Override
+	public List<JavaConstructor> getConstructors() {
+		return findChildrenByType(JavaConstructor.class);
+	}
+
+	@Override
+	public List<JavaMethod> getMethods() {
+		return findChildrenByType(JavaMethod.class);
+	}
+
+	@Override
+	public List<JavaStaticInit> getStaticInits() {
+		return findChildrenByType(JavaStaticInit.class);
+	}
+
+	@Override
+	public List<JavaInstanceInit> getInstanceInits() {
+		return findChildrenByType(JavaInstanceInit.class);
 	}
 
 }
