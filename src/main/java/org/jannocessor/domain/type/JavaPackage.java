@@ -16,6 +16,8 @@
 
 package org.jannocessor.domain.type;
 
-public interface JavaPackage extends JavaType {
+import org.jannocessor.domain.JavaElement;
+
+public interface JavaPackage extends JavaElement {
 
 }

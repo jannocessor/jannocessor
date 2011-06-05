@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-package org.jannocessor.domain.variable;
+package org.jannocessor.domain.type;
 
-public interface JavaTypeParameter extends JavaVariable {
+import org.jannocessor.domain.JavaElement;
+
+public interface JavaTypeParameter extends JavaElement {
 
 }
