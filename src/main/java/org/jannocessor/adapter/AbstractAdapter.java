@@ -46,8 +46,9 @@ abstract class AbstractAdapter {
 	private final PropertyUtilsBean propertyUtils = beanUtils
 			.getPropertyUtils();
 
-	protected JavaElement getElementAdapter(Element element) {
-		return AdapterFactory.getElementAdapter(element);
+	protected <T extends JavaElement> T getElementAdapter(Element element,
+			Class<T> clazz) {
+		return AdapterFactory.getElementAdapter(element, clazz);
 	}
 
 	protected JavaElementType getTypeAdapter(TypeMirror typeMirror) {
@@ -58,8 +59,9 @@ abstract class AbstractAdapter {
 		return AdapterFactory.getTypeNameAdapter(typeName);
 	}
 
-	protected Text getTextAdapter(String text) {
-		return AdapterFactory.getTextAdapter(text);
+	protected Text getTextAdapter(Object value) {
+		return value != null ? AdapterFactory.getTextAdapter(String
+				.valueOf(value)) : null;
 	}
 
 	@Override

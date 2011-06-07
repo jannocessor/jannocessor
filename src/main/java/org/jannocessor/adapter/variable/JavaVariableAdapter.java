@@ -19,12 +19,12 @@ package org.jannocessor.adapter.variable;
 import javax.lang.model.element.VariableElement;
 
 import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.domain.Text;
 import org.jannocessor.domain.variable.JavaVariable;
 
 abstract class JavaVariableAdapter extends ElementAdapter implements
 		JavaVariable {
 
-	@SuppressWarnings("unused")
 	private final VariableElement variable;
 
 	public JavaVariableAdapter(VariableElement variable) {
@@ -32,4 +32,9 @@ abstract class JavaVariableAdapter extends ElementAdapter implements
 		this.variable = variable;
 	}
 
+	@Override
+	public Text getConstant() {
+		Object value = variable.getConstantValue();
+		return value != null ? getTextAdapter(String.valueOf(value)) : null;
+	}
 }

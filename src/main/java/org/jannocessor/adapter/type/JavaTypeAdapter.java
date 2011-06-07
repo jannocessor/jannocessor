@@ -16,19 +16,64 @@
 
 package org.jannocessor.adapter.type;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.TypeParameterElement;
+import javax.lang.model.type.TypeMirror;
 
 import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Text;
 import org.jannocessor.domain.type.JavaType;
+import org.jannocessor.domain.type.JavaTypeParameter;
 
 abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 
-	@SuppressWarnings("unused")
 	private final TypeElement type;
 
 	public JavaTypeAdapter(TypeElement type) {
 		super(type);
 		this.type = type;
+	}
+
+	@Override
+	public Text getNesting() {
+		return getTextAdapter(type.getNestingKind().toString());
+	}
+
+	@Override
+	public JavaTypeName getQualifiedName() {
+		return getTypeNameAdapter(type.getQualifiedName().toString());
+	}
+
+	@Override
+	public JavaElementType getSuperclass() {
+		return getTypeAdapter(type.getSuperclass());
+	}
+
+	@Override
+	public List<JavaElementType> getInterfaces() {
+		List<JavaElementType> adapters = new ArrayList<JavaElementType>();
+
+		for (TypeMirror tinterface : type.getInterfaces()) {
+			adapters.add(getTypeAdapter(tinterface));
+		}
+
+		return adapters;
+	}
+
+	@Override
+	public List<JavaTypeParameter> getParameters() {
+		List<JavaTypeParameter> adapters = new ArrayList<JavaTypeParameter>();
+
+		for (TypeParameterElement parameter : type.getTypeParameters()) {
+			adapters.add(getElementAdapter(parameter, JavaTypeParameter.class));
+		}
+
+		return adapters;
 	}
 
 }

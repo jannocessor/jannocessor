@@ -17,7 +17,10 @@
 package org.jannocessor.domain.variable;
 
 import org.jannocessor.domain.JavaElement;
+import org.jannocessor.domain.Text;
 
 public interface JavaVariable extends JavaElement {
 
+	Text getConstant();
+	
 }

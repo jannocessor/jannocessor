@@ -16,20 +16,82 @@
 
 package org.jannocessor.adapter.executable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.TypeParameterElement;
+import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeMirror;
 
 import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.Text;
 import org.jannocessor.domain.executable.JavaExecutable;
+import org.jannocessor.domain.type.JavaTypeParameter;
+import org.jannocessor.domain.variable.JavaParameter;
 
 abstract class JavaExecutableAdapter extends ElementAdapter implements
 		JavaExecutable {
 
-	@SuppressWarnings("unused")
 	private final ExecutableElement executable;
 
 	public JavaExecutableAdapter(ExecutableElement executable) {
 		super(executable);
 		this.executable = executable;
+	}
+
+	@Override
+	public List<JavaTypeParameter> getTypeParameters() {
+		List<JavaTypeParameter> adapters = new ArrayList<JavaTypeParameter>();
+
+		for (TypeParameterElement typeParameter : executable
+				.getTypeParameters()) {
+			JavaTypeParameter adapter = getElementAdapter(typeParameter,
+					JavaTypeParameter.class);
+			adapters.add(adapter);
+		}
+
+		return adapters;
+	}
+
+	@Override
+	public JavaElementType getReturnType() {
+		return getTypeAdapter(executable.getReturnType());
+	}
+
+	@Override
+	public List<JavaParameter> getParameters() {
+		List<JavaParameter> adapters = new ArrayList<JavaParameter>();
+
+		for (VariableElement variable : executable.getParameters()) {
+			JavaParameter adapter = getElementAdapter(variable,
+					JavaParameter.class);
+			adapters.add(adapter);
+		}
+
+		return adapters;
+	}
+
+	@Override
+	public boolean getVarArgs() {
+		return executable.isVarArgs();
+	}
+
+	@Override
+	public List<JavaElementType> getThrownTypes() {
+		List<JavaElementType> adapters = new ArrayList<JavaElementType>();
+
+		for (TypeMirror typeMirror : executable.getThrownTypes()) {
+			adapters.add(getTypeAdapter(typeMirror));
+		}
+
+		return adapters;
+	}
+
+	@Override
+	public Text getDefault() {
+		return getTextAdapter(executable.getDefaultValue());
 	}
 
 }

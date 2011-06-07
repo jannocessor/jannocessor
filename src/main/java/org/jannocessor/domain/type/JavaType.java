@@ -16,8 +16,22 @@
 
 package org.jannocessor.domain.type;
 
+import java.util.List;
+
 import org.jannocessor.domain.JavaElement;
+import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Text;
 
 public interface JavaType extends JavaElement {
 
+	Text getNesting();
+
+	JavaTypeName getQualifiedName();
+
+	JavaElementType getSuperclass();
+
+	List<JavaElementType> getInterfaces();
+
+	List<JavaTypeParameter> getParameters();
 }

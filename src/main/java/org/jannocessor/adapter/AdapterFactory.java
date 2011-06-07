@@ -47,7 +47,9 @@ import org.jannocessor.domain.Text;
 
 public class AdapterFactory {
 
-	public static JavaElement getElementAdapter(Element element) {
+	@SuppressWarnings("unchecked")
+	public static <T extends JavaElement> T getElementAdapter(Element element,
+			Class<T> clazz) {
 
 		if (element != null) {
 
@@ -131,7 +133,11 @@ public class AdapterFactory {
 				throw new IllegalStateException();
 			}
 
-			return adapter;
+			if (clazz.isAssignableFrom(adapter.getClass())) {
+				return (T) adapter;
+			} else {
+				throw new IllegalStateException("Wrong element type!");
+			}
 		} else {
 			return null;
 		}

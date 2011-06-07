@@ -38,7 +38,7 @@ public abstract class ElementAdapter extends AbstractAdapter implements
 	public JavaElement getParent() {
 		Element parent = element.getEnclosingElement();
 		if (parent != null) {
-			return getElementAdapter(parent);
+			return getElementAdapter(parent, JavaElement.class);
 		} else {
 			return null;
 		}
@@ -49,7 +49,7 @@ public abstract class ElementAdapter extends AbstractAdapter implements
 		List<JavaElement> children = new ArrayList<JavaElement>();
 
 		for (Element enclosedElement : element.getEnclosedElements()) {
-			children.add(getElementAdapter(enclosedElement));
+			children.add(getElementAdapter(enclosedElement, JavaElement.class));
 		}
 
 		return children;
