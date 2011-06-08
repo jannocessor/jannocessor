@@ -28,11 +28,6 @@ public abstract class AbstractMapAdapter implements Map<Object, Object> {
 	}
 
 	@Override
-	public boolean containsKey(Object key) {
-		throw new IllegalAccessError();
-	}
-
-	@Override
 	public boolean containsValue(Object value) {
 		throw new IllegalAccessError();
 	}
@@ -75,6 +70,11 @@ public abstract class AbstractMapAdapter implements Map<Object, Object> {
 	@Override
 	public boolean isEmpty() {
 		return false;
+	}
+
+	@Override
+	public boolean containsKey(Object key) {
+		return true;
 	}
 
 	@Override

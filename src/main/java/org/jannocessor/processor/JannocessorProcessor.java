@@ -36,7 +36,11 @@ import org.jannocessor.domain.JavaElement;
 import org.jannocessor.model.File;
 import org.jannocessor.model.Mark;
 import org.jannocessor.model.Root;
+import org.jannocessor.service.api.ImportOrganizer;
 import org.jannocessor.service.api.JannocessorException;
+import org.jannocessor.service.imports.ImportOrganizerImpl;
+import org.jannocessor.util.imports.TypeImportMap;
+import org.jannocessor.util.imports.TypeUsageMap;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class JannocessorProcessor extends JannocessorProcessorBase {
@@ -91,8 +95,20 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 		attributes.put("file", file);
 		attributes.put("data", file.getData());
+		attributes.put("utils", createUtils());
 
 		return attributes;
+	}
+
+	private Map<String, Object> createUtils() {
+		Map<String, Object> utils = new HashMap<String, Object>();
+
+		ImportOrganizer organizer = new ImportOrganizerImpl();
+
+		utils.put("import", new TypeImportMap(organizer));
+		utils.put("type", new TypeUsageMap(organizer));
+
+		return utils;
 	}
 
 	private Map<String, Object> initGlobals() {
