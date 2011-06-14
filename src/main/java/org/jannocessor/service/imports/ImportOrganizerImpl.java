@@ -33,7 +33,7 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 	public String getTypeImport(String classname) {
 		String simpleName = extractSimpleName(classname);
 
-		if (!classname.startsWith(JAVA_LANG)) {
+		if (simpleName != null && !classname.startsWith(JAVA_LANG)) {
 			if (!importedSimple.contains(simpleName)) {
 				importedSimple.add(simpleName);
 				importedFull.add(classname);
@@ -48,16 +48,21 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 	public String getTypeUsage(String classname) {
 		String simpleName = extractSimpleName(classname);
 
-		if (classname.startsWith(JAVA_LANG) || importedFull.contains(classname)) {
-			return simpleName;
+		if (simpleName != null) {
+			if (classname.startsWith(JAVA_LANG)
+					|| importedFull.contains(classname)) {
+				return simpleName;
+			} else {
+				return classname;
+			}
 		} else {
-			return classname;
+			return classname; // a primitive type
 		}
 	}
 
 	private String extractSimpleName(String classname) {
 		int pos = classname.lastIndexOf('.');
-		return classname.substring(pos + 1);
+		return pos > 0 ? classname.substring(pos + 1) : null;
 	}
 
 }
