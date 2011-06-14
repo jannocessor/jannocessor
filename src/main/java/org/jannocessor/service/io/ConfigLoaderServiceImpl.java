@@ -16,12 +16,13 @@
 
 package org.jannocessor.service.io;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import org.drools.io.Resource;
 import org.drools.io.ResourceFactory;
 import org.jannocessor.service.api.ConfigLoader;
 import org.jannocessor.service.api.JannocessorException;
@@ -33,9 +34,8 @@ public class ConfigLoaderServiceImpl implements ConfigLoader, Settings {
 	public Map<String, String> loadProperties(String filename)
 			throws JannocessorException {
 		try {
-			Resource resource = ResourceFactory.newClassPathResource(filename);
 			Properties properties = new Properties();
-			properties.load(resource.getInputStream());
+			properties.load(loadResource(filename));
 
 			Map<String, String> map = new HashMap<String, String>();
 			for (Entry<Object, Object> entry : properties.entrySet()) {
@@ -47,6 +47,18 @@ public class ConfigLoaderServiceImpl implements ConfigLoader, Settings {
 			throw new JannocessorException("Cannot load configuration file: "
 					+ filename, e);
 		}
+	}
+
+	private InputStream loadResource(String filename) throws IOException {
+		try {
+			return read(filename);
+		} catch (Exception e) {
+			return read("src/main/resources/" + filename);
+		}
+	}
+
+	private InputStream read(String filename) throws IOException {
+		return ResourceFactory.newClassPathResource(filename).getInputStream();
 	}
 
 }
