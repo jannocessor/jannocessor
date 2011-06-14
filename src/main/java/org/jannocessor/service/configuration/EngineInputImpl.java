@@ -23,6 +23,7 @@ import org.jannocessor.util.Settings;
 
 public class EngineInputImpl implements EngineInput, Settings {
 
+	@SuppressWarnings("unused")
 	private final Config options;
 
 	public EngineInputImpl(Config options) {
@@ -31,7 +32,8 @@ public class EngineInputImpl implements EngineInput, Settings {
 
 	@Override
 	public String getProject() throws JannocessorException {
-		//return options.getMandatoryValue("project");
+		// return options.getMandatoryValue("project");
+		// FIXME NM: handle this properly
 		return "";
 	}
 
