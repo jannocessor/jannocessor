@@ -1,0 +1,39 @@
+package range;
+
+dialect "mvel" 
+
+import java.util.List
+
+import org.slf4j.Logger
+
+import javax.lang.model.element.Element
+import javax.lang.model.util.Types
+import javax.lang.model.util.Elements
+
+import org.jannocessor.domain.*
+import org.jannocessor.model.*
+
+global Logger logger
+global Types types
+global Elements elements
+global Files files
+global Problems problems
+
+rule "Annotations"
+when
+	mark : Mark(element.kind.text == 'class', label == 'gen')
+then
+	model = mark.element
+	fields = mark.element.fields
+	
+	name = mark.element.name + "Generated";
+	file = files.file("domain", name, "java", "javabean");
+	file.data.set("element", mark.element).set("name", name).set("fields", fields);
+end
+
+rule "Wrong annotations"
+when
+	mark : Mark(element.kind.text == 'field', label == 'gen')
+then
+	problems.warning(mark.element, "My CUSTOM annotation %s doesn't support fields", mark.annotation);
+end

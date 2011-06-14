@@ -1,0 +1,52 @@
+importIfExists(type) ::= <<
+<if (type)>
+import <type>;
+<endif>
+>>
+
+importType(type) ::= <<
+<utils.import.(type):importIfExists()>
+>>
+
+type(type) ::= <<
+<utils.type.(type)>
+>>
+
+field(x) ::= <<
+   private <x.type.name.full:type()> <x.name>;
+>>
+
+setter(x) ::= <<
+    public void set<x.name.capitalized>(<x.type.name.full:type()> <x.name>) {
+        this.<x.name> = <x.name>;
+    }
+>>
+
+getter(x) ::= <<
+    public <x.type.name.full:type()> get<x.name.capitalized>() {
+        return this.<x.name>;
+    }
+>>
+
+property(x) ::= <<
+
+<x:getter()>
+
+<x:setter()>
+
+
+>>
+
+main(file, data, utils) ::= <<
+package <file.package>;
+
+<data.fields:{f|<f.type.name.full:importType()>}; separator="\n">
+
+public class <data.name> {
+
+<data.fields:field(); separator="\n">
+
+<data.fields:property()>
+
+}
+>>
