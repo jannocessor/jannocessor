@@ -54,12 +54,12 @@ public class TextAdapter extends AbstractAdapter implements Text {
 
 	@Override
 	public Text getCapitalized() {
-		return getTextAdapter(StringUtils.capitalise(text));
+		return getTextAdapter(StringUtils.capitalize(text));
 	}
 
 	@Override
 	public Text getUncapitalized() {
-		return getTextAdapter(StringUtils.uncapitalise(text));
+		return getTextAdapter(StringUtils.uncapitalize(text));
 	}
 
 	@Override
