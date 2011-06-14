@@ -87,8 +87,8 @@ public class RulesServiceImpl implements RuleExecutor, Settings {
 			logger.info("Compiling rules...");
 			kbase = createKnowledgeBase(resources);
 
-			logger.info("Saving rules...");
-			saveKnowledgeBase(kbase);
+			// logger.info("Saving rules...");
+			// saveKnowledgeBase(kbase);
 		} else {
 			logger.info("Loading pre-compiled rules...");
 			kbase = loadKnowledgeBase();
@@ -98,6 +98,8 @@ public class RulesServiceImpl implements RuleExecutor, Settings {
 
 		StatelessKnowledgeSession session = kbase
 				.newStatelessKnowledgeSession();
+
+		// KnowledgeRuntimeLoggerFactory.newConsoleLogger(session);
 
 		logger.info("Setting session globals");
 
@@ -174,7 +176,6 @@ public class RulesServiceImpl implements RuleExecutor, Settings {
 
 		KnowledgeBuilderConfiguration config = KnowledgeBuilderFactory
 				.newKnowledgeBuilderConfiguration();
-		config.setProperty("drools.dialect.mvel.strict", "false");
 
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory
 				.newKnowledgeBuilder(config);
@@ -224,6 +225,7 @@ public class RulesServiceImpl implements RuleExecutor, Settings {
 
 	}
 
+	@SuppressWarnings("unused")
 	private final void saveKnowledgeBase(KnowledgeBase kbase) throws Exception {
 		ObjectOutputStream out = null;
 		try {
