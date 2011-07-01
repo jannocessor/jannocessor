@@ -20,7 +20,10 @@ import java.util.Map;
 
 public interface TextRenderer {
 
-	String renderText(String templateName, Map<String, Object> attributes)
+	String render(String template, Map<String, Object> attributes)
+			throws JannocessorException;
+
+	String renderFromFile(String templateName, Map<String, Object> attributes)
 			throws JannocessorException;
 
 }

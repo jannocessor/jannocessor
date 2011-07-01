@@ -104,9 +104,16 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 		rules.executeRules(facts, globals);
 	}
 
-	public String renderText(String templateName, Map<String, Object> attributes)
+	@Override
+	public String render(String template, Map<String, Object> attributes)
 			throws JannocessorException {
-		return generator.renderText(templateName, attributes);
+		return generator.render(template, attributes);
+	}
+
+	@Override
+	public String renderFromFile(String templateName,
+			Map<String, Object> attributes) throws JannocessorException {
+		return generator.renderFromFile(templateName, attributes);
 	}
 
 }

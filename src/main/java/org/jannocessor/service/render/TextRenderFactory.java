@@ -24,7 +24,7 @@ public class TextRenderFactory {
 
 	public static TextRenderer createGeneratorService(PathLocator paths)
 			throws JannocessorException {
-		return new TextRenderImpl(paths);
+		return new VelocityTextRender(paths);
 	}
 
 }
