@@ -69,6 +69,7 @@ abstract class AbstractAdapter {
 		return asText(TextMode.FULL);
 	}
 
+	@SuppressWarnings("unused")
 	private String showAsParent() {
 		return asText(TextMode.UP);
 	}
@@ -130,15 +131,15 @@ abstract class AbstractAdapter {
 			NoSuchMethodException {
 		if (value != null) {
 			if (value instanceof AbstractAdapter && !(value instanceof Text)) {
-				AbstractAdapter adapter = (AbstractAdapter) value;
+				// AbstractAdapter adapter = (AbstractAdapter) value;
 				if (name.equals("parent")) {
-					return adapter.showAsParent();
+					return "[...]"; // adapter.showAsParent();
 				} else {
-					return adapter.showAsChild();
+					return "[...]"; // adapter.showAsChild();
 				}
 			} else if (value instanceof Collection) {
 				Collection<?> collection = (Collection<?>) value;
-				return showChildCollection(collection);
+				return showMiniChildCollection(collection); // showChildCollection
 			} else {
 				return value.toString();
 			}
@@ -147,6 +148,11 @@ abstract class AbstractAdapter {
 		}
 	}
 
+	private String showMiniChildCollection(Collection<?> collection) {
+		return "[" + collection.size() + " items]";
+	}
+
+	@SuppressWarnings("unused")
 	private String showChildCollection(Collection<?> collection) {
 		StringBuilder sb = new StringBuilder();
 
