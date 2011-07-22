@@ -19,17 +19,24 @@ package org.jannocessor.model;
 import javax.lang.model.element.TypeElement;
 
 import org.jannocessor.domain.JavaElement;
+import org.jannocessor.domain.type.JavaClass;
 
 public class Mark {
 
 	private final TypeElement annotation;
-	private final JavaElement element;
 	private final String label;
+
+	private JavaElement element;
+	private JavaClass clazz;
 
 	public Mark(TypeElement annotation, JavaElement element, String label) {
 		this.annotation = annotation;
-		this.element = element;
 		this.label = label;
+		this.element = element;
+
+		if (element instanceof JavaClass) {
+			clazz = (JavaClass) element;
+		}
 	}
 
 	public TypeElement getAnnotation() {
@@ -50,4 +57,8 @@ public class Mark {
 				+ ", label=" + label + "]";
 	}
 
+	public JavaClass getClazz() {
+		return clazz;
+	}
+	
 }
