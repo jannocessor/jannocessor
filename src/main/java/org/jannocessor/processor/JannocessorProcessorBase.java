@@ -36,6 +36,7 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.JavaFileManager.Location;
+import javax.tools.StandardLocation;
 
 import org.jannocessor.adapter.SourceHolder;
 import org.jannocessor.engine.EngineInput;
@@ -45,8 +46,8 @@ import org.jannocessor.model.Config;
 import org.jannocessor.model.Files;
 import org.jannocessor.model.Problem;
 import org.jannocessor.model.Problems;
+import org.jannocessor.model.Processors;
 import org.jannocessor.service.api.JannocessorException;
-import org.jannocessor.service.configuration.EngineInputImpl;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +63,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	private Config options;
 	protected Files files = new Files();
 	protected Problems problems = new Problems();
+	protected Processors processors = new Processors();
 	protected JannocessorEngine engine;
 	private Messager messager;
 
@@ -127,6 +129,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 			logger.info("Initialization finished.");
 		} catch (Exception e) {
+			logger.error("Initialization failed!");
 			valid = false;
 			throw new RuntimeException(e);
 		}
@@ -141,7 +144,12 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	}
 
 	private void makeContract() throws JannocessorException {
-		EngineInput input = new EngineInputImpl(options);
+		EngineInput input = new EngineInput() {
+			@Override
+			public String getProject() throws JannocessorException {
+				return "";
+			}
+		};
 		engine = JannocessorEngineFactory.getJannocessorServices(input);
 	}
 
@@ -181,6 +189,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	@Override
 	public boolean process(Set<? extends TypeElement> annotations,
 			RoundEnvironment env) {
+		logger.info("Entering annotation processor...");
 		if (valid) {
 			if (!env.processingOver()) {
 				logger.info("Processing resources...");
@@ -276,6 +285,26 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	protected void warning(String msg, Element element) {
 		messager.printMessage(Diagnostic.Kind.WARNING, msg, element);
+	}
+
+	protected String getProjectPath() {
+		String path;
+		try {
+			path = filer
+					.createResource(StandardLocation.SOURCE_OUTPUT, "",
+							"foo.txt").toUri().getPath();
+		} catch (Exception e1) {
+			throw new RuntimeException("Cannot calculate project path!", e1);
+		}
+
+		int pos = path.indexOf("target");
+		if (pos > 0) {
+			return path.substring(0, pos);
+		} else {
+			throw new RuntimeException("Cannot find target folder in path: "
+					+ path);
+		}
+
 	}
 
 }

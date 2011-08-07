@@ -1,39 +1,26 @@
 package range;
 
-dialect "mvel" 
+dialect "java" 
 
-import java.util.List
-
-import org.slf4j.Logger
-
-import javax.lang.model.element.Element
-import javax.lang.model.util.Types
-import javax.lang.model.util.Elements
-
-import org.jannocessor.domain.*
+import java.util.*
 import org.jannocessor.model.*
+import org.jannocessor.domain.*;
+import org.jannocessor.domain.executable.*;
+import org.jannocessor.domain.type.*;
+import org.jannocessor.domain.variable.*;
 
-global Logger logger
-global Types types
-global Elements elements
-global Files files
-global Problems problems
+global ProcessingContext context
 
 rule "Annotations"
 when
-	mark : Mark(element.kind.text == 'class', label == 'gen')
+	clazz : JavaClass()
 then
-	model = mark.element
-	fields = mark.element.fields
-	
-	name = mark.element.name + "Generated";
-	file = files.file("domain", name, "java", "javabean");
-	file.data.set("element", mark.element).set("name", name).set("fields", fields);
+	context.getProcessors().process("Annotations", context, new Object[] { clazz });
 end
 
 rule "Wrong annotations"
 when
-	mark : Mark(element.kind.text == 'field', label == 'gen')
+	field : JavaField()
 then
-	problems.warning(mark.element, "My CUSTOM annotation %s doesn't support fields", mark.annotation);
+	context.getProcessors().process("Wrong annotations", context, new Object[] { field });
 end

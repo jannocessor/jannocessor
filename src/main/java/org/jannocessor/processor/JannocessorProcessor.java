@@ -19,6 +19,7 @@ package org.jannocessor.processor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,7 +27,10 @@ import java.util.Set;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.AnnotationMirror;
+import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
@@ -35,6 +39,7 @@ import org.jannocessor.adapter.AdapterFactory;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.model.File;
 import org.jannocessor.model.Mark;
+import org.jannocessor.model.ProcessingContext;
 import org.jannocessor.model.Root;
 import org.jannocessor.service.api.ImportOrganizer;
 import org.jannocessor.service.api.JannocessorException;
@@ -85,7 +90,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 		Map<String, Object> attributes = initAttributes(file);
 
-		String text = engine.renderText(template, attributes);
+		String text = engine.renderFromFile(template, attributes);
 
 		writeToFile(location, pkg, filename, text);
 	}
@@ -114,12 +119,18 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 	private Map<String, Object> initGlobals() {
 		Map<String, Object> globals = new HashMap<String, Object>();
 
-		globals.put("logger", logger);
-		globals.put("elements", elementUtils);
-		globals.put("types", typeUtils);
+		ProcessingContext context = new ProcessingContext();
 
-		globals.put("files", files);
-		globals.put("problems", problems);
+		context.setLogger(logger);
+		context.setElements(elementUtils);
+		context.setTypes(typeUtils);
+		context.setFiles(files);
+		context.setProblems(problems);
+		context.setProcessors(processors);
+		context.setFiler(filer);
+		context.setProjectPath(getProjectPath());
+
+		globals.put("context", context);
 
 		return globals;
 	}
@@ -137,18 +148,42 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 			facts.add(root);
 		}
 
-		// construct "mark" facts
+		Set<Element> allElements = new HashSet<Element>();
+
+		// construct annotated elements' facts
 		for (TypeElement annotation : annotations) {
 			Set<? extends Element> annotatedElements = env
 					.getElementsAnnotatedWith(annotation);
+			logger.debug("-- ANNOTATION: " + annotation);
+
+			allElements.addAll(annotatedElements);
+
 			for (Element annotatedElement : annotatedElements) {
-				// create mark for each annotation X for each annotated element
-				Mark mark = createMark(annotation,
-						AdapterFactory.getElementAdapter(annotatedElement,
-								JavaElement.class));
-				facts.add(mark);
+				logger.debug("---- ELEMENT: " + annotatedElement);
+
+				// add each annotation X for each annotated element
+
+				List<? extends AnnotationMirror> mirrors = annotatedElement
+						.getAnnotationMirrors();
+				for (AnnotationMirror annotationMirror : mirrors) {
+					Map<? extends ExecutableElement, ? extends AnnotationValue> mapa = annotationMirror
+							.getElementValues();
+					logger.debug("---- ANNOTATION: " + annotationMirror);
+					logger.debug("------ MAP: " + mapa);
+					logger.debug("------ ALL: "
+							+ elementUtils
+									.getElementValuesWithDefaults(annotationMirror));
+				}
+
 			}
 		}
+
+		for (Element element : allElements) {
+			JavaElement javaElement = AdapterFactory.getElementAdapter(element,
+					JavaElement.class);
+			facts.add(javaElement);
+		}
+
 		return facts;
 	}
 
