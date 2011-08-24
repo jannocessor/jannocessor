@@ -16,6 +16,11 @@
 
 package org.jannocessor.bootstrapped.annotation;
 
-public @interface MyModel {
+public @interface AnotherAnnotation {
 
+	int a() default -1;
+
+	String b() default "";
+
+	String c() default "default value";
 }
