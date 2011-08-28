@@ -1,0 +1,22 @@
+package testpackage;
+
+// TODO: Smart imports!
+
+public class $clazz.name {
+
+#foreach ($f in $clazz.fields)
+    private $f.type.name.full $f.name;
+
+#end
+
+#foreach ($f in $clazz.fields)
+    public $f.type.name.full get$f.name () {
+        return $f.name;
+    }
+
+    public void set$f.name ($f.type.name.full $f.name) { 
+        return $f.name;
+    }
+
+#end
+}
