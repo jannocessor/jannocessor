@@ -21,13 +21,13 @@ import org.jannocessor.service.api.ConfigLoader;
 import org.jannocessor.service.api.Configuratîr;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
-import org.jannocessor.service.io.ConfigLoaderServiceImpl;
+import org.jannocessor.service.io.ConfigLoaderImpl;
 
 public class ConfiguratorFactory {
 
 	public static Configuratîr createConfigurationService(
 			PathLocator pathService) throws JannocessorException {
-		ConfigLoader loader = new ConfigLoaderServiceImpl();
+		ConfigLoader loader = new ConfigLoaderImpl();
 
 		String generalFilename = pathService.getGeneralConfigFilename();
 		Config general = new Config(

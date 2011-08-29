@@ -1,4 +1,4 @@
-package org.jannocessor.util.imports;
+package org.jannocessor.service.imports;
 
 import junit.framework.Assert;
 

@@ -26,10 +26,10 @@ import org.jannocessor.service.api.Configuratîr;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.RuleExecutor;
-import org.jannocessor.service.api.TextRenderer;
+import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.service.configuration.ConfiguratorFactory;
 import org.jannocessor.service.configuration.PathLocatorFactory;
-import org.jannocessor.service.render.TextRenderFactory;
+import org.jannocessor.service.render.TemplateRendererFactory;
 import org.jannocessor.service.rules.RulesFactory;
 
 public class JannocessorEngineImpl implements JannocessorEngine {
@@ -40,7 +40,7 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 
 	private final RuleExecutor rules;
 
-	private final TextRenderer generator;
+	private final TemplateRenderer generator;
 
 	public JannocessorEngineImpl(EngineInput params)
 			throws JannocessorException {
@@ -51,7 +51,7 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 
 		rules = RulesFactory.createRulesService(config, locations);
 
-		generator = TextRenderFactory.createGeneratorService(locations);
+		generator = TemplateRendererFactory.createGeneratorService(locations);
 	}
 
 	public String getProjectPath() throws JannocessorException {

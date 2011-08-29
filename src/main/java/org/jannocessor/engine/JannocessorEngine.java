@@ -19,8 +19,8 @@ package org.jannocessor.engine;
 import org.jannocessor.service.api.Configuratîr;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.RuleExecutor;
-import org.jannocessor.service.api.TextRenderer;
+import org.jannocessor.service.api.TemplateRenderer;
 
 public interface JannocessorEngine extends PathLocator, Configuratîr,
-		RuleExecutor, TextRenderer {
+		RuleExecutor, TemplateRenderer {
 }

@@ -27,18 +27,18 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
-import org.jannocessor.service.api.TextRenderer;
+import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.util.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VelocityTextRender implements TextRenderer, Settings {
+public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 
 	private Logger logger = LoggerFactory.getLogger("RENDERER");
 
 	private final PathLocator paths;
 
-	public VelocityTextRender(PathLocator paths) {
+	public VelocityTemplateRenderer(PathLocator paths) {
 		this.paths = paths;
 		Velocity.init();
 	}
@@ -101,7 +101,7 @@ public class VelocityTextRender implements TextRenderer, Settings {
 		String replacement = "OPA";
 		String text = replacePlaceholder(renderedText, "SMART_IMPORT",
 				replacement);
-		
+
 		logger.debug("Post-processed text:\n{}", text);
 		return text;
 	}

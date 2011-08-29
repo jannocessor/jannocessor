@@ -28,7 +28,7 @@ import org.jannocessor.service.api.ConfigLoader;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.util.Settings;
 
-public class ConfigLoaderServiceImpl implements ConfigLoader, Settings {
+public class ConfigLoaderImpl implements ConfigLoader, Settings {
 
 	@Override
 	public Map<String, String> loadProperties(String filename)

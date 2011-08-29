@@ -27,7 +27,7 @@ public class ConfigLoaderFactory {
 
 	public static Configuratîr createConfigurationService(
 			PathLocator pathService) throws JannocessorException {
-		ConfigLoader loader = new ConfigLoaderServiceImpl();
+		ConfigLoader loader = new ConfigLoaderImpl();
 
 		String generalFilename = pathService.getGeneralConfigFilename();
 		Config general = new Config(

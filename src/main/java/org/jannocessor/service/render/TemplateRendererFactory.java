@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.service.render;
 
-import java.util.Map;
+import org.jannocessor.service.api.JannocessorException;
+import org.jannocessor.service.api.PathLocator;
+import org.jannocessor.service.api.TemplateRenderer;
 
-public interface TextRenderer {
+public class TemplateRendererFactory {
 
-	String render(String template, Map<String, Object> attributes)
-			throws JannocessorException;
-
-	String renderFromFile(String templateName, Map<String, Object> attributes)
-			throws JannocessorException;
+	public static TemplateRenderer createGeneratorService(PathLocator paths)
+			throws JannocessorException {
+		return new VelocityTemplateRenderer(paths);
+	}
 
 }
