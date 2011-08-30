@@ -16,34 +16,17 @@
 
 package org.jannocessor.model;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
 import org.jannocessor.domain.type.JavaClass;
-import org.jannocessor.preview.RenderPreview;
 
-/*
- * model = mark.element # fields = mark.element.fields
- * name = mark.element.name + "Generated";
- *  
- * file = files.file("domain", name, "java", "javabean"); 
- * file.data.set("element", mark.element).set("name", name).set("fields", fields);
- */
 public class ProcessorA implements AnnotationProcessor {
 
 	@Override
 	public void process(ProcessingContext context, Object[] args) {
 		JavaClass clazz = (JavaClass) args[0];
 
-		Properties p = new Properties();
-		p.setProperty("file.resource.loader.class",
-				"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+		clazz.getName().insertPart(0, "My").appendPart("Generated");
 
-		Map<String, Object> attributes = new HashMap<String, Object>();
-		attributes.put("clazz", clazz);
-
-		// TODO: render!
+		context.generateClass(clazz);
 	}
 
 	@Override
