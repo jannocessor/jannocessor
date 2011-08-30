@@ -136,7 +136,8 @@ abstract class AbstractAdapter {
 			throws IllegalAccessException, InvocationTargetException,
 			NoSuchMethodException {
 		if (value != null) {
-			if (value instanceof AbstractAdapter && !(value instanceof Text)) {
+			if (value instanceof AbstractAdapter
+					&& !(value instanceof Text && !(value instanceof Name))) {
 				// AbstractAdapter adapter = (AbstractAdapter) value;
 				if (name.equals("parent")) {
 					return "[...]"; // adapter.showAsParent();

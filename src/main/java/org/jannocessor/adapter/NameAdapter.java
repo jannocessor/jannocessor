@@ -103,6 +103,26 @@ public class NameAdapter extends TextAdapter implements Name {
 		return new NameAdapter(name);
 	}
 
+	@Override
+	public Name appendPart(String part) {
+		List<String> parts = parts();
+
+		parts.add(part);
+
+		String name = mergeParts(parts);
+		return new NameAdapter(name);
+	}
+
+	@Override
+	public Name replacePart(int position, String part) {
+		List<String> parts = parts();
+
+		parts.set(position, part);
+
+		String name = mergeParts(parts);
+		return new NameAdapter(name);
+	}
+
 	private String mergeParts(List<String> parts) {
 		String separator = isCamelCase() ? "" : "_";
 		return StringUtils.join(parts, separator);

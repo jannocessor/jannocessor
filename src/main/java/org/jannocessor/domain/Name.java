@@ -24,4 +24,8 @@ public interface Name extends Text {
 
 	Name insertPart(int position, String part);
 
+	Name appendPart(String part);
+
+	Name replacePart(int position, String part);
+
 }
