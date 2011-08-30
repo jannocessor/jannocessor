@@ -43,6 +43,7 @@ import org.jannocessor.adapter.variable.JavaParameterAdapter;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 
 public class AdapterFactory {
@@ -162,6 +163,14 @@ public class AdapterFactory {
 	public static Text getTextAdapter(String text) {
 		if (text != null) {
 			return new TextAdapter(text);
+		} else {
+			return null;
+		}
+	}
+
+	public static Name getNameAdapter(String text) {
+		if (text != null) {
+			return new NameAdapter(text);
 		} else {
 			return null;
 		}

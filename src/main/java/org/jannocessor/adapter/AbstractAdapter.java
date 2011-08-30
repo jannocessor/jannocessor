@@ -29,6 +29,7 @@ import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +62,11 @@ abstract class AbstractAdapter {
 
 	protected Text getTextAdapter(Object value) {
 		return value != null ? AdapterFactory.getTextAdapter(String
+				.valueOf(value)) : null;
+	}
+
+	protected Name getNameAdapter(Object value) {
+		return value != null ? AdapterFactory.getNameAdapter(String
 				.valueOf(value)) : null;
 	}
 

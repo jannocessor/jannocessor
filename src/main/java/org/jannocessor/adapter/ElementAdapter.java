@@ -23,6 +23,7 @@ import javax.lang.model.element.Element;
 
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 
 public abstract class ElementAdapter extends AbstractAdapter implements
@@ -56,8 +57,8 @@ public abstract class ElementAdapter extends AbstractAdapter implements
 	}
 
 	@Override
-	public Text getName() {
-		return getTextAdapter(element.getSimpleName().toString());
+	public Name getName() {
+		return getNameAdapter(element.getSimpleName().toString());
 	}
 
 	@Override
