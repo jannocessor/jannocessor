@@ -18,6 +18,7 @@ package org.jannocessor.service.render;
 
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
@@ -28,6 +29,7 @@ import org.apache.velocity.app.Velocity;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.TemplateRenderer;
+import org.jannocessor.service.imports.ImportOrganizerImpl;
 import org.jannocessor.util.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,13 +50,20 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			throws JannocessorException {
 		VelocityContext context = createContext(attributes);
 		Writer writer = new StringWriter();
+		TypeUtils typeUtils = createTypeUtils();
+
+		context.put("types", typeUtils);
 
 		Velocity.evaluate(context, writer, "RENDERER", template);
 
 		String renderedText = writer.toString();
 
 		logger.debug("Rendered text:\n{}", renderedText);
-		return postProcess(renderedText);
+		return postProcess(renderedText, typeUtils);
+	}
+
+	private TypeUtils createTypeUtils() {
+		return new TypeUtils(new ImportOrganizerImpl());
 	}
 
 	@Override
@@ -66,13 +75,16 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			Template t = Velocity.getTemplate(file);
 
 			VelocityContext context = createContext(attributes);
+			TypeUtils typeUtils = createTypeUtils();
 			Writer writer = new StringWriter();
+
+			context.put("types", typeUtils);
 
 			t.merge(context, writer);
 			String renderedText = writer.toString();
 
 			logger.debug("Rendered text:\n{}", renderedText);
-			return postProcess(renderedText);
+			return postProcess(renderedText, typeUtils);
 		} catch (Exception e) {
 			String report = String.format("Rendering of template '%s' failed",
 					templateName);
@@ -81,14 +93,15 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 	}
 
 	private VelocityContext createContext(Map<String, Object> attributes) {
-		VelocityContext context1 = new VelocityContext();
+		VelocityContext context = new VelocityContext();
 
 		for (Entry<String, Object> entry : attributes.entrySet()) {
 			logger.debug("- Attribute {} = '{}'", entry.getKey(),
 					entry.getValue());
-			context1.put(entry.getKey(), entry.getValue());
+			context.put(entry.getKey(), entry.getValue());
 		}
-		return context1;
+
+		return context;
 	}
 
 	private String replacePlaceholder(String text, String placeholder,
@@ -97,12 +110,25 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 		return text.replaceAll(pattern, replacement);
 	}
 
-	private String postProcess(String renderedText) {
-		String replacement = "OPA";
-		String text = replacePlaceholder(renderedText, "SMART_IMPORT",
-				replacement);
+	private String postProcess(String renderedText, TypeUtils typeUtils) {
+		String text = postProcessImports(renderedText,
+				typeUtils.getTypeImports());
 
 		logger.debug("Post-processed text:\n{}", text);
+		return text;
+	}
+
+	private String postProcessImports(String renderedText, List<String> imports) {
+		StringBuilder sb = new StringBuilder();
+		for (String typeImport : imports) {
+			sb.append("import ");
+			sb.append(typeImport);
+			sb.append(";\n");
+		}
+		String replacement = sb.toString();
+
+		String text = replacePlaceholder(renderedText, "SMART_IMPORT",
+				replacement);
 		return text;
 	}
 
