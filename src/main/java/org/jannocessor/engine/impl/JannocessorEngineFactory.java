@@ -16,15 +16,14 @@
 
 package org.jannocessor.engine.impl;
 
-import org.jannocessor.engine.EngineInput;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.service.api.JannocessorException;
 
 public class JannocessorEngineFactory {
 
-	public static JannocessorEngine getJannocessorServices(
-			EngineInput input) throws JannocessorException {
-		return new JannocessorEngineImpl(input);
+	public static JannocessorEngine getJannocessorServices()
+			throws JannocessorException {
+		return new JannocessorEngineImpl();
 	}
 
 }

@@ -16,15 +16,13 @@
 
 package org.jannocessor.service.configuration;
 
-import org.jannocessor.engine.EngineInput;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 
 public class PathLocatorFactory {
 
-	public static PathLocator createPathService(
-			EngineInput parameterService) throws JannocessorException {
-		return new PathLocatorImpl(parameterService);
+	public static PathLocator createPathService() throws JannocessorException {
+		return new PathLocatorImpl();
 	}
 
 }

@@ -39,7 +39,6 @@ import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
 
 import org.jannocessor.adapter.SourceHolder;
-import org.jannocessor.engine.EngineInput;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.engine.impl.JannocessorEngineFactory;
 import org.jannocessor.model.Config;
@@ -66,6 +65,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected Processors processors = new Processors();
 	protected JannocessorEngine engine;
 	private Messager messager;
+	private String projectPath;
 
 	private List<String> globalErrors = new ArrayList<String>();
 	private List<String> globalWarnings = new ArrayList<String>();
@@ -136,7 +136,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	}
 
 	private void showConfiguration() throws JannocessorException {
-		logger.info("Project path: {}", engine.getProjectPath());
+		logger.info("Project path: {}", getProjectPath());
 		logger.info("Resources path: {}", engine.getResourcesPath());
 		logger.info("Config path: {}", engine.getConfigPath());
 		logger.info("Rules path: {}", engine.getRulesPath());
@@ -144,13 +144,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	}
 
 	private void makeContract() throws JannocessorException {
-		EngineInput input = new EngineInput() {
-			@Override
-			public String getProject() throws JannocessorException {
-				return "";
-			}
-		};
-		engine = JannocessorEngineFactory.getJannocessorServices(input);
+		engine = JannocessorEngineFactory.getJannocessorServices();
 	}
 
 	private void processOptions() throws JannocessorException {
@@ -288,23 +282,29 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	}
 
 	protected String getProjectPath() {
-		String path;
-		try {
-			path = filer
-					.createResource(StandardLocation.SOURCE_OUTPUT, "",
-							"foo.txt").toUri().getPath();
-		} catch (Exception e1) {
-			throw new RuntimeException("Cannot calculate project path!", e1);
+		if (projectPath == null) {
+			String path;
+			try {
+				FileObject file = filer.createResource(
+						StandardLocation.SOURCE_OUTPUT, "", "foo.bar");
+				path = file.toUri().getPath();
+			} catch (Exception e1) {
+				throw new RuntimeException("Cannot calculate project path!", e1);
+			}
+
+			int pos = path.indexOf("target");
+			if (pos > 0) {
+				projectPath = path.substring(0, pos);
+				if (projectPath.startsWith("/")) {
+					projectPath = projectPath.substring(1);
+				}
+			} else {
+				throw new RuntimeException(
+						"Cannot find 'target' folder in path: " + path);
+			}
 		}
 
-		int pos = path.indexOf("target");
-		if (pos > 0) {
-			return path.substring(0, pos);
-		} else {
-			throw new RuntimeException("Cannot find target folder in path: "
-					+ path);
-		}
-
+		return projectPath;
 	}
 
 }

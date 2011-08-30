@@ -23,7 +23,7 @@ public interface TemplateRenderer {
 	String render(String template, Map<String, Object> attributes)
 			throws JannocessorException;
 
-	String renderFromFile(String templateName, Map<String, Object> attributes)
-			throws JannocessorException;
+	String renderFromFile(String templateFilename,
+			Map<String, Object> attributes) throws JannocessorException;
 
 }

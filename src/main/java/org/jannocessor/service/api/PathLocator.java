@@ -18,8 +18,6 @@ package org.jannocessor.service.api;
 
 public interface PathLocator {
 
-	String getProjectPath() throws JannocessorException;
-
 	String getResourcesPath() throws JannocessorException;
 
 	String getRulesPath() throws JannocessorException;

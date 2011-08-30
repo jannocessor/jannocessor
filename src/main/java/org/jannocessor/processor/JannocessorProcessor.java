@@ -41,11 +41,7 @@ import org.jannocessor.model.File;
 import org.jannocessor.model.Mark;
 import org.jannocessor.model.ProcessingContext;
 import org.jannocessor.model.Root;
-import org.jannocessor.service.api.ImportOrganizer;
 import org.jannocessor.service.api.JannocessorException;
-import org.jannocessor.service.imports.ImportOrganizerImpl;
-import org.jannocessor.util.imports.TypeImportMap;
-import org.jannocessor.util.imports.TypeUsageMap;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class JannocessorProcessor extends JannocessorProcessorBase {
@@ -81,39 +77,12 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		Location location = StandardLocation.SOURCE_OUTPUT;
 
 		String filename = file.getName() + "." + file.getExtension();
-		String template = file.getTemplate();
 		String pkg = file.getPackage();
 
 		String info = fileInfo(location, pkg, filename);
-		logger.debug("- Generating file '{}' from template '{}'", info,
-				template);
+		logger.debug("- Generating file: {}", info);
 
-		Map<String, Object> attributes = initAttributes(file);
-
-		String text = engine.renderFromFile(template, attributes);
-
-		writeToFile(location, pkg, filename, text);
-	}
-
-	private Map<String, Object> initAttributes(File file) {
-		Map<String, Object> attributes = new HashMap<String, Object>();
-
-		attributes.put("file", file);
-		attributes.put("data", file.getData());
-		attributes.put("utils", createUtils());
-
-		return attributes;
-	}
-
-	private Map<String, Object> createUtils() {
-		Map<String, Object> utils = new HashMap<String, Object>();
-
-		ImportOrganizer organizer = new ImportOrganizerImpl();
-
-		utils.put("import", new TypeImportMap(organizer));
-		utils.put("type", new TypeUsageMap(organizer));
-
-		return utils;
+		writeToFile(location, pkg, filename, file.getContent());
 	}
 
 	private Map<String, Object> initGlobals() {
@@ -121,6 +90,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 		ProcessingContext context = new ProcessingContext();
 
+		context.setEngine(engine);
 		context.setLogger(logger);
 		context.setElements(elementUtils);
 		context.setTypes(typeUtils);

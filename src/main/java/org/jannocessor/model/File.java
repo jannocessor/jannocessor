@@ -27,15 +27,15 @@ public class File {
 
 	private final String extension;
 
-	private final String template;
-
 	private final FlexyMap data = new HashFlexyMap();
 
-	public File(String _package, String name, String extension, String template) {
+	private String content;
+
+	public File(String _package, String name, String extension, String content) {
 		this._package = _package;
 		this.name = name;
 		this.extension = extension;
-		this.template = template;
+		this.content = content;
 	}
 
 	public String getPackage() {
@@ -48,10 +48,6 @@ public class File {
 
 	public String getExtension() {
 		return extension;
-	}
-
-	public String getTemplate() {
-		return template;
 	}
 
 	public FlexyMap getData() {
@@ -100,7 +96,12 @@ public class File {
 	@Override
 	public String toString() {
 		return "File [package=" + _package + ", name=" + name + ", extension="
-				+ extension + ", template=" + template + ", data=" + data + "]";
+				+ extension + ", content_length=" + content.length()
+				+ ", data=" + data + "]";
+	}
+
+	public String getContent() {
+		return this.content;
 	}
 
 }

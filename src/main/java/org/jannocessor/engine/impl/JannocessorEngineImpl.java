@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jannocessor.engine.EngineInput;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.service.api.Configuratîr;
 import org.jannocessor.service.api.JannocessorException;
@@ -42,20 +41,15 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 
 	private final TemplateRenderer generator;
 
-	public JannocessorEngineImpl(EngineInput params)
-			throws JannocessorException {
+	public JannocessorEngineImpl() throws JannocessorException {
 
-		locations = PathLocatorFactory.createPathService(params);
+		locations = PathLocatorFactory.createPathService();
 
 		config = ConfiguratorFactory.createConfigurationService(locations);
 
 		rules = RulesFactory.createRulesService(config, locations);
 
 		generator = TemplateRendererFactory.createGeneratorService(locations);
-	}
-
-	public String getProjectPath() throws JannocessorException {
-		return locations.getProjectPath();
 	}
 
 	public String getResourcesPath() throws JannocessorException {

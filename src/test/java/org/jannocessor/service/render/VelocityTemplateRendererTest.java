@@ -17,7 +17,7 @@ public class VelocityTemplateRendererTest extends AbstractTest {
 
 	@Before
 	public void initialize() {
-		renderer = new VelocityTemplateRenderer(null);
+		renderer = new VelocityTemplateRenderer();
 	}
 
 	@Test

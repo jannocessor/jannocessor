@@ -16,10 +16,16 @@
 
 package org.jannocessor.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.processing.Filer;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.domain.type.JavaClass;
+import org.jannocessor.engine.JannocessorEngine;
+import org.jannocessor.service.api.JannocessorException;
 import org.slf4j.Logger;
 
 public class ProcessingContext {
@@ -39,6 +45,8 @@ public class ProcessingContext {
 	private Filer filer;
 
 	private String projectPath;
+
+	private JannocessorEngine engine;
 
 	public Logger getLogger() {
 		return logger;
@@ -103,4 +111,30 @@ public class ProcessingContext {
 	public String getProjectPath() {
 		return projectPath;
 	}
+
+	public void setEngine(JannocessorEngine engine) {
+		this.engine = engine;
+	}
+
+	public JannocessorEngine getEngine() {
+		return engine;
+	}
+
+	public void generateClass(JavaClass clazz) {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+		attributes.put("clazz", clazz);
+		String className = clazz.getName().getText();
+
+		try {
+			String template = engine.getTemplatesPath() + "/javabean.vm";
+			String content = engine.renderFromFile(template, attributes);
+
+			getFiles().file("domain", className, "java", content);
+		} catch (JannocessorException e) {
+			throw new RuntimeException("Cannot generate class " + className, e);
+		}
+
+		// RenderPreview.showDialog(this, attributes, "javabean.vm");
+	}
+
 }

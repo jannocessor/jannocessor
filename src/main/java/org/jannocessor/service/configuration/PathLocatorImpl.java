@@ -16,22 +16,15 @@
 
 package org.jannocessor.service.configuration;
 
-import org.jannocessor.engine.EngineInput;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.util.Settings;
 
 public class PathLocatorImpl implements PathLocator, Settings {
 
-	private final EngineInput parameterService;
-
-	public PathLocatorImpl(EngineInput parameterService) {
-		this.parameterService = parameterService;
-	}
-
 	@Override
 	public String getResourcesPath() throws JannocessorException {
-		return getProjectPath() + "";
+		return "src/test/resources/";
 	}
 
 	@Override
@@ -60,13 +53,8 @@ public class PathLocatorImpl implements PathLocator, Settings {
 	}
 
 	@Override
-	public String getProjectPath() throws JannocessorException {
-		return parameterService.getProject();
-	}
-
-	@Override
 	public final String getKnowledgeBaseFilename() {
-		return KNOLWEDGE_BASE;
+		return KNOWLEDGE_BASE;
 	}
 
 }

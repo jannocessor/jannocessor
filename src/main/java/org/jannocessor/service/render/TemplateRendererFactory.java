@@ -24,7 +24,7 @@ public class TemplateRendererFactory {
 
 	public static TemplateRenderer createGeneratorService(PathLocator paths)
 			throws JannocessorException {
-		return new VelocityTemplateRenderer(paths);
+		return new VelocityTemplateRenderer();
 	}
 
 }

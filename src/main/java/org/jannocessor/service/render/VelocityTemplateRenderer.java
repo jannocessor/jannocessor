@@ -27,7 +27,6 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.jannocessor.service.api.JannocessorException;
-import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.service.imports.ImportOrganizerImpl;
 import org.jannocessor.util.Settings;
@@ -38,10 +37,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 
 	private Logger logger = LoggerFactory.getLogger("RENDERER");
 
-	private final PathLocator paths;
-
-	public VelocityTemplateRenderer(PathLocator paths) {
-		this.paths = paths;
+	public VelocityTemplateRenderer() {
 		Velocity.init();
 	}
 
@@ -67,12 +63,11 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 	}
 
 	@Override
-	public String renderFromFile(String templateName,
+	public String renderFromFile(String templateFilename,
 			Map<String, Object> attributes) throws JannocessorException {
 		try {
-			String file = paths.getTemplatesPath() + "/" + templateName + ".vm";
-			logger.debug("Retrieving template: {}", file);
-			Template t = Velocity.getTemplate(file);
+			logger.debug("Retrieving template: {}", templateFilename);
+			Template t = Velocity.getTemplate(templateFilename);
 
 			VelocityContext context = createContext(attributes);
 			TypeUtils typeUtils = createTypeUtils();
@@ -87,7 +82,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			return postProcess(renderedText, typeUtils);
 		} catch (Exception e) {
 			String report = String.format("Rendering of template '%s' failed",
-					templateName);
+					templateFilename);
 			throw new JannocessorException(report, e);
 		}
 	}
