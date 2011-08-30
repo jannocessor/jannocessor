@@ -292,19 +292,31 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 				throw new RuntimeException("Cannot calculate project path!", e1);
 			}
 
-			int pos = path.indexOf("target");
-			if (pos > 0) {
-				projectPath = path.substring(0, pos);
-				if (projectPath.startsWith("/")) {
-					projectPath = projectPath.substring(1);
-				}
-			} else {
-				throw new RuntimeException(
-						"Cannot find 'target' folder in path: " + path);
-			}
+			projectPath = extractProjectPath(path);
 		}
 
 		return projectPath;
+	}
+
+	private String extractProjectPath(String path) {
+		int pos = path.indexOf("src");
+
+		if (pos < 0) {
+			pos = path.indexOf("target");
+		}
+
+		if (pos < 0) {
+			throw new RuntimeException(
+					"Cannot find 'src' or 'target' folder on path: " + path);
+		}
+
+		String result = path.substring(0, pos);
+
+		if (result.startsWith("/")) {
+			result = result.substring(1);
+		}
+
+		return result;
 	}
 
 }

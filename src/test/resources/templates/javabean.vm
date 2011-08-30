@@ -15,7 +15,7 @@ public class $clazz.name {
     }
 
     public void set${f.name.capitalized}(#type($f.type) $f.name) { 
-        return $f.name;
+        this.$f.name = $f.name;
     }
 
 #end
