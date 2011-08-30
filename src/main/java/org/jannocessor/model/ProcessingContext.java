@@ -133,8 +133,6 @@ public class ProcessingContext {
 		} catch (JannocessorException e) {
 			throw new RuntimeException("Cannot generate class " + className, e);
 		}
-
-		// RenderPreview.showDialog(this, attributes, "javabean.vm");
 	}
 
 }

@@ -24,7 +24,7 @@ public class PathLocatorImpl implements PathLocator, Settings {
 
 	@Override
 	public String getResourcesPath() throws JannocessorException {
-		return "src/test/resources/";
+		return "";
 	}
 
 	@Override

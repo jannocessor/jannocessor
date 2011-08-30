@@ -21,6 +21,7 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
 import org.apache.velocity.Template;
@@ -38,7 +39,12 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 	private Logger logger = LoggerFactory.getLogger("RENDERER");
 
 	public VelocityTemplateRenderer() {
-		Velocity.init();
+		Properties velocityConfig = new Properties();
+		velocityConfig
+				.setProperty("file.resource.loader.class",
+						"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+
+		Velocity.init(velocityConfig);
 	}
 
 	@Override
