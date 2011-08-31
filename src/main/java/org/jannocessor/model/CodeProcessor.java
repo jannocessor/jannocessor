@@ -16,10 +16,10 @@
 
 package org.jannocessor.model;
 
-public interface AnnotationProcessor {
+import java.util.Map;
 
-	void process(ProcessingContext context, Object[] args);
+public interface CodeProcessor {
 
-	String getName();
+	void process(ProcessingContext context, Map<String, Object> params);
 
 }

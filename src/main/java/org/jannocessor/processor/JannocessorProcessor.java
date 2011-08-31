@@ -40,6 +40,7 @@ import org.jannocessor.domain.JavaElement;
 import org.jannocessor.model.File;
 import org.jannocessor.model.Mark;
 import org.jannocessor.model.ProcessingContext;
+import org.jannocessor.model.Processors;
 import org.jannocessor.model.Root;
 import org.jannocessor.service.api.JannocessorException;
 
@@ -51,6 +52,8 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 			RoundEnvironment env) throws JannocessorException {
 		// prepare the facts
 		List<Object> facts = initFacts(annotations, env);
+
+		processors = new Processors(engine.getRulesProcessors());
 
 		// prepare the globals
 		Map<String, Object> globals = initGlobals();

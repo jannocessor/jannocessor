@@ -65,7 +65,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	private Config options;
 	protected Files files = new Files();
 	protected Problems problems = new Problems();
-	protected Processors processors = new Processors();
+	protected Processors processors;
 	protected JannocessorEngine engine;
 	private Messager messager;
 	private String projectPath;

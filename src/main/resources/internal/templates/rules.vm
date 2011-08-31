@@ -17,7 +17,11 @@ rule "$rule.name"
 when
 $rule.pattern
 then
-context.getProcessors().process("$rule.name", context, new Object[] { #foreach( $x in $rule.args )$x#if( $foreach.hasNext ), #end #end }); 
+	Map params = new HashMap();
+#foreach( $arg in $rule.args )
+	params.put("$arg", $arg);
+#end
+	context.getProcessors().process("$rule.name", context, params); 
 end
 
 #end

@@ -16,22 +16,19 @@
 
 package org.jannocessor.model;
 
+import java.util.Map;
+
 import org.jannocessor.domain.type.JavaClass;
 
-public class ProcessorA implements AnnotationProcessor {
+public class ProcessorA implements CodeProcessor {
 
 	@Override
-	public void process(ProcessingContext context, Object[] args) {
-		JavaClass clazz = (JavaClass) args[0];
+	public void process(ProcessingContext context, Map<String, Object> params) {
+		JavaClass clazz = (JavaClass) params.get("clazz");
 
 		clazz.getName().insertPart(0, "My").appendPart("Generated");
 
 		context.generateClass(clazz);
-	}
-
-	@Override
-	public String getName() {
-		return "class";
 	}
 
 }

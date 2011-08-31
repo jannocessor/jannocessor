@@ -16,19 +16,16 @@
 
 package org.jannocessor.model;
 
+import java.util.Map;
+
 /**
  * problems.warning(mark.element,
  * "My CUSTOM annotation %s doesn't support fields", mark.annotation);
  */
-public class ProcessorB implements AnnotationProcessor {
+public class ProcessorB implements CodeProcessor {
 
 	@Override
-	public void process(ProcessingContext context, Object[] args) {
-	}
-
-	@Override
-	public String getName() {
-		return "field";
+	public void process(ProcessingContext context, Map<String, Object> params) {
 	}
 
 }

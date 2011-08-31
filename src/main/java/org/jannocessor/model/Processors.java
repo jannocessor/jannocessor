@@ -16,28 +16,38 @@
 
 package org.jannocessor.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Processors {
 
-	@SuppressWarnings("unchecked")
-	private static final Class<? extends AnnotationProcessor>[] PROCESSORS = new Class[] { ProcessorA.class, };
+	private final Map<String, String> rulesProcessors;
 
-	private Map<String, AnnotationProcessor> processors = new HashMap<String, AnnotationProcessor>();
+	private final Map<String, CodeProcessor> processors = new HashMap<String, CodeProcessor>();
 
-	public Processors() {
-		for (Class<? extends AnnotationProcessor> clazz : PROCESSORS) {
+	public Processors(Map<String, String> rulesProcessors) {
+		this.rulesProcessors = rulesProcessors;
+	}
+
+	public void process(String ruleName, ProcessingContext context,
+			Map<String, Object> params) {
+		params = Collections.unmodifiableMap(params);
+		getProcessor(ruleName).process(context, params);
+	}
+
+	private CodeProcessor getProcessor(String ruleName) {
+		CodeProcessor processor = processors.get(ruleName);
+		if (processor == null) {
+			String className = rulesProcessors.get(ruleName);
 			try {
-				AnnotationProcessor processor = clazz.newInstance();
-				processors.put(processor.getName(), processor);
+				processor = (CodeProcessor) Class.forName(className)
+						.newInstance();
+				processors.put(ruleName, processor);
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		}
-	}
-
-	public void process(String ruleName, ProcessingContext context, Object[] args) {
-		processors.get(ruleName).process(context, args);
+		return processor;
 	}
 }
