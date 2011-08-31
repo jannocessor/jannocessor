@@ -17,7 +17,8 @@
 package org.jannocessor.model;
 
 /**
- * problems.warning(mark.element, "My CUSTOM annotation %s doesn't support fields", mark.annotation);
+ * problems.warning(mark.element,
+ * "My CUSTOM annotation %s doesn't support fields", mark.annotation);
  */
 public class ProcessorB implements AnnotationProcessor {
 
@@ -27,7 +28,7 @@ public class ProcessorB implements AnnotationProcessor {
 
 	@Override
 	public String getName() {
-		return "Wrong annotations";
+		return "field";
 	}
 
 }

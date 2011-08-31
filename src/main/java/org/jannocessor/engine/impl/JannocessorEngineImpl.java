@@ -108,8 +108,8 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	}
 
 	@Override
-	public String generateRules() throws JannocessorException {
-		return rulesGenerator.generateRules();
+	public String generateRules(String[] ruleNames) throws JannocessorException {
+		return rulesGenerator.generateRules(ruleNames);
 	}
 
 }

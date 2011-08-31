@@ -53,12 +53,14 @@ public class RulesGeneratorImpl implements RulesGenerator {
 	}
 
 	@Override
-	public String generateRules() throws JannocessorException {
+	public String generateRules(String[] ruleNames) throws JannocessorException {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		List<Rule> rules = new ArrayList<Rule>();
 
-		rules.add(loadRule("Annotations", "class"));
+		for (String ruleName : ruleNames) {
+			rules.add(loadRule(ruleName));
+		}
 
 		attributes.put("rules", rules);
 
@@ -68,8 +70,8 @@ public class RulesGeneratorImpl implements RulesGenerator {
 		return rulesText;
 	}
 
-	private Rule loadRule(String name, String matchName) {
-		String filename = "patterns/" + matchName + ".match";
+	private Rule loadRule(String name) {
+		String filename = "patterns/" + name + ".match";
 
 		String pattern = fileService.readClasspathFile(filename);
 		logger.debug("Loading pattern:\n{}", pattern);

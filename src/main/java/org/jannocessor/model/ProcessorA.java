@@ -31,7 +31,7 @@ public class ProcessorA implements AnnotationProcessor {
 
 	@Override
 	public String getName() {
-		return "Annotations";
+		return "class";
 	}
 
 }

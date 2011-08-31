@@ -18,6 +18,6 @@ package org.jannocessor.service.api;
 
 public interface RulesGenerator {
 
-	String generateRules() throws JannocessorException;
+	String generateRules(String[] ruleNames) throws JannocessorException;
 
 }
