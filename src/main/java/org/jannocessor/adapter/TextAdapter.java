@@ -21,7 +21,7 @@ import org.jannocessor.domain.Text;
 
 public class TextAdapter extends AbstractAdapter implements Text {
 
-	private final String text;
+	private String text;
 
 	public TextAdapter(String text) {
 		this.text = text;
@@ -85,6 +85,10 @@ public class TextAdapter extends AbstractAdapter implements Text {
 		} else if (!text.equals(other.text))
 			return false;
 		return true;
+	}
+
+	protected void setText(String text) {
+		this.text = text;
 	}
 
 }

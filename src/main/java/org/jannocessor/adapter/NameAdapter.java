@@ -90,7 +90,8 @@ public class NameAdapter extends TextAdapter implements Name {
 		}
 
 		String name = mergeParts(parts);
-		return new NameAdapter(name);
+		setText(name);
+		return this;
 	}
 
 	@Override
@@ -100,7 +101,8 @@ public class NameAdapter extends TextAdapter implements Name {
 		parts.add(position, part);
 
 		String name = mergeParts(parts);
-		return new NameAdapter(name);
+		setText(name);
+		return this;
 	}
 
 	@Override
@@ -110,7 +112,8 @@ public class NameAdapter extends TextAdapter implements Name {
 		parts.add(part);
 
 		String name = mergeParts(parts);
-		return new NameAdapter(name);
+		setText(name);
+		return this;
 	}
 
 	@Override
@@ -120,7 +123,8 @@ public class NameAdapter extends TextAdapter implements Name {
 		parts.set(position, part);
 
 		String name = mergeParts(parts);
-		return new NameAdapter(name);
+		setText(name);
+		return this;
 	}
 
 	private String mergeParts(List<String> parts) {

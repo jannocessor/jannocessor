@@ -18,32 +18,19 @@ package org.jannocessor.adapter;
 
 import static org.junit.Assert.*;
 
-import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.test.AbstractTest;
-import org.junit.Before;
 import org.junit.Test;
 
 public class NameAdapterTest extends AbstractTest {
 
-	private Name smallCamelCase;
-	private Name bigCamelCase;
-	private Name numericCamelCase;
-	private Name complexCamelCase;
-	private Name complexNumericCamelCase;
-	private Name smallUnderscore;
-	private Name bigUnderscore;
-
-	@Before
-	public void init() {
-		smallCamelCase = new NameAdapter("firstSecondThird");
-		bigCamelCase = new NameAdapter("FirstSecondThird");
-		numericCamelCase = new NameAdapter("first1Second2Third3");
-		complexCamelCase = new NameAdapter("firstSECONDThird");
-		complexNumericCamelCase = new NameAdapter("first1SECOND2Third3");
-		smallUnderscore = new NameAdapter("first_second_third");
-		bigUnderscore = new NameAdapter("FIRST_SECOND_THIRD");
-	}
+	private String smallCamelCase = "firstSecondThird";
+	private String bigCamelCase = "FirstSecondThird";
+	private String numericCamelCase = "first1Second2Third3";
+	private String complexCamelCase = "firstSECONDThird";
+	private String complexNumericCamelCase = "first1SECOND2Third3";
+	private String smallUnderscore = "first_second_third";
+	private String bigUnderscore = "FIRST_SECOND_THIRD";
 
 	/*
 	 * TEST SPLITING NAME INTO PARTS
@@ -60,13 +47,17 @@ public class NameAdapterTest extends AbstractTest {
 		checkParts(bigUnderscore, "FIRST", "SECOND", "THIRD");
 	}
 
-	private void checkParts(Name name, String... expectedParts) {
-		Text[] parts = name.getParts();
+	private void checkParts(String name, String... expectedParts) {
+		Text[] parts = name(name).getParts();
 
 		assertEquals(expectedParts.length, parts.length);
 		for (int i = 0; i < parts.length; i++) {
 			assertEquals(expectedParts[i], parts[i].getText());
 		}
+	}
+
+	private NameAdapter name(String name) {
+		return new NameAdapter(name);
 	}
 
 	/*
@@ -95,16 +86,16 @@ public class NameAdapterTest extends AbstractTest {
 		checkDeleteParts(smallUnderscore, "second", 0, 2);
 	}
 
-	private void checkDeleteParts(Name name, String expectedName,
+	private void checkDeleteParts(String name, String expectedName,
 			int... positions) {
-		String newName = name.deleteParts(positions).getText();
+		String newName = name(name).deleteParts(positions).getText();
 
 		assertEquals(expectedName, newName);
 	}
 
 	@Test(expected = IllegalStateException.class)
 	public void testDeleteAllParts() {
-		smallCamelCase.deleteParts(0, 1, 2);
+		name(smallCamelCase).deleteParts(0, 1, 2);
 	}
 
 	/*
@@ -119,9 +110,9 @@ public class NameAdapterTest extends AbstractTest {
 		checkInsertParts(bigCamelCase, 3, "New", "FirstSecondThirdNew");
 	}
 
-	private void checkInsertParts(Name name, int position, String part,
+	private void checkInsertParts(String name, int position, String part,
 			String expectedName) {
-		String newName = name.insertPart(position, part).getText();
+		String newName = name(name).insertPart(position, part).getText();
 
 		assertEquals(expectedName, newName);
 	}
