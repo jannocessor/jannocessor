@@ -124,12 +124,13 @@ public class ProcessingContext {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("clazz", clazz);
 		String className = clazz.getName().getText();
+		String packageName = clazz.getPackageName().getText();
 
 		try {
 			String template = engine.getTemplatesPath() + "/javabean.vm";
 			String content = engine.renderFromFile(template, attributes);
 
-			getFiles().file("domain", className, "java", content);
+			getFiles().file(packageName, className, "java", content);
 		} catch (JannocessorException e) {
 			throw new RuntimeException("Cannot generate class " + className, e);
 		}

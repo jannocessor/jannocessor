@@ -21,11 +21,14 @@ import java.util.List;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 
 public interface JavaType extends JavaElement {
 
 	Text getNesting();
+	
+	Name getPackageName();
 
 	JavaTypeName getQualifiedName();
 

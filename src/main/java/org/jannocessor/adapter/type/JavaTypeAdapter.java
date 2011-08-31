@@ -26,6 +26,7 @@ import javax.lang.model.type.TypeMirror;
 import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.domain.type.JavaType;
 import org.jannocessor.domain.type.JavaTypeParameter;
@@ -52,6 +53,14 @@ abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 	@Override
 	public JavaElementType getSuperclass() {
 		return getTypeAdapter(type.getSuperclass());
+	}
+
+	@Override
+	public Name getPackageName() {
+		String fullName = type.getQualifiedName().toString();
+		int pos = fullName.lastIndexOf('.');
+		String packageName = (pos >= 0) ? fullName.substring(0, pos) : null;
+		return getNameAdapter(packageName);
 	}
 
 	@Override
