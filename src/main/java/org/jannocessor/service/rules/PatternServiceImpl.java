@@ -14,16 +14,30 @@
  * limitations under the License.
  */
 
-package org.jannocessor.engine.impl;
+package org.jannocessor.service.rules;
 
-import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.service.api.JannocessorException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class JannocessorEngineFactory {
+import org.jannocessor.service.api.PatternService;
 
-	public static JannocessorEngine getJannocessorServices()
-			throws JannocessorException {
-		return new JannocessorEngineImpl();
+public class PatternServiceImpl implements PatternService {
+
+	@Override
+	public List<String> extractPatternVariables(String pattern) {
+		List<String> vars = new ArrayList<String>();
+
+		Matcher matcher = Pattern.compile("(?sm)^\\s*?([a-z]\\w*?)\\s*?:")
+				.matcher(pattern);
+
+		while (matcher.find()) {
+			String var = matcher.group(1);
+			vars.add(var);
+		}
+
+		return vars;
 	}
 
 }

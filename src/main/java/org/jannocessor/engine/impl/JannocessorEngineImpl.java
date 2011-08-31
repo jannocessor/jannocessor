@@ -20,36 +20,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.service.api.Configuratîr;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.RuleExecutor;
+import org.jannocessor.service.api.RulesGenerator;
 import org.jannocessor.service.api.TemplateRenderer;
-import org.jannocessor.service.configuration.ConfiguratorFactory;
-import org.jannocessor.service.configuration.PathLocatorFactory;
-import org.jannocessor.service.render.TemplateRendererFactory;
-import org.jannocessor.service.rules.RulesFactory;
 
 public class JannocessorEngineImpl implements JannocessorEngine {
 
 	private final PathLocator locations;
-
 	private final Configuratîr config;
-
-	private final RuleExecutor rules;
-
+	private final RuleExecutor ruleExecutor;
 	private final TemplateRenderer generator;
+	private final RulesGenerator rulesGenerator;
 
-	public JannocessorEngineImpl() throws JannocessorException {
-
-		locations = PathLocatorFactory.createPathService();
-
-		config = ConfiguratorFactory.createConfigurationService(locations);
-
-		rules = RulesFactory.createRulesService(config, locations);
-
-		generator = TemplateRendererFactory.createGeneratorService(locations);
+	@Inject
+	public JannocessorEngineImpl(PathLocator locations, Configuratîr config,
+			RuleExecutor ruleExecutor, TemplateRenderer generator,
+			RulesGenerator rulesGenerator) {
+		this.locations = locations;
+		this.config = config;
+		this.ruleExecutor = ruleExecutor;
+		this.generator = generator;
+		this.rulesGenerator = rulesGenerator;
 	}
 
 	public String getResourcesPath() throws JannocessorException {
@@ -93,9 +90,9 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 		return config.getAnnotationLabel(annotation);
 	}
 
-	public void executeRules(List<Object> facts, Map<String, Object> globals)
-			throws JannocessorException {
-		rules.executeRules(facts, globals);
+	public void executeRules(String rules, List<Object> facts,
+			Map<String, Object> globals) throws JannocessorException {
+		ruleExecutor.executeRules(rules, facts, globals);
 	}
 
 	@Override
@@ -108,6 +105,11 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	public String renderFromFile(String templateName,
 			Map<String, Object> attributes) throws JannocessorException {
 		return generator.renderFromFile(templateName, attributes);
+	}
+
+	@Override
+	public String generateRules() throws JannocessorException {
+		return rulesGenerator.generateRules();
 	}
 
 }

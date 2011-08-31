@@ -21,7 +21,7 @@ import java.util.Map;
 
 public interface RuleExecutor {
 
-	void executeRules(List<Object> facts, Map<String, Object> globals)
-			throws JannocessorException;
+	void executeRules(String rules, List<Object> facts,
+			Map<String, Object> globals) throws JannocessorException;
 
 }

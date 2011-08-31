@@ -40,7 +40,7 @@ import javax.tools.StandardLocation;
 
 import org.jannocessor.adapter.SourceHolder;
 import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.engine.impl.JannocessorEngineFactory;
+import org.jannocessor.inject.ServicesModule;
 import org.jannocessor.model.Config;
 import org.jannocessor.model.Files;
 import org.jannocessor.model.Problem;
@@ -50,6 +50,9 @@ import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
@@ -69,6 +72,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	private List<String> globalErrors = new ArrayList<String>();
 	private List<String> globalWarnings = new ArrayList<String>();
+
+	private Injector injector = Guice.createInjector(new ServicesModule());
 
 	public JannocessorProcessorBase() {
 		logger.info("Instantiated Jannocessor");
@@ -123,7 +128,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 			logger.info("Initializing services...");
 
-			makeContract();
+			engine = injector.getInstance(JannocessorEngine.class);
 
 			showConfiguration();
 
@@ -141,10 +146,6 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		logger.info("Config path: {}", engine.getConfigPath());
 		logger.info("Rules path: {}", engine.getRulesPath());
 		logger.info("Templates path: {}", engine.getTemplatesPath());
-	}
-
-	private void makeContract() throws JannocessorException {
-		engine = JannocessorEngineFactory.getJannocessorServices();
 	}
 
 	private void processOptions() throws JannocessorException {
