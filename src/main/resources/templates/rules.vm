@@ -1,0 +1,23 @@
+package rules;
+
+dialect "java"
+
+import java.util.*;
+import org.jannocessor.model.*;
+import org.jannocessor.domain.*;
+import org.jannocessor.domain.executable.*;
+import org.jannocessor.domain.type.*;
+import org.jannocessor.domain.variable.*;
+
+global ProcessingContext context;
+
+#foreach ($rule in $rules)
+
+rule "$rule.name"
+when
+$rule.pattern
+then
+context.getProcessors().process("$rule.name", context, new Object[] { #foreach( $x in $rule.args )$x#if( $foreach.hasNext ), #end #end }); 
+end
+
+#end
