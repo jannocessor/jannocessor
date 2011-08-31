@@ -32,4 +32,6 @@ public interface PathLocator {
 
 	String getKnowledgeBaseFilename() throws JannocessorException;
 
+	String getProcessorsConfigFilename() throws JannocessorException;
+
 }

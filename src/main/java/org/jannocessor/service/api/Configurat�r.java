@@ -16,6 +16,7 @@
 
 package org.jannocessor.service.api;
 
+import java.util.Map;
 import java.util.Set;
 
 public interface Configuratîr {
@@ -25,5 +26,9 @@ public interface Configuratîr {
 	Set<String> getSupportedAnnotations() throws JannocessorException;
 
 	String getAnnotationLabel(String annotation) throws JannocessorException;
+
+	String[] getProcessedRules() throws JannocessorException;
+
+	Map<String, String> getRulesProcessors() throws JannocessorException;
 
 }

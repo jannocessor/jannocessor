@@ -56,7 +56,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		Map<String, Object> globals = initGlobals();
 
 		// generate the rules
-		String[] ruleNames = { "class", "field" };
+		String[] ruleNames = engine.getProcessedRules();
 		String rules = engine.generateRules(ruleNames);
 
 		// run the rules on the facts

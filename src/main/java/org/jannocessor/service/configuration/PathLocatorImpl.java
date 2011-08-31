@@ -53,6 +53,11 @@ public class PathLocatorImpl implements PathLocator, Settings {
 	}
 
 	@Override
+	public String getProcessorsConfigFilename() throws JannocessorException {
+		return getConfigPath() + "/" + PROCESSORS_PROPERTIES;
+	}
+
+	@Override
 	public final String getKnowledgeBaseFilename() {
 		return KNOWLEDGE_BASE;
 	}

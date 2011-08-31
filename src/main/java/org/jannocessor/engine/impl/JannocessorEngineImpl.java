@@ -112,4 +112,19 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 		return rulesGenerator.generateRules(ruleNames);
 	}
 
+	@Override
+	public String getProcessorsConfigFilename() throws JannocessorException {
+		return locations.getProcessorsConfigFilename();
+	}
+
+	@Override
+	public String[] getProcessedRules() throws JannocessorException {
+		return config.getProcessedRules();
+	}
+
+	@Override
+	public Map<String, String> getRulesProcessors() throws JannocessorException {
+		return config.getRulesProcessors();
+	}
+
 }

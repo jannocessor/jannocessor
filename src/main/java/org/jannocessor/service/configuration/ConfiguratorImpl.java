@@ -16,7 +16,10 @@
 
 package org.jannocessor.service.configuration;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -35,6 +38,8 @@ public class ConfiguratorImpl implements Configuratîr, Settings {
 
 	private Config annotations;
 
+	private Config processors;
+
 	@Inject
 	public ConfiguratorImpl(ConfigLoader loader, PathLocator locator)
 			throws JannocessorException {
@@ -43,6 +48,9 @@ public class ConfiguratorImpl implements Configuratîr, Settings {
 
 		String annotationsFilename = locator.getAnnotationConfigFilename();
 		annotations = new Config(loader.loadProperties(annotationsFilename));
+
+		String processorsFilename = locator.getProcessorsConfigFilename();
+		processors = new Config(loader.loadProperties(processorsFilename));
 	}
 
 	@Override
@@ -69,6 +77,17 @@ public class ConfiguratorImpl implements Configuratîr, Settings {
 
 		throw new JannocessorException("Cannot find name of annotation: "
 				+ annotation);
+	}
+
+	@Override
+	public String[] getProcessedRules() throws JannocessorException {
+		Collection<String> rules = processors.getAllProperties().keySet();
+		return rules.toArray(new String[rules.size()]);
+	}
+
+	@Override
+	public Map<String, String> getRulesProcessors() throws JannocessorException {
+		return Collections.unmodifiableMap(processors.getAllProperties());
 	}
 
 }

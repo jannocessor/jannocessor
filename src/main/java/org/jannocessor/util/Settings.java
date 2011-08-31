@@ -22,6 +22,8 @@ public interface Settings {
 
 	public static final String ANNOTATIONS_PROPERTIES = "annotations.properties";
 
+	public static final String PROCESSORS_PROPERTIES = "processors.properties";
+
 	public static final String KNOWLEDGE_BASE = "knolwedge_base.bin";
 
 }
