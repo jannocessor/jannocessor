@@ -40,11 +40,13 @@ import org.jannocessor.adapter.variable.JavaExceptionParameterAdapter;
 import org.jannocessor.adapter.variable.JavaFieldAdapter;
 import org.jannocessor.adapter.variable.JavaLocalVariableAdapter;
 import org.jannocessor.adapter.variable.JavaParameterAdapter;
+import org.jannocessor.data.JavaClassData;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.JavaTypeName;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
+import org.jannocessor.proxy.JavaClassProxy;
 
 public class ModelFactory {
 
@@ -54,7 +56,7 @@ public class ModelFactory {
 
 		if (element != null) {
 
-			ElementAdapter adapter;
+			JavaElement model;
 
 			ElementKind kind = element.getKind();
 			switch (kind) {
@@ -62,80 +64,80 @@ public class ModelFactory {
 			/* Package and types */
 
 			case PACKAGE:
-				adapter = new JavaPackageAdapter((PackageElement) element);
+				model = new JavaPackageAdapter((PackageElement) element);
 				break;
 
 			case ENUM:
-				adapter = new JavaEnumAdapter((TypeElement) element);
+				model = new JavaEnumAdapter((TypeElement) element);
 				break;
 
 			case CLASS:
-				adapter = new JavaClassAdapter((TypeElement) element);
+				JavaClassAdapter adapter = new JavaClassAdapter(
+						(TypeElement) element);
+				JavaClassData data = new JavaClassData();
+				model = new JavaClassProxy(adapter, data);
 				break;
 
 			case ANNOTATION_TYPE:
-				adapter = new JavaAnnotationAdapter((TypeElement) element);
+				model = new JavaAnnotationAdapter((TypeElement) element);
 				break;
 
 			case INTERFACE:
-				adapter = new JavaInterfaceAdapter((TypeElement) element);
+				model = new JavaInterfaceAdapter((TypeElement) element);
 				break;
 
 			case TYPE_PARAMETER:
-				adapter = new JavaTypeParameterAdapter(
+				model = new JavaTypeParameterAdapter(
 						(TypeParameterElement) element);
 				break;
 
 			/* Variables */
 
 			case ENUM_CONSTANT:
-				adapter = new JavaEnumConstantAdapter((VariableElement) element);
+				model = new JavaEnumConstantAdapter((VariableElement) element);
 				break;
 
 			case FIELD:
-				adapter = new JavaFieldAdapter((VariableElement) element);
+				model = new JavaFieldAdapter((VariableElement) element);
 				break;
 
 			case PARAMETER:
-				adapter = new JavaParameterAdapter((VariableElement) element);
+				model = new JavaParameterAdapter((VariableElement) element);
 				break;
 
 			case LOCAL_VARIABLE:
-				adapter = new JavaLocalVariableAdapter(
-						(VariableElement) element);
+				model = new JavaLocalVariableAdapter((VariableElement) element);
 				break;
 
 			case EXCEPTION_PARAMETER:
-				adapter = new JavaExceptionParameterAdapter(
+				model = new JavaExceptionParameterAdapter(
 						(VariableElement) element);
 				break;
 
 			/* Executables */
 
 			case METHOD:
-				adapter = new JavaMethodAdapter((ExecutableElement) element);
+				model = new JavaMethodAdapter((ExecutableElement) element);
 				break;
 
 			case CONSTRUCTOR:
-				adapter = new JavaConstructorAdapter(
-						(ExecutableElement) element);
+				model = new JavaConstructorAdapter((ExecutableElement) element);
 				break;
 
 			case STATIC_INIT:
-				adapter = new JavaStaticInitAdapter((ExecutableElement) element);
+				model = new JavaStaticInitAdapter((ExecutableElement) element);
 				break;
 
 			case INSTANCE_INIT:
-				adapter = new JavaInstanceInitAdapter(
-						(ExecutableElement) element);
+				model = new JavaInstanceInitAdapter((ExecutableElement) element);
 				break;
 
 			default:
 				throw new IllegalStateException();
 			}
 
-			if (clazz.isAssignableFrom(adapter.getClass())) {
-				return (T) adapter;
+			if (clazz.isAssignableFrom(model.getClass())) {
+				return (T) model;
 			} else {
 				throw new IllegalStateException("Wrong element type!");
 			}
