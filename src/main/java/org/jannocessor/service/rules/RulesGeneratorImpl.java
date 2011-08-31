@@ -29,12 +29,11 @@ import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PatternService;
 import org.jannocessor.service.api.RulesGenerator;
 import org.jannocessor.service.api.TemplateRenderer;
+import org.jannocessor.util.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RulesGeneratorImpl implements RulesGenerator {
-
-	private static final String TEMPLATE_NAME = "templates/rules.vm";
+public class RulesGeneratorImpl implements RulesGenerator, Settings {
 
 	private Logger logger = LoggerFactory.getLogger("RULES");
 
@@ -64,7 +63,8 @@ public class RulesGeneratorImpl implements RulesGenerator {
 
 		attributes.put("rules", rules);
 
-		String rulesText = renderer.renderFromFile(TEMPLATE_NAME, attributes);
+		String rulesText = renderer.renderFromFile(RULES_TEMPLATE_NAME,
+				attributes);
 
 		logger.debug("Generated rules:\n{}", rulesText);
 		return rulesText;

@@ -26,4 +26,6 @@ public interface Settings {
 
 	public static final String KNOWLEDGE_BASE = "knolwedge_base.bin";
 
+	public static final String RULES_TEMPLATE_NAME = "internal/templates/rules.vm";
+
 }
