@@ -16,6 +16,9 @@
 
 package org.jannocessor.domain.variable;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
+
+@DomainModel
 public interface JavaExceptionParameter extends JavaVariable {
 
 }

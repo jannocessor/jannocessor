@@ -16,8 +16,10 @@
 
 package org.jannocessor.domain.type;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
 import org.jannocessor.domain.JavaElement;
 
+@DomainModel
 public interface JavaPackage extends JavaElement {
 
 }

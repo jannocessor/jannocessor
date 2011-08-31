@@ -18,12 +18,14 @@ package org.jannocessor.domain.executable;
 
 import java.util.List;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.Text;
 import org.jannocessor.domain.type.JavaTypeParameter;
 import org.jannocessor.domain.variable.JavaParameter;
 
+@DomainModel
 public interface JavaExecutable extends JavaElement {
 
 	List<JavaTypeParameter> getTypeParameters();

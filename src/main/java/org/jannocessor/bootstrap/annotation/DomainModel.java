@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-package org.jannocessor.domain.variable;
+package org.jannocessor.bootstrap.annotation;
 
-import org.jannocessor.bootstrap.annotation.DomainModel;
-
-@DomainModel
-public interface JavaLocalVariable extends JavaVariable {
+public @interface DomainModel {
 
 }

@@ -16,6 +16,9 @@
 
 package org.jannocessor.domain.type;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
+
+@DomainModel
 public interface JavaInterface extends JavaType {
 
 }

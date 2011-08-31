@@ -16,6 +16,9 @@
 
 package org.jannocessor.domain.executable;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
+
+@DomainModel
 public interface JavaConstructor extends JavaExecutable {
 
 }

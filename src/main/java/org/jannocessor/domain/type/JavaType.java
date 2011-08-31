@@ -18,12 +18,14 @@ package org.jannocessor.domain.type;
 
 import java.util.List;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.JavaTypeName;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 
+@DomainModel
 public interface JavaType extends JavaElement {
 
 	Text getNesting();

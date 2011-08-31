@@ -18,6 +18,9 @@ package org.jannocessor.domain;
 
 import java.util.List;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
+
+@DomainModel
 public interface JavaElement {
 
 	JavaElement getParent();

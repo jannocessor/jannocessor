@@ -18,12 +18,14 @@ package org.jannocessor.domain.type;
 
 import java.util.List;
 
+import org.jannocessor.bootstrap.annotation.DomainModel;
 import org.jannocessor.domain.executable.JavaConstructor;
 import org.jannocessor.domain.executable.JavaInstanceInit;
 import org.jannocessor.domain.executable.JavaMethod;
 import org.jannocessor.domain.executable.JavaStaticInit;
 import org.jannocessor.domain.variable.JavaField;
 
+@DomainModel
 public interface JavaClass extends JavaType {
 
 	List<JavaField> getFields();
