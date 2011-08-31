@@ -46,10 +46,10 @@ import org.jannocessor.domain.JavaTypeName;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 
-public class AdapterFactory {
+public class ModelFactory {
 
 	@SuppressWarnings("unchecked")
-	public static <T extends JavaElement> T getElementAdapter(Element element,
+	public static <T extends JavaElement> T getElementModel(Element element,
 			Class<T> clazz) {
 
 		if (element != null) {
@@ -144,7 +144,7 @@ public class AdapterFactory {
 		}
 	}
 
-	public static JavaElementType getTypeAdapter(TypeMirror typeMirror) {
+	public static JavaElementType getTypeModel(TypeMirror typeMirror) {
 		if (typeMirror != null) {
 			return new ElementTypeAdapter(typeMirror);
 		} else {
@@ -152,7 +152,7 @@ public class AdapterFactory {
 		}
 	}
 
-	public static JavaTypeName getTypeNameAdapter(String typeName) {
+	public static JavaTypeName getTypeNameModel(String typeName) {
 		if (typeName != null) {
 			return new TypeNameAdapter(typeName);
 		} else {
@@ -160,7 +160,7 @@ public class AdapterFactory {
 		}
 	}
 
-	public static Text getTextAdapter(String text) {
+	public static Text getTextModel(String text) {
 		if (text != null) {
 			return new TextAdapter(text);
 		} else {
@@ -168,7 +168,7 @@ public class AdapterFactory {
 		}
 	}
 
-	public static Name getNameAdapter(String text) {
+	public static Name getNameModel(String text) {
 		if (text != null) {
 			return new NameAdapter(text);
 		} else {

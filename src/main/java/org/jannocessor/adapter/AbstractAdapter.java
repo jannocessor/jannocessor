@@ -49,24 +49,24 @@ abstract class AbstractAdapter {
 
 	protected <T extends JavaElement> T getElementAdapter(Element element,
 			Class<T> clazz) {
-		return AdapterFactory.getElementAdapter(element, clazz);
+		return ModelFactory.getElementModel(element, clazz);
 	}
 
 	protected JavaElementType getTypeAdapter(TypeMirror typeMirror) {
-		return AdapterFactory.getTypeAdapter(typeMirror);
+		return ModelFactory.getTypeModel(typeMirror);
 	}
 
 	protected JavaTypeName getTypeNameAdapter(String typeName) {
-		return AdapterFactory.getTypeNameAdapter(typeName);
+		return ModelFactory.getTypeNameModel(typeName);
 	}
 
 	protected Text getTextAdapter(Object value) {
-		return value != null ? AdapterFactory.getTextAdapter(String
+		return value != null ? ModelFactory.getTextModel(String
 				.valueOf(value)) : null;
 	}
 
 	protected Name getNameAdapter(Object value) {
-		return value != null ? AdapterFactory.getNameAdapter(String
+		return value != null ? ModelFactory.getNameModel(String
 				.valueOf(value)) : null;
 	}
 
