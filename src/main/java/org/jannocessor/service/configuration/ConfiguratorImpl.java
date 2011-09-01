@@ -40,9 +40,19 @@ public class ConfiguratorImpl implements Configuratîr, Settings {
 
 	private Config processors;
 
+	private Map<String, String> inputOptions;
+
+	private final ConfigLoader loader;
+
+	private final PathLocator locator;
+
 	@Inject
-	public ConfiguratorImpl(ConfigLoader loader, PathLocator locator)
-			throws JannocessorException {
+	public ConfiguratorImpl(ConfigLoader loader, PathLocator locator) {
+		this.loader = loader;
+		this.locator = locator;
+	}
+
+	private void initialize() throws JannocessorException {
 		String generalFilename = locator.getGeneralConfigFilename();
 		general = new Config(loader.loadProperties(generalFilename));
 
@@ -51,6 +61,7 @@ public class ConfiguratorImpl implements Configuratîr, Settings {
 
 		String processorsFilename = locator.getProcessorsConfigFilename();
 		processors = new Config(loader.loadProperties(processorsFilename));
+
 	}
 
 	@Override
@@ -88,6 +99,18 @@ public class ConfiguratorImpl implements Configuratîr, Settings {
 	@Override
 	public Map<String, String> getRulesProcessors() throws JannocessorException {
 		return Collections.unmodifiableMap(processors.getAllProperties());
+	}
+
+	@Override
+	public void setInputOptions(Map<String, String> inputOptions)
+			throws JannocessorException {
+		this.inputOptions = inputOptions;
+		initialize();
+	}
+
+	@Override
+	public String getProfile() {
+		return inputOptions.get("profile");
 	}
 
 }

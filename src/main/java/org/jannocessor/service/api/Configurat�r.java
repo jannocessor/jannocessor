@@ -21,6 +21,9 @@ import java.util.Set;
 
 public interface Configuratîr {
 
+	void setInputOptions(Map<String, String> inputOptions)
+			throws JannocessorException;
+
 	String[] getRulesFilenames() throws JannocessorException;
 
 	Set<String> getSupportedAnnotations() throws JannocessorException;
@@ -30,5 +33,7 @@ public interface Configuratîr {
 	String[] getProcessedRules() throws JannocessorException;
 
 	Map<String, String> getRulesProcessors() throws JannocessorException;
+
+	String getProfile();
 
 }

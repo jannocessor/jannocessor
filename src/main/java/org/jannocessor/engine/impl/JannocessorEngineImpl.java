@@ -127,4 +127,15 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 		return config.getRulesProcessors();
 	}
 
+	@Override
+	public void setInputOptions(Map<String, String> options)
+			throws JannocessorException {
+		this.config.setInputOptions(options);
+	}
+
+	@Override
+	public String getProfile() {
+		return config.getProfile();
+	}
+
 }

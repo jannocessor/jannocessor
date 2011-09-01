@@ -16,11 +16,21 @@
 
 package org.jannocessor.service.configuration;
 
+import javax.inject.Inject;
+
+import org.jannocessor.service.api.Configuratîr;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.util.Settings;
 
 public class PathLocatorImpl implements PathLocator, Settings {
+
+	private final Configuratîr configuratîr;
+
+	@Inject
+	public PathLocatorImpl(Configuratîr configuratîr) {
+		this.configuratîr = configuratîr;
+	}
 
 	@Override
 	public String getResourcesPath() throws JannocessorException {
@@ -44,22 +54,34 @@ public class PathLocatorImpl implements PathLocator, Settings {
 
 	@Override
 	public String getAnnotationConfigFilename() throws JannocessorException {
-		return getConfigPath() + "/" + ANNOTATIONS_PROPERTIES;
+		return getConfigPath() + "/" + modeName(ANNOTATIONS_PROPERTIES)
+				+ ".properties";
 	}
 
 	@Override
 	public String getGeneralConfigFilename() throws JannocessorException {
-		return getConfigPath() + "/" + GENERAL_PROPERTIES;
+		return getConfigPath() + "/" + modeName(GENERAL_PROPERTIES)
+				+ ".properties";
 	}
 
 	@Override
 	public String getProcessorsConfigFilename() throws JannocessorException {
-		return getConfigPath() + "/" + PROCESSORS_PROPERTIES;
+		return getConfigPath() + "/" + modeName(PROCESSORS_PROPERTIES)
+				+ ".properties";
 	}
 
 	@Override
 	public final String getKnowledgeBaseFilename() {
 		return KNOWLEDGE_BASE;
+	}
+
+	private String modeName(String filename) {
+		String mode = configuratîr.getProfile();
+		if (mode != null) {
+			return filename + "-" + mode;
+		} else {
+			return filename;
+		}
 	}
 
 }
