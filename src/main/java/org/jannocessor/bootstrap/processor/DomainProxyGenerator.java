@@ -32,9 +32,8 @@ public class DomainProxyGenerator implements CodeProcessor {
 		context.getLogger().debug("Processing annotated domain model: {}",
 				model);
 
-		JavaClass proxy = new JavaClassData();
-
-		context.generateClass(proxy);
+		// JavaClass proxy = new JavaClassData();
+		// context.generateClass(proxy);
 	}
 
 }

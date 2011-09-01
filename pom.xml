@@ -115,6 +115,7 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -134,49 +135,37 @@
 				<version>2.0.4</version>
 				<executions>
 					<execution>
-						<id>process</id>
+						<id>process-main</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+					</execution>
+					
+					<execution>
+						<id>process-test</id>
 						<goals>
 							<goal>process-test</goal>
 						</goals>
 						<phase>test</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<options>
-						<profile>test</profile>
-					</options>
-				</configuration>
-			</plugin>
-
-<!-- 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>package-jar-with-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
 						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-							<archive>
-								<manifest>
-									<mainClass>org.jannocessor.util.App</mainClass>
-								</manifest>
-							</archive>
+							<options>
+								<profile>test</profile>
+							</options>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
- -->
+
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
+				<executions> <execution> <id>package-jar-with-dependencies</id> <phase>package</phase> 
+				<goals> <goal>single</goal> </goals> <configuration> <appendAssemblyId>false</appendAssemblyId> 
+				<descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> </descriptorRefs> 
+				<archive> <manifest> <mainClass>org.jannocessor.util.App</mainClass> </manifest> 
+				</archive> </configuration> </execution> </executions> </plugin> -->
 
 		</plugins>
-		
+
 	</build>
 
 
