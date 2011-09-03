@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.executable;
 
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.executable.JavaMethod;
 
@@ -26,8 +28,9 @@ public final class JavaMethodAdapter extends JavaExecutableAdapter implements
 	@SuppressWarnings("unused")
 	private final ExecutableElement method;
 
-	public JavaMethodAdapter(ExecutableElement method) {
-		super(method);
+	public JavaMethodAdapter(ExecutableElement method, Elements elementUtils,
+			Types typeUtils) {
+		super(method, elementUtils, typeUtils);
 		this.method = method;
 	}
 

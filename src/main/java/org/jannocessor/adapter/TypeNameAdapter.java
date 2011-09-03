@@ -16,6 +16,9 @@
 
 package org.jannocessor.adapter;
 
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
+
 import org.jannocessor.domain.JavaTypeName;
 import org.jannocessor.domain.Text;
 
@@ -23,7 +26,9 @@ public class TypeNameAdapter extends AbstractAdapter implements JavaTypeName {
 
 	private final String typeName;
 
-	public TypeNameAdapter(String typeName) {
+	public TypeNameAdapter(String typeName, Elements elementUtils,
+			Types typeUtils) {
+		super(elementUtils, typeUtils);
 		this.typeName = typeName;
 	}
 

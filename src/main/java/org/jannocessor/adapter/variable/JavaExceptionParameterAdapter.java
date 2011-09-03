@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.variable;
 
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.variable.JavaExceptionParameter;
 
@@ -26,8 +28,9 @@ public final class JavaExceptionParameterAdapter extends JavaVariableAdapter
 	@SuppressWarnings("unused")
 	private final VariableElement exceptionParameter;
 
-	public JavaExceptionParameterAdapter(VariableElement exceptionParameter) {
-		super(exceptionParameter);
+	public JavaExceptionParameterAdapter(VariableElement exceptionParameter,
+			Elements elementUtils, Types typeUtils) {
+		super(exceptionParameter, elementUtils, typeUtils);
 		this.exceptionParameter = exceptionParameter;
 	}
 

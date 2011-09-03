@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.executable;
 
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.executable.JavaStaticInit;
 
@@ -26,8 +28,9 @@ public final class JavaStaticInitAdapter extends JavaExecutableAdapter
 	@SuppressWarnings("unused")
 	private final ExecutableElement staticInit;
 
-	public JavaStaticInitAdapter(ExecutableElement staticInit) {
-		super(staticInit);
+	public JavaStaticInitAdapter(ExecutableElement staticInit,
+			Elements elementUtils, Types typeUtils) {
+		super(staticInit, elementUtils, typeUtils);
 		this.staticInit = staticInit;
 	}
 

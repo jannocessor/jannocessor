@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.executable;
 
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.executable.JavaConstructor;
 
@@ -26,8 +28,9 @@ public final class JavaConstructorAdapter extends JavaExecutableAdapter
 	@SuppressWarnings("unused")
 	private final ExecutableElement constructor;
 
-	public JavaConstructorAdapter(ExecutableElement constructor) {
-		super(constructor);
+	public JavaConstructorAdapter(ExecutableElement constructor,
+			Elements elementUtils, Types typeUtils) {
+		super(constructor, elementUtils, typeUtils);
 		this.constructor = constructor;
 	}
 

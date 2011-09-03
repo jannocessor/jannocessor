@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.variable;
 
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.domain.Text;
@@ -27,8 +29,9 @@ abstract class JavaVariableAdapter extends ElementAdapter implements
 
 	private final VariableElement variable;
 
-	public JavaVariableAdapter(VariableElement variable) {
-		super(variable);
+	public JavaVariableAdapter(VariableElement variable, Elements elementUtils,
+			Types typeUtils) {
+		super(variable, elementUtils, typeUtils);
 		this.variable = variable;
 	}
 

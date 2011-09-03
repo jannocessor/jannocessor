@@ -24,6 +24,7 @@ public class TextAdapter extends AbstractAdapter implements Text {
 	private String text;
 
 	public TextAdapter(String text) {
+		super(null, null); // no utils
 		this.text = text;
 	}
 

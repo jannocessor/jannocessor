@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.variable;
 
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.variable.JavaParameter;
 
@@ -26,8 +28,9 @@ public final class JavaParameterAdapter extends JavaVariableAdapter implements
 	@SuppressWarnings("unused")
 	private final VariableElement parameter;
 
-	public JavaParameterAdapter(VariableElement parameter) {
-		super(parameter);
+	public JavaParameterAdapter(VariableElement parameter,
+			Elements elementUtils, Types typeUtils) {
+		super(parameter, elementUtils, typeUtils);
 		this.parameter = parameter;
 	}
 

@@ -16,8 +16,13 @@
 
 package org.jannocessor.adapter.type;
 
-import javax.lang.model.element.TypeElement;
+import java.util.List;
 
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
+
+import org.jannocessor.domain.executable.JavaMethod;
 import org.jannocessor.domain.type.JavaInterface;
 
 public final class JavaInterfaceAdapter extends JavaTypeAdapter implements
@@ -26,9 +31,15 @@ public final class JavaInterfaceAdapter extends JavaTypeAdapter implements
 	@SuppressWarnings("unused")
 	private final TypeElement tinterface;
 
-	public JavaInterfaceAdapter(TypeElement tinterface) {
-		super(tinterface);
+	public JavaInterfaceAdapter(TypeElement tinterface, Elements elementUtils,
+			Types typeUtils) {
+		super(tinterface, elementUtils, typeUtils);
 		this.tinterface = tinterface;
+	}
+
+	@Override
+	public List<JavaMethod> getMethods() {
+		return findChildrenByType(JavaMethod.class);
 	}
 
 }

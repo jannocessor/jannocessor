@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.variable;
 
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.variable.JavaField;
 
@@ -26,8 +28,9 @@ public final class JavaFieldAdapter extends JavaVariableAdapter implements
 	@SuppressWarnings("unused")
 	private final VariableElement field;
 
-	public JavaFieldAdapter(VariableElement field) {
-		super(field);
+	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
+			Types typeUtils) {
+		super(field, elementUtils, typeUtils);
 		this.field = field;
 	}
 

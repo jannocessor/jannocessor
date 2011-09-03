@@ -24,6 +24,8 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.executable.JavaConstructorAdapter;
 import org.jannocessor.adapter.executable.JavaInstanceInitAdapter;
@@ -48,11 +50,11 @@ import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.proxy.JavaClassProxy;
 
-public class ModelFactory {
+public class AdapterFactory {
 
 	@SuppressWarnings("unchecked")
 	public static <T extends JavaElement> T getElementModel(Element element,
-			Class<T> clazz) {
+			Class<T> clazz, Elements elementUtils, Types typeUtils) {
 
 		if (element != null) {
 
@@ -64,72 +66,84 @@ public class ModelFactory {
 			/* Package and types */
 
 			case PACKAGE:
-				model = new JavaPackageAdapter((PackageElement) element);
+				model = new JavaPackageAdapter((PackageElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case ENUM:
-				model = new JavaEnumAdapter((TypeElement) element);
+				model = new JavaEnumAdapter((TypeElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case CLASS:
 				JavaClassAdapter adapter = new JavaClassAdapter(
-						(TypeElement) element);
+						(TypeElement) element, elementUtils, typeUtils);
 				JavaClassData data = new JavaClassData();
 				model = new JavaClassProxy(adapter, data);
 				break;
 
 			case ANNOTATION_TYPE:
-				model = new JavaAnnotationAdapter((TypeElement) element);
+				model = new JavaAnnotationAdapter((TypeElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case INTERFACE:
-				model = new JavaInterfaceAdapter((TypeElement) element);
+				model = new JavaInterfaceAdapter((TypeElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case TYPE_PARAMETER:
 				model = new JavaTypeParameterAdapter(
-						(TypeParameterElement) element);
+						(TypeParameterElement) element, elementUtils, typeUtils);
 				break;
 
 			/* Variables */
 
 			case ENUM_CONSTANT:
-				model = new JavaEnumConstantAdapter((VariableElement) element);
+				model = new JavaEnumConstantAdapter((VariableElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case FIELD:
-				model = new JavaFieldAdapter((VariableElement) element);
+				model = new JavaFieldAdapter((VariableElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case PARAMETER:
-				model = new JavaParameterAdapter((VariableElement) element);
+				model = new JavaParameterAdapter((VariableElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case LOCAL_VARIABLE:
-				model = new JavaLocalVariableAdapter((VariableElement) element);
+				model = new JavaLocalVariableAdapter((VariableElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case EXCEPTION_PARAMETER:
 				model = new JavaExceptionParameterAdapter(
-						(VariableElement) element);
+						(VariableElement) element, elementUtils, typeUtils);
 				break;
 
 			/* Executables */
 
 			case METHOD:
-				model = new JavaMethodAdapter((ExecutableElement) element);
+				model = new JavaMethodAdapter((ExecutableElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case CONSTRUCTOR:
-				model = new JavaConstructorAdapter((ExecutableElement) element);
+				model = new JavaConstructorAdapter((ExecutableElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case STATIC_INIT:
-				model = new JavaStaticInitAdapter((ExecutableElement) element);
+				model = new JavaStaticInitAdapter((ExecutableElement) element,
+						elementUtils, typeUtils);
 				break;
 
 			case INSTANCE_INIT:
-				model = new JavaInstanceInitAdapter((ExecutableElement) element);
+				model = new JavaInstanceInitAdapter(
+						(ExecutableElement) element, elementUtils, typeUtils);
 				break;
 
 			default:
@@ -146,17 +160,19 @@ public class ModelFactory {
 		}
 	}
 
-	public static JavaElementType getTypeModel(TypeMirror typeMirror) {
+	public static JavaElementType getTypeModel(TypeMirror typeMirror,
+			Elements elementUtils, Types typeUtils) {
 		if (typeMirror != null) {
-			return new ElementTypeAdapter(typeMirror);
+			return new ElementTypeAdapter(typeMirror, elementUtils, typeUtils);
 		} else {
 			return null;
 		}
 	}
 
-	public static JavaTypeName getTypeNameModel(String typeName) {
+	public static JavaTypeName getTypeNameModel(String typeName,
+			Elements elementUtils, Types typeUtils) {
 		if (typeName != null) {
-			return new TypeNameAdapter(typeName);
+			return new TypeNameAdapter(typeName, elementUtils, typeUtils);
 		} else {
 			return null;
 		}
@@ -177,4 +193,5 @@ public class ModelFactory {
 			return null;
 		}
 	}
+
 }

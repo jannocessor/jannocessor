@@ -19,6 +19,8 @@ package org.jannocessor.adapter.type;
 import java.util.List;
 
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.executable.JavaConstructor;
 import org.jannocessor.domain.executable.JavaInstanceInit;
@@ -33,8 +35,9 @@ public final class JavaClassAdapter extends JavaTypeAdapter implements
 	@SuppressWarnings("unused")
 	private final TypeElement tclass;
 
-	public JavaClassAdapter(TypeElement tclass) {
-		super(tclass);
+	public JavaClassAdapter(TypeElement tclass, Elements elementUtils,
+			Types typeUtils) {
+		super(tclass, elementUtils, typeUtils);
 		this.tclass = tclass;
 	}
 

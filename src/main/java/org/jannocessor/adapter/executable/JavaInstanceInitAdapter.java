@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.executable;
 
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.executable.JavaInstanceInit;
 
@@ -26,8 +28,9 @@ public final class JavaInstanceInitAdapter extends JavaExecutableAdapter
 	@SuppressWarnings("unused")
 	private final ExecutableElement instanceInit;
 
-	public JavaInstanceInitAdapter(ExecutableElement instanceInit) {
-		super(instanceInit);
+	public JavaInstanceInitAdapter(ExecutableElement instanceInit,
+			Elements elementUtils, Types typeUtils) {
+		super(instanceInit, elementUtils, typeUtils);
 		this.instanceInit = instanceInit;
 	}
 

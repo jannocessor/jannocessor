@@ -22,6 +22,8 @@ import java.util.List;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.domain.JavaElementType;
@@ -35,8 +37,9 @@ abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 
 	private final TypeElement type;
 
-	public JavaTypeAdapter(TypeElement type) {
-		super(type);
+	public JavaTypeAdapter(TypeElement type, Elements elementUtils,
+			Types typeUtils) {
+		super(type, elementUtils, typeUtils);
 		this.type = type;
 	}
 

@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.type;
 
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.type.JavaEnum;
 
@@ -25,8 +27,9 @@ public final class JavaEnumAdapter extends JavaTypeAdapter implements JavaEnum {
 	@SuppressWarnings("unused")
 	private final TypeElement tenum;
 
-	public JavaEnumAdapter(TypeElement tenum) {
-		super(tenum);
+	public JavaEnumAdapter(TypeElement tenum, Elements elementUtils,
+			Types typeUtils) {
+		super(tenum, elementUtils, typeUtils);
 		this.tenum = tenum;
 	}
 

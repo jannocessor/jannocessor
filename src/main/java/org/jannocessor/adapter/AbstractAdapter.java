@@ -23,6 +23,8 @@ import java.util.Iterator;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
@@ -47,27 +49,45 @@ abstract class AbstractAdapter {
 	private final PropertyUtilsBean propertyUtils = beanUtils
 			.getPropertyUtils();
 
+	private final Elements elementUtils;
+
+	private final Types typeUtils;
+
+	public AbstractAdapter(Elements elementUtils, Types typeUtils) {
+		this.elementUtils = elementUtils;
+		this.typeUtils = typeUtils;
+	}
+
 	protected <T extends JavaElement> T getElementAdapter(Element element,
 			Class<T> clazz) {
-		return ModelFactory.getElementModel(element, clazz);
+		return AdapterFactory.getElementModel(element, clazz, elementUtils,
+				typeUtils);
 	}
 
 	protected JavaElementType getTypeAdapter(TypeMirror typeMirror) {
-		return ModelFactory.getTypeModel(typeMirror);
+		return AdapterFactory.getTypeModel(typeMirror, elementUtils, typeUtils);
 	}
 
 	protected JavaTypeName getTypeNameAdapter(String typeName) {
-		return ModelFactory.getTypeNameModel(typeName);
+		return AdapterFactory.getTypeNameModel(typeName, elementUtils, typeUtils);
 	}
 
 	protected Text getTextAdapter(Object value) {
-		return value != null ? ModelFactory.getTextModel(String
-				.valueOf(value)) : null;
+		return value != null ? AdapterFactory.getTextModel(String.valueOf(value))
+				: null;
 	}
 
 	protected Name getNameAdapter(Object value) {
-		return value != null ? ModelFactory.getNameModel(String
-				.valueOf(value)) : null;
+		return value != null ? AdapterFactory.getNameModel(String.valueOf(value))
+				: null;
+	}
+
+	protected Elements getElementUtils() {
+		return elementUtils;
+	}
+
+	protected Types getTypeUtils() {
+		return typeUtils;
 	}
 
 	@Override

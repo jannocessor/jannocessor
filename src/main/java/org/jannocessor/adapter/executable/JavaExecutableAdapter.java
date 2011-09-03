@@ -23,6 +23,8 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.domain.JavaElementType;
@@ -36,8 +38,9 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 
 	private final ExecutableElement executable;
 
-	public JavaExecutableAdapter(ExecutableElement executable) {
-		super(executable);
+	public JavaExecutableAdapter(ExecutableElement executable,
+			Elements elementUtils, Types typeUtils) {
+		super(executable, elementUtils, typeUtils);
 		this.executable = executable;
 	}
 

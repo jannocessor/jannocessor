@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.variable;
 
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.variable.JavaEnumConstant;
 
@@ -26,8 +28,9 @@ public final class JavaEnumConstantAdapter extends JavaVariableAdapter
 	@SuppressWarnings("unused")
 	private final VariableElement enumConstant;
 
-	public JavaEnumConstantAdapter(VariableElement enumConstant) {
-		super(enumConstant);
+	public JavaEnumConstantAdapter(VariableElement enumConstant,
+			Elements elementUtils, Types typeUtils) {
+		super(enumConstant, elementUtils, typeUtils);
 		this.enumConstant = enumConstant;
 	}
 

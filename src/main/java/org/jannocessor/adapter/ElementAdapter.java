@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
@@ -31,7 +33,9 @@ public abstract class ElementAdapter extends AbstractAdapter implements
 
 	private final Element element;
 
-	public ElementAdapter(Element element) {
+	public ElementAdapter(Element element, Elements elementUtils,
+			Types typeUtils) {
+		super(elementUtils, typeUtils);
 		this.element = element;
 	}
 

@@ -17,6 +17,8 @@
 package org.jannocessor.adapter;
 
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.JavaTypeName;
@@ -26,7 +28,9 @@ public final class ElementTypeAdapter extends AbstractAdapter implements
 
 	private final TypeMirror typeMirror;
 
-	public ElementTypeAdapter(TypeMirror typeMirror) {
+	public ElementTypeAdapter(TypeMirror typeMirror, Elements elementUtils,
+			Types typeUtils) {
+		super(elementUtils, typeUtils);
 		this.typeMirror = typeMirror;
 	}
 

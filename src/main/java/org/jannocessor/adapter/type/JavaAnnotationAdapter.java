@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.type;
 
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.type.JavaAnnotation;
 
@@ -26,8 +28,9 @@ public final class JavaAnnotationAdapter extends JavaTypeAdapter implements
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;
 
-	public JavaAnnotationAdapter(TypeElement annotation) {
-		super(annotation);
+	public JavaAnnotationAdapter(TypeElement annotation, Elements elementUtils,
+			Types typeUtils) {
+		super(annotation, elementUtils, typeUtils);
 		this.annotation = annotation;
 	}
 

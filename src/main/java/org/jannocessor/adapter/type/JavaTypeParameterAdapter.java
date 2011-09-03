@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.type;
 
 import javax.lang.model.element.TypeParameterElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.domain.type.JavaTypeParameter;
@@ -27,8 +29,9 @@ public final class JavaTypeParameterAdapter extends ElementAdapter implements
 	@SuppressWarnings("unused")
 	private final TypeParameterElement typeParameter;
 
-	public JavaTypeParameterAdapter(TypeParameterElement typeParameter) {
-		super(typeParameter);
+	public JavaTypeParameterAdapter(TypeParameterElement typeParameter,
+			Elements elementUtils, Types typeUtils) {
+		super(typeParameter, elementUtils, typeUtils);
 		this.typeParameter = typeParameter;
 	}
 

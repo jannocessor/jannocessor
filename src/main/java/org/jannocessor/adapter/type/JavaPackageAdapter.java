@@ -17,6 +17,8 @@
 package org.jannocessor.adapter.type;
 
 import javax.lang.model.element.PackageElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.domain.type.JavaPackage;
@@ -27,8 +29,9 @@ public final class JavaPackageAdapter extends ElementAdapter implements
 	@SuppressWarnings("unused")
 	private final PackageElement tpackage;
 
-	public JavaPackageAdapter(PackageElement tpackage) {
-		super(tpackage);
+	public JavaPackageAdapter(PackageElement tpackage, Elements elementUtils,
+			Types typeUtils) {
+		super(tpackage, elementUtils, typeUtils);
 		this.tpackage = tpackage;
 	}
 
