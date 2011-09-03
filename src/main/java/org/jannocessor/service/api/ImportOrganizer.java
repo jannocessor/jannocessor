@@ -18,8 +18,8 @@ package org.jannocessor.service.api;
 
 public interface ImportOrganizer {
 
-	String getTypeImport(String classname);
+	String[] getTypeImports(String type);
 
-	String getTypeUsage(String classname);
+	String getTypeUsage(String type);
 
 }

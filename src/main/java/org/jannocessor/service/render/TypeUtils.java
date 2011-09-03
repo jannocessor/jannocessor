@@ -17,6 +17,7 @@
 package org.jannocessor.service.render;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.jannocessor.domain.JavaElementType;
@@ -34,12 +35,10 @@ public class TypeUtils {
 	public String useType(JavaElementType type) {
 		String classname = type.getName().getFull().getText();
 
-		String typeImport = importOrganizer.getTypeImport(classname);
+		String[] imports = importOrganizer.getTypeImports(classname);
 		String typeUsage = importOrganizer.getTypeUsage(classname);
 
-		if (typeImport != null) {
-			typeImports.add(typeImport);
-		}
+		typeImports.addAll(Arrays.asList(imports));
 
 		return typeUsage;
 	}

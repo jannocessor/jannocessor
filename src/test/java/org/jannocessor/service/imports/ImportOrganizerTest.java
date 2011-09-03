@@ -16,10 +16,9 @@
 
 package org.jannocessor.service.imports;
 
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 import org.jannocessor.service.api.ImportOrganizer;
-import org.jannocessor.service.imports.ImportOrganizerImpl;
 import org.jannocessor.test.AbstractTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,9 +33,18 @@ public class ImportOrganizerTest extends AbstractTest {
 	}
 
 	@Test
+	public void testPrimitives() {
+		checkImport("int");
+		checkImport("boolean");
+
+		checkUsage("int", "int");
+		checkUsage("boolean", "boolean");
+	}
+
+	@Test
 	public void testJavaLang() {
-		checkImport("java.lang.String", null);
-		checkImport("java.lang.Integer", null);
+		checkImport("java.lang.String");
+		checkImport("java.lang.Integer");
 
 		checkUsage("java.lang.String", "String");
 		checkUsage("java.lang.Integer", "Integer");
@@ -47,8 +55,8 @@ public class ImportOrganizerTest extends AbstractTest {
 		checkImport("java.util.List", "java.util.List");
 		checkImport("java.util.Map", "java.util.Map");
 
-		checkImport("java.util.List", null);
-		checkImport("java.util.Map", null);
+		checkImport("java.util.List");
+		checkImport("java.util.Map");
 
 		checkUsage("java.util.List", "List");
 		checkUsage("java.util.Map", "Map");
@@ -57,21 +65,62 @@ public class ImportOrganizerTest extends AbstractTest {
 	@Test
 	public void testConflicting() {
 		checkImport("java.util.Date", "java.util.Date");
-		checkImport("java.sql.Date", null);
+		checkImport("java.sql.Date");
 
-		checkImport("java.util.Date", null);
-		checkImport("java.sql.Date", null);
+		checkImport("java.util.Date");
+		checkImport("java.sql.Date");
 
 		checkUsage("java.util.Date", "Date");
 		checkUsage("java.sql.Date", "java.sql.Date");
 	}
 
-	private void checkImport(String classname, String expected) {
-		Assert.assertEquals(expected, organizer.getTypeImport(classname));
+	@Test
+	public void testSimpleGenerics() {
+		checkImport("java.util.List<java.lang.String,int>", "java.util.List");
+		checkImport("java.util.Map<java.lang.Integer, java.lang.Boolean>",
+				"java.util.Map");
+
+		checkImport("java.util.List<java.lang.String,int>");
+		checkImport("java.util.Map<java.lang.Integer, java.lang.Boolean>");
+
+		checkUsage("java.util.List<java.lang.String,int>", "List<String,int>");
+	}
+
+	@Test
+	public void testComplexGenerics() {
+		checkImport("java.util.Map<java.sql.Date, a.b.SomeClass>",
+				"java.util.Map", "java.sql.Date", "a.b.SomeClass");
+
+		checkImport("java.util.Map<java.sql.Date, a.b.SomeClass>");
+
+		checkUsage("java.util.Map<java.sql.Date, a.b.SomeClass>",
+				"Map<Date,SomeClass>");
+	}
+
+	@Test
+	public void testNestedGenerics() {
+		checkImport("a.X<b.Y<c.Z, java.lang.String>, d.K<b.Y, int, e.L>>",
+				"a.X", "b.Y", "c.Z", "d.K", "e.L");
+
+		checkImport("a.X<b.Y<c.Z, java.lang.String>, d.K<b.Y, int, e.L>>");
+
+		checkUsage("a.X<b.Y<c.Z, java.lang.String>, d.K<b.Y, int, e.L>>",
+				"X<Y<Z,String>,K<Y,int,L>>");
+	}
+
+	@Test
+	public void testWhiteSpace() {
+		checkImport("a.X<b.Y<c.Z,d.K>,e.L>", "a.X", "b.Y", "c.Z", "d.K", "e.L");
+		
+		checkImport("a.X < b.Y < c.Z, d.K >, e.L >");
+	}
+
+	private void checkImport(String classname, String... expected) {
+		assertArrayEquals(expected, organizer.getTypeImports(classname));
 	}
 
 	private void checkUsage(String classname, String expected) {
-		Assert.assertEquals(expected, organizer.getTypeUsage(classname));
+		assertEquals(expected, organizer.getTypeUsage(classname));
 	}
 
 }
