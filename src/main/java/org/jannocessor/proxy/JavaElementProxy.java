@@ -18,13 +18,11 @@ package org.jannocessor.proxy;
 
 import java.util.List;
 
-import org.jannocessor.data.JavaClassData;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
-import org.jannocessor.domain.type.JavaClass;
 
 public class JavaElementProxy implements JavaElement {
 
@@ -32,7 +30,7 @@ public class JavaElementProxy implements JavaElement {
 
 	private JavaElementData data;
 
-	public JavaElementProxy(JavaClass adapter, JavaClassData data) {
+	public JavaElementProxy(JavaElement adapter, JavaElementData data) {
 		this.adapter = adapter;
 		this.data = data;
 	}
