@@ -25,13 +25,12 @@ public class Files {
 
 	private Map<FileIdentity, File> files = new HashMap<FileIdentity, File>();
 
-	public File file(String _package, String name, String extension,
-			String template) {
-		FileIdentity fileId = new FileIdentity(_package, name, extension);
+	public File file(String packageName, String fileName, String content) {
+		FileIdentity fileId = new FileIdentity(packageName, fileName);
 
 		File file = files.get(fileId);
 		if (file == null) {
-			file = new File(_package, name, extension, template);
+			file = new File(packageName, fileName, content);
 			files.put(fileId, file);
 		}
 
@@ -44,21 +43,19 @@ public class Files {
 
 	private static class FileIdentity {
 
-		private String _package;
+		private String packageName;
 
-		private String name;
+		private String fileName;
 
-		private String extension;
-
-		FileIdentity(String _package, String name, String extension) {
-			this._package = _package;
-			this.name = name;
-			this.extension = extension;
+		public FileIdentity(String packageName, String fileName) {
+			this.packageName = packageName;
+			this.fileName = fileName;
 		}
 
+		@Override
 		public String toString() {
-			return "FileIdentity [_package=" + _package + ", name=" + name
-					+ ", extension=" + extension + "]";
+			return "FileIdentity [packageName=" + packageName + ", fileName="
+					+ fileName + "]";
 		}
 
 		@Override
@@ -66,10 +63,9 @@ public class Files {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result
-					+ ((_package == null) ? 0 : _package.hashCode());
+					+ ((fileName == null) ? 0 : fileName.hashCode());
 			result = prime * result
-					+ ((extension == null) ? 0 : extension.hashCode());
-			result = prime * result + ((name == null) ? 0 : name.hashCode());
+					+ ((packageName == null) ? 0 : packageName.hashCode());
 			return result;
 		}
 
@@ -82,22 +78,19 @@ public class Files {
 			if (getClass() != obj.getClass())
 				return false;
 			FileIdentity other = (FileIdentity) obj;
-			if (_package == null) {
-				if (other._package != null)
+			if (fileName == null) {
+				if (other.fileName != null)
 					return false;
-			} else if (!_package.equals(other._package))
+			} else if (!fileName.equals(other.fileName))
 				return false;
-			if (extension == null) {
-				if (other.extension != null)
+			if (packageName == null) {
+				if (other.packageName != null)
 					return false;
-			} else if (!extension.equals(other.extension))
-				return false;
-			if (name == null) {
-				if (other.name != null)
-					return false;
-			} else if (!name.equals(other.name))
+			} else if (!packageName.equals(other.packageName))
 				return false;
 			return true;
 		}
+
 	}
+
 }

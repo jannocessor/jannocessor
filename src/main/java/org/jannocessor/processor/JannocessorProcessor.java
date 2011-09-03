@@ -83,8 +83,8 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 	private void generateFile(File file) throws JannocessorException {
 		Location location = StandardLocation.SOURCE_OUTPUT;
 
-		String filename = file.getName() + "." + file.getExtension();
-		String pkg = file.getPackage();
+		String filename = file.getFileName();
+		String pkg = file.getPackageName();
 
 		String info = fileInfo(location, pkg, filename);
 		logger.debug("- Generating file: {}", info);

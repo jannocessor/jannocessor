@@ -16,53 +16,51 @@
 
 package org.jannocessor.model;
 
-import org.jannocessor.util.FlexyMap;
-import org.jannocessor.util.HashFlexyMap;
-
 public class File {
 
-	private final String _package;
+	private final String packageName;
 
-	private final String name;
-
-	private final String extension;
-
-	private final FlexyMap data = new HashFlexyMap();
+	private final String fileName;
 
 	private String content;
 
-	public File(String _package, String name, String extension, String content) {
-		this._package = _package;
-		this.name = name;
-		this.extension = extension;
+	public File(String packageName, String fileName, String content) {
+		this.packageName = packageName;
+		this.fileName = fileName;
 		this.content = content;
 	}
 
-	public String getPackage() {
-		return _package;
+	public String getContent() {
+		return content;
 	}
 
-	public String getName() {
-		return name;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public String getExtension() {
-		return extension;
+	public String getPackageName() {
+		return packageName;
 	}
 
-	public FlexyMap getData() {
-		return data;
+	public String getFileName() {
+		return fileName;
+	}
+
+	@Override
+	public String toString() {
+		return "File [packageName=" + packageName + ", fileName=" + fileName
+				+ ", content=" + content + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result
-				+ ((_package == null) ? 0 : _package.hashCode());
+				+ ((fileName == null) ? 0 : fileName.hashCode());
 		result = prime * result
-				+ ((extension == null) ? 0 : extension.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+				+ ((packageName == null) ? 0 : packageName.hashCode());
 		return result;
 	}
 
@@ -75,33 +73,22 @@ public class File {
 		if (getClass() != obj.getClass())
 			return false;
 		File other = (File) obj;
-		if (_package == null) {
-			if (other._package != null)
+		if (content == null) {
+			if (other.content != null)
 				return false;
-		} else if (!_package.equals(other._package))
+		} else if (!content.equals(other.content))
 			return false;
-		if (extension == null) {
-			if (other.extension != null)
+		if (fileName == null) {
+			if (other.fileName != null)
 				return false;
-		} else if (!extension.equals(other.extension))
+		} else if (!fileName.equals(other.fileName))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (packageName == null) {
+			if (other.packageName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!packageName.equals(other.packageName))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "File [package=" + _package + ", name=" + name + ", extension="
-				+ extension + ", content_length=" + content.length()
-				+ ", data=" + data + "]";
-	}
-
-	public String getContent() {
-		return this.content;
 	}
 
 }
