@@ -16,9 +16,14 @@
 
 package org.jannocessor.domain.type;
 
+import java.util.List;
+
 import org.jannocessor.bootstrap.annotation.DomainModel;
+import org.jannocessor.domain.executable.JavaMethod;
 
 @DomainModel
 public interface JavaInterface extends JavaType {
+
+	List<JavaMethod> getMethods();
 
 }

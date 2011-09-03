@@ -19,7 +19,7 @@ package org.jannocessor.data;
 import java.util.List;
 
 import org.jannocessor.domain.JavaElementType;
-import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.domain.executable.JavaConstructor;
@@ -34,7 +34,7 @@ public class JavaClassData extends JavaElementData implements JavaClass {
 
 	private Text nesting;
 	private Name packageName;
-	private JavaTypeName qualifiedName;
+	private Name qualifiedName;
 	private JavaElementType superclass;
 	private List<JavaElementType> interfaces;
 	private List<JavaTypeParameter> parameters;
@@ -55,7 +55,7 @@ public class JavaClassData extends JavaElementData implements JavaClass {
 	}
 
 	@Override
-	public JavaTypeName getQualifiedName() {
+	public Name getQualifiedName() {
 		return qualifiedName;
 	}
 
@@ -107,7 +107,7 @@ public class JavaClassData extends JavaElementData implements JavaClass {
 		this.packageName = packageName;
 	}
 
-	public void setQualifiedName(JavaTypeName qualifiedName) {
+	public void setQualifiedName(Name qualifiedName) {
 		this.qualifiedName = qualifiedName;
 	}
 

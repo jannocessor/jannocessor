@@ -21,7 +21,7 @@ import java.util.List;
 import org.jannocessor.bootstrap.annotation.DomainModel;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
-import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 
@@ -32,7 +32,7 @@ public interface JavaType extends JavaElement {
 	
 	Name getPackageName();
 
-	JavaTypeName getQualifiedName();
+	Name getQualifiedName();
 
 	JavaElementType getSuperclass();
 

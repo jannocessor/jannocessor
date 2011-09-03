@@ -45,7 +45,6 @@ import org.jannocessor.adapter.variable.JavaParameterAdapter;
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
-import org.jannocessor.domain.JavaTypeName;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.proxy.JavaClassProxy;
@@ -164,15 +163,6 @@ public class AdapterFactory {
 			Elements elementUtils, Types typeUtils) {
 		if (typeMirror != null) {
 			return new ElementTypeAdapter(typeMirror, elementUtils, typeUtils);
-		} else {
-			return null;
-		}
-	}
-
-	public static JavaTypeName getTypeNameModel(String typeName,
-			Elements elementUtils, Types typeUtils) {
-		if (typeName != null) {
-			return new TypeNameAdapter(typeName, elementUtils, typeUtils);
 		} else {
 			return null;
 		}

@@ -16,12 +16,17 @@
 
 package org.jannocessor.adapter;
 
+import java.util.List;
+
+import javax.lang.model.element.Element;
+import javax.lang.model.type.ArrayType;
+import javax.lang.model.type.PrimitiveType;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.domain.JavaElementType;
-import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 
 public final class ElementTypeAdapter extends AbstractAdapter implements
 		JavaElementType {
@@ -35,8 +40,32 @@ public final class ElementTypeAdapter extends AbstractAdapter implements
 	}
 
 	@Override
-	public JavaTypeName getName() {
-		return getTypeNameAdapter(typeMirror.toString());
+	public Name getName() {
+		return getNameAdapter(typeMirror.toString());
+	}
+
+	public Element getAsElement() {
+		return getTypeUtils().asElement(typeMirror);
+	}
+
+	public TypeMirror getCapture() {
+		return getTypeUtils().capture(typeMirror);
+	}
+
+	public List<? extends TypeMirror> getDirectSupertypes() {
+		return getTypeUtils().directSupertypes(typeMirror);
+	}
+
+	public TypeMirror getErasure() {
+		return getTypeUtils().erasure(typeMirror);
+	}
+
+	public ArrayType getArrayType() {
+		return getTypeUtils().getArrayType(typeMirror);
+	}
+
+	public PrimitiveType getUnboxedType() {
+		return getTypeUtils().unboxedType(typeMirror);
 	}
 
 }

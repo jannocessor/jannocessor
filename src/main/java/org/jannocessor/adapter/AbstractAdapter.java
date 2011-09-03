@@ -30,7 +30,6 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
-import org.jannocessor.domain.JavaTypeName;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.slf4j.Logger;
@@ -68,18 +67,14 @@ abstract class AbstractAdapter {
 		return AdapterFactory.getTypeModel(typeMirror, elementUtils, typeUtils);
 	}
 
-	protected JavaTypeName getTypeNameAdapter(String typeName) {
-		return AdapterFactory.getTypeNameModel(typeName, elementUtils, typeUtils);
-	}
-
 	protected Text getTextAdapter(Object value) {
-		return value != null ? AdapterFactory.getTextModel(String.valueOf(value))
-				: null;
+		return value != null ? AdapterFactory.getTextModel(String
+				.valueOf(value)) : null;
 	}
 
 	protected Name getNameAdapter(Object value) {
-		return value != null ? AdapterFactory.getNameModel(String.valueOf(value))
-				: null;
+		return value != null ? AdapterFactory.getNameModel(String
+				.valueOf(value)) : null;
 	}
 
 	protected Elements getElementUtils() {
@@ -115,7 +110,15 @@ abstract class AbstractAdapter {
 			boolean isFirst = true;
 			for (int i = 0; i < descriptors.length; i++) {
 				String name = descriptors[i].getName();
-				Object value = propertyUtils.getProperty(this, name);
+				Object value;
+				try {
+					value = propertyUtils.getProperty(this, name);
+				} catch (Exception e) {
+					logger.error("Error occured while reading property: "
+							+ name, e);
+					e.printStackTrace();
+					value = "[ERROR!]";
+				}
 
 				if (!isPropertyForbidden(name, value, mode)) {
 					if (!isFirst) {
@@ -134,7 +137,7 @@ abstract class AbstractAdapter {
 					"Error occured while constructing element textual representation",
 					e);
 			e.printStackTrace();
-			return "ERROR";
+			return "[ERROR!]";
 		}
 
 	}

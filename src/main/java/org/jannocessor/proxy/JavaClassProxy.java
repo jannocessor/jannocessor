@@ -21,7 +21,7 @@ import java.util.List;
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
-import org.jannocessor.domain.JavaTypeName;
+import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.domain.executable.JavaConstructor;
@@ -110,7 +110,7 @@ public class JavaClassProxy extends JavaElementProxy implements JavaClass {
 	}
 
 	@Override
-	public JavaTypeName getQualifiedName() {
+	public Name getQualifiedName() {
 		if (data.getQualifiedName() == null) {
 			data.setQualifiedName(adapter.getQualifiedName());
 		}

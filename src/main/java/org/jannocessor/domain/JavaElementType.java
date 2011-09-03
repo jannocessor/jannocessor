@@ -21,6 +21,6 @@ import org.jannocessor.bootstrap.annotation.DomainModel;
 @DomainModel
 public interface JavaElementType {
 
-	JavaTypeName getName();
+	Name getName();
 
 }

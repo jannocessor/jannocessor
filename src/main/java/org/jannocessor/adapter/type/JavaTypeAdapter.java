@@ -27,7 +27,6 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.domain.JavaElementType;
-import org.jannocessor.domain.JavaTypeName;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.domain.type.JavaType;
@@ -49,8 +48,8 @@ abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 	}
 
 	@Override
-	public JavaTypeName getQualifiedName() {
-		return getTypeNameAdapter(type.getQualifiedName().toString());
+	public Name getQualifiedName() {
+		return getNameAdapter(type.getQualifiedName().toString());
 	}
 
 	@Override
