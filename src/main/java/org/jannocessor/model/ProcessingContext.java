@@ -123,16 +123,23 @@ public class ProcessingContext {
 	public void generateClass(JavaClass clazz) {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("clazz", clazz);
-		String className = clazz.getName().getText();
-		String packageName = clazz.getPackageName().getText();
 
+		String packageName = clazz.getPackageName().getText();
+		String fileName = clazz.getName().getText() + ".java";
+
+		generateFile(packageName, fileName, "javabean", attributes);
+	}
+
+	public void generateFile(String packageName, String fileName,
+			String templateName, Map<String, Object> attributes) {
 		try {
-			String template = engine.getTemplatesPath() + "/javabean.vm";
+			String template = engine.getTemplatesPath() + "/" + templateName
+					+ ".vm";
 			String content = engine.renderFromFile(template, attributes);
 
-			getFiles().file(packageName, className, "java", content);
+			getFiles().file(packageName, fileName, content);
 		} catch (JannocessorException e) {
-			throw new RuntimeException("Cannot generate class " + className, e);
+			throw new RuntimeException("Cannot generate file: " + fileName, e);
 		}
 	}
 
