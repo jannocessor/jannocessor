@@ -77,7 +77,7 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	}
 
 	@Override
-	public boolean getVarArgs() {
+	public Boolean getVarArgs() {
 		return executable.isVarArgs();
 	}
 

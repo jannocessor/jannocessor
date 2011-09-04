@@ -34,7 +34,7 @@ public interface JavaExecutable extends JavaElement {
 
 	List<JavaParameter> getParameters();
 
-	boolean getVarArgs();
+	Boolean getVarArgs();
 
 	List<JavaElementType> getThrownTypes();
 

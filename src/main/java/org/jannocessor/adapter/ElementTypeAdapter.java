@@ -18,13 +18,13 @@ package org.jannocessor.adapter;
 
 import java.util.List;
 
-import javax.lang.model.element.Element;
 import javax.lang.model.type.ArrayType;
 import javax.lang.model.type.PrimitiveType;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.Name;
 
@@ -44,8 +44,9 @@ public final class ElementTypeAdapter extends AbstractAdapter implements
 		return getNameAdapter(typeMirror.toString());
 	}
 
-	public Element getAsElement() {
-		return getTypeUtils().asElement(typeMirror);
+	public JavaElement getAsElement() {
+		return getElementAdapter(getTypeUtils().asElement(typeMirror),
+				JavaElement.class);
 	}
 
 	public TypeMirror getCapture() {
