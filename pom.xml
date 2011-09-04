@@ -175,7 +175,10 @@
 						<goals>
 							<goal>process</goal>
 						</goals>
-						<phase>compile</phase>
+						<phase>generate-sources</phase>
+						<configuration>
+							<outputDirectory>src/main/generated</outputDirectory>
+						</configuration>
 					</execution>
 
 					<execution>

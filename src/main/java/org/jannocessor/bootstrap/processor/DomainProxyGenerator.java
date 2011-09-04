@@ -16,10 +16,9 @@
 
 package org.jannocessor.bootstrap.processor;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.jannocessor.data.JavaClassData;
-import org.jannocessor.domain.type.JavaClass;
 import org.jannocessor.domain.type.JavaInterface;
 import org.jannocessor.model.CodeProcessor;
 import org.jannocessor.model.ProcessingContext;
@@ -32,8 +31,28 @@ public class DomainProxyGenerator implements CodeProcessor {
 		context.getLogger().debug("Processing annotated domain model: {}",
 				model);
 
-		// JavaClass proxy = new JavaClassData();
-		// context.generateClass(proxy);
+		Map<String, Object> attributes = new HashMap<String, Object>();
+		String packageName = "proxy";
+		String className = model.getName().appendPart("Proxy").getText();
+
+		attributes.put("model", model);
+		attributes.put("packageName", packageName);
+		attributes.put("className", className);
+
+		context.generateFile(packageName, className + ".java", "model_proxy",
+				attributes);
+
+		Map<String, Object> attributes2 = new HashMap<String, Object>();
+		String packageName2 = "data";
+		String className2 = model.getName().appendPart("Data").getText();
+
+		attributes2.put("model", model);
+		attributes2.put("packageName", packageName2);
+		attributes2.put("className", className2);
+
+		context.generateFile(packageName2, className2 + ".java", "model_data",
+				attributes2);
+
 	}
 
 }

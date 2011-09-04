@@ -1,24 +1,38 @@
-package $clazz.packageName;
+package $packageName;
 
 #smart_import()
+#if($model.interfaces.size() > 0)
+#set($extends = $packageName + "." + $model.interfaces[0].asElement.name.appendPart("Proxy"))
+#end
+#set($data = "data." + $model.name.appendPart("Data"))
 
-public class $clazz.name {
 
-#foreach ($f in $clazz.fields)
-    private #type($f.type) $f.name;
+public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
+
+    private $model.name adapter;
+
+    private #type($data) data;
+
+    public $className($model.name adapter, ${model.name}Data data) {
+#if($extends)
+        super(adapter, data);
+#end
+        this.adapter = adapter;
+        this.data = data;
+    }
+
+
+#foreach ($m in $model.methods)
+    public #type($m.returnType) ${m.name}() {
+        if (data.${m.name}() == null) {
+            data.${m.name.replacePart(0, "set")}(adapter.${m.name}());
+        }
+
+        return data.${m.name}();
+    }
 
 #end
 
-#foreach ($f in $clazz.fields)
-    public #type($f.type) get${f.name.capitalized}() {
-        return $f.name;
-    }
-
-    public void set${f.name.capitalized}(#type($f.type) $f.name) { 
-        this.$f.name = $f.name;
-    }
-
-#end
 }
 
 #macro( smart_import )

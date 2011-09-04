@@ -1,0 +1,33 @@
+package $packageName;
+
+#smart_import()
+#if($model.interfaces.size() > 0)
+#set($extends = $packageName + "." + $model.interfaces[0].asElement.name.appendPart("Data"))
+#end
+
+
+public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
+
+#foreach ($m in $model.methods)
+    private #type($m.returnType) _${m.name.deleteParts(0)};
+
+#end
+
+#foreach ($m in $model.methods)
+    public #type($m.returnType) ${m.name}() {
+        return this._${m.name.deleteParts(0)};
+    }
+
+    public void ${m.name.replacePart(0, "set")}(#type($m.returnType) value) {
+        this._${m.name.deleteParts(0)} = value;
+    }
+
+#end
+
+}
+
+#macro( smart_import )
+(!PLACEHOLDER:SMART_IMPORT!)
+#end
+
+#macro( type $java_type )$types.useType($java_type)#end
