@@ -46,6 +46,7 @@ import org.jannocessor.model.Files;
 import org.jannocessor.model.Problem;
 import org.jannocessor.model.Problems;
 import org.jannocessor.model.Processors;
+import org.jannocessor.model.RenderRegister;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
@@ -67,6 +68,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected Problems problems = new Problems();
 	protected Processors processors;
 	protected JannocessorEngine engine;
+	protected RenderRegister renderRegister = new RenderRegister();
 	private Messager messager;
 	private String projectPath;
 

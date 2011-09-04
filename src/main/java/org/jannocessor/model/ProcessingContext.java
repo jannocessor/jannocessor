@@ -46,6 +46,8 @@ public class ProcessingContext {
 
 	private String projectPath;
 
+	private RenderRegister renderer;
+
 	private JannocessorEngine engine;
 
 	public Logger getLogger() {
@@ -120,6 +122,14 @@ public class ProcessingContext {
 		return engine;
 	}
 
+	public RenderRegister getRenderer() {
+		return renderer;
+	}
+
+	public void setRenderer(RenderRegister renderer) {
+		this.renderer = renderer;
+	}
+
 	public void generateClass(JavaClass clazz) {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("clazz", clazz);
@@ -132,6 +142,8 @@ public class ProcessingContext {
 
 	public void generateFile(String packageName, String fileName,
 			String templateName, Map<String, Object> attributes) {
+		renderer.register(templateName, attributes);
+
 		try {
 			String template = engine.getTemplatesPath() + "/" + templateName
 					+ ".vm";
