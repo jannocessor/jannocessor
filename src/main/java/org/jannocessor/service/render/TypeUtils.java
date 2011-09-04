@@ -33,15 +33,17 @@ public class TypeUtils {
 		this.importOrganizer = importOrganizer;
 	}
 
-	public String useType(JavaElementType type) {
-		return useType(type.getName());
+	public String useType(Object type) {
+		if (type instanceof JavaElementType) {
+			return getTypeUsage(((JavaElementType) type).getName().getText());
+		} else if (type instanceof Name) {
+			return getTypeUsage(((Name) type).getText());
+		} else {
+			return getTypeUsage(String.valueOf(type));
+		}
 	}
 
-	public String useType(Name name) {
-		return useType(name.getText());
-	}
-
-	public String useType(String type) {
+	private String getTypeUsage(String type) {
 		String[] imports = importOrganizer.getTypeImports(type);
 		String typeUsage = importOrganizer.getTypeUsage(type);
 
