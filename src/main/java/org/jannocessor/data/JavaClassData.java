@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.Name;
-import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 import org.jannocessor.domain.executable.JavaConstructor;
 import org.jannocessor.domain.executable.JavaInstanceInit;

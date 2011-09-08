@@ -22,7 +22,6 @@ import org.jannocessor.bootstrap.annotation.DomainModel;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.Name;
-import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
 
 @DomainModel

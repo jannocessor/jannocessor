@@ -16,9 +16,9 @@
 
 package org.jannocessor.service.rules;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PatternService;
