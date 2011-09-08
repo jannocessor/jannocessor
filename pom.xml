@@ -10,7 +10,7 @@
 
 	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor</artifactId>
-	<version>0.5.1-SNAPSHOT</version>
+	<version>0.5.0</version>
 
 	<name>JAnnocessor</name>
 	<description>Java Annotation Processor</description>
@@ -184,36 +184,10 @@
 		<plugins>
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<verbose>true</verbose>
-					<compilerVersion>6</compilerVersion>
-					<source>1.6</source>
-					<target>1.6</target>
-					<proc>none</proc>
-				</configuration>
-			</plugin>
-
-			<plugin>
 				<groupId>org.bsc.maven</groupId>
 				<artifactId>maven-processor-plugin</artifactId>
 				<version>2.0.4</version>
 				<executions>
-				<!-- 
-					<execution>
-						<id>process-main</id>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<phase>generate-sources</phase>
-						<configuration>
-							<outputDirectory>src/main/generated</outputDirectory>
-						</configuration>
-					</execution>
-				 -->
-
 					<execution>
 						<id>process-test</id>
 						<goals>
@@ -224,6 +198,9 @@
 							<options>
 								<profile>test</profile>
 							</options>
+							<processors>
+								<processor>org.jannocessor.processor.JannocessorProcessor</processor>
+							</processors>
 						</configuration>
 					</execution>
 				</executions>
