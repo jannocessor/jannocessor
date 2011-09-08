@@ -1,10 +1,41 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jannocessor</groupId>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor</artifactId>
 	<version>0.5.1-SNAPSHOT</version>
-	<url>http://www.jannocessor.org</url>
+
+	<name>JAnnocessor</name>
+	<description>Java Annotation Processor</description>
+	<url>http://code.google.com/p/jannocessor/</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://jannocessor.googlecode.com/hg/</url>
+		<connection>scm:hg:https://jannocessor.googlecode.com/hg/</connection>
+		<developerConnection>scm:hg:https://jannocessor.googlecode.com/hg/</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>nikolce.mihajlovski</id>
+			<name>Nikolche Mihajlovski</name>
+		</developer>
+	</developers>
 
 	<repositories>
 		<repository>
