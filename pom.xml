@@ -201,6 +201,7 @@
 				<artifactId>maven-processor-plugin</artifactId>
 				<version>2.0.4</version>
 				<executions>
+				<!-- 
 					<execution>
 						<id>process-main</id>
 						<goals>
@@ -211,6 +212,7 @@
 							<outputDirectory>src/main/generated</outputDirectory>
 						</configuration>
 					</execution>
+				 -->
 
 					<execution>
 						<id>process-test</id>
