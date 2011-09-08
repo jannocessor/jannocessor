@@ -3,7 +3,7 @@ package org.jannocessor.inject;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.engine.impl.JannocessorEngineImpl;
 import org.jannocessor.service.api.ConfigLoader;
-import org.jannocessor.service.api.Configuratîr;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.FileService;
 import org.jannocessor.service.api.ImportOrganizer;
 import org.jannocessor.service.api.PathLocator;
@@ -30,7 +30,7 @@ public class ServicesModule extends AbstractModule {
 
 		bind(ConfigLoader.class).to(ConfigLoaderImpl.class);
 
-		bind(Configuratîr.class).to(ConfiguratorImpl.class);
+		bind(Configurator.class).to(ConfiguratorImpl.class);
 
 		bind(ImportOrganizer.class).to(ImportOrganizerImpl.class);
 

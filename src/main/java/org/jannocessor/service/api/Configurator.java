@@ -19,7 +19,7 @@ package org.jannocessor.service.api;
 import java.util.Map;
 import java.util.Set;
 
-public interface Configuratîr {
+public interface Configurator {
 
 	void setInputOptions(Map<String, String> inputOptions)
 			throws JannocessorException;

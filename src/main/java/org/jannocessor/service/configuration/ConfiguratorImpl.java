@@ -27,12 +27,12 @@ import javax.inject.Inject;
 
 import org.jannocessor.model.Config;
 import org.jannocessor.service.api.ConfigLoader;
-import org.jannocessor.service.api.Configuratîr;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.util.Settings;
 
-public class ConfiguratorImpl implements Configuratîr, Settings {
+public class ConfiguratorImpl implements Configurator, Settings {
 
 	private Config general;
 

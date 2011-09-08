@@ -18,18 +18,18 @@ package org.jannocessor.service.configuration;
 
 import javax.inject.Inject;
 
-import org.jannocessor.service.api.Configuratîr;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.util.Settings;
 
 public class PathLocatorImpl implements PathLocator, Settings {
 
-	private final Configuratîr configuratîr;
+	private final Configurator Configurator;
 
 	@Inject
-	public PathLocatorImpl(Configuratîr configuratîr) {
-		this.configuratîr = configuratîr;
+	public PathLocatorImpl(Configurator Configurator) {
+		this.Configurator = Configurator;
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class PathLocatorImpl implements PathLocator, Settings {
 	}
 
 	private String modeName(String filename) {
-		String mode = configuratîr.getProfile();
+		String mode = Configurator.getProfile();
 		if (mode != null) {
 			return filename + "-" + mode;
 		} else {

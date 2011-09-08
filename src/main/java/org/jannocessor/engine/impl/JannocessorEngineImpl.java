@@ -23,7 +23,7 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.service.api.Configuratîr;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JannocessorException;
 import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.RuleExecutor;
@@ -33,13 +33,13 @@ import org.jannocessor.service.api.TemplateRenderer;
 public class JannocessorEngineImpl implements JannocessorEngine {
 
 	private final PathLocator locations;
-	private final Configuratîr config;
+	private final Configurator config;
 	private final RuleExecutor ruleExecutor;
 	private final TemplateRenderer generator;
 	private final RulesGenerator rulesGenerator;
 
 	@Inject
-	public JannocessorEngineImpl(PathLocator locations, Configuratîr config,
+	public JannocessorEngineImpl(PathLocator locations, Configurator config,
 			RuleExecutor ruleExecutor, TemplateRenderer generator,
 			RulesGenerator rulesGenerator) {
 		this.locations = locations;
