@@ -43,7 +43,6 @@ import org.jannocessor.model.ProcessingContext;
 import org.jannocessor.model.Processors;
 import org.jannocessor.model.Root;
 import org.jannocessor.service.api.JannocessorException;
-import org.jannocessor.ui.RenderPreview;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class JannocessorProcessor extends JannocessorProcessorBase {
@@ -66,7 +65,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		// run the rules on the facts
 		engine.executeRules(rules, facts, globals);
 
-		RenderPreview.showDialog(getProjectPath(), renderRegister);
+		// RenderPreview.showDialog(getProjectPath(), renderRegister);
 
 		// generate files
 		generateFiles();
