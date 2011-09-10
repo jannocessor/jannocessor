@@ -32,7 +32,7 @@ public class DomainProxyGenerator implements CodeProcessor {
 				model);
 
 		Map<String, Object> attributes = new HashMap<String, Object>();
-		String packageName = "proxy";
+		String packageName = "org.jannocessor.proxy";
 		String className = model.getName().appendPart("Proxy").getText();
 
 		attributes.put("model", model);
@@ -43,7 +43,7 @@ public class DomainProxyGenerator implements CodeProcessor {
 				attributes);
 
 		Map<String, Object> attributes2 = new HashMap<String, Object>();
-		String packageName2 = "data";
+		String packageName2 = "org.jannocessor.data";
 		String className2 = model.getName().appendPart("Data").getText();
 
 		attributes2.put("model", model);
