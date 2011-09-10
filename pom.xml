@@ -247,6 +247,7 @@
 	<modules>
 		<module>jannocessor-bootstrap</module>
 		<module>jannocessor-core</module>
+		<module>jannocessor-test</module>
 	</modules>
 
 </project>
