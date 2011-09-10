@@ -42,12 +42,42 @@ import org.jannocessor.adapter.variable.JavaExceptionParameterAdapter;
 import org.jannocessor.adapter.variable.JavaFieldAdapter;
 import org.jannocessor.adapter.variable.JavaLocalVariableAdapter;
 import org.jannocessor.adapter.variable.JavaParameterAdapter;
+import org.jannocessor.data.JavaAnnotationData;
 import org.jannocessor.data.JavaClassData;
+import org.jannocessor.data.JavaConstructorData;
+import org.jannocessor.data.JavaElementTypeData;
+import org.jannocessor.data.JavaEnumConstantData;
+import org.jannocessor.data.JavaEnumData;
+import org.jannocessor.data.JavaExceptionParameterData;
+import org.jannocessor.data.JavaFieldData;
+import org.jannocessor.data.JavaInstanceInitData;
+import org.jannocessor.data.JavaInterfaceData;
+import org.jannocessor.data.JavaLocalVariableData;
+import org.jannocessor.data.JavaMethodData;
+import org.jannocessor.data.JavaPackageData;
+import org.jannocessor.data.JavaParameterData;
+import org.jannocessor.data.JavaStaticInitData;
+import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.domain.JavaElement;
 import org.jannocessor.domain.JavaElementType;
 import org.jannocessor.domain.Name;
 import org.jannocessor.domain.Text;
+import org.jannocessor.proxy.JavaAnnotationProxy;
 import org.jannocessor.proxy.JavaClassProxy;
+import org.jannocessor.proxy.JavaConstructorProxy;
+import org.jannocessor.proxy.JavaElementTypeProxy;
+import org.jannocessor.proxy.JavaEnumConstantProxy;
+import org.jannocessor.proxy.JavaEnumProxy;
+import org.jannocessor.proxy.JavaExceptionParameterProxy;
+import org.jannocessor.proxy.JavaFieldProxy;
+import org.jannocessor.proxy.JavaInstanceInitProxy;
+import org.jannocessor.proxy.JavaInterfaceProxy;
+import org.jannocessor.proxy.JavaLocalVariableProxy;
+import org.jannocessor.proxy.JavaMethodProxy;
+import org.jannocessor.proxy.JavaPackageProxy;
+import org.jannocessor.proxy.JavaParameterProxy;
+import org.jannocessor.proxy.JavaStaticInitProxy;
+import org.jannocessor.proxy.JavaTypeParameterProxy;
 
 public class AdapterFactory {
 
@@ -65,84 +95,100 @@ public class AdapterFactory {
 			/* Package and types */
 
 			case PACKAGE:
-				model = new JavaPackageAdapter((PackageElement) element,
-						elementUtils, typeUtils);
+				model = new JavaPackageProxy(new JavaPackageAdapter(
+						(PackageElement) element, elementUtils, typeUtils),
+						new JavaPackageData());
 				break;
 
 			case ENUM:
-				model = new JavaEnumAdapter((TypeElement) element,
-						elementUtils, typeUtils);
+				model = new JavaEnumProxy(new JavaEnumAdapter(
+						(TypeElement) element, elementUtils, typeUtils),
+						new JavaEnumData());
 				break;
 
 			case CLASS:
-				JavaClassAdapter adapter = new JavaClassAdapter(
-						(TypeElement) element, elementUtils, typeUtils);
-				JavaClassData data = new JavaClassData();
-				model = new JavaClassProxy(adapter, data);
+				model = new JavaClassProxy(new JavaClassAdapter(
+						(TypeElement) element, elementUtils, typeUtils),
+						new JavaClassData());
 				break;
 
 			case ANNOTATION_TYPE:
-				model = new JavaAnnotationAdapter((TypeElement) element,
-						elementUtils, typeUtils);
+				model = new JavaAnnotationProxy(new JavaAnnotationAdapter(
+						(TypeElement) element, elementUtils, typeUtils),
+						new JavaAnnotationData());
 				break;
 
 			case INTERFACE:
-				model = new JavaInterfaceAdapter((TypeElement) element,
-						elementUtils, typeUtils);
+				model = new JavaInterfaceProxy(new JavaInterfaceAdapter(
+						(TypeElement) element, elementUtils, typeUtils),
+						new JavaInterfaceData());
 				break;
 
 			case TYPE_PARAMETER:
-				model = new JavaTypeParameterAdapter(
-						(TypeParameterElement) element, elementUtils, typeUtils);
+				model = new JavaTypeParameterProxy(
+						new JavaTypeParameterAdapter(
+								(TypeParameterElement) element, elementUtils,
+								typeUtils), new JavaTypeParameterData());
 				break;
 
 			/* Variables */
 
 			case ENUM_CONSTANT:
-				model = new JavaEnumConstantAdapter((VariableElement) element,
-						elementUtils, typeUtils);
+				model = new JavaEnumConstantProxy(new JavaEnumConstantAdapter(
+						(VariableElement) element, elementUtils, typeUtils),
+						new JavaEnumConstantData());
 				break;
 
 			case FIELD:
-				model = new JavaFieldAdapter((VariableElement) element,
-						elementUtils, typeUtils);
+				model = new JavaFieldProxy(new JavaFieldAdapter(
+						(VariableElement) element, elementUtils, typeUtils),
+						new JavaFieldData());
 				break;
 
 			case PARAMETER:
-				model = new JavaParameterAdapter((VariableElement) element,
-						elementUtils, typeUtils);
+				model = new JavaParameterProxy(new JavaParameterAdapter(
+						(VariableElement) element, elementUtils, typeUtils),
+						new JavaParameterData());
 				break;
 
 			case LOCAL_VARIABLE:
-				model = new JavaLocalVariableAdapter((VariableElement) element,
-						elementUtils, typeUtils);
+				model = new JavaLocalVariableProxy(
+						new JavaLocalVariableAdapter((VariableElement) element,
+								elementUtils, typeUtils),
+						new JavaLocalVariableData());
 				break;
 
 			case EXCEPTION_PARAMETER:
-				model = new JavaExceptionParameterAdapter(
-						(VariableElement) element, elementUtils, typeUtils);
+				model = new JavaExceptionParameterProxy(
+						new JavaExceptionParameterAdapter(
+								(VariableElement) element, elementUtils,
+								typeUtils), new JavaExceptionParameterData());
 				break;
 
 			/* Executables */
 
 			case METHOD:
-				model = new JavaMethodAdapter((ExecutableElement) element,
-						elementUtils, typeUtils);
+				model = new JavaMethodProxy(new JavaMethodAdapter(
+						(ExecutableElement) element, elementUtils, typeUtils),
+						new JavaMethodData());
 				break;
 
 			case CONSTRUCTOR:
-				model = new JavaConstructorAdapter((ExecutableElement) element,
-						elementUtils, typeUtils);
+				model = new JavaConstructorProxy(new JavaConstructorAdapter(
+						(ExecutableElement) element, elementUtils, typeUtils),
+						new JavaConstructorData());
 				break;
 
 			case STATIC_INIT:
-				model = new JavaStaticInitAdapter((ExecutableElement) element,
-						elementUtils, typeUtils);
+				model = new JavaStaticInitProxy(new JavaStaticInitAdapter(
+						(ExecutableElement) element, elementUtils, typeUtils),
+						new JavaStaticInitData());
 				break;
 
 			case INSTANCE_INIT:
-				model = new JavaInstanceInitAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils);
+				model = new JavaInstanceInitProxy(new JavaInstanceInitAdapter(
+						(ExecutableElement) element, elementUtils, typeUtils),
+						new JavaInstanceInitData());
 				break;
 
 			default:
@@ -162,7 +208,8 @@ public class AdapterFactory {
 	public static JavaElementType getTypeModel(TypeMirror typeMirror,
 			Elements elementUtils, Types typeUtils) {
 		if (typeMirror != null) {
-			return new ElementTypeAdapter(typeMirror, elementUtils, typeUtils);
+			return new JavaElementTypeProxy(new ElementTypeAdapter(typeMirror,
+					elementUtils, typeUtils), new JavaElementTypeData());
 		} else {
 			return null;
 		}
