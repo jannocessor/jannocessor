@@ -11,6 +11,7 @@
 	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor</artifactId>
 	<version>0.6.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
 	<name>JAnnocessor</name>
 	<description>Java Annotation Processor</description>
@@ -242,5 +243,10 @@
 		</plugins>
 
 	</build>
+	
+	<modules>
+		<module>jannocessor-bootstrap</module>
+		<module>jannocessor-core</module>
+	</modules>
 
 </project>
