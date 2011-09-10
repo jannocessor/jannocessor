@@ -1,0 +1,32 @@
+package rules;
+
+dialect "java"
+
+import java.util.*;
+import org.jannocessor.processor.model.*;
+import org.jannocessor.model.*;
+import org.jannocessor.model.executable.*;
+import org.jannocessor.model.type.*;
+import org.jannocessor.model.variable.*;
+
+import org.jannocessor.domain.*;
+import org.jannocessor.domain.executable.*;
+import org.jannocessor.domain.type.*;
+import org.jannocessor.domain.variable.*;
+
+global ProcessingContext context;
+
+#foreach ($rule in $rules)
+
+rule "$rule.name"
+when
+$rule.pattern
+then
+	Map params = new HashMap();
+#foreach( $arg in $rule.args )
+	params.put("$arg", $arg);
+#end
+	context.getProcessors().process("$rule.name", context, params); 
+end
+
+#end
