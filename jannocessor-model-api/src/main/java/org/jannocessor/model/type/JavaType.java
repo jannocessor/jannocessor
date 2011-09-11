@@ -16,9 +16,8 @@
 
 package org.jannocessor.model.type;
 
-import java.util.List;
-
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
@@ -35,7 +34,7 @@ public interface JavaType extends JavaElement {
 
 	JavaElementType getSuperclass();
 
-	List<JavaElementType> getInterfaces();
+	PowerList<JavaElementType> getInterfaces();
 
-	List<JavaTypeParameter> getParameters();
+	PowerList<JavaTypeParameter> getParameters();
 }

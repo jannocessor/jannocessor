@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaVariableProxy;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.data.JavaParameterData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaParameterProxy extends JavaVariableProxy implements JavaParameter {
 
     private JavaParameter adapter;

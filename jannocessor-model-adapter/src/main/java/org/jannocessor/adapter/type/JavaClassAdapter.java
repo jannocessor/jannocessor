@@ -16,12 +16,11 @@
 
 package org.jannocessor.adapter.type;
 
-import java.util.List;
-
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
@@ -42,27 +41,27 @@ public final class JavaClassAdapter extends JavaTypeAdapter implements
 	}
 
 	@Override
-	public List<JavaField> getFields() {
+	public PowerList<JavaField> getFields() {
 		return findChildrenByType(JavaField.class);
 	}
 
 	@Override
-	public List<JavaConstructor> getConstructors() {
+	public PowerList<JavaConstructor> getConstructors() {
 		return findChildrenByType(JavaConstructor.class);
 	}
 
 	@Override
-	public List<JavaMethod> getMethods() {
+	public PowerList<JavaMethod> getMethods() {
 		return findChildrenByType(JavaMethod.class);
 	}
 
 	@Override
-	public List<JavaStaticInit> getStaticInits() {
+	public PowerList<JavaStaticInit> getStaticInits() {
 		return findChildrenByType(JavaStaticInit.class);
 	}
 
 	@Override
-	public List<JavaInstanceInit> getInstanceInits() {
+	public PowerList<JavaInstanceInit> getInstanceInits() {
 		return findChildrenByType(JavaInstanceInit.class);
 	}
 

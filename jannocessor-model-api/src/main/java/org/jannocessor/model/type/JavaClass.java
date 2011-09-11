@@ -16,9 +16,8 @@
 
 package org.jannocessor.model.type;
 
-import java.util.List;
-
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
@@ -28,14 +27,14 @@ import org.jannocessor.model.variable.JavaField;
 @DomainModel
 public interface JavaClass extends JavaType {
 
-	List<JavaField> getFields();
+	PowerList<JavaField> getFields();
 
-	List<JavaConstructor> getConstructors();
+	PowerList<JavaConstructor> getConstructors();
 
-	List<JavaMethod> getMethods();
+	PowerList<JavaMethod> getMethods();
 
-	List<JavaStaticInit> getStaticInits();
+	PowerList<JavaStaticInit> getStaticInits();
 
-	List<JavaInstanceInit> getInstanceInits();
+	PowerList<JavaInstanceInit> getInstanceInits();
 
 }

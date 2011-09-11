@@ -1,8 +1,9 @@
 package org.jannocessor.data;
 
+import javax.annotation.Generated;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.type.JavaClass;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
@@ -10,57 +11,57 @@ import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.executable.JavaInstanceInit;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaClassData extends JavaTypeData implements JavaClass {
 
-    private List<JavaField> _getFields;
+    private PowerList<JavaField> _getFields;
 
-    private List<JavaConstructor> _getConstructors;
+    private PowerList<JavaConstructor> _getConstructors;
 
-    private List<JavaMethod> _getMethods;
+    private PowerList<JavaMethod> _getMethods;
 
-    private List<JavaStaticInit> _getStaticInits;
+    private PowerList<JavaStaticInit> _getStaticInits;
 
-    private List<JavaInstanceInit> _getInstanceInits;
+    private PowerList<JavaInstanceInit> _getInstanceInits;
 
 
-    public List<JavaField> getFields() {
+    public PowerList<JavaField> getFields() {
         return this._getFields;
     }
 
-    public void setFields(List<JavaField> value) {
+    public void setFields(PowerList<JavaField> value) {
         this._getFields = value;
     }
 
-    public List<JavaConstructor> getConstructors() {
+    public PowerList<JavaConstructor> getConstructors() {
         return this._getConstructors;
     }
 
-    public void setConstructors(List<JavaConstructor> value) {
+    public void setConstructors(PowerList<JavaConstructor> value) {
         this._getConstructors = value;
     }
 
-    public List<JavaMethod> getMethods() {
+    public PowerList<JavaMethod> getMethods() {
         return this._getMethods;
     }
 
-    public void setMethods(List<JavaMethod> value) {
+    public void setMethods(PowerList<JavaMethod> value) {
         this._getMethods = value;
     }
 
-    public List<JavaStaticInit> getStaticInits() {
+    public PowerList<JavaStaticInit> getStaticInits() {
         return this._getStaticInits;
     }
 
-    public void setStaticInits(List<JavaStaticInit> value) {
+    public void setStaticInits(PowerList<JavaStaticInit> value) {
         this._getStaticInits = value;
     }
 
-    public List<JavaInstanceInit> getInstanceInits() {
+    public PowerList<JavaInstanceInit> getInstanceInits() {
         return this._getInstanceInits;
     }
 
-    public void setInstanceInits(List<JavaInstanceInit> value) {
+    public void setInstanceInits(PowerList<JavaInstanceInit> value) {
         this._getInstanceInits = value;
     }
 

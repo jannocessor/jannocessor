@@ -1,35 +1,36 @@
 package org.jannocessor.data;
 
+import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.executable.JavaExecutable;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.Text;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaExecutableData extends JavaElementData implements JavaExecutable {
 
-    private List<JavaTypeParameter> _getTypeParameters;
+    private PowerList<JavaTypeParameter> _getTypeParameters;
 
     private JavaElementType _getReturnType;
 
-    private List<JavaParameter> _getParameters;
+    private PowerList<JavaParameter> _getParameters;
 
     private Boolean _getVarArgs;
 
-    private List<JavaElementType> _getThrownTypes;
+    private PowerList<JavaElementType> _getThrownTypes;
 
     private Text _getDefault;
 
 
-    public List<JavaTypeParameter> getTypeParameters() {
+    public PowerList<JavaTypeParameter> getTypeParameters() {
         return this._getTypeParameters;
     }
 
-    public void setTypeParameters(List<JavaTypeParameter> value) {
+    public void setTypeParameters(PowerList<JavaTypeParameter> value) {
         this._getTypeParameters = value;
     }
 
@@ -41,11 +42,11 @@ public class JavaExecutableData extends JavaElementData implements JavaExecutabl
         this._getReturnType = value;
     }
 
-    public List<JavaParameter> getParameters() {
+    public PowerList<JavaParameter> getParameters() {
         return this._getParameters;
     }
 
-    public void setParameters(List<JavaParameter> value) {
+    public void setParameters(PowerList<JavaParameter> value) {
         this._getParameters = value;
     }
 
@@ -57,11 +58,11 @@ public class JavaExecutableData extends JavaElementData implements JavaExecutabl
         this._getVarArgs = value;
     }
 
-    public List<JavaElementType> getThrownTypes() {
+    public PowerList<JavaElementType> getThrownTypes() {
         return this._getThrownTypes;
     }
 
-    public void setThrownTypes(List<JavaElementType> value) {
+    public void setThrownTypes(PowerList<JavaElementType> value) {
         this._getThrownTypes = value;
     }
 

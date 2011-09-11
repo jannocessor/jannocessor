@@ -16,16 +16,15 @@
 
 package org.jannocessor.model;
 
-import java.util.List;
-
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
 
 @DomainModel
 public interface JavaElement {
 
 	JavaElement getParent();
 
-	List<JavaElement> getChildren();
+	PowerList<JavaElement> getChildren();
 
 	Name getName();
 

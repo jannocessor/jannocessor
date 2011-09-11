@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaExecutableProxy;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.data.JavaConstructorData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaConstructorProxy extends JavaExecutableProxy implements JavaConstructor {
 
     private JavaConstructor adapter;

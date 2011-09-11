@@ -16,12 +16,11 @@
 
 package org.jannocessor.adapter.type;
 
-import java.util.List;
-
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.type.JavaInterface;
 
@@ -38,7 +37,7 @@ public final class JavaInterfaceAdapter extends JavaTypeAdapter implements
 	}
 
 	@Override
-	public List<JavaMethod> getMethods() {
+	public PowerList<JavaMethod> getMethods() {
 		return findChildrenByType(JavaMethod.class);
 	}
 

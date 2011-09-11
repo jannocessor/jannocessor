@@ -1,16 +1,17 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Text;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.JavaElementType;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaTypeProxy extends JavaElementProxy implements JavaType {
 
     private JavaType adapter;
@@ -72,7 +73,7 @@ public class JavaTypeProxy extends JavaElementProxy implements JavaType {
         return data.getSuperclass();
     }
 
-    public List<JavaElementType> getInterfaces() {
+    public PowerList<JavaElementType> getInterfaces() {
         if (!getInterfacesInitialized) {
             data.setInterfaces(adapter.getInterfaces());
 			getInterfacesInitialized = true;
@@ -81,7 +82,7 @@ public class JavaTypeProxy extends JavaElementProxy implements JavaType {
         return data.getInterfaces();
     }
 
-    public List<JavaTypeParameter> getParameters() {
+    public PowerList<JavaTypeParameter> getParameters() {
         if (!getParametersInitialized) {
             data.setParameters(adapter.getParameters());
 			getParametersInitialized = true;

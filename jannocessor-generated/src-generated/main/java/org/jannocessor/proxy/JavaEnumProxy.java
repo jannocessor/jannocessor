@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaEnum;
 import org.jannocessor.data.JavaEnumData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaEnumProxy extends JavaTypeProxy implements JavaEnum {
 
     private JavaEnum adapter;

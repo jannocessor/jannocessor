@@ -16,14 +16,13 @@
 
 package org.jannocessor.model.type;
 
-import java.util.List;
-
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 
 @DomainModel
 public interface JavaInterface extends JavaType {
 
-	List<JavaMethod> getMethods();
+	PowerList<JavaMethod> getMethods();
 
 }

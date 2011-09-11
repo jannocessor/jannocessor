@@ -16,9 +16,6 @@
 
 package org.jannocessor.adapter.executable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
@@ -27,6 +24,8 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Text;
 import org.jannocessor.model.executable.JavaExecutable;
@@ -45,8 +44,8 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	}
 
 	@Override
-	public List<JavaTypeParameter> getTypeParameters() {
-		List<JavaTypeParameter> adapters = new ArrayList<JavaTypeParameter>();
+	public PowerList<JavaTypeParameter> getTypeParameters() {
+		PowerList<JavaTypeParameter> adapters = Power.list();
 
 		for (TypeParameterElement typeParameter : executable
 				.getTypeParameters()) {
@@ -64,8 +63,8 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	}
 
 	@Override
-	public List<JavaParameter> getParameters() {
-		List<JavaParameter> adapters = new ArrayList<JavaParameter>();
+	public PowerList<JavaParameter> getParameters() {
+		PowerList<JavaParameter> adapters = Power.list();
 
 		for (VariableElement variable : executable.getParameters()) {
 			JavaParameter adapter = getElementAdapter(variable,
@@ -82,8 +81,8 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	}
 
 	@Override
-	public List<JavaElementType> getThrownTypes() {
-		List<JavaElementType> adapters = new ArrayList<JavaElementType>();
+	public PowerList<JavaElementType> getThrownTypes() {
+		PowerList<JavaElementType> adapters = Power.list();
 
 		for (TypeMirror typeMirror : executable.getThrownTypes()) {
 			adapters.add(getTypeAdapter(typeMirror));

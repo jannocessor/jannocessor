@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaExecutableProxy;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.data.JavaInstanceInitData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaInstanceInitProxy extends JavaExecutableProxy implements JavaInstanceInit {
 
     private JavaInstanceInit adapter;

@@ -16,9 +16,6 @@
 
 package org.jannocessor.adapter.type;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.type.TypeMirror;
@@ -26,6 +23,8 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.Text;
@@ -66,8 +65,8 @@ abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 	}
 
 	@Override
-	public List<JavaElementType> getInterfaces() {
-		List<JavaElementType> adapters = new ArrayList<JavaElementType>();
+	public PowerList<JavaElementType> getInterfaces() {
+		PowerList<JavaElementType> adapters = Power.list();
 
 		for (TypeMirror tinterface : type.getInterfaces()) {
 			adapters.add(getTypeAdapter(tinterface));
@@ -77,8 +76,8 @@ abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 	}
 
 	@Override
-	public List<JavaTypeParameter> getParameters() {
-		List<JavaTypeParameter> adapters = new ArrayList<JavaTypeParameter>();
+	public PowerList<JavaTypeParameter> getParameters() {
+		PowerList<JavaTypeParameter> adapters = Power.list();
 
 		for (TypeParameterElement parameter : type.getTypeParameters()) {
 			adapters.add(getElementAdapter(parameter, JavaTypeParameter.class));

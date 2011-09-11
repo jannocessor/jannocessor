@@ -16,14 +16,14 @@
 
 package org.jannocessor.adapter;
 
-import java.util.List;
-
 import javax.lang.model.type.ArrayType;
 import javax.lang.model.type.PrimitiveType;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
@@ -53,8 +53,8 @@ public final class ElementTypeAdapter extends AbstractAdapter implements
 		return getTypeUtils().capture(typeMirror);
 	}
 
-	public List<? extends TypeMirror> getDirectSupertypes() {
-		return getTypeUtils().directSupertypes(typeMirror);
+	public PowerList<? extends TypeMirror> getDirectSupertypes() {
+		return Power.list(getTypeUtils().directSupertypes(typeMirror));
 	}
 
 	public TypeMirror getErasure() {

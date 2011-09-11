@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.data.JavaElementTypeData;
 import org.jannocessor.model.Name;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaElementTypeProxy implements JavaElementType {
 
     private JavaElementType adapter;

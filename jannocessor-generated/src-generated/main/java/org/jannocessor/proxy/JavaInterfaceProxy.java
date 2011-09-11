@@ -1,13 +1,14 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaInterface;
 import org.jannocessor.data.JavaInterfaceData;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaInterfaceProxy extends JavaTypeProxy implements JavaInterface {
 
     private JavaInterface adapter;
@@ -23,7 +24,7 @@ public class JavaInterfaceProxy extends JavaTypeProxy implements JavaInterface {
 	private boolean getMethodsInitialized = false;
 
 
-    public List<JavaMethod> getMethods() {
+    public PowerList<JavaMethod> getMethods() {
         if (!getMethodsInitialized) {
             data.setMethods(adapter.getMethods());
 			getMethodsInitialized = true;

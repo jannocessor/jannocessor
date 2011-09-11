@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaExecutableProxy;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.data.JavaMethodData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaMethodProxy extends JavaExecutableProxy implements JavaMethod {
 
     private JavaMethod adapter;

@@ -1,9 +1,10 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.data.JavaClassData;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
@@ -11,7 +12,7 @@ import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.executable.JavaInstanceInit;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
 
     private JavaClass adapter;
@@ -35,7 +36,7 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
 	private boolean getInstanceInitsInitialized = false;
 
 
-    public List<JavaField> getFields() {
+    public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
             data.setFields(adapter.getFields());
 			getFieldsInitialized = true;
@@ -44,7 +45,7 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
         return data.getFields();
     }
 
-    public List<JavaConstructor> getConstructors() {
+    public PowerList<JavaConstructor> getConstructors() {
         if (!getConstructorsInitialized) {
             data.setConstructors(adapter.getConstructors());
 			getConstructorsInitialized = true;
@@ -53,7 +54,7 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
         return data.getConstructors();
     }
 
-    public List<JavaMethod> getMethods() {
+    public PowerList<JavaMethod> getMethods() {
         if (!getMethodsInitialized) {
             data.setMethods(adapter.getMethods());
 			getMethodsInitialized = true;
@@ -62,7 +63,7 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
         return data.getMethods();
     }
 
-    public List<JavaStaticInit> getStaticInits() {
+    public PowerList<JavaStaticInit> getStaticInits() {
         if (!getStaticInitsInitialized) {
             data.setStaticInits(adapter.getStaticInits());
 			getStaticInitsInitialized = true;
@@ -71,7 +72,7 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
         return data.getStaticInits();
     }
 
-    public List<JavaInstanceInit> getInstanceInits() {
+    public PowerList<JavaInstanceInit> getInstanceInits() {
         if (!getInstanceInitsInitialized) {
             data.setInstanceInits(adapter.getInstanceInits());
 			getInstanceInitsInitialized = true;

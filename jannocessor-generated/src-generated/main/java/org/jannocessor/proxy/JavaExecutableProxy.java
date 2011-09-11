@@ -1,16 +1,17 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.executable.JavaExecutable;
 import org.jannocessor.data.JavaExecutableData;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.Text;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaExecutableProxy extends JavaElementProxy implements JavaExecutable {
 
     private JavaExecutable adapter;
@@ -36,7 +37,7 @@ public class JavaExecutableProxy extends JavaElementProxy implements JavaExecuta
 	private boolean getDefaultInitialized = false;
 
 
-    public List<JavaTypeParameter> getTypeParameters() {
+    public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
             data.setTypeParameters(adapter.getTypeParameters());
 			getTypeParametersInitialized = true;
@@ -54,7 +55,7 @@ public class JavaExecutableProxy extends JavaElementProxy implements JavaExecuta
         return data.getReturnType();
     }
 
-    public List<JavaParameter> getParameters() {
+    public PowerList<JavaParameter> getParameters() {
         if (!getParametersInitialized) {
             data.setParameters(adapter.getParameters());
 			getParametersInitialized = true;
@@ -72,7 +73,7 @@ public class JavaExecutableProxy extends JavaElementProxy implements JavaExecuta
         return data.getVarArgs();
     }
 
-    public List<JavaElementType> getThrownTypes() {
+    public PowerList<JavaElementType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
             data.setThrownTypes(adapter.getThrownTypes());
 			getThrownTypesInitialized = true;

@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaAnnotation;
 import org.jannocessor.data.JavaAnnotationData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaAnnotationProxy extends JavaTypeProxy implements JavaAnnotation {
 
     private JavaAnnotation adapter;

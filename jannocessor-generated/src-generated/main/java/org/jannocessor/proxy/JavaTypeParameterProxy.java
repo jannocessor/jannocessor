@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.data.JavaTypeParameterData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaTypeParameterProxy extends JavaElementProxy implements JavaTypeParameter {
 
     private JavaTypeParameter adapter;

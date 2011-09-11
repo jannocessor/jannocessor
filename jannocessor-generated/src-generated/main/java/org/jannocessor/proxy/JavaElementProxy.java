@@ -1,14 +1,15 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.data.JavaElementData;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.Text;
 import org.jannocessor.model.JavaElementType;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaElementProxy implements JavaElement {
 
     private JavaElement adapter;
@@ -40,7 +41,7 @@ public class JavaElementProxy implements JavaElement {
         return data.getParent();
     }
 
-    public List<JavaElement> getChildren() {
+    public PowerList<JavaElement> getChildren() {
         if (!getChildrenInitialized) {
             data.setChildren(adapter.getChildren());
 			getChildrenInitialized = true;

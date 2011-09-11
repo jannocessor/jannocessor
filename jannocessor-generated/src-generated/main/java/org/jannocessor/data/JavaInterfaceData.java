@@ -1,22 +1,23 @@
 package org.jannocessor.data;
 
+import javax.annotation.Generated;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.type.JavaInterface;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaInterfaceData extends JavaTypeData implements JavaInterface {
 
-    private List<JavaMethod> _getMethods;
+    private PowerList<JavaMethod> _getMethods;
 
 
-    public List<JavaMethod> getMethods() {
+    public PowerList<JavaMethod> getMethods() {
         return this._getMethods;
     }
 
-    public void setMethods(List<JavaMethod> value) {
+    public void setMethods(PowerList<JavaMethod> value) {
         this._getMethods = value;
     }
 

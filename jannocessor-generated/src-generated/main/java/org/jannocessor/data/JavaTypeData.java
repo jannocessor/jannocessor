@@ -1,15 +1,16 @@
 package org.jannocessor.data;
 
+import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.Text;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.JavaElementType;
-import java.util.List;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaTypeData extends JavaElementData implements JavaType {
 
     private Text _getNesting;
@@ -20,9 +21,9 @@ public class JavaTypeData extends JavaElementData implements JavaType {
 
     private JavaElementType _getSuperclass;
 
-    private List<JavaElementType> _getInterfaces;
+    private PowerList<JavaElementType> _getInterfaces;
 
-    private List<JavaTypeParameter> _getParameters;
+    private PowerList<JavaTypeParameter> _getParameters;
 
 
     public Text getNesting() {
@@ -57,19 +58,19 @@ public class JavaTypeData extends JavaElementData implements JavaType {
         this._getSuperclass = value;
     }
 
-    public List<JavaElementType> getInterfaces() {
+    public PowerList<JavaElementType> getInterfaces() {
         return this._getInterfaces;
     }
 
-    public void setInterfaces(List<JavaElementType> value) {
+    public void setInterfaces(PowerList<JavaElementType> value) {
         this._getInterfaces = value;
     }
 
-    public List<JavaTypeParameter> getParameters() {
+    public PowerList<JavaTypeParameter> getParameters() {
         return this._getParameters;
     }
 
-    public void setParameters(List<JavaTypeParameter> value) {
+    public void setParameters(PowerList<JavaTypeParameter> value) {
         this._getParameters = value;
     }
 

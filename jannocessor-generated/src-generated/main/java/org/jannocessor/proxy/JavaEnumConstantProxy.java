@@ -1,11 +1,12 @@
 package org.jannocessor.proxy;
 
+import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaVariableProxy;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.data.JavaEnumConstantData;
 
 
-
+@Generated("JAnnocessor-bootstraped")
 public class JavaEnumConstantProxy extends JavaVariableProxy implements JavaEnumConstant {
 
     private JavaEnumConstant adapter;

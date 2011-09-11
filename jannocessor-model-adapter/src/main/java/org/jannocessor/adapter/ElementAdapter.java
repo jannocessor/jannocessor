@@ -16,13 +16,12 @@
 
 package org.jannocessor.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.lang.model.element.Element;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
@@ -50,8 +49,8 @@ public abstract class ElementAdapter extends AbstractAdapter implements
 	}
 
 	@Override
-	public List<JavaElement> getChildren() {
-		List<JavaElement> children = new ArrayList<JavaElement>();
+	public PowerList<JavaElement> getChildren() {
+		PowerList<JavaElement> children = Power.list();
 
 		for (Element enclosedElement : element.getEnclosedElements()) {
 			children.add(getElementAdapter(enclosedElement, JavaElement.class));
@@ -81,8 +80,8 @@ public abstract class ElementAdapter extends AbstractAdapter implements
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T> List<T> findChildrenByType(Class<T> clazz) {
-		List<T> results = new ArrayList<T>();
+	protected <T> PowerList<T> findChildrenByType(Class<T> clazz) {
+		PowerList<T> results = Power.list();
 
 		for (JavaElement child : getChildren()) {
 			if (clazz.isAssignableFrom(child.getClass())) {
