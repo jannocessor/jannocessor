@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package org.jannocessor.processor.model;
+package org.jannocessor.bootstrapped.processor;
 
 import java.util.Map;
+
+import org.jannocessor.processor.model.CodeProcessor;
+import org.jannocessor.processor.model.ProcessingContext;
 
 /**
  * problems.warning(mark.element,
  * "My CUSTOM annotation %s doesn't support fields", mark.annotation);
  */
-public class ProcessorB implements CodeProcessor {
+public class FieldProcessor implements CodeProcessor {
 
 	@Override
 	public void process(ProcessingContext context, Map<String, Object> params) {

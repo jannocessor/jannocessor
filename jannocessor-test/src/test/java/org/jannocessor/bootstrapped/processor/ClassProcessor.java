@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package org.jannocessor.processor.model;
+package org.jannocessor.bootstrapped.processor;
 
 import java.util.Map;
 
 import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.processor.model.CodeProcessor;
+import org.jannocessor.processor.model.ProcessingContext;
 
-public class ProcessorA implements CodeProcessor {
+public class ClassProcessor implements CodeProcessor {
 
 	@Override
 	public void process(ProcessingContext context, Map<String, Object> params) {
