@@ -23,4 +23,6 @@ public interface JavaElementType {
 
 	Name getName();
 
+	JavaElement getAsElement();
+
 }

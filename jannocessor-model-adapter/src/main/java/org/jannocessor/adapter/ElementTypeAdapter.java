@@ -44,6 +44,7 @@ public final class ElementTypeAdapter extends AbstractAdapter implements
 		return getNameAdapter(typeMirror.toString());
 	}
 
+	@Override
 	public JavaElement getAsElement() {
 		return getElementAdapter(getTypeUtils().asElement(typeMirror),
 				JavaElement.class);

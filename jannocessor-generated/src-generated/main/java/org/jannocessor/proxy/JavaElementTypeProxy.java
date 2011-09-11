@@ -4,6 +4,7 @@ import javax.annotation.Generated;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.data.JavaElementTypeData;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.JavaElement;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -20,6 +21,8 @@ public class JavaElementTypeProxy implements JavaElementType {
 
 	private boolean getNameInitialized = false;
 
+	private boolean getAsElementInitialized = false;
+
 
     public Name getName() {
         if (!getNameInitialized) {
@@ -28,6 +31,15 @@ public class JavaElementTypeProxy implements JavaElementType {
         }
 
         return data.getName();
+    }
+
+    public JavaElement getAsElement() {
+        if (!getAsElementInitialized) {
+            data.setAsElement(adapter.getAsElement());
+			getAsElementInitialized = true;
+        }
+
+        return data.getAsElement();
     }
 
 
