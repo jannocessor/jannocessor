@@ -17,6 +17,7 @@
 package org.jannocessor.model;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
 
 @DomainModel
 public interface JavaElementType {
@@ -24,5 +25,11 @@ public interface JavaElementType {
 	Name getName();
 
 	JavaElement getAsElement();
+
+	JavaElementType getCapture();
+
+	JavaElementType getErasure();
+
+	PowerList<JavaElementType> getDirectSupertypes();
 
 }

@@ -16,6 +16,8 @@
 
 package org.jannocessor.adapter;
 
+import java.util.List;
+
 import javax.lang.model.type.ArrayType;
 import javax.lang.model.type.PrimitiveType;
 import javax.lang.model.type.TypeMirror;
@@ -50,16 +52,27 @@ public final class ElementTypeAdapter extends AbstractAdapter implements
 				JavaElement.class);
 	}
 
-	public TypeMirror getCapture() {
-		return getTypeUtils().capture(typeMirror);
+	@Override
+	public JavaElementType getCapture() {
+		return getTypeAdapter(getTypeUtils().capture(typeMirror));
 	}
 
-	public PowerList<? extends TypeMirror> getDirectSupertypes() {
-		return Power.list(getTypeUtils().directSupertypes(typeMirror));
+	@Override
+	public PowerList<JavaElementType> getDirectSupertypes() {
+		List<? extends TypeMirror> supertypes = getTypeUtils()
+				.directSupertypes(typeMirror);
+
+		PowerList<JavaElementType> result = Power.list();
+		for (TypeMirror supertype : supertypes) {
+			result.add(getTypeAdapter(supertype));
+		}
+
+		return result;
 	}
 
-	public TypeMirror getErasure() {
-		return getTypeUtils().erasure(typeMirror);
+	@Override
+	public JavaElementType getErasure() {
+		return getTypeAdapter(getTypeUtils().erasure(typeMirror));
 	}
 
 	public ArrayType getArrayType() {
