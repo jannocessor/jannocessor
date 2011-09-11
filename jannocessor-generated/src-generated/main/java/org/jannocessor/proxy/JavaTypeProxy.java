@@ -23,50 +23,68 @@ public class JavaTypeProxy extends JavaElementProxy implements JavaType {
         this.data = data;
     }
 
+	private boolean getNestingInitialized = false;
+
+	private boolean getPackageNameInitialized = false;
+
+	private boolean getQualifiedNameInitialized = false;
+
+	private boolean getSuperclassInitialized = false;
+
+	private boolean getInterfacesInitialized = false;
+
+	private boolean getParametersInitialized = false;
+
 
     public Text getNesting() {
-        if (data.getNesting() == null) {
+        if (!getNestingInitialized) {
             data.setNesting(adapter.getNesting());
+			getNestingInitialized = true;
         }
 
         return data.getNesting();
     }
 
     public Name getPackageName() {
-        if (data.getPackageName() == null) {
+        if (!getPackageNameInitialized) {
             data.setPackageName(adapter.getPackageName());
+			getPackageNameInitialized = true;
         }
 
         return data.getPackageName();
     }
 
     public Name getQualifiedName() {
-        if (data.getQualifiedName() == null) {
+        if (!getQualifiedNameInitialized) {
             data.setQualifiedName(adapter.getQualifiedName());
+			getQualifiedNameInitialized = true;
         }
 
         return data.getQualifiedName();
     }
 
     public JavaElementType getSuperclass() {
-        if (data.getSuperclass() == null) {
+        if (!getSuperclassInitialized) {
             data.setSuperclass(adapter.getSuperclass());
+			getSuperclassInitialized = true;
         }
 
         return data.getSuperclass();
     }
 
     public List<JavaElementType> getInterfaces() {
-        if (data.getInterfaces() == null) {
+        if (!getInterfacesInitialized) {
             data.setInterfaces(adapter.getInterfaces());
+			getInterfacesInitialized = true;
         }
 
         return data.getInterfaces();
     }
 
     public List<JavaTypeParameter> getParameters() {
-        if (data.getParameters() == null) {
+        if (!getParametersInitialized) {
             data.setParameters(adapter.getParameters());
+			getParametersInitialized = true;
         }
 
         return data.getParameters();

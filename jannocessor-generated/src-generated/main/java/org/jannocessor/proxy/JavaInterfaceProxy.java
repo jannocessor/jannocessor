@@ -20,10 +20,13 @@ public class JavaInterfaceProxy extends JavaTypeProxy implements JavaInterface {
         this.data = data;
     }
 
+	private boolean getMethodsInitialized = false;
+
 
     public List<JavaMethod> getMethods() {
-        if (data.getMethods() == null) {
+        if (!getMethodsInitialized) {
             data.setMethods(adapter.getMethods());
+			getMethodsInitialized = true;
         }
 
         return data.getMethods();

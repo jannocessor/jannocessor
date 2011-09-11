@@ -17,10 +17,13 @@ public class JavaElementTypeProxy implements JavaElementType {
         this.data = data;
     }
 
+	private boolean getNameInitialized = false;
+
 
     public Name getName() {
-        if (data.getName() == null) {
+        if (!getNameInitialized) {
             data.setName(adapter.getName());
+			getNameInitialized = true;
         }
 
         return data.getName();

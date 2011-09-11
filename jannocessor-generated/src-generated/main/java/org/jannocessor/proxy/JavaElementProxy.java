@@ -20,42 +20,57 @@ public class JavaElementProxy implements JavaElement {
         this.data = data;
     }
 
+	private boolean getParentInitialized = false;
+
+	private boolean getChildrenInitialized = false;
+
+	private boolean getNameInitialized = false;
+
+	private boolean getKindInitialized = false;
+
+	private boolean getTypeInitialized = false;
+
 
     public JavaElement getParent() {
-        if (data.getParent() == null) {
+        if (!getParentInitialized) {
             data.setParent(adapter.getParent());
+			getParentInitialized = true;
         }
 
         return data.getParent();
     }
 
     public List<JavaElement> getChildren() {
-        if (data.getChildren() == null) {
+        if (!getChildrenInitialized) {
             data.setChildren(adapter.getChildren());
+			getChildrenInitialized = true;
         }
 
         return data.getChildren();
     }
 
     public Name getName() {
-        if (data.getName() == null) {
+        if (!getNameInitialized) {
             data.setName(adapter.getName());
+			getNameInitialized = true;
         }
 
         return data.getName();
     }
 
     public Text getKind() {
-        if (data.getKind() == null) {
+        if (!getKindInitialized) {
             data.setKind(adapter.getKind());
+			getKindInitialized = true;
         }
 
         return data.getKind();
     }
 
     public JavaElementType getType() {
-        if (data.getType() == null) {
+        if (!getTypeInitialized) {
             data.setType(adapter.getType());
+			getTypeInitialized = true;
         }
 
         return data.getType();

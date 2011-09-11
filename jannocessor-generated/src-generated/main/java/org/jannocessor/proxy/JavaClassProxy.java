@@ -24,42 +24,57 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
         this.data = data;
     }
 
+	private boolean getFieldsInitialized = false;
+
+	private boolean getConstructorsInitialized = false;
+
+	private boolean getMethodsInitialized = false;
+
+	private boolean getStaticInitsInitialized = false;
+
+	private boolean getInstanceInitsInitialized = false;
+
 
     public List<JavaField> getFields() {
-        if (data.getFields() == null) {
+        if (!getFieldsInitialized) {
             data.setFields(adapter.getFields());
+			getFieldsInitialized = true;
         }
 
         return data.getFields();
     }
 
     public List<JavaConstructor> getConstructors() {
-        if (data.getConstructors() == null) {
+        if (!getConstructorsInitialized) {
             data.setConstructors(adapter.getConstructors());
+			getConstructorsInitialized = true;
         }
 
         return data.getConstructors();
     }
 
     public List<JavaMethod> getMethods() {
-        if (data.getMethods() == null) {
+        if (!getMethodsInitialized) {
             data.setMethods(adapter.getMethods());
+			getMethodsInitialized = true;
         }
 
         return data.getMethods();
     }
 
     public List<JavaStaticInit> getStaticInits() {
-        if (data.getStaticInits() == null) {
+        if (!getStaticInitsInitialized) {
             data.setStaticInits(adapter.getStaticInits());
+			getStaticInitsInitialized = true;
         }
 
         return data.getStaticInits();
     }
 
     public List<JavaInstanceInit> getInstanceInits() {
-        if (data.getInstanceInits() == null) {
+        if (!getInstanceInitsInitialized) {
             data.setInstanceInits(adapter.getInstanceInits());
+			getInstanceInitsInitialized = true;
         }
 
         return data.getInstanceInits();

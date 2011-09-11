@@ -23,50 +23,68 @@ public class JavaExecutableProxy extends JavaElementProxy implements JavaExecuta
         this.data = data;
     }
 
+	private boolean getTypeParametersInitialized = false;
+
+	private boolean getReturnTypeInitialized = false;
+
+	private boolean getParametersInitialized = false;
+
+	private boolean getVarArgsInitialized = false;
+
+	private boolean getThrownTypesInitialized = false;
+
+	private boolean getDefaultInitialized = false;
+
 
     public List<JavaTypeParameter> getTypeParameters() {
-        if (data.getTypeParameters() == null) {
+        if (!getTypeParametersInitialized) {
             data.setTypeParameters(adapter.getTypeParameters());
+			getTypeParametersInitialized = true;
         }
 
         return data.getTypeParameters();
     }
 
     public JavaElementType getReturnType() {
-        if (data.getReturnType() == null) {
+        if (!getReturnTypeInitialized) {
             data.setReturnType(adapter.getReturnType());
+			getReturnTypeInitialized = true;
         }
 
         return data.getReturnType();
     }
 
     public List<JavaParameter> getParameters() {
-        if (data.getParameters() == null) {
+        if (!getParametersInitialized) {
             data.setParameters(adapter.getParameters());
+			getParametersInitialized = true;
         }
 
         return data.getParameters();
     }
 
     public Boolean getVarArgs() {
-        if (data.getVarArgs() == null) {
+        if (!getVarArgsInitialized) {
             data.setVarArgs(adapter.getVarArgs());
+			getVarArgsInitialized = true;
         }
 
         return data.getVarArgs();
     }
 
     public List<JavaElementType> getThrownTypes() {
-        if (data.getThrownTypes() == null) {
+        if (!getThrownTypesInitialized) {
             data.setThrownTypes(adapter.getThrownTypes());
+			getThrownTypesInitialized = true;
         }
 
         return data.getThrownTypes();
     }
 
     public Text getDefault() {
-        if (data.getDefault() == null) {
+        if (!getDefaultInitialized) {
             data.setDefault(adapter.getDefault());
+			getDefaultInitialized = true;
         }
 
         return data.getDefault();

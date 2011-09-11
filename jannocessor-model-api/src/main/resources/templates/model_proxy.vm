@@ -21,11 +21,16 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
         this.data = data;
     }
 
+#foreach ($m in $model.methods)
+	private boolean ${m.name}Initialized = false;
+
+#end
 
 #foreach ($m in $model.methods)
     public #type($m.returnType) ${m.name}() {
-        if (data.${m.name}() == null) {
+        if (!${m.name}Initialized) {
             data.${m.name.replacePart(0, "set")}(adapter.${m.name}());
+			${m.name}Initialized = true;
         }
 
         return data.${m.name}();
