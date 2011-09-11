@@ -19,6 +19,11 @@
 			<artifactId>jannocessor-bootstrap</artifactId>
 			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-collections-api</artifactId>
+			<version>0.6.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
