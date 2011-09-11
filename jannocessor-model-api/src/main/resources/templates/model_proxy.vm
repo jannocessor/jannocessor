@@ -6,7 +6,7 @@ package $packageName;
 #end
 #set($data = "org.jannocessor.data." + $model.name.appendPart("Data"))
 
-
+@#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
 public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
 
     private $model.name adapter;

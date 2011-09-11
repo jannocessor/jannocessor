@@ -5,7 +5,7 @@ package $packageName;
 #set($extends = $packageName + "." + $model.interfaces[0].asElement.name.appendPart("Data"))
 #end
 
-
+@#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
 public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
 
 #foreach ($m in $model.methods)
