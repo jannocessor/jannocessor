@@ -39,7 +39,6 @@ import org.jannocessor.adapter.AdapterFactory;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.processor.model.File;
 import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.processor.model.Mark;
 import org.jannocessor.processor.model.ProcessingContext;
 import org.jannocessor.processor.model.Processors;
 import org.jannocessor.processor.model.Root;
@@ -165,16 +164,6 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		}
 
 		return facts;
-	}
-
-	protected Mark createMark(TypeElement annotation,
-			JavaElement annotatedElement) throws JannocessorException {
-		// annotation label is the annotation key in annotations configuration
-		String cannonicalName = annotation.getQualifiedName().toString();
-		String annotationLabel = engine.getAnnotationLabel(cannonicalName);
-
-		Mark mark = new Mark(annotation, annotatedElement, annotationLabel);
-		return mark;
 	}
 
 	@Override
