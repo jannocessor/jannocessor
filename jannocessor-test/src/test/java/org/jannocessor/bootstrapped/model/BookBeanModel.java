@@ -1,12 +1,11 @@
-package org.jannocessor.bootstrapped.model.jpa;
+package org.jannocessor.bootstrapped.model;
 
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
-import org.jannocessor.bootstrapped.model.PersonBeanModel;
 
 @AnotherAnnotation(a = 105, b = "xx")
 @BeanModel
-public class BookJpaModel {
+public class BookBeanModel {
 
 	String title;
 

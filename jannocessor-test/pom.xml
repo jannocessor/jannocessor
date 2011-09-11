@@ -44,7 +44,7 @@
 						<goals>
 							<goal>process-test</goal>
 						</goals>
-						<phase>test</phase>
+						<phase>test-compile</phase>
 						<configuration>
 							<options>
 								<profile>test</profile>
@@ -52,6 +52,7 @@
 							<processors>
 								<processor>org.jannocessor.processor.JannocessorProcessor</processor>
 							</processors>
+							<defaultOutputDirectory>${project.parent.basedir}/jannocessor-test-generated/src-generated/main/java</defaultOutputDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -64,6 +65,7 @@
 					<proc>none</proc>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 

@@ -3,11 +3,10 @@ package org.jannocessor.bootstrapped.model.jpa;
 import java.util.List;
 
 import org.jannocessor.bootstrapped.annotation.Constraints;
-import org.jannocessor.bootstrapped.annotation.jpa.JpaModel;
 import org.jannocessor.bootstrapped.annotation.jpa.Persist;
 import org.jannocessor.bootstrapped.annotation.jpa.PrimaryKey;
 
-@JpaModel
+// @JpaModel
 public class MemberJpaModel {
 
 	@PrimaryKey

@@ -18,7 +18,9 @@ package org.jannocessor.bootstrapped.processor;
 
 import java.util.Map;
 
+import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.processor.model.CodeProcessor;
 import org.jannocessor.processor.model.ProcessingContext;
 
@@ -28,7 +30,14 @@ public class ClassProcessor implements CodeProcessor {
 	public void process(ProcessingContext context, Map<String, Object> params) {
 		JavaClass clazz = (JavaClass) params.get("clazz");
 
-		clazz.getName().insertPart(0, "My").appendPart("Generated");
+		clazz.getName().deleteParts(1, 2);
+
+		for (JavaField field : clazz.getFields()) {
+			Name name = field.getType().getName();
+			if (name.getText().endsWith("BeanModel")) {
+				name.deleteParts(2, 3);
+			}
+		}
 
 		context.generateClass(clazz);
 	}

@@ -215,6 +215,7 @@
 		<module>jannocessor-processor-model</module>
 		<module>jannocessor-collections</module>
 		<module>jannocessor-collections-api</module>
+		<module>jannocessor-test-generated</module>
 	</modules>
 
 </project>
