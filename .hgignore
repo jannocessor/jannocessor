@@ -17,3 +17,5 @@ syntax: regexp
 \.project$
 syntax: regexp
 /target$
+syntax: regexp
+^jannocessor-test-generated/src-generated$
