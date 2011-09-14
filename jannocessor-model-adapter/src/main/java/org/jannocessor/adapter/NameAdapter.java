@@ -17,6 +17,7 @@
 package org.jannocessor.adapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class NameAdapter implements Name {
     private String name;
 
     private enum NameCase {
-	CAMELCASE, UNDERSCORE
+	CAMELCASE, UNDERSCORE, PACKAGE
     };
 
     public NameAdapter(String name) {
@@ -37,18 +38,24 @@ public class NameAdapter implements Name {
 
     private List<String> parts() {
 	String name = getText();
-	boolean isCamelcase = isCamelCase();
-
 	String[] parts;
-	if (isCamelcase) {
+	switch (getNameCase()) {
+	case CAMELCASE:
 	    parts = name.split("(?<!^)(?=[A-Z][^A-Z0-9])");
-	} else {
+	    break;
+	case PACKAGE:
+	    parts = name.split("\\.");
+	    break;
+	case UNDERSCORE:
 	    parts = name.split("_");
+	    break;
+	default:
+	    throw new IllegalStateException("Unknown name case!");
 	}
 
 	List<String> aaa = new ArrayList<String>();
 	for (String part : parts) {
-	    if (isCamelcase) {
+	    if (getNameCase().equals(NameCase.CAMELCASE)) {
 		String[] subparts = part.split("(?<=[^A-Z])(?=[A-Z])");
 		for (String subpart : subparts) {
 		    aaa.add(subpart);
@@ -74,7 +81,11 @@ public class NameAdapter implements Name {
     public Name deleteParts(int... positions) {
 	List<String> parts = parts();
 
+	String deletedStart = null;
 	for (int position : positions) {
+	    if (position == 0) {
+		deletedStart = parts.get(0);
+	    }
 	    parts.set(position, null);
 	}
 
@@ -86,8 +97,12 @@ public class NameAdapter implements Name {
 	}
 
 	if (parts.isEmpty()) {
-	    throw new IllegalStateException("At least 1 part of the name '"
-		    + getText() + "' must not be deleted!");
+	    throw new IllegalStateException(
+		    "At least 1 part of the name must not be deleted!");
+	}
+
+	if (deletedStart != null && getNameCase().equals(NameCase.CAMELCASE)) {
+	    fixCamelCaseStart(parts, deletedStart);
 	}
 
 	String name = mergeParts(parts);
@@ -97,6 +112,18 @@ public class NameAdapter implements Name {
 
     private void setText(String name2) {
 	this.name = name2;
+    }
+
+    private void fixCamelCaseStart(List<String> parts, String deletedStart) {
+	String start = parts.get(0);
+
+	if (Character.isUpperCase(deletedStart.charAt(0))) {
+	    start = start.substring(0, 1).toUpperCase() + start.substring(1);
+	} else {
+	    start = start.substring(0, 1).toLowerCase() + start.substring(1);
+	}
+
+	parts.set(0, start);
     }
 
     @Override
@@ -132,22 +159,42 @@ public class NameAdapter implements Name {
 	return this;
     }
 
-    private String mergeParts(List<String> parts) {
-	String separator = isCamelCase() ? "" : "_";
-	return StringUtils.join(parts, separator);
+    @Override
+    public boolean containsParts(String... parts) {
+	return parts().containsAll(Arrays.asList(parts));
     }
 
-    private boolean isCamelCase() {
-	return getNameCase().equals(NameCase.CAMELCASE);
+    private String mergeParts(List<String> parts) {
+	String separator;
+	switch (getNameCase()) {
+	case CAMELCASE:
+	    separator = "";
+	    break;
+	case PACKAGE:
+	    separator = ".";
+	    break;
+	case UNDERSCORE:
+	    separator = "_";
+	    break;
+	default:
+	    throw new IllegalStateException("Unknown name case!");
+	}
+
+	return StringUtils.join(parts, separator);
     }
 
     private NameCase getNameCase() {
 	String name = getText();
-	int separatorPos = name.indexOf('_');
-	if (separatorPos < 0) {
-	    return NameCase.CAMELCASE;
+	int separatorPos = name.indexOf('.');
+	if (separatorPos > 0) {
+	    return NameCase.PACKAGE;
 	} else {
-	    return NameCase.UNDERSCORE;
+	    separatorPos = name.indexOf('_');
+	    if (separatorPos > 0) {
+		return NameCase.UNDERSCORE;
+	    } else {
+		return NameCase.CAMELCASE;
+	    }
 	}
     }
 

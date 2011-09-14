@@ -34,4 +34,6 @@ public interface Name {
 
     String getCapitalized();
 
+    boolean containsParts(String... parts);
+
 }
