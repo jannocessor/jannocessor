@@ -26,38 +26,38 @@ import org.jannocessor.service.api.ImportOrganizer;
 
 public class TypeUtils {
 
-	private final ImportOrganizer importOrganizer;
-	private List<String> typeImports = new ArrayList<String>();
+    private final ImportOrganizer importOrganizer;
+    private List<String> typeImports = new ArrayList<String>();
 
-	public TypeUtils(ImportOrganizer importOrganizer) {
-		this.importOrganizer = importOrganizer;
+    public TypeUtils(ImportOrganizer importOrganizer) {
+	this.importOrganizer = importOrganizer;
+    }
+
+    public String useType(Object type) {
+	if (type instanceof JavaElementType) {
+	    return getTypeUsage(((JavaElementType) type).getName().getText());
+	} else if (type instanceof Name) {
+	    return getTypeUsage(((Name) type).getText());
+	} else {
+	    return getTypeUsage(String.valueOf(type));
 	}
+    }
 
-	public String useType(Object type) {
-		if (type instanceof JavaElementType) {
-			return getTypeUsage(((JavaElementType) type).getName().getText());
-		} else if (type instanceof Name) {
-			return getTypeUsage(((Name) type).getText());
-		} else {
-			return getTypeUsage(String.valueOf(type));
-		}
-	}
+    private String getTypeUsage(String type) {
+	String[] imports = importOrganizer.getTypeImports(type);
+	String typeUsage = importOrganizer.getTypeUsage(type);
 
-	private String getTypeUsage(String type) {
-		String[] imports = importOrganizer.getTypeImports(type);
-		String typeUsage = importOrganizer.getTypeUsage(type);
+	typeImports.addAll(Arrays.asList(imports));
 
-		typeImports.addAll(Arrays.asList(imports));
+	return typeUsage;
+    }
 
-		return typeUsage;
-	}
+    public List<String> getTypeImports() {
+	return typeImports;
+    }
 
-	public List<String> getTypeImports() {
-		return typeImports;
-	}
-
-	@Override
-	public String toString() {
-		return "methods=[useType($type)]";
-	}
+    @Override
+    public String toString() {
+	return "methods=[useType($type)]";
+    }
 }

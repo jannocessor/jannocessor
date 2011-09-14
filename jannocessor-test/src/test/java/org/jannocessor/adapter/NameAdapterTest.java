@@ -16,9 +16,8 @@
 
 package org.jannocessor.adapter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.jannocessor.model.Text;
 import org.jannocessor.test.AbstractTest;
 import org.junit.Test;
 
@@ -48,11 +47,11 @@ public class NameAdapterTest extends AbstractTest {
 	}
 
 	private void checkParts(String name, String... expectedParts) {
-		Text[] parts = name(name).getParts();
+		String[] parts = name(name).getParts();
 
 		assertEquals(expectedParts.length, parts.length);
 		for (int i = 0; i < parts.length; i++) {
-			assertEquals(expectedParts[i], parts[i].getText());
+			assertEquals(expectedParts[i], parts[i]);
 		}
 	}
 

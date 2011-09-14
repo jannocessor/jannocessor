@@ -7,7 +7,6 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.model.Text;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -23,7 +22,7 @@ public class JavaExecutableData extends JavaElementData implements JavaExecutabl
 
     private PowerList<JavaElementType> _getThrownTypes;
 
-    private Text _getDefault;
+    private String _getDefault;
 
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
@@ -66,11 +65,11 @@ public class JavaExecutableData extends JavaElementData implements JavaExecutabl
         this._getThrownTypes = value;
     }
 
-    public Text getDefault() {
+    public String getDefault() {
         return this._getDefault;
     }
 
-    public void setDefault(Text value) {
+    public void setDefault(String value) {
         this._getDefault = value;
     }
 

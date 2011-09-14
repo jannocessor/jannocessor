@@ -3,7 +3,6 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.collection.api.PowerList;
@@ -13,7 +12,7 @@ import org.jannocessor.model.type.JavaTypeParameter;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeData extends JavaElementData implements JavaType {
 
-    private Text _getNesting;
+    private String _getNesting;
 
     private Name _getPackageName;
 
@@ -26,11 +25,11 @@ public class JavaTypeData extends JavaElementData implements JavaType {
     private PowerList<JavaTypeParameter> _getParameters;
 
 
-    public Text getNesting() {
+    public String getNesting() {
         return this._getNesting;
     }
 
-    public void setNesting(Text value) {
+    public void setNesting(String value) {
         this._getNesting = value;
     }
 

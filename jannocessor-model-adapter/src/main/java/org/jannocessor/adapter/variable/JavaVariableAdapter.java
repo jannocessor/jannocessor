@@ -21,23 +21,22 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.ElementAdapter;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.variable.JavaVariable;
 
 abstract class JavaVariableAdapter extends ElementAdapter implements
-		JavaVariable {
+	JavaVariable {
 
-	private final VariableElement variable;
+    private final VariableElement variable;
 
-	public JavaVariableAdapter(VariableElement variable, Elements elementUtils,
-			Types typeUtils) {
-		super(variable, elementUtils, typeUtils);
-		this.variable = variable;
-	}
+    public JavaVariableAdapter(VariableElement variable, Elements elementUtils,
+	    Types typeUtils) {
+	super(variable, elementUtils, typeUtils);
+	this.variable = variable;
+    }
 
-	@Override
-	public Text getConstant() {
-		Object value = variable.getConstantValue();
-		return value != null ? getTextAdapter(String.valueOf(value)) : null;
-	}
+    @Override
+    public String getConstant() {
+	Object value = variable.getConstantValue();
+	return value != null ? String.valueOf(value) : null;
+    }
 }

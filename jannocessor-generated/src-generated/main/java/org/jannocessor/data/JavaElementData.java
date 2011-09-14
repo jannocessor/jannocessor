@@ -4,7 +4,6 @@ import javax.annotation.Generated;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.JavaElementType;
 
 
@@ -16,8 +15,6 @@ public class JavaElementData implements JavaElement {
     private PowerList<JavaElement> _getChildren;
 
     private Name _getName;
-
-    private Text _getKind;
 
     private JavaElementType _getType;
 
@@ -44,14 +41,6 @@ public class JavaElementData implements JavaElement {
 
     public void setName(Name value) {
         this._getName = value;
-    }
-
-    public Text getKind() {
-        return this._getKind;
-    }
-
-    public void setKind(Text value) {
-        this._getKind = value;
     }
 
     public JavaElementType getType() {

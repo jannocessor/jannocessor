@@ -27,7 +27,6 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeParameter;
 
@@ -42,8 +41,8 @@ abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 	}
 
 	@Override
-	public Text getNesting() {
-		return getTextAdapter(type.getNestingKind().toString());
+	public String getNesting() {
+		return type.getNestingKind().toString();
 	}
 
 	@Override

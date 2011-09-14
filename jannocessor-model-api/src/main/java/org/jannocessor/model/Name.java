@@ -16,18 +16,22 @@
 
 package org.jannocessor.model;
 
-public interface Name extends Text {
+public interface Name {
 
-	Text[] getParts();
+    String[] getParts();
 
-	Name deleteParts(int... positions);
+    Name deleteParts(int... positions);
 
-	Name insertPart(int position, String part);
+    Name insertPart(int position, String part);
 
-	Name appendPart(String part);
+    Name appendPart(String part);
 
-	Name replacePart(int position, String part);
-	
-	Name copy();
+    Name replacePart(int position, String part);
+
+    Name copy();
+
+    String getText();
+
+    String getCapitalized();
 
 }

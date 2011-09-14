@@ -61,7 +61,6 @@ import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.Text;
 import org.jannocessor.proxy.JavaAnnotationProxy;
 import org.jannocessor.proxy.JavaClassProxy;
 import org.jannocessor.proxy.JavaConstructorProxy;
@@ -210,14 +209,6 @@ public class AdapterFactory {
 		if (typeMirror != null) {
 			return new JavaElementTypeProxy(new ElementTypeAdapter(typeMirror,
 					elementUtils, typeUtils), new JavaElementTypeData());
-		} else {
-			return null;
-		}
-	}
-
-	public static Text getTextModel(String text) {
-		if (text != null) {
-			return new TextAdapter(text);
 		} else {
 			return null;
 		}

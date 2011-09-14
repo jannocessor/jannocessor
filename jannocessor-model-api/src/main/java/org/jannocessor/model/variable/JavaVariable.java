@@ -18,11 +18,10 @@ package org.jannocessor.model.variable;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.Text;
 
 @DomainModel
 public interface JavaVariable extends JavaElement {
 
-	Text getConstant();
-	
+	String getConstant();
+
 }

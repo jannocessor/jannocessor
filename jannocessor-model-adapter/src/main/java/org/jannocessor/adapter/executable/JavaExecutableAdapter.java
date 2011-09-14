@@ -27,73 +27,72 @@ import org.jannocessor.adapter.ElementAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElementType;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.executable.JavaExecutable;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
 
 abstract class JavaExecutableAdapter extends ElementAdapter implements
-		JavaExecutable {
+	JavaExecutable {
 
-	private final ExecutableElement executable;
+    private final ExecutableElement executable;
 
-	public JavaExecutableAdapter(ExecutableElement executable,
-			Elements elementUtils, Types typeUtils) {
-		super(executable, elementUtils, typeUtils);
-		this.executable = executable;
+    public JavaExecutableAdapter(ExecutableElement executable,
+	    Elements elementUtils, Types typeUtils) {
+	super(executable, elementUtils, typeUtils);
+	this.executable = executable;
+    }
+
+    @Override
+    public PowerList<JavaTypeParameter> getTypeParameters() {
+	PowerList<JavaTypeParameter> adapters = Power.list();
+
+	for (TypeParameterElement typeParameter : executable
+		.getTypeParameters()) {
+	    JavaTypeParameter adapter = getElementAdapter(typeParameter,
+		    JavaTypeParameter.class);
+	    adapters.add(adapter);
 	}
 
-	@Override
-	public PowerList<JavaTypeParameter> getTypeParameters() {
-		PowerList<JavaTypeParameter> adapters = Power.list();
+	return adapters;
+    }
 
-		for (TypeParameterElement typeParameter : executable
-				.getTypeParameters()) {
-			JavaTypeParameter adapter = getElementAdapter(typeParameter,
-					JavaTypeParameter.class);
-			adapters.add(adapter);
-		}
+    @Override
+    public JavaElementType getReturnType() {
+	return getTypeAdapter(executable.getReturnType());
+    }
 
-		return adapters;
+    @Override
+    public PowerList<JavaParameter> getParameters() {
+	PowerList<JavaParameter> adapters = Power.list();
+
+	for (VariableElement variable : executable.getParameters()) {
+	    JavaParameter adapter = getElementAdapter(variable,
+		    JavaParameter.class);
+	    adapters.add(adapter);
 	}
 
-	@Override
-	public JavaElementType getReturnType() {
-		return getTypeAdapter(executable.getReturnType());
+	return adapters;
+    }
+
+    @Override
+    public Boolean getVarArgs() {
+	return executable.isVarArgs();
+    }
+
+    @Override
+    public PowerList<JavaElementType> getThrownTypes() {
+	PowerList<JavaElementType> adapters = Power.list();
+
+	for (TypeMirror typeMirror : executable.getThrownTypes()) {
+	    adapters.add(getTypeAdapter(typeMirror));
 	}
 
-	@Override
-	public PowerList<JavaParameter> getParameters() {
-		PowerList<JavaParameter> adapters = Power.list();
+	return adapters;
+    }
 
-		for (VariableElement variable : executable.getParameters()) {
-			JavaParameter adapter = getElementAdapter(variable,
-					JavaParameter.class);
-			adapters.add(adapter);
-		}
-
-		return adapters;
-	}
-
-	@Override
-	public Boolean getVarArgs() {
-		return executable.isVarArgs();
-	}
-
-	@Override
-	public PowerList<JavaElementType> getThrownTypes() {
-		PowerList<JavaElementType> adapters = Power.list();
-
-		for (TypeMirror typeMirror : executable.getThrownTypes()) {
-			adapters.add(getTypeAdapter(typeMirror));
-		}
-
-		return adapters;
-	}
-
-	@Override
-	public Text getDefault() {
-		return getTextAdapter(executable.getDefaultValue());
-	}
-
+    @Override
+    public String getDefault() {
+	return executable.getDefaultValue() != null ? executable
+		.getDefaultValue().toString() : null;
+    }
 }

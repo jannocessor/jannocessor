@@ -4,7 +4,6 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.data.JavaTypeData;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.collection.api.PowerList;
@@ -37,7 +36,7 @@ public class JavaTypeProxy extends JavaElementProxy implements JavaType {
 	private boolean getParametersInitialized = false;
 
 
-    public Text getNesting() {
+    public String getNesting() {
         if (!getNestingInitialized) {
             data.setNesting(adapter.getNesting());
 			getNestingInitialized = true;

@@ -8,7 +8,6 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.model.Text;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -82,7 +81,7 @@ public class JavaExecutableProxy extends JavaElementProxy implements JavaExecuta
         return data.getThrownTypes();
     }
 
-    public Text getDefault() {
+    public String getDefault() {
         if (!getDefaultInitialized) {
             data.setDefault(adapter.getDefault());
 			getDefaultInitialized = true;

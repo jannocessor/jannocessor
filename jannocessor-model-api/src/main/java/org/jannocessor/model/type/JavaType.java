@@ -21,20 +21,19 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.Text;
 
 @DomainModel
 public interface JavaType extends JavaElement {
 
-	Text getNesting();
-	
-	Name getPackageName();
+    String getNesting();
 
-	Name getQualifiedName();
+    Name getPackageName();
 
-	JavaElementType getSuperclass();
+    Name getQualifiedName();
 
-	PowerList<JavaElementType> getInterfaces();
+    JavaElementType getSuperclass();
 
-	PowerList<JavaTypeParameter> getParameters();
+    PowerList<JavaElementType> getInterfaces();
+
+    PowerList<JavaTypeParameter> getParameters();
 }

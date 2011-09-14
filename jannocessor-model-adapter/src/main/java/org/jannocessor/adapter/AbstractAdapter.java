@@ -31,7 +31,6 @@ import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,11 +64,6 @@ abstract class AbstractAdapter {
 
 	protected JavaElementType getTypeAdapter(TypeMirror typeMirror) {
 		return AdapterFactory.getTypeModel(typeMirror, elementUtils, typeUtils);
-	}
-
-	protected Text getTextAdapter(Object value) {
-		return value != null ? AdapterFactory.getTextModel(String
-				.valueOf(value)) : null;
 	}
 
 	protected Name getNameAdapter(Object value) {
@@ -159,8 +153,7 @@ abstract class AbstractAdapter {
 			throws IllegalAccessException, InvocationTargetException,
 			NoSuchMethodException {
 		if (value != null) {
-			if (value instanceof AbstractAdapter
-					&& !(value instanceof Text && !(value instanceof Name))) {
+			if (value instanceof AbstractAdapter) {
 				// AbstractAdapter adapter = (AbstractAdapter) value;
 				if (name.equals("parent")) {
 					return "[...]"; // adapter.showAsParent();
@@ -191,7 +184,7 @@ abstract class AbstractAdapter {
 
 		while (iterator.hasNext()) {
 			Object item = iterator.next();
-			if (item instanceof AbstractAdapter && !(item instanceof Text)) {
+			if (item instanceof AbstractAdapter) {
 				AbstractAdapter adapter = (AbstractAdapter) item;
 				sb.append(adapter.showAsChild());
 			} else {

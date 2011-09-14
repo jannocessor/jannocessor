@@ -25,7 +25,6 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.Text;
 
 public abstract class ElementAdapter extends AbstractAdapter implements
 		JavaElement, SourceHolder {
@@ -62,11 +61,6 @@ public abstract class ElementAdapter extends AbstractAdapter implements
 	@Override
 	public Name getName() {
 		return getNameAdapter(element.getSimpleName().toString());
-	}
-
-	@Override
-	public Text getKind() {
-		return getTextAdapter(element.getKind().toString().toLowerCase());
 	}
 
 	@Override

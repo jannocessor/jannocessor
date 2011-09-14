@@ -20,23 +20,22 @@ import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
 
 @DomainModel
 public interface JavaExecutable extends JavaElement {
 
-	PowerList<JavaTypeParameter> getTypeParameters();
+    PowerList<JavaTypeParameter> getTypeParameters();
 
-	JavaElementType getReturnType();
+    JavaElementType getReturnType();
 
-	PowerList<JavaParameter> getParameters();
+    PowerList<JavaParameter> getParameters();
 
-	Boolean getVarArgs();
+    Boolean getVarArgs();
 
-	PowerList<JavaElementType> getThrownTypes();
+    PowerList<JavaElementType> getThrownTypes();
 
-	Text getDefault();
+    String getDefault();
 
 }

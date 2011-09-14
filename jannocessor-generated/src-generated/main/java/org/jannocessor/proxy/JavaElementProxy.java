@@ -5,7 +5,6 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.Text;
 import org.jannocessor.model.JavaElementType;
 
 
@@ -26,8 +25,6 @@ public class JavaElementProxy implements JavaElement {
 	private boolean getChildrenInitialized = false;
 
 	private boolean getNameInitialized = false;
-
-	private boolean getKindInitialized = false;
 
 	private boolean getTypeInitialized = false;
 
@@ -57,15 +54,6 @@ public class JavaElementProxy implements JavaElement {
         }
 
         return data.getName();
-    }
-
-    public Text getKind() {
-        if (!getKindInitialized) {
-            data.setKind(adapter.getKind());
-			getKindInitialized = true;
-        }
-
-        return data.getKind();
     }
 
     public JavaElementType getType() {
