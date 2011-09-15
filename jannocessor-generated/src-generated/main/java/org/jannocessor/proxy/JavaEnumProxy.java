@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaEnumData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaEnumProxy extends JavaTypeProxy implements JavaEnum {
 
+    @SuppressWarnings("unused")
     private JavaEnum adapter;
 
+    @SuppressWarnings("unused")
     private JavaEnumData data;
 
     public JavaEnumProxy(JavaEnum adapter, JavaEnumData data) {

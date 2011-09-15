@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaTypeParameterData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeParameterProxy extends JavaElementProxy implements JavaTypeParameter {
 
+    @SuppressWarnings("unused")
     private JavaTypeParameter adapter;
 
+    @SuppressWarnings("unused")
     private JavaTypeParameterData data;
 
     public JavaTypeParameterProxy(JavaTypeParameter adapter, JavaTypeParameterData data) {

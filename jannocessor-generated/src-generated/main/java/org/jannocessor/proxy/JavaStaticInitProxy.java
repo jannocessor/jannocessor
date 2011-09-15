@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaStaticInitData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaStaticInitProxy extends JavaExecutableProxy implements JavaStaticInit {
 
+    @SuppressWarnings("unused")
     private JavaStaticInit adapter;
 
+    @SuppressWarnings("unused")
     private JavaStaticInitData data;
 
     public JavaStaticInitProxy(JavaStaticInit adapter, JavaStaticInitData data) {

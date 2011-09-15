@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaLocalVariableData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaLocalVariableProxy extends JavaVariableProxy implements JavaLocalVariable {
 
+    @SuppressWarnings("unused")
     private JavaLocalVariable adapter;
 
+    @SuppressWarnings("unused")
     private JavaLocalVariableData data;
 
     public JavaLocalVariableProxy(JavaLocalVariable adapter, JavaLocalVariableData data) {

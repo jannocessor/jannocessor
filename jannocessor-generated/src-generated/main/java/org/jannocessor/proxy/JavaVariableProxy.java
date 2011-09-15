@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaVariableData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaVariableProxy extends JavaElementProxy implements JavaVariable {
 
+    @SuppressWarnings("unused")
     private JavaVariable adapter;
 
+    @SuppressWarnings("unused")
     private JavaVariableData data;
 
     public JavaVariableProxy(JavaVariable adapter, JavaVariableData data) {

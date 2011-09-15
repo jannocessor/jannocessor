@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaPackageData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 
+    @SuppressWarnings("unused")
     private JavaPackage adapter;
 
+    @SuppressWarnings("unused")
     private JavaPackageData data;
 
     public JavaPackageProxy(JavaPackage adapter, JavaPackageData data) {

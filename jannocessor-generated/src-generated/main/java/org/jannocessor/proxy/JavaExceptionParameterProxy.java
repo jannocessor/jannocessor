@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaExceptionParameterData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaExceptionParameterProxy extends JavaVariableProxy implements JavaExceptionParameter {
 
+    @SuppressWarnings("unused")
     private JavaExceptionParameter adapter;
 
+    @SuppressWarnings("unused")
     private JavaExceptionParameterData data;
 
     public JavaExceptionParameterProxy(JavaExceptionParameter adapter, JavaExceptionParameterData data) {

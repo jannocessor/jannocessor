@@ -9,8 +9,14 @@ package $packageName;
 @#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
 public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
 
+#if($model.methods.size() == 0)
+    @SuppressWarnings("unused")
+#end
     private $model.name adapter;
 
+#if($model.methods.size() == 0)
+    @SuppressWarnings("unused")
+#end
     private #type($data) data;
 
     public $className($model.name adapter, ${model.name}Data data) {

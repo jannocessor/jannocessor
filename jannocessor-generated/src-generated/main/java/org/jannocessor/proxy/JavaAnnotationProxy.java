@@ -9,8 +9,10 @@ import org.jannocessor.data.JavaAnnotationData;
 @Generated("JAnnocessor-bootstraped")
 public class JavaAnnotationProxy extends JavaTypeProxy implements JavaAnnotation {
 
+    @SuppressWarnings("unused")
     private JavaAnnotation adapter;
 
+    @SuppressWarnings("unused")
     private JavaAnnotationData data;
 
     public JavaAnnotationProxy(JavaAnnotation adapter, JavaAnnotationData data) {
