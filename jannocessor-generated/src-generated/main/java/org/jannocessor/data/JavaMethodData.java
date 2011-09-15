@@ -12,55 +12,55 @@ import org.jannocessor.model.variable.JavaParameter;
 @Generated("JAnnocessor-bootstraped")
 public class JavaMethodData extends JavaExecutableData implements JavaMethod {
 
-    private PowerList<JavaTypeParameter> _getTypeParameters;
+    private PowerList<JavaTypeParameter> typeParameters;
 
-    private JavaElementType _getReturnType;
+    private JavaElementType returnType;
 
-    private PowerList<JavaParameter> _getParameters;
+    private PowerList<JavaParameter> parameters;
 
-    private Boolean _getVarArgs;
+    private Boolean varArgs;
 
-    private PowerList<JavaElementType> _getThrownTypes;
+    private PowerList<JavaElementType> thrownTypes;
 
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
-        return this._getTypeParameters;
+        return this.typeParameters;
     }
 
     public void setTypeParameters(PowerList<JavaTypeParameter> value) {
-        this._getTypeParameters = value;
+        this.typeParameters = value;
     }
 
     public JavaElementType getReturnType() {
-        return this._getReturnType;
+        return this.returnType;
     }
 
     public void setReturnType(JavaElementType value) {
-        this._getReturnType = value;
+        this.returnType = value;
     }
 
     public PowerList<JavaParameter> getParameters() {
-        return this._getParameters;
+        return this.parameters;
     }
 
     public void setParameters(PowerList<JavaParameter> value) {
-        this._getParameters = value;
+        this.parameters = value;
     }
 
     public Boolean getVarArgs() {
-        return this._getVarArgs;
+        return this.varArgs;
     }
 
     public void setVarArgs(Boolean value) {
-        this._getVarArgs = value;
+        this.varArgs = value;
     }
 
     public PowerList<JavaElementType> getThrownTypes() {
-        return this._getThrownTypes;
+        return this.thrownTypes;
     }
 
     public void setThrownTypes(PowerList<JavaElementType> value) {
-        this._getThrownTypes = value;
+        this.thrownTypes = value;
     }
 
 

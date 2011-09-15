@@ -10,15 +10,15 @@ import org.jannocessor.model.executable.JavaMethod;
 @Generated("JAnnocessor-bootstraped")
 public class JavaInterfaceData extends JavaTypeData implements JavaInterface {
 
-    private PowerList<JavaMethod> _getMethods;
+    private PowerList<JavaMethod> methods;
 
 
     public PowerList<JavaMethod> getMethods() {
-        return this._getMethods;
+        return this.methods;
     }
 
     public void setMethods(PowerList<JavaMethod> value) {
-        this._getMethods = value;
+        this.methods = value;
     }
 
 

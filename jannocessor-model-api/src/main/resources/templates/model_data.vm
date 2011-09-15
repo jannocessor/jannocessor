@@ -9,17 +9,17 @@ package $packageName;
 public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
 
 #foreach ($m in $model.methods)
-    private #type($m.returnType) _${m.name};
+    private #type($m.returnType) ${helper.fieldName($m)};
 
 #end
 
 #foreach ($m in $model.methods)
     public #type($m.returnType) ${m.name}() {
-        return this._${m.name};
+        return this.${helper.fieldName($m)};
     }
 
     public void ${m.name.replacePart(0, "set")}(#type($m.returnType) value) {
-        this._${m.name} = value;
+        this.${helper.fieldName($m)} = value;
     }
 
 #end

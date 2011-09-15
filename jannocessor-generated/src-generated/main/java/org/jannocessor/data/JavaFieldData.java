@@ -9,15 +9,15 @@ import org.jannocessor.model.modifier.FieldModifiers;
 @Generated("JAnnocessor-bootstraped")
 public class JavaFieldData extends JavaVariableData implements JavaField {
 
-    private FieldModifiers _getModifiers;
+    private FieldModifiers modifiers;
 
 
     public FieldModifiers getModifiers() {
-        return this._getModifiers;
+        return this.modifiers;
     }
 
     public void setModifiers(FieldModifiers value) {
-        this._getModifiers = value;
+        this.modifiers = value;
     }
 
 

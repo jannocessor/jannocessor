@@ -12,65 +12,65 @@ import org.jannocessor.model.type.JavaTypeParameter;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeData extends JavaElementData implements JavaType {
 
-    private String _getNesting;
+    private String nesting;
 
-    private Name _getPackageName;
+    private Name packageName;
 
-    private Name _getQualifiedName;
+    private Name qualifiedName;
 
-    private JavaElementType _getSuperclass;
+    private JavaElementType superclass;
 
-    private PowerList<JavaElementType> _getInterfaces;
+    private PowerList<JavaElementType> interfaces;
 
-    private PowerList<JavaTypeParameter> _getParameters;
+    private PowerList<JavaTypeParameter> parameters;
 
 
     public String getNesting() {
-        return this._getNesting;
+        return this.nesting;
     }
 
     public void setNesting(String value) {
-        this._getNesting = value;
+        this.nesting = value;
     }
 
     public Name getPackageName() {
-        return this._getPackageName;
+        return this.packageName;
     }
 
     public void setPackageName(Name value) {
-        this._getPackageName = value;
+        this.packageName = value;
     }
 
     public Name getQualifiedName() {
-        return this._getQualifiedName;
+        return this.qualifiedName;
     }
 
     public void setQualifiedName(Name value) {
-        this._getQualifiedName = value;
+        this.qualifiedName = value;
     }
 
     public JavaElementType getSuperclass() {
-        return this._getSuperclass;
+        return this.superclass;
     }
 
     public void setSuperclass(JavaElementType value) {
-        this._getSuperclass = value;
+        this.superclass = value;
     }
 
     public PowerList<JavaElementType> getInterfaces() {
-        return this._getInterfaces;
+        return this.interfaces;
     }
 
     public void setInterfaces(PowerList<JavaElementType> value) {
-        this._getInterfaces = value;
+        this.interfaces = value;
     }
 
     public PowerList<JavaTypeParameter> getParameters() {
-        return this._getParameters;
+        return this.parameters;
     }
 
     public void setParameters(PowerList<JavaTypeParameter> value) {
-        this._getParameters = value;
+        this.parameters = value;
     }
 
 

@@ -10,45 +10,45 @@ import org.jannocessor.model.JavaElementType;
 @Generated("JAnnocessor-bootstraped")
 public class JavaElementData implements JavaElement {
 
-    private JavaElement _getParent;
+    private JavaElement parent;
 
-    private PowerList<JavaElement> _getChildren;
+    private PowerList<JavaElement> children;
 
-    private Name _getName;
+    private Name name;
 
-    private JavaElementType _getType;
+    private JavaElementType type;
 
 
     public JavaElement getParent() {
-        return this._getParent;
+        return this.parent;
     }
 
     public void setParent(JavaElement value) {
-        this._getParent = value;
+        this.parent = value;
     }
 
     public PowerList<JavaElement> getChildren() {
-        return this._getChildren;
+        return this.children;
     }
 
     public void setChildren(PowerList<JavaElement> value) {
-        this._getChildren = value;
+        this.children = value;
     }
 
     public Name getName() {
-        return this._getName;
+        return this.name;
     }
 
     public void setName(Name value) {
-        this._getName = value;
+        this.name = value;
     }
 
     public JavaElementType getType() {
-        return this._getType;
+        return this.type;
     }
 
     public void setType(JavaElementType value) {
-        this._getType = value;
+        this.type = value;
     }
 
 

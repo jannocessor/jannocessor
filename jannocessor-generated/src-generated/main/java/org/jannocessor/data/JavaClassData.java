@@ -14,55 +14,55 @@ import org.jannocessor.model.executable.JavaInstanceInit;
 @Generated("JAnnocessor-bootstraped")
 public class JavaClassData extends JavaTypeData implements JavaClass {
 
-    private PowerList<JavaField> _getFields;
+    private PowerList<JavaField> fields;
 
-    private PowerList<JavaConstructor> _getConstructors;
+    private PowerList<JavaConstructor> constructors;
 
-    private PowerList<JavaMethod> _getMethods;
+    private PowerList<JavaMethod> methods;
 
-    private PowerList<JavaStaticInit> _getStaticInits;
+    private PowerList<JavaStaticInit> staticInits;
 
-    private PowerList<JavaInstanceInit> _getInstanceInits;
+    private PowerList<JavaInstanceInit> instanceInits;
 
 
     public PowerList<JavaField> getFields() {
-        return this._getFields;
+        return this.fields;
     }
 
     public void setFields(PowerList<JavaField> value) {
-        this._getFields = value;
+        this.fields = value;
     }
 
     public PowerList<JavaConstructor> getConstructors() {
-        return this._getConstructors;
+        return this.constructors;
     }
 
     public void setConstructors(PowerList<JavaConstructor> value) {
-        this._getConstructors = value;
+        this.constructors = value;
     }
 
     public PowerList<JavaMethod> getMethods() {
-        return this._getMethods;
+        return this.methods;
     }
 
     public void setMethods(PowerList<JavaMethod> value) {
-        this._getMethods = value;
+        this.methods = value;
     }
 
     public PowerList<JavaStaticInit> getStaticInits() {
-        return this._getStaticInits;
+        return this.staticInits;
     }
 
     public void setStaticInits(PowerList<JavaStaticInit> value) {
-        this._getStaticInits = value;
+        this.staticInits = value;
     }
 
     public PowerList<JavaInstanceInit> getInstanceInits() {
-        return this._getInstanceInits;
+        return this.instanceInits;
     }
 
     public void setInstanceInits(PowerList<JavaInstanceInit> value) {
-        this._getInstanceInits = value;
+        this.instanceInits = value;
     }
 
 

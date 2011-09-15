@@ -25,34 +25,37 @@ import org.jannocessor.model.ProcessingContext;
 
 public class DomainProxyGenerator implements CodeProcessor {
 
-	@Override
-	public void process(ProcessingContext context, Map<String, Object> params) {
-		JavaInterface model = (JavaInterface) params.get("model");
-		context.getLogger().debug("Processing annotated domain model: {}",
-				model);
+    @Override
+    public void process(ProcessingContext context, Map<String, Object> params) {
+	JavaInterface model = (JavaInterface) params.get("model");
+	context.getLogger().debug("Processing annotated domain model: {}",
+		model);
+	DomainProxyGeneratorHelper helper = new DomainProxyGeneratorHelper();
 
-		Map<String, Object> attributes = new HashMap<String, Object>();
-		String packageName = "org.jannocessor.proxy";
-		String className = model.getName().appendPart("Proxy").getText();
+	Map<String, Object> attributes = new HashMap<String, Object>();
+	String packageName = "org.jannocessor.proxy";
+	String className = model.getName().appendPart("Proxy").getText();
 
-		attributes.put("model", model);
-		attributes.put("packageName", packageName);
-		attributes.put("className", className);
+	attributes.put("model", model);
+	attributes.put("packageName", packageName);
+	attributes.put("className", className);
+	attributes.put("helper", helper);
 
-		context.generateFile(packageName, className + ".java", "model_proxy",
-				attributes);
+	context.generateFile(packageName, className + ".java", "model_proxy",
+		attributes);
 
-		Map<String, Object> attributes2 = new HashMap<String, Object>();
-		String packageName2 = "org.jannocessor.data";
-		String className2 = model.getName().appendPart("Data").getText();
+	Map<String, Object> attributes2 = new HashMap<String, Object>();
+	String packageName2 = "org.jannocessor.data";
+	String className2 = model.getName().appendPart("Data").getText();
 
-		attributes2.put("model", model);
-		attributes2.put("packageName", packageName2);
-		attributes2.put("className", className2);
+	attributes2.put("model", model);
+	attributes2.put("packageName", packageName2);
+	attributes2.put("className", className2);
+	attributes2.put("helper", helper);
 
-		context.generateFile(packageName2, className2 + ".java", "model_data",
-				attributes2);
+	context.generateFile(packageName2, className2 + ".java", "model_data",
+		attributes2);
 
-	}
+    }
 
 }

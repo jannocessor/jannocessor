@@ -10,55 +10,55 @@ import org.jannocessor.collection.api.PowerList;
 @Generated("JAnnocessor-bootstraped")
 public class JavaElementTypeData implements JavaElementType {
 
-    private Name _getName;
+    private Name name;
 
-    private JavaElement _getAsElement;
+    private JavaElement asElement;
 
-    private JavaElementType _getCapture;
+    private JavaElementType capture;
 
-    private JavaElementType _getErasure;
+    private JavaElementType erasure;
 
-    private PowerList<JavaElementType> _getDirectSupertypes;
+    private PowerList<JavaElementType> directSupertypes;
 
 
     public Name getName() {
-        return this._getName;
+        return this.name;
     }
 
     public void setName(Name value) {
-        this._getName = value;
+        this.name = value;
     }
 
     public JavaElement getAsElement() {
-        return this._getAsElement;
+        return this.asElement;
     }
 
     public void setAsElement(JavaElement value) {
-        this._getAsElement = value;
+        this.asElement = value;
     }
 
     public JavaElementType getCapture() {
-        return this._getCapture;
+        return this.capture;
     }
 
     public void setCapture(JavaElementType value) {
-        this._getCapture = value;
+        this.capture = value;
     }
 
     public JavaElementType getErasure() {
-        return this._getErasure;
+        return this.erasure;
     }
 
     public void setErasure(JavaElementType value) {
-        this._getErasure = value;
+        this.erasure = value;
     }
 
     public PowerList<JavaElementType> getDirectSupertypes() {
-        return this._getDirectSupertypes;
+        return this.directSupertypes;
     }
 
     public void setDirectSupertypes(PowerList<JavaElementType> value) {
-        this._getDirectSupertypes = value;
+        this.directSupertypes = value;
     }
 
 
