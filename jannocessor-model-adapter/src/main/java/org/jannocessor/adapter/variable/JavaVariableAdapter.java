@@ -26,17 +26,12 @@ import org.jannocessor.model.variable.JavaVariable;
 abstract class JavaVariableAdapter extends ElementAdapter implements
 	JavaVariable {
 
+    @SuppressWarnings("unused")
     private final VariableElement variable;
 
     public JavaVariableAdapter(VariableElement variable, Elements elementUtils,
 	    Types typeUtils) {
 	super(variable, elementUtils, typeUtils);
 	this.variable = variable;
-    }
-
-    @Override
-    public String getConstant() {
-	Object value = variable.getConstantValue();
-	return value != null ? String.valueOf(value) : null;
     }
 }

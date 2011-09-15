@@ -22,6 +22,4 @@ import org.jannocessor.model.JavaElement;
 @DomainModel
 public interface JavaVariable extends JavaElement {
 
-	String getConstant();
-
 }
