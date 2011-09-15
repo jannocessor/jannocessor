@@ -17,11 +17,17 @@
 package org.jannocessor.model.bean;
 
 import org.jannocessor.data.JavaFieldData;
+import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.Name;
+import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.variable.JavaField;
-
 
 public class JavaFieldBean extends JavaFieldData implements JavaField {
 
+    public JavaFieldBean(FieldModifiers modifiers, JavaElementType type, Name name) {
+        this.setModifiers(modifiers);
+        this.setType(type);
+        this.setName(name);
+    }
+
 }
-
-

@@ -18,7 +18,7 @@ package org.jannocessor.adapter;
 
 import static org.junit.Assert.assertEquals;
 
-import org.jannocessor.model.NameBean;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.test.AbstractTest;
 import org.junit.Test;
 

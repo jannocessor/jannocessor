@@ -61,7 +61,7 @@ import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.NameBean;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.proxy.JavaAnnotationProxy;
 import org.jannocessor.proxy.JavaClassProxy;
 import org.jannocessor.proxy.JavaConstructorProxy;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.model.bean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
