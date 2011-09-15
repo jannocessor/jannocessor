@@ -19,17 +19,6 @@ public class JavaVariableProxy extends JavaElementProxy implements JavaVariable 
         this.data = data;
     }
 
-	private boolean getConstantInitialized = false;
-
-
-    public String getConstant() {
-        if (!getConstantInitialized) {
-            data.setConstant(adapter.getConstant());
-			getConstantInitialized = true;
-        }
-
-        return data.getConstant();
-    }
 
 
 }

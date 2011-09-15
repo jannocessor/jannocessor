@@ -20,18 +20,25 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.variable.JavaField;
 
 public final class JavaFieldAdapter extends JavaVariableAdapter implements
-		JavaField {
+	JavaField {
 
-	@SuppressWarnings("unused")
-	private final VariableElement field;
+    @SuppressWarnings("unused")
+    private final VariableElement field;
 
-	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
-			Types typeUtils) {
-		super(field, elementUtils, typeUtils);
-		this.field = field;
-	}
+    public JavaFieldAdapter(VariableElement field, Elements elementUtils,
+	    Types typeUtils) {
+	super(field, elementUtils, typeUtils);
+	this.field = field;
+    }
+
+    @Override
+    public FieldModifiers getModifiers() {
+	FieldModifiers modifiers = null; // FIXME
+	return modifiers;
+    }
 
 }
