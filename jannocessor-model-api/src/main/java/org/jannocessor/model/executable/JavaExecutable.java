@@ -17,25 +17,9 @@
 package org.jannocessor.model.executable;
 
 import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.JavaElementType;
-import org.jannocessor.model.type.JavaTypeParameter;
-import org.jannocessor.model.variable.JavaParameter;
 
 @DomainModel
 public interface JavaExecutable extends JavaElement {
-
-    PowerList<JavaTypeParameter> getTypeParameters();
-
-    JavaElementType getReturnType();
-
-    PowerList<JavaParameter> getParameters();
-
-    Boolean getVarArgs();
-
-    PowerList<JavaElementType> getThrownTypes();
-
-    String getDefault();
 
 }

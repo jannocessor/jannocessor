@@ -42,7 +42,6 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	this.executable = executable;
     }
 
-    @Override
     public PowerList<JavaTypeParameter> getTypeParameters() {
 	PowerList<JavaTypeParameter> adapters = Power.list();
 
@@ -56,12 +55,10 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	return adapters;
     }
 
-    @Override
     public JavaElementType getReturnType() {
 	return getTypeAdapter(executable.getReturnType());
     }
 
-    @Override
     public PowerList<JavaParameter> getParameters() {
 	PowerList<JavaParameter> adapters = Power.list();
 
@@ -74,12 +71,10 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	return adapters;
     }
 
-    @Override
     public Boolean getVarArgs() {
 	return executable.isVarArgs();
     }
 
-    @Override
     public PowerList<JavaElementType> getThrownTypes() {
 	PowerList<JavaElementType> adapters = Power.list();
 
@@ -90,9 +85,4 @@ abstract class JavaExecutableAdapter extends ElementAdapter implements
 	return adapters;
     }
 
-    @Override
-    public String getDefault() {
-	return executable.getDefaultValue() != null ? executable
-		.getDefaultValue().toString() : null;
-    }
 }

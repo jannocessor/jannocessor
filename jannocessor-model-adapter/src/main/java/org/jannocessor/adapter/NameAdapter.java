@@ -106,12 +106,8 @@ public class NameAdapter implements Name {
 	}
 
 	String name = mergeParts(parts);
-	setText(name);
+	assign(name);
 	return this;
-    }
-
-    private void setText(String name2) {
-	this.name = name2;
     }
 
     private void fixCamelCaseStart(List<String> parts, String deletedStart) {
@@ -133,7 +129,7 @@ public class NameAdapter implements Name {
 	parts.add(position, part);
 
 	String name = mergeParts(parts);
-	setText(name);
+	assign(name);
 	return this;
     }
 
@@ -144,7 +140,7 @@ public class NameAdapter implements Name {
 	parts.add(part);
 
 	String name = mergeParts(parts);
-	setText(name);
+	assign(name);
 	return this;
     }
 
@@ -155,7 +151,7 @@ public class NameAdapter implements Name {
 	parts.set(position, part);
 
 	String name = mergeParts(parts);
-	setText(name);
+	assign(name);
 	return this;
     }
 
@@ -215,5 +211,10 @@ public class NameAdapter implements Name {
     @Override
     public String toString() {
 	return getText();
+    }
+
+    @Override
+    public void assign(String name) {
+	this.name = name;
     }
 }

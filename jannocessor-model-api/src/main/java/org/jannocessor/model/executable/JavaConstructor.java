@@ -17,8 +17,20 @@
 package org.jannocessor.model.executable;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.type.JavaTypeParameter;
+import org.jannocessor.model.variable.JavaParameter;
 
 @DomainModel
 public interface JavaConstructor extends JavaExecutable {
+
+    PowerList<JavaTypeParameter> getTypeParameters();
+
+    PowerList<JavaParameter> getParameters();
+
+    Boolean getVarArgs();
+
+    PowerList<JavaElementType> getThrownTypes();
 
 }

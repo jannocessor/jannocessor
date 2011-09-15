@@ -65,13 +65,13 @@ public class NameAdapterTest extends AbstractTest {
 
 	@Test
 	public void testDeleteCamelcaseParts() {
-		checkDeleteParts(smallCamelCase, "SecondThird", 0);
+		checkDeleteParts(smallCamelCase, "secondThird", 0);
 		checkDeleteParts(smallCamelCase, "firstThird", 1);
 		checkDeleteParts(smallCamelCase, "firstSecond", 2);
 
-		checkDeleteParts(smallCamelCase, "Third", 0, 1);
+		checkDeleteParts(smallCamelCase, "third", 0, 1);
 		checkDeleteParts(smallCamelCase, "first", 1, 2);
-		checkDeleteParts(smallCamelCase, "Second", 0, 2);
+		checkDeleteParts(smallCamelCase, "second", 0, 2);
 	}
 
 	@Test

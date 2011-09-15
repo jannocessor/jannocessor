@@ -18,6 +18,7 @@ package org.jannocessor.bootstrapped.processor;
 
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.model.variable.JavaField;
@@ -26,20 +27,18 @@ import org.jannocessor.processor.model.ProcessingContext;
 
 public class ClassProcessor implements CodeProcessor {
 
-	@Override
-	public void process(ProcessingContext context, Map<String, Object> params) {
-		JavaClass clazz = (JavaClass) params.get("clazz");
+    @Override
+    public void process(ProcessingContext context, Map<String, Object> params) {
+	JavaClass clazz = (JavaClass) params.get("clazz");
 
-		clazz.getName().deleteParts(1, 2);
+	clazz.getName().deleteParts(1, 2);
 
-		for (JavaField field : clazz.getFields()) {
-			Name name = field.getType().getName();
-			if (name.getText().endsWith("BeanModel")) {
-				name.deleteParts(2, 3);
-			}
-		}
-
-		context.generateClass(clazz);
+	for (JavaField field : clazz.getFields()) {
+	    Name name = field.getType().getName();
+	    name.assign(StringUtils.removeEnd(name.getText(), "BeanModel"));
 	}
+
+	context.generateClass(clazz);
+    }
 
 }

@@ -32,6 +32,8 @@ public interface Name {
 
     String getText();
 
+    void assign(String name);
+
     String getCapitalized();
 
     boolean containsParts(String... parts);
