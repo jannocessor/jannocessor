@@ -10,19 +10,19 @@
 
 	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor-model-api</artifactId>
-	<version>0.6.0-SNAPSHOT</version>
+	<version>${parent.version}</version>
 	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-bootstrap</artifactId>
-			<version>0.6.0-SNAPSHOT</version>
+			<version>${version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-collections-api</artifactId>
-			<version>0.6.0-SNAPSHOT</version>
+			<version>${version}</version>
 		</dependency>
 	</dependencies>
 
