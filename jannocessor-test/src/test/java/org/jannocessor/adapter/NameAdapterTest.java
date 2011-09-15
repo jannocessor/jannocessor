@@ -18,6 +18,7 @@ package org.jannocessor.adapter;
 
 import static org.junit.Assert.assertEquals;
 
+import org.jannocessor.model.NameBean;
 import org.jannocessor.test.AbstractTest;
 import org.junit.Test;
 
@@ -55,8 +56,8 @@ public class NameAdapterTest extends AbstractTest {
 		}
 	}
 
-	private NameAdapter name(String name) {
-		return new NameAdapter(name);
+	private NameBean name(String name) {
+		return new NameBean(name);
 	}
 
 	/*

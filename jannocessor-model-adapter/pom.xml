@@ -34,6 +34,11 @@
 			<artifactId>jannocessor-collections</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-model-utils</artifactId>
+			<version>0.6.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

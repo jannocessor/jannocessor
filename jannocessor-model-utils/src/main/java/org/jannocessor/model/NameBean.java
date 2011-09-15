@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter;
+package org.jannocessor.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.jannocessor.model.Name;
 
-public class NameAdapter implements Name {
+public class NameBean implements Name {
 
     private String name;
 
@@ -32,7 +32,7 @@ public class NameAdapter implements Name {
 	CAMELCASE, UNDERSCORE, PACKAGE
     };
 
-    public NameAdapter(String name) {
+    public NameBean(String name) {
 	this.name = name;
     }
 
@@ -196,7 +196,7 @@ public class NameAdapter implements Name {
 
     @Override
     public Name copy() {
-	return new NameAdapter(getText());
+	return new NameBean(getText());
     }
 
     public String getText() {

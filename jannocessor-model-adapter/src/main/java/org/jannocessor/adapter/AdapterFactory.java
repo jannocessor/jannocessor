@@ -61,6 +61,7 @@ import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.NameBean;
 import org.jannocessor.proxy.JavaAnnotationProxy;
 import org.jannocessor.proxy.JavaClassProxy;
 import org.jannocessor.proxy.JavaConstructorProxy;
@@ -216,7 +217,7 @@ public class AdapterFactory {
 
 	public static Name getNameModel(String text) {
 		if (text != null) {
-			return new NameAdapter(text);
+			return new NameBean(text);
 		} else {
 			return null;
 		}
