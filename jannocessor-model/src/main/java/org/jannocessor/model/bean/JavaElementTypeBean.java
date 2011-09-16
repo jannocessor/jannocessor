@@ -19,9 +19,10 @@ package org.jannocessor.model.bean;
 import org.jannocessor.data.JavaElementTypeData;
 import org.jannocessor.model.JavaElementType;
 
-
 public class JavaElementTypeBean extends JavaElementTypeData implements JavaElementType {
 
+    public JavaElementTypeBean(Class<?> type, Class<?>[] typeParams) {
+        setName(new NameBean(type.getCanonicalName()));
+    }
+
 }
-
-
