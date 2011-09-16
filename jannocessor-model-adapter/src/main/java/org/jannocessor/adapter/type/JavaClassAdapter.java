@@ -16,6 +16,9 @@
 
 package org.jannocessor.adapter.type;
 
+import java.util.Set;
+
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
@@ -25,44 +28,61 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.modifier.ClassModifierValue;
+import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.model.variable.JavaField;
 
-public final class JavaClassAdapter extends JavaTypeAdapter implements
-		JavaClass {
+public final class JavaClassAdapter extends JavaTypeAdapter implements JavaClass {
 
-	@SuppressWarnings("unused")
-	private final TypeElement tclass;
+    private final TypeElement tclass;
 
-	public JavaClassAdapter(TypeElement tclass, Elements elementUtils,
-			Types typeUtils) {
-		super(tclass, elementUtils, typeUtils);
-		this.tclass = tclass;
-	}
+    public JavaClassAdapter(TypeElement tclass, Elements elementUtils, Types typeUtils) {
+        super(tclass, elementUtils, typeUtils);
+        this.tclass = tclass;
+    }
 
-	@Override
-	public PowerList<JavaField> getFields() {
-		return findChildrenByType(JavaField.class);
-	}
+    @Override
+    public PowerList<JavaField> getFields() {
+        return findChildrenByType(JavaField.class);
+    }
 
-	@Override
-	public PowerList<JavaConstructor> getConstructors() {
-		return findChildrenByType(JavaConstructor.class);
-	}
+    @Override
+    public PowerList<JavaConstructor> getConstructors() {
+        return findChildrenByType(JavaConstructor.class);
+    }
 
-	@Override
-	public PowerList<JavaMethod> getMethods() {
-		return findChildrenByType(JavaMethod.class);
-	}
+    @Override
+    public PowerList<JavaMethod> getMethods() {
+        return findChildrenByType(JavaMethod.class);
+    }
 
-	@Override
-	public PowerList<JavaStaticInit> getStaticInits() {
-		return findChildrenByType(JavaStaticInit.class);
-	}
+    @Override
+    public PowerList<JavaStaticInit> getStaticInits() {
+        return findChildrenByType(JavaStaticInit.class);
+    }
 
-	@Override
-	public PowerList<JavaInstanceInit> getInstanceInits() {
-		return findChildrenByType(JavaInstanceInit.class);
-	}
+    @Override
+    public PowerList<JavaInstanceInit> getInstanceInits() {
+        return findChildrenByType(JavaInstanceInit.class);
+    }
+
+    @Override
+    public ClassModifiers getModifiers() {
+        Set<Modifier> modifiers = tclass.getModifiers();
+        final ClassModifierValue[] values = new ClassModifierValue[modifiers.size()];
+
+        int index = 0;
+        for (Modifier modifier : modifiers) {
+            values[index++] = ClassModifierValue.valueOf(modifier.name());
+        }
+
+        return new ClassModifiers() {
+            @Override
+            public ClassModifierValue[] getValues() {
+                return values;
+            }
+        };
+    }
 
 }

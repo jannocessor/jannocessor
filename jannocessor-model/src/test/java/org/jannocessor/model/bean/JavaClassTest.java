@@ -19,6 +19,7 @@ package org.jannocessor.model.bean;
 import static org.junit.Assert.*;
 
 import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
 
@@ -26,8 +27,10 @@ public class JavaClassTest {
 
     @Test
     public void testInstantiation() {
-        JavaClass clazz = Code.classs(Code.classModifiers(), "MyClass");
+        JavaClass clazz = Code.classs(Classes.PUBLIC, "MyClass");
         assertNotNull(clazz);
+
+        assertEquals(Classes.PUBLIC, clazz.getModifiers());
     }
 
 }

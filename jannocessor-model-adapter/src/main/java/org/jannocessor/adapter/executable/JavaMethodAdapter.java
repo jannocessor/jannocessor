@@ -16,22 +16,42 @@
 
 package org.jannocessor.adapter.executable;
 
+import java.util.Set;
+
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.MethodModifierValue;
+import org.jannocessor.model.modifier.MethodModifiers;
 
-public final class JavaMethodAdapter extends JavaExecutableAdapter implements
-		JavaMethod {
+public final class JavaMethodAdapter extends JavaExecutableAdapter implements JavaMethod {
 
-	@SuppressWarnings("unused")
-	private final ExecutableElement method;
+    private final ExecutableElement method;
 
-	public JavaMethodAdapter(ExecutableElement method, Elements elementUtils,
-			Types typeUtils) {
-		super(method, elementUtils, typeUtils);
-		this.method = method;
-	}
+    public JavaMethodAdapter(ExecutableElement method, Elements elementUtils, Types typeUtils) {
+        super(method, elementUtils, typeUtils);
+        this.method = method;
+    }
+
+    @Override
+    public MethodModifiers getModifiers() {
+        Set<Modifier> modifiers = method.getModifiers();
+        final MethodModifierValue[] values = new MethodModifierValue[modifiers.size()];
+
+        int index = 0;
+        for (Modifier modifier : modifiers) {
+            values[index++] = MethodModifierValue.valueOf(modifier.name());
+        }
+
+        return new MethodModifiers() {
+            @Override
+            public MethodModifierValue[] getValues() {
+                return values;
+            }
+        };
+    }
 
 }

@@ -14,20 +14,10 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean;
+package org.jannocessor.model.modifier;
 
-import org.jannocessor.data.JavaMethodData;
-import org.jannocessor.model.JavaElementType;
-import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.modifier.MethodModifiers;
-import org.jannocessor.model.variable.JavaParameter;
+public enum NestedClassModifierValue {
 
-public class JavaMethodBean extends JavaMethodData implements JavaMethod {
-
-    public JavaMethodBean(MethodModifiers modifiers, JavaElementType returnType, String name, JavaParameter[] params) {
-        setModifiers(modifiers);
-        setReturnType(returnType);
-        setName(new NameBean(name));
-    }
+    PUBLIC, PRIVATE, PROTECTED, ABSTRACT, FINAL, STATIC,
 
 }

@@ -21,8 +21,8 @@ import java.util.List;
 import junit.framework.Assert;
 
 import org.jannocessor.model.JavaElementType;
-import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.variable.JavaField;
 import org.junit.Test;
 
@@ -30,24 +30,21 @@ public class JavaFieldTest {
 
     @Test
     public void testFieldConstruction1() {
-        FieldModifiers modifiers = Code.fieldModifiers();
         JavaElementType type = Code.type(List.class, String.class);
 
-        JavaField field = Code.field(modifiers, type, "field1");
+        JavaField field = Code.field(Fields.PRIVATE_FINAL, type, "field1");
 
         Assert.assertEquals("field1", field.getName().getText());
-        Assert.assertEquals(modifiers, field.getModifiers());
+        Assert.assertEquals(Fields.PRIVATE_FINAL, field.getModifiers());
         Assert.assertEquals(type, field.getType());
     }
 
     @Test
     public void testFieldConstruction2() {
-        FieldModifiers modifiers = Code.fieldModifiers();
-
-        JavaField field = Code.field(modifiers, String.class, "field2");
+        JavaField field = Code.field(Fields.PUBLIC_STATIC_FINAL, String.class, "field2");
 
         Assert.assertEquals("field2", field.getName().getText());
-        Assert.assertEquals(modifiers, field.getModifiers());
+        Assert.assertEquals(Fields.PUBLIC_STATIC_FINAL, field.getModifiers());
         Assert.assertEquals("java.lang.String", field.getType().getName().getText());
     }
 

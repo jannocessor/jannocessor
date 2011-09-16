@@ -22,19 +22,21 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.variable.JavaField;
 
 @DomainModel
 public interface JavaClass extends JavaType {
 
-	PowerList<JavaField> getFields();
+    PowerList<JavaField> getFields();
 
-	PowerList<JavaConstructor> getConstructors();
+    PowerList<JavaConstructor> getConstructors();
 
-	PowerList<JavaMethod> getMethods();
+    PowerList<JavaMethod> getMethods();
 
-	PowerList<JavaStaticInit> getStaticInits();
+    PowerList<JavaStaticInit> getStaticInits();
 
-	PowerList<JavaInstanceInit> getInstanceInits();
+    PowerList<JavaInstanceInit> getInstanceInits();
 
+    ClassModifiers getModifiers();
 }

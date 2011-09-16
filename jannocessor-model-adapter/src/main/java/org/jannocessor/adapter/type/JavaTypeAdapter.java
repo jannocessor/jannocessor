@@ -32,57 +32,56 @@ import org.jannocessor.model.type.JavaTypeParameter;
 
 abstract class JavaTypeAdapter extends ElementAdapter implements JavaType {
 
-	private final TypeElement type;
+    private final TypeElement type;
 
-	public JavaTypeAdapter(TypeElement type, Elements elementUtils,
-			Types typeUtils) {
-		super(type, elementUtils, typeUtils);
-		this.type = type;
-	}
+    public JavaTypeAdapter(TypeElement type, Elements elementUtils, Types typeUtils) {
+        super(type, elementUtils, typeUtils);
+        this.type = type;
+    }
 
-	@Override
-	public String getNesting() {
-		return type.getNestingKind().toString();
-	}
+    @Override
+    public String getNesting() {
+        return type.getNestingKind().toString();
+    }
 
-	@Override
-	public Name getQualifiedName() {
-		return getNameAdapter(type.getQualifiedName().toString());
-	}
+    @Override
+    public Name getQualifiedName() {
+        return getNameAdapter(type.getQualifiedName().toString());
+    }
 
-	@Override
-	public JavaElementType getSuperclass() {
-		return getTypeAdapter(type.getSuperclass());
-	}
+    @Override
+    public JavaElementType getSuperclass() {
+        return getTypeAdapter(type.getSuperclass());
+    }
 
-	@Override
-	public Name getPackageName() {
-		String fullName = type.getQualifiedName().toString();
-		int pos = fullName.lastIndexOf('.');
-		String packageName = (pos >= 0) ? fullName.substring(0, pos) : null;
-		return getNameAdapter(packageName);
-	}
+    @Override
+    public Name getPackageName() {
+        String fullName = type.getQualifiedName().toString();
+        int pos = fullName.lastIndexOf('.');
+        String packageName = (pos >= 0) ? fullName.substring(0, pos) : null;
+        return getNameAdapter(packageName);
+    }
 
-	@Override
-	public PowerList<JavaElementType> getInterfaces() {
-		PowerList<JavaElementType> adapters = Power.list();
+    @Override
+    public PowerList<JavaElementType> getInterfaces() {
+        PowerList<JavaElementType> adapters = Power.list();
 
-		for (TypeMirror tinterface : type.getInterfaces()) {
-			adapters.add(getTypeAdapter(tinterface));
-		}
+        for (TypeMirror tinterface : type.getInterfaces()) {
+            adapters.add(getTypeAdapter(tinterface));
+        }
 
-		return adapters;
-	}
+        return adapters;
+    }
 
-	@Override
-	public PowerList<JavaTypeParameter> getParameters() {
-		PowerList<JavaTypeParameter> adapters = Power.list();
+    @Override
+    public PowerList<JavaTypeParameter> getParameters() {
+        PowerList<JavaTypeParameter> adapters = Power.list();
 
-		for (TypeParameterElement parameter : type.getTypeParameters()) {
-			adapters.add(getElementAdapter(parameter, JavaTypeParameter.class));
-		}
+        for (TypeParameterElement parameter : type.getTypeParameters()) {
+            adapters.add(getElementAdapter(parameter, JavaTypeParameter.class));
+        }
 
-		return adapters;
-	}
+        return adapters;
+    }
 
 }

@@ -24,6 +24,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.variable.JavaParameter;
+import org.jannocessor.model.modifier.MethodModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -48,6 +49,8 @@ public class JavaMethodProxy extends JavaExecutableProxy implements JavaMethod {
 	private boolean getVarArgsInitialized = false;
 
 	private boolean getThrownTypesInitialized = false;
+
+	private boolean getModifiersInitialized = false;
 
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
@@ -93,6 +96,15 @@ public class JavaMethodProxy extends JavaExecutableProxy implements JavaMethod {
         }
 
         return data.getThrownTypes();
+    }
+
+    public MethodModifiers getModifiers() {
+        if (!getModifiersInitialized) {
+            data.setModifiers(adapter.getModifiers());
+			getModifiersInitialized = true;
+        }
+
+        return data.getModifiers();
     }
 
 

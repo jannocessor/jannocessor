@@ -19,8 +19,8 @@ package org.jannocessor.model.bean;
 import static org.junit.Assert.*;
 
 import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.variable.JavaParameter;
 import org.junit.Test;
 
@@ -28,12 +28,16 @@ public class JavaMethodTest {
 
     @Test
     public void testInstantiation() {
-        MethodModifiers modifiers = Code.methodModifiers();
-        JavaParameter param1 = Code.parameter(String.class, "foo");
-        JavaParameter param2 = Code.parameter(int.class, "bar", true);
+        JavaParameter args = Code.parameter(String[].class, "args");
 
-        JavaMethod method = Code.method(modifiers, void.class, "main", param1, param2);
+        JavaMethod method = Code.method(Methods.PUBLIC_STATIC, void.class, "main", args);
         assertNotNull(method);
+
+        assertEquals(Methods.PUBLIC_STATIC, method.getModifiers());
+        assertEquals("void", method.getReturnType().getName().getText());
+        assertEquals("main", method.getName().getText());
+
+        // TODO: check args
     }
 
 }

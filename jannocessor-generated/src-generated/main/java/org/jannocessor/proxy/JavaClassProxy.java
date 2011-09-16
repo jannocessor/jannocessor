@@ -26,6 +26,7 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.modifier.ClassModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -50,6 +51,8 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
 	private boolean getStaticInitsInitialized = false;
 
 	private boolean getInstanceInitsInitialized = false;
+
+	private boolean getModifiersInitialized = false;
 
 
     public PowerList<JavaField> getFields() {
@@ -95,6 +98,15 @@ public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
         }
 
         return data.getInstanceInits();
+    }
+
+    public ClassModifiers getModifiers() {
+        if (!getModifiersInitialized) {
+            data.setModifiers(adapter.getModifiers());
+			getModifiersInitialized = true;
+        }
+
+        return data.getModifiers();
     }
 
 

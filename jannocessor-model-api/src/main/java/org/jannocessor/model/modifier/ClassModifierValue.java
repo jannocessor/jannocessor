@@ -18,8 +18,6 @@ package org.jannocessor.model.modifier;
 
 public enum ClassModifierValue {
 
-    PUBLIC, PRIVATE, PROTECTED, ABSTRACT, FINAL, STATIC,
-
-    // PUBLIC, ABSTRACT, FINAL
+    PUBLIC, ABSTRACT, FINAL
 
 }

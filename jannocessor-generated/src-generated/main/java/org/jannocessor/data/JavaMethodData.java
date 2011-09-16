@@ -23,6 +23,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.variable.JavaParameter;
+import org.jannocessor.model.modifier.MethodModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -37,6 +38,8 @@ public class JavaMethodData extends JavaExecutableData implements JavaMethod {
     private Boolean varArgs;
 
     private PowerList<JavaElementType> thrownTypes;
+
+    private MethodModifiers modifiers;
 
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
@@ -77,6 +80,14 @@ public class JavaMethodData extends JavaExecutableData implements JavaMethod {
 
     public void setThrownTypes(PowerList<JavaElementType> value) {
         this.thrownTypes = value;
+    }
+
+    public MethodModifiers getModifiers() {
+        return this.modifiers;
+    }
+
+    public void setModifiers(MethodModifiers value) {
+        this.modifiers = value;
     }
 
 

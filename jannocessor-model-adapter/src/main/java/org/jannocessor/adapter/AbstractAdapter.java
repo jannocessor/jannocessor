@@ -36,168 +36,158 @@ import org.slf4j.LoggerFactory;
 
 abstract class AbstractAdapter {
 
-	enum TextMode {
-		FULL, UP, DOWN
-	}
+    enum TextMode {
+        FULL, UP, DOWN
+    }
 
-	protected final Logger logger = LoggerFactory.getLogger(getClass());
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
-	private final BeanUtilsBean beanUtils = BeanUtilsBean.getInstance();
+    private final BeanUtilsBean beanUtils = BeanUtilsBean.getInstance();
 
-	private final PropertyUtilsBean propertyUtils = beanUtils
-			.getPropertyUtils();
+    private final PropertyUtilsBean propertyUtils = beanUtils.getPropertyUtils();
 
-	private final Elements elementUtils;
+    private final Elements elementUtils;
 
-	private final Types typeUtils;
+    private final Types typeUtils;
 
-	public AbstractAdapter(Elements elementUtils, Types typeUtils) {
-		this.elementUtils = elementUtils;
-		this.typeUtils = typeUtils;
-	}
+    public AbstractAdapter(Elements elementUtils, Types typeUtils) {
+        this.elementUtils = elementUtils;
+        this.typeUtils = typeUtils;
+    }
 
-	protected <T extends JavaElement> T getElementAdapter(Element element,
-			Class<T> clazz) {
-		return AdapterFactory.getElementModel(element, clazz, elementUtils,
-				typeUtils);
-	}
+    protected <T extends JavaElement> T getElementAdapter(Element element, Class<T> clazz) {
+        return AdapterFactory.getElementModel(element, clazz, elementUtils, typeUtils);
+    }
 
-	protected JavaElementType getTypeAdapter(TypeMirror typeMirror) {
-		return AdapterFactory.getTypeModel(typeMirror, elementUtils, typeUtils);
-	}
+    protected JavaElementType getTypeAdapter(TypeMirror typeMirror) {
+        return AdapterFactory.getTypeModel(typeMirror, elementUtils, typeUtils);
+    }
 
-	protected Name getNameAdapter(Object value) {
-		return value != null ? AdapterFactory.getNameModel(String
-				.valueOf(value)) : null;
-	}
+    protected Name getNameAdapter(Object value) {
+        return value != null ? AdapterFactory.getNameModel(String.valueOf(value)) : null;
+    }
 
-	protected Elements getElementUtils() {
-		return elementUtils;
-	}
+    protected Elements getElementUtils() {
+        return elementUtils;
+    }
 
-	protected Types getTypeUtils() {
-		return typeUtils;
-	}
+    protected Types getTypeUtils() {
+        return typeUtils;
+    }
 
-	@Override
-	public String toString() {
-		return asText(TextMode.FULL);
-	}
+    @Override
+    public String toString() {
+        return asText(TextMode.FULL);
+    }
 
-	@SuppressWarnings("unused")
-	private String showAsParent() {
-		return asText(TextMode.UP);
-	}
+    @SuppressWarnings("unused")
+    private String showAsParent() {
+        return asText(TextMode.UP);
+    }
 
-	private String showAsChild() {
-		return asText(TextMode.DOWN);
-	}
+    private String showAsChild() {
+        return asText(TextMode.DOWN);
+    }
 
-	private String asText(TextMode mode) {
-		try {
-			StringBuilder sb = new StringBuilder();
+    private String asText(TextMode mode) {
+        try {
+            StringBuilder sb = new StringBuilder();
 
-			PropertyDescriptor[] descriptors = propertyUtils
-					.getPropertyDescriptors(this);
+            PropertyDescriptor[] descriptors = propertyUtils.getPropertyDescriptors(this);
 
-			sb.append("{");
-			boolean isFirst = true;
-			for (int i = 0; i < descriptors.length; i++) {
-				String name = descriptors[i].getName();
-				Object value;
-				try {
-					value = propertyUtils.getProperty(this, name);
-				} catch (Exception e) {
-					logger.error("Error occured while reading property: "
-							+ name, e);
-					e.printStackTrace();
-					value = "[ERROR!]";
-				}
+            sb.append("{");
+            boolean isFirst = true;
+            for (int i = 0; i < descriptors.length; i++) {
+                String name = descriptors[i].getName();
+                Object value;
+                try {
+                    value = propertyUtils.getProperty(this, name);
+                } catch (Exception e) {
+                    logger.error("Error occured while reading property: " + name, e);
+                    e.printStackTrace();
+                    value = "[ERROR!]";
+                }
 
-				if (!isPropertyForbidden(name, value, mode)) {
-					if (!isFirst) {
-						sb.append(", ");
-					}
-					isFirst = false;
+                if (!isPropertyForbidden(name, value, mode)) {
+                    if (!isFirst) {
+                        sb.append(", ");
+                    }
+                    isFirst = false;
 
-					sb.append(name + "=" + showProperty(name, value));
-				}
-			}
-			sb.append("}");
+                    sb.append(name + "=" + showProperty(name, value));
+                }
+            }
+            sb.append("}");
 
-			return sb.toString();
-		} catch (Exception e) {
-			logger.error(
-					"Error occured while constructing element textual representation",
-					e);
-			e.printStackTrace();
-			return "[ERROR!]";
-		}
+            return sb.toString();
+        } catch (Exception e) {
+            logger.error("Error occured while constructing element textual representation", e);
+            e.printStackTrace();
+            return "[ERROR!]";
+        }
 
-	}
+    }
 
-	private boolean isPropertyForbidden(String name, Object value, TextMode mode) {
-		if (name.equals("class")) {
-			return true;
-		} else {
-			if (mode.equals(TextMode.FULL)) {
-				return false;
-			} else {
-				return (value == null) || (value instanceof Collection)
-						|| (value instanceof JavaElement);
-			}
-		}
-	}
+    private boolean isPropertyForbidden(String name, Object value, TextMode mode) {
+        if (name.equals("class")) {
+            return true;
+        } else {
+            if (mode.equals(TextMode.FULL)) {
+                return false;
+            } else {
+                return (value == null) || (value instanceof Collection) || (value instanceof JavaElement);
+            }
+        }
+    }
 
-	private String showProperty(String name, Object value)
-			throws IllegalAccessException, InvocationTargetException,
-			NoSuchMethodException {
-		if (value != null) {
-			if (value instanceof AbstractAdapter) {
-				// AbstractAdapter adapter = (AbstractAdapter) value;
-				if (name.equals("parent")) {
-					return "[...]"; // adapter.showAsParent();
-				} else {
-					return "[...]"; // adapter.showAsChild();
-				}
-			} else if (value instanceof Collection) {
-				Collection<?> collection = (Collection<?>) value;
-				return showMiniChildCollection(collection); // showChildCollection
-			} else {
-				return value.toString();
-			}
-		} else {
-			return "NULL";
-		}
-	}
+    private String showProperty(String name, Object value) throws IllegalAccessException, InvocationTargetException,
+            NoSuchMethodException {
+        if (value != null) {
+            if (value instanceof AbstractAdapter) {
+                // AbstractAdapter adapter = (AbstractAdapter) value;
+                if (name.equals("parent")) {
+                    return "[...]"; // adapter.showAsParent();
+                } else {
+                    return "[...]"; // adapter.showAsChild();
+                }
+            } else if (value instanceof Collection) {
+                Collection<?> collection = (Collection<?>) value;
+                return showMiniChildCollection(collection); // showChildCollection
+            } else {
+                return value.toString();
+            }
+        } else {
+            return "NULL";
+        }
+    }
 
-	private String showMiniChildCollection(Collection<?> collection) {
-		return "[" + collection.size() + " items]";
-	}
+    private String showMiniChildCollection(Collection<?> collection) {
+        return "[" + collection.size() + " items]";
+    }
 
-	@SuppressWarnings("unused")
-	private String showChildCollection(Collection<?> collection) {
-		StringBuilder sb = new StringBuilder();
+    @SuppressWarnings("unused")
+    private String showChildCollection(Collection<?> collection) {
+        StringBuilder sb = new StringBuilder();
 
-		Iterator<?> iterator = collection.iterator();
-		sb.append("[");
+        Iterator<?> iterator = collection.iterator();
+        sb.append("[");
 
-		while (iterator.hasNext()) {
-			Object item = iterator.next();
-			if (item instanceof AbstractAdapter) {
-				AbstractAdapter adapter = (AbstractAdapter) item;
-				sb.append(adapter.showAsChild());
-			} else {
-				sb.append(item.toString());
-			}
+        while (iterator.hasNext()) {
+            Object item = iterator.next();
+            if (item instanceof AbstractAdapter) {
+                AbstractAdapter adapter = (AbstractAdapter) item;
+                sb.append(adapter.showAsChild());
+            } else {
+                sb.append(item.toString());
+            }
 
-			if (iterator.hasNext()) {
-				sb.append(", ");
-			}
-		}
-		sb.append("]");
+            if (iterator.hasNext()) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
 
-		return sb.toString();
-	}
+        return sb.toString();
+    }
 
 }

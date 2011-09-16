@@ -19,6 +19,7 @@ package org.jannocessor.model.executable;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
 
@@ -34,5 +35,7 @@ public interface JavaMethod extends JavaExecutable {
     Boolean getVarArgs();
 
     PowerList<JavaElementType> getThrownTypes();
+
+    MethodModifiers getModifiers();
 
 }

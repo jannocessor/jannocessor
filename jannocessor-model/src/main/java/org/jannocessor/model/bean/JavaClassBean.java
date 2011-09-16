@@ -23,7 +23,8 @@ import org.jannocessor.model.type.JavaClass;
 public class JavaClassBean extends JavaClassData implements JavaClass {
 
     public JavaClassBean(ClassModifiers modifiers, String name) {
-        // TODO Auto-generated constructor stub
+        setName(new NameBean(name));
+        setModifiers(modifiers);
     }
 
 }

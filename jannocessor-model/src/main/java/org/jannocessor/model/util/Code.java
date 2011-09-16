@@ -45,6 +45,8 @@ import org.jannocessor.model.modifier.FieldModifierValue;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.MethodModifierValue;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.modifier.NestedClassModifierValue;
+import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.jannocessor.model.type.JavaAnnotation;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.model.type.JavaEnum;
@@ -76,7 +78,12 @@ public class Code {
     }
 
     public static JavaMethod method(MethodModifiers modifiers, Class<Void> clazz, String name, JavaParameter... params) {
-        return new JavaMethodBean(modifiers, clazz, name, params);
+        return method(modifiers, type(clazz), name, params);
+    }
+
+    public static JavaMethod method(MethodModifiers modifiers, JavaElementType type, String name,
+            JavaParameter... params) {
+        return new JavaMethodBean(modifiers, type, name, params);
     }
 
     public static JavaConstructor constructor(JavaParameter... params) {
@@ -152,6 +159,15 @@ public class Code {
         return new FieldModifiers() {
             @Override
             public FieldModifierValue[] getValues() {
+                return values;
+            }
+        };
+    }
+
+    public static NestedClassModifiers nestedClassModifiers(final NestedClassModifierValue... values) {
+        return new NestedClassModifiers() {
+            @Override
+            public NestedClassModifierValue[] getValues() {
                 return values;
             }
         };

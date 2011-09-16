@@ -16,9 +16,12 @@
 
 package org.jannocessor.adapter;
 
+import java.util.Set;
+
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
@@ -62,6 +65,7 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.proxy.JavaAnnotationProxy;
 import org.jannocessor.proxy.JavaClassProxy;
 import org.jannocessor.proxy.JavaConstructorProxy;
@@ -81,146 +85,111 @@ import org.jannocessor.proxy.JavaTypeParameterProxy;
 
 public class AdapterFactory {
 
-	@SuppressWarnings("unchecked")
-	public static <T extends JavaElement> T getElementModel(Element element,
-			Class<T> clazz, Elements elementUtils, Types typeUtils) {
+    @SuppressWarnings("unchecked")
+    public static <T extends JavaElement> T getElementModel(Element element, Class<T> clazz, Elements elementUtils,
+            Types typeUtils) {
 
-		if (element != null) {
+        if (element != null) {
 
-			JavaElement model;
+            JavaElement model;
 
-			ElementKind kind = element.getKind();
-			switch (kind) {
+            ElementKind kind = element.getKind();
+            switch (kind) {
 
-			/* Package and types */
+            /* Package and types */
 
-			case PACKAGE:
-				model = new JavaPackageProxy(new JavaPackageAdapter(
-						(PackageElement) element, elementUtils, typeUtils),
-						new JavaPackageData());
-				break;
+            case PACKAGE:
+                model = new JavaPackageProxy(new JavaPackageAdapter((PackageElement) element, elementUtils, typeUtils), new JavaPackageData());
+                break;
 
-			case ENUM:
-				model = new JavaEnumProxy(new JavaEnumAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaEnumData());
-				break;
+            case ENUM:
+                model = new JavaEnumProxy(new JavaEnumAdapter((TypeElement) element, elementUtils, typeUtils), new JavaEnumData());
+                break;
 
-			case CLASS:
-				model = new JavaClassProxy(new JavaClassAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaClassData());
-				break;
+            case CLASS:
+                model = new JavaClassProxy(new JavaClassAdapter((TypeElement) element, elementUtils, typeUtils), new JavaClassData());
+                break;
 
-			case ANNOTATION_TYPE:
-				model = new JavaAnnotationProxy(new JavaAnnotationAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaAnnotationData());
-				break;
+            case ANNOTATION_TYPE:
+                model = new JavaAnnotationProxy(new JavaAnnotationAdapter((TypeElement) element, elementUtils, typeUtils), new JavaAnnotationData());
+                break;
 
-			case INTERFACE:
-				model = new JavaInterfaceProxy(new JavaInterfaceAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaInterfaceData());
-				break;
+            case INTERFACE:
+                model = new JavaInterfaceProxy(new JavaInterfaceAdapter((TypeElement) element, elementUtils, typeUtils), new JavaInterfaceData());
+                break;
 
-			case TYPE_PARAMETER:
-				model = new JavaTypeParameterProxy(
-						new JavaTypeParameterAdapter(
-								(TypeParameterElement) element, elementUtils,
-								typeUtils), new JavaTypeParameterData());
-				break;
+            case TYPE_PARAMETER:
+                model = new JavaTypeParameterProxy(new JavaTypeParameterAdapter((TypeParameterElement) element, elementUtils, typeUtils), new JavaTypeParameterData());
+                break;
 
-			/* Variables */
+            /* Variables */
 
-			case ENUM_CONSTANT:
-				model = new JavaEnumConstantProxy(new JavaEnumConstantAdapter(
-						(VariableElement) element, elementUtils, typeUtils),
-						new JavaEnumConstantData());
-				break;
+            case ENUM_CONSTANT:
+                model = new JavaEnumConstantProxy(new JavaEnumConstantAdapter((VariableElement) element, elementUtils, typeUtils), new JavaEnumConstantData());
+                break;
 
-			case FIELD:
-				model = new JavaFieldProxy(new JavaFieldAdapter(
-						(VariableElement) element, elementUtils, typeUtils),
-						new JavaFieldData());
-				break;
+            case FIELD:
+                model = new JavaFieldProxy(new JavaFieldAdapter((VariableElement) element, elementUtils, typeUtils), new JavaFieldData());
+                break;
 
-			case PARAMETER:
-				model = new JavaParameterProxy(new JavaParameterAdapter(
-						(VariableElement) element, elementUtils, typeUtils),
-						new JavaParameterData());
-				break;
+            case PARAMETER:
+                model = new JavaParameterProxy(new JavaParameterAdapter((VariableElement) element, elementUtils, typeUtils), new JavaParameterData());
+                break;
 
-			case LOCAL_VARIABLE:
-				model = new JavaLocalVariableProxy(
-						new JavaLocalVariableAdapter((VariableElement) element,
-								elementUtils, typeUtils),
-						new JavaLocalVariableData());
-				break;
+            case LOCAL_VARIABLE:
+                model = new JavaLocalVariableProxy(new JavaLocalVariableAdapter((VariableElement) element, elementUtils, typeUtils), new JavaLocalVariableData());
+                break;
 
-			case EXCEPTION_PARAMETER:
-				model = new JavaExceptionParameterProxy(
-						new JavaExceptionParameterAdapter(
-								(VariableElement) element, elementUtils,
-								typeUtils), new JavaExceptionParameterData());
-				break;
+            case EXCEPTION_PARAMETER:
+                model = new JavaExceptionParameterProxy(new JavaExceptionParameterAdapter((VariableElement) element, elementUtils, typeUtils), new JavaExceptionParameterData());
+                break;
 
-			/* Executables */
+            /* Executables */
 
-			case METHOD:
-				model = new JavaMethodProxy(new JavaMethodAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaMethodData());
-				break;
+            case METHOD:
+                model = new JavaMethodProxy(new JavaMethodAdapter((ExecutableElement) element, elementUtils, typeUtils), new JavaMethodData());
+                break;
 
-			case CONSTRUCTOR:
-				model = new JavaConstructorProxy(new JavaConstructorAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaConstructorData());
-				break;
+            case CONSTRUCTOR:
+                model = new JavaConstructorProxy(new JavaConstructorAdapter((ExecutableElement) element, elementUtils, typeUtils), new JavaConstructorData());
+                break;
 
-			case STATIC_INIT:
-				model = new JavaStaticInitProxy(new JavaStaticInitAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaStaticInitData());
-				break;
+            case STATIC_INIT:
+                model = new JavaStaticInitProxy(new JavaStaticInitAdapter((ExecutableElement) element, elementUtils, typeUtils), new JavaStaticInitData());
+                break;
 
-			case INSTANCE_INIT:
-				model = new JavaInstanceInitProxy(new JavaInstanceInitAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaInstanceInitData());
-				break;
+            case INSTANCE_INIT:
+                model = new JavaInstanceInitProxy(new JavaInstanceInitAdapter((ExecutableElement) element, elementUtils, typeUtils), new JavaInstanceInitData());
+                break;
 
-			default:
-				throw new IllegalStateException();
-			}
+            default:
+                throw new IllegalStateException();
+            }
 
-			if (clazz.isAssignableFrom(model.getClass())) {
-				return (T) model;
-			} else {
-				throw new IllegalStateException("Wrong element type!");
-			}
-		} else {
-			return null;
-		}
-	}
+            if (clazz.isAssignableFrom(model.getClass())) {
+                return (T) model;
+            } else {
+                throw new IllegalStateException("Wrong element type!");
+            }
+        } else {
+            return null;
+        }
+    }
 
-	public static JavaElementType getTypeModel(TypeMirror typeMirror,
-			Elements elementUtils, Types typeUtils) {
-		if (typeMirror != null) {
-			return new JavaElementTypeProxy(new ElementTypeAdapter(typeMirror,
-					elementUtils, typeUtils), new JavaElementTypeData());
-		} else {
-			return null;
-		}
-	}
+    public static JavaElementType getTypeModel(TypeMirror typeMirror, Elements elementUtils, Types typeUtils) {
+        if (typeMirror != null) {
+            return new JavaElementTypeProxy(new ElementTypeAdapter(typeMirror, elementUtils, typeUtils), new JavaElementTypeData());
+        } else {
+            return null;
+        }
+    }
 
-	public static Name getNameModel(String text) {
-		if (text != null) {
-			return new NameBean(text);
-		} else {
-			return null;
-		}
-	}
+    public static Name getNameModel(String text) {
+        if (text != null) {
+            return new NameBean(text);
+        } else {
+            return null;
+        }
+    }
 
 }

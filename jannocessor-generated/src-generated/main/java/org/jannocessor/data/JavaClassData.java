@@ -25,6 +25,7 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.modifier.ClassModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -39,6 +40,8 @@ public class JavaClassData extends JavaTypeData implements JavaClass {
     private PowerList<JavaStaticInit> staticInits;
 
     private PowerList<JavaInstanceInit> instanceInits;
+
+    private ClassModifiers modifiers;
 
 
     public PowerList<JavaField> getFields() {
@@ -79,6 +82,14 @@ public class JavaClassData extends JavaTypeData implements JavaClass {
 
     public void setInstanceInits(PowerList<JavaInstanceInit> value) {
         this.instanceInits = value;
+    }
+
+    public ClassModifiers getModifiers() {
+        return this.modifiers;
+    }
+
+    public void setModifiers(ClassModifiers value) {
+        this.modifiers = value;
     }
 
 
