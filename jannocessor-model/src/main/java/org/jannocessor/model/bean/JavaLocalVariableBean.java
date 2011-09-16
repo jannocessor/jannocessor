@@ -19,9 +19,10 @@ package org.jannocessor.model.bean;
 import org.jannocessor.data.JavaLocalVariableData;
 import org.jannocessor.model.variable.JavaLocalVariable;
 
-
 public class JavaLocalVariableBean extends JavaLocalVariableData implements JavaLocalVariable {
 
+    public JavaLocalVariableBean(Class<?> type, String name, boolean isFinal) {
+        // TODO Auto-generated constructor stub
+    }
+
 }
-
-

@@ -16,13 +16,21 @@
 
 package org.jannocessor.model.bean;
 
-import org.jannocessor.data.JavaInterfaceData;
-import org.jannocessor.model.type.JavaInterface;
+import static org.junit.Assert.*;
 
-public class JavaInterfaceBean extends JavaInterfaceData implements JavaInterface {
+import org.jannocessor.model.util.Code;
+import org.jannocessor.model.variable.JavaLocalVariable;
+import org.junit.Test;
 
-    public JavaInterfaceBean(String name) {
-        // TODO Auto-generated constructor stub
+public class JavaLocalVariableTest {
+
+    @Test
+    public void testInstantiation() {
+        JavaLocalVariable var1 = Code.localVariable(int.class, "x");
+        assertNotNull(var1);
+
+        JavaLocalVariable var2 = Code.localVariable(int.class, "x", true);
+        assertNotNull(var2);
     }
 
 }

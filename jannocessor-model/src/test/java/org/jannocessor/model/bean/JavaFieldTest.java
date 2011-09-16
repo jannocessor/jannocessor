@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.util;
+package org.jannocessor.model.bean;
 
 import java.util.List;
 

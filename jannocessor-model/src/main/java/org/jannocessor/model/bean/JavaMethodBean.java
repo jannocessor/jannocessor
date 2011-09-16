@@ -18,10 +18,13 @@ package org.jannocessor.model.bean;
 
 import org.jannocessor.data.JavaMethodData;
 import org.jannocessor.model.executable.JavaMethod;
-
+import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 
+    public JavaMethodBean(MethodModifiers modifiers, Class<Void> clazz, String name, JavaParameter[] params) {
+        // TODO Auto-generated constructor stub
+    }
+
 }
-
-

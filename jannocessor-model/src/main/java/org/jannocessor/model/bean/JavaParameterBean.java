@@ -19,9 +19,10 @@ package org.jannocessor.model.bean;
 import org.jannocessor.data.JavaParameterData;
 import org.jannocessor.model.variable.JavaParameter;
 
-
 public class JavaParameterBean extends JavaParameterData implements JavaParameter {
 
+    public JavaParameterBean(Class<?> clazz, String name, boolean isFinal) {
+        // TODO Auto-generated constructor stub
+    }
+
 }
-
-

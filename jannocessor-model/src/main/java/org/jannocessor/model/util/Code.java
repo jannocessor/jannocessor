@@ -18,19 +18,39 @@ package org.jannocessor.model.util;
 
 import org.jannocessor.model.JavaElementType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.bean.JavaAnnotationBean;
+import org.jannocessor.model.bean.JavaClassBean;
+import org.jannocessor.model.bean.JavaConstructorBean;
 import org.jannocessor.model.bean.JavaElementTypeBean;
+import org.jannocessor.model.bean.JavaEnumBean;
+import org.jannocessor.model.bean.JavaEnumConstantBean;
+import org.jannocessor.model.bean.JavaExceptionParameterBean;
 import org.jannocessor.model.bean.JavaFieldBean;
+import org.jannocessor.model.bean.JavaInstanceInitBean;
+import org.jannocessor.model.bean.JavaInterfaceBean;
+import org.jannocessor.model.bean.JavaLocalVariableBean;
+import org.jannocessor.model.bean.JavaMethodBean;
+import org.jannocessor.model.bean.JavaPackageBean;
+import org.jannocessor.model.bean.JavaParameterBean;
+import org.jannocessor.model.bean.JavaStaticInitBean;
+import org.jannocessor.model.bean.JavaTypeParameterBean;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.modifier.ClassModifierValue;
+import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.modifier.FieldModifierValue;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.modifier.MethodModifierValue;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.type.JavaAnnotation;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.model.type.JavaEnum;
 import org.jannocessor.model.type.JavaInterface;
+import org.jannocessor.model.type.JavaPackage;
+import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 import org.jannocessor.model.variable.JavaField;
@@ -55,105 +75,103 @@ public class Code {
         return new JavaFieldBean(modifiers, type, name(name));
     }
 
-    public static JavaMethod method(Class<?> clazz, String name, JavaParameter... params) {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaMethod method(MethodModifiers modifiers, Class<Void> clazz, String name, JavaParameter... params) {
+        return new JavaMethodBean(modifiers, clazz, name, params);
     }
 
     public static JavaConstructor constructor(JavaParameter... params) {
-        // TODO Auto-generated method stub
-        return null;
+        return constructor(methodModifiers(), params);
     }
 
-    public static JavaMethod getter(JavaField field) {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaConstructor constructor(MethodModifiers modifiers, JavaParameter... params) {
+        return new JavaConstructorBean(modifiers, params);
     }
 
-    public static JavaMethod setter(JavaField field) {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaParameter parameter(Class<?> clazz, String name) {
+        return parameter(clazz, name, false);
     }
 
-    public static JavaParameter parameter(Class<?> class1, String name) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public static JavaParameter parameter(Class<?> class1, String name, boolean isFinal) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public static JavaMethod method(MethodModifiers modifiers, Class<Void> class1, String string, JavaParameter param1,
-            JavaParameter param2) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public static JavaConstructor constructor(MethodModifiers modifiers, JavaParameter param1, JavaParameter param2) {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaParameter parameter(Class<?> clazz, String name, boolean isFinal) {
+        return new JavaParameterBean(clazz, name, isFinal);
     }
 
     public static JavaInstanceInit instanceInit() {
-        // TODO Auto-generated method stub
-        return null;
+        return new JavaInstanceInitBean();
     }
 
     public static JavaStaticInit staticInit() {
-        // TODO Auto-generated method stub
-        return null;
+        return new JavaStaticInitBean();
     }
 
     public static JavaEnumConstant enumConstant(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        return new JavaEnumConstantBean(name);
     }
 
     public static JavaExceptionParameter exceptionParameter(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        return new JavaExceptionParameterBean(name);
     }
 
-    public static JavaLocalVariable localVariable(Class<?> class1, String name) {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaLocalVariable localVariable(Class<?> type, String name) {
+        return localVariable(type, name, false);
     }
 
-    public static JavaLocalVariable localVariable(Class<?> class1, String name, boolean isFinal) {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaLocalVariable localVariable(Class<?> type, String name, boolean isFinal) {
+        return new JavaLocalVariableBean(type, name, isFinal);
     }
 
     public static JavaAnnotation annotation() {
-        // TODO Auto-generated method stub
-        return null;
+        return new JavaAnnotationBean();
     }
 
-    public static JavaEnum enumeration() {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaEnum enumeration(String name) {
+        return enumeration(name, false);
     }
 
-    public static JavaEnum enumeration(boolean isFinal) {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaEnum enumeration(String name, boolean isFinal) {
+        return new JavaEnumBean(name, isFinal);
     }
 
-    public static JavaClass classs() {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaClass classs(ClassModifiers modifiers, String name) {
+        return new JavaClassBean(modifiers, name);
     }
 
-    public static JavaInterface interfacee() {
-        // TODO Auto-generated method stub
-        return null;
+    public static JavaInterface interfacee(String name) {
+        return new JavaInterfaceBean(name);
     }
 
-    public static FieldModifiers fieldModifiers() {
-        // TODO Auto-generated method stub
-        return null;
+    public static ClassModifiers classModifiers(final ClassModifierValue... values) {
+        return new ClassModifiers() {
+            @Override
+            public ClassModifierValue[] getValues() {
+                return values;
+            }
+        };
+    }
+
+    public static FieldModifiers fieldModifiers(final FieldModifierValue... values) {
+        return new FieldModifiers() {
+            @Override
+            public FieldModifierValue[] getValues() {
+                return values;
+            }
+        };
+    }
+
+    public static MethodModifiers methodModifiers(final MethodModifierValue... values) {
+        return new MethodModifiers() {
+            @Override
+            public MethodModifierValue[] getValues() {
+                return values;
+            }
+        };
+    }
+
+    public static JavaPackage packagee() {
+        return new JavaPackageBean();
+    }
+
+    public static JavaTypeParameter typeParameter() {
+        return new JavaTypeParameterBean();
     }
 
 }

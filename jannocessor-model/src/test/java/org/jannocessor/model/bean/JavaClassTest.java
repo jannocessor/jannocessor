@@ -16,13 +16,18 @@
 
 package org.jannocessor.model.bean;
 
-import org.jannocessor.data.JavaInterfaceData;
-import org.jannocessor.model.type.JavaInterface;
+import static org.junit.Assert.*;
 
-public class JavaInterfaceBean extends JavaInterfaceData implements JavaInterface {
+import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.util.Code;
+import org.junit.Test;
 
-    public JavaInterfaceBean(String name) {
-        // TODO Auto-generated constructor stub
+public class JavaClassTest {
+
+    @Test
+    public void testInstantiation() {
+        JavaClass clazz = Code.classs(Code.classModifiers(), "MyClass");
+        assertNotNull(clazz);
     }
 
 }

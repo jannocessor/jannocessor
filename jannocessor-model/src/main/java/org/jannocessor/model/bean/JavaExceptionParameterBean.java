@@ -22,6 +22,10 @@ import org.jannocessor.model.variable.JavaExceptionParameter;
 
 public class JavaExceptionParameterBean extends JavaExceptionParameterData implements JavaExceptionParameter {
 
+    public JavaExceptionParameterBean(String name) {
+        // TODO Auto-generated constructor stub
+    }
+
 }
 
 

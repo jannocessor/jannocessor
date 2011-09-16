@@ -16,13 +16,21 @@
 
 package org.jannocessor.model.bean;
 
-import org.jannocessor.data.JavaInterfaceData;
-import org.jannocessor.model.type.JavaInterface;
+import static org.junit.Assert.*;
 
-public class JavaInterfaceBean extends JavaInterfaceData implements JavaInterface {
+import org.jannocessor.model.util.Code;
+import org.jannocessor.model.variable.JavaParameter;
+import org.junit.Test;
 
-    public JavaInterfaceBean(String name) {
-        // TODO Auto-generated constructor stub
+public class JavaParameterTest {
+
+    @Test
+    public void testInstantiation() {
+        JavaParameter param1 = Code.parameter(String.class, "param1");
+        assertNotNull(param1);
+
+        JavaParameter param2 = Code.parameter(String.class, "param1", true);
+        assertNotNull(param2);
     }
 
 }

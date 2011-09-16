@@ -19,9 +19,10 @@ package org.jannocessor.model.bean;
 import org.jannocessor.data.JavaEnumConstantData;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
-
 public class JavaEnumConstantBean extends JavaEnumConstantData implements JavaEnumConstant {
 
+    public JavaEnumConstantBean(String name) {
+        // TODO Auto-generated constructor stub
+    }
+
 }
-
-

@@ -17,11 +17,13 @@
 package org.jannocessor.model.bean;
 
 import org.jannocessor.data.JavaClassData;
+import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.type.JavaClass;
-
 
 public class JavaClassBean extends JavaClassData implements JavaClass {
 
+    public JavaClassBean(ClassModifiers modifiers, String name) {
+        // TODO Auto-generated constructor stub
+    }
+
 }
-
-

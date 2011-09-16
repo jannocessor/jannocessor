@@ -16,15 +16,30 @@
 
 package org.jannocessor.model.bean;
 
-import org.jannocessor.data.JavaConstructorData;
+import static org.junit.Assert.*;
+
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaParameter;
+import org.junit.Test;
 
-public class JavaConstructorBean extends JavaConstructorData implements JavaConstructor {
+public class JavaConstructorTest {
 
-    public JavaConstructorBean(MethodModifiers modifiers, JavaParameter[] params) {
-        // TODO Auto-generated constructor stub
+    @Test
+    public void testInstantiation() {
+        JavaConstructor constructor = Code.constructor();
+        assertNotNull(constructor);
+
+        MethodModifiers modifiers = Code.methodModifiers();
+        JavaParameter param1 = Code.parameter(String.class, "foo");
+        JavaParameter param2 = Code.parameter(int.class, "bar", true);
+
+        JavaConstructor constructor1 = Code.constructor(param1, param2);
+        assertNotNull(constructor1);
+
+        JavaConstructor constructor2 = Code.constructor(modifiers, param1, param2);
+        assertNotNull(constructor2);
     }
 
 }
