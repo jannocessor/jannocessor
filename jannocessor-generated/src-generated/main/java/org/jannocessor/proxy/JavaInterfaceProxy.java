@@ -17,7 +17,7 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaTypeProxy;
 import org.jannocessor.model.type.JavaInterface;
 import org.jannocessor.data.JavaInterfaceData;
 import org.jannocessor.collection.api.PowerList;
@@ -25,7 +25,7 @@ import org.jannocessor.model.executable.JavaMethod;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaInterfaceProxy extends JavaTypeProxy implements JavaInterface {
+public class JavaInterfaceProxy extends AbstractJavaTypeProxy implements JavaInterface {
 
     private JavaInterface adapter;
 

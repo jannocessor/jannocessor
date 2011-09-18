@@ -18,6 +18,6 @@ package org.jannocessor.model.modifier;
 
 public interface MethodModifiers {
 
-    MethodModifierValue[] getValues();
+	MethodModifierValue[] getValues();
 
 }

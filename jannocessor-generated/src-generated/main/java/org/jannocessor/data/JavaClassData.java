@@ -17,7 +17,7 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaTypeData;
+import org.jannocessor.data.AbstractJavaTypeData;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.variable.JavaField;
@@ -29,7 +29,7 @@ import org.jannocessor.model.modifier.ClassModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaClassData extends JavaTypeData implements JavaClass {
+public class JavaClassData extends AbstractJavaTypeData implements JavaClass {
 
     private PowerList<JavaField> fields;
 

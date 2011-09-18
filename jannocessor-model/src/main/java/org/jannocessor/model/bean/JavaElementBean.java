@@ -19,9 +19,6 @@ package org.jannocessor.model.bean;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.JavaElement;
 
-
 public class JavaElementBean extends JavaElementData implements JavaElement {
 
 }
-
-

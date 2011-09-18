@@ -24,8 +24,8 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.type.JavaInterface;
 
-public final class JavaInterfaceAdapter extends JavaTypeAdapter implements
-		JavaInterface {
+public final class JavaInterfaceAdapter extends AbstractJavaTypeAdapter
+		implements JavaInterface {
 
 	@SuppressWarnings("unused")
 	private final TypeElement tinterface;

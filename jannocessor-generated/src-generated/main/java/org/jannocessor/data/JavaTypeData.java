@@ -17,76 +17,43 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaElementData;
-import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.JavaElementType;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaTypeParameter;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaTypeData extends JavaElementData implements JavaType {
+public class JavaTypeData implements JavaType {
 
-    private String nesting;
+    private Name simpleName;
 
-    private Name packageName;
+    private Name canonicalName;
 
-    private Name qualifiedName;
-
-    private JavaElementType superclass;
-
-    private PowerList<JavaElementType> interfaces;
-
-    private PowerList<JavaTypeParameter> parameters;
+    private PowerList<JavaType> directSupertypes;
 
 
-    public String getNesting() {
-        return this.nesting;
+    public Name getSimpleName() {
+        return this.simpleName;
     }
 
-    public void setNesting(String value) {
-        this.nesting = value;
+    public void setSimpleName(Name value) {
+        this.simpleName = value;
     }
 
-    public Name getPackageName() {
-        return this.packageName;
+    public Name getCanonicalName() {
+        return this.canonicalName;
     }
 
-    public void setPackageName(Name value) {
-        this.packageName = value;
+    public void setCanonicalName(Name value) {
+        this.canonicalName = value;
     }
 
-    public Name getQualifiedName() {
-        return this.qualifiedName;
+    public PowerList<JavaType> getDirectSupertypes() {
+        return this.directSupertypes;
     }
 
-    public void setQualifiedName(Name value) {
-        this.qualifiedName = value;
-    }
-
-    public JavaElementType getSuperclass() {
-        return this.superclass;
-    }
-
-    public void setSuperclass(JavaElementType value) {
-        this.superclass = value;
-    }
-
-    public PowerList<JavaElementType> getInterfaces() {
-        return this.interfaces;
-    }
-
-    public void setInterfaces(PowerList<JavaElementType> value) {
-        this.interfaces = value;
-    }
-
-    public PowerList<JavaTypeParameter> getParameters() {
-        return this.parameters;
-    }
-
-    public void setParameters(PowerList<JavaTypeParameter> value) {
-        this.parameters = value;
+    public void setDirectSupertypes(PowerList<JavaType> value) {
+        this.directSupertypes = value;
     }
 
 

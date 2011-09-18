@@ -17,18 +17,18 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaExecutableProxy;
+import org.jannocessor.proxy.AbstractJavaExecutableProxy;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.data.JavaMethodData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.modifier.MethodModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaMethodProxy extends JavaExecutableProxy implements JavaMethod {
+public class JavaMethodProxy extends AbstractJavaExecutableProxy implements JavaMethod {
 
     private JavaMethod adapter;
 
@@ -62,7 +62,7 @@ public class JavaMethodProxy extends JavaExecutableProxy implements JavaMethod {
         return data.getTypeParameters();
     }
 
-    public JavaElementType getReturnType() {
+    public JavaType getReturnType() {
         if (!getReturnTypeInitialized) {
             data.setReturnType(adapter.getReturnType());
 			getReturnTypeInitialized = true;
@@ -89,7 +89,7 @@ public class JavaMethodProxy extends JavaExecutableProxy implements JavaMethod {
         return data.getVarArgs();
     }
 
-    public PowerList<JavaElementType> getThrownTypes() {
+    public PowerList<JavaType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
             data.setThrownTypes(adapter.getThrownTypes());
 			getThrownTypesInitialized = true;

@@ -27,31 +27,34 @@ import org.jannocessor.model.modifier.FieldModifierValue;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.variable.JavaField;
 
-public final class JavaFieldAdapter extends JavaVariableAdapter implements JavaField {
+public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
+		implements JavaField {
 
-    private final VariableElement field;
+	private final VariableElement field;
 
-    public JavaFieldAdapter(VariableElement field, Elements elementUtils, Types typeUtils) {
-        super(field, elementUtils, typeUtils);
-        this.field = field;
-    }
+	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
+			Types typeUtils) {
+		super(field, elementUtils, typeUtils);
+		this.field = field;
+	}
 
-    @Override
-    public FieldModifiers getModifiers() {
-        Set<Modifier> modifiers = field.getModifiers();
-        final FieldModifierValue[] values = new FieldModifierValue[modifiers.size()];
+	@Override
+	public FieldModifiers getModifiers() {
+		Set<Modifier> modifiers = field.getModifiers();
+		final FieldModifierValue[] values = new FieldModifierValue[modifiers
+				.size()];
 
-        int index = 0;
-        for (Modifier modifier : modifiers) {
-            values[index++] = FieldModifierValue.valueOf(modifier.name());
-        }
+		int index = 0;
+		for (Modifier modifier : modifiers) {
+			values[index++] = FieldModifierValue.valueOf(modifier.name());
+		}
 
-        return new FieldModifiers() {
-            @Override
-            public FieldModifierValue[] getValues() {
-                return values;
-            }
-        };
-    }
+		return new FieldModifiers() {
+			@Override
+			public FieldModifierValue[] getValues() {
+				return values;
+			}
+		};
+	}
 
 }

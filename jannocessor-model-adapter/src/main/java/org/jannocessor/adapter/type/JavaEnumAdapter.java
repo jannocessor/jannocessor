@@ -22,7 +22,8 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaEnum;
 
-public final class JavaEnumAdapter extends JavaTypeAdapter implements JavaEnum {
+public final class JavaEnumAdapter extends AbstractJavaTypeAdapter implements
+		JavaEnum {
 
 	@SuppressWarnings("unused")
 	private final TypeElement tenum;

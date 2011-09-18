@@ -16,7 +16,6 @@
 
 package org.jannocessor.processor.model;
 
-
 public class File {
 
 	private final String packageName;

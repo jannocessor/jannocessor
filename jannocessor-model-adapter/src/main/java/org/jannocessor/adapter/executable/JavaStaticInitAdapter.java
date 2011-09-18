@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaStaticInit;
 
-public final class JavaStaticInitAdapter extends JavaExecutableAdapter
+public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 		implements JavaStaticInit {
 
 	@SuppressWarnings("unused")

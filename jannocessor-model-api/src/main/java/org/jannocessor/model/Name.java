@@ -18,24 +18,24 @@ package org.jannocessor.model;
 
 public interface Name {
 
-    String[] getParts();
+	String[] getParts();
 
-    Name deleteParts(int... positions);
+	Name deleteParts(int... positions);
 
-    Name insertPart(int position, String part);
+	Name insertPart(int position, String part);
 
-    Name appendPart(String part);
+	Name appendPart(String part);
 
-    Name replacePart(int position, String part);
+	Name replacePart(int position, String part);
 
-    Name copy();
+	Name copy();
 
-    String getText();
+	String getText();
 
-    void assign(String name);
+	void assign(String name);
 
-    String getCapitalized();
+	String getCapitalized();
 
-    boolean containsParts(String... parts);
+	boolean containsParts(String... parts);
 
 }

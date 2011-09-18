@@ -20,44 +20,44 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.service.api.ImportOrganizer;
 
 public class TypeUtils {
 
-    private final ImportOrganizer importOrganizer;
-    private List<String> typeImports = new ArrayList<String>();
+	private final ImportOrganizer importOrganizer;
+	private List<String> typeImports = new ArrayList<String>();
 
-    public TypeUtils(ImportOrganizer importOrganizer) {
-	this.importOrganizer = importOrganizer;
-    }
-
-    public String useType(Object type) {
-	if (type instanceof JavaElementType) {
-	    return getTypeUsage(((JavaElementType) type).getName().getText());
-	} else if (type instanceof Name) {
-	    return getTypeUsage(((Name) type).getText());
-	} else {
-	    return getTypeUsage(String.valueOf(type));
+	public TypeUtils(ImportOrganizer importOrganizer) {
+		this.importOrganizer = importOrganizer;
 	}
-    }
 
-    private String getTypeUsage(String type) {
-	String[] imports = importOrganizer.getTypeImports(type);
-	String typeUsage = importOrganizer.getTypeUsage(type);
+	public String useType(Object type) {
+		if (type instanceof JavaType) {
+			return getTypeUsage(((JavaType) type).getCanonicalName().getText());
+		} else if (type instanceof Name) {
+			return getTypeUsage(((Name) type).getText());
+		} else {
+			return getTypeUsage(String.valueOf(type));
+		}
+	}
 
-	typeImports.addAll(Arrays.asList(imports));
+	private String getTypeUsage(String type) {
+		String[] imports = importOrganizer.getTypeImports(type);
+		String typeUsage = importOrganizer.getTypeUsage(type);
 
-	return typeUsage;
-    }
+		typeImports.addAll(Arrays.asList(imports));
 
-    public List<String> getTypeImports() {
-	return typeImports;
-    }
+		return typeUsage;
+	}
 
-    @Override
-    public String toString() {
-	return "methods=[useType($type)]";
-    }
+	public List<String> getTypeImports() {
+		return typeImports;
+	}
+
+	@Override
+	public String toString() {
+		return "methods=[useType($type)]";
+	}
 }

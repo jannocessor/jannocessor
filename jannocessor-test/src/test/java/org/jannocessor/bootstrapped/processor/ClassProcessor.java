@@ -27,18 +27,17 @@ import org.jannocessor.processor.model.ProcessingContext;
 
 public class ClassProcessor implements CodeProcessor {
 
-    @Override
-    public void process(ProcessingContext context, Map<String, Object> params) {
-	JavaClass clazz = (JavaClass) params.get("clazz");
+	@Override
+	public void process(ProcessingContext context, Map<String, Object> params) {
+		JavaClass clazz = (JavaClass) params.get("clazz");
 
-	clazz.getName().deleteParts(1, 2);
+		clazz.getName().deleteParts(1, 2);
 
-	for (JavaField field : clazz.getFields()) {
-	    Name name = field.getType().getName();
-	    name.assign(StringUtils.removeEnd(name.getText(), "BeanModel"));
+		for (JavaField field : clazz.getFields()) {
+			Name name = field.getType().getCanonicalName();
+			name.assign(StringUtils.removeEnd(name.getText(), "BeanModel"));
+		}
+
+		context.generateClass(clazz);
 	}
-
-	context.generateClass(clazz);
-    }
-
 }

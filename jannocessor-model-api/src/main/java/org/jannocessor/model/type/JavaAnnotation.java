@@ -19,6 +19,6 @@ package org.jannocessor.model.type;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
-public interface JavaAnnotation extends JavaType {
+public interface JavaAnnotation extends AbstractJavaType {
 
 }

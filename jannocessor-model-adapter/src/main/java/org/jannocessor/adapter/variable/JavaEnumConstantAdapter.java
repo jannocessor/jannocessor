@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.variable.JavaEnumConstant;
 
-public final class JavaEnumConstantAdapter extends JavaVariableAdapter
+public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
 		implements JavaEnumConstant {
 
 	@SuppressWarnings("unused")

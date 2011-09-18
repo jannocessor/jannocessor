@@ -17,13 +17,13 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaVariableData;
+import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.modifier.FieldModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaFieldData extends JavaVariableData implements JavaField {
+public class JavaFieldData extends AbstractJavaVariableData implements JavaField {
 
     private FieldModifiers modifiers;
 

@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaConstructor;
 
-public final class JavaConstructorAdapter extends JavaExecutableAdapter
+public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		implements JavaConstructor {
 
 	@SuppressWarnings("unused")

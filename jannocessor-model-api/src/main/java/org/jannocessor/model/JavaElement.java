@@ -22,12 +22,12 @@ import org.jannocessor.collection.api.PowerList;
 @DomainModel
 public interface JavaElement {
 
-    JavaElement getParent();
+	JavaElement getParent();
 
-    PowerList<JavaElement> getChildren();
+	PowerList<JavaElement> getChildren();
 
-    Name getName();
+	Name getName();
 
-    JavaElementType getType();
+	JavaType getType();
 
 }

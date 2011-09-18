@@ -18,6 +18,6 @@ package org.jannocessor.model.modifier;
 
 public enum FieldModifierValue {
 
-    PUBLIC, PROTECTED, PRIVATE, STATIC, FINAL, TRANSIENT, VOLATILE
+	PUBLIC, PROTECTED, PRIVATE, STATIC, FINAL, TRANSIENT, VOLATILE
 
 }

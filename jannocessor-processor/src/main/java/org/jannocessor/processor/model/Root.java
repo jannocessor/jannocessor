@@ -18,7 +18,6 @@ package org.jannocessor.processor.model;
 
 import org.jannocessor.model.JavaElement;
 
-
 public class Root {
 
 	private final JavaElement element;

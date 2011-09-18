@@ -17,13 +17,13 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaVariableProxy;
+import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaLocalVariable;
 import org.jannocessor.data.JavaLocalVariableData;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaLocalVariableProxy extends JavaVariableProxy implements JavaLocalVariable {
+public class JavaLocalVariableProxy extends AbstractJavaVariableProxy implements JavaLocalVariable {
 
     @SuppressWarnings("unused")
     private JavaLocalVariable adapter;

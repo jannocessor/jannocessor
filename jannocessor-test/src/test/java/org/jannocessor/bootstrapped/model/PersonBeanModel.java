@@ -5,7 +5,7 @@ import java.util.Date;
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-@AnotherAnnotation(a=3, b="2")
+@AnotherAnnotation(a = 3, b = "2")
 @BeanModel
 public class PersonBeanModel {
 

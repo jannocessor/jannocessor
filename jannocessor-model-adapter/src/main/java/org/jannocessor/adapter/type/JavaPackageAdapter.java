@@ -20,10 +20,10 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.model.type.JavaPackage;
 
-public final class JavaPackageAdapter extends ElementAdapter implements
+public final class JavaPackageAdapter extends JavaElementAdapter implements
 		JavaPackage {
 
 	@SuppressWarnings("unused")

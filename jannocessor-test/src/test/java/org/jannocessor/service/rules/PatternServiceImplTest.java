@@ -40,7 +40,8 @@ public class PatternServiceImplTest extends AbstractTest {
 		checkExtractedVariables("JavaClass()");
 		checkExtractedVariables("a:JavaClass()", "a");
 		checkExtractedVariables("a:JavaClass()\nb : JavaField()", "a", "b");
-		checkExtractedVariables(" a : JavaClass () \n b : JavaField() ", "a", "b");
+		checkExtractedVariables(" a : JavaClass () \n b : JavaField() ", "a",
+				"b");
 	}
 
 	private void checkExtractedVariables(String pattern, String... expectedVars) {

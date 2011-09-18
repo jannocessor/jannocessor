@@ -17,7 +17,7 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaTypeProxy;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.collection.api.PowerList;
@@ -30,7 +30,7 @@ import org.jannocessor.model.modifier.ClassModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaClassProxy extends JavaTypeProxy implements JavaClass {
+public class JavaClassProxy extends AbstractJavaTypeProxy implements JavaClass {
 
     private JavaClass adapter;
 

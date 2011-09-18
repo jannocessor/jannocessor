@@ -17,27 +17,27 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaExecutableData;
+import org.jannocessor.data.AbstractJavaExecutableData;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.modifier.MethodModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaMethodData extends JavaExecutableData implements JavaMethod {
+public class JavaMethodData extends AbstractJavaExecutableData implements JavaMethod {
 
     private PowerList<JavaTypeParameter> typeParameters;
 
-    private JavaElementType returnType;
+    private JavaType returnType;
 
     private PowerList<JavaParameter> parameters;
 
     private Boolean varArgs;
 
-    private PowerList<JavaElementType> thrownTypes;
+    private PowerList<JavaType> thrownTypes;
 
     private MethodModifiers modifiers;
 
@@ -50,11 +50,11 @@ public class JavaMethodData extends JavaExecutableData implements JavaMethod {
         this.typeParameters = value;
     }
 
-    public JavaElementType getReturnType() {
+    public JavaType getReturnType() {
         return this.returnType;
     }
 
-    public void setReturnType(JavaElementType value) {
+    public void setReturnType(JavaType value) {
         this.returnType = value;
     }
 
@@ -74,11 +74,11 @@ public class JavaMethodData extends JavaExecutableData implements JavaMethod {
         this.varArgs = value;
     }
 
-    public PowerList<JavaElementType> getThrownTypes() {
+    public PowerList<JavaType> getThrownTypes() {
         return this.thrownTypes;
     }
 
-    public void setThrownTypes(PowerList<JavaElementType> value) {
+    public void setThrownTypes(PowerList<JavaType> value) {
         this.thrownTypes = value;
     }
 

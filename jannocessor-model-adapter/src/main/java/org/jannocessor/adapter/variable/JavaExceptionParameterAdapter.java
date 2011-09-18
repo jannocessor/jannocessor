@@ -22,8 +22,8 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.variable.JavaExceptionParameter;
 
-public final class JavaExceptionParameterAdapter extends JavaVariableAdapter
-		implements JavaExceptionParameter {
+public final class JavaExceptionParameterAdapter extends
+		AbstractJavaVariableAdapter implements JavaExceptionParameter {
 
 	@SuppressWarnings("unused")
 	private final VariableElement exceptionParameter;

@@ -17,11 +17,12 @@
 package org.jannocessor.model.bean;
 
 import org.jannocessor.data.JavaTypeData;
-import org.jannocessor.model.type.JavaType;
-
+import org.jannocessor.model.JavaType;
 
 public class JavaTypeBean extends JavaTypeData implements JavaType {
 
+	public JavaTypeBean(Class<?> type, Class<?>[] typeParams) {
+		setCanonicalName(new NameBean(type.getCanonicalName()));
+	}
+
 }
-
-

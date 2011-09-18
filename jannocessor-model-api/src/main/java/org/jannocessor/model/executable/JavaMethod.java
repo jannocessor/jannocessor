@@ -18,24 +18,24 @@ package org.jannocessor.model.executable;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
 
 @DomainModel
-public interface JavaMethod extends JavaExecutable {
+public interface JavaMethod extends AbstractJavaExecutable {
 
-    PowerList<JavaTypeParameter> getTypeParameters();
+	PowerList<JavaTypeParameter> getTypeParameters();
 
-    JavaElementType getReturnType();
+	JavaType getReturnType();
 
-    PowerList<JavaParameter> getParameters();
+	PowerList<JavaParameter> getParameters();
 
-    Boolean getVarArgs();
+	Boolean getVarArgs();
 
-    PowerList<JavaElementType> getThrownTypes();
+	PowerList<JavaType> getThrownTypes();
 
-    MethodModifiers getModifiers();
+	MethodModifiers getModifiers();
 
 }

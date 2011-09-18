@@ -18,6 +18,6 @@ package org.jannocessor.model.modifier;
 
 public enum NestedClassModifierValue {
 
-    PUBLIC, PRIVATE, PROTECTED, ABSTRACT, FINAL, STATIC,
+	PUBLIC, PRIVATE, PROTECTED, ABSTRACT, FINAL, STATIC,
 
 }

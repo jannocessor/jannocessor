@@ -19,6 +19,6 @@ package org.jannocessor.model.type;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
-public interface JavaEnum extends JavaType {
+public interface JavaEnum extends AbstractJavaType {
 
 }

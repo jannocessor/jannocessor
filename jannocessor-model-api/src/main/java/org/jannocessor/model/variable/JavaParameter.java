@@ -19,6 +19,6 @@ package org.jannocessor.model.variable;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
-public interface JavaParameter extends JavaVariable {
+public interface JavaParameter extends AbstractJavaVariable {
 
 }

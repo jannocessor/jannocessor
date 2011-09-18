@@ -17,13 +17,13 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaVariableProxy;
+import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.data.JavaParameterData;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaParameterProxy extends JavaVariableProxy implements JavaParameter {
+public class JavaParameterProxy extends AbstractJavaVariableProxy implements JavaParameter {
 
     @SuppressWarnings("unused")
     private JavaParameter adapter;

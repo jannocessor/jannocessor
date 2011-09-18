@@ -17,13 +17,13 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaTypeProxy;
 import org.jannocessor.model.type.JavaAnnotation;
 import org.jannocessor.data.JavaAnnotationData;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaAnnotationProxy extends JavaTypeProxy implements JavaAnnotation {
+public class JavaAnnotationProxy extends AbstractJavaTypeProxy implements JavaAnnotation {
 
     @SuppressWarnings("unused")
     private JavaAnnotation adapter;

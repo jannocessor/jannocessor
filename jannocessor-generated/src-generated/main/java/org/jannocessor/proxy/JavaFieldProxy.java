@@ -17,14 +17,14 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaVariableProxy;
+import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.data.JavaFieldData;
 import org.jannocessor.model.modifier.FieldModifiers;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaFieldProxy extends JavaVariableProxy implements JavaField {
+public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaField {
 
     private JavaField adapter;
 

@@ -25,60 +25,67 @@ import org.jannocessor.model.ProcessingContext;
 
 public class DomainProxyGenerator implements CodeProcessor {
 
-    @Override
-    public void process(ProcessingContext context, Map<String, Object> params) {
-        JavaInterface model = (JavaInterface) params.get("model");
-        context.getLogger().debug("Processing annotated domain model: {}", model);
-        DomainProxyGeneratorHelper helper = new DomainProxyGeneratorHelper();
+	@Override
+	public void process(ProcessingContext context, Map<String, Object> params) {
+		JavaInterface model = (JavaInterface) params.get("model");
+		context.getLogger().debug("Processing annotated domain model: {}",
+				model);
+		DomainProxyGeneratorHelper helper = new DomainProxyGeneratorHelper();
 
-        context.getLogger().debug("Generating model proxies...");
-        generateModelProxies(context, model, helper);
+		context.getLogger().debug("Generating model proxies...");
+		generateModelProxies(context, model, helper);
 
-        context.getLogger().debug("Generating model base beans...");
-        generateBaseModel(context, model, helper);
+		context.getLogger().debug("Generating model base beans...");
+		generateBaseModel(context, model, helper);
 
-        // context.getLogger().debug("Generating model beans...");
-        // generateModelBeans(context, model, helper);
-    }
+		// context.getLogger().debug("Generating model beans...");
+		// generateModelBeans(context, model, helper);
+	}
 
-    private void generateModelProxies(ProcessingContext context, JavaInterface model, DomainProxyGeneratorHelper helper) {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        String packageName = "org.jannocessor.proxy";
-        String className = model.getName().appendPart("Proxy").getText();
+	private void generateModelProxies(ProcessingContext context,
+			JavaInterface model, DomainProxyGeneratorHelper helper) {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+		String packageName = "org.jannocessor.proxy";
+		String className = model.getName().appendPart("Proxy").getText();
 
-        attributes.put("model", model);
-        attributes.put("packageName", packageName);
-        attributes.put("className", className);
-        attributes.put("helper", helper);
+		attributes.put("model", model);
+		attributes.put("packageName", packageName);
+		attributes.put("className", className);
+		attributes.put("helper", helper);
 
-        context.generateFile(packageName, className + ".java", "model_proxy", attributes);
-    }
+		context.generateFile(packageName, className + ".java", "model_proxy",
+				attributes);
+	}
 
-    private void generateBaseModel(ProcessingContext context, JavaInterface model, DomainProxyGeneratorHelper helper) {
-        Map<String, Object> attributes2 = new HashMap<String, Object>();
-        String packageName2 = "org.jannocessor.data";
-        String className2 = model.getName().appendPart("Data").getText();
+	private void generateBaseModel(ProcessingContext context,
+			JavaInterface model, DomainProxyGeneratorHelper helper) {
+		Map<String, Object> attributes2 = new HashMap<String, Object>();
+		String packageName2 = "org.jannocessor.data";
+		String className2 = model.getName().appendPart("Data").getText();
 
-        attributes2.put("model", model);
-        attributes2.put("packageName", packageName2);
-        attributes2.put("className", className2);
-        attributes2.put("helper", helper);
+		attributes2.put("model", model);
+		attributes2.put("packageName", packageName2);
+		attributes2.put("className", className2);
+		attributes2.put("helper", helper);
 
-        context.generateFile(packageName2, className2 + ".java", "model_data", attributes2);
-    }
+		context.generateFile(packageName2, className2 + ".java", "model_data",
+				attributes2);
+	}
 
-    @SuppressWarnings("unused")
-    private void generateModelBeans(ProcessingContext context, JavaInterface model, DomainProxyGeneratorHelper helper) {
-        Map<String, Object> attributes3 = new HashMap<String, Object>();
-        String packageName3 = "org.jannocessor.model.bean";
-        String className3 = model.getName().appendPart("Bean").getText();
+	@SuppressWarnings("unused")
+	private void generateModelBeans(ProcessingContext context,
+			JavaInterface model, DomainProxyGeneratorHelper helper) {
+		Map<String, Object> attributes3 = new HashMap<String, Object>();
+		String packageName3 = "org.jannocessor.model.bean";
+		String className3 = model.getName().appendPart("Bean").getText();
 
-        attributes3.put("model", model);
-        attributes3.put("packageName", packageName3);
-        attributes3.put("className", className3);
-        attributes3.put("helper", helper);
+		attributes3.put("model", model);
+		attributes3.put("packageName", packageName3);
+		attributes3.put("className", className3);
+		attributes3.put("helper", helper);
 
-        context.generateFile(packageName3, className3 + ".java", "model_bean", attributes3);
-    }
+		context.generateFile(packageName3, className3 + ".java", "model_bean",
+				attributes3);
+	}
 
 }

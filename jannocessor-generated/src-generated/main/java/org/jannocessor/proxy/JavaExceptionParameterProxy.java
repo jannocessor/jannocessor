@@ -17,13 +17,13 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaVariableProxy;
+import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 import org.jannocessor.data.JavaExceptionParameterData;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaExceptionParameterProxy extends JavaVariableProxy implements JavaExceptionParameter {
+public class JavaExceptionParameterProxy extends AbstractJavaVariableProxy implements JavaExceptionParameter {
 
     @SuppressWarnings("unused")
     private JavaExceptionParameter adapter;

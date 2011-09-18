@@ -111,7 +111,7 @@ public class ImportOrganizerTest extends AbstractTest {
 	@Test
 	public void testWhiteSpace() {
 		checkImport("a.X<b.Y<c.Z,d.K>,e.L>", "a.X", "b.Y", "c.Z", "d.K", "e.L");
-		
+
 		checkImport("a.X < b.Y < c.Z, d.K >, e.L >");
 	}
 

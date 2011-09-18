@@ -22,8 +22,8 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaInstanceInit;
 
-public final class JavaInstanceInitAdapter extends JavaExecutableAdapter
-		implements JavaInstanceInit {
+public final class JavaInstanceInitAdapter extends
+		AbstractJavaExecutableAdapter implements JavaInstanceInit {
 
 	@SuppressWarnings("unused")
 	private final ExecutableElement instanceInit;

@@ -20,7 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -32,7 +32,7 @@ public class JavaElementData implements JavaElement {
 
     private Name name;
 
-    private JavaElementType type;
+    private JavaType type;
 
 
     public JavaElement getParent() {
@@ -59,11 +59,11 @@ public class JavaElementData implements JavaElement {
         this.name = value;
     }
 
-    public JavaElementType getType() {
+    public JavaType getType() {
         return this.type;
     }
 
-    public void setType(JavaElementType value) {
+    public void setType(JavaType value) {
         this.type = value;
     }
 

@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.variable.JavaLocalVariable;
 
-public final class JavaLocalVariableAdapter extends JavaVariableAdapter
+public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 		implements JavaLocalVariable {
 
 	@SuppressWarnings("unused")

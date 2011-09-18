@@ -22,8 +22,8 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaAnnotation;
 
-public final class JavaAnnotationAdapter extends JavaTypeAdapter implements
-		JavaAnnotation {
+public final class JavaAnnotationAdapter extends AbstractJavaTypeAdapter
+		implements JavaAnnotation {
 
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;

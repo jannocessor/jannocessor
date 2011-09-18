@@ -26,195 +26,195 @@ import org.jannocessor.model.Name;
 
 public class NameBean implements Name {
 
-    private String name;
+	private String name;
 
-    private enum NameCase {
-	CAMELCASE, UNDERSCORE, PACKAGE
-    };
+	private enum NameCase {
+		CAMELCASE, UNDERSCORE, PACKAGE
+	};
 
-    public NameBean(String name) {
-	this.name = name;
-    }
-
-    private List<String> parts() {
-	String name = getText();
-	String[] parts;
-	switch (getNameCase()) {
-	case CAMELCASE:
-	    parts = name.split("(?<!^)(?=[A-Z][^A-Z0-9])");
-	    break;
-	case PACKAGE:
-	    parts = name.split("\\.");
-	    break;
-	case UNDERSCORE:
-	    parts = name.split("_");
-	    break;
-	default:
-	    throw new IllegalStateException("Unknown name case!");
+	public NameBean(String name) {
+		this.name = name;
 	}
 
-	List<String> aaa = new ArrayList<String>();
-	for (String part : parts) {
-	    if (getNameCase().equals(NameCase.CAMELCASE)) {
-		String[] subparts = part.split("(?<=[^A-Z])(?=[A-Z])");
-		for (String subpart : subparts) {
-		    aaa.add(subpart);
+	private List<String> parts() {
+		String name = getText();
+		String[] parts;
+		switch (getNameCase()) {
+		case CAMELCASE:
+			parts = name.split("(?<!^)(?=[A-Z][^A-Z0-9])");
+			break;
+		case PACKAGE:
+			parts = name.split("\\.");
+			break;
+		case UNDERSCORE:
+			parts = name.split("_");
+			break;
+		default:
+			throw new IllegalStateException("Unknown name case!");
 		}
-	    } else {
-		aaa.add(part);
-	    }
+
+		List<String> aaa = new ArrayList<String>();
+		for (String part : parts) {
+			if (getNameCase().equals(NameCase.CAMELCASE)) {
+				String[] subparts = part.split("(?<=[^A-Z])(?=[A-Z])");
+				for (String subpart : subparts) {
+					aaa.add(subpart);
+				}
+			} else {
+				aaa.add(part);
+			}
+		}
+
+		return aaa;
 	}
 
-	return aaa;
-    }
-
-    @Override
-    public String[] getParts() {
-	List<String> parts = new ArrayList<String>();
-	for (String part : parts()) {
-	    parts.add(part);
-	}
-	return parts.toArray(new String[parts.size()]);
-    }
-
-    @Override
-    public Name deleteParts(int... positions) {
-	List<String> parts = parts();
-
-	String deletedStart = null;
-	for (int position : positions) {
-	    if (position == 0) {
-		deletedStart = parts.get(0);
-	    }
-	    parts.set(position, null);
+	@Override
+	public String[] getParts() {
+		List<String> parts = new ArrayList<String>();
+		for (String part : parts()) {
+			parts.add(part);
+		}
+		return parts.toArray(new String[parts.size()]);
 	}
 
-	for (Iterator<String> iterator = parts.iterator(); iterator.hasNext();) {
-	    String part = (String) iterator.next();
-	    if (part == null) {
-		iterator.remove();
-	    }
+	@Override
+	public Name deleteParts(int... positions) {
+		List<String> parts = parts();
+
+		String deletedStart = null;
+		for (int position : positions) {
+			if (position == 0) {
+				deletedStart = parts.get(0);
+			}
+			parts.set(position, null);
+		}
+
+		for (Iterator<String> iterator = parts.iterator(); iterator.hasNext();) {
+			String part = (String) iterator.next();
+			if (part == null) {
+				iterator.remove();
+			}
+		}
+
+		if (parts.isEmpty()) {
+			throw new IllegalStateException(
+					"At least 1 part of the name must not be deleted!");
+		}
+
+		if (deletedStart != null && getNameCase().equals(NameCase.CAMELCASE)) {
+			fixCamelCaseStart(parts, deletedStart);
+		}
+
+		String name = mergeParts(parts);
+		assign(name);
+		return this;
 	}
 
-	if (parts.isEmpty()) {
-	    throw new IllegalStateException(
-		    "At least 1 part of the name must not be deleted!");
+	private void fixCamelCaseStart(List<String> parts, String deletedStart) {
+		String start = parts.get(0);
+
+		if (Character.isUpperCase(deletedStart.charAt(0))) {
+			start = start.substring(0, 1).toUpperCase() + start.substring(1);
+		} else {
+			start = start.substring(0, 1).toLowerCase() + start.substring(1);
+		}
+
+		parts.set(0, start);
 	}
 
-	if (deletedStart != null && getNameCase().equals(NameCase.CAMELCASE)) {
-	    fixCamelCaseStart(parts, deletedStart);
+	@Override
+	public Name insertPart(int position, String part) {
+		List<String> parts = parts();
+
+		parts.add(position, part);
+
+		String name = mergeParts(parts);
+		assign(name);
+		return this;
 	}
 
-	String name = mergeParts(parts);
-	assign(name);
-	return this;
-    }
+	@Override
+	public Name appendPart(String part) {
+		List<String> parts = parts();
 
-    private void fixCamelCaseStart(List<String> parts, String deletedStart) {
-	String start = parts.get(0);
+		parts.add(part);
 
-	if (Character.isUpperCase(deletedStart.charAt(0))) {
-	    start = start.substring(0, 1).toUpperCase() + start.substring(1);
-	} else {
-	    start = start.substring(0, 1).toLowerCase() + start.substring(1);
+		String name = mergeParts(parts);
+		assign(name);
+		return this;
 	}
 
-	parts.set(0, start);
-    }
+	@Override
+	public Name replacePart(int position, String part) {
+		List<String> parts = parts();
 
-    @Override
-    public Name insertPart(int position, String part) {
-	List<String> parts = parts();
+		parts.set(position, part);
 
-	parts.add(position, part);
-
-	String name = mergeParts(parts);
-	assign(name);
-	return this;
-    }
-
-    @Override
-    public Name appendPart(String part) {
-	List<String> parts = parts();
-
-	parts.add(part);
-
-	String name = mergeParts(parts);
-	assign(name);
-	return this;
-    }
-
-    @Override
-    public Name replacePart(int position, String part) {
-	List<String> parts = parts();
-
-	parts.set(position, part);
-
-	String name = mergeParts(parts);
-	assign(name);
-	return this;
-    }
-
-    @Override
-    public boolean containsParts(String... parts) {
-	return parts().containsAll(Arrays.asList(parts));
-    }
-
-    private String mergeParts(List<String> parts) {
-	String separator;
-	switch (getNameCase()) {
-	case CAMELCASE:
-	    separator = "";
-	    break;
-	case PACKAGE:
-	    separator = ".";
-	    break;
-	case UNDERSCORE:
-	    separator = "_";
-	    break;
-	default:
-	    throw new IllegalStateException("Unknown name case!");
+		String name = mergeParts(parts);
+		assign(name);
+		return this;
 	}
 
-	return StringUtils.join(parts, separator);
-    }
-
-    private NameCase getNameCase() {
-	String name = getText();
-	int separatorPos = name.indexOf('.');
-	if (separatorPos > 0) {
-	    return NameCase.PACKAGE;
-	} else {
-	    separatorPos = name.indexOf('_');
-	    if (separatorPos > 0) {
-		return NameCase.UNDERSCORE;
-	    } else {
-		return NameCase.CAMELCASE;
-	    }
+	@Override
+	public boolean containsParts(String... parts) {
+		return parts().containsAll(Arrays.asList(parts));
 	}
-    }
 
-    @Override
-    public Name copy() {
-	return new NameBean(getText());
-    }
+	private String mergeParts(List<String> parts) {
+		String separator;
+		switch (getNameCase()) {
+		case CAMELCASE:
+			separator = "";
+			break;
+		case PACKAGE:
+			separator = ".";
+			break;
+		case UNDERSCORE:
+			separator = "_";
+			break;
+		default:
+			throw new IllegalStateException("Unknown name case!");
+		}
 
-    public String getText() {
-	return name;
-    }
+		return StringUtils.join(parts, separator);
+	}
 
-    @Override
-    public String getCapitalized() {
-	return StringUtils.capitalize(getText());
-    }
+	private NameCase getNameCase() {
+		String name = getText();
+		int separatorPos = name.indexOf('.');
+		if (separatorPos > 0) {
+			return NameCase.PACKAGE;
+		} else {
+			separatorPos = name.indexOf('_');
+			if (separatorPos > 0) {
+				return NameCase.UNDERSCORE;
+			} else {
+				return NameCase.CAMELCASE;
+			}
+		}
+	}
 
-    @Override
-    public String toString() {
-	return getText();
-    }
+	@Override
+	public Name copy() {
+		return new NameBean(getText());
+	}
 
-    @Override
-    public void assign(String name) {
-	this.name = name;
-    }
+	public String getText() {
+		return name;
+	}
+
+	@Override
+	public String getCapitalized() {
+		return StringUtils.capitalize(getText());
+	}
+
+	@Override
+	public String toString() {
+		return getText();
+	}
+
+	@Override
+	public void assign(String name) {
+		this.name = name;
+	}
 }

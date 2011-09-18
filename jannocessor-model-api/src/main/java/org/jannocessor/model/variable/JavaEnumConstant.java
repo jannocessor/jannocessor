@@ -19,6 +19,6 @@ package org.jannocessor.model.variable;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
-public interface JavaEnumConstant extends JavaVariable {
+public interface JavaEnumConstant extends AbstractJavaVariable {
 
 }

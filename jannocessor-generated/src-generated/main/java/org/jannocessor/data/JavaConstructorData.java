@@ -17,16 +17,16 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaExecutableData;
+import org.jannocessor.data.AbstractJavaExecutableData;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaConstructorData extends JavaExecutableData implements JavaConstructor {
+public class JavaConstructorData extends AbstractJavaExecutableData implements JavaConstructor {
 
     private PowerList<JavaTypeParameter> typeParameters;
 
@@ -34,7 +34,7 @@ public class JavaConstructorData extends JavaExecutableData implements JavaConst
 
     private Boolean varArgs;
 
-    private PowerList<JavaElementType> thrownTypes;
+    private PowerList<JavaType> thrownTypes;
 
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
@@ -61,11 +61,11 @@ public class JavaConstructorData extends JavaExecutableData implements JavaConst
         this.varArgs = value;
     }
 
-    public PowerList<JavaElementType> getThrownTypes() {
+    public PowerList<JavaType> getThrownTypes() {
         return this.thrownTypes;
     }
 
-    public void setThrownTypes(PowerList<JavaElementType> value) {
+    public void setThrownTypes(PowerList<JavaType> value) {
         this.thrownTypes = value;
     }
 

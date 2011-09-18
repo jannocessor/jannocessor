@@ -17,14 +17,14 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaTypeData;
+import org.jannocessor.data.AbstractJavaTypeData;
 import org.jannocessor.model.type.JavaInterface;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaInterfaceData extends JavaTypeData implements JavaInterface {
+public class JavaInterfaceData extends AbstractJavaTypeData implements JavaInterface {
 
     private PowerList<JavaMethod> methods;
 

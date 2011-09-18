@@ -17,17 +17,17 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaExecutableProxy;
+import org.jannocessor.proxy.AbstractJavaExecutableProxy;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.data.JavaConstructorData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaConstructorProxy extends JavaExecutableProxy implements JavaConstructor {
+public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements JavaConstructor {
 
     private JavaConstructor adapter;
 
@@ -75,7 +75,7 @@ public class JavaConstructorProxy extends JavaExecutableProxy implements JavaCon
         return data.getVarArgs();
     }
 
-    public PowerList<JavaElementType> getThrownTypes() {
+    public PowerList<JavaType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
             data.setThrownTypes(adapter.getThrownTypes());
 			getThrownTypesInitialized = true;

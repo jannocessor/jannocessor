@@ -21,7 +21,7 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.JavaElementType;
+import org.jannocessor.model.JavaType;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -72,7 +72,7 @@ public class JavaElementProxy implements JavaElement {
         return data.getName();
     }
 
-    public JavaElementType getType() {
+    public JavaType getType() {
         if (!getTypeInitialized) {
             data.setType(adapter.getType());
 			getTypeInitialized = true;

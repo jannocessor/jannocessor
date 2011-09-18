@@ -20,11 +20,11 @@ import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.adapter.ElementAdapter;
+import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.model.type.JavaTypeParameter;
 
-public final class JavaTypeParameterAdapter extends ElementAdapter implements
-		JavaTypeParameter {
+public final class JavaTypeParameterAdapter extends JavaElementAdapter
+		implements JavaTypeParameter {
 
 	@SuppressWarnings("unused")
 	private final TypeParameterElement typeParameter;

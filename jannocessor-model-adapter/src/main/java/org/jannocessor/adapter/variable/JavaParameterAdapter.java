@@ -22,8 +22,8 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.variable.JavaParameter;
 
-public final class JavaParameterAdapter extends JavaVariableAdapter implements
-		JavaParameter {
+public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
+		implements JavaParameter {
 
 	@SuppressWarnings("unused")
 	private final VariableElement parameter;

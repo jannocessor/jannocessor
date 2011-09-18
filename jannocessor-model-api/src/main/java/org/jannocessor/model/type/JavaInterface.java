@@ -21,7 +21,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 
 @DomainModel
-public interface JavaInterface extends JavaType {
+public interface JavaInterface extends AbstractJavaType {
 
 	PowerList<JavaMethod> getMethods();
 

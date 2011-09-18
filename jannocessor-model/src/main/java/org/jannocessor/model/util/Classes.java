@@ -21,19 +21,24 @@ import org.jannocessor.model.modifier.ClassModifiers;
 
 public class Classes {
 
-    /** Represents "public" class modifier. */
-    public static final ClassModifiers PUBLIC = Code.classModifiers(ClassModifierValue.PUBLIC);
+	/** Represents "public" class modifier. */
+	public static final ClassModifiers PUBLIC = Code
+			.classModifiers(ClassModifierValue.PUBLIC);
 
-    /** Represents "public abstract" class modifiers. */
-    public static final ClassModifiers PUBLIC_ABSTRACT = Code.classModifiers(ClassModifierValue.PUBLIC, ClassModifierValue.ABSTRACT);
+	/** Represents "public abstract" class modifiers. */
+	public static final ClassModifiers PUBLIC_ABSTRACT = Code.classModifiers(
+			ClassModifierValue.PUBLIC, ClassModifierValue.ABSTRACT);
 
-    /** Represents "public final" class modifiers. */
-    public static final ClassModifiers PUBLIC_FINAL = Code.classModifiers(ClassModifierValue.PUBLIC, ClassModifierValue.FINAL);
+	/** Represents "public final" class modifiers. */
+	public static final ClassModifiers PUBLIC_FINAL = Code.classModifiers(
+			ClassModifierValue.PUBLIC, ClassModifierValue.FINAL);
 
-    /** Represents "abstract" class modifier. */
-    public static final ClassModifiers ABSTRACT = Code.classModifiers(ClassModifierValue.ABSTRACT);
+	/** Represents "abstract" class modifier. */
+	public static final ClassModifiers ABSTRACT = Code
+			.classModifiers(ClassModifierValue.ABSTRACT);
 
-    /** Represents "final" class modifier. */
-    public static final ClassModifiers FINAL = Code.classModifiers(ClassModifierValue.FINAL);
+	/** Represents "final" class modifier. */
+	public static final ClassModifiers FINAL = Code
+			.classModifiers(ClassModifierValue.FINAL);
 
 }

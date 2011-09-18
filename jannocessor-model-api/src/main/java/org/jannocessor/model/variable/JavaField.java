@@ -20,8 +20,8 @@ import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.modifier.FieldModifiers;
 
 @DomainModel
-public interface JavaField extends JavaVariable {
+public interface JavaField extends AbstractJavaVariable {
 
-    FieldModifiers getModifiers();
+	FieldModifiers getModifiers();
 
 }

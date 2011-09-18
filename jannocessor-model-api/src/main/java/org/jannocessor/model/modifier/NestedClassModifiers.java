@@ -18,6 +18,6 @@ package org.jannocessor.model.modifier;
 
 public interface NestedClassModifiers {
 
-    NestedClassModifierValue[] getValues();
+	NestedClassModifierValue[] getValues();
 
 }

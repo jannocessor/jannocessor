@@ -19,6 +19,6 @@ package org.jannocessor.model.executable;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
-public interface JavaStaticInit extends JavaExecutable {
+public interface JavaStaticInit extends AbstractJavaExecutable {
 
 }
