@@ -19,6 +19,8 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.type.JavaInterface;
 import org.jannocessor.collection.api.PowerList;
 
 
@@ -29,7 +31,29 @@ public class JavaTypeData implements JavaType {
 
     private Name canonicalName;
 
-    private PowerList<JavaType> directSupertypes;
+    private boolean _isPrimitive;
+
+    private boolean _isNull;
+
+    private boolean _isDeclared;
+
+    private boolean _isTypeVariable;
+
+    private boolean _isArray;
+
+    private boolean _hasError;
+
+    private JavaType _asArray;
+
+    private boolean _isClass;
+
+    private JavaClass _asClass;
+
+    private boolean _isInterface;
+
+    private JavaInterface _asInterface;
+
+    private PowerList<JavaType> parameters;
 
 
     public Name getSimpleName() {
@@ -48,12 +72,100 @@ public class JavaTypeData implements JavaType {
         this.canonicalName = value;
     }
 
-    public PowerList<JavaType> getDirectSupertypes() {
-        return this.directSupertypes;
+    public boolean isPrimitive() {
+        return this._isPrimitive;
     }
 
-    public void setDirectSupertypes(PowerList<JavaType> value) {
-        this.directSupertypes = value;
+    public void setPrimitive(boolean value) {
+        this._isPrimitive = value;
+    }
+
+    public boolean isNull() {
+        return this._isNull;
+    }
+
+    public void setNull(boolean value) {
+        this._isNull = value;
+    }
+
+    public boolean isDeclared() {
+        return this._isDeclared;
+    }
+
+    public void setDeclared(boolean value) {
+        this._isDeclared = value;
+    }
+
+    public boolean isTypeVariable() {
+        return this._isTypeVariable;
+    }
+
+    public void setTypeVariable(boolean value) {
+        this._isTypeVariable = value;
+    }
+
+    public boolean isArray() {
+        return this._isArray;
+    }
+
+    public void setArray(boolean value) {
+        this._isArray = value;
+    }
+
+    public boolean hasError() {
+        return this._hasError;
+    }
+
+    public void setError(boolean value) {
+        this._hasError = value;
+    }
+
+    public JavaType asArray() {
+        return this._asArray;
+    }
+
+    public void setArray(JavaType value) {
+        this._asArray = value;
+    }
+
+    public boolean isClass() {
+        return this._isClass;
+    }
+
+    public void setClass(boolean value) {
+        this._isClass = value;
+    }
+
+    public JavaClass asClass() {
+        return this._asClass;
+    }
+
+    public void setClass(JavaClass value) {
+        this._asClass = value;
+    }
+
+    public boolean isInterface() {
+        return this._isInterface;
+    }
+
+    public void setInterface(boolean value) {
+        this._isInterface = value;
+    }
+
+    public JavaInterface asInterface() {
+        return this._asInterface;
+    }
+
+    public void setInterface(JavaInterface value) {
+        this._asInterface = value;
+    }
+
+    public PowerList<JavaType> getParameters() {
+        return this.parameters;
+    }
+
+    public void setParameters(PowerList<JavaType> value) {
+        this.parameters = value;
     }
 
 

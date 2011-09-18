@@ -16,16 +16,16 @@
 
 package org.jannocessor.adapter;
 
-import java.util.List;
-
+import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.type.JavaInterface;
 
 public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
 
@@ -44,20 +44,77 @@ public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
 
 	@Override
 	public Name getSimpleName() {
-		return getNameAdapter(typeMirror.toString());
+		String simpleName = typeMirror.toString().replaceFirst(".+\\.", "");
+		return getNameAdapter(simpleName);
 	}
 
 	@Override
-	public PowerList<JavaType> getDirectSupertypes() {
-		List<? extends TypeMirror> supertypes = getTypeUtils()
-				.directSupertypes(typeMirror);
+	public String toString() {
+		return getCanonicalName().getText();
+	}
 
-		PowerList<JavaType> result = Power.list();
-		for (TypeMirror supertype : supertypes) {
-			result.add(getTypeAdapter(supertype));
+	@Override
+	public boolean isPrimitive() {
+		return typeMirror.getKind().isPrimitive();
+	}
+
+	@Override
+	public boolean isArray() {
+		return TypeKind.ARRAY.equals(typeMirror.getKind());
+	}
+
+	@Override
+	public JavaType asArray() {
+		return null;
+	}
+
+	@Override
+	public boolean isClass() {
+		if (TypeKind.DECLARED.equals(typeMirror.getKind())) {
+			return false;
+		} else {
+			return false;
 		}
+	}
 
-		return result;
+	@Override
+	public JavaClass asClass() {
+		return null;
+	}
+
+	@Override
+	public boolean isInterface() {
+		return false;
+	}
+
+	@Override
+	public JavaInterface asInterface() {
+		return null;
+	}
+
+	@Override
+	public boolean isNull() {
+		return false;
+	}
+
+	@Override
+	public boolean isDeclared() {
+		return false;
+	}
+
+	@Override
+	public boolean isTypeVariable() {
+		return false;
+	}
+
+	@Override
+	public boolean hasError() {
+		return false;
+	}
+
+	@Override
+	public PowerList<JavaType> getParameters() {
+		return null;
 	}
 
 }

@@ -20,6 +20,8 @@ import javax.annotation.Generated;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.type.JavaInterface;
 import org.jannocessor.collection.api.PowerList;
 
 
@@ -39,7 +41,29 @@ public class JavaTypeProxy implements JavaType {
 
 	private boolean getCanonicalNameInitialized = false;
 
-	private boolean getDirectSupertypesInitialized = false;
+	private boolean isPrimitiveInitialized = false;
+
+	private boolean isNullInitialized = false;
+
+	private boolean isDeclaredInitialized = false;
+
+	private boolean isTypeVariableInitialized = false;
+
+	private boolean isArrayInitialized = false;
+
+	private boolean hasErrorInitialized = false;
+
+	private boolean asArrayInitialized = false;
+
+	private boolean isClassInitialized = false;
+
+	private boolean asClassInitialized = false;
+
+	private boolean isInterfaceInitialized = false;
+
+	private boolean asInterfaceInitialized = false;
+
+	private boolean getParametersInitialized = false;
 
 
     public Name getSimpleName() {
@@ -60,13 +84,112 @@ public class JavaTypeProxy implements JavaType {
         return data.getCanonicalName();
     }
 
-    public PowerList<JavaType> getDirectSupertypes() {
-        if (!getDirectSupertypesInitialized) {
-            data.setDirectSupertypes(adapter.getDirectSupertypes());
-			getDirectSupertypesInitialized = true;
+    public boolean isPrimitive() {
+        if (!isPrimitiveInitialized) {
+            data.setPrimitive(adapter.isPrimitive());
+			isPrimitiveInitialized = true;
         }
 
-        return data.getDirectSupertypes();
+        return data.isPrimitive();
+    }
+
+    public boolean isNull() {
+        if (!isNullInitialized) {
+            data.setNull(adapter.isNull());
+			isNullInitialized = true;
+        }
+
+        return data.isNull();
+    }
+
+    public boolean isDeclared() {
+        if (!isDeclaredInitialized) {
+            data.setDeclared(adapter.isDeclared());
+			isDeclaredInitialized = true;
+        }
+
+        return data.isDeclared();
+    }
+
+    public boolean isTypeVariable() {
+        if (!isTypeVariableInitialized) {
+            data.setTypeVariable(adapter.isTypeVariable());
+			isTypeVariableInitialized = true;
+        }
+
+        return data.isTypeVariable();
+    }
+
+    public boolean isArray() {
+        if (!isArrayInitialized) {
+            data.setArray(adapter.isArray());
+			isArrayInitialized = true;
+        }
+
+        return data.isArray();
+    }
+
+    public boolean hasError() {
+        if (!hasErrorInitialized) {
+            data.setError(adapter.hasError());
+			hasErrorInitialized = true;
+        }
+
+        return data.hasError();
+    }
+
+    public JavaType asArray() {
+        if (!asArrayInitialized) {
+            data.setArray(adapter.asArray());
+			asArrayInitialized = true;
+        }
+
+        return data.asArray();
+    }
+
+    public boolean isClass() {
+        if (!isClassInitialized) {
+            data.setClass(adapter.isClass());
+			isClassInitialized = true;
+        }
+
+        return data.isClass();
+    }
+
+    public JavaClass asClass() {
+        if (!asClassInitialized) {
+            data.setClass(adapter.asClass());
+			asClassInitialized = true;
+        }
+
+        return data.asClass();
+    }
+
+    public boolean isInterface() {
+        if (!isInterfaceInitialized) {
+            data.setInterface(adapter.isInterface());
+			isInterfaceInitialized = true;
+        }
+
+        return data.isInterface();
+    }
+
+    public JavaInterface asInterface() {
+        if (!asInterfaceInitialized) {
+            data.setInterface(adapter.asInterface());
+			asInterfaceInitialized = true;
+        }
+
+        return data.asInterface();
+    }
+
+    public PowerList<JavaType> getParameters() {
+        if (!getParametersInitialized) {
+            data.setParameters(adapter.getParameters());
+			getParametersInitialized = true;
+        }
+
+        return data.getParameters();
     }
 
 

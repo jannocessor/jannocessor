@@ -29,10 +29,7 @@ public class JavaTypeTest {
 	@Test
 	public void testInstantiation() {
 		JavaType elementType = Code.type(List.class, String.class);
-
 		assertNotNull(elementType);
-
-		System.out.println(elementType.getDirectSupertypes());
 	}
 
 }

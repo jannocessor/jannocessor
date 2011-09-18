@@ -19,6 +19,7 @@ package org.jannocessor.bootstrapped.processor;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.model.variable.JavaField;
@@ -33,11 +34,20 @@ public class ClassProcessor implements CodeProcessor {
 
 		clazz.getName().deleteParts(1, 2);
 
+		showDebugInfo("CLASS " + clazz.getName(), clazz.getType());
+
 		for (JavaField field : clazz.getFields()) {
 			Name name = field.getType().getCanonicalName();
 			name.assign(StringUtils.removeEnd(name.getText(), "BeanModel"));
+
+			showDebugInfo("FIELD: " + field.getName(), field.getType());
 		}
 
 		context.generateClass(clazz);
+	}
+
+	private void showDebugInfo(String msg, JavaType type) {
+		System.out
+				.println("*********** " + msg + " " + type.getCanonicalName());
 	}
 }

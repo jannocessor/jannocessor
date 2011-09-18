@@ -18,6 +18,8 @@ package org.jannocessor.model;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.type.JavaInterface;
 
 @DomainModel
 public interface JavaType {
@@ -26,6 +28,28 @@ public interface JavaType {
 
 	Name getCanonicalName();
 
-	PowerList<JavaType> getDirectSupertypes();
+	boolean isPrimitive();
+
+	boolean isNull();
+
+	boolean isDeclared();
+
+	boolean isTypeVariable();
+
+	boolean isArray();
+
+	boolean hasError();
+
+	JavaType asArray();
+
+	boolean isClass();
+
+	JavaClass asClass();
+
+	boolean isInterface();
+
+	JavaInterface asInterface();
+
+	PowerList<JavaType> getParameters();
 
 }
