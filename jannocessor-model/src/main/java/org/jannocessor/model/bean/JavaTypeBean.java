@@ -20,6 +20,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.type.JavaEnum;
 import org.jannocessor.model.type.JavaInterface;
 
 public class JavaTypeBean implements JavaType {
@@ -57,11 +58,6 @@ public class JavaTypeBean implements JavaType {
 	@Override
 	public boolean isArray() {
 		return false;
-	}
-
-	@Override
-	public JavaType asArray() {
-		return null;
 	}
 
 	@Override
@@ -108,4 +104,28 @@ public class JavaTypeBean implements JavaType {
 	public PowerList<JavaType> getParameters() {
 		return null;
 	}
+
+    @Override
+    public boolean isWildcard() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean isEnum() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaType getArrayType() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public JavaEnum asEnum() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

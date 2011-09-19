@@ -22,6 +22,7 @@ import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaClass;
 import org.jannocessor.model.type.JavaInterface;
+import org.jannocessor.model.type.JavaEnum;
 import org.jannocessor.collection.api.PowerList;
 
 
@@ -51,17 +52,23 @@ public class JavaTypeProxy implements JavaType {
 
 	private boolean isArrayInitialized = false;
 
-	private boolean hasErrorInitialized = false;
-
-	private boolean asArrayInitialized = false;
+	private boolean isWildcardInitialized = false;
 
 	private boolean isClassInitialized = false;
 
-	private boolean asClassInitialized = false;
-
 	private boolean isInterfaceInitialized = false;
 
+	private boolean isEnumInitialized = false;
+
+	private boolean hasErrorInitialized = false;
+
+	private boolean getArrayTypeInitialized = false;
+
+	private boolean asClassInitialized = false;
+
 	private boolean asInterfaceInitialized = false;
+
+	private boolean asEnumInitialized = false;
 
 	private boolean getParametersInitialized = false;
 
@@ -129,22 +136,13 @@ public class JavaTypeProxy implements JavaType {
         return data.isArray();
     }
 
-    public boolean hasError() {
-        if (!hasErrorInitialized) {
-            data.setError(adapter.hasError());
-			hasErrorInitialized = true;
+    public boolean isWildcard() {
+        if (!isWildcardInitialized) {
+            data.setWildcard(adapter.isWildcard());
+			isWildcardInitialized = true;
         }
 
-        return data.hasError();
-    }
-
-    public JavaType asArray() {
-        if (!asArrayInitialized) {
-            data.setArray(adapter.asArray());
-			asArrayInitialized = true;
-        }
-
-        return data.asArray();
+        return data.isWildcard();
     }
 
     public boolean isClass() {
@@ -156,15 +154,6 @@ public class JavaTypeProxy implements JavaType {
         return data.isClass();
     }
 
-    public JavaClass asClass() {
-        if (!asClassInitialized) {
-            data.setClass(adapter.asClass());
-			asClassInitialized = true;
-        }
-
-        return data.asClass();
-    }
-
     public boolean isInterface() {
         if (!isInterfaceInitialized) {
             data.setInterface(adapter.isInterface());
@@ -174,6 +163,42 @@ public class JavaTypeProxy implements JavaType {
         return data.isInterface();
     }
 
+    public boolean isEnum() {
+        if (!isEnumInitialized) {
+            data.setEnum(adapter.isEnum());
+			isEnumInitialized = true;
+        }
+
+        return data.isEnum();
+    }
+
+    public boolean hasError() {
+        if (!hasErrorInitialized) {
+            data.setError(adapter.hasError());
+			hasErrorInitialized = true;
+        }
+
+        return data.hasError();
+    }
+
+    public JavaType getArrayType() {
+        if (!getArrayTypeInitialized) {
+            data.setArrayType(adapter.getArrayType());
+			getArrayTypeInitialized = true;
+        }
+
+        return data.getArrayType();
+    }
+
+    public JavaClass asClass() {
+        if (!asClassInitialized) {
+            data.setClass(adapter.asClass());
+			asClassInitialized = true;
+        }
+
+        return data.asClass();
+    }
+
     public JavaInterface asInterface() {
         if (!asInterfaceInitialized) {
             data.setInterface(adapter.asInterface());
@@ -181,6 +206,15 @@ public class JavaTypeProxy implements JavaType {
         }
 
         return data.asInterface();
+    }
+
+    public JavaEnum asEnum() {
+        if (!asEnumInitialized) {
+            data.setEnum(adapter.asEnum());
+			asEnumInitialized = true;
+        }
+
+        return data.asEnum();
     }
 
     public PowerList<JavaType> getParameters() {

@@ -19,37 +19,44 @@ package org.jannocessor.model;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.type.JavaEnum;
 import org.jannocessor.model.type.JavaInterface;
 
 @DomainModel
 public interface JavaType {
 
-	Name getSimpleName();
+    Name getSimpleName();
 
-	Name getCanonicalName();
+    Name getCanonicalName();
 
-	boolean isPrimitive();
+    boolean isPrimitive();
 
-	boolean isNull();
+    boolean isNull();
 
-	boolean isDeclared();
+    boolean isDeclared();
 
-	boolean isTypeVariable();
+    boolean isTypeVariable();
 
-	boolean isArray();
+    boolean isArray();
 
-	boolean hasError();
+    boolean isWildcard();
 
-	JavaType asArray();
+    boolean isClass();
 
-	boolean isClass();
+    boolean isInterface();
 
-	JavaClass asClass();
+    boolean isEnum();
 
-	boolean isInterface();
+    boolean hasError();
 
-	JavaInterface asInterface();
+    JavaType getArrayType();
 
-	PowerList<JavaType> getParameters();
+    JavaClass asClass();
+
+    JavaInterface asInterface();
+
+    JavaEnum asEnum();
+
+    PowerList<JavaType> getParameters();
 
 }

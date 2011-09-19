@@ -16,105 +16,171 @@
 
 package org.jannocessor.adapter;
 
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.type.ArrayType;
+import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.type.JavaEnum;
 import org.jannocessor.model.type.JavaInterface;
 
 public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
 
-	private final TypeMirror typeMirror;
+    private final TypeMirror typeMirror;
 
-	public JavaTypeAdapter(TypeMirror typeMirror, Elements elementUtils,
-			Types typeUtils) {
-		super(elementUtils, typeUtils);
-		this.typeMirror = typeMirror;
-	}
+    public JavaTypeAdapter(TypeMirror typeMirror, Elements elementUtils, Types typeUtils) {
+        super(elementUtils, typeUtils);
+        this.typeMirror = typeMirror;
+    }
 
-	@Override
-	public Name getCanonicalName() {
-		return getNameAdapter(typeMirror.toString());
-	}
+    @Override
+    public Name getCanonicalName() {
+        return getNameAdapter(typeMirror.toString());
+    }
 
-	@Override
-	public Name getSimpleName() {
-		String simpleName = typeMirror.toString().replaceFirst(".+\\.", "");
-		return getNameAdapter(simpleName);
-	}
+    @Override
+    public Name getSimpleName() {
+        String simpleName = typeMirror.toString().replaceFirst(".+\\.", "");
+        return getNameAdapter(simpleName);
+    }
 
-	@Override
-	public String toString() {
-		return getCanonicalName().getText();
-	}
+    @Override
+    public String toString() {
+        return getCanonicalName().getText();
+    }
 
-	@Override
-	public boolean isPrimitive() {
-		return typeMirror.getKind().isPrimitive();
-	}
+    @Override
+    public boolean isPrimitive() {
+        return typeMirror.getKind().isPrimitive();
+    }
 
-	@Override
-	public boolean isArray() {
-		return TypeKind.ARRAY.equals(typeMirror.getKind());
-	}
+    @Override
+    public boolean isArray() {
+        return TypeKind.ARRAY.equals(typeMirror.getKind());
+    }
 
-	@Override
-	public JavaType asArray() {
-		return null;
-	}
+    @Override
+    public JavaType getArrayType() {
+        if (isArray()) {
+            if (typeMirror instanceof ArrayType) {
+                ArrayType arrayType = (ArrayType) typeMirror;
+                return getTypeAdapter(arrayType.getComponentType());
+            }
+        }
+        throw new IllegalStateException("Expected ARRAY type, but found: " + typeMirror.getKind());
+    }
 
-	@Override
-	public boolean isClass() {
-		if (TypeKind.DECLARED.equals(typeMirror.getKind())) {
-			return false;
-		} else {
-			return false;
-		}
-	}
+    @Override
+    public boolean isClass() {
+        DeclaredType declaredType = getDeclaredType();
+        if (declaredType != null) {
+            return declaredType.asElement().getKind().equals(ElementKind.CLASS);
+        } else {
+            return false;
+        }
+    }
 
-	@Override
-	public JavaClass asClass() {
-		return null;
-	}
+    @Override
+    public JavaClass asClass() {
+        if (isClass()) {
+            return (JavaClass) getDeclaredType().asElement();
+        } else {
+            throw new IllegalStateException("Expected CLASS type, but found: " + typeMirror.getKind());
+        }
+    }
 
-	@Override
-	public boolean isInterface() {
-		return false;
-	}
+    @Override
+    public boolean isInterface() {
+        DeclaredType declaredType = getDeclaredType();
+        if (declaredType != null) {
+            return declaredType.asElement().getKind().equals(ElementKind.INTERFACE);
+        } else {
+            return false;
+        }
+    }
 
-	@Override
-	public JavaInterface asInterface() {
-		return null;
-	}
+    @Override
+    public JavaInterface asInterface() {
+        if (isInterface()) {
+            return (JavaInterface) getDeclaredType().asElement();
+        } else {
+            throw new IllegalStateException("Expected INTERFACE type, but found: " + typeMirror.getKind());
+        }
+    }
 
-	@Override
-	public boolean isNull() {
-		return false;
-	}
+    @Override
+    public boolean isEnum() {
+        DeclaredType declaredType = getDeclaredType();
+        if (declaredType != null) {
+            return declaredType.asElement().getKind().equals(ElementKind.ENUM);
+        } else {
+            return false;
+        }
+    }
 
-	@Override
-	public boolean isDeclared() {
-		return false;
-	}
+    @Override
+    public JavaEnum asEnum() {
+        if (isEnum()) {
+            return (JavaEnum) getDeclaredType().asElement();
+        } else {
+            throw new IllegalStateException("Expected ENUM type, but found: " + typeMirror.getKind());
+        }
+    }
 
-	@Override
-	public boolean isTypeVariable() {
-		return false;
-	}
+    @Override
+    public boolean isNull() {
+        return TypeKind.NULL.equals(typeMirror.getKind());
+    }
 
-	@Override
-	public boolean hasError() {
-		return false;
-	}
+    @Override
+    public boolean isDeclared() {
+        return TypeKind.DECLARED.equals(typeMirror.getKind());
+    }
 
-	@Override
-	public PowerList<JavaType> getParameters() {
-		return null;
-	}
+    @Override
+    public boolean isTypeVariable() {
+        return TypeKind.TYPEVAR.equals(typeMirror.getKind());
+    }
+
+    @Override
+    public boolean isWildcard() {
+        return TypeKind.WILDCARD.equals(typeMirror.getKind());
+    }
+
+    @Override
+    public boolean hasError() {
+        return TypeKind.ERROR.equals(typeMirror.getKind());
+    }
+
+    @Override
+    public PowerList<JavaType> getParameters() {
+        PowerList<JavaType> arguments = Power.list();
+
+        DeclaredType declaredType = getDeclaredType();
+        if (declaredType != null) {
+            for (TypeMirror typeArg : declaredType.getTypeArguments()) {
+                arguments.add(getTypeAdapter(typeArg));
+            }
+        }
+
+        return arguments;
+    }
+
+    private DeclaredType getDeclaredType() {
+        if (TypeKind.DECLARED.equals(typeMirror.getKind())) {
+            if (typeMirror instanceof DeclaredType) {
+                return (DeclaredType) typeMirror;
+            }
+        }
+        return null;
+    }
 
 }
