@@ -24,12 +24,12 @@ import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
 
-public class JavaTypeTest {
+public class JavaDeclaredTypeTest {
 
-	@Test
-	public void testInstantiation() {
-		JavaType elementType = Code.type(List.class, String.class);
-		assertNotNull(elementType);
-	}
+    @Test
+    public void testInstantiation() {
+        JavaType elementType = Code.type(List.class, String.class);
+        assertNotNull(elementType);
+    }
 
 }

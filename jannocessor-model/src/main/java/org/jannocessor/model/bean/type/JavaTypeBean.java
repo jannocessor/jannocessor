@@ -16,100 +16,110 @@
 
 package org.jannocessor.model.bean.type;
 
-import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.type.JavaArrayType;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.type.JavaWildcardType;
 
-public class JavaTypeBean implements JavaType {
+public class JavaTypeBean extends JavaTypeData implements JavaType {
 
-	private final Class<?> type;
+    private final Class<?> type;
 
-	@SuppressWarnings("unused")
-	private final Class<?>[] typeParams;
+    @SuppressWarnings("unused")
+    private final Class<?>[] typeParams;
 
-	public JavaTypeBean(Class<?> type, Class<?>[] typeParams) {
-		this.type = type;
-		this.typeParams = typeParams;
-	}
-
-	@Override
-	public Name getSimpleName() {
-		return new NameBean(type.getSimpleName());
-	}
-
-	@Override
-	public Name getCanonicalName() {
-		return new NameBean(type.getCanonicalName());
-	}
-
-	@Override
-	public String toString() {
-		return getCanonicalName().toString();
-	}
-
-	@Override
-	public boolean isPrimitive() {
-		return false;
-	}
-
-	@Override
-	public boolean isArray() {
-		return false;
-	}
-
-	@Override
-	public boolean isClass() {
-		return false;
-	}
-
-	@Override
-	public JavaClass asClass() {
-		return null;
-	}
-
-	@Override
-	public boolean isInterface() {
-		return false;
-	}
-
-	@Override
-	public JavaInterface asInterface() {
-		return null;
-	}
-
-	@Override
-	public boolean isNull() {
-		return false;
-	}
-
-	@Override
-	public boolean isDeclared() {
-		return false;
-	}
-
-	@Override
-	public boolean isTypeVariable() {
-		return false;
-	}
-
-	@Override
-	public boolean hasError() {
-		return false;
-	}
-
-	@Override
-	public PowerList<JavaType> getParameters() {
-		return null;
-	}
+    public JavaTypeBean(Class<?> type, Class<?>[] typeParams) {
+        this.type = type;
+        this.typeParams = typeParams;
+    }
 
     @Override
-    public boolean isWildcard() {
+    public Name getSimpleName() {
+        return new NameBean(type.getSimpleName());
+    }
+
+    @Override
+    public Name getCanonicalName() {
+        return new NameBean(type.getCanonicalName());
+    }
+
+    @Override
+    public String toString() {
+        return getCanonicalName().toString();
+    }
+
+    @Override
+    public Class<?> getTypeClass() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean hasError() {
         // TODO Auto-generated method stub
         return false;
+    }
+
+    @Override
+    public boolean isVoid() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean isNull() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean isPrimitive() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean isDeclared() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaDeclaredType asDeclared() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isClass() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaClass asClass() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isInterface() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaInterface asInterface() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
@@ -119,13 +129,55 @@ public class JavaTypeBean implements JavaType {
     }
 
     @Override
-    public JavaType getArrayType() {
+    public JavaEnum asEnum() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public JavaEnum asEnum() {
+    public boolean isArray() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaArrayType asArray() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isWildcard() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaWildcardType asWildcard() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isTypeVariable() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaTypeVariable asTypeVariable() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isExecutable() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaExecutableType asExecutable() {
         // TODO Auto-generated method stub
         return null;
     }

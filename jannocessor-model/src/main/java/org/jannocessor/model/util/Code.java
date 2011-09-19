@@ -16,6 +16,8 @@
 
 package org.jannocessor.model.util;
 
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.executable.JavaConstructorBean;
@@ -28,7 +30,11 @@ import org.jannocessor.model.bean.structure.JavaEnumBean;
 import org.jannocessor.model.bean.structure.JavaInterfaceBean;
 import org.jannocessor.model.bean.structure.JavaPackageBean;
 import org.jannocessor.model.bean.structure.JavaTypeParameterBean;
+import org.jannocessor.model.bean.type.JavaArrayTypeBean;
+import org.jannocessor.model.bean.type.JavaExecutableTypeBean;
 import org.jannocessor.model.bean.type.JavaTypeBean;
+import org.jannocessor.model.bean.type.JavaTypeVariableBean;
+import org.jannocessor.model.bean.type.JavaWildcardTypeBean;
 import org.jannocessor.model.bean.variable.JavaEnumConstantBean;
 import org.jannocessor.model.bean.variable.JavaExceptionParameterBean;
 import org.jannocessor.model.bean.variable.JavaFieldBean;
@@ -53,6 +59,8 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.type.JavaWildcardType;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 import org.jannocessor.model.variable.JavaField;
@@ -63,10 +71,6 @@ public class Code {
 
     private static Name name(String name) {
         return new NameBean(name);
-    }
-
-    public static JavaType type(Class<?> type, Class<?>... typeParams) {
-        return new JavaTypeBean(type, typeParams);
     }
 
     public static JavaField field(FieldModifiers modifiers, Class<?> type, String name) {
@@ -187,6 +191,76 @@ public class Code {
 
     public static JavaTypeParameter typeParameter() {
         return new JavaTypeParameterBean();
+    }
+
+    public static JavaType type(Class<?> type, Class<?>... typeParams) {
+        return new JavaTypeBean(type, typeParams);
+    }
+
+    public static PowerList<JavaType> types(Class<?>... classes) {
+        PowerList<JavaType> result = Power.list();
+
+        for (Class<?> clazz : classes) {
+            result.add(type(clazz));
+        }
+
+        return result;
+    }
+
+    public static PowerList<JavaType> types(JavaType... types) {
+        return Power.list(types);
+    }
+
+    public static JavaType arrayType(JavaType type) {
+        return new JavaArrayTypeBean(type);
+    }
+
+    public static JavaType arrayType(Class<?> type, Class<?>... typeParams) {
+        return arrayType(type(type, typeParams));
+    }
+
+    public static JavaType executableType(JavaType returnType, PowerList<JavaType> parameterTypes,
+            PowerList<JavaType> thrownTypes, PowerList<JavaType> typeVariables) {
+        return new JavaExecutableTypeBean(returnType, parameterTypes, thrownTypes, typeVariables);
+    }
+
+    public static JavaType executableType(JavaType returnType, PowerList<JavaType> parameterTypes,
+            PowerList<JavaType> thrownTypes) {
+        PowerList<JavaType> noTypeVariables = Power.list();
+        return executableType(returnType, parameterTypes, thrownTypes, noTypeVariables);
+    }
+
+    public static JavaType executableType(JavaType returnType, PowerList<JavaType> parameterTypes) {
+        PowerList<JavaType> noThrownTypes = Power.list();
+        return executableType(returnType, parameterTypes, noThrownTypes);
+    }
+
+    public static JavaType executableType(Class<?> returnType, Class<?>... parameterTypes) {
+        return executableType(type(returnType), types(parameterTypes));
+    }
+
+    public static JavaWildcardType wildcardType() {
+        return new JavaWildcardTypeBean(null, null);
+    }
+
+    public static JavaWildcardType wildcardSuper(Class<?> clazz) {
+        return new JavaWildcardTypeBean(clazz, null);
+    }
+
+    public static JavaWildcardType wildcardExtends(Class<?> clazz) {
+        return new JavaWildcardTypeBean(null, clazz);
+    }
+
+    public static JavaTypeVariable typeVar() {
+        return new JavaTypeVariableBean(null, null);
+    }
+
+    public static JavaTypeVariable typeVarLowerBound(Class<?> clazz) {
+        return new JavaTypeVariableBean(clazz, null);
+    }
+
+    public static JavaTypeVariable typeVarUpperBound(Class<?> clazz) {
+        return new JavaTypeVariableBean(null, clazz);
     }
 
 }

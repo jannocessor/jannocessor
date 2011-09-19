@@ -19,49 +19,73 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaArrayType;
+import org.jannocessor.model.type.JavaWildcardType;
+import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.type.JavaExecutableType;
 
 
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeData implements JavaType {
 
+    private Class<?> typeClass;
+
     private Name simpleName;
 
     private Name canonicalName;
 
-    private boolean _isPrimitive;
+    private boolean _hasError;
+
+    private boolean _isVoid;
 
     private boolean _isNull;
 
+    private boolean _isPrimitive;
+
     private boolean _isDeclared;
 
-    private boolean _isTypeVariable;
-
-    private boolean _isArray;
-
-    private boolean _isWildcard;
+    private JavaDeclaredType _asDeclared;
 
     private boolean _isClass;
 
-    private boolean _isInterface;
-
-    private boolean _isEnum;
-
-    private boolean _hasError;
-
-    private JavaType arrayType;
-
     private JavaClass _asClass;
+
+    private boolean _isInterface;
 
     private JavaInterface _asInterface;
 
+    private boolean _isEnum;
+
     private JavaEnum _asEnum;
 
-    private PowerList<JavaType> parameters;
+    private boolean _isArray;
 
+    private JavaArrayType _asArray;
+
+    private boolean _isWildcard;
+
+    private JavaWildcardType _asWildcard;
+
+    private boolean _isTypeVariable;
+
+    private JavaTypeVariable _asTypeVariable;
+
+    private boolean _isExecutable;
+
+    private JavaExecutableType _asExecutable;
+
+
+    public Class<?> getTypeClass() {
+        return this.typeClass;
+    }
+
+    public void setTypeClass(Class<?> value) {
+        this.typeClass = value;
+    }
 
     public Name getSimpleName() {
         return this.simpleName;
@@ -79,12 +103,20 @@ public class JavaTypeData implements JavaType {
         this.canonicalName = value;
     }
 
-    public boolean isPrimitive() {
-        return this._isPrimitive;
+    public boolean hasError() {
+        return this._hasError;
     }
 
-    public void setPrimitive(boolean value) {
-        this._isPrimitive = value;
+    public void setError(boolean value) {
+        this._hasError = value;
+    }
+
+    public boolean isVoid() {
+        return this._isVoid;
+    }
+
+    public void setVoid(boolean value) {
+        this._isVoid = value;
     }
 
     public boolean isNull() {
@@ -95,6 +127,14 @@ public class JavaTypeData implements JavaType {
         this._isNull = value;
     }
 
+    public boolean isPrimitive() {
+        return this._isPrimitive;
+    }
+
+    public void setPrimitive(boolean value) {
+        this._isPrimitive = value;
+    }
+
     public boolean isDeclared() {
         return this._isDeclared;
     }
@@ -103,28 +143,12 @@ public class JavaTypeData implements JavaType {
         this._isDeclared = value;
     }
 
-    public boolean isTypeVariable() {
-        return this._isTypeVariable;
+    public JavaDeclaredType asDeclared() {
+        return this._asDeclared;
     }
 
-    public void setTypeVariable(boolean value) {
-        this._isTypeVariable = value;
-    }
-
-    public boolean isArray() {
-        return this._isArray;
-    }
-
-    public void setArray(boolean value) {
-        this._isArray = value;
-    }
-
-    public boolean isWildcard() {
-        return this._isWildcard;
-    }
-
-    public void setWildcard(boolean value) {
-        this._isWildcard = value;
+    public void setDeclared(JavaDeclaredType value) {
+        this._asDeclared = value;
     }
 
     public boolean isClass() {
@@ -135,44 +159,20 @@ public class JavaTypeData implements JavaType {
         this._isClass = value;
     }
 
-    public boolean isInterface() {
-        return this._isInterface;
-    }
-
-    public void setInterface(boolean value) {
-        this._isInterface = value;
-    }
-
-    public boolean isEnum() {
-        return this._isEnum;
-    }
-
-    public void setEnum(boolean value) {
-        this._isEnum = value;
-    }
-
-    public boolean hasError() {
-        return this._hasError;
-    }
-
-    public void setError(boolean value) {
-        this._hasError = value;
-    }
-
-    public JavaType getArrayType() {
-        return this.arrayType;
-    }
-
-    public void setArrayType(JavaType value) {
-        this.arrayType = value;
-    }
-
     public JavaClass asClass() {
         return this._asClass;
     }
 
     public void setClass(JavaClass value) {
         this._asClass = value;
+    }
+
+    public boolean isInterface() {
+        return this._isInterface;
+    }
+
+    public void setInterface(boolean value) {
+        this._isInterface = value;
     }
 
     public JavaInterface asInterface() {
@@ -183,6 +183,14 @@ public class JavaTypeData implements JavaType {
         this._asInterface = value;
     }
 
+    public boolean isEnum() {
+        return this._isEnum;
+    }
+
+    public void setEnum(boolean value) {
+        this._isEnum = value;
+    }
+
     public JavaEnum asEnum() {
         return this._asEnum;
     }
@@ -191,12 +199,68 @@ public class JavaTypeData implements JavaType {
         this._asEnum = value;
     }
 
-    public PowerList<JavaType> getParameters() {
-        return this.parameters;
+    public boolean isArray() {
+        return this._isArray;
     }
 
-    public void setParameters(PowerList<JavaType> value) {
-        this.parameters = value;
+    public void setArray(boolean value) {
+        this._isArray = value;
+    }
+
+    public JavaArrayType asArray() {
+        return this._asArray;
+    }
+
+    public void setArray(JavaArrayType value) {
+        this._asArray = value;
+    }
+
+    public boolean isWildcard() {
+        return this._isWildcard;
+    }
+
+    public void setWildcard(boolean value) {
+        this._isWildcard = value;
+    }
+
+    public JavaWildcardType asWildcard() {
+        return this._asWildcard;
+    }
+
+    public void setWildcard(JavaWildcardType value) {
+        this._asWildcard = value;
+    }
+
+    public boolean isTypeVariable() {
+        return this._isTypeVariable;
+    }
+
+    public void setTypeVariable(boolean value) {
+        this._isTypeVariable = value;
+    }
+
+    public JavaTypeVariable asTypeVariable() {
+        return this._asTypeVariable;
+    }
+
+    public void setTypeVariable(JavaTypeVariable value) {
+        this._asTypeVariable = value;
+    }
+
+    public boolean isExecutable() {
+        return this._isExecutable;
+    }
+
+    public void setExecutable(boolean value) {
+        this._isExecutable = value;
+    }
+
+    public JavaExecutableType asExecutable() {
+        return this._asExecutable;
+    }
+
+    public void setExecutable(JavaExecutableType value) {
+        this._asExecutable = value;
     }
 
 

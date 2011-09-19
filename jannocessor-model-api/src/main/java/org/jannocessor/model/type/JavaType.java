@@ -17,7 +17,6 @@
 package org.jannocessor.model.type;
 
 import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
@@ -26,38 +25,68 @@ import org.jannocessor.model.structure.JavaInterface;
 @DomainModel
 public interface JavaType {
 
+    Class<?> getTypeClass();
+
     Name getSimpleName();
 
     Name getCanonicalName();
 
-    boolean isPrimitive();
+    boolean hasError();
+
+    boolean isVoid();
 
     boolean isNull();
 
+    /* Primitive types: boolean, byte, char, double, float, int, long, short */
+
+    boolean isPrimitive();
+
+    /* Declared types: class, interface, enumeration */
+
     boolean isDeclared();
 
-    boolean isTypeVariable();
+    JavaDeclaredType asDeclared();
 
-    boolean isArray();
-
-    boolean isWildcard();
+    /* Class */
 
     boolean isClass();
 
-    boolean isInterface();
-
-    boolean isEnum();
-
-    boolean hasError();
-
-    JavaType getArrayType();
-
     JavaClass asClass();
+
+    /* Interface */
+
+    boolean isInterface();
 
     JavaInterface asInterface();
 
+    /* Enumeration */
+
+    boolean isEnum();
+
     JavaEnum asEnum();
 
-    PowerList<JavaType> getParameters();
+    /* Array */
+
+    boolean isArray();
+
+    JavaArrayType asArray();
+
+    /* Wildcard */
+
+    boolean isWildcard();
+
+    JavaWildcardType asWildcard();
+
+    /* Type variable */
+
+    boolean isTypeVariable();
+
+    JavaTypeVariable asTypeVariable();
+
+    /* Executable */
+
+    boolean isExecutable();
+
+    JavaExecutableType asExecutable();
 
 }

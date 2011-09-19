@@ -17,7 +17,6 @@
 package org.jannocessor.adapter.type;
 
 import javax.lang.model.element.ElementKind;
-import javax.lang.model.type.ArrayType;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
@@ -25,15 +24,18 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.AbstractAdapter;
-import org.jannocessor.collection.Power;
-import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.type.JavaArrayType;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.type.JavaWildcardType;
 
-public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
+public class JavaTypeAdapter extends AbstractAdapter implements JavaType {
 
     private final TypeMirror typeMirror;
 
@@ -66,17 +68,6 @@ public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
     @Override
     public boolean isArray() {
         return TypeKind.ARRAY.equals(typeMirror.getKind());
-    }
-
-    @Override
-    public JavaType getArrayType() {
-        if (isArray()) {
-            if (typeMirror instanceof ArrayType) {
-                ArrayType arrayType = (ArrayType) typeMirror;
-                return getTypeAdapter(arrayType.getComponentType());
-            }
-        }
-        throw new IllegalStateException("Expected ARRAY type, but found: " + typeMirror.getKind());
     }
 
     @Override
@@ -161,26 +152,60 @@ public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
         return TypeKind.ERROR.equals(typeMirror.getKind());
     }
 
-    @Override
-    public PowerList<JavaType> getParameters() {
-        PowerList<JavaType> arguments = Power.list();
-
-        DeclaredType declaredType = getDeclaredType();
-        if (declaredType != null) {
-            for (TypeMirror typeArg : declaredType.getTypeArguments()) {
-                arguments.add(getTypeAdapter(typeArg));
-            }
-        }
-
-        return arguments;
-    }
-
-    private DeclaredType getDeclaredType() {
+    protected DeclaredType getDeclaredType() {
         if (TypeKind.DECLARED.equals(typeMirror.getKind())) {
             if (typeMirror instanceof DeclaredType) {
                 return (DeclaredType) typeMirror;
             }
         }
+        return null;
+    }
+
+    @Override
+    public Class<?> getTypeClass() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isVoid() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaDeclaredType asDeclared() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public JavaArrayType asArray() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public JavaWildcardType asWildcard() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public JavaTypeVariable asTypeVariable() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isExecutable() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JavaExecutableType asExecutable() {
+        // TODO Auto-generated method stub
         return null;
     }
 
