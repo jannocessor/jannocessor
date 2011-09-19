@@ -29,12 +29,12 @@ import javax.lang.model.util.Types;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-abstract class AbstractAdapter {
+public abstract class AbstractAdapter {
 
 	enum TextMode {
 		FULL, UP, DOWN

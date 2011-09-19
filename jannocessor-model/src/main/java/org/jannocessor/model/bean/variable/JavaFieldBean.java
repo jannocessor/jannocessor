@@ -17,9 +17,9 @@
 package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaFieldData;
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaField;
 
 public class JavaFieldBean extends JavaFieldData implements JavaField {

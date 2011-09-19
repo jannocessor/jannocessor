@@ -19,10 +19,10 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.structure.AbstractJavaType;
-import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.JavaType;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaTypeParameter;
 
 
 @Generated("JAnnocessor-bootstraped")

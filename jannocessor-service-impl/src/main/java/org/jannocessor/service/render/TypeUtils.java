@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.service.api.ImportOrganizer;
 
 public class TypeUtils {

@@ -25,10 +25,10 @@ import javax.lang.model.util.Types;
 import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.AbstractJavaType;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 
 abstract class AbstractJavaTypeAdapter extends JavaElementAdapter implements
 		AbstractJavaType {

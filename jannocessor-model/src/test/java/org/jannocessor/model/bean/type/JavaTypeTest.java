@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean;
+package org.jannocessor.model.bean.type;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.jannocessor.model.JavaType;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
 

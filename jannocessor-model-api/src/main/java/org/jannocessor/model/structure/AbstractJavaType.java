@@ -19,8 +19,8 @@ package org.jannocessor.model.structure;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaType;
 
 @DomainModel
 public interface AbstractJavaType extends JavaElement {

@@ -20,7 +20,7 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.jannocessor.model.JavaType;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.variable.JavaField;

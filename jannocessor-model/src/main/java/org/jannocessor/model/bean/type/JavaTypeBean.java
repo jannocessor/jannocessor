@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean;
+package org.jannocessor.model.bean.type;
 
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.type.JavaType;
 
 public class JavaTypeBean implements JavaType {
 

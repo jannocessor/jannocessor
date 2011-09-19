@@ -16,9 +16,7 @@
 
 package org.jannocessor.model.util;
 
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.bean.JavaTypeBean;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.executable.JavaConstructorBean;
 import org.jannocessor.model.bean.executable.JavaInstanceInitBean;
@@ -30,6 +28,7 @@ import org.jannocessor.model.bean.structure.JavaEnumBean;
 import org.jannocessor.model.bean.structure.JavaInterfaceBean;
 import org.jannocessor.model.bean.structure.JavaPackageBean;
 import org.jannocessor.model.bean.structure.JavaTypeParameterBean;
+import org.jannocessor.model.bean.type.JavaTypeBean;
 import org.jannocessor.model.bean.variable.JavaEnumConstantBean;
 import org.jannocessor.model.bean.variable.JavaExceptionParameterBean;
 import org.jannocessor.model.bean.variable.JavaFieldBean;
@@ -53,6 +52,7 @@ import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 import org.jannocessor.model.variable.JavaField;

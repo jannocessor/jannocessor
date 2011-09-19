@@ -21,7 +21,7 @@ import org.jannocessor.data.AbstractJavaExecutableData;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.JavaType;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.modifier.MethodModifiers;
 

@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.model.type;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;

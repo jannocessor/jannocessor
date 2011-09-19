@@ -23,8 +23,8 @@ import javax.lang.model.util.Types;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaType;
 
 public abstract class JavaElementAdapter extends AbstractAdapter implements
 		JavaElement, SourceHolder {

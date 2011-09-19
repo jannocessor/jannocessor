@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter;
+package org.jannocessor.adapter.type;
 
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.type.ArrayType;
@@ -24,13 +24,14 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.adapter.AbstractAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.type.JavaType;
 
 public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
 
