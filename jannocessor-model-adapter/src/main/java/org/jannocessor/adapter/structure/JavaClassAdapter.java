@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter.type;
+package org.jannocessor.adapter.structure;
 
 import java.util.Set;
 
@@ -30,7 +30,7 @@ import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.modifier.ClassModifierValue;
 import org.jannocessor.model.modifier.ClassModifiers;
-import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.variable.JavaField;
 
 public final class JavaClassAdapter extends AbstractJavaTypeAdapter implements

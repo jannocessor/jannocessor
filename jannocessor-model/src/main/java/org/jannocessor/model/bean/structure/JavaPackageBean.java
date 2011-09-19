@@ -14,20 +14,11 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.bean.structure;
 
-import static org.junit.Assert.*;
+import org.jannocessor.data.JavaPackageData;
+import org.jannocessor.model.structure.JavaPackage;
 
-import org.jannocessor.model.type.JavaInterface;
-import org.jannocessor.model.util.Code;
-import org.junit.Test;
-
-public class JavaInterfaceTest {
-
-	@Test
-	public void testInstantiation() {
-		JavaInterface interfacee = Code.interfacee("MyInterface");
-		assertNotNull(interfacee);
-	}
+public class JavaPackageBean extends JavaPackageData implements JavaPackage {
 
 }

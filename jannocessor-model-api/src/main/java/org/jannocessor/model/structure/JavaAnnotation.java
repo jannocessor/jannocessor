@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.type;
+package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
 

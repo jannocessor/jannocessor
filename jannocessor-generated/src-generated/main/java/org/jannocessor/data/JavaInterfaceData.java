@@ -18,7 +18,7 @@ package org.jannocessor.data;
 
 import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaTypeData;
-import org.jannocessor.model.type.JavaInterface;
+import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 

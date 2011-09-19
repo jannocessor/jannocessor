@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.type;
+package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
+import static org.junit.Assert.*;
 
-@DomainModel
-public interface JavaInterface extends AbstractJavaType {
+import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.util.Code;
+import org.junit.Test;
 
-	PowerList<JavaMethod> getMethods();
+public class JavaInterfaceTest {
+
+	@Test
+	public void testInstantiation() {
+		JavaInterface interfacee = Code.interfacee("MyInterface");
+		assertNotNull(interfacee);
+	}
 
 }

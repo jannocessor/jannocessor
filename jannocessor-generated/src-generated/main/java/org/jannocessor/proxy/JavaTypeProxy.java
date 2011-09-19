@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaClass;
-import org.jannocessor.model.type.JavaInterface;
-import org.jannocessor.model.type.JavaEnum;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.collection.api.PowerList;
 
 

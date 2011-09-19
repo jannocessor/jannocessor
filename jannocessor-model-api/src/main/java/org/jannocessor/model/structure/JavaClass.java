@@ -14,49 +14,29 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.variable.JavaField;
 
 @DomainModel
-public interface JavaType {
+public interface JavaClass extends AbstractJavaType {
 
-    Name getSimpleName();
+	PowerList<JavaField> getFields();
 
-    Name getCanonicalName();
+	PowerList<JavaConstructor> getConstructors();
 
-    boolean isPrimitive();
+	PowerList<JavaMethod> getMethods();
 
-    boolean isNull();
+	PowerList<JavaStaticInit> getStaticInits();
 
-    boolean isDeclared();
+	PowerList<JavaInstanceInit> getInstanceInits();
 
-    boolean isTypeVariable();
-
-    boolean isArray();
-
-    boolean isWildcard();
-
-    boolean isClass();
-
-    boolean isInterface();
-
-    boolean isEnum();
-
-    boolean hasError();
-
-    JavaType getArrayType();
-
-    JavaClass asClass();
-
-    JavaInterface asInterface();
-
-    JavaEnum asEnum();
-
-    PowerList<JavaType> getParameters();
-
+	ClassModifiers getModifiers();
 }

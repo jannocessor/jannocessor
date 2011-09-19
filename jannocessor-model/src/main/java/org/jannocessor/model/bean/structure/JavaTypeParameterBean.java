@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.data.JavaInterfaceData;
-import org.jannocessor.model.type.JavaInterface;
+import org.jannocessor.data.JavaTypeParameterData;
+import org.jannocessor.model.structure.JavaTypeParameter;
 
-public class JavaInterfaceBean extends JavaInterfaceData implements
-		JavaInterface {
-
-	public JavaInterfaceBean(String name) {
-		// TODO Auto-generated constructor stub
-	}
+public class JavaTypeParameterBean extends JavaTypeParameterData implements
+		JavaTypeParameter {
 
 }

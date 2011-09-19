@@ -14,25 +14,12 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter.type;
+package org.jannocessor.model.bean.structure;
 
-import javax.lang.model.element.PackageElement;
-import javax.lang.model.util.Elements;
-import javax.lang.model.util.Types;
+import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.model.structure.JavaAnnotation;
 
-import org.jannocessor.adapter.JavaElementAdapter;
-import org.jannocessor.model.type.JavaPackage;
-
-public final class JavaPackageAdapter extends JavaElementAdapter implements
-		JavaPackage {
-
-	@SuppressWarnings("unused")
-	private final PackageElement tpackage;
-
-	public JavaPackageAdapter(PackageElement tpackage, Elements elementUtils,
-			Types typeUtils) {
-		super(tpackage, elementUtils, typeUtils);
-		this.tpackage = tpackage;
-	}
+public class JavaAnnotationBean extends JavaAnnotationData implements
+		JavaAnnotation {
 
 }

@@ -14,24 +14,23 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter.type;
+package org.jannocessor.model.bean.structure;
 
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.util.Elements;
-import javax.lang.model.util.Types;
+import static org.junit.Assert.*;
 
-import org.jannocessor.model.type.JavaAnnotation;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.util.Classes;
+import org.jannocessor.model.util.Code;
+import org.junit.Test;
 
-public final class JavaAnnotationAdapter extends AbstractJavaTypeAdapter
-		implements JavaAnnotation {
+public class JavaClassTest {
 
-	@SuppressWarnings("unused")
-	private final TypeElement annotation;
+	@Test
+	public void testInstantiation() {
+		JavaClass clazz = Code.classs(Classes.PUBLIC, "MyClass");
+		assertNotNull(clazz);
 
-	public JavaAnnotationAdapter(TypeElement annotation, Elements elementUtils,
-			Types typeUtils) {
-		super(annotation, elementUtils, typeUtils);
-		this.annotation = annotation;
+		assertEquals(Classes.PUBLIC, clazz.getModifiers());
 	}
 
 }

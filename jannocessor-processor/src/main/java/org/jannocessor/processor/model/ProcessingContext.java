@@ -24,7 +24,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.structure.JavaClass;
 import org.slf4j.Logger;
 
 public class ProcessingContext {

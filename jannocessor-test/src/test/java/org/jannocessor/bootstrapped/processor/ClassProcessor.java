@@ -21,7 +21,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.processor.model.CodeProcessor;
 import org.jannocessor.processor.model.ProcessingContext;

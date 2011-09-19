@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.structure;
 
-import org.jannocessor.data.JavaEnumData;
-import org.jannocessor.model.type.JavaEnum;
+import org.jannocessor.annotation.DomainModel;
 
-public class JavaEnumBean extends JavaEnumData implements JavaEnum {
-
-	public JavaEnumBean(String name, boolean isFinal) {
-		// TODO Auto-generated constructor stub
-	}
+@DomainModel
+public interface JavaEnum extends AbstractJavaType {
 
 }

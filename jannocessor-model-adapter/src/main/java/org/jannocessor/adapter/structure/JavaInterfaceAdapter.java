@@ -14,24 +14,31 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter.type;
+package org.jannocessor.adapter.structure;
 
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.model.type.JavaEnum;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.structure.JavaInterface;
 
-public final class JavaEnumAdapter extends AbstractJavaTypeAdapter implements
-		JavaEnum {
+public final class JavaInterfaceAdapter extends AbstractJavaTypeAdapter
+		implements JavaInterface {
 
 	@SuppressWarnings("unused")
-	private final TypeElement tenum;
+	private final TypeElement tinterface;
 
-	public JavaEnumAdapter(TypeElement tenum, Elements elementUtils,
+	public JavaInterfaceAdapter(TypeElement tinterface, Elements elementUtils,
 			Types typeUtils) {
-		super(tenum, elementUtils, typeUtils);
-		this.tenum = tenum;
+		super(tinterface, elementUtils, typeUtils);
+		this.tinterface = tinterface;
+	}
+
+	@Override
+	public PowerList<JavaMethod> getMethods() {
+		return findChildrenByType(JavaMethod.class);
 	}
 
 }

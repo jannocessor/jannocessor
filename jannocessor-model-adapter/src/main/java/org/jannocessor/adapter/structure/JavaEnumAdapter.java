@@ -14,11 +14,24 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.type;
+package org.jannocessor.adapter.structure;
 
-import org.jannocessor.annotation.DomainModel;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
-@DomainModel
-public interface JavaEnum extends AbstractJavaType {
+import org.jannocessor.model.structure.JavaEnum;
+
+public final class JavaEnumAdapter extends AbstractJavaTypeAdapter implements
+		JavaEnum {
+
+	@SuppressWarnings("unused")
+	private final TypeElement tenum;
+
+	public JavaEnumAdapter(TypeElement tenum, Elements elementUtils,
+			Types typeUtils) {
+		super(tenum, elementUtils, typeUtils);
+		this.tenum = tenum;
+	}
 
 }

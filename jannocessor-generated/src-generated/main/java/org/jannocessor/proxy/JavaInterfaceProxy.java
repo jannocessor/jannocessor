@@ -18,7 +18,7 @@ package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaTypeProxy;
-import org.jannocessor.model.type.JavaInterface;
+import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.data.JavaInterfaceData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;

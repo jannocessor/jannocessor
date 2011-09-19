@@ -18,7 +18,7 @@ package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaTypeProxy;
-import org.jannocessor.model.type.JavaEnum;
+import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.data.JavaEnumData;
 
 

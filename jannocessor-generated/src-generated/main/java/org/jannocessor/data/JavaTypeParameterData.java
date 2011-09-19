@@ -18,7 +18,7 @@ package org.jannocessor.data;
 
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
-import org.jannocessor.model.type.JavaTypeParameter;
+import org.jannocessor.model.structure.JavaTypeParameter;
 
 
 @Generated("JAnnocessor-bootstraped")

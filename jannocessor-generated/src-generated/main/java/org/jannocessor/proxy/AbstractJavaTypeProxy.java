@@ -18,12 +18,12 @@ package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
-import org.jannocessor.model.type.AbstractJavaType;
+import org.jannocessor.model.structure.AbstractJavaType;
+import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.data.AbstractJavaTypeData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaTypeParameter;
 
 
 @Generated("JAnnocessor-bootstraped")

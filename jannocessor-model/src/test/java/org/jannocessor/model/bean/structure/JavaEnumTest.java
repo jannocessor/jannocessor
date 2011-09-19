@@ -14,26 +14,23 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.type;
+package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.JavaType;
-import org.jannocessor.model.Name;
+import static org.junit.Assert.*;
 
-@DomainModel
-public interface AbstractJavaType extends JavaElement {
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.util.Code;
+import org.junit.Test;
 
-	String getNesting();
+public class JavaEnumTest {
 
-	Name getPackageName();
+	@Test
+	public void testInstantiation() {
+		JavaEnum enumeration = Code.enumeration("MyEnum");
+		assertNotNull(enumeration);
 
-	Name getQualifiedName();
+		JavaEnum enumeration2 = Code.enumeration("MyEnum", true);
+		assertNotNull(enumeration2);
+	}
 
-	JavaType getSuperclass();
-
-	PowerList<JavaType> getInterfaces();
-
-	PowerList<JavaTypeParameter> getParameters();
 }

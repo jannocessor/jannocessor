@@ -21,7 +21,7 @@ import org.jannocessor.proxy.AbstractJavaExecutableProxy;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.data.JavaConstructorData;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaTypeParameter;
+import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.JavaType;
 

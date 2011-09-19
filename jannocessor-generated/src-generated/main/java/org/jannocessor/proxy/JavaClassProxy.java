@@ -18,7 +18,7 @@ package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaTypeProxy;
-import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.variable.JavaField;

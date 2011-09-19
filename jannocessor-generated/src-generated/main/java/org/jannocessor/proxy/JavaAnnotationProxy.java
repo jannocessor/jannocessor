@@ -18,7 +18,7 @@ package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaTypeProxy;
-import org.jannocessor.model.type.JavaAnnotation;
+import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.data.JavaAnnotationData;
 
 

@@ -20,7 +20,7 @@ import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.modifier.MethodModifiers;
-import org.jannocessor.model.type.JavaTypeParameter;
+import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
 
 @DomainModel

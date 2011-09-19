@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter.type;
+package org.jannocessor.adapter.structure;
 
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
@@ -27,8 +27,8 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.type.AbstractJavaType;
-import org.jannocessor.model.type.JavaTypeParameter;
+import org.jannocessor.model.structure.AbstractJavaType;
+import org.jannocessor.model.structure.JavaTypeParameter;
 
 abstract class AbstractJavaTypeAdapter extends JavaElementAdapter implements
 		AbstractJavaType {

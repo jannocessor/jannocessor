@@ -14,31 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.adapter.type;
+package org.jannocessor.adapter.structure;
 
-import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.type.JavaInterface;
+import org.jannocessor.adapter.JavaElementAdapter;
+import org.jannocessor.model.structure.JavaTypeParameter;
 
-public final class JavaInterfaceAdapter extends AbstractJavaTypeAdapter
-		implements JavaInterface {
+public final class JavaTypeParameterAdapter extends JavaElementAdapter
+		implements JavaTypeParameter {
 
 	@SuppressWarnings("unused")
-	private final TypeElement tinterface;
+	private final TypeParameterElement typeParameter;
 
-	public JavaInterfaceAdapter(TypeElement tinterface, Elements elementUtils,
-			Types typeUtils) {
-		super(tinterface, elementUtils, typeUtils);
-		this.tinterface = tinterface;
-	}
-
-	@Override
-	public PowerList<JavaMethod> getMethods() {
-		return findChildrenByType(JavaMethod.class);
+	public JavaTypeParameterAdapter(TypeParameterElement typeParameter,
+			Elements elementUtils, Types typeUtils) {
+		super(typeParameter, elementUtils, typeUtils);
+		this.typeParameter = typeParameter;
 	}
 
 }

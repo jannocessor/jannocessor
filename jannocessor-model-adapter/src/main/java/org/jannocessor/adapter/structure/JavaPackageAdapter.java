@@ -14,20 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.adapter.structure;
 
-import static org.junit.Assert.*;
+import javax.lang.model.element.PackageElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
-import org.jannocessor.model.type.JavaTypeParameter;
-import org.jannocessor.model.util.Code;
-import org.junit.Test;
+import org.jannocessor.adapter.JavaElementAdapter;
+import org.jannocessor.model.structure.JavaPackage;
 
-public class JavaTypeParameterTest {
+public final class JavaPackageAdapter extends JavaElementAdapter implements
+		JavaPackage {
 
-	@Test
-	public void testInstantiation() {
-		JavaTypeParameter typeParameter = Code.typeParameter();
-		assertNotNull(typeParameter);
+	@SuppressWarnings("unused")
+	private final PackageElement tpackage;
+
+	public JavaPackageAdapter(PackageElement tpackage, Elements elementUtils,
+			Types typeUtils) {
+		super(tpackage, elementUtils, typeUtils);
+		this.tpackage = tpackage;
 	}
 
 }

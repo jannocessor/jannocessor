@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.bean.structure;
 
 import static org.junit.Assert.*;
 
-import org.jannocessor.model.type.JavaPackage;
+import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
 
-public class JavaPackageTest {
+public class JavaAnnotationTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaPackage packagee = Code.packagee();
-		assertNotNull(packagee);
+		JavaAnnotation annotation = Code.annotation();
+		assertNotNull(annotation);
 	}
 
 }

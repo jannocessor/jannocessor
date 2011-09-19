@@ -14,18 +14,15 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.data.JavaClassData;
-import org.jannocessor.model.bean.NameBean;
-import org.jannocessor.model.modifier.ClassModifiers;
-import org.jannocessor.model.type.JavaClass;
+import org.jannocessor.data.JavaEnumData;
+import org.jannocessor.model.structure.JavaEnum;
 
-public class JavaClassBean extends JavaClassData implements JavaClass {
+public class JavaEnumBean extends JavaEnumData implements JavaEnum {
 
-	public JavaClassBean(ClassModifiers modifiers, String name) {
-		setName(new NameBean(name));
-		setModifiers(modifiers);
+	public JavaEnumBean(String name, boolean isFinal) {
+		// TODO Auto-generated constructor stub
 	}
 
 }

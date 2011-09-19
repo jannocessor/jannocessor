@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.data.AbstractJavaTypeData;
-import org.jannocessor.model.type.AbstractJavaType;
+import org.jannocessor.data.JavaClassData;
+import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.structure.JavaClass;
 
-public class AbstractJavaTypeBean extends AbstractJavaTypeData implements
-		AbstractJavaType {
+public class JavaClassBean extends JavaClassData implements JavaClass {
+
+	public JavaClassBean(ClassModifiers modifiers, String name) {
+		setName(new NameBean(name));
+		setModifiers(modifiers);
+	}
 
 }

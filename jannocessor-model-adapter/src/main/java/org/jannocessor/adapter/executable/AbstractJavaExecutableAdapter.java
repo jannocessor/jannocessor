@@ -28,7 +28,7 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
-import org.jannocessor.model.type.JavaTypeParameter;
+import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaParameter;
 
 abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter

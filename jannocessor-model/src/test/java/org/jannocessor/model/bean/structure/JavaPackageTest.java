@@ -14,23 +14,20 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.bean.structure;
 
 import static org.junit.Assert.*;
 
-import org.jannocessor.model.type.JavaEnum;
+import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
 
-public class JavaEnumTest {
+public class JavaPackageTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaEnum enumeration = Code.enumeration("MyEnum");
-		assertNotNull(enumeration);
-
-		JavaEnum enumeration2 = Code.enumeration("MyEnum", true);
-		assertNotNull(enumeration2);
+		JavaPackage packagee = Code.packagee();
+		assertNotNull(packagee);
 	}
 
 }

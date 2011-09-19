@@ -28,9 +28,9 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaClass;
-import org.jannocessor.model.type.JavaEnum;
-import org.jannocessor.model.type.JavaInterface;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaInterface;
 
 public final class JavaTypeAdapter extends AbstractAdapter implements JavaType {
 

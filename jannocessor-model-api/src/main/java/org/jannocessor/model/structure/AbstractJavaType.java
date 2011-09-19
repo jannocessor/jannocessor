@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.structure;
 
-import static org.junit.Assert.*;
+import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.JavaType;
+import org.jannocessor.model.Name;
 
-import org.jannocessor.model.type.JavaAnnotation;
-import org.jannocessor.model.util.Code;
-import org.junit.Test;
+@DomainModel
+public interface AbstractJavaType extends JavaElement {
 
-public class JavaAnnotationTest {
+	String getNesting();
 
-	@Test
-	public void testInstantiation() {
-		JavaAnnotation annotation = Code.annotation();
-		assertNotNull(annotation);
-	}
+	Name getPackageName();
 
+	Name getQualifiedName();
+
+	JavaType getSuperclass();
+
+	PowerList<JavaType> getInterfaces();
+
+	PowerList<JavaTypeParameter> getParameters();
 }

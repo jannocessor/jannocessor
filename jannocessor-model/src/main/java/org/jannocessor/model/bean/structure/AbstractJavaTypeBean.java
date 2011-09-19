@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.type;
+package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.data.JavaAnnotationData;
-import org.jannocessor.model.type.JavaAnnotation;
+import org.jannocessor.data.AbstractJavaTypeData;
+import org.jannocessor.model.structure.AbstractJavaType;
 
-public class JavaAnnotationBean extends JavaAnnotationData implements
-		JavaAnnotation {
+public class AbstractJavaTypeBean extends AbstractJavaTypeData implements
+		AbstractJavaType {
 
 }
