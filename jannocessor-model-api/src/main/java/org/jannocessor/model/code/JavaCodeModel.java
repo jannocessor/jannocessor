@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.model.code;
 
 import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.code.JavaCodeModel;
-import org.jannocessor.model.type.JavaType;
 
 @DomainModel
-public interface JavaElement extends JavaCodeModel {
+public interface JavaCodeModel {
 
-	JavaElement getParent();
-
-	PowerList<JavaElement> getChildren();
-
-	Name getName();
-
-	JavaType getType();
+	SourceCode getCode();
 
 }

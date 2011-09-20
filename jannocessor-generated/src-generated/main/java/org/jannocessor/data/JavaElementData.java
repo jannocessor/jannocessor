@@ -17,6 +17,7 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
+import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
@@ -24,7 +25,7 @@ import org.jannocessor.model.type.JavaType;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaElementData implements JavaElement {
+public class JavaElementData extends JavaCodeModelData implements JavaElement {
 
     private JavaElement parent;
 

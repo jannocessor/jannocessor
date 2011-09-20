@@ -17,6 +17,7 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
+import org.jannocessor.proxy.JavaCodeModelProxy;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Name;
@@ -31,13 +32,14 @@ import org.jannocessor.model.type.JavaExecutableType;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaTypeProxy implements JavaType {
+public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
     private JavaType adapter;
 
     private JavaTypeData data;
 
     public JavaTypeProxy(JavaType adapter, JavaTypeData data) {
+        super(adapter, data);
         this.adapter = adapter;
         this.data = data;
     }

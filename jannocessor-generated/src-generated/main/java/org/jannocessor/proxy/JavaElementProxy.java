@@ -17,6 +17,7 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
+import org.jannocessor.proxy.JavaCodeModelProxy;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.collection.api.PowerList;
@@ -25,13 +26,14 @@ import org.jannocessor.model.type.JavaType;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaElementProxy implements JavaElement {
+public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement {
 
     private JavaElement adapter;
 
     private JavaElementData data;
 
     public JavaElementProxy(JavaElement adapter, JavaElementData data) {
+        super(adapter, data);
         this.adapter = adapter;
         this.data = data;
     }

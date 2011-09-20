@@ -14,22 +14,28 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.data;
 
-import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
+import javax.annotation.Generated;
 import org.jannocessor.model.code.JavaCodeModel;
-import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.code.SourceCode;
 
-@DomainModel
-public interface JavaElement extends JavaCodeModel {
 
-	JavaElement getParent();
+@Generated("JAnnocessor-bootstraped")
+public class SourceCodeRepresentationData implements JavaCodeModel {
 
-	PowerList<JavaElement> getChildren();
+    private SourceCode code;
 
-	Name getName();
 
-	JavaType getType();
+    public SourceCode getCode() {
+        return this.code;
+    }
+
+    public void setCode(SourceCode value) {
+        this.code = value;
+    }
+
 
 }
+
+

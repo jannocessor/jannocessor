@@ -17,6 +17,7 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
+import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaDeclaredType;
@@ -30,7 +31,7 @@ import org.jannocessor.model.type.JavaExecutableType;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaTypeData implements JavaType {
+public class JavaTypeData extends JavaCodeModelData implements JavaType {
 
     private Class<?> typeClass;
 

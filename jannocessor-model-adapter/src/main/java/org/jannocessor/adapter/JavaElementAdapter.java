@@ -26,7 +26,7 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 
-public abstract class JavaElementAdapter extends AbstractAdapter implements
+public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 		JavaElement, SourceHolder {
 
 	private final Element element;

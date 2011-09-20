@@ -53,8 +53,10 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 		VelocityContext context = createContext(attributes);
 		Writer writer = new StringWriter();
 		TypeUtils typeUtils = createTypeUtils();
+		DefaultSourceCodeRenderer renderUtils = createRenderUtils();
 
 		context.put("types", typeUtils);
+		context.put("render", renderUtils);
 
 		Velocity.evaluate(context, writer, "RENDERER", template);
 
@@ -62,6 +64,10 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 
 		logger.debug("Rendered text:\n{}", renderedText);
 		return postProcess(renderedText, typeUtils);
+	}
+
+	private DefaultSourceCodeRenderer createRenderUtils() {
+		return new DefaultSourceCodeRenderer(this);
 	}
 
 	private TypeUtils createTypeUtils() {
@@ -77,9 +83,11 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 
 			VelocityContext context = createContext(attributes);
 			TypeUtils typeUtils = createTypeUtils();
+			DefaultSourceCodeRenderer renderUtils = createRenderUtils();
 			Writer writer = new StringWriter();
 
 			context.put("types", typeUtils);
+			context.put("render", renderUtils);
 
 			t.merge(context, writer);
 			String renderedText = writer.toString();

@@ -18,75 +18,76 @@ package org.jannocessor.model.type;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
 
 @DomainModel
-public interface JavaType {
+public interface JavaType extends JavaCodeModel {
 
-    Class<?> getTypeClass();
+	Class<?> getTypeClass();
 
-    Name getSimpleName();
+	Name getSimpleName();
 
-    Name getCanonicalName();
+	Name getCanonicalName();
 
-    boolean hasError();
+	boolean hasError();
 
-    boolean isVoid();
+	boolean isVoid();
 
-    boolean isNull();
+	boolean isNull();
 
-    /* Primitive types: boolean, byte, char, double, float, int, long, short */
+	/* Primitive types: boolean, byte, char, double, float, int, long, short */
 
-    boolean isPrimitive();
+	boolean isPrimitive();
 
-    /* Declared types: class, interface, enumeration */
+	/* Declared types: class, interface, enumeration */
 
-    boolean isDeclared();
+	boolean isDeclared();
 
-    JavaDeclaredType asDeclared();
+	JavaDeclaredType asDeclared();
 
-    /* Class */
+	/* Class */
 
-    boolean isClass();
+	boolean isClass();
 
-    JavaClass asClass();
+	JavaClass asClass();
 
-    /* Interface */
+	/* Interface */
 
-    boolean isInterface();
+	boolean isInterface();
 
-    JavaInterface asInterface();
+	JavaInterface asInterface();
 
-    /* Enumeration */
+	/* Enumeration */
 
-    boolean isEnum();
+	boolean isEnum();
 
-    JavaEnum asEnum();
+	JavaEnum asEnum();
 
-    /* Array */
+	/* Array */
 
-    boolean isArray();
+	boolean isArray();
 
-    JavaArrayType asArray();
+	JavaArrayType asArray();
 
-    /* Wildcard */
+	/* Wildcard */
 
-    boolean isWildcard();
+	boolean isWildcard();
 
-    JavaWildcardType asWildcard();
+	JavaWildcardType asWildcard();
 
-    /* Type variable */
+	/* Type variable */
 
-    boolean isTypeVariable();
+	boolean isTypeVariable();
 
-    JavaTypeVariable asTypeVariable();
+	JavaTypeVariable asTypeVariable();
 
-    /* Executable */
+	/* Executable */
 
-    boolean isExecutable();
+	boolean isExecutable();
 
-    JavaExecutableType asExecutable();
+	JavaExecutableType asExecutable();
 
 }
