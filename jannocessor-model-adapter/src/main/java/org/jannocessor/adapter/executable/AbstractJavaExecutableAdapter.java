@@ -27,6 +27,7 @@ import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
+import org.jannocessor.model.executable.ExecutableBody;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
@@ -85,4 +86,9 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 		return adapters;
 	}
 
+	@Override
+	public ExecutableBody getBody() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
 }

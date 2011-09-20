@@ -16,12 +16,18 @@
 
 package org.jannocessor.model.executable;
 
-import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.model.JavaElement;
+public interface ExecutableBody {
 
-@DomainModel
-public interface AbstractJavaExecutable extends JavaElement {
+    String getCode();
 
-    ExecutableBody getBody();
+    void setCode(String code);
+
+    String getTemplate();
+
+    void setTemplate(String template);
+
+    String getTemplateName();
+
+    void setTemplateName(String templateName);
 
 }

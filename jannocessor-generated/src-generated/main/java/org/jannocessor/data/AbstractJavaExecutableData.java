@@ -19,11 +19,22 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
+import org.jannocessor.model.executable.ExecutableBody;
 
 
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaExecutableData extends JavaElementData implements AbstractJavaExecutable {
 
+    private ExecutableBody body;
+
+
+    public ExecutableBody getBody() {
+        return this.body;
+    }
+
+    public void setBody(ExecutableBody value) {
+        this.body = value;
+    }
 
 
 }

@@ -20,15 +20,14 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.data.AbstractJavaExecutableData;
+import org.jannocessor.model.executable.ExecutableBody;
 
 
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaExecutableProxy extends JavaElementProxy implements AbstractJavaExecutable {
 
-    @SuppressWarnings("unused")
     private AbstractJavaExecutable adapter;
 
-    @SuppressWarnings("unused")
     private AbstractJavaExecutableData data;
 
     public AbstractJavaExecutableProxy(AbstractJavaExecutable adapter, AbstractJavaExecutableData data) {
@@ -37,6 +36,17 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
         this.data = data;
     }
 
+	private boolean getBodyInitialized = false;
+
+
+    public ExecutableBody getBody() {
+        if (!getBodyInitialized) {
+            data.setBody(adapter.getBody());
+			getBodyInitialized = true;
+        }
+
+        return data.getBody();
+    }
 
 
 }
