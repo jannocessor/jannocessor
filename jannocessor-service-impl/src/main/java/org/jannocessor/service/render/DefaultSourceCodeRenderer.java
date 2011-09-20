@@ -38,28 +38,27 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 	}
 
 	@Override
-	public String render(JavaCodeModel sourceCode) {
-		SourceCode code = sourceCode.getCode();
+	public String render(JavaCodeModel codeModel) {
+		SourceCode code = codeModel.getCode();
 		try {
 			if (code.getCode() != null) {
 				return code.getCode();
 			} else if (code.getTemplate() != null) {
 				return templateRenderer.render(code.getTemplate(),
-						getAttributes(sourceCode));
+						getAttributes(codeModel));
 			} else if (code.getTemplateName() != null) {
 				return templateRenderer.renderFromFile(code.getTemplateName(),
-						getAttributes(sourceCode));
+						getAttributes(codeModel));
 			} else {
-				return "ERROR (" + sourceCode + ")";
+				return "ERROR (" + codeModel + ")";
 			}
 		} catch (JannocessorException e) {
-			logger.error("Cannot render element: " + sourceCode, e);
-			return "ERROR (" + sourceCode + ")";
+			logger.error("Cannot render element: " + codeModel, e);
+			return "ERROR (" + codeModel + ")";
 		}
 	}
 
-	private Map<String, Object> getAttributes(
-			JavaCodeModel sourceCode) {
+	private Map<String, Object> getAttributes(JavaCodeModel sourceCode) {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("self", sourceCode);

@@ -8,6 +8,15 @@ public class SourceCodeBean implements SourceCode {
 	private String template;
 	private String templateName;
 
+	public SourceCodeBean() {
+	}
+
+	public SourceCodeBean(String code, String template, String templateName) {
+		this.code = code;
+		this.template = template;
+		this.templateName = templateName;
+	}
+
 	@Override
 	public String getCode() {
 		return code;

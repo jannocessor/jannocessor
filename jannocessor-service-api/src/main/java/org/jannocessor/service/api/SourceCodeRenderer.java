@@ -4,6 +4,6 @@ import org.jannocessor.model.code.JavaCodeModel;
 
 public interface SourceCodeRenderer {
 
-	public String render(JavaCodeModel sourceCodeHolder);
+	public String render(JavaCodeModel codeModel);
 
 }
