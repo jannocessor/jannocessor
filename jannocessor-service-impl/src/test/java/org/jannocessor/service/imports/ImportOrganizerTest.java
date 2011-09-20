@@ -16,14 +16,14 @@
 
 package org.jannocessor.service.imports;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.jannocessor.service.api.ImportOrganizer;
-import org.jannocessor.test.AbstractTest;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ImportOrganizerTest extends AbstractTest {
+public class ImportOrganizerTest {
 
 	private ImportOrganizer organizer;
 

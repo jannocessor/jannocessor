@@ -16,17 +16,16 @@
 
 package org.jannocessor.service.rules;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.util.List;
 
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.PatternService;
-import org.jannocessor.test.AbstractTest;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PatternServiceImplTest extends AbstractTest {
+public class PatternServiceImplTest {
 
 	private PatternService patternService;
 

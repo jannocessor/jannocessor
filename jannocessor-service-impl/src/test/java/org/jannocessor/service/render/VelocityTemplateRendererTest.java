@@ -16,18 +16,17 @@
 
 package org.jannocessor.service.render;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.TemplateRenderer;
-import org.jannocessor.test.AbstractTest;
 import org.junit.Before;
 import org.junit.Test;
 
-public class VelocityTemplateRendererTest extends AbstractTest {
+public class VelocityTemplateRendererTest {
 
 	private TemplateRenderer renderer;
 
