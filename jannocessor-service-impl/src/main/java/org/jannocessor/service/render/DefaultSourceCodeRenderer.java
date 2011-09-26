@@ -47,7 +47,8 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 				return templateRenderer.render(code.getTemplate(),
 						getAttributes(codeModel));
 			} else if (code.getTemplateName() != null) {
-				return templateRenderer.renderFromFile(code.getTemplateName(),
+				return templateRenderer.renderFromFile(
+						"templates/" + code.getTemplateName() + ".vm",
 						getAttributes(codeModel));
 			} else {
 				return "ERROR (" + codeModel + ")";
