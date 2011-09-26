@@ -17,6 +17,10 @@ public class SourceCodeBean implements SourceCode {
 		this.templateName = templateName;
 	}
 
+	public SourceCodeBean(String templateName) {
+		this.templateName = templateName;
+	}
+
 	@Override
 	public String getCode() {
 		return code;

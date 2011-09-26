@@ -22,12 +22,12 @@ import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.SourceCodeRenderer;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class DefaultSourceCodeRendererTest {
 
-	private static final String CODE1 = "CODE1";
 	private SourceCodeRenderer renderer;
 
 	@Before
@@ -36,29 +36,38 @@ public class DefaultSourceCodeRendererTest {
 	}
 
 	@Test
+	public void testDefaultRender() throws JannocessorException {
+		JavaField field = Code.field(Fields.PRIVATE, String.class, "f1");
+
+		checkRendering(field, "default:f1");
+	}
+
+	@Test
 	public void testRenderCode() throws JannocessorException {
 		JavaField field = Code.field(Fields.PRIVATE, String.class, "foo");
+		field.getCode().setCode("code");
 
-		checkRendering(field, CODE1);
+		checkRendering(field, "code");
 	}
 
 	@Test
 	public void testRenderTemplate() throws JannocessorException {
-		JavaField field = Code.field(Fields.PRIVATE, String.class, "foo");
+		JavaField field = Code.field(Fields.PRIVATE, String.class, "bar");
+		field.getCode().setTemplate("($self.name)");
 
-		checkRendering(field, CODE1);
+		checkRendering(field, "(bar)");
 	}
 
 	@Test
 	public void testRenderTemplateByName() throws JannocessorException {
 		JavaField field = Code.field(Fields.PRIVATE, String.class, "foo");
+		field.getCode().setTemplateName("field");
 
-		checkRendering(field, CODE1);
+		checkRendering(field, "(foo)");
 	}
 
 	private void checkRendering(JavaCodeModel codeModel, String expected) {
-		// FIXME: finish this
-		// assertEquals(expected, renderer.render(codeModel));
+		Assert.assertEquals(expected, renderer.render(codeModel));
 	}
 
 }
