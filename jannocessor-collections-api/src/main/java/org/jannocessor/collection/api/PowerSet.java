@@ -9,9 +9,9 @@ import org.jannocessor.collection.transform.api.Transformation;
 
 public interface PowerSet<E> extends Set<E>, PowerCollection<E> {
 
-	PowerSet<E> add(E... objects);
+	PowerSet<E> addAll(E... objects);
 
-	PowerSet<E> remove(E... objects);
+	PowerSet<E> removeAll(E... objects);
 
 	PowerSet<E> copy();
 

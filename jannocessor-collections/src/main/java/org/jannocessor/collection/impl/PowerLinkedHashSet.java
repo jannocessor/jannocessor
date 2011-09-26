@@ -92,17 +92,30 @@ public class PowerLinkedHashSet<E> extends LinkedHashSet<E> implements
 		return this;
 	}
 
-	public PowerSet<E> add(E... objects) {
+	public PowerSet<E> addAll(E... objects) {
 		for (E object : objects) {
 			super.add(object);
 		}
 		return this;
 	}
 
-	public PowerSet<E> remove(E... objects) {
+	public PowerSet<E> removeAll(E... objects) {
 		for (E object : objects) {
 			super.remove(object);
 		}
 		return this;
 	}
+
+	@Override
+	public void assign(Collection<? extends E> collection) {
+		clear();
+		addAll(collection);
+	}
+
+	@Override
+	public void assign(E... elements) {
+		clear();
+		addAll(elements);
+	}
+
 }

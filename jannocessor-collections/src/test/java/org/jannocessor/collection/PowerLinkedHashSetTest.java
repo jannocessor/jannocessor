@@ -8,8 +8,8 @@ public class PowerLinkedHashSetTest {
 
 	@Test
 	public void testBasicOperations() {
-		PowerSet<Integer> set = Power.set(1, 3, 5, 1).add(1, 2, 3, 4)
-				.remove(1, 5);
+		PowerSet<Integer> set = Power.set(1, 3, 5, 1).addAll(1, 2, 3, 4)
+				.removeAll(1, 5);
 		check(set, 3, 2, 4);
 	}
 

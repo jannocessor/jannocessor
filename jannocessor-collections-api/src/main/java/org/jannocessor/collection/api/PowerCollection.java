@@ -8,9 +8,9 @@ import org.jannocessor.collection.transform.api.Transformation;
 
 public interface PowerCollection<E> extends Collection<E> {
 
-	PowerCollection<E> add(E... objects);
+	PowerCollection<E> addAll(E... objects);
 
-	PowerCollection<E> remove(E... objects);
+	PowerCollection<E> removeAll(E... objects);
 
 	PowerCollection<E> copy();
 
@@ -29,5 +29,9 @@ public interface PowerCollection<E> extends Collection<E> {
 	<T> PowerCollection<T> getTransformed(Transformation<E, T> transformation);
 
 	PowerCollection<E> each(Operation<? super E> operation);
+
+	void assign(Collection<? extends E> collection);
+
+	void assign(E... elements);
 
 }
