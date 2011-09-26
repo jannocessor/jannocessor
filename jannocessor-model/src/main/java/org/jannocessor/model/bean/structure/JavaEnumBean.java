@@ -17,12 +17,15 @@
 package org.jannocessor.model.bean.structure;
 
 import org.jannocessor.data.JavaEnumData;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.util.Templates;
 
 public class JavaEnumBean extends JavaEnumData implements JavaEnum {
 
 	public JavaEnumBean(String name, boolean isFinal) {
 		// TODO Auto-generated constructor stub
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 
 }

@@ -17,6 +17,8 @@
 package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaExceptionParameterData;
+import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 
 public class JavaExceptionParameterBean extends JavaExceptionParameterData
@@ -24,6 +26,7 @@ public class JavaExceptionParameterBean extends JavaExceptionParameterData
 
 	public JavaExceptionParameterBean(String name) {
 		// TODO Auto-generated constructor stub
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 
 }

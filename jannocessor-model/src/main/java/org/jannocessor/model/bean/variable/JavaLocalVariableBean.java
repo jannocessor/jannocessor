@@ -17,6 +17,8 @@
 package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaLocalVariableData;
+import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaLocalVariable;
 
 public class JavaLocalVariableBean extends JavaLocalVariableData implements
@@ -24,6 +26,7 @@ public class JavaLocalVariableBean extends JavaLocalVariableData implements
 
 	public JavaLocalVariableBean(Class<?> type, String name, boolean isFinal) {
 		// TODO Auto-generated constructor stub
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 
 }

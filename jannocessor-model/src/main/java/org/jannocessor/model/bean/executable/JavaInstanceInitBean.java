@@ -17,9 +17,15 @@
 package org.jannocessor.model.bean.executable;
 
 import org.jannocessor.data.JavaInstanceInitData;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.util.Templates;
 
 public class JavaInstanceInitBean extends JavaInstanceInitData implements
 		JavaInstanceInit {
 
+	public JavaInstanceInitBean() {
+		// TODO Auto-generated constructor stub
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+	}
 }

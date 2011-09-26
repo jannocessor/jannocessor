@@ -17,8 +17,10 @@
 package org.jannocessor.model.bean.executable;
 
 import org.jannocessor.data.JavaConstructorData;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaConstructorBean extends JavaConstructorData implements
@@ -26,6 +28,7 @@ public class JavaConstructorBean extends JavaConstructorData implements
 
 	public JavaConstructorBean(MethodModifiers modifiers, JavaParameter[] params) {
 		// TODO Auto-generated constructor stub
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 
 }

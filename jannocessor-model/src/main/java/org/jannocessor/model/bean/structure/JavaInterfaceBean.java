@@ -17,13 +17,16 @@
 package org.jannocessor.model.bean.structure;
 
 import org.jannocessor.data.JavaInterfaceData;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.util.Templates;
 
 public class JavaInterfaceBean extends JavaInterfaceData implements
 		JavaInterface {
 
 	public JavaInterfaceBean(String name) {
 		// TODO Auto-generated constructor stub
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 
 }

@@ -18,14 +18,17 @@ package org.jannocessor.model.bean.structure;
 
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.util.Templates;
 
 public class JavaClassBean extends JavaClassData implements JavaClass {
 
 	public JavaClassBean(ClassModifiers modifiers, String name) {
 		setName(new NameBean(name));
 		setModifiers(modifiers);
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 
 }

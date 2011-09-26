@@ -17,9 +17,15 @@
 package org.jannocessor.model.bean.structure;
 
 import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.util.Templates;
 
 public class JavaAnnotationBean extends JavaAnnotationData implements
 		JavaAnnotation {
 
+	public JavaAnnotationBean() {
+		// TODO Auto-generated constructor stub
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+	}
 }

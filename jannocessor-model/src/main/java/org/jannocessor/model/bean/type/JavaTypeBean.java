@@ -19,6 +19,7 @@ package org.jannocessor.model.bean.type;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
@@ -28,6 +29,7 @@ import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.model.type.JavaWildcardType;
+import org.jannocessor.model.util.Templates;
 
 public class JavaTypeBean extends JavaTypeData implements JavaType {
 
@@ -39,6 +41,7 @@ public class JavaTypeBean extends JavaTypeData implements JavaType {
     public JavaTypeBean(Class<?> type, Class<?>[] typeParams) {
         this.type = type;
         this.typeParams = typeParams;
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
     }
 
     @Override

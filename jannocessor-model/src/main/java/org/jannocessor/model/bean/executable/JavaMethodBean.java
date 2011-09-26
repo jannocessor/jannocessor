@@ -18,9 +18,11 @@ package org.jannocessor.model.bean.executable;
 
 import org.jannocessor.data.JavaMethodData;
 import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaMethodBean extends JavaMethodData implements JavaMethod {
@@ -30,6 +32,7 @@ public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 		setModifiers(modifiers);
 		setReturnType(returnType);
 		setName(new NameBean(name));
+		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 
 }
