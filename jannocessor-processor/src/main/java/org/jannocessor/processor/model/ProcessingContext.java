@@ -154,4 +154,8 @@ public class ProcessingContext {
 		}
 	}
 
+	public void generateFile(String packageName, String fileName, String content) {
+		getFiles().file(packageName, fileName, content);
+	}
+
 }
