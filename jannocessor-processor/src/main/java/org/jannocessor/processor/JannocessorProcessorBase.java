@@ -40,7 +40,12 @@ import javax.tools.StandardLocation;
 
 import org.jannocessor.adapter.SourceHolder;
 import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.inject.ServicesModule;
+import org.jannocessor.inject.ConfigurationServiceModule;
+import org.jannocessor.inject.IOServiceModule;
+import org.jannocessor.inject.ImportsServiceModule;
+import org.jannocessor.inject.ProcessorModule;
+import org.jannocessor.inject.RulesServiceModule;
+import org.jannocessor.inject.TemplateServiceModule;
 import org.jannocessor.processor.model.Config;
 import org.jannocessor.processor.model.Files;
 import org.jannocessor.processor.model.JannocessorException;
@@ -75,10 +80,18 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	private List<String> globalErrors = new ArrayList<String>();
 	private List<String> globalWarnings = new ArrayList<String>();
 
-	private Injector injector = Guice.createInjector(new ServicesModule());
+	private final Injector injector;
 
 	public JannocessorProcessorBase() {
 		logger.info("Instantiated Jannocessor");
+		injector = createInjector();
+	}
+
+	private Injector createInjector() {
+		return Guice.createInjector(new ProcessorModule(),
+				new ConfigurationServiceModule(), new ImportsServiceModule(),
+				new IOServiceModule(), new RulesServiceModule(),
+				new TemplateServiceModule());
 	}
 
 	protected void logException(JannocessorException e) {

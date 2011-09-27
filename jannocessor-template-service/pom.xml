@@ -9,10 +9,15 @@
 	</parent>
 
 	<groupId>com.googlecode.jannocessor</groupId>
-	<artifactId>jannocessor-ui</artifactId>
+	<artifactId>jannocessor-template-service</artifactId>
 	<version>${parent.version}</version>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-service-api</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-common</artifactId>
@@ -20,7 +25,23 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-service-api</artifactId>
+			<artifactId>jannocessor-model-api</artifactId>
+			<version>${parent.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.googlecode.jannocessor</groupId>
+					<artifactId>jannocessor</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-model</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-imports-service</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
 	</dependencies>

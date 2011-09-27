@@ -35,7 +35,27 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-service-impl</artifactId>
+			<artifactId>jannocessor-configuration-service</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-imports-service</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-io-service</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-rules-service</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-template-service</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
 		<dependency>

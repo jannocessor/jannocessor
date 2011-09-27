@@ -206,7 +206,6 @@
 		<module>jannocessor-model-adapter</module>
 		<module>jannocessor-generated</module>
 		<module>jannocessor-service-api</module>
-		<module>jannocessor-service-impl</module>
 		<module>jannocessor-logging</module>
 		<module>jannocessor-ui</module>
 		<module>jannocessor-common</module>
@@ -218,6 +217,11 @@
 		<module>jannocessor-test-generated</module>
 		<module>jannocessor-model</module>
 		<module>jannocessor-templates</module>
+		<module>jannocessor-io-service</module>
+		<module>jannocessor-configuration-service</module>
+		<module>jannocessor-template-service</module>
+		<module>jannocessor-rules-service</module>
+		<module>jannocessor-imports-service</module>
 	</modules>
 
 </project>
