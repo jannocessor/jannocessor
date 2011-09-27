@@ -217,6 +217,7 @@
 		<module>jannocessor-collections-api</module>
 		<module>jannocessor-test-generated</module>
 		<module>jannocessor-model</module>
+		<module>jannocessor-templates</module>
 	</modules>
 
 </project>

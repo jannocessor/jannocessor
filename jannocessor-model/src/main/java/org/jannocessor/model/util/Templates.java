@@ -1,15 +1,22 @@
 package org.jannocessor.model.util;
 
+import org.jannocessor.model.code.JavaCodeModel;
+
 public class Templates {
 
-	public static String defaultName(Class<?> clazz) {
+	public static String defaultName(Class<? extends JavaCodeModel> clazz) {
 		String name = clazz.getSimpleName();
-		if (!name.startsWith("Java") || !name.endsWith("Bean")) {
+
+		if (!name.startsWith("Java")) {
 			throw new IllegalArgumentException(
-					"The class name must start with 'Java' and end with 'Bean'!");
+					"The class name must start with 'Java'!");
 		}
 
-		name = name.substring(4, name.length() - 4);
+		if (name.endsWith("Bean")) {
+			name = name.substring(0, name.length() - 4);
+		}
+
+		name = name.substring(4);
 		name = name.replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase();
 		name = "default/" + name;
 
