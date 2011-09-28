@@ -16,24 +16,27 @@
 
 package org.jannocessor.model.bean.type;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import net.sf.twip.TwiP;
 
 import org.jannocessor.model.type.JavaWildcardType;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class JavaWildcardTypeTest {
 
-    @Test
-    public void testInstantiation() {
-        JavaWildcardType wildcard = Code.wildcardType();
-        assertNotNull(wildcard);
+	@Test
+	public void testInstantiation() {
+		JavaWildcardType wildcard = Code.wildcardType();
+		assertNotNull(wildcard);
 
-        JavaWildcardType wildcardSuper = Code.wildcardSuper(String.class);
-        assertNotNull(wildcardSuper);
+		JavaWildcardType wildcardSuper = Code.wildcardSuper(String.class);
+		assertNotNull(wildcardSuper);
 
-        JavaWildcardType wildcardExtends = Code.wildcardExtends(String.class);
-        assertNotNull(wildcardExtends);
-    }
+		JavaWildcardType wildcardExtends = Code.wildcardExtends(String.class);
+		assertNotNull(wildcardExtends);
+	}
 
 }

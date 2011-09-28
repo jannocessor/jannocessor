@@ -16,37 +16,54 @@
 
 package org.jannocessor.model.bean.variable;
 
-import java.util.List;
-
 import junit.framework.Assert;
+import net.sf.twip.AutoTwip;
+import net.sf.twip.TwiP;
 
+import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
-import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.test.Param;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class JavaFieldTest {
 
+	@AutoTwip
+	public static FieldModifiers[] MODIFIERS = Param.fieldModifiers();
+
+	@AutoTwip
+	public static JavaType[] TYPES = Param.javaTypes();
+
+	@AutoTwip
+	public static Class<?>[] CLASSES = Param.classes();
+
 	@Test
-	public void testFieldConstruction1() {
-		JavaType type = Code.type(List.class, String.class);
+	public void testFieldConstruction1(FieldModifiers modifiers, JavaType type,
+			String name) {
+		JavaField field = Code.field(modifiers, type, name);
 
-		JavaField field = Code.field(Fields.PRIVATE_FINAL, type, "field1");
+		// FIXME: shouldn't accept non-valid java names
 
-		Assert.assertEquals("field1", field.getName().getText());
-		Assert.assertEquals(Fields.PRIVATE_FINAL, field.getModifiers());
+		Assert.assertNotNull(field.getCode());
+		Assert.assertEquals(name, field.getName().getText());
+		Assert.assertEquals(modifiers, field.getModifiers());
 		Assert.assertEquals(type, field.getType());
 	}
 
 	@Test
-	public void testFieldConstruction2() {
-		JavaField field = Code.field(Fields.PUBLIC_STATIC_FINAL, String.class,
-				"field2");
+	public void testFieldConstruction2(FieldModifiers modifiers, Class<?> type,
+			String name) {
+		JavaField field = Code.field(modifiers, type, name);
 
-		Assert.assertEquals("field2", field.getName().getText());
-		Assert.assertEquals(Fields.PUBLIC_STATIC_FINAL, field.getModifiers());
-		Assert.assertEquals("java.lang.String", field.getType()
+		// FIXME: shouldn't accept void
+
+		Assert.assertNotNull(field.getCode());
+		Assert.assertEquals(name, field.getName().getText());
+		Assert.assertEquals(modifiers, field.getModifiers());
+		Assert.assertEquals(type.getCanonicalName(), field.getType()
 				.getCanonicalName().getText());
 	}
 

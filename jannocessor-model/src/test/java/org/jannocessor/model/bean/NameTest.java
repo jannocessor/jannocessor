@@ -16,10 +16,13 @@
 
 package org.jannocessor.model.bean;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import net.sf.twip.TwiP;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class NameTest {
 
 	private String smallCamelCase = "firstSecondThird";

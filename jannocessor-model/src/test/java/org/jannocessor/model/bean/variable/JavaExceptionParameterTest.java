@@ -16,12 +16,15 @@
 
 package org.jannocessor.model.bean.variable;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertNotNull;
+import net.sf.twip.TwiP;
 
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class JavaExceptionParameterTest {
 
 	@Test

@@ -16,13 +16,17 @@
 
 package org.jannocessor.model.bean.structure;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import net.sf.twip.TwiP;
 
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class JavaClassTest {
 
 	@Test

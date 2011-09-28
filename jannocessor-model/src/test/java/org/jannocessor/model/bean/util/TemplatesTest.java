@@ -1,13 +1,16 @@
 package org.jannocessor.model.bean.util;
 
 import junit.framework.Assert;
+import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.structure.JavaClassBean;
 import org.jannocessor.model.bean.type.JavaArrayTypeBean;
 import org.jannocessor.model.bean.variable.JavaExceptionParameterBean;
 import org.jannocessor.model.util.Templates;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class TemplatesTest {
 
 	@Test

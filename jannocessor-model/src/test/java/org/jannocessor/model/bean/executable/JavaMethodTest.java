@@ -16,14 +16,18 @@
 
 package org.jannocessor.model.bean.executable;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import net.sf.twip.TwiP;
 
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.variable.JavaParameter;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class JavaMethodTest {
 
 	@Test

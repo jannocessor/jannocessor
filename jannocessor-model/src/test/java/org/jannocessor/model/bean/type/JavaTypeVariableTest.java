@@ -16,24 +16,27 @@
 
 package org.jannocessor.model.bean.type;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import net.sf.twip.TwiP;
 
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(TwiP.class)
 public class JavaTypeVariableTest {
 
-    @Test
-    public void testInstantiation() {
-        JavaTypeVariable typeVar = Code.typeVar();
-        assertNotNull(typeVar);
+	@Test
+	public void testInstantiation() {
+		JavaTypeVariable typeVar = Code.typeVar();
+		assertNotNull(typeVar);
 
-        JavaTypeVariable typeVarLower = Code.typeVarLowerBound(String.class);
-        assertNotNull(typeVarLower);
+		JavaTypeVariable typeVarLower = Code.typeVarLowerBound(String.class);
+		assertNotNull(typeVarLower);
 
-        JavaTypeVariable typeVarUpper = Code.typeVarUpperBound(Integer.class);
-        assertNotNull(typeVarUpper);
-    }
+		JavaTypeVariable typeVarUpper = Code.typeVarUpperBound(Integer.class);
+		assertNotNull(typeVarUpper);
+	}
 
 }
