@@ -21,6 +21,10 @@ import org.jannocessor.model.modifier.NestedClassModifiers;
 
 public class NestedClasses {
 
+	/** Represents the default nested class modifier. */
+	public static final NestedClassModifiers DEFAULT_MODIFIER = Code
+			.nestedClassModifiers();
+
 	/** Represents "public" nested class modifiers. */
 	public static final NestedClassModifiers PUBLIC = Code
 			.nestedClassModifiers(NestedClassModifierValue.PUBLIC);

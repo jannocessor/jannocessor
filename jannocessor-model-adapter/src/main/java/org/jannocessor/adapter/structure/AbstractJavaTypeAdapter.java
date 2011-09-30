@@ -17,7 +17,6 @@
 package org.jannocessor.adapter.structure;
 
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
@@ -77,13 +76,8 @@ abstract class AbstractJavaTypeAdapter extends JavaElementAdapter implements
 
 	@Override
 	public PowerList<JavaTypeParameter> getParameters() {
-		PowerList<JavaTypeParameter> adapters = Power.list();
-
-		for (TypeParameterElement parameter : type.getTypeParameters()) {
-			adapters.add(getElementAdapter(parameter, JavaTypeParameter.class));
-		}
-
-		return adapters;
+		return getElementsAdapters(type.getTypeParameters(),
+				JavaTypeParameter.class);
 	}
 
 }

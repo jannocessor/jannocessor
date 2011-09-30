@@ -16,21 +16,28 @@
 
 package org.jannocessor.model.bean.structure;
 
-import static org.junit.Assert.assertNotNull;
+import net.sf.twip.AutoTwip;
 import net.sf.twip.TwiP;
+import net.sf.twip.Values;
 
+import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
+import org.jannocessor.test.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaTypeParameterTest {
+public class JavaTypeParameterTest extends AbstractModelTest {
+
+	@AutoTwip
+	public static String[] IDS = Param.identifiers();
 
 	@Test
-	public void testInstantiation() {
-		JavaTypeParameter typeParameter = Code.typeParameter();
-		assertNotNull(typeParameter);
+	public void testInstantiation(@Values("IDS") String name) {
+		JavaTypeParameter typeParameter = Code.typeParameter(name);
+		checkLonelyElement(typeParameter, name, (JavaType) null);
 	}
 
 }

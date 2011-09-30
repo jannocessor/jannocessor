@@ -39,6 +39,57 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
     }
 
 #end
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof #type(${model.qualifiedName}))) {
+			return false;
+		}
+
+		#type(${model.qualifiedName}) other = (#type(${model.qualifiedName})) obj;
+		return new #type("org.apache.commons.lang.builder.EqualsBuilder")()
+#if($extends)
+				.appendSuper(super.equals(other))
+#end
+#foreach ($m in $model.methods)
+				.append(this.${m.name}(), other.${m.name}())
+#end
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new #type("org.apache.commons.lang.builder.HashCodeBuilder")()
+#foreach ($m in $model.methods)
+				.append(this.${m.name}())
+#end
+				.toHashCode();
+	}
+
+
+	@Override
+	public String toString() {
+		#type("org.apache.commons.lang.builder.ToStringBuilder") builder = new #type("org.apache.commons.lang.builder.ToStringBuilder")(this);
+		appendDescription(builder);
+		return builder.toString();
+	}
+
+#if($extends)
+	@Override
+#end
+	protected void appendDescription(#type("org.apache.commons.lang.builder.ToStringBuilder") builder) {
+#if($extends)
+        super.appendDescription(builder);
+#end
+#foreach ($m in $model.methods)
+        builder.append("${helper.fieldName($m)}", this.${m.name}());
+#end
+	}
 
 }
 

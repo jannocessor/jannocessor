@@ -1,5 +1,8 @@
 package org.jannocessor.model.bean;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.jannocessor.model.code.SourceCode;
 
 public class SourceCodeBean implements SourceCode {
@@ -49,6 +52,35 @@ public class SourceCodeBean implements SourceCode {
 	@Override
 	public void setTemplateName(String templateName) {
 		this.templateName = templateName;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		SourceCodeBean other = (SourceCodeBean) obj;
+		return new EqualsBuilder().append(code, other.getCode())
+				.append(template, other.getTemplate())
+				.append(templateName, other.getTemplateName()).isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(code).append(template)
+				.append(templateName).toHashCode();
+	}
+
+	@Override
+	public String toString() {
+		return new ReflectionToStringBuilder(this).setExcludeFieldNames(
+				new String[] {}).toString();
 	}
 
 }

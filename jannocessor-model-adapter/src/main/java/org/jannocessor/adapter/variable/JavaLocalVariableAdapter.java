@@ -16,6 +16,7 @@
 
 package org.jannocessor.adapter.variable;
 
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
@@ -25,13 +26,17 @@ import org.jannocessor.model.variable.JavaLocalVariable;
 public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 		implements JavaLocalVariable {
 
-	@SuppressWarnings("unused")
 	private final VariableElement localVariable;
 
 	public JavaLocalVariableAdapter(VariableElement localVariable,
 			Elements elementUtils, Types typeUtils) {
 		super(localVariable, elementUtils, typeUtils);
 		this.localVariable = localVariable;
+	}
+
+	@Override
+	public Boolean isFinal() {
+		return localVariable.getModifiers().contains(Modifier.FINAL);
 	}
 
 }

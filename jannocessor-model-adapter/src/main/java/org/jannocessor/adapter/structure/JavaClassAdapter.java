@@ -31,6 +31,10 @@ import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.modifier.ClassModifierValue;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.variable.JavaField;
 
 public final class JavaClassAdapter extends AbstractJavaTypeAdapter implements
@@ -86,6 +90,26 @@ public final class JavaClassAdapter extends AbstractJavaTypeAdapter implements
 				return values;
 			}
 		};
+	}
+
+	@Override
+	public PowerList<JavaNestedClass> getNestedClasses() {
+		return findChildrenByType(JavaNestedClass.class);
+	}
+
+	@Override
+	public PowerList<JavaNestedEnum> getNestedEnums() {
+		return findChildrenByType(JavaNestedEnum.class);
+	}
+
+	@Override
+	public PowerList<JavaNestedInterface> getNestedInterfaces() {
+		return findChildrenByType(JavaNestedInterface.class);
+	}
+
+	@Override
+	public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
+		return findChildrenByType(JavaNestedAnnotation.class);
 	}
 
 }

@@ -16,6 +16,7 @@
 
 package org.jannocessor.adapter.variable;
 
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
@@ -25,13 +26,17 @@ import org.jannocessor.model.variable.JavaParameter;
 public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 		implements JavaParameter {
 
-	@SuppressWarnings("unused")
 	private final VariableElement parameter;
 
 	public JavaParameterAdapter(VariableElement parameter,
 			Elements elementUtils, Types typeUtils) {
 		super(parameter, elementUtils, typeUtils);
 		this.parameter = parameter;
+	}
+
+	@Override
+	public boolean isFinal() {
+		return parameter.getModifiers().contains(Modifier.FINAL);
 	}
 
 }

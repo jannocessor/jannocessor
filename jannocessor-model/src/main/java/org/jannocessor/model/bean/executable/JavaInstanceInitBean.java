@@ -27,5 +27,7 @@ public class JavaInstanceInitBean extends JavaInstanceInitData implements
 	public JavaInstanceInitBean() {
 		// TODO Auto-generated constructor stub
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setBody(new ExecutableBodyBean());
 	}
+
 }

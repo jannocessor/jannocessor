@@ -83,12 +83,15 @@ import org.jannocessor.proxy.JavaTypeProxy;
 public class AdapterFactory {
 
 	@SuppressWarnings("unchecked")
-	public static <T extends JavaElement> T getElementModel(Element element,
-			Class<T> clazz, Elements elementUtils, Types typeUtils) {
+	public static <T extends JavaElement> T getElementModel(
+			Element element, Class<T> clazz, Elements elementUtils,
+			Types typeUtils) {
 
 		if (element != null) {
 
 			JavaElement model;
+
+			Element parent = element.getEnclosingElement();
 
 			ElementKind kind = element.getKind();
 			switch (kind) {
@@ -193,7 +196,7 @@ public class AdapterFactory {
 				break;
 
 			default:
-				throw new IllegalStateException();
+				throw new IllegalStateException("Unexpected element kind!");
 			}
 
 			if (clazz.isAssignableFrom(model.getClass())) {

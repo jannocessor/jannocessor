@@ -32,7 +32,7 @@ public interface JavaMethod extends AbstractJavaExecutable {
 
 	PowerList<JavaParameter> getParameters();
 
-	Boolean getVarArgs();
+	Boolean isVarArgs();
 
 	PowerList<JavaType> getThrownTypes();
 

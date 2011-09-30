@@ -16,11 +16,15 @@
 
 package org.jannocessor.model.bean.executable;
 
+import java.util.List;
+
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaMethodData;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaParameter;
@@ -28,11 +32,17 @@ import org.jannocessor.model.variable.JavaParameter;
 public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 
 	public JavaMethodBean(MethodModifiers modifiers, JavaType returnType,
-			String name, JavaParameter[] params) {
-		setModifiers(modifiers);
-		setReturnType(returnType);
-		setName(new NameBean(name));
+			String name, List<JavaParameter> params,
+			List<JavaType> thrownTypes, List<JavaTypeParameter> typeParameters) {
+		this.setModifiers(modifiers);
+		this.setReturnType(returnType);
+		this.setName(new NameBean(name));
+		this.setParameters(Power.list(params));
+		this.setThrownTypes(Power.list(thrownTypes));
+		this.setTypeParameters(Power.list(typeParameters));
+
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setBody(new ExecutableBodyBean());
 	}
 
 }

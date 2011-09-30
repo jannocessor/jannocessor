@@ -17,15 +17,18 @@
 package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaExceptionParameterData;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 
 public class JavaExceptionParameterBean extends JavaExceptionParameterData
 		implements JavaExceptionParameter {
 
-	public JavaExceptionParameterBean(String name) {
-		// TODO Auto-generated constructor stub
+	public JavaExceptionParameterBean(JavaType type, String name) {
+		this.setType(type);
+		this.setName(new NameBean(name));
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 

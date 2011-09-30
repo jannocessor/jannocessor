@@ -19,13 +19,14 @@ package org.jannocessor.model.bean.structure;
 import static org.junit.Assert.assertNotNull;
 import net.sf.twip.TwiP;
 
+import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaEnumTest {
+public class JavaEnumTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {

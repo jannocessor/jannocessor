@@ -21,6 +21,21 @@ public class Power {
 		return PowerArrayList.create(items);
 	}
 
+	@SuppressWarnings("unchecked")
+	public static <T> PowerList<T> emptyList() {
+		return PowerArrayList.create();
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T> PowerList<T> emptyList(Class<T> clazz) {
+		return PowerArrayList.create();
+	}
+
+	public static <T> PowerList<T> unmodifiableList(T... items) {
+		// FIXME: Implement this!
+		return PowerArrayList.create(items);
+	}
+
 	public static <T> PowerList<T> list(Collection<T> collection) {
 		return PowerArrayList.powerList(collection);
 	}

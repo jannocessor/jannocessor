@@ -20,6 +20,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
@@ -28,6 +29,8 @@ import javax.lang.model.util.Types;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
@@ -60,6 +63,17 @@ public abstract class AbstractAdapter {
 			Class<T> clazz) {
 		return AdapterFactory.getElementModel(element, clazz, elementUtils,
 				typeUtils);
+	}
+
+	protected <T extends JavaElement> PowerList<T> getElementsAdapters(
+			List<? extends Element> elements, Class<T> clazz) {
+		PowerList<T> adapters = Power.emptyList();
+
+		for (Element element : elements) {
+			adapters.add(getElementAdapter(element, clazz));
+		}
+
+		return adapters;
 	}
 
 	protected JavaType getTypeAdapter(TypeMirror typeMirror) {

@@ -17,6 +17,7 @@
 package org.jannocessor.model.bean.structure;
 
 import org.jannocessor.data.JavaTypeParameterData;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.util.Templates;
@@ -24,8 +25,9 @@ import org.jannocessor.model.util.Templates;
 public class JavaTypeParameterBean extends JavaTypeParameterData implements
 		JavaTypeParameter {
 
-	public JavaTypeParameterBean() {
-		// TODO Auto-generated constructor stub
+	public JavaTypeParameterBean(String name) {
+		this.setName(new NameBean(name));
+
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 }

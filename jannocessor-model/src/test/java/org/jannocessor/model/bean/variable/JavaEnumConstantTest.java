@@ -16,21 +16,28 @@
 
 package org.jannocessor.model.bean.variable;
 
-import static org.junit.Assert.assertNotNull;
+import net.sf.twip.AutoTwip;
 import net.sf.twip.TwiP;
+import net.sf.twip.Values;
 
+import org.jannocessor.model.bean.AbstractModelTest;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.test.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaEnumConstantTest {
+public class JavaEnumConstantTest extends AbstractModelTest {
+
+	@AutoTwip
+	public static String[] IDS = Param.identifiers();
 
 	@Test
-	public void testInstantiation() {
-		JavaEnumConstant enumConstant = Code.enumConstant("VALUE");
-		assertNotNull(enumConstant);
+	public void testInstantiation(@Values("IDS") String name) {
+		JavaEnumConstant enumConstant = Code.enumConstant(name);
+		checkLonelyElement(enumConstant, name, (JavaType) null);
 	}
 
 }

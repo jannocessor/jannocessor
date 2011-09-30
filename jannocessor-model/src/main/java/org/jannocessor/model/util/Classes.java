@@ -21,6 +21,9 @@ import org.jannocessor.model.modifier.ClassModifiers;
 
 public class Classes {
 
+	/** Represents the default class modifier. */
+	public static final ClassModifiers DEFAULT_MODIFIER = Code.classModifiers();
+
 	/** Represents "public" class modifier. */
 	public static final ClassModifiers PUBLIC = Code
 			.classModifiers(ClassModifierValue.PUBLIC);

@@ -21,4 +21,6 @@ import org.jannocessor.annotation.DomainModel;
 @DomainModel
 public interface JavaLocalVariable extends AbstractJavaVariable {
 
+	public Boolean isFinal();
+
 }

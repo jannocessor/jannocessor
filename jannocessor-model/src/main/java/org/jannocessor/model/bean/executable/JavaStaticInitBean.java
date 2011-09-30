@@ -27,5 +27,7 @@ public class JavaStaticInitBean extends JavaStaticInitData implements
 	public JavaStaticInitBean() {
 		// TODO Auto-generated constructor stub
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setBody(new ExecutableBodyBean());
 	}
+
 }

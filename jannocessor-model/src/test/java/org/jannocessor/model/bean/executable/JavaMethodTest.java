@@ -16,34 +16,141 @@
 
 package org.jannocessor.model.bean.executable;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import net.sf.twip.AutoTwip;
 import net.sf.twip.TwiP;
+import net.sf.twip.Values;
 
+import org.jannocessor.collection.Power;
+import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
-import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.variable.JavaParameter;
+import org.jannocessor.test.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaMethodTest {
+public class JavaMethodTest extends AbstractModelTest {
+
+	@AutoTwip
+	public static String[] IDS = less(Param.identifiers());
+
+	@AutoTwip
+	public static JavaType[] TYPES = Param.types();
+
+	@AutoTwip
+	public static Class<?>[] CLASSES = Param.classes();
+
+	@AutoTwip
+	public static JavaTypeParameter[] TYPE_PARAM = Param.typeParams();
+
+	@AutoTwip
+	public static MethodModifiers[] MODIF = less(Param.methodModifiers());
+
+	@AutoTwip
+	public static JavaParameter[] parameters(JavaType type,
+			@Values("IDS") String name) {
+		return new JavaParameter[] { Code.parameter(type, name) };
+	}
+
+	@AutoTwip
+	public static JavaParameter[][] parameterGroups(JavaParameter param1,
+			JavaParameter param2) {
+		return Param.groups(JavaParameter.class, param1, param2);
+	}
+
+	@AutoTwip
+	public static JavaType[][] typeGroups(JavaType type1, JavaType type2) {
+		return Param.groups(JavaType.class, type1, type2);
+	}
+
+	@AutoTwip
+	public static JavaTypeParameter[][] typeParamGroups(
+			JavaTypeParameter typeParam1, JavaTypeParameter typeParam2) {
+		return Param.groups(JavaTypeParameter.class, typeParam1, typeParam2);
+	}
+
+	/******************************** TESTS ********************************/
 
 	@Test
-	public void testInstantiation() {
-		JavaParameter args = Code.parameter(String[].class, "args");
+	public void testInstantiation1(MethodModifiers modifiers,
+			JavaType returnType, @Values("IDS") String name,
+			JavaParameter[] params) {
 
-		JavaMethod method = Code.method(Methods.PUBLIC_STATIC, void.class,
-				"main", args);
-		assertNotNull(method);
+		JavaMethod method = Code.method(modifiers, returnType, name,
+				Power.list(params));
 
-		assertEquals(Methods.PUBLIC_STATIC, method.getModifiers());
-		assertEquals("void", method.getReturnType().getCanonicalName()
-				.getText());
-		assertEquals("main", method.getName().getText());
+		checkMethod(method, modifiers, returnType, name, Power.list(params),
+				Code.NO_TYPES, Code.NO_TYPE_PARAMS);
+	}
 
-		// TODO: check args
+	@Test
+	public void testInstantiation2(MethodModifiers modifiers,
+			Class<?> returnType, @Values("IDS") String name,
+			JavaParameter[] params) {
+
+		JavaMethod method = Code.method(modifiers, returnType, name,
+				Power.list(params));
+
+		checkMethod(method, modifiers, Code.type(returnType), name,
+				Power.list(params), Code.NO_TYPES, Code.NO_TYPE_PARAMS);
+	}
+
+	@Test
+	public void testInstantiation3(MethodModifiers modifiers,
+			JavaType returnType, @Values("IDS") String name,
+			JavaParameter[] params, JavaType[] thrownTypes) {
+
+		JavaMethod method = Code.method(modifiers, returnType, name,
+				Power.list(params), Power.list(thrownTypes));
+
+		checkMethod(method, modifiers, returnType, name, Power.list(params),
+				Power.list(thrownTypes), Code.NO_TYPE_PARAMS);
+	}
+
+	@Test
+	public void testInstantiation4(MethodModifiers modifiers,
+			Class<?> returnType, @Values("IDS") String name,
+			JavaParameter[] params, JavaType[] thrownTypes) {
+
+		JavaMethod method = Code.method(modifiers, returnType, name,
+				Power.list(params), Power.list(thrownTypes));
+
+		checkMethod(method, modifiers, Code.type(returnType), name,
+				Power.list(params), Power.list(thrownTypes),
+				Code.NO_TYPE_PARAMS);
+	}
+
+	@Test
+	public void testInstantiation5(MethodModifiers modifiers,
+			JavaType returnType, @Values("IDS") String name,
+			JavaParameter[] params, JavaType[] thrownTypes,
+			JavaTypeParameter[] typeParams) {
+
+		JavaMethod method = Code.method(modifiers, returnType, name,
+				Power.list(params), Power.list(thrownTypes),
+				Power.list(typeParams));
+
+		checkMethod(method, modifiers, returnType, name, Power.list(params),
+				Power.list(thrownTypes), Power.list(typeParams));
+	}
+
+	@Test
+	public void testInstantiation6(MethodModifiers modifiers,
+			Class<?> returnType, @Values("IDS") String name,
+			JavaParameter[] params, JavaType[] thrownTypes,
+			JavaTypeParameter[] typeParams) {
+
+		JavaMethod method = Code.method(modifiers, returnType, name,
+				Power.list(params), Power.list(thrownTypes),
+				Power.list(typeParams));
+
+		checkMethod(method, modifiers, Code.type(returnType), name,
+				Power.list(params), Power.list(thrownTypes),
+				Power.list(typeParams));
 	}
 
 }

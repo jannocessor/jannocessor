@@ -19,13 +19,14 @@ package org.jannocessor.model.bean.type;
 import static org.junit.Assert.assertNotNull;
 import net.sf.twip.TwiP;
 
+import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.type.JavaWildcardType;
 import org.jannocessor.model.util.Code;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaWildcardTypeTest {
+public class JavaWildcardTypeTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {

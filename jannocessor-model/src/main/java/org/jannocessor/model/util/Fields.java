@@ -21,6 +21,9 @@ import org.jannocessor.model.modifier.FieldModifiers;
 
 public class Fields {
 
+	/** Represents the default field modifier. */
+	public static final FieldModifiers DEFAULT_MODIFIER = Code.fieldModifiers();
+
 	/** Represents "public" field modifier. */
 	public static final FieldModifiers PUBLIC = Code
 			.fieldModifiers(FieldModifierValue.PUBLIC);

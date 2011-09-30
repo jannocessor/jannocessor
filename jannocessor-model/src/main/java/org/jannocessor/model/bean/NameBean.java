@@ -22,6 +22,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.model.Name;
 
 public class NameBean implements Name {
@@ -209,12 +211,34 @@ public class NameBean implements Name {
 	}
 
 	@Override
+	public void assign(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		Name other = (Name) obj;
+		return new EqualsBuilder().append(getText(), other.getText())
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getText()).toHashCode();
+	}
+
+	@Override
 	public String toString() {
 		return getText();
 	}
 
-	@Override
-	public void assign(String name) {
-		this.name = name;
-	}
 }

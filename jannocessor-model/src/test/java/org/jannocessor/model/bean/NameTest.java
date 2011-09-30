@@ -16,14 +16,14 @@
 
 package org.jannocessor.model.bean;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.twip.TwiP;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class NameTest {
+public class NameTest extends AbstractModelTest {
 
 	private String smallCamelCase = "firstSecondThird";
 	private String bigCamelCase = "FirstSecondThird";
@@ -111,11 +111,23 @@ public class NameTest {
 		checkInsertParts(bigCamelCase, 3, "New", "FirstSecondThirdNew");
 	}
 
+
 	private void checkInsertParts(String name, int position, String part,
 			String expectedName) {
 		String newName = name(name).insertPart(position, part).getText();
 
 		assertEquals(expectedName, newName);
 	}
+
+	/*
+	 * OTHER TESTS
+	 */
+
+	@Test
+	public void testEquals() {
+		assertEquals(name("a"), name("a"));
+		assertFalse(name("b").equals(name("c")));
+	}
+
 
 }

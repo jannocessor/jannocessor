@@ -16,22 +16,45 @@
 
 package org.jannocessor.adapter.executable;
 
+import java.util.Set;
+
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.modifier.ConstructorModifierValue;
+import org.jannocessor.model.modifier.ConstructorModifiers;
 
 public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		implements JavaConstructor {
 
-	@SuppressWarnings("unused")
 	private final ExecutableElement constructor;
 
 	public JavaConstructorAdapter(ExecutableElement constructor,
 			Elements elementUtils, Types typeUtils) {
 		super(constructor, elementUtils, typeUtils);
 		this.constructor = constructor;
+	}
+
+	@Override
+	public ConstructorModifiers getModifiers() {
+		Set<Modifier> modifiers = constructor.getModifiers();
+		final ConstructorModifierValue[] values = new ConstructorModifierValue[modifiers
+				.size()];
+
+		int index = 0;
+		for (Modifier modifier : modifiers) {
+			values[index++] = ConstructorModifierValue.valueOf(modifier.name());
+		}
+
+		return new ConstructorModifiers() {
+			@Override
+			public ConstructorModifierValue[] getValues() {
+				return values;
+			}
+		};
 	}
 
 }

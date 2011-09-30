@@ -19,12 +19,51 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaTypeData;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
 public class JavaAnnotationData extends AbstractJavaTypeData implements JavaAnnotation {
 
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof JavaAnnotation)) {
+			return false;
+		}
+
+		JavaAnnotation other = (JavaAnnotation) obj;
+		return new EqualsBuilder()
+				.appendSuper(super.equals(other))
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+				.toHashCode();
+	}
+
+
+	@Override
+	public String toString() {
+		ToStringBuilder builder = new ToStringBuilder(this);
+		appendDescription(builder);
+		return builder.toString();
+	}
+
+	@Override
+	protected void appendDescription(ToStringBuilder builder) {
+        super.appendDescription(builder);
+	}
 
 }
 

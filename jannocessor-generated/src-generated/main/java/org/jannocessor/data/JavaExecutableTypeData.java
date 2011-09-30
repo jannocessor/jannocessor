@@ -23,6 +23,9 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaTypeVariable;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -69,6 +72,54 @@ public class JavaExecutableTypeData extends JavaTypeData implements JavaExecutab
         this.typeVariables = value;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof JavaExecutableType)) {
+			return false;
+		}
+
+		JavaExecutableType other = (JavaExecutableType) obj;
+		return new EqualsBuilder()
+				.appendSuper(super.equals(other))
+				.append(this.getParameterTypes(), other.getParameterTypes())
+				.append(this.getReturnType(), other.getReturnType())
+				.append(this.getThrownTypes(), other.getThrownTypes())
+				.append(this.getTypeVariables(), other.getTypeVariables())
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+				.append(this.getParameterTypes())
+				.append(this.getReturnType())
+				.append(this.getThrownTypes())
+				.append(this.getTypeVariables())
+				.toHashCode();
+	}
+
+
+	@Override
+	public String toString() {
+		ToStringBuilder builder = new ToStringBuilder(this);
+		appendDescription(builder);
+		return builder.toString();
+	}
+
+	@Override
+	protected void appendDescription(ToStringBuilder builder) {
+        super.appendDescription(builder);
+        builder.append("parameterTypes", this.getParameterTypes());
+        builder.append("returnType", this.getReturnType());
+        builder.append("thrownTypes", this.getThrownTypes());
+        builder.append("typeVariables", this.getTypeVariables());
+	}
 
 }
 

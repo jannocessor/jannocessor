@@ -28,6 +28,8 @@ import org.jannocessor.model.variable.JavaField;
 @DomainModel
 public interface JavaClass extends AbstractJavaType {
 
+	ClassModifiers getModifiers();
+
 	PowerList<JavaField> getFields();
 
 	PowerList<JavaConstructor> getConstructors();
@@ -38,5 +40,12 @@ public interface JavaClass extends AbstractJavaType {
 
 	PowerList<JavaInstanceInit> getInstanceInits();
 
-	ClassModifiers getModifiers();
+	PowerList<JavaNestedClass> getNestedClasses();
+
+	PowerList<JavaNestedEnum> getNestedEnums();
+
+	PowerList<JavaNestedInterface> getNestedInterfaces();
+
+	PowerList<JavaNestedAnnotation> getNestedAnnotations();
+
 }

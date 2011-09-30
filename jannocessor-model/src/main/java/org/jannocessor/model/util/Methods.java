@@ -21,6 +21,10 @@ import org.jannocessor.model.modifier.MethodModifiers;
 
 public class Methods {
 
+	/** Represents the default method modifier. */
+	public static final MethodModifiers DEFAULT_MODIFIER = Code
+			.methodModifiers();
+
 	/** Represents "public" method modifiers. */
 	public static final MethodModifiers PUBLIC = Code
 			.methodModifiers(MethodModifierValue.PUBLIC);

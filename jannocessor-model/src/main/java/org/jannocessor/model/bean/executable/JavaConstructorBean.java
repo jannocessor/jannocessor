@@ -16,19 +16,34 @@
 
 package org.jannocessor.model.bean.executable;
 
+import java.util.List;
+
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaConstructorData;
 import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.modifier.ConstructorModifiers;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaConstructorBean extends JavaConstructorData implements
 		JavaConstructor {
 
-	public JavaConstructorBean(MethodModifiers modifiers, JavaParameter[] params) {
-		// TODO Auto-generated constructor stub
+	public JavaConstructorBean(ConstructorModifiers modifiers,
+			List<JavaParameter> params, List<JavaType> thrownTypes,
+			List<JavaTypeParameter> typeParameters) {
+		this.setModifiers(modifiers);
+		this.setParameters(Power.list(params));
+		this.setThrownTypes(Power.list(thrownTypes));
+		this.setTypeParameters(Power.list(typeParameters));
+
+		// TODO: calculate and set isVarArgs
+		this.setVarArgs(false);
+
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setBody(new ExecutableBodyBean());
 	}
 
 }

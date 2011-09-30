@@ -17,8 +17,6 @@
 package org.jannocessor.adapter.executable;
 
 import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.TypeParameterElement;
-import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
@@ -44,16 +42,8 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 	}
 
 	public PowerList<JavaTypeParameter> getTypeParameters() {
-		PowerList<JavaTypeParameter> adapters = Power.list();
-
-		for (TypeParameterElement typeParameter : executable
-				.getTypeParameters()) {
-			JavaTypeParameter adapter = getElementAdapter(typeParameter,
-					JavaTypeParameter.class);
-			adapters.add(adapter);
-		}
-
-		return adapters;
+		return getElementsAdapters(executable.getParameters(),
+				JavaTypeParameter.class);
 	}
 
 	public JavaType getReturnType() {
@@ -61,18 +51,11 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 	}
 
 	public PowerList<JavaParameter> getParameters() {
-		PowerList<JavaParameter> adapters = Power.list();
-
-		for (VariableElement variable : executable.getParameters()) {
-			JavaParameter adapter = getElementAdapter(variable,
-					JavaParameter.class);
-			adapters.add(adapter);
-		}
-
-		return adapters;
+		return getElementsAdapters(executable.getParameters(),
+				JavaParameter.class);
 	}
 
-	public Boolean getVarArgs() {
+	public Boolean isVarArgs() {
 		return executable.isVarArgs();
 	}
 
@@ -88,7 +71,7 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 
 	@Override
 	public ExecutableBody getBody() {
-	    // TODO Auto-generated method stub
-	    return null;
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

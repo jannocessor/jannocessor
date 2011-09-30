@@ -16,25 +16,50 @@
 
 package org.jannocessor.model.bean.structure;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import net.sf.twip.AutoTwip;
 import net.sf.twip.TwiP;
 
-import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.bean.AbstractModelTest;
+import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.test.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaClassTest {
+public class JavaClassTest extends AbstractModelTest {
+
+	@AutoTwip
+	public static String[] IDS = less(Param.identifiers());
+
+	@AutoTwip
+	public static JavaType[] TYPES = Param.types();
+
+	@AutoTwip
+	public static Class<?>[] CLASSES = Param.classes();
+
+	@AutoTwip
+	public static JavaTypeParameter[] TYPE_PARAM = Param.typeParams();
+
+	@AutoTwip
+	public static MethodModifiers[] MODIF = less(Param.methodModifiers());
+
+	@AutoTwip
+	public static JavaType[][] typeGroups(JavaType type1, JavaType type2) {
+		return Param.groups(JavaType.class, type1, type2);
+	}
+
+	@AutoTwip
+	public static JavaTypeParameter[][] typeParamGroups(
+			JavaTypeParameter typeParam1, JavaTypeParameter typeParam2) {
+		return Param.groups(JavaTypeParameter.class, typeParam1, typeParam2);
+	}
+
+	/******************************** TESTS ********************************/
 
 	@Test
 	public void testInstantiation() {
-		JavaClass clazz = Code.classs(Classes.PUBLIC, "MyClass");
-		assertNotNull(clazz);
-
-		assertEquals(Classes.PUBLIC, clazz.getModifiers());
 	}
 
 }

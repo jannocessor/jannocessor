@@ -16,24 +16,63 @@
 
 package org.jannocessor.model.bean.variable;
 
-import static org.junit.Assert.assertNotNull;
+import static junit.framework.Assert.assertEquals;
+import net.sf.twip.AutoTwip;
 import net.sf.twip.TwiP;
+import net.sf.twip.Values;
 
+import org.jannocessor.model.bean.AbstractModelTest;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaLocalVariable;
+import org.jannocessor.test.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaLocalVariableTest {
+public class JavaLocalVariableTest extends AbstractModelTest {
+
+	@AutoTwip
+	public static String[] IDS = Param.identifiers();
+
+	@AutoTwip
+	public static JavaType[] TYPES = Param.types();
+
+	@AutoTwip
+	public static Class<?>[] CLASSES = Param.classes();
 
 	@Test
-	public void testInstantiation() {
-		JavaLocalVariable var1 = Code.localVariable(int.class, "x");
-		assertNotNull(var1);
+	public void testInstantiation1(Class<?> type, @Values("IDS") String name) {
+		JavaLocalVariable var = Code.localVariable(type, name);
+		checkLonelyElement(var, name, type);
 
-		JavaLocalVariable var2 = Code.localVariable(int.class, "x", true);
-		assertNotNull(var2);
+		assertEquals(Boolean.FALSE, var.isFinal());
+	}
+
+	@Test
+	public void testInstantiation1(Class<?> type, @Values("IDS") String name,
+			Boolean isFinal) {
+		JavaLocalVariable var = Code.localVariable(type, name, isFinal);
+		checkLonelyElement(var, name, type);
+
+		assertEquals(isFinal, var.isFinal());
+	}
+
+	@Test
+	public void testInstantiation2(JavaType type, @Values("IDS") String name) {
+		JavaLocalVariable var = Code.localVariable(type, name);
+		checkLonelyElement(var, name, type);
+
+		assertEquals(Boolean.FALSE, var.isFinal());
+	}
+
+	@Test
+	public void testInstantiation2(JavaType type, @Values("IDS") String name,
+			Boolean isFinal) {
+		JavaLocalVariable var = Code.localVariable(type, name, isFinal);
+		checkLonelyElement(var, name, type);
+
+		assertEquals(isFinal, var.isFinal());
 	}
 
 }

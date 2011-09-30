@@ -19,7 +19,9 @@ package org.jannocessor.model.bean.variable;
 import junit.framework.Assert;
 import net.sf.twip.AutoTwip;
 import net.sf.twip.TwiP;
+import net.sf.twip.Values;
 
+import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
@@ -29,42 +31,37 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(TwiP.class)
-public class JavaFieldTest {
+// FIXME: shouldn't accept non-valid java names and void types
+public class JavaFieldTest extends AbstractModelTest {
 
 	@AutoTwip
-	public static FieldModifiers[] MODIFIERS = Param.fieldModifiers();
+	public static String[] IDS = Param.identifiers();
 
 	@AutoTwip
-	public static JavaType[] TYPES = Param.javaTypes();
+	public static FieldModifiers[] MODIF = Param.fieldModifiers();
+
+	@AutoTwip
+	public static JavaType[] TYPES = Param.types();
 
 	@AutoTwip
 	public static Class<?>[] CLASSES = Param.classes();
 
 	@Test
 	public void testFieldConstruction1(FieldModifiers modifiers, JavaType type,
-			String name) {
+			@Values("IDS") String name) {
 		JavaField field = Code.field(modifiers, type, name);
 
-		// FIXME: shouldn't accept non-valid java names
-
-		Assert.assertNotNull(field.getCode());
-		Assert.assertEquals(name, field.getName().getText());
+		checkLonelyElement(field, name, type);
 		Assert.assertEquals(modifiers, field.getModifiers());
-		Assert.assertEquals(type, field.getType());
 	}
 
 	@Test
 	public void testFieldConstruction2(FieldModifiers modifiers, Class<?> type,
-			String name) {
+			@Values("IDS") String name) {
 		JavaField field = Code.field(modifiers, type, name);
+		checkLonelyElement(field, name, type);
 
-		// FIXME: shouldn't accept void
-
-		Assert.assertNotNull(field.getCode());
-		Assert.assertEquals(name, field.getName().getText());
 		Assert.assertEquals(modifiers, field.getModifiers());
-		Assert.assertEquals(type.getCanonicalName(), field.getType()
-				.getCanonicalName().getText());
 	}
 
 }

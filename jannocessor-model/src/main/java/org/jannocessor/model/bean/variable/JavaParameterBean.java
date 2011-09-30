@@ -17,16 +17,20 @@
 package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaParameterData;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Templates;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaParameterBean extends JavaParameterData implements
 		JavaParameter {
 
-	public JavaParameterBean(Class<?> clazz, String name, boolean isFinal) {
-		// TODO Auto-generated constructor stub
+	public JavaParameterBean(JavaType type, String name, boolean isFinal) {
+		this.setType(type);
+		this.setName(new NameBean(name));
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setFinal(isFinal);
 	}
 
 }

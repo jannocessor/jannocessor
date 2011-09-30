@@ -25,6 +25,9 @@ import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -46,7 +49,7 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
 	private boolean getParametersInitialized = false;
 
-	private boolean getVarArgsInitialized = false;
+	private boolean isVarArgsInitialized = false;
 
 	private boolean getThrownTypesInitialized = false;
 
@@ -80,13 +83,13 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
         return data.getParameters();
     }
 
-    public Boolean getVarArgs() {
-        if (!getVarArgsInitialized) {
-            data.setVarArgs(adapter.getVarArgs());
-			getVarArgsInitialized = true;
+    public Boolean isVarArgs() {
+        if (!isVarArgsInitialized) {
+            data.setVarArgs(adapter.isVarArgs());
+			isVarArgsInitialized = true;
         }
 
-        return data.getVarArgs();
+        return data.isVarArgs();
     }
 
     public PowerList<JavaType> getThrownTypes() {
@@ -107,6 +110,60 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
         return data.getModifiers();
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof JavaMethod)) {
+			return false;
+		}
+
+		JavaMethod other = (JavaMethod) obj;
+		return new EqualsBuilder()
+				.appendSuper(super.equals(other))
+				.append(this.getTypeParameters(), other.getTypeParameters())
+				.append(this.getReturnType(), other.getReturnType())
+				.append(this.getParameters(), other.getParameters())
+				.append(this.isVarArgs(), other.isVarArgs())
+				.append(this.getThrownTypes(), other.getThrownTypes())
+				.append(this.getModifiers(), other.getModifiers())
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+				.append(this.getTypeParameters())
+				.append(this.getReturnType())
+				.append(this.getParameters())
+				.append(this.isVarArgs())
+				.append(this.getThrownTypes())
+				.append(this.getModifiers())
+				.toHashCode();
+	}
+
+
+	@Override
+	public String toString() {
+		ToStringBuilder builder = new ToStringBuilder(this);
+		appendDescription(builder);
+		return builder.toString();
+	}
+
+	@Override
+	protected void appendDescription(ToStringBuilder builder) {
+        super.appendDescription(builder);
+        builder.append("typeParameters", this.getTypeParameters());
+        builder.append("returnType", this.getReturnType());
+        builder.append("parameters", this.getParameters());
+        builder.append("_isVarArgs", this.isVarArgs());
+        builder.append("thrownTypes", this.getThrownTypes());
+        builder.append("modifiers", this.getModifiers());
+	}
 
 }
 

@@ -19,6 +19,9 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -35,6 +38,42 @@ public class JavaCodeModelData implements JavaCodeModel {
         this.code = value;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof JavaCodeModel)) {
+			return false;
+		}
+
+		JavaCodeModel other = (JavaCodeModel) obj;
+		return new EqualsBuilder()
+				.append(this.getCode(), other.getCode())
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+				.append(this.getCode())
+				.toHashCode();
+	}
+
+
+	@Override
+	public String toString() {
+		ToStringBuilder builder = new ToStringBuilder(this);
+		appendDescription(builder);
+		return builder.toString();
+	}
+
+	protected void appendDescription(ToStringBuilder builder) {
+        builder.append("code", this.getCode());
+	}
 
 }
 
