@@ -69,7 +69,8 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 		if (!parsedName.isSimple()) {
 			if (genericType.startsWith(JAVA_LANG)
 					|| importedFull.contains(genericType)) {
-				return simpleName + renderParams(parsedName.getParams());
+				return simpleName + renderParams(parsedName.getParams())
+						+ parsedName.getArrayPart();
 			} else {
 				return type + renderParams(parsedName.getParams());
 			}
@@ -100,15 +101,20 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 	}
 
 	private ParsedTypeName parseType(String type) {
-		String regex = "^(?:([^<>]+)\\.)?([^.<>]+?)(?:\\s?<(.*)>)?$";
+		String regex = "^(?:([^<>]+)\\.)?([^.<>]+?)(?:\\s?<(.*)>)?((?:\\[\\])*)?$";
 		Matcher matcher = Pattern.compile(regex).matcher(type);
 		if (matcher.matches()) {
 			List<String> params = extractParams(matcher.group(3));
+			int arrayDimensions = calculateArrayDimensions(matcher.group(4));
 			return new ParsedTypeName(matcher.group(1), matcher.group(2),
-					params);
+					params, arrayDimensions);
 		} else {
 			throw new IllegalArgumentException("Cannot parse type!");
 		}
+	}
+
+	private int calculateArrayDimensions(String dim) {
+		return StringUtils.isNotEmpty(dim) ? dim.length() / 2 : 0;
 	}
 
 	private List<String> extractParams(String params) {

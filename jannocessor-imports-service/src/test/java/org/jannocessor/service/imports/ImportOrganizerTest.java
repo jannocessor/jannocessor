@@ -75,6 +75,28 @@ public class ImportOrganizerTest {
 	}
 
 	@Test
+	public void testArray() {
+		checkImport("int[][]");
+		checkImport("java.lang.String[]");
+		checkImport("java.util.Date[]", "java.util.Date");
+		checkImport("java.util.List<java.util.Map[]>", "java.util.List", "java.util.Map");
+		checkImport("java.sql.Date[]");
+
+		checkUsage("java.lang.String[]", "String[]");
+		checkUsage("int[][]", "int[][]");
+		checkUsage("java.util.Date[]", "Date[]");
+		checkUsage("java.util.List<java.util.Map[]>", "List<Map[]>");
+		checkUsage("java.util.List<java.util.Map[]>[][][][]", "List<Map[]>[][][][]");
+		checkUsage("java.sql.Date[]", "java.sql.Date[]");
+	}
+
+	@Test
+	public void testComplexCombinations() {
+		checkImport("java.util.Map<java.util.Set<Integer[]>[],int[]>[]", "java.util.Map", "java.util.Set");
+
+		checkUsage("java.util.Map<java.util.Set<Integer[]>[],int[]>[]", "Map<Set<Integer[]>[],int[]>[]");
+	}
+	@Test
 	public void testSimpleGenerics() {
 		checkImport("java.util.List<java.lang.String,int>", "java.util.List");
 		checkImport("java.util.Map<java.lang.Integer, java.lang.Boolean>",
