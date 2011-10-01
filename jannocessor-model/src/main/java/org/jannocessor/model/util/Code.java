@@ -53,16 +53,16 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.modifier.ClassModifierValue;
 import org.jannocessor.model.modifier.ClassModifiers;
-import org.jannocessor.model.modifier.ConstructorModifierValue;
 import org.jannocessor.model.modifier.ConstructorModifiers;
-import org.jannocessor.model.modifier.FieldModifierValue;
 import org.jannocessor.model.modifier.FieldModifiers;
-import org.jannocessor.model.modifier.MethodModifierValue;
 import org.jannocessor.model.modifier.MethodModifiers;
-import org.jannocessor.model.modifier.NestedClassModifierValue;
 import org.jannocessor.model.modifier.NestedClassModifiers;
+import org.jannocessor.model.modifier.value.ClassModifierValue;
+import org.jannocessor.model.modifier.value.ConstructorModifierValue;
+import org.jannocessor.model.modifier.value.FieldModifierValue;
+import org.jannocessor.model.modifier.value.MethodModifierValue;
+import org.jannocessor.model.modifier.value.NestedClassModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
@@ -100,6 +100,12 @@ public class Code {
 	public static final PowerList<JavaNestedInterface> NO_NESTED_INTERFACES = Power
 			.unmodifiableList();
 	public static final PowerList<JavaNestedAnnotation> NO_NESTED_ANNOTATIONS = Power
+			.unmodifiableList();
+	public static final List<JavaMethod> NO_METHODS = Power.unmodifiableList();
+	public static final List<JavaConstructor> NO_CONSTRUCTORS = Power
+			.unmodifiableList();
+	public static final List<JavaField> NO_FIELDS = Power.unmodifiableList();
+	public static final List<JavaType> NO_INTERFACES = Power
 			.unmodifiableList();
 
 	private static Name name(String name) {
@@ -404,6 +410,47 @@ public class Code {
 			List<JavaMethod> methods) {
 		return classs(modifiers, name, superclass, interfaces, fields,
 				constructors, methods, Code.NO_TYPE_PARAMS);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces,
+			List<JavaField> fields, List<JavaConstructor> constructors) {
+		return classs(modifiers, name, superclass, interfaces, fields,
+				constructors, Code.NO_METHODS);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces,
+			List<JavaField> fields) {
+		return classs(modifiers, name, superclass, interfaces, fields,
+				Code.NO_CONSTRUCTORS);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces) {
+		return classs(modifiers, name, superclass, interfaces, Code.NO_FIELDS);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name,
+			JavaType superclass) {
+		return classs(modifiers, name, superclass, Code.NO_INTERFACES);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name) {
+		return classs(modifiers, name, null);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name,
+			List<JavaField> fields, List<JavaMethod> methods) {
+		return classs(modifiers, name, null, Code.NO_INTERFACES, fields,
+				Code.NO_CONSTRUCTORS, methods);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name,
+			List<JavaField> fields, List<JavaMethod> methods,
+			List<JavaConstructor> constructors) {
+		return classs(modifiers, name, null, Code.NO_INTERFACES, fields,
+				constructors, methods);
 	}
 
 }

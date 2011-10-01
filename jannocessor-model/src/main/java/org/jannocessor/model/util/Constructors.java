@@ -16,8 +16,8 @@
 
 package org.jannocessor.model.util;
 
-import org.jannocessor.model.modifier.ConstructorModifierValue;
 import org.jannocessor.model.modifier.ConstructorModifiers;
+import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 
 public class Constructors {
 

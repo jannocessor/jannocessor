@@ -14,10 +14,24 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.modifier;
+package org.jannocessor.adapter.structure;
 
-public enum FieldModifierValue {
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
-	PUBLIC, PROTECTED, PRIVATE, STATIC, FINAL, TRANSIENT, VOLATILE
+import org.jannocessor.model.structure.AbstractJavaAnnotation;
+
+abstract class AbstractJavaAnnotationAdapter extends AbstractJavaStructureAdapter
+		implements AbstractJavaAnnotation {
+
+	@SuppressWarnings("unused")
+	private final TypeElement annotation;
+
+	public AbstractJavaAnnotationAdapter(TypeElement annotation, Elements elementUtils,
+			Types typeUtils) {
+		super(annotation, elementUtils, typeUtils);
+		this.annotation = annotation;
+	}
 
 }

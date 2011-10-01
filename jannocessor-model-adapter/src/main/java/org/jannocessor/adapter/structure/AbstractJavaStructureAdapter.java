@@ -25,16 +25,15 @@ import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.structure.AbstractJavaType;
-import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.type.JavaType;
 
-abstract class AbstractJavaTypeAdapter extends JavaElementAdapter implements
-		AbstractJavaType {
+abstract class AbstractJavaStructureAdapter extends JavaElementAdapter implements
+		AbstractJavaStructure {
 
 	private final TypeElement type;
 
-	public AbstractJavaTypeAdapter(TypeElement type, Elements elementUtils,
+	public AbstractJavaStructureAdapter(TypeElement type, Elements elementUtils,
 			Types typeUtils) {
 		super(type, elementUtils, typeUtils);
 		this.type = type;
@@ -72,12 +71,6 @@ abstract class AbstractJavaTypeAdapter extends JavaElementAdapter implements
 		}
 
 		return adapters;
-	}
-
-	@Override
-	public PowerList<JavaTypeParameter> getParameters() {
-		return getElementsAdapters(type.getTypeParameters(),
-				JavaTypeParameter.class);
 	}
 
 }

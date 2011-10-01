@@ -17,26 +17,11 @@
 package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.modifier.ClassModifiers;
-import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.model.modifier.NestedClassModifiers;
 
 @DomainModel
-public interface JavaNestedClass extends AbstractJavaType {
+public interface JavaNestedClass extends AbstractJavaClass {
 
-	PowerList<JavaField> getFields();
+	NestedClassModifiers getModifiers();
 
-	PowerList<JavaConstructor> getConstructors();
-
-	PowerList<JavaMethod> getMethods();
-
-	PowerList<JavaStaticInit> getStaticInits();
-
-	PowerList<JavaInstanceInit> getInstanceInits();
-
-	ClassModifiers getModifiers();
 }

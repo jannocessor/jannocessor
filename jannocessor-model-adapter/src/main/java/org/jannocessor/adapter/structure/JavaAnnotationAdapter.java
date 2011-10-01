@@ -20,9 +20,12 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.bean.modifier.AnnotationModifiersBean;
+import org.jannocessor.model.modifier.AnnotationModifiers;
+import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
 
-public final class JavaAnnotationAdapter extends AbstractJavaTypeAdapter
+public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		implements JavaAnnotation {
 
 	@SuppressWarnings("unused")
@@ -32,6 +35,12 @@ public final class JavaAnnotationAdapter extends AbstractJavaTypeAdapter
 			Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
 		this.annotation = annotation;
+	}
+
+	@Override
+	public AnnotationModifiers getModifiers() {
+		return new AnnotationModifiersBean(
+				getModifierValues(AnnotationModifierValue.class));
 	}
 
 }

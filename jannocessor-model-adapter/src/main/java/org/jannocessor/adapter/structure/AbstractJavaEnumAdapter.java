@@ -14,10 +14,24 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.modifier;
+package org.jannocessor.adapter.structure;
 
-public enum NestedClassModifierValue {
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
-	PUBLIC, PRIVATE, PROTECTED, ABSTRACT, FINAL, STATIC,
+import org.jannocessor.model.structure.AbstractJavaEnum;
+
+abstract class AbstractJavaEnumAdapter extends AbstractJavaStructureAdapter
+		implements AbstractJavaEnum {
+
+	@SuppressWarnings("unused")
+	private final TypeElement tenum;
+
+	public AbstractJavaEnumAdapter(TypeElement tenum, Elements elementUtils,
+			Types typeUtils) {
+		super(tenum, elementUtils, typeUtils);
+		this.tenum = tenum;
+	}
 
 }

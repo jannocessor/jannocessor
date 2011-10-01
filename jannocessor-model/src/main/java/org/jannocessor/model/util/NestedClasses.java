@@ -16,8 +16,8 @@
 
 package org.jannocessor.model.util;
 
-import org.jannocessor.model.modifier.NestedClassModifierValue;
 import org.jannocessor.model.modifier.NestedClassModifiers;
+import org.jannocessor.model.modifier.value.NestedClassModifierValue;
 
 public class NestedClasses {
 

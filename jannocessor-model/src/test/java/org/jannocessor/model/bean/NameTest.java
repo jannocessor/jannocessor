@@ -16,7 +16,8 @@
 
 package org.jannocessor.model.bean;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import net.sf.twip.TwiP;
 
 import org.junit.Test;

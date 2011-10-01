@@ -16,8 +16,8 @@
 
 package org.jannocessor.model.util;
 
-import org.jannocessor.model.modifier.FieldModifierValue;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.modifier.value.FieldModifierValue;
 
 public class Fields {
 

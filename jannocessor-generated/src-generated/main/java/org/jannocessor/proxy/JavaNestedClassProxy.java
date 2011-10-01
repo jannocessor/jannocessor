@@ -17,23 +17,17 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaClassProxy;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.data.JavaNestedClassData;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.variable.JavaField;
-import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaNestedClassProxy extends AbstractJavaTypeProxy implements JavaNestedClass {
+public class JavaNestedClassProxy extends AbstractJavaClassProxy implements JavaNestedClass {
 
     private JavaNestedClass adapter;
 
@@ -45,65 +39,10 @@ public class JavaNestedClassProxy extends AbstractJavaTypeProxy implements JavaN
         this.data = data;
     }
 
-	private boolean getFieldsInitialized = false;
-
-	private boolean getConstructorsInitialized = false;
-
-	private boolean getMethodsInitialized = false;
-
-	private boolean getStaticInitsInitialized = false;
-
-	private boolean getInstanceInitsInitialized = false;
-
 	private boolean getModifiersInitialized = false;
 
 
-    public PowerList<JavaField> getFields() {
-        if (!getFieldsInitialized) {
-            data.setFields(adapter.getFields());
-			getFieldsInitialized = true;
-        }
-
-        return data.getFields();
-    }
-
-    public PowerList<JavaConstructor> getConstructors() {
-        if (!getConstructorsInitialized) {
-            data.setConstructors(adapter.getConstructors());
-			getConstructorsInitialized = true;
-        }
-
-        return data.getConstructors();
-    }
-
-    public PowerList<JavaMethod> getMethods() {
-        if (!getMethodsInitialized) {
-            data.setMethods(adapter.getMethods());
-			getMethodsInitialized = true;
-        }
-
-        return data.getMethods();
-    }
-
-    public PowerList<JavaStaticInit> getStaticInits() {
-        if (!getStaticInitsInitialized) {
-            data.setStaticInits(adapter.getStaticInits());
-			getStaticInitsInitialized = true;
-        }
-
-        return data.getStaticInits();
-    }
-
-    public PowerList<JavaInstanceInit> getInstanceInits() {
-        if (!getInstanceInitsInitialized) {
-            data.setInstanceInits(adapter.getInstanceInits());
-			getInstanceInitsInitialized = true;
-        }
-
-        return data.getInstanceInits();
-    }
-
-    public ClassModifiers getModifiers() {
+    public NestedClassModifiers getModifiers() {
         if (!getModifiersInitialized) {
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
@@ -127,11 +66,6 @@ public class JavaNestedClassProxy extends AbstractJavaTypeProxy implements JavaN
 		JavaNestedClass other = (JavaNestedClass) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getFields(), other.getFields())
-				.append(this.getConstructors(), other.getConstructors())
-				.append(this.getMethods(), other.getMethods())
-				.append(this.getStaticInits(), other.getStaticInits())
-				.append(this.getInstanceInits(), other.getInstanceInits())
 				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
@@ -139,11 +73,6 @@ public class JavaNestedClassProxy extends AbstractJavaTypeProxy implements JavaN
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getFields())
-				.append(this.getConstructors())
-				.append(this.getMethods())
-				.append(this.getStaticInits())
-				.append(this.getInstanceInits())
 				.append(this.getModifiers())
 				.toHashCode();
 	}
@@ -159,11 +88,6 @@ public class JavaNestedClassProxy extends AbstractJavaTypeProxy implements JavaN
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("fields", this.getFields());
-        builder.append("constructors", this.getConstructors());
-        builder.append("methods", this.getMethods());
-        builder.append("staticInits", this.getStaticInits());
-        builder.append("instanceInits", this.getInstanceInits());
         builder.append("modifiers", this.getModifiers());
 	}
 

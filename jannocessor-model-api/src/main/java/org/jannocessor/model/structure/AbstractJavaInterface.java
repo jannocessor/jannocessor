@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.modifier;
+package org.jannocessor.model.structure;
 
-public enum MethodModifierValue {
+import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.executable.JavaMethod;
 
-	PUBLIC, PROTECTED, PRIVATE, STATIC, FINAL, ABSTRACT, SYNCHRONIZED, NATIVE, STRICTFP
+@DomainModel
+public interface AbstractJavaInterface extends AbstractJavaStructure {
+
+	PowerList<JavaTypeParameter> getParameters();
+
+	PowerList<JavaMethod> getMethods();
 
 }

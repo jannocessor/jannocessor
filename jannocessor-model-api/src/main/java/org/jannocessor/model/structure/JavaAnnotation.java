@@ -17,8 +17,11 @@
 package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.model.modifier.AnnotationModifiers;
 
 @DomainModel
-public interface JavaAnnotation extends AbstractJavaType {
+public interface JavaAnnotation extends AbstractJavaAnnotation {
+
+	AnnotationModifiers getModifiers();
 
 }

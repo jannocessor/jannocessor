@@ -16,7 +16,11 @@
 
 package org.jannocessor.adapter;
 
+import java.lang.reflect.Array;
+import java.util.Set;
+
 import javax.lang.model.element.Element;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
@@ -83,6 +87,19 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 			}
 		}
 		return results;
+	}
+
+	@SuppressWarnings("unchecked")
+	protected <T extends Enum<T>> T[] getModifierValues(Class<T> enumType) {
+		Set<Modifier> modifiers = element.getModifiers();
+		final T[] values = (T[]) Array.newInstance(enumType, modifiers.size());
+
+		int index = 0;
+		for (Modifier modifier : modifiers) {
+			values[index++] = Enum.valueOf(enumType, modifier.name());
+		}
+
+		return values;
 	}
 
 }

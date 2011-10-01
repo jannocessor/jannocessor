@@ -2,9 +2,9 @@ package org.jannocessor.model.bean.modifier;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.jannocessor.model.modifier.NestedClassModifierValue;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.modifier.NestedClassModifiers;
+import org.jannocessor.model.modifier.value.NestedClassModifierValue;
 
 public class NestedClassModifiersBean implements NestedClassModifiers {
 
@@ -18,7 +18,6 @@ public class NestedClassModifiersBean implements NestedClassModifiers {
 	public NestedClassModifierValue[] getValues() {
 		return values;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -44,8 +43,7 @@ public class NestedClassModifiersBean implements NestedClassModifiers {
 
 	@Override
 	public String toString() {
-		return new ReflectionToStringBuilder(this).toString();
+		return new ToStringBuilder(this).append("values", getValues()).toString();
 	}
-
 
 }

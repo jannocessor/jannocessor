@@ -14,99 +14,71 @@
  * limitations under the License.
  */
 
-package org.jannocessor.proxy;
+package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaElementProxy;
-import org.jannocessor.model.structure.AbstractJavaType;
-import org.jannocessor.data.AbstractJavaTypeData;
+import org.jannocessor.data.JavaElementData;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaTypeParameter;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class AbstractJavaTypeProxy extends JavaElementProxy implements AbstractJavaType {
+public class AbstractJavaStructureData extends JavaElementData implements AbstractJavaStructure {
 
-    private AbstractJavaType adapter;
+    private String nesting;
 
-    private AbstractJavaTypeData data;
+    private Name packageName;
 
-    public AbstractJavaTypeProxy(AbstractJavaType adapter, AbstractJavaTypeData data) {
-        super(adapter, data);
-        this.adapter = adapter;
-        this.data = data;
-    }
+    private Name qualifiedName;
 
-	private boolean getNestingInitialized = false;
+    private JavaType superclass;
 
-	private boolean getPackageNameInitialized = false;
-
-	private boolean getQualifiedNameInitialized = false;
-
-	private boolean getSuperclassInitialized = false;
-
-	private boolean getInterfacesInitialized = false;
-
-	private boolean getParametersInitialized = false;
+    private PowerList<JavaType> interfaces;
 
 
     public String getNesting() {
-        if (!getNestingInitialized) {
-            data.setNesting(adapter.getNesting());
-			getNestingInitialized = true;
-        }
+        return this.nesting;
+    }
 
-        return data.getNesting();
+    public void setNesting(String value) {
+        this.nesting = value;
     }
 
     public Name getPackageName() {
-        if (!getPackageNameInitialized) {
-            data.setPackageName(adapter.getPackageName());
-			getPackageNameInitialized = true;
-        }
+        return this.packageName;
+    }
 
-        return data.getPackageName();
+    public void setPackageName(Name value) {
+        this.packageName = value;
     }
 
     public Name getQualifiedName() {
-        if (!getQualifiedNameInitialized) {
-            data.setQualifiedName(adapter.getQualifiedName());
-			getQualifiedNameInitialized = true;
-        }
+        return this.qualifiedName;
+    }
 
-        return data.getQualifiedName();
+    public void setQualifiedName(Name value) {
+        this.qualifiedName = value;
     }
 
     public JavaType getSuperclass() {
-        if (!getSuperclassInitialized) {
-            data.setSuperclass(adapter.getSuperclass());
-			getSuperclassInitialized = true;
-        }
+        return this.superclass;
+    }
 
-        return data.getSuperclass();
+    public void setSuperclass(JavaType value) {
+        this.superclass = value;
     }
 
     public PowerList<JavaType> getInterfaces() {
-        if (!getInterfacesInitialized) {
-            data.setInterfaces(adapter.getInterfaces());
-			getInterfacesInitialized = true;
-        }
-
-        return data.getInterfaces();
+        return this.interfaces;
     }
 
-    public PowerList<JavaTypeParameter> getParameters() {
-        if (!getParametersInitialized) {
-            data.setParameters(adapter.getParameters());
-			getParametersInitialized = true;
-        }
-
-        return data.getParameters();
+    public void setInterfaces(PowerList<JavaType> value) {
+        this.interfaces = value;
     }
 
 	@Override
@@ -117,11 +89,11 @@ public class AbstractJavaTypeProxy extends JavaElementProxy implements AbstractJ
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof AbstractJavaType)) {
+		if (!(obj instanceof AbstractJavaStructure)) {
 			return false;
 		}
 
-		AbstractJavaType other = (AbstractJavaType) obj;
+		AbstractJavaStructure other = (AbstractJavaStructure) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getNesting(), other.getNesting())
@@ -129,7 +101,6 @@ public class AbstractJavaTypeProxy extends JavaElementProxy implements AbstractJ
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
 				.append(this.getInterfaces(), other.getInterfaces())
-				.append(this.getParameters(), other.getParameters())
 				.isEquals();
 	}
 
@@ -141,7 +112,6 @@ public class AbstractJavaTypeProxy extends JavaElementProxy implements AbstractJ
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
 				.append(this.getInterfaces())
-				.append(this.getParameters())
 				.toHashCode();
 	}
 
@@ -161,7 +131,6 @@ public class AbstractJavaTypeProxy extends JavaElementProxy implements AbstractJ
         builder.append("qualifiedName", this.getQualifiedName());
         builder.append("superclass", this.getSuperclass());
         builder.append("interfaces", this.getInterfaces());
-        builder.append("parameters", this.getParameters());
 	}
 
 }

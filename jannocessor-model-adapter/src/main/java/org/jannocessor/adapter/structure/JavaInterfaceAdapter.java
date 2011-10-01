@@ -20,11 +20,12 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
+import org.jannocessor.model.modifier.InterfaceModifiers;
+import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.structure.JavaInterface;
 
-public final class JavaInterfaceAdapter extends AbstractJavaTypeAdapter
+public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 		implements JavaInterface {
 
 	@SuppressWarnings("unused")
@@ -37,8 +38,9 @@ public final class JavaInterfaceAdapter extends AbstractJavaTypeAdapter
 	}
 
 	@Override
-	public PowerList<JavaMethod> getMethods() {
-		return findChildrenByType(JavaMethod.class);
+	public InterfaceModifiers getModifiers() {
+		return new InterfaceModifiersBean(
+				getModifierValues(InterfaceModifierValue.class));
 	}
 
 }

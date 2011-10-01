@@ -50,6 +50,8 @@ public class JavaMethodTest extends AbstractModelTest {
 	@AutoTwip
 	public static MethodModifiers[] MODIF = less(Param.methodModifiers());
 
+	/* ********************* PARAMETER COMBINATIONS ******************** */
+
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
@@ -62,10 +64,14 @@ public class JavaMethodTest extends AbstractModelTest {
 		return Param.groups(JavaParameter.class, param1, param2);
 	}
 
+	/* ********************** TYPE COMBINATIONS ************************** */
+
 	@AutoTwip
 	public static JavaType[][] typeGroups(JavaType type1, JavaType type2) {
 		return Param.groups(JavaType.class, type1, type2);
 	}
+
+	/* ********************* TYPE PARAM COMBINATIONS ********************** */
 
 	@AutoTwip
 	public static JavaTypeParameter[][] typeParamGroups(
@@ -73,7 +79,7 @@ public class JavaMethodTest extends AbstractModelTest {
 		return Param.groups(JavaTypeParameter.class, typeParam1, typeParam2);
 	}
 
-	/******************************** TESTS ********************************/
+	/* **************************** TESTS ****************************** */
 
 	@Test
 	public void testInstantiation1(MethodModifiers modifiers,

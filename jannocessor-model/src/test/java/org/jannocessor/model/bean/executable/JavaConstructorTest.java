@@ -48,6 +48,8 @@ public class JavaConstructorTest extends AbstractModelTest {
 	@AutoTwip
 	public static ConstructorModifiers[] MODIF = Param.constructorModifiers();
 
+	/* ********************* PARAMETER COMBINATIONS ******************** */
+
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
@@ -60,10 +62,14 @@ public class JavaConstructorTest extends AbstractModelTest {
 		return Param.groups(JavaParameter.class, param1, param2);
 	}
 
+	/* ********************** TYPE COMBINATIONS ************************** */
+
 	@AutoTwip
 	public static JavaType[][] typeGroups(JavaType type1, JavaType type2) {
 		return Param.groups(JavaType.class, type1, type2);
 	}
+
+	/* ********************* TYPE PARAM COMBINATIONS ********************** */
 
 	@AutoTwip
 	public static JavaTypeParameter[][] typeParamGroups(
@@ -71,7 +77,7 @@ public class JavaConstructorTest extends AbstractModelTest {
 		return Param.groups(JavaTypeParameter.class, typeParam1, typeParam2);
 	}
 
-	/******************************** TESTS ********************************/
+	/* **************************** TESTS ****************************** */
 
 	@Test
 	public void testInstantiation1() {

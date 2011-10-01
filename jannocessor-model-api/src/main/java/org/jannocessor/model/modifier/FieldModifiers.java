@@ -16,6 +16,8 @@
 
 package org.jannocessor.model.modifier;
 
+import org.jannocessor.model.modifier.value.FieldModifierValue;
+
 public interface FieldModifiers {
 
 	FieldModifierValue[] getValues();

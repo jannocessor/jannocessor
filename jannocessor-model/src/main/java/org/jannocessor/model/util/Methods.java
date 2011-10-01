@@ -16,8 +16,8 @@
 
 package org.jannocessor.model.util;
 
-import org.jannocessor.model.modifier.MethodModifierValue;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.modifier.value.MethodModifierValue;
 
 public class Methods {
 

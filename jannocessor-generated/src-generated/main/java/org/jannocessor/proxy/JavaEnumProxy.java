@@ -17,21 +17,20 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaEnumProxy;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.data.JavaEnumData;
+import org.jannocessor.model.modifier.EnumModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaEnumProxy extends AbstractJavaTypeProxy implements JavaEnum {
+public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 
-    @SuppressWarnings("unused")
     private JavaEnum adapter;
 
-    @SuppressWarnings("unused")
     private JavaEnumData data;
 
     public JavaEnumProxy(JavaEnum adapter, JavaEnumData data) {
@@ -40,6 +39,17 @@ public class JavaEnumProxy extends AbstractJavaTypeProxy implements JavaEnum {
         this.data = data;
     }
 
+	private boolean getModifiersInitialized = false;
+
+
+    public EnumModifiers getModifiers() {
+        if (!getModifiersInitialized) {
+            data.setModifiers(adapter.getModifiers());
+			getModifiersInitialized = true;
+        }
+
+        return data.getModifiers();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,12 +66,14 @@ public class JavaEnumProxy extends AbstractJavaTypeProxy implements JavaEnum {
 		JavaEnum other = (JavaEnum) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -76,6 +88,7 @@ public class JavaEnumProxy extends AbstractJavaTypeProxy implements JavaEnum {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

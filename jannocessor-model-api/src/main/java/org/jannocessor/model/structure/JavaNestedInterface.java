@@ -17,12 +17,11 @@
 package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.NestedInterfaceModifiers;
 
 @DomainModel
-public interface JavaNestedInterface extends AbstractJavaType {
+public interface JavaNestedInterface extends AbstractJavaInterface {
 
-	PowerList<JavaMethod> getMethods();
+	NestedInterfaceModifiers getModifiers();
 
 }

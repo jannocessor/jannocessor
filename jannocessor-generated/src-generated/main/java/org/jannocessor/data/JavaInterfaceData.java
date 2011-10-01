@@ -17,27 +17,26 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaTypeData;
+import org.jannocessor.data.AbstractJavaInterfaceData;
 import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaInterfaceData extends AbstractJavaTypeData implements JavaInterface {
+public class JavaInterfaceData extends AbstractJavaInterfaceData implements JavaInterface {
 
-    private PowerList<JavaMethod> methods;
+    private InterfaceModifiers modifiers;
 
 
-    public PowerList<JavaMethod> getMethods() {
-        return this.methods;
+    public InterfaceModifiers getModifiers() {
+        return this.modifiers;
     }
 
-    public void setMethods(PowerList<JavaMethod> value) {
-        this.methods = value;
+    public void setModifiers(InterfaceModifiers value) {
+        this.modifiers = value;
     }
 
 	@Override
@@ -55,14 +54,14 @@ public class JavaInterfaceData extends AbstractJavaTypeData implements JavaInter
 		JavaInterface other = (JavaInterface) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getMethods(), other.getMethods())
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getMethods())
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -77,7 +76,7 @@ public class JavaInterfaceData extends AbstractJavaTypeData implements JavaInter
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("methods", this.getMethods());
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

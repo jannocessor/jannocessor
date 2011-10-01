@@ -24,8 +24,8 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.modifier.MethodModifierValue;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.modifier.value.MethodModifierValue;
 
 public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 		implements JavaMethod {

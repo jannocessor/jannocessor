@@ -20,9 +20,12 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.bean.modifier.EnumModifiersBean;
+import org.jannocessor.model.modifier.EnumModifiers;
+import org.jannocessor.model.modifier.value.EnumModifierValue;
 import org.jannocessor.model.structure.JavaEnum;
 
-public final class JavaEnumAdapter extends AbstractJavaTypeAdapter implements
+public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 		JavaEnum {
 
 	@SuppressWarnings("unused")
@@ -32,6 +35,12 @@ public final class JavaEnumAdapter extends AbstractJavaTypeAdapter implements
 			Types typeUtils) {
 		super(tenum, elementUtils, typeUtils);
 		this.tenum = tenum;
+	}
+
+	@Override
+	public EnumModifiers getModifiers() {
+		return new EnumModifiersBean(
+				getModifierValues(EnumModifierValue.class));
 	}
 
 }

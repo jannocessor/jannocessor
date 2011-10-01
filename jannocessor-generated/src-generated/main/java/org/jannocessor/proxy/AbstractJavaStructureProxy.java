@@ -14,82 +14,87 @@
  * limitations under the License.
  */
 
-package org.jannocessor.data;
+package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaElementData;
-import org.jannocessor.model.structure.AbstractJavaType;
+import org.jannocessor.proxy.JavaElementProxy;
+import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaTypeParameter;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class AbstractJavaTypeData extends JavaElementData implements AbstractJavaType {
+public class AbstractJavaStructureProxy extends JavaElementProxy implements AbstractJavaStructure {
 
-    private String nesting;
+    private AbstractJavaStructure adapter;
 
-    private Name packageName;
+    private AbstractJavaStructureData data;
 
-    private Name qualifiedName;
+    public AbstractJavaStructureProxy(AbstractJavaStructure adapter, AbstractJavaStructureData data) {
+        super(adapter, data);
+        this.adapter = adapter;
+        this.data = data;
+    }
 
-    private JavaType superclass;
+	private boolean getNestingInitialized = false;
 
-    private PowerList<JavaType> interfaces;
+	private boolean getPackageNameInitialized = false;
 
-    private PowerList<JavaTypeParameter> parameters;
+	private boolean getQualifiedNameInitialized = false;
+
+	private boolean getSuperclassInitialized = false;
+
+	private boolean getInterfacesInitialized = false;
 
 
     public String getNesting() {
-        return this.nesting;
-    }
+        if (!getNestingInitialized) {
+            data.setNesting(adapter.getNesting());
+			getNestingInitialized = true;
+        }
 
-    public void setNesting(String value) {
-        this.nesting = value;
+        return data.getNesting();
     }
 
     public Name getPackageName() {
-        return this.packageName;
-    }
+        if (!getPackageNameInitialized) {
+            data.setPackageName(adapter.getPackageName());
+			getPackageNameInitialized = true;
+        }
 
-    public void setPackageName(Name value) {
-        this.packageName = value;
+        return data.getPackageName();
     }
 
     public Name getQualifiedName() {
-        return this.qualifiedName;
-    }
+        if (!getQualifiedNameInitialized) {
+            data.setQualifiedName(adapter.getQualifiedName());
+			getQualifiedNameInitialized = true;
+        }
 
-    public void setQualifiedName(Name value) {
-        this.qualifiedName = value;
+        return data.getQualifiedName();
     }
 
     public JavaType getSuperclass() {
-        return this.superclass;
-    }
+        if (!getSuperclassInitialized) {
+            data.setSuperclass(adapter.getSuperclass());
+			getSuperclassInitialized = true;
+        }
 
-    public void setSuperclass(JavaType value) {
-        this.superclass = value;
+        return data.getSuperclass();
     }
 
     public PowerList<JavaType> getInterfaces() {
-        return this.interfaces;
-    }
+        if (!getInterfacesInitialized) {
+            data.setInterfaces(adapter.getInterfaces());
+			getInterfacesInitialized = true;
+        }
 
-    public void setInterfaces(PowerList<JavaType> value) {
-        this.interfaces = value;
-    }
-
-    public PowerList<JavaTypeParameter> getParameters() {
-        return this.parameters;
-    }
-
-    public void setParameters(PowerList<JavaTypeParameter> value) {
-        this.parameters = value;
+        return data.getInterfaces();
     }
 
 	@Override
@@ -100,11 +105,11 @@ public class AbstractJavaTypeData extends JavaElementData implements AbstractJav
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof AbstractJavaType)) {
+		if (!(obj instanceof AbstractJavaStructure)) {
 			return false;
 		}
 
-		AbstractJavaType other = (AbstractJavaType) obj;
+		AbstractJavaStructure other = (AbstractJavaStructure) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getNesting(), other.getNesting())
@@ -112,7 +117,6 @@ public class AbstractJavaTypeData extends JavaElementData implements AbstractJav
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
 				.append(this.getInterfaces(), other.getInterfaces())
-				.append(this.getParameters(), other.getParameters())
 				.isEquals();
 	}
 
@@ -124,7 +128,6 @@ public class AbstractJavaTypeData extends JavaElementData implements AbstractJav
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
 				.append(this.getInterfaces())
-				.append(this.getParameters())
 				.toHashCode();
 	}
 
@@ -144,7 +147,6 @@ public class AbstractJavaTypeData extends JavaElementData implements AbstractJav
         builder.append("qualifiedName", this.getQualifiedName());
         builder.append("superclass", this.getSuperclass());
         builder.append("interfaces", this.getInterfaces());
-        builder.append("parameters", this.getParameters());
 	}
 
 }

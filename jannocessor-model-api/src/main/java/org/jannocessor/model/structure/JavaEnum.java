@@ -17,8 +17,11 @@
 package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.model.modifier.EnumModifiers;
 
 @DomainModel
-public interface JavaEnum extends AbstractJavaType {
+public interface JavaEnum extends AbstractJavaEnum {
+
+	EnumModifiers getModifiers();
 
 }

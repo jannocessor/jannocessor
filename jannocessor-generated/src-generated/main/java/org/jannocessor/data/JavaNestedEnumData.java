@@ -17,16 +17,27 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaTypeData;
+import org.jannocessor.data.AbstractJavaEnumData;
 import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaNestedEnumData extends AbstractJavaTypeData implements JavaNestedEnum {
+public class JavaNestedEnumData extends AbstractJavaEnumData implements JavaNestedEnum {
 
+    private NestedEnumModifiers modifiers;
+
+
+    public NestedEnumModifiers getModifiers() {
+        return this.modifiers;
+    }
+
+    public void setModifiers(NestedEnumModifiers value) {
+        this.modifiers = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -43,12 +54,14 @@ public class JavaNestedEnumData extends AbstractJavaTypeData implements JavaNest
 		JavaNestedEnum other = (JavaNestedEnum) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -63,6 +76,7 @@ public class JavaNestedEnumData extends AbstractJavaTypeData implements JavaNest
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

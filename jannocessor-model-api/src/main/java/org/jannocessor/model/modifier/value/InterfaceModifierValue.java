@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.modifier;
+package org.jannocessor.model.modifier.value;
 
-public enum ConstructorModifierValue {
+public enum InterfaceModifierValue {
 
-	PUBLIC, PROTECTED, PRIVATE
+	PUBLIC, ABSTRACT
 
 }

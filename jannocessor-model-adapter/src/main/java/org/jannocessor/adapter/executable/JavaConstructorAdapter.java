@@ -24,8 +24,8 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.modifier.ConstructorModifierValue;
 import org.jannocessor.model.modifier.ConstructorModifiers;
+import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 
 public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		implements JavaConstructor {

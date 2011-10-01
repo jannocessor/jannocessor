@@ -5,11 +5,13 @@ import java.util.List;
 
 import net.sf.twip.AutoTwip;
 
+import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Constructors;
 import org.jannocessor.model.util.Fields;
@@ -42,6 +44,11 @@ public class Param {
 	@AutoTwip
 	public static Class<?>[] classes() {
 		return new Class<?>[] { String.class, int.class, void.class };
+	}
+
+	public static ClassModifiers[] classModifiers() {
+		return new ClassModifiers[] { Classes.DEFAULT_MODIFIER,
+				Classes.ABSTRACT, Classes.PUBLIC_FINAL };
 	}
 
 	public static MethodModifiers[] methodModifiers() {

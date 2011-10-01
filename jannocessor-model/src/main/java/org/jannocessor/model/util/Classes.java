@@ -16,8 +16,8 @@
 
 package org.jannocessor.model.util;
 
-import org.jannocessor.model.modifier.ClassModifierValue;
 import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.modifier.value.ClassModifierValue;
 
 public class Classes {
 

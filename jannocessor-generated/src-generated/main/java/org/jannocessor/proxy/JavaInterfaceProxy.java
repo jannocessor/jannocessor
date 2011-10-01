@@ -17,18 +17,17 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaInterfaceProxy;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.data.JavaInterfaceData;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaInterfaceProxy extends AbstractJavaTypeProxy implements JavaInterface {
+public class JavaInterfaceProxy extends AbstractJavaInterfaceProxy implements JavaInterface {
 
     private JavaInterface adapter;
 
@@ -40,16 +39,16 @@ public class JavaInterfaceProxy extends AbstractJavaTypeProxy implements JavaInt
         this.data = data;
     }
 
-	private boolean getMethodsInitialized = false;
+	private boolean getModifiersInitialized = false;
 
 
-    public PowerList<JavaMethod> getMethods() {
-        if (!getMethodsInitialized) {
-            data.setMethods(adapter.getMethods());
-			getMethodsInitialized = true;
+    public InterfaceModifiers getModifiers() {
+        if (!getModifiersInitialized) {
+            data.setModifiers(adapter.getModifiers());
+			getModifiersInitialized = true;
         }
 
-        return data.getMethods();
+        return data.getModifiers();
     }
 
 	@Override
@@ -67,14 +66,14 @@ public class JavaInterfaceProxy extends AbstractJavaTypeProxy implements JavaInt
 		JavaInterface other = (JavaInterface) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getMethods(), other.getMethods())
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getMethods())
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -89,7 +88,7 @@ public class JavaInterfaceProxy extends AbstractJavaTypeProxy implements JavaInt
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("methods", this.getMethods());
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

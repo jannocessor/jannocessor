@@ -17,81 +17,25 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaTypeData;
+import org.jannocessor.data.AbstractJavaClassData;
 import org.jannocessor.model.structure.JavaNestedClass;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.variable.JavaField;
-import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaNestedClassData extends AbstractJavaTypeData implements JavaNestedClass {
+public class JavaNestedClassData extends AbstractJavaClassData implements JavaNestedClass {
 
-    private PowerList<JavaField> fields;
-
-    private PowerList<JavaConstructor> constructors;
-
-    private PowerList<JavaMethod> methods;
-
-    private PowerList<JavaStaticInit> staticInits;
-
-    private PowerList<JavaInstanceInit> instanceInits;
-
-    private ClassModifiers modifiers;
+    private NestedClassModifiers modifiers;
 
 
-    public PowerList<JavaField> getFields() {
-        return this.fields;
-    }
-
-    public void setFields(PowerList<JavaField> value) {
-        this.fields = value;
-    }
-
-    public PowerList<JavaConstructor> getConstructors() {
-        return this.constructors;
-    }
-
-    public void setConstructors(PowerList<JavaConstructor> value) {
-        this.constructors = value;
-    }
-
-    public PowerList<JavaMethod> getMethods() {
-        return this.methods;
-    }
-
-    public void setMethods(PowerList<JavaMethod> value) {
-        this.methods = value;
-    }
-
-    public PowerList<JavaStaticInit> getStaticInits() {
-        return this.staticInits;
-    }
-
-    public void setStaticInits(PowerList<JavaStaticInit> value) {
-        this.staticInits = value;
-    }
-
-    public PowerList<JavaInstanceInit> getInstanceInits() {
-        return this.instanceInits;
-    }
-
-    public void setInstanceInits(PowerList<JavaInstanceInit> value) {
-        this.instanceInits = value;
-    }
-
-    public ClassModifiers getModifiers() {
+    public NestedClassModifiers getModifiers() {
         return this.modifiers;
     }
 
-    public void setModifiers(ClassModifiers value) {
+    public void setModifiers(NestedClassModifiers value) {
         this.modifiers = value;
     }
 
@@ -110,11 +54,6 @@ public class JavaNestedClassData extends AbstractJavaTypeData implements JavaNes
 		JavaNestedClass other = (JavaNestedClass) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getFields(), other.getFields())
-				.append(this.getConstructors(), other.getConstructors())
-				.append(this.getMethods(), other.getMethods())
-				.append(this.getStaticInits(), other.getStaticInits())
-				.append(this.getInstanceInits(), other.getInstanceInits())
 				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
@@ -122,11 +61,6 @@ public class JavaNestedClassData extends AbstractJavaTypeData implements JavaNes
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getFields())
-				.append(this.getConstructors())
-				.append(this.getMethods())
-				.append(this.getStaticInits())
-				.append(this.getInstanceInits())
 				.append(this.getModifiers())
 				.toHashCode();
 	}
@@ -142,11 +76,6 @@ public class JavaNestedClassData extends AbstractJavaTypeData implements JavaNes
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("fields", this.getFields());
-        builder.append("constructors", this.getConstructors());
-        builder.append("methods", this.getMethods());
-        builder.append("staticInits", this.getStaticInits());
-        builder.append("instanceInits", this.getInstanceInits());
         builder.append("modifiers", this.getModifiers());
 	}
 

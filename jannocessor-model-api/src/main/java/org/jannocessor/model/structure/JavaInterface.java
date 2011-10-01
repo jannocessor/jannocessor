@@ -17,12 +17,11 @@
 package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.InterfaceModifiers;
 
 @DomainModel
-public interface JavaInterface extends AbstractJavaType {
+public interface JavaInterface extends AbstractJavaInterface {
 
-	PowerList<JavaMethod> getMethods();
+	InterfaceModifiers getModifiers();
 
 }

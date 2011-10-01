@@ -17,21 +17,20 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaAnnotationProxy;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.data.JavaNestedAnnotationData;
+import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaNestedAnnotationProxy extends AbstractJavaTypeProxy implements JavaNestedAnnotation {
+public class JavaNestedAnnotationProxy extends AbstractJavaAnnotationProxy implements JavaNestedAnnotation {
 
-    @SuppressWarnings("unused")
     private JavaNestedAnnotation adapter;
 
-    @SuppressWarnings("unused")
     private JavaNestedAnnotationData data;
 
     public JavaNestedAnnotationProxy(JavaNestedAnnotation adapter, JavaNestedAnnotationData data) {
@@ -40,6 +39,17 @@ public class JavaNestedAnnotationProxy extends AbstractJavaTypeProxy implements 
         this.data = data;
     }
 
+	private boolean getModifiersInitialized = false;
+
+
+    public NestedAnnotationModifiers getModifiers() {
+        if (!getModifiersInitialized) {
+            data.setModifiers(adapter.getModifiers());
+			getModifiersInitialized = true;
+        }
+
+        return data.getModifiers();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,12 +66,14 @@ public class JavaNestedAnnotationProxy extends AbstractJavaTypeProxy implements 
 		JavaNestedAnnotation other = (JavaNestedAnnotation) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -76,6 +88,7 @@ public class JavaNestedAnnotationProxy extends AbstractJavaTypeProxy implements 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

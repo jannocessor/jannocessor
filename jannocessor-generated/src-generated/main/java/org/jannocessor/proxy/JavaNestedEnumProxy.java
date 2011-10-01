@@ -17,21 +17,20 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaEnumProxy;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.data.JavaNestedEnumData;
+import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaNestedEnumProxy extends AbstractJavaTypeProxy implements JavaNestedEnum {
+public class JavaNestedEnumProxy extends AbstractJavaEnumProxy implements JavaNestedEnum {
 
-    @SuppressWarnings("unused")
     private JavaNestedEnum adapter;
 
-    @SuppressWarnings("unused")
     private JavaNestedEnumData data;
 
     public JavaNestedEnumProxy(JavaNestedEnum adapter, JavaNestedEnumData data) {
@@ -40,6 +39,17 @@ public class JavaNestedEnumProxy extends AbstractJavaTypeProxy implements JavaNe
         this.data = data;
     }
 
+	private boolean getModifiersInitialized = false;
+
+
+    public NestedEnumModifiers getModifiers() {
+        if (!getModifiersInitialized) {
+            data.setModifiers(adapter.getModifiers());
+			getModifiersInitialized = true;
+        }
+
+        return data.getModifiers();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,12 +66,14 @@ public class JavaNestedEnumProxy extends AbstractJavaTypeProxy implements JavaNe
 		JavaNestedEnum other = (JavaNestedEnum) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -76,6 +88,7 @@ public class JavaNestedEnumProxy extends AbstractJavaTypeProxy implements JavaNe
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

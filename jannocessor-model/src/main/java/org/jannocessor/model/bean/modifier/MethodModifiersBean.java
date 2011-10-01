@@ -2,9 +2,9 @@ package org.jannocessor.model.bean.modifier;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.jannocessor.model.modifier.MethodModifierValue;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.modifier.value.MethodModifierValue;
 
 public class MethodModifiersBean implements MethodModifiers {
 
@@ -44,7 +44,7 @@ public class MethodModifiersBean implements MethodModifiers {
 
 	@Override
 	public String toString() {
-		return new ReflectionToStringBuilder(this).toString();
+		return new ToStringBuilder(this).append("values", getValues()).toString();
 	}
 
 

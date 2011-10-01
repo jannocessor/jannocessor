@@ -17,21 +17,20 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaTypeProxy;
+import org.jannocessor.proxy.AbstractJavaAnnotationProxy;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaAnnotationProxy extends AbstractJavaTypeProxy implements JavaAnnotation {
+public class JavaAnnotationProxy extends AbstractJavaAnnotationProxy implements JavaAnnotation {
 
-    @SuppressWarnings("unused")
     private JavaAnnotation adapter;
 
-    @SuppressWarnings("unused")
     private JavaAnnotationData data;
 
     public JavaAnnotationProxy(JavaAnnotation adapter, JavaAnnotationData data) {
@@ -40,6 +39,17 @@ public class JavaAnnotationProxy extends AbstractJavaTypeProxy implements JavaAn
         this.data = data;
     }
 
+	private boolean getModifiersInitialized = false;
+
+
+    public AnnotationModifiers getModifiers() {
+        if (!getModifiersInitialized) {
+            data.setModifiers(adapter.getModifiers());
+			getModifiersInitialized = true;
+        }
+
+        return data.getModifiers();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,12 +66,14 @@ public class JavaAnnotationProxy extends AbstractJavaTypeProxy implements JavaAn
 		JavaAnnotation other = (JavaAnnotation) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -76,6 +88,7 @@ public class JavaAnnotationProxy extends AbstractJavaTypeProxy implements JavaAn
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

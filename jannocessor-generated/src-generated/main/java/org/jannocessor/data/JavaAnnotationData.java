@@ -17,16 +17,27 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaTypeData;
+import org.jannocessor.data.AbstractJavaAnnotationData;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaAnnotationData extends AbstractJavaTypeData implements JavaAnnotation {
+public class JavaAnnotationData extends AbstractJavaAnnotationData implements JavaAnnotation {
 
+    private AnnotationModifiers modifiers;
+
+
+    public AnnotationModifiers getModifiers() {
+        return this.modifiers;
+    }
+
+    public void setModifiers(AnnotationModifiers value) {
+        this.modifiers = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -43,12 +54,14 @@ public class JavaAnnotationData extends AbstractJavaTypeData implements JavaAnno
 		JavaAnnotation other = (JavaAnnotation) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -63,6 +76,7 @@ public class JavaAnnotationData extends AbstractJavaTypeData implements JavaAnno
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }

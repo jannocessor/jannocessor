@@ -14,26 +14,12 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.structure;
+package org.jannocessor.model.modifier;
 
-import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
 
-@DomainModel
-public interface AbstractJavaType extends JavaElement {
+public interface NestedEnumModifiers {
 
-	String getNesting();
+	NestedEnumModifierValue[] getValues();
 
-	Name getPackageName();
-
-	Name getQualifiedName();
-
-	JavaType getSuperclass();
-
-	PowerList<JavaType> getInterfaces();
-
-	PowerList<JavaTypeParameter> getParameters();
 }

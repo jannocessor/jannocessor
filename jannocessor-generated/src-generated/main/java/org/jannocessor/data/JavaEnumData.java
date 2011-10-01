@@ -17,16 +17,27 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaTypeData;
+import org.jannocessor.data.AbstractJavaEnumData;
 import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.modifier.EnumModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaEnumData extends AbstractJavaTypeData implements JavaEnum {
+public class JavaEnumData extends AbstractJavaEnumData implements JavaEnum {
 
+    private EnumModifiers modifiers;
+
+
+    public EnumModifiers getModifiers() {
+        return this.modifiers;
+    }
+
+    public void setModifiers(EnumModifiers value) {
+        this.modifiers = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -43,12 +54,14 @@ public class JavaEnumData extends AbstractJavaTypeData implements JavaEnum {
 		JavaEnum other = (JavaEnum) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getModifiers(), other.getModifiers())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getModifiers())
 				.toHashCode();
 	}
 
@@ -63,6 +76,7 @@ public class JavaEnumData extends AbstractJavaTypeData implements JavaEnum {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("modifiers", this.getModifiers());
 	}
 
 }
