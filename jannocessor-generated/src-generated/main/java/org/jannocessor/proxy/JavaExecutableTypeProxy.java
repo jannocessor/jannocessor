@@ -119,7 +119,6 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

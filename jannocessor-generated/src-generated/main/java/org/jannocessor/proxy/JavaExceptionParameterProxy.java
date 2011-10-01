@@ -65,7 +65,6 @@ public class JavaExceptionParameterProxy extends AbstractJavaVariableProxy imple
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

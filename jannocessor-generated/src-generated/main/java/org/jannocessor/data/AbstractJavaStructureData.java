@@ -115,7 +115,6 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

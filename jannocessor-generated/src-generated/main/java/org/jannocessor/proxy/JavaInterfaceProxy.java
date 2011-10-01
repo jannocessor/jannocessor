@@ -77,7 +77,6 @@ public class JavaInterfaceProxy extends AbstractJavaInterfaceProxy implements Ja
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

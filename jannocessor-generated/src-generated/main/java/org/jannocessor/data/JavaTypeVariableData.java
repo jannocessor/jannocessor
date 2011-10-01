@@ -77,7 +77,6 @@ public class JavaTypeVariableData extends JavaTypeData implements JavaTypeVariab
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

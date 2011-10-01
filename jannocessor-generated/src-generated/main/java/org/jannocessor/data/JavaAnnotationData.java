@@ -65,7 +65,6 @@ public class JavaAnnotationData extends AbstractJavaAnnotationData implements Ja
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

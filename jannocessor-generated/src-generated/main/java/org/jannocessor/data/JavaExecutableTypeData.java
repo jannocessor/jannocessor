@@ -104,7 +104,6 @@ public class JavaExecutableTypeData extends JavaTypeData implements JavaExecutab
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -63,7 +63,6 @@ public class JavaCodeModelData implements JavaCodeModel {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

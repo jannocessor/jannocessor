@@ -204,7 +204,6 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -52,7 +52,6 @@ public class JavaPackageData extends JavaElementData implements JavaPackage {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

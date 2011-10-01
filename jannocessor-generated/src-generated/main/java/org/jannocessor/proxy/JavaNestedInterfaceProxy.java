@@ -77,7 +77,6 @@ public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy impleme
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

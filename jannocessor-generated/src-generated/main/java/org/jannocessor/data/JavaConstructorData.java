@@ -117,7 +117,6 @@ public class JavaConstructorData extends AbstractJavaExecutableData implements J
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -77,7 +77,6 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -65,7 +65,6 @@ public class JavaArrayTypeData extends JavaTypeData implements JavaArrayType {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

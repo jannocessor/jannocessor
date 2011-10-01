@@ -65,7 +65,6 @@ public class AbstractJavaVariableProxy extends JavaElementProxy implements Abstr
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

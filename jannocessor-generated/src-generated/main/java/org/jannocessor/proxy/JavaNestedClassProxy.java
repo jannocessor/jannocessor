@@ -77,7 +77,6 @@ public class JavaNestedClassProxy extends AbstractJavaClassProxy implements Java
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

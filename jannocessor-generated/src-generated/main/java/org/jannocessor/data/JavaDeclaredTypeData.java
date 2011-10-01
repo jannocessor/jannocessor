@@ -66,7 +66,6 @@ public class JavaDeclaredTypeData extends JavaTypeData implements JavaDeclaredTy
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

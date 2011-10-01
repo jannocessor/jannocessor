@@ -77,7 +77,6 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

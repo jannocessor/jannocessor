@@ -92,7 +92,6 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

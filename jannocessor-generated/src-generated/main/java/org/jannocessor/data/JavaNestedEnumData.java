@@ -65,7 +65,6 @@ public class JavaNestedEnumData extends AbstractJavaEnumData implements JavaNest
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

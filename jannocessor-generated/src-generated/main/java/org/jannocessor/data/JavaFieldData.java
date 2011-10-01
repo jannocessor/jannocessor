@@ -65,7 +65,6 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

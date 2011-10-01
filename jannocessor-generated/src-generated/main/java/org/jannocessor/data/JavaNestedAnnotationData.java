@@ -65,7 +65,6 @@ public class JavaNestedAnnotationData extends AbstractJavaAnnotationData impleme
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

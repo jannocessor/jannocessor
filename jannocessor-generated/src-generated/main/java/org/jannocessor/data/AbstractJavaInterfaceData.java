@@ -79,7 +79,6 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

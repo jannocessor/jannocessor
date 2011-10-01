@@ -65,7 +65,6 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

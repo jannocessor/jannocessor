@@ -65,7 +65,6 @@ public class JavaNestedClassData extends AbstractJavaClassData implements JavaNe
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

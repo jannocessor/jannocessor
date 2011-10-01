@@ -52,7 +52,6 @@ public class JavaStaticInitData extends AbstractJavaExecutableData implements Ja
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

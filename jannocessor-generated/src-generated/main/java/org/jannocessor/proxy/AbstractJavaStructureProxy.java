@@ -131,7 +131,6 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

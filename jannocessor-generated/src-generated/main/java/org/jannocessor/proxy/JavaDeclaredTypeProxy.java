@@ -78,7 +78,6 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -77,7 +77,6 @@ public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass 
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

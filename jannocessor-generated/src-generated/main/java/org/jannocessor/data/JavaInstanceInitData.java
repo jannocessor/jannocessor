@@ -52,7 +52,6 @@ public class JavaInstanceInitData extends AbstractJavaExecutableData implements 
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -146,7 +146,6 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

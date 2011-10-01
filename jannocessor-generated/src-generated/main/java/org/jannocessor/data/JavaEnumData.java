@@ -65,7 +65,6 @@ public class JavaEnumData extends AbstractJavaEnumData implements JavaEnum {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

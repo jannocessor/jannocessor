@@ -52,7 +52,6 @@ public class AbstractJavaEnumData extends AbstractJavaStructureData implements A
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

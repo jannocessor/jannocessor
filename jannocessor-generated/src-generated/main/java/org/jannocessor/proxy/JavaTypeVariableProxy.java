@@ -90,7 +90,6 @@ public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVari
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

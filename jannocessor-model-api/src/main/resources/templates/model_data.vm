@@ -53,11 +53,13 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 
 		#type(${model.qualifiedName}) other = (#type(${model.qualifiedName})) obj;
 		return new #type("org.apache.commons.lang.builder.EqualsBuilder")()
-#if($extends)
+#if ($extends)
 				.appendSuper(super.equals(other))
 #end
 #foreach ($m in $model.methods)
+#if ($m.name != "getParent")
 				.append(this.${m.name}(), other.${m.name}())
+#end
 #end
 				.isEquals();
 	}
@@ -66,11 +68,12 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 	public int hashCode() {
 		return new #type("org.apache.commons.lang.builder.HashCodeBuilder")()
 #foreach ($m in $model.methods)
+#if ($m.name != "getParent")
 				.append(this.${m.name}())
+#end
 #end
 				.toHashCode();
 	}
-
 
 	@Override
 	public String toString() {
@@ -79,15 +82,17 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 		return builder.toString();
 	}
 
-#if($extends)
+#if ($extends)
 	@Override
 #end
 	protected void appendDescription(#type("org.apache.commons.lang.builder.ToStringBuilder") builder) {
-#if($extends)
+#if ($extends)
         super.appendDescription(builder);
 #end
 #foreach ($m in $model.methods)
+#if ($m.name != "getParent")
         builder.append("${helper.fieldName($m)}", this.${m.name}());
+#end
 #end
 	}
 

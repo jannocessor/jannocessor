@@ -64,7 +64,6 @@ public class JavaLocalVariableData extends AbstractJavaVariableData implements J
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

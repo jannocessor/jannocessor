@@ -77,7 +77,6 @@ public class JavaNestedEnumProxy extends AbstractJavaEnumProxy implements JavaNe
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

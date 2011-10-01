@@ -77,7 +77,6 @@ public class JavaNestedAnnotationProxy extends AbstractJavaAnnotationProxy imple
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

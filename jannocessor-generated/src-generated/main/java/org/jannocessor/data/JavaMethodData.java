@@ -129,7 +129,6 @@ public class JavaMethodData extends AbstractJavaExecutableData implements JavaMe
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

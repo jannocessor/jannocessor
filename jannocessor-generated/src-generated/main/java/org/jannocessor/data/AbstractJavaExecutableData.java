@@ -65,7 +65,6 @@ public class AbstractJavaExecutableData extends JavaElementData implements Abstr
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -52,7 +52,6 @@ public class JavaEnumConstantData extends AbstractJavaVariableData implements Ja
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

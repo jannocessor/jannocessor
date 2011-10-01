@@ -77,7 +77,6 @@ public class JavaWildcardTypeData extends JavaTypeData implements JavaWildcardTy
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

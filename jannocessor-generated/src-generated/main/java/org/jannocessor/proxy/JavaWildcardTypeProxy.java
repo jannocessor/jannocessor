@@ -90,7 +90,6 @@ public class JavaWildcardTypeProxy extends JavaTypeProxy implements JavaWildcard
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -76,7 +76,6 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

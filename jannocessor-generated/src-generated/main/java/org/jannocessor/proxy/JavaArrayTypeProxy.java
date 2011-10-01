@@ -77,7 +77,6 @@ public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

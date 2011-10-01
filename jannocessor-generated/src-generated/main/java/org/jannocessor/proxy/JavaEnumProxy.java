@@ -77,7 +77,6 @@ public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

@@ -183,7 +183,6 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

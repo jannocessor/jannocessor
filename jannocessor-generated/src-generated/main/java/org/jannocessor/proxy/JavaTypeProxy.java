@@ -371,7 +371,6 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

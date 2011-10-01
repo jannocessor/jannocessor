@@ -65,7 +65,6 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

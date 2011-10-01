@@ -64,7 +64,6 @@ public class JavaParameterData extends AbstractJavaVariableData implements JavaP
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

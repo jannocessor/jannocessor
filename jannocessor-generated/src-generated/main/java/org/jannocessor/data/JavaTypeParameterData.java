@@ -52,7 +52,6 @@ public class JavaTypeParameterData extends JavaElementData implements JavaTypePa
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);

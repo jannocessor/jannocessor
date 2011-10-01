@@ -337,7 +337,6 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 				.toHashCode();
 	}
 
-
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this);
