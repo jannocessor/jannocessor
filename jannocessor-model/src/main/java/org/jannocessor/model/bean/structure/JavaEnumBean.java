@@ -21,7 +21,6 @@ import java.util.List;
 import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaEnumData;
 import org.jannocessor.model.bean.NameBean;
-import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
@@ -33,7 +32,7 @@ import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaField;
 
@@ -57,7 +56,7 @@ public class JavaEnumBean extends JavaEnumData implements JavaEnum {
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setCode(Code.code(JavaEnum.class));
 	}
 
 }

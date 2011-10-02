@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.data.JavaPackageData;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
@@ -67,7 +68,8 @@ public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 
 	@Override
 	public String toString() {
-		ToStringBuilder builder = new ToStringBuilder(this);
+		TypeSpecificStyle style = new TypeSpecificStyle(JavaPackage.class);
+		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
 	}

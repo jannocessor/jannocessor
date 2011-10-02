@@ -19,31 +19,35 @@ package org.jannocessor.model.bean.structure;
 import java.util.List;
 
 import org.jannocessor.collection.Power;
-import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.data.JavaNestedInterfaceData;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.modifier.AnnotationModifiers;
-import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.modifier.NestedInterfaceModifiers;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 
-public class JavaAnnotationBean extends JavaAnnotationData implements
-		JavaAnnotation {
+public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
+		JavaNestedInterface {
 
-	public JavaAnnotationBean(AnnotationModifiers modifiers, String name,
-			List<JavaMethod> methods) {
+	public JavaNestedInterfaceBean(NestedInterfaceModifiers modifiers,
+			String name, List<JavaType> superInterfaces,
+			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
 		this.setModifiers(modifiers);
 		this.setName(new NameBean(name));
+		this.setInterfaces(Power.list(superInterfaces));
 		this.setMethods(Power.list(methods));
-
+		this.setParameters(Power.list(parameters));
 		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
 		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
-		this.setCode(Code.code(JavaAnnotation.class));
+		this.setCode(Code.code(JavaNestedInterface.class));
 	}
+
 }

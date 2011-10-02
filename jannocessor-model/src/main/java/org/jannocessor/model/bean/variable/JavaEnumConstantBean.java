@@ -18,8 +18,7 @@ package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaEnumConstantData;
 import org.jannocessor.model.bean.NameBean;
-import org.jannocessor.model.bean.SourceCodeBean;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
 public class JavaEnumConstantBean extends JavaEnumConstantData implements
@@ -27,7 +26,7 @@ public class JavaEnumConstantBean extends JavaEnumConstantData implements
 
 	public JavaEnumConstantBean(String name) {
 		this.setName(new NameBean(name));
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setCode(Code.code(JavaEnumConstant.class));
 	}
 
 }

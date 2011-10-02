@@ -18,10 +18,9 @@ package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaFieldData;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaField;
 
 public class JavaFieldBean extends JavaFieldData implements JavaField {
@@ -30,7 +29,7 @@ public class JavaFieldBean extends JavaFieldData implements JavaField {
 		this.setModifiers(modifiers);
 		this.setType(type);
 		this.setName(name);
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setCode(Code.code(JavaField.class));
 	}
 
 }

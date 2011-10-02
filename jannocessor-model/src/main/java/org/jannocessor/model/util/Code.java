@@ -34,11 +34,18 @@ import org.jannocessor.model.bean.modifier.EnumModifiersBean;
 import org.jannocessor.model.bean.modifier.FieldModifiersBean;
 import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
 import org.jannocessor.model.bean.modifier.MethodModifiersBean;
+import org.jannocessor.model.bean.modifier.NestedAnnotationModifiersBean;
 import org.jannocessor.model.bean.modifier.NestedClassModifiersBean;
+import org.jannocessor.model.bean.modifier.NestedEnumModifiersBean;
+import org.jannocessor.model.bean.modifier.NestedInterfaceModifiersBean;
 import org.jannocessor.model.bean.structure.JavaAnnotationBean;
 import org.jannocessor.model.bean.structure.JavaClassBean;
 import org.jannocessor.model.bean.structure.JavaEnumBean;
 import org.jannocessor.model.bean.structure.JavaInterfaceBean;
+import org.jannocessor.model.bean.structure.JavaNestedAnnotationBean;
+import org.jannocessor.model.bean.structure.JavaNestedClassBean;
+import org.jannocessor.model.bean.structure.JavaNestedEnumBean;
+import org.jannocessor.model.bean.structure.JavaNestedInterfaceBean;
 import org.jannocessor.model.bean.structure.JavaPackageBean;
 import org.jannocessor.model.bean.structure.JavaTypeParameterBean;
 import org.jannocessor.model.bean.type.JavaArrayTypeBean;
@@ -51,6 +58,7 @@ import org.jannocessor.model.bean.variable.JavaExceptionParameterBean;
 import org.jannocessor.model.bean.variable.JavaFieldBean;
 import org.jannocessor.model.bean.variable.JavaLocalVariableBean;
 import org.jannocessor.model.bean.variable.JavaParameterBean;
+import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
@@ -63,7 +71,10 @@ import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.modifier.NestedClassModifiers;
+import org.jannocessor.model.modifier.NestedEnumModifiers;
+import org.jannocessor.model.modifier.NestedInterfaceModifiers;
 import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
@@ -71,7 +82,10 @@ import org.jannocessor.model.modifier.value.EnumModifierValue;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
 import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
+import org.jannocessor.model.modifier.value.NestedAnnotationModifierValue;
 import org.jannocessor.model.modifier.value.NestedClassModifierValue;
+import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
+import org.jannocessor.model.modifier.value.NestedInterfaceModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
@@ -117,6 +131,10 @@ public class Code {
 
 	private static Name name(String name) {
 		return new NameBean(name);
+	}
+
+	public static SourceCodeBean code(Class<? extends JavaCodeModel> model) {
+		return new SourceCodeBean(Templates.defaultName(model));
 	}
 
 	public static JavaField field(FieldModifiers modifiers, Class<?> type,
@@ -212,6 +230,21 @@ public class Code {
 	public static NestedClassModifiers nestedClassModifiers(
 			NestedClassModifierValue... values) {
 		return new NestedClassModifiersBean(values);
+	}
+
+	public static NestedAnnotationModifiers nestedAnnotationModifiers(
+			NestedAnnotationModifierValue... values) {
+		return new NestedAnnotationModifiersBean(values);
+	}
+
+	public static NestedInterfaceModifiers nestedInterfaceModifiers(
+			NestedInterfaceModifierValue... values) {
+		return new NestedInterfaceModifiersBean(values);
+	}
+
+	public static NestedEnumModifiers nestedEnumModifiers(
+			NestedEnumModifierValue... values) {
+		return new NestedEnumModifiersBean(values);
 	}
 
 	public static MethodModifiers methodModifiers(MethodModifierValue... values) {
@@ -531,6 +564,150 @@ public class Code {
 
 	public static JavaAnnotation annotation(String name) {
 		return annotation(name, NO_METHODS);
+	}
+
+	/************************* NESTED CLASS *****************************/
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, JavaType superclass, List<JavaType> interfaces,
+			List<JavaField> fields, List<JavaConstructor> constructors,
+			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
+		return new JavaNestedClassBean(modifiers, name, superclass, interfaces,
+				fields, constructors, methods, parameters);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, JavaType superclass, List<JavaType> interfaces,
+			List<JavaField> fields, List<JavaConstructor> constructors,
+			List<JavaMethod> methods) {
+		return nestedClass(modifiers, name, superclass, interfaces, fields,
+				constructors, methods, NO_TYPE_PARAMS);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, JavaType superclass, List<JavaType> interfaces,
+			List<JavaField> fields, List<JavaConstructor> constructors) {
+		return nestedClass(modifiers, name, superclass, interfaces, fields,
+				constructors, NO_METHODS);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, JavaType superclass, List<JavaType> interfaces,
+			List<JavaField> fields) {
+		return nestedClass(modifiers, name, superclass, interfaces, fields,
+				NO_CONSTRUCTORS);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, JavaType superclass, List<JavaType> interfaces) {
+		return nestedClass(modifiers, name, superclass, interfaces, NO_FIELDS);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, JavaType superclass) {
+		return nestedClass(modifiers, name, superclass, NO_TYPES);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name) {
+		return nestedClass(modifiers, name, null);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, List<JavaField> fields, List<JavaMethod> methods) {
+		return nestedClass(modifiers, name, null, NO_TYPES, fields,
+				NO_CONSTRUCTORS, methods);
+	}
+
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
+			String name, List<JavaField> fields, List<JavaMethod> methods,
+			List<JavaConstructor> constructors) {
+		return nestedClass(modifiers, name, null, NO_TYPES, fields,
+				constructors, methods);
+	}
+
+	/************************ NESTED INTERFACE **************************/
+
+	public static JavaNestedInterface nestedInterface(
+			NestedInterfaceModifiers modifiers, String name,
+			List<JavaType> superInterfaces, List<JavaMethod> methods,
+			List<JavaTypeParameter> parameters) {
+		return new JavaNestedInterfaceBean(modifiers, name, superInterfaces,
+				methods, parameters);
+	}
+
+	public static JavaNestedInterface nestedInterface(
+			NestedInterfaceModifiers modifiers, String name,
+			List<JavaType> superInterfaces, List<JavaMethod> methods) {
+		return nestedInterface(modifiers, name, superInterfaces, methods,
+				NO_TYPE_PARAMS);
+	}
+
+	public static JavaNestedInterface nestedInterface(String name,
+			List<JavaType> superInterfaces, List<JavaMethod> methods) {
+		return nestedInterface(NestedInterfaces.PUBLIC, name, superInterfaces,
+				methods);
+	}
+
+	public static JavaNestedInterface nestedInterface(String name,
+			List<JavaMethod> methods) {
+		return nestedInterface(name, NO_TYPES, methods);
+	}
+
+	/*************************** NESTED ENUM ******************************/
+
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
+			String name, List<JavaType> interfaces,
+			List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods) {
+		return new JavaNestedEnumBean(modifiers, name, interfaces, values,
+				fields, constructors, methods);
+	}
+
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
+			String name, List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods) {
+		return nestedEnum(modifiers, name, NO_TYPES, values, fields,
+				constructors, methods);
+	}
+
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
+			String name, List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors) {
+		return nestedEnum(modifiers, name, values, fields, constructors,
+				NO_METHODS);
+	}
+
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
+			String name, List<JavaEnumConstant> values) {
+		return nestedEnum(modifiers, name, values, NO_FIELDS, NO_CONSTRUCTORS);
+	}
+
+	public static JavaNestedEnum nestedEnum(String name,
+			List<JavaEnumConstant> values) {
+		return nestedEnum(NestedEnums.PUBLIC, name, values);
+	}
+
+	/************************ NESTED ANNOTATION **************************/
+
+	public static JavaNestedAnnotation nestedAnnotation(
+			NestedAnnotationModifiers modifiers, String name,
+			List<JavaMethod> methods) {
+		return new JavaNestedAnnotationBean(modifiers, name, methods);
+	}
+
+	public static JavaNestedAnnotation nestedAnnotation(String name,
+			List<JavaMethod> methods) {
+		return nestedAnnotation(NestedAnnotations.PUBLIC, name, methods);
+	}
+
+	public static JavaNestedAnnotation nestedAnnotation(
+			NestedAnnotationModifiers modifiers, String name) {
+		return nestedAnnotation(modifiers, name, NO_METHODS);
+	}
+
+	public static JavaNestedAnnotation nestedAnnotation(String name) {
+		return nestedAnnotation(name, NO_METHODS);
 	}
 
 }

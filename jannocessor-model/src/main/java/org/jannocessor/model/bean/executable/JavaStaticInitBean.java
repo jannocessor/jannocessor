@@ -17,16 +17,15 @@
 package org.jannocessor.model.bean.executable;
 
 import org.jannocessor.data.JavaStaticInitData;
-import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
 
 public class JavaStaticInitBean extends JavaStaticInitData implements
 		JavaStaticInit {
 
 	public JavaStaticInitBean() {
 		// TODO Auto-generated constructor stub
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setCode(Code.code(JavaStaticInit.class));
 		this.setBody(new ExecutableBodyBean());
 	}
 

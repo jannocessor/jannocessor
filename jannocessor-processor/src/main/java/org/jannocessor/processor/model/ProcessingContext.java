@@ -131,12 +131,12 @@ public class ProcessingContext {
 
 	public void generateClass(JavaClass clazz) {
 		Map<String, Object> attributes = new HashMap<String, Object>();
-		attributes.put("clazz", clazz);
+		attributes.put("self", clazz);
 
 		String packageName = clazz.getPackageName().getText();
 		String fileName = clazz.getName().getText() + ".java";
 
-		generateFile(packageName, fileName, "javabean", attributes);
+		generateFile(packageName, fileName, "default/class", attributes);
 	}
 
 	public void generateFile(String packageName, String fileName,

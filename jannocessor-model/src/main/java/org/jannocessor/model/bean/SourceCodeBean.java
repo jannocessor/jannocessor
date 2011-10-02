@@ -4,6 +4,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.jannocessor.model.code.SourceCode;
+import org.jannocessor.util.TypeSpecificStyle;
 
 public class SourceCodeBean implements SourceCode {
 
@@ -79,7 +80,8 @@ public class SourceCodeBean implements SourceCode {
 
 	@Override
 	public String toString() {
-		return new ReflectionToStringBuilder(this).setExcludeFieldNames(
+		TypeSpecificStyle style = new TypeSpecificStyle(SourceCode.class);
+		return new ReflectionToStringBuilder(this, style).setExcludeFieldNames(
 				new String[] {}).toString();
 	}
 

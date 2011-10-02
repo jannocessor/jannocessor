@@ -23,6 +23,7 @@ import org.jannocessor.data.JavaEnumData;
 import org.jannocessor.model.modifier.EnumModifiers;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
@@ -79,7 +80,8 @@ public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 
 	@Override
 	public String toString() {
-		ToStringBuilder builder = new ToStringBuilder(this);
+		TypeSpecificStyle style = new TypeSpecificStyle(JavaEnum.class);
+		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
 	}

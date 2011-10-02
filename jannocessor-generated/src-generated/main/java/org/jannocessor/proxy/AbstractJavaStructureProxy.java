@@ -30,6 +30,7 @@ import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
@@ -203,7 +204,8 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
 	@Override
 	public String toString() {
-		ToStringBuilder builder = new ToStringBuilder(this);
+		TypeSpecificStyle style = new TypeSpecificStyle(AbstractJavaStructure.class);
+		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
 	}

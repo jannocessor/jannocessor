@@ -18,9 +18,8 @@ package org.jannocessor.model.bean.structure;
 
 import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.model.bean.NameBean;
-import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
 
 public class JavaTypeParameterBean extends JavaTypeParameterData implements
 		JavaTypeParameter {
@@ -28,6 +27,6 @@ public class JavaTypeParameterBean extends JavaTypeParameterData implements
 	public JavaTypeParameterBean(String name) {
 		this.setName(new NameBean(name));
 
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setCode(Code.code(JavaTypeParameter.class));
 	}
 }

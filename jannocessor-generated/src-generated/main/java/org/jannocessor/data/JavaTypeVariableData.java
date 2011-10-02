@@ -22,6 +22,7 @@ import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
@@ -79,7 +80,8 @@ public class JavaTypeVariableData extends JavaTypeData implements JavaTypeVariab
 
 	@Override
 	public String toString() {
-		ToStringBuilder builder = new ToStringBuilder(this);
+		TypeSpecificStyle style = new TypeSpecificStyle(JavaTypeVariable.class);
+		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
 	}

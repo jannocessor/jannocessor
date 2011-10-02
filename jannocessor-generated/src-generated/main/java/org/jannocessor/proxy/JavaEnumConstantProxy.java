@@ -22,6 +22,7 @@ import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.data.JavaEnumConstantData;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
@@ -67,7 +68,8 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
 
 	@Override
 	public String toString() {
-		ToStringBuilder builder = new ToStringBuilder(this);
+		TypeSpecificStyle style = new TypeSpecificStyle(JavaEnumConstant.class);
+		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
 	}

@@ -22,6 +22,7 @@ import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.data.JavaParameterData;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
@@ -78,7 +79,8 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
 
 	@Override
 	public String toString() {
-		ToStringBuilder builder = new ToStringBuilder(this);
+		TypeSpecificStyle style = new TypeSpecificStyle(JavaParameter.class);
+		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
 	}

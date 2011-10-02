@@ -20,12 +20,12 @@ import java.util.List;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaConstructorData;
-import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
+import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaConstructorBean extends JavaConstructorData implements
@@ -42,7 +42,7 @@ public class JavaConstructorBean extends JavaConstructorData implements
 		// TODO: calculate and set isVarArgs
 		this.setVarArgs(false);
 
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setCode(Code.code(JavaField.class));
 		this.setBody(new ExecutableBodyBean());
 	}
 

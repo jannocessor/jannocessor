@@ -21,7 +21,6 @@ import java.util.List;
 import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaInterfaceData;
 import org.jannocessor.model.bean.NameBean;
-import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.structure.JavaInterface;
@@ -31,7 +30,7 @@ import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
 
 public class JavaInterfaceBean extends JavaInterfaceData implements
 		JavaInterface {
@@ -49,7 +48,7 @@ public class JavaInterfaceBean extends JavaInterfaceData implements
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
+		this.setCode(Code.code(JavaInterface.class));
 	}
 
 }

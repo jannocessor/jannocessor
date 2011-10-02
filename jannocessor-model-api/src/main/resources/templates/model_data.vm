@@ -77,7 +77,8 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 
 	@Override
 	public String toString() {
-		#type("org.apache.commons.lang.builder.ToStringBuilder") builder = new #type("org.apache.commons.lang.builder.ToStringBuilder")(this);
+		#type("org.jannocessor.util.TypeSpecificStyle") style = new #type("org.jannocessor.util.TypeSpecificStyle")(#type(${model.qualifiedName}).class);
+		#type("org.apache.commons.lang.builder.ToStringBuilder") builder = new #type("org.apache.commons.lang.builder.ToStringBuilder")(this, style);
 		appendDescription(builder);
 		return builder.toString();
 	}

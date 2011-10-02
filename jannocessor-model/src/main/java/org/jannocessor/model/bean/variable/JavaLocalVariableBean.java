@@ -18,9 +18,8 @@ package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaLocalVariableData;
 import org.jannocessor.model.bean.NameBean;
-import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaLocalVariable;
 
 public class JavaLocalVariableBean extends JavaLocalVariableData implements
@@ -29,8 +28,8 @@ public class JavaLocalVariableBean extends JavaLocalVariableData implements
 	public JavaLocalVariableBean(JavaType type, String name, boolean isFinal) {
 		this.setType(type);
 		this.setName(new NameBean(name));
-		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 		this.setFinal(isFinal);
+		this.setCode(Code.code(JavaLocalVariable.class));
 	}
 
 }

@@ -19,22 +19,21 @@ package org.jannocessor.model.bean.structure;
 import java.util.List;
 
 import org.jannocessor.collection.Power;
-import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.data.JavaNestedAnnotationData;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.modifier.AnnotationModifiers;
-import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.util.Code;
 
-public class JavaAnnotationBean extends JavaAnnotationData implements
-		JavaAnnotation {
+public class JavaNestedAnnotationBean extends JavaNestedAnnotationData
+		implements JavaNestedAnnotation {
 
-	public JavaAnnotationBean(AnnotationModifiers modifiers, String name,
-			List<JavaMethod> methods) {
+	public JavaNestedAnnotationBean(NestedAnnotationModifiers modifiers,
+			String name, List<JavaMethod> methods) {
 		this.setModifiers(modifiers);
 		this.setName(new NameBean(name));
 		this.setMethods(Power.list(methods));
@@ -44,6 +43,6 @@ public class JavaAnnotationBean extends JavaAnnotationData implements
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
-		this.setCode(Code.code(JavaAnnotation.class));
+		this.setCode(Code.code(JavaNestedAnnotation.class));
 	}
 }
