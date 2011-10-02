@@ -1,20 +1,20 @@
-package $clazz.packageName;
+package $self.packageName;
 
 #smart_import()
 
-public class $clazz.name {
+public class $self.name {
 
-#foreach ($f in $clazz.fields)
+#foreach ($f in $self.fields)
     private #type($f.type) $f.name;
 
 #end
 
-#foreach ($f in $clazz.fields)
+#foreach ($f in $self.fields)
     public #type($f.type) get${f.name.capitalized}() {
         return $f.name;
     }
 
-    public void set${f.name.capitalized}(#type($f.type) $f.name) { 
+    public void set${f.name.capitalized}(#type($f.type) $f.name) {
         this.$f.name = $f.name;
     }
 
