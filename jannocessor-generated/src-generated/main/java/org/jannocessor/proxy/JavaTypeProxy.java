@@ -319,26 +319,17 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.append(this.getTypeClass(), other.getTypeClass())
 				.append(this.getSimpleName(), other.getSimpleName())
 				.append(this.getCanonicalName(), other.getCanonicalName())
-				.append(this.hasError(), other.hasError())
 				.append(this.isVoid(), other.isVoid())
 				.append(this.isNull(), other.isNull())
 				.append(this.isPrimitive(), other.isPrimitive())
 				.append(this.isDeclared(), other.isDeclared())
-				.append(this.asDeclared(), other.asDeclared())
 				.append(this.isClass(), other.isClass())
-				.append(this.asClass(), other.asClass())
 				.append(this.isInterface(), other.isInterface())
-				.append(this.asInterface(), other.asInterface())
 				.append(this.isEnum(), other.isEnum())
-				.append(this.asEnum(), other.asEnum())
 				.append(this.isArray(), other.isArray())
-				.append(this.asArray(), other.asArray())
 				.append(this.isWildcard(), other.isWildcard())
-				.append(this.asWildcard(), other.asWildcard())
 				.append(this.isTypeVariable(), other.isTypeVariable())
-				.append(this.asTypeVariable(), other.asTypeVariable())
 				.append(this.isExecutable(), other.isExecutable())
-				.append(this.asExecutable(), other.asExecutable())
 				.isEquals();
 	}
 
@@ -348,26 +339,17 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.append(this.getTypeClass())
 				.append(this.getSimpleName())
 				.append(this.getCanonicalName())
-				.append(this.hasError())
 				.append(this.isVoid())
 				.append(this.isNull())
 				.append(this.isPrimitive())
 				.append(this.isDeclared())
-				.append(this.asDeclared())
 				.append(this.isClass())
-				.append(this.asClass())
 				.append(this.isInterface())
-				.append(this.asInterface())
 				.append(this.isEnum())
-				.append(this.asEnum())
 				.append(this.isArray())
-				.append(this.asArray())
 				.append(this.isWildcard())
-				.append(this.asWildcard())
 				.append(this.isTypeVariable())
-				.append(this.asTypeVariable())
 				.append(this.isExecutable())
-				.append(this.asExecutable())
 				.toHashCode();
 	}
 
@@ -384,26 +366,17 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         builder.append("typeClass", this.getTypeClass());
         builder.append("simpleName", this.getSimpleName());
         builder.append("canonicalName", this.getCanonicalName());
-        builder.append("_hasError", this.hasError());
         builder.append("_isVoid", this.isVoid());
         builder.append("_isNull", this.isNull());
         builder.append("_isPrimitive", this.isPrimitive());
         builder.append("_isDeclared", this.isDeclared());
-        builder.append("_asDeclared", this.asDeclared());
         builder.append("_isClass", this.isClass());
-        builder.append("_asClass", this.asClass());
         builder.append("_isInterface", this.isInterface());
-        builder.append("_asInterface", this.asInterface());
         builder.append("_isEnum", this.isEnum());
-        builder.append("_asEnum", this.asEnum());
         builder.append("_isArray", this.isArray());
-        builder.append("_asArray", this.asArray());
         builder.append("_isWildcard", this.isWildcard());
-        builder.append("_asWildcard", this.asWildcard());
         builder.append("_isTypeVariable", this.isTypeVariable());
-        builder.append("_asTypeVariable", this.asTypeVariable());
         builder.append("_isExecutable", this.isExecutable());
-        builder.append("_asExecutable", this.asExecutable());
 	}
 
 }

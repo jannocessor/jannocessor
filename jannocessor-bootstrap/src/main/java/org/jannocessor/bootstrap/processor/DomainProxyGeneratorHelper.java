@@ -14,4 +14,9 @@ public class DomainProxyGeneratorHelper {
 		}
 	}
 
+	public boolean isIdentityProperty(JavaMethod method) {
+		String name = method.getName().getText();
+		return !name.equals("getParent")
+				&& (name.startsWith("get") || name.startsWith("is"));
+	}
 }
