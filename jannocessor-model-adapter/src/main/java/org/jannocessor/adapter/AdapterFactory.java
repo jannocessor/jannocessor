@@ -35,6 +35,10 @@ import org.jannocessor.adapter.structure.JavaAnnotationAdapter;
 import org.jannocessor.adapter.structure.JavaClassAdapter;
 import org.jannocessor.adapter.structure.JavaEnumAdapter;
 import org.jannocessor.adapter.structure.JavaInterfaceAdapter;
+import org.jannocessor.adapter.structure.JavaNestedAnnotationAdapter;
+import org.jannocessor.adapter.structure.JavaNestedClassAdapter;
+import org.jannocessor.adapter.structure.JavaNestedEnumAdapter;
+import org.jannocessor.adapter.structure.JavaNestedInterfaceAdapter;
 import org.jannocessor.adapter.structure.JavaPackageAdapter;
 import org.jannocessor.adapter.structure.JavaTypeParameterAdapter;
 import org.jannocessor.adapter.type.JavaTypeAdapter;
@@ -54,6 +58,10 @@ import org.jannocessor.data.JavaInstanceInitData;
 import org.jannocessor.data.JavaInterfaceData;
 import org.jannocessor.data.JavaLocalVariableData;
 import org.jannocessor.data.JavaMethodData;
+import org.jannocessor.data.JavaNestedAnnotationData;
+import org.jannocessor.data.JavaNestedClassData;
+import org.jannocessor.data.JavaNestedEnumData;
+import org.jannocessor.data.JavaNestedInterfaceData;
 import org.jannocessor.data.JavaPackageData;
 import org.jannocessor.data.JavaParameterData;
 import org.jannocessor.data.JavaStaticInitData;
@@ -74,6 +82,10 @@ import org.jannocessor.proxy.JavaInstanceInitProxy;
 import org.jannocessor.proxy.JavaInterfaceProxy;
 import org.jannocessor.proxy.JavaLocalVariableProxy;
 import org.jannocessor.proxy.JavaMethodProxy;
+import org.jannocessor.proxy.JavaNestedAnnotationProxy;
+import org.jannocessor.proxy.JavaNestedClassProxy;
+import org.jannocessor.proxy.JavaNestedEnumProxy;
+import org.jannocessor.proxy.JavaNestedInterfaceProxy;
 import org.jannocessor.proxy.JavaPackageProxy;
 import org.jannocessor.proxy.JavaParameterProxy;
 import org.jannocessor.proxy.JavaStaticInitProxy;
@@ -83,15 +95,13 @@ import org.jannocessor.proxy.JavaTypeProxy;
 public class AdapterFactory {
 
 	@SuppressWarnings("unchecked")
-	public static <T extends JavaElement> T getElementModel(
-			Element element, Class<T> clazz, Elements elementUtils,
-			Types typeUtils) {
+	public static <T extends JavaElement> T getElementModel(Element element,
+			Class<T> clazz, Elements elementUtils, Types typeUtils) {
 
 		if (element != null) {
 
 			JavaElement model;
-
-			Element parent = element.getEnclosingElement();
+			TypeElement typeElement;
 
 			ElementKind kind = element.getKind();
 			switch (kind) {
@@ -105,27 +115,57 @@ public class AdapterFactory {
 				break;
 
 			case ENUM:
-				model = new JavaEnumProxy(new JavaEnumAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaEnumData());
+				typeElement = (TypeElement) element;
+				if (typeElement.getNestingKind().isNested()) {
+					model = new JavaNestedEnumProxy(new JavaNestedEnumAdapter(
+							typeElement, elementUtils, typeUtils),
+							new JavaNestedEnumData());
+				} else {
+					model = new JavaEnumProxy(new JavaEnumAdapter(typeElement,
+							elementUtils, typeUtils), new JavaEnumData());
+				}
 				break;
 
 			case CLASS:
-				model = new JavaClassProxy(new JavaClassAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaClassData());
+				typeElement = (TypeElement) element;
+				if (typeElement.getNestingKind().isNested()) {
+					model = new JavaNestedClassProxy(
+							new JavaNestedClassAdapter(typeElement,
+									elementUtils, typeUtils),
+							new JavaNestedClassData());
+				} else {
+					model = new JavaClassProxy(new JavaClassAdapter(
+							typeElement, elementUtils, typeUtils),
+							new JavaClassData());
+				}
 				break;
 
 			case ANNOTATION_TYPE:
-				model = new JavaAnnotationProxy(new JavaAnnotationAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaAnnotationData());
+				typeElement = (TypeElement) element;
+				if (typeElement.getNestingKind().isNested()) {
+					model = new JavaNestedAnnotationProxy(
+							new JavaNestedAnnotationAdapter(typeElement,
+									elementUtils, typeUtils),
+							new JavaNestedAnnotationData());
+				} else {
+					model = new JavaAnnotationProxy(new JavaAnnotationAdapter(
+							typeElement, elementUtils, typeUtils),
+							new JavaAnnotationData());
+				}
 				break;
 
 			case INTERFACE:
-				model = new JavaInterfaceProxy(new JavaInterfaceAdapter(
-						(TypeElement) element, elementUtils, typeUtils),
-						new JavaInterfaceData());
+				typeElement = (TypeElement) element;
+				if (typeElement.getNestingKind().isNested()) {
+					model = new JavaNestedInterfaceProxy(
+							new JavaNestedInterfaceAdapter(typeElement,
+									elementUtils, typeUtils),
+							new JavaNestedInterfaceData());
+				} else {
+					model = new JavaInterfaceProxy(new JavaInterfaceAdapter(
+							typeElement, elementUtils, typeUtils),
+							new JavaInterfaceData());
+				}
 				break;
 
 			case TYPE_PARAMETER:
