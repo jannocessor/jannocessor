@@ -13,12 +13,14 @@ import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
@@ -192,6 +194,16 @@ public class AbstractModelTest {
 		assertEquals(fields, enumm.getFields());
 		assertEquals(constructors, enumm.getConstructors());
 		assertEquals(methods, enumm.getMethods());
+	}
+
+	protected void checkAnnotation(JavaAnnotation annotation,
+			AnnotationModifiers modifiers, String name, List<JavaMethod> methods) {
+		// TODO: should interfaces be set to null, or else?
+		checkStructural(annotation, null, null);
+		checkElementName(annotation, name);
+
+		assertEquals(modifiers, annotation.getModifiers());
+		assertEquals(methods, annotation.getMethods());
 	}
 
 	protected void checkAllEquall(JavaCodeModel... models) {

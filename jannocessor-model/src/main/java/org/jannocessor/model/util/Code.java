@@ -27,6 +27,7 @@ import org.jannocessor.model.bean.executable.JavaConstructorBean;
 import org.jannocessor.model.bean.executable.JavaInstanceInitBean;
 import org.jannocessor.model.bean.executable.JavaMethodBean;
 import org.jannocessor.model.bean.executable.JavaStaticInitBean;
+import org.jannocessor.model.bean.modifier.AnnotationModifiersBean;
 import org.jannocessor.model.bean.modifier.ClassModifiersBean;
 import org.jannocessor.model.bean.modifier.ConstructorModifiersBean;
 import org.jannocessor.model.bean.modifier.EnumModifiersBean;
@@ -34,6 +35,7 @@ import org.jannocessor.model.bean.modifier.FieldModifiersBean;
 import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
 import org.jannocessor.model.bean.modifier.MethodModifiersBean;
 import org.jannocessor.model.bean.modifier.NestedClassModifiersBean;
+import org.jannocessor.model.bean.structure.JavaAnnotationBean;
 import org.jannocessor.model.bean.structure.JavaClassBean;
 import org.jannocessor.model.bean.structure.JavaEnumBean;
 import org.jannocessor.model.bean.structure.JavaInterfaceBean;
@@ -54,6 +56,7 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.EnumModifiers;
@@ -61,6 +64,7 @@ import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.NestedClassModifiers;
+import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 import org.jannocessor.model.modifier.value.EnumModifierValue;
@@ -68,6 +72,7 @@ import org.jannocessor.model.modifier.value.FieldModifierValue;
 import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
 import org.jannocessor.model.modifier.value.NestedClassModifierValue;
+import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
@@ -193,6 +198,11 @@ public class Code {
 
 	public static EnumModifiers enumModifiers(EnumModifierValue... values) {
 		return new EnumModifiersBean(values);
+	}
+
+	public static AnnotationModifiers annotationModifiers(
+			AnnotationModifierValue... values) {
+		return new AnnotationModifiersBean(values);
 	}
 
 	public static FieldModifiers fieldModifiers(FieldModifierValue... values) {
@@ -502,5 +512,25 @@ public class Code {
 		return enumm(Enums.PUBLIC, name, values);
 	}
 
+	/*************************** ANNOTATION ******************************/
+
+	public static JavaAnnotation annotation(AnnotationModifiers modifiers,
+			String name, List<JavaMethod> methods) {
+		return new JavaAnnotationBean(modifiers, name, methods);
+	}
+
+	public static JavaAnnotation annotation(String name,
+			List<JavaMethod> methods) {
+		return annotation(Annotations.PUBLIC, name, methods);
+	}
+
+	public static JavaAnnotation annotation(AnnotationModifiers modifiers,
+			String name) {
+		return annotation(modifiers, name, NO_METHODS);
+	}
+
+	public static JavaAnnotation annotation(String name) {
+		return annotation(name, NO_METHODS);
+	}
 
 }

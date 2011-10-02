@@ -16,16 +16,35 @@
 
 package org.jannocessor.model.bean.structure;
 
+import java.util.List;
+
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.util.Templates;
 
 public class JavaAnnotationBean extends JavaAnnotationData implements
 		JavaAnnotation {
 
-	public JavaAnnotationBean() {
-		// TODO Auto-generated constructor stub
+	public JavaAnnotationBean(AnnotationModifiers modifiers, String name,
+			List<JavaMethod> methods) {
+		this.setModifiers(modifiers);
+		this.setName(new NameBean(name));
+		this.setMethods(Power.list(methods));
+
+		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
+		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
+		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
+		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
+
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 }

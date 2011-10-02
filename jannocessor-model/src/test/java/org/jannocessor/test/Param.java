@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.sf.twip.AutoTwip;
 
+import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.EnumModifiers;
@@ -13,6 +14,7 @@ import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Constructors;
@@ -59,6 +61,11 @@ public class Param {
 	public static InterfaceModifiers[] interfaceModifiers() {
 		return new InterfaceModifiers[] { Interfaces.DEFAULT_MODIFIER,
 				Interfaces.PUBLIC, Interfaces.PUBLIC_ABSTRACT };
+	}
+
+	public static AnnotationModifiers[] annotationModifiers() {
+		return new AnnotationModifiers[] { Annotations.DEFAULT_MODIFIER,
+				Annotations.PUBLIC, Annotations.PUBLIC_ABSTRACT };
 	}
 
 	public static EnumModifiers[] enumModifiers() {
