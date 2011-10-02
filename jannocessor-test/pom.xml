@@ -10,13 +10,13 @@
 
 	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor-test</artifactId>
-	<version>${parent.version}</version>
+	<version>${project.parent.version}</version>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-model-api</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.googlecode.jannocessor</groupId>
@@ -27,7 +27,12 @@
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-processor</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-templates</artifactId>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -63,13 +68,11 @@
 						<configuration>
 							<options>
 								<profile>test</profile>
+								<templates.path>${project.parent.basedir}/jannocessor-templates/src/main/resources/templates</templates.path>
 							</options>
 							<processors>
 								<processor>org.jannocessor.processor.JannocessorProcessor</processor>
 							</processors>
-							<optionMap>
-								<templates.path>${project.parent.basedir}/jannocessor-templates/src/main/resources/templates</templates.path>
-							</optionMap>
 							<defaultOutputDirectory>${project.parent.basedir}/jannocessor-test-generated/src-generated/main/java</defaultOutputDirectory>
 						</configuration>
 					</execution>

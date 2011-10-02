@@ -7,5 +7,5 @@
   </parent>
   <groupId>com.googlecode.jannocessor</groupId>
   <artifactId>jannocessor-collections-api</artifactId>
-  <version>${parent.version}</version>
+  <version>${project.parent.version}</version>
 </project>
