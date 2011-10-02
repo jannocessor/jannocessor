@@ -24,6 +24,7 @@ import org.jannocessor.model.bean.modifier.ClassModifiersBean;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.util.Code;
 
 public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 		JavaClass {
@@ -34,6 +35,7 @@ public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 	public JavaClassAdapter(TypeElement tclass, Elements elementUtils,
 			Types typeUtils) {
 		super(tclass, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaClass.class));
 		this.tclass = tclass;
 	}
 

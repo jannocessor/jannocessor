@@ -9,11 +9,13 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.Code;
 
 public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements JavaDeclaredType {
 
     public JavaDeclaredTypeAdapter(DeclaredType declaredType, Elements elementUtils, Types typeUtils) {
         super(declaredType, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaDeclaredType.class));
         // TODO Auto-generated constructor stub
     }
 

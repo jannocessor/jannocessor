@@ -22,6 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.util.Code;
 
 public final class JavaTypeParameterAdapter extends JavaElementAdapter
 		implements JavaTypeParameter {
@@ -32,6 +33,7 @@ public final class JavaTypeParameterAdapter extends JavaElementAdapter
 	public JavaTypeParameterAdapter(TypeParameterElement typeParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(typeParameter, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaTypeParameter.class));
 		this.typeParameter = typeParameter;
 	}
 

@@ -24,6 +24,7 @@ import org.jannocessor.model.bean.modifier.NestedInterfaceModifiersBean;
 import org.jannocessor.model.modifier.NestedInterfaceModifiers;
 import org.jannocessor.model.modifier.value.NestedInterfaceModifierValue;
 import org.jannocessor.model.structure.JavaNestedInterface;
+import org.jannocessor.model.util.Code;
 
 public final class JavaNestedInterfaceAdapter extends
 		AbstractJavaInterfaceAdapter implements JavaNestedInterface {
@@ -34,6 +35,7 @@ public final class JavaNestedInterfaceAdapter extends
 	public JavaNestedInterfaceAdapter(TypeElement tinterface,
 			Elements elementUtils, Types typeUtils) {
 		super(tinterface, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaNestedInterface.class));
 		this.tinterface = tinterface;
 	}
 

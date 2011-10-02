@@ -24,6 +24,7 @@ import org.jannocessor.model.bean.modifier.AnnotationModifiersBean;
 import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.util.Code;
 
 public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		implements JavaAnnotation {
@@ -34,6 +35,7 @@ public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 	public JavaAnnotationAdapter(TypeElement annotation, Elements elementUtils,
 			Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaAnnotation.class));
 		this.annotation = annotation;
 	}
 

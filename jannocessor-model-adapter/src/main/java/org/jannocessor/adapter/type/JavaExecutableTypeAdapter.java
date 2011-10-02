@@ -9,11 +9,13 @@ import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.util.Code;
 
 public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements JavaExecutableType {
 
     public JavaExecutableTypeAdapter(ExecutableType executableType, Elements elementUtils, Types typeUtils) {
         super(executableType, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaExecutableType.class));
     }
 
     @Override

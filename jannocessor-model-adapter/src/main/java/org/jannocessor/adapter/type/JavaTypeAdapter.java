@@ -34,6 +34,7 @@ import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.model.type.JavaWildcardType;
+import org.jannocessor.model.util.Code;
 
 public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 
@@ -42,6 +43,7 @@ public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 	public JavaTypeAdapter(TypeMirror typeMirror, Elements elementUtils,
 			Types typeUtils) {
 		super(elementUtils, typeUtils);
+		this.setCode(Code.code(JavaType.class));
 		this.typeMirror = typeMirror;
 	}
 

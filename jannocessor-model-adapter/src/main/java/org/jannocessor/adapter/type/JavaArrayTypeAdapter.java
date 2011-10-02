@@ -6,6 +6,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.Code;
 
 public class JavaArrayTypeAdapter extends JavaTypeAdapter implements JavaArrayType {
 
@@ -13,6 +14,7 @@ public class JavaArrayTypeAdapter extends JavaTypeAdapter implements JavaArrayTy
 
     public JavaArrayTypeAdapter(ArrayType arrayType, Elements elementUtils, Types typeUtils) {
         super(arrayType, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaArrayType.class));
         this.arrayType = arrayType;
     }
 

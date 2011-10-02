@@ -21,6 +21,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.util.Code;
 
 public final class JavaInstanceInitAdapter extends
 		AbstractJavaExecutableAdapter implements JavaInstanceInit {
@@ -31,6 +32,7 @@ public final class JavaInstanceInitAdapter extends
 	public JavaInstanceInitAdapter(ExecutableElement instanceInit,
 			Elements elementUtils, Types typeUtils) {
 		super(instanceInit, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaInstanceInit.class));
 		this.instanceInit = instanceInit;
 	}
 

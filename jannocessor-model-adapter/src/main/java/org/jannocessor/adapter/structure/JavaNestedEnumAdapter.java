@@ -24,6 +24,7 @@ import org.jannocessor.model.bean.modifier.NestedEnumModifiersBean;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
 import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.util.Code;
 
 public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 		implements JavaNestedEnum {
@@ -34,6 +35,7 @@ public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 	public JavaNestedEnumAdapter(TypeElement tenum, Elements elementUtils,
 			Types typeUtils) {
 		super(tenum, elementUtils, typeUtils);
+		this.setCode(Code.code(JavaNestedEnum.class));
 		this.tenum = tenum;
 	}
 
