@@ -81,8 +81,7 @@ public class SourceCodeBean implements SourceCode {
 	@Override
 	public String toString() {
 		TypeSpecificStyle style = new TypeSpecificStyle(SourceCode.class);
-		return new ReflectionToStringBuilder(this, style).setExcludeFieldNames(
-				new String[] {}).toString();
+		return new ReflectionToStringBuilder(this, style).toString();
 	}
 
 }
