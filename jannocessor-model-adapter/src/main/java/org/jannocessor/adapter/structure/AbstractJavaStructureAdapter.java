@@ -25,16 +25,21 @@ import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.type.JavaType;
 
-abstract class AbstractJavaStructureAdapter extends JavaElementAdapter implements
-		AbstractJavaStructure {
+abstract class AbstractJavaStructureAdapter extends JavaElementAdapter
+		implements AbstractJavaStructure {
 
 	private final TypeElement type;
 
-	public AbstractJavaStructureAdapter(TypeElement type, Elements elementUtils,
-			Types typeUtils) {
+	public AbstractJavaStructureAdapter(TypeElement type,
+			Elements elementUtils, Types typeUtils) {
 		super(type, elementUtils, typeUtils);
 		this.type = type;
 	}
@@ -71,6 +76,31 @@ abstract class AbstractJavaStructureAdapter extends JavaElementAdapter implement
 		}
 
 		return adapters;
+	}
+
+	@Override
+	public PowerList<JavaMethod> getMethods() {
+		return findChildrenByType(JavaMethod.class);
+	}
+
+	@Override
+	public PowerList<JavaNestedClass> getNestedClasses() {
+		return findChildrenByType(JavaNestedClass.class);
+	}
+
+	@Override
+	public PowerList<JavaNestedEnum> getNestedEnums() {
+		return findChildrenByType(JavaNestedEnum.class);
+	}
+
+	@Override
+	public PowerList<JavaNestedInterface> getNestedInterfaces() {
+		return findChildrenByType(JavaNestedInterface.class);
+	}
+
+	@Override
+	public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
+		return findChildrenByType(JavaNestedAnnotation.class);
 	}
 
 }

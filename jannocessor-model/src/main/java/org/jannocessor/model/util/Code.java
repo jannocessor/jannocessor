@@ -29,11 +29,11 @@ import org.jannocessor.model.bean.executable.JavaMethodBean;
 import org.jannocessor.model.bean.executable.JavaStaticInitBean;
 import org.jannocessor.model.bean.modifier.ClassModifiersBean;
 import org.jannocessor.model.bean.modifier.ConstructorModifiersBean;
+import org.jannocessor.model.bean.modifier.EnumModifiersBean;
 import org.jannocessor.model.bean.modifier.FieldModifiersBean;
 import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
 import org.jannocessor.model.bean.modifier.MethodModifiersBean;
 import org.jannocessor.model.bean.modifier.NestedClassModifiersBean;
-import org.jannocessor.model.bean.structure.JavaAnnotationBean;
 import org.jannocessor.model.bean.structure.JavaClassBean;
 import org.jannocessor.model.bean.structure.JavaEnumBean;
 import org.jannocessor.model.bean.structure.JavaInterfaceBean;
@@ -56,17 +56,18 @@ import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
+import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
+import org.jannocessor.model.modifier.value.EnumModifierValue;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
 import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
 import org.jannocessor.model.modifier.value.NestedClassModifierValue;
-import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
@@ -181,45 +182,34 @@ public class Code {
 		return localVariable(type, name, false);
 	}
 
-	public static JavaAnnotation annotation() {
-		return new JavaAnnotationBean();
-	}
-
-	public static JavaEnum enumeration(String name) {
-		return enumeration(name, false);
-	}
-
-	public static JavaEnum enumeration(String name, boolean isFinal) {
-		return new JavaEnumBean(name, isFinal);
-	}
-
-	public static ClassModifiers classModifiers(
-			final ClassModifierValue... values) {
+	public static ClassModifiers classModifiers(ClassModifierValue... values) {
 		return new ClassModifiersBean(values);
 	}
 
 	public static InterfaceModifiers interfaceModifiers(
-			final InterfaceModifierValue... values) {
+			InterfaceModifierValue... values) {
 		return new InterfaceModifiersBean(values);
 	}
 
-	public static FieldModifiers fieldModifiers(
-			final FieldModifierValue... values) {
+	public static EnumModifiers enumModifiers(EnumModifierValue... values) {
+		return new EnumModifiersBean(values);
+	}
+
+	public static FieldModifiers fieldModifiers(FieldModifierValue... values) {
 		return new FieldModifiersBean(values);
 	}
 
 	public static NestedClassModifiers nestedClassModifiers(
-			final NestedClassModifierValue... values) {
+			NestedClassModifierValue... values) {
 		return new NestedClassModifiersBean(values);
 	}
 
-	public static MethodModifiers methodModifiers(
-			final MethodModifierValue... values) {
+	public static MethodModifiers methodModifiers(MethodModifierValue... values) {
 		return new MethodModifiersBean(values);
 	}
 
 	public static ConstructorModifiers constructorModifiers(
-			final ConstructorModifierValue... values) {
+			ConstructorModifierValue... values) {
 		return new ConstructorModifiersBean(values);
 	}
 
@@ -479,5 +469,38 @@ public class Code {
 	public static JavaInterface interfacee(String name, List<JavaMethod> methods) {
 		return interfacee(name, NO_TYPES, methods);
 	}
+
+	/****************************** ENUM *********************************/
+
+	public static JavaEnum enumm(EnumModifiers modifiers, String name,
+			List<JavaType> interfaces, List<JavaEnumConstant> values,
+			List<JavaField> fields, List<JavaConstructor> constructors,
+			List<JavaMethod> methods) {
+		return new JavaEnumBean(modifiers, name, interfaces, values, fields,
+				constructors, methods);
+	}
+
+	public static JavaEnum enumm(EnumModifiers modifiers, String name,
+			List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods) {
+		return enumm(modifiers, name, NO_TYPES, values, fields, constructors,
+				methods);
+	}
+
+	public static JavaEnum enumm(EnumModifiers modifiers, String name,
+			List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors) {
+		return enumm(modifiers, name, values, fields, constructors, NO_METHODS);
+	}
+
+	public static JavaEnum enumm(EnumModifiers modifiers, String name,
+			List<JavaEnumConstant> values) {
+		return enumm(modifiers, name, values, NO_FIELDS, NO_CONSTRUCTORS);
+	}
+
+	public static JavaEnum enumm(String name, List<JavaEnumConstant> values) {
+		return enumm(Enums.PUBLIC, name, values);
+	}
+
 
 }

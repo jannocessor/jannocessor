@@ -20,6 +20,12 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaStructureProxy;
 import org.jannocessor.model.structure.AbstractJavaEnum;
 import org.jannocessor.data.AbstractJavaEnumData;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.executable.JavaInstanceInit;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -28,10 +34,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements AbstractJavaEnum {
 
-    @SuppressWarnings("unused")
     private AbstractJavaEnum adapter;
 
-    @SuppressWarnings("unused")
     private AbstractJavaEnumData data;
 
     public AbstractJavaEnumProxy(AbstractJavaEnum adapter, AbstractJavaEnumData data) {
@@ -40,6 +44,61 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
         this.data = data;
     }
 
+	private boolean getValuesInitialized = false;
+
+	private boolean getFieldsInitialized = false;
+
+	private boolean getConstructorsInitialized = false;
+
+	private boolean getStaticInitsInitialized = false;
+
+	private boolean getInstanceInitsInitialized = false;
+
+
+    public PowerList<JavaEnumConstant> getValues() {
+        if (!getValuesInitialized) {
+            data.setValues(adapter.getValues());
+			getValuesInitialized = true;
+        }
+
+        return data.getValues();
+    }
+
+    public PowerList<JavaField> getFields() {
+        if (!getFieldsInitialized) {
+            data.setFields(adapter.getFields());
+			getFieldsInitialized = true;
+        }
+
+        return data.getFields();
+    }
+
+    public PowerList<JavaConstructor> getConstructors() {
+        if (!getConstructorsInitialized) {
+            data.setConstructors(adapter.getConstructors());
+			getConstructorsInitialized = true;
+        }
+
+        return data.getConstructors();
+    }
+
+    public PowerList<JavaStaticInit> getStaticInits() {
+        if (!getStaticInitsInitialized) {
+            data.setStaticInits(adapter.getStaticInits());
+			getStaticInitsInitialized = true;
+        }
+
+        return data.getStaticInits();
+    }
+
+    public PowerList<JavaInstanceInit> getInstanceInits() {
+        if (!getInstanceInitsInitialized) {
+            data.setInstanceInits(adapter.getInstanceInits());
+			getInstanceInitsInitialized = true;
+        }
+
+        return data.getInstanceInits();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,12 +115,22 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 		AbstractJavaEnum other = (AbstractJavaEnum) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getValues(), other.getValues())
+				.append(this.getFields(), other.getFields())
+				.append(this.getConstructors(), other.getConstructors())
+				.append(this.getStaticInits(), other.getStaticInits())
+				.append(this.getInstanceInits(), other.getInstanceInits())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getValues())
+				.append(this.getFields())
+				.append(this.getConstructors())
+				.append(this.getStaticInits())
+				.append(this.getInstanceInits())
 				.toHashCode();
 	}
 
@@ -75,6 +144,11 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("values", this.getValues());
+        builder.append("fields", this.getFields());
+        builder.append("constructors", this.getConstructors());
+        builder.append("staticInits", this.getStaticInits());
+        builder.append("instanceInits", this.getInstanceInits());
 	}
 
 }

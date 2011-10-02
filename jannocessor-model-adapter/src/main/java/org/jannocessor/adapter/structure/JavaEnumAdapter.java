@@ -39,8 +39,7 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 
 	@Override
 	public EnumModifiers getModifiers() {
-		return new EnumModifiersBean(
-				getModifierValues(EnumModifierValue.class));
+		return new EnumModifiersBean(getModifierValues(EnumModifierValue.class));
 	}
 
 }

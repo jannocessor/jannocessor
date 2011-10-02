@@ -20,7 +20,6 @@ import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.variable.JavaField;
 
@@ -33,18 +32,8 @@ public interface AbstractJavaClass extends AbstractJavaStructure {
 
 	PowerList<JavaConstructor> getConstructors();
 
-	PowerList<JavaMethod> getMethods();
-
 	PowerList<JavaStaticInit> getStaticInits();
 
 	PowerList<JavaInstanceInit> getInstanceInits();
-
-	PowerList<JavaNestedClass> getNestedClasses();
-
-	PowerList<JavaNestedEnum> getNestedEnums();
-
-	PowerList<JavaNestedInterface> getNestedInterfaces();
-
-	PowerList<JavaNestedAnnotation> getNestedAnnotations();
 
 }

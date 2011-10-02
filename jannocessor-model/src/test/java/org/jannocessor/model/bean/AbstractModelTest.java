@@ -15,13 +15,16 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
+import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
 import org.slf4j.Logger;
@@ -174,6 +177,21 @@ public class AbstractModelTest {
 		assertEquals(modifiers, interfacee.getModifiers());
 		assertEquals(methods, interfacee.getMethods());
 		assertEquals(parameters, interfacee.getParameters());
+	}
+
+	protected void checkEnum(JavaEnum enumm, EnumModifiers modifiers,
+			String name, List<JavaType> interfaces,
+			List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods) {
+		// TODO: should parent be set to null, or Enum?
+		checkStructural(enumm, null, interfaces);
+		checkElementName(enumm, name);
+
+		assertEquals(modifiers, enumm.getModifiers());
+		assertEquals(values, enumm.getValues());
+		assertEquals(fields, enumm.getFields());
+		assertEquals(constructors, enumm.getConstructors());
+		assertEquals(methods, enumm.getMethods());
 	}
 
 	protected void checkAllEquall(JavaCodeModel... models) {

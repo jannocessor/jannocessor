@@ -16,12 +16,9 @@
 
 package org.jannocessor.model.bean.structure;
 
-import static org.junit.Assert.assertNotNull;
 import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.AbstractModelTest;
-import org.jannocessor.model.structure.JavaAnnotation;
-import org.jannocessor.model.util.Code;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -30,8 +27,6 @@ public class JavaAnnotationTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaAnnotation annotation = Code.annotation();
-		assertNotNull(annotation);
 	}
 
 }

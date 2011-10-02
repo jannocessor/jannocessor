@@ -23,6 +23,11 @@ import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -50,6 +55,16 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 	private boolean getSuperclassInitialized = false;
 
 	private boolean getInterfacesInitialized = false;
+
+	private boolean getMethodsInitialized = false;
+
+	private boolean getNestedClassesInitialized = false;
+
+	private boolean getNestedEnumsInitialized = false;
+
+	private boolean getNestedInterfacesInitialized = false;
+
+	private boolean getNestedAnnotationsInitialized = false;
 
 
     public String getNesting() {
@@ -97,6 +112,51 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getInterfaces();
     }
 
+    public PowerList<JavaMethod> getMethods() {
+        if (!getMethodsInitialized) {
+            data.setMethods(adapter.getMethods());
+			getMethodsInitialized = true;
+        }
+
+        return data.getMethods();
+    }
+
+    public PowerList<JavaNestedClass> getNestedClasses() {
+        if (!getNestedClassesInitialized) {
+            data.setNestedClasses(adapter.getNestedClasses());
+			getNestedClassesInitialized = true;
+        }
+
+        return data.getNestedClasses();
+    }
+
+    public PowerList<JavaNestedEnum> getNestedEnums() {
+        if (!getNestedEnumsInitialized) {
+            data.setNestedEnums(adapter.getNestedEnums());
+			getNestedEnumsInitialized = true;
+        }
+
+        return data.getNestedEnums();
+    }
+
+    public PowerList<JavaNestedInterface> getNestedInterfaces() {
+        if (!getNestedInterfacesInitialized) {
+            data.setNestedInterfaces(adapter.getNestedInterfaces());
+			getNestedInterfacesInitialized = true;
+        }
+
+        return data.getNestedInterfaces();
+    }
+
+    public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
+        if (!getNestedAnnotationsInitialized) {
+            data.setNestedAnnotations(adapter.getNestedAnnotations());
+			getNestedAnnotationsInitialized = true;
+        }
+
+        return data.getNestedAnnotations();
+    }
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -117,6 +177,11 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
 				.append(this.getInterfaces(), other.getInterfaces())
+				.append(this.getMethods(), other.getMethods())
+				.append(this.getNestedClasses(), other.getNestedClasses())
+				.append(this.getNestedEnums(), other.getNestedEnums())
+				.append(this.getNestedInterfaces(), other.getNestedInterfaces())
+				.append(this.getNestedAnnotations(), other.getNestedAnnotations())
 				.isEquals();
 	}
 
@@ -128,6 +193,11 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
 				.append(this.getInterfaces())
+				.append(this.getMethods())
+				.append(this.getNestedClasses())
+				.append(this.getNestedEnums())
+				.append(this.getNestedInterfaces())
+				.append(this.getNestedAnnotations())
 				.toHashCode();
 	}
 
@@ -146,6 +216,11 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         builder.append("qualifiedName", this.getQualifiedName());
         builder.append("superclass", this.getSuperclass());
         builder.append("interfaces", this.getInterfaces());
+        builder.append("methods", this.getMethods());
+        builder.append("nestedClasses", this.getNestedClasses());
+        builder.append("nestedEnums", this.getNestedEnums());
+        builder.append("nestedInterfaces", this.getNestedInterfaces());
+        builder.append("nestedAnnotations", this.getNestedAnnotations());
 	}
 
 }

@@ -21,7 +21,6 @@ import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.structure.AbstractJavaInterface;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.executable.JavaMethod;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -32,8 +31,6 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 
     private PowerList<JavaTypeParameter> parameters;
 
-    private PowerList<JavaMethod> methods;
-
 
     public PowerList<JavaTypeParameter> getParameters() {
         return this.parameters;
@@ -41,14 +38,6 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 
     public void setParameters(PowerList<JavaTypeParameter> value) {
         this.parameters = value;
-    }
-
-    public PowerList<JavaMethod> getMethods() {
-        return this.methods;
-    }
-
-    public void setMethods(PowerList<JavaMethod> value) {
-        this.methods = value;
     }
 
 	@Override
@@ -67,7 +56,6 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getParameters(), other.getParameters())
-				.append(this.getMethods(), other.getMethods())
 				.isEquals();
 	}
 
@@ -75,7 +63,6 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getParameters())
-				.append(this.getMethods())
 				.toHashCode();
 	}
 
@@ -90,7 +77,6 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("parameters", this.getParameters());
-        builder.append("methods", this.getMethods());
 	}
 
 }

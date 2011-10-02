@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.modifier.value;
+package org.jannocessor.model.util;
 
-public enum EnumModifierValue {
+import org.jannocessor.model.modifier.EnumModifiers;
+import org.jannocessor.model.modifier.value.EnumModifierValue;
 
-	PUBLIC;
+public class Enums {
+
+	/** Represents the default enum modifier. */
+	public static final EnumModifiers DEFAULT_MODIFIER = Code.enumModifiers();
+
+	/** Represents "public" enum modifier. */
+	public static final EnumModifiers PUBLIC = Code
+			.enumModifiers(EnumModifierValue.PUBLIC);
 
 }

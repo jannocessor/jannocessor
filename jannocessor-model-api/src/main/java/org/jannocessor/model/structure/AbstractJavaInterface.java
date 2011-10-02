@@ -18,13 +18,10 @@ package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaMethod;
 
 @DomainModel
 public interface AbstractJavaInterface extends AbstractJavaStructure {
 
 	PowerList<JavaTypeParameter> getParameters();
-
-	PowerList<JavaMethod> getMethods();
 
 }

@@ -23,18 +23,13 @@ import javax.lang.model.util.Types;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.structure.AbstractJavaClass;
-import org.jannocessor.model.structure.JavaNestedAnnotation;
-import org.jannocessor.model.structure.JavaNestedClass;
-import org.jannocessor.model.structure.JavaNestedEnum;
-import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaField;
 
-abstract class AbstractJavaClassAdapter extends
-		AbstractJavaStructureAdapter implements AbstractJavaClass {
+abstract class AbstractJavaClassAdapter extends AbstractJavaStructureAdapter
+		implements AbstractJavaClass {
 
 	private final TypeElement tclass;
 
@@ -55,11 +50,6 @@ abstract class AbstractJavaClassAdapter extends
 	}
 
 	@Override
-	public PowerList<JavaMethod> getMethods() {
-		return findChildrenByType(JavaMethod.class);
-	}
-
-	@Override
 	public PowerList<JavaStaticInit> getStaticInits() {
 		return findChildrenByType(JavaStaticInit.class);
 	}
@@ -67,26 +57,6 @@ abstract class AbstractJavaClassAdapter extends
 	@Override
 	public PowerList<JavaInstanceInit> getInstanceInits() {
 		return findChildrenByType(JavaInstanceInit.class);
-	}
-
-	@Override
-	public PowerList<JavaNestedClass> getNestedClasses() {
-		return findChildrenByType(JavaNestedClass.class);
-	}
-
-	@Override
-	public PowerList<JavaNestedEnum> getNestedEnums() {
-		return findChildrenByType(JavaNestedEnum.class);
-	}
-
-	@Override
-	public PowerList<JavaNestedInterface> getNestedInterfaces() {
-		return findChildrenByType(JavaNestedInterface.class);
-	}
-
-	@Override
-	public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
-		return findChildrenByType(JavaNestedAnnotation.class);
 	}
 
 	@Override

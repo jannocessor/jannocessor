@@ -25,6 +25,10 @@ import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Templates;
@@ -40,6 +44,10 @@ public class JavaInterfaceBean extends JavaInterfaceData implements
 		this.setInterfaces(Power.list(superInterfaces));
 		this.setMethods(Power.list(methods));
 		this.setParameters(Power.list(parameters));
+		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
+		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
+		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
+		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}

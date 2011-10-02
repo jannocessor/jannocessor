@@ -19,6 +19,12 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.structure.AbstractJavaEnum;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.executable.JavaInstanceInit;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -27,6 +33,56 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaEnumData extends AbstractJavaStructureData implements AbstractJavaEnum {
 
+    private PowerList<JavaEnumConstant> values;
+
+    private PowerList<JavaField> fields;
+
+    private PowerList<JavaConstructor> constructors;
+
+    private PowerList<JavaStaticInit> staticInits;
+
+    private PowerList<JavaInstanceInit> instanceInits;
+
+
+    public PowerList<JavaEnumConstant> getValues() {
+        return this.values;
+    }
+
+    public void setValues(PowerList<JavaEnumConstant> value) {
+        this.values = value;
+    }
+
+    public PowerList<JavaField> getFields() {
+        return this.fields;
+    }
+
+    public void setFields(PowerList<JavaField> value) {
+        this.fields = value;
+    }
+
+    public PowerList<JavaConstructor> getConstructors() {
+        return this.constructors;
+    }
+
+    public void setConstructors(PowerList<JavaConstructor> value) {
+        this.constructors = value;
+    }
+
+    public PowerList<JavaStaticInit> getStaticInits() {
+        return this.staticInits;
+    }
+
+    public void setStaticInits(PowerList<JavaStaticInit> value) {
+        this.staticInits = value;
+    }
+
+    public PowerList<JavaInstanceInit> getInstanceInits() {
+        return this.instanceInits;
+    }
+
+    public void setInstanceInits(PowerList<JavaInstanceInit> value) {
+        this.instanceInits = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -43,12 +99,22 @@ public class AbstractJavaEnumData extends AbstractJavaStructureData implements A
 		AbstractJavaEnum other = (AbstractJavaEnum) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getValues(), other.getValues())
+				.append(this.getFields(), other.getFields())
+				.append(this.getConstructors(), other.getConstructors())
+				.append(this.getStaticInits(), other.getStaticInits())
+				.append(this.getInstanceInits(), other.getInstanceInits())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getValues())
+				.append(this.getFields())
+				.append(this.getConstructors())
+				.append(this.getStaticInits())
+				.append(this.getInstanceInits())
 				.toHashCode();
 	}
 
@@ -62,6 +128,11 @@ public class AbstractJavaEnumData extends AbstractJavaStructureData implements A
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("values", this.getValues());
+        builder.append("fields", this.getFields());
+        builder.append("constructors", this.getConstructors());
+        builder.append("staticInits", this.getStaticInits());
+        builder.append("instanceInits", this.getInstanceInits());
 	}
 
 }

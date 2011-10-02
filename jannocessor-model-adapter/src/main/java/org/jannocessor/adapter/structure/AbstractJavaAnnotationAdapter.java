@@ -22,14 +22,14 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
 
-abstract class AbstractJavaAnnotationAdapter extends AbstractJavaStructureAdapter
-		implements AbstractJavaAnnotation {
+abstract class AbstractJavaAnnotationAdapter extends
+		AbstractJavaStructureAdapter implements AbstractJavaAnnotation {
 
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;
 
-	public AbstractJavaAnnotationAdapter(TypeElement annotation, Elements elementUtils,
-			Types typeUtils) {
+	public AbstractJavaAnnotationAdapter(TypeElement annotation,
+			Elements elementUtils, Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
 		this.annotation = annotation;
 	}

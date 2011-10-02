@@ -22,6 +22,11 @@ import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -39,6 +44,16 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
     private JavaType superclass;
 
     private PowerList<JavaType> interfaces;
+
+    private PowerList<JavaMethod> methods;
+
+    private PowerList<JavaNestedClass> nestedClasses;
+
+    private PowerList<JavaNestedEnum> nestedEnums;
+
+    private PowerList<JavaNestedInterface> nestedInterfaces;
+
+    private PowerList<JavaNestedAnnotation> nestedAnnotations;
 
 
     public String getNesting() {
@@ -81,6 +96,46 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
         this.interfaces = value;
     }
 
+    public PowerList<JavaMethod> getMethods() {
+        return this.methods;
+    }
+
+    public void setMethods(PowerList<JavaMethod> value) {
+        this.methods = value;
+    }
+
+    public PowerList<JavaNestedClass> getNestedClasses() {
+        return this.nestedClasses;
+    }
+
+    public void setNestedClasses(PowerList<JavaNestedClass> value) {
+        this.nestedClasses = value;
+    }
+
+    public PowerList<JavaNestedEnum> getNestedEnums() {
+        return this.nestedEnums;
+    }
+
+    public void setNestedEnums(PowerList<JavaNestedEnum> value) {
+        this.nestedEnums = value;
+    }
+
+    public PowerList<JavaNestedInterface> getNestedInterfaces() {
+        return this.nestedInterfaces;
+    }
+
+    public void setNestedInterfaces(PowerList<JavaNestedInterface> value) {
+        this.nestedInterfaces = value;
+    }
+
+    public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
+        return this.nestedAnnotations;
+    }
+
+    public void setNestedAnnotations(PowerList<JavaNestedAnnotation> value) {
+        this.nestedAnnotations = value;
+    }
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -101,6 +156,11 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
 				.append(this.getInterfaces(), other.getInterfaces())
+				.append(this.getMethods(), other.getMethods())
+				.append(this.getNestedClasses(), other.getNestedClasses())
+				.append(this.getNestedEnums(), other.getNestedEnums())
+				.append(this.getNestedInterfaces(), other.getNestedInterfaces())
+				.append(this.getNestedAnnotations(), other.getNestedAnnotations())
 				.isEquals();
 	}
 
@@ -112,6 +172,11 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
 				.append(this.getInterfaces())
+				.append(this.getMethods())
+				.append(this.getNestedClasses())
+				.append(this.getNestedEnums())
+				.append(this.getNestedInterfaces())
+				.append(this.getNestedAnnotations())
 				.toHashCode();
 	}
 
@@ -130,6 +195,11 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
         builder.append("qualifiedName", this.getQualifiedName());
         builder.append("superclass", this.getSuperclass());
         builder.append("interfaces", this.getInterfaces());
+        builder.append("methods", this.getMethods());
+        builder.append("nestedClasses", this.getNestedClasses());
+        builder.append("nestedEnums", this.getNestedEnums());
+        builder.append("nestedInterfaces", this.getNestedInterfaces());
+        builder.append("nestedAnnotations", this.getNestedAnnotations());
 	}
 
 }

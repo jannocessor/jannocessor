@@ -16,15 +16,47 @@
 
 package org.jannocessor.model.bean.structure;
 
+import java.util.List;
+
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaEnumData;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.model.variable.JavaField;
 
 public class JavaEnumBean extends JavaEnumData implements JavaEnum {
 
-	public JavaEnumBean(String name, boolean isFinal) {
-		// TODO Auto-generated constructor stub
+	public JavaEnumBean(EnumModifiers modifiers, String name,
+			List<JavaType> interfaces, List<JavaEnumConstant> values,
+			List<JavaField> fields, List<JavaConstructor> constructors,
+			List<JavaMethod> methods) {
+		this.setModifiers(modifiers);
+		this.setName(new NameBean(name));
+		this.setInterfaces(Power.list(interfaces));
+		this.setValues(Power.list(values));
+		this.setFields(Power.list(fields));
+		this.setConstructors(Power.list(constructors));
+		this.setMethods(Power.list(methods));
+		this.setStaticInits(Power.emptyList(JavaStaticInit.class));
+		this.setInstanceInits(Power.emptyList(JavaInstanceInit.class));
+		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
+		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
+		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
+		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
+
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 

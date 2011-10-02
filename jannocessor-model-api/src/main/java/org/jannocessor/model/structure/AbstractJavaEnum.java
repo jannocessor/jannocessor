@@ -17,8 +17,24 @@
 package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.model.variable.JavaField;
 
 @DomainModel
 public interface AbstractJavaEnum extends AbstractJavaStructure {
+
+	PowerList<JavaEnumConstant> getValues();
+
+	PowerList<JavaField> getFields();
+
+	PowerList<JavaConstructor> getConstructors();
+
+	PowerList<JavaStaticInit> getStaticInits();
+
+	PowerList<JavaInstanceInit> getInstanceInits();
 
 }

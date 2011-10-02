@@ -23,13 +23,8 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.structure.JavaNestedClass;
-import org.jannocessor.model.structure.JavaNestedEnum;
-import org.jannocessor.model.structure.JavaNestedInterface;
-import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -44,19 +39,9 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 
     private PowerList<JavaConstructor> constructors;
 
-    private PowerList<JavaMethod> methods;
-
     private PowerList<JavaStaticInit> staticInits;
 
     private PowerList<JavaInstanceInit> instanceInits;
-
-    private PowerList<JavaNestedClass> nestedClasses;
-
-    private PowerList<JavaNestedEnum> nestedEnums;
-
-    private PowerList<JavaNestedInterface> nestedInterfaces;
-
-    private PowerList<JavaNestedAnnotation> nestedAnnotations;
 
 
     public PowerList<JavaTypeParameter> getParameters() {
@@ -83,14 +68,6 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
         this.constructors = value;
     }
 
-    public PowerList<JavaMethod> getMethods() {
-        return this.methods;
-    }
-
-    public void setMethods(PowerList<JavaMethod> value) {
-        this.methods = value;
-    }
-
     public PowerList<JavaStaticInit> getStaticInits() {
         return this.staticInits;
     }
@@ -105,38 +82,6 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 
     public void setInstanceInits(PowerList<JavaInstanceInit> value) {
         this.instanceInits = value;
-    }
-
-    public PowerList<JavaNestedClass> getNestedClasses() {
-        return this.nestedClasses;
-    }
-
-    public void setNestedClasses(PowerList<JavaNestedClass> value) {
-        this.nestedClasses = value;
-    }
-
-    public PowerList<JavaNestedEnum> getNestedEnums() {
-        return this.nestedEnums;
-    }
-
-    public void setNestedEnums(PowerList<JavaNestedEnum> value) {
-        this.nestedEnums = value;
-    }
-
-    public PowerList<JavaNestedInterface> getNestedInterfaces() {
-        return this.nestedInterfaces;
-    }
-
-    public void setNestedInterfaces(PowerList<JavaNestedInterface> value) {
-        this.nestedInterfaces = value;
-    }
-
-    public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
-        return this.nestedAnnotations;
-    }
-
-    public void setNestedAnnotations(PowerList<JavaNestedAnnotation> value) {
-        this.nestedAnnotations = value;
     }
 
 	@Override
@@ -157,13 +102,8 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 				.append(this.getParameters(), other.getParameters())
 				.append(this.getFields(), other.getFields())
 				.append(this.getConstructors(), other.getConstructors())
-				.append(this.getMethods(), other.getMethods())
 				.append(this.getStaticInits(), other.getStaticInits())
 				.append(this.getInstanceInits(), other.getInstanceInits())
-				.append(this.getNestedClasses(), other.getNestedClasses())
-				.append(this.getNestedEnums(), other.getNestedEnums())
-				.append(this.getNestedInterfaces(), other.getNestedInterfaces())
-				.append(this.getNestedAnnotations(), other.getNestedAnnotations())
 				.isEquals();
 	}
 
@@ -173,13 +113,8 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 				.append(this.getParameters())
 				.append(this.getFields())
 				.append(this.getConstructors())
-				.append(this.getMethods())
 				.append(this.getStaticInits())
 				.append(this.getInstanceInits())
-				.append(this.getNestedClasses())
-				.append(this.getNestedEnums())
-				.append(this.getNestedInterfaces())
-				.append(this.getNestedAnnotations())
 				.toHashCode();
 	}
 
@@ -196,13 +131,8 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
         builder.append("parameters", this.getParameters());
         builder.append("fields", this.getFields());
         builder.append("constructors", this.getConstructors());
-        builder.append("methods", this.getMethods());
         builder.append("staticInits", this.getStaticInits());
         builder.append("instanceInits", this.getInstanceInits());
-        builder.append("nestedClasses", this.getNestedClasses());
-        builder.append("nestedEnums", this.getNestedEnums());
-        builder.append("nestedInterfaces", this.getNestedInterfaces());
-        builder.append("nestedAnnotations", this.getNestedAnnotations());
 	}
 
 }
