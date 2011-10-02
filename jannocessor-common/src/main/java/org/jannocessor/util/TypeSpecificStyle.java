@@ -9,7 +9,7 @@ public class TypeSpecificStyle extends ToStringStyle {
 		this.setUseClassName(false);
 		this.setUseIdentityHashCode(false);
 
-		this.setContentStart(type.getSimpleName());
+		this.setContentStart(type.getSimpleName() + "{");
 		this.setFieldSeparator(", ");
 		this.setFieldSeparatorAtStart(false);
 		this.setContentEnd("}");
