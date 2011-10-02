@@ -49,7 +49,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private final TemplateRenderer renderer = new VelocityTemplateRenderer();
 
-	private final String projectPath;
+	private final String templatesPath;
 
 	private final RenderRegister renderRegister;
 
@@ -59,8 +59,9 @@ public class RenderPreviewDialog extends JDialog {
 
 	private JEditorPane input;
 
-	public RenderPreviewDialog(String projectPath, RenderRegister renderRegister) {
-		this.projectPath = projectPath;
+	public RenderPreviewDialog(String templatesPath,
+			RenderRegister renderRegister) {
+		this.templatesPath = templatesPath;
 		this.renderRegister = renderRegister;
 		initialize();
 	}
@@ -166,8 +167,7 @@ public class RenderPreviewDialog extends JDialog {
 	private String readTemplate(String templateName) {
 		String template = "";
 		try {
-			String tmpl = "src/main/resources/templates";
-			String filename = projectPath + tmpl + "/" + templateName + ".vm";
+			String filename = templatesPath + "/" + templateName + ".vm";
 			template = FileUtils.readFileToString(new File(filename));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -180,9 +180,8 @@ public class RenderPreviewDialog extends JDialog {
 		System.out.println("Saving...\n" + content);
 
 		try {
-			String tmpl = "src/main/resources/templates";
-			String filename = projectPath + tmpl + "/"
-					+ current().getTemplateName() + ".vm";
+			String filename = templatesPath + "/" + current().getTemplateName()
+					+ ".vm";
 			FileUtils.writeStringToFile(new File(filename), content);
 		} catch (Exception e1) {
 			e1.printStackTrace();

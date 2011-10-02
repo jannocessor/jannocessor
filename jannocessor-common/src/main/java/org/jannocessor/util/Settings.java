@@ -28,4 +28,6 @@ public interface Settings {
 
 	public static final String RULES_TEMPLATE_NAME = "internal/templates/rules.vm";
 
+	public static final String OPTION_TEMPLATES_PATH = "templates.path";
+
 }

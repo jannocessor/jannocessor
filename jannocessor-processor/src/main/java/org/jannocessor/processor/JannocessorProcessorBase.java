@@ -53,6 +53,7 @@ import org.jannocessor.processor.model.Problem;
 import org.jannocessor.processor.model.Problems;
 import org.jannocessor.processor.model.Processors;
 import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.util.Settings;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -161,7 +162,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		logger.info("Resources path: {}", engine.getResourcesPath());
 		logger.info("Config path: {}", engine.getConfigPath());
 		logger.info("Rules path: {}", engine.getRulesPath());
-		logger.info("Templates path: {}", engine.getTemplatesPath());
+
+		logger.info("Templates path: {}", getTemplatesPath()); // FIXME: refactor
 	}
 
 	private void processOptions() throws JannocessorException {
@@ -296,6 +298,17 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	protected void warning(String msg, Element element) {
 		messager.printMessage(Diagnostic.Kind.WARNING, msg, element);
+	}
+
+	protected String getTemplatesPath() {
+		String path = options.getOptionalValue(Settings.OPTION_TEMPLATES_PATH,
+				null);
+
+		if (path == null) {
+			path = getProjectPath() + "/src/main/resources/templates";
+		}
+
+		return path;
 	}
 
 	protected String getProjectPath() {

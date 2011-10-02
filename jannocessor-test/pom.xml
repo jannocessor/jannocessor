@@ -67,6 +67,9 @@
 							<processors>
 								<processor>org.jannocessor.processor.JannocessorProcessor</processor>
 							</processors>
+							<optionMap>
+								<templates.path>${project.parent.basedir}/jannocessor-templates/src/main/resources/templates</templates.path>
+							</optionMap>
 							<defaultOutputDirectory>${project.parent.basedir}/jannocessor-test-generated/src-generated/main/java</defaultOutputDirectory>
 						</configuration>
 					</execution>
