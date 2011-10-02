@@ -16,16 +16,31 @@
 
 package org.jannocessor.model.bean.structure;
 
+import java.util.List;
+
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaInterfaceData;
+import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Templates;
 
 public class JavaInterfaceBean extends JavaInterfaceData implements
 		JavaInterface {
 
-	public JavaInterfaceBean(String name) {
-		// TODO Auto-generated constructor stub
+	public JavaInterfaceBean(InterfaceModifiers modifiers, String name,
+			List<JavaType> superInterfaces, List<JavaMethod> methods,
+			List<JavaTypeParameter> parameters) {
+		this.setModifiers(modifiers);
+		this.setName(new NameBean(name));
+		this.setInterfaces(Power.list(superInterfaces));
+		this.setMethods(Power.list(methods));
+		this.setParameters(Power.list(parameters));
+
 		this.setCode(new SourceCodeBean(Templates.defaultName(getClass())));
 	}
 

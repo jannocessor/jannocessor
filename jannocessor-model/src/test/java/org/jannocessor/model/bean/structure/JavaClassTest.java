@@ -221,22 +221,22 @@ public class JavaClassTest extends AbstractModelTest {
 				Code.NO_TYPE_PARAMS);
 
 		JavaClass obj6 = Code.classs(modifiers, name, superclass);
-		checkClass(obj6, modifiers, name, superclass, Code.NO_INTERFACES,
+		checkClass(obj6, modifiers, name, superclass, Code.NO_TYPES,
 				Code.NO_FIELDS, Code.NO_CONSTRUCTORS, Code.NO_METHODS,
 				Code.NO_TYPE_PARAMS);
 
 		JavaClass obj7 = Code.classs(modifiers, name);
-		checkClass(obj7, modifiers, name, null, Code.NO_INTERFACES,
+		checkClass(obj7, modifiers, name, null, Code.NO_TYPES,
 				Code.NO_FIELDS, Code.NO_CONSTRUCTORS, Code.NO_METHODS,
 				Code.NO_TYPE_PARAMS);
 
 		JavaClass obj8 = Code.classs(modifiers, name, fields, methods);
-		checkClass(obj8, modifiers, name, null, Code.NO_INTERFACES, fields,
+		checkClass(obj8, modifiers, name, null, Code.NO_TYPES, fields,
 				Code.NO_CONSTRUCTORS, methods, Code.NO_TYPE_PARAMS);
 
 		JavaClass obj9 = Code.classs(modifiers, name, fields, methods,
 				constructors);
-		checkClass(obj9, modifiers, name, null, Code.NO_INTERFACES, fields,
+		checkClass(obj9, modifiers, name, null, Code.NO_TYPES, fields,
 				constructors, methods, Code.NO_TYPE_PARAMS);
 
 		return new JavaClass[] { obj1, obj2, obj3, obj4, obj5, obj6, obj7,

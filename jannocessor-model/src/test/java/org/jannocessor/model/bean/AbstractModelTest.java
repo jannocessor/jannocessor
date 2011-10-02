@@ -15,9 +15,11 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
+import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaField;
@@ -32,6 +34,21 @@ public class AbstractModelTest {
 	private static final int LESS = 1;
 
 	private static final int FEW = 2;
+
+	private static <T> void info(String operation, T[] values, int target) {
+		log.debug("%(%): % -> %", new Object[] { operation,
+				values.getClass().getComponentType(), values.length, target });
+	}
+
+	protected static <T> T[] less(T[] values) {
+		info("Less", values, LESS);
+		return Arrays.copyOf(values, LESS);
+	}
+
+	protected static <T> T[] few(T[] values) {
+		info("Few", values, FEW);
+		return Arrays.copyOf(values, FEW);
+	}
 
 	protected void checkCodeModel(JavaCodeModel codeModel) {
 		assertNotNull(codeModel);
@@ -125,19 +142,6 @@ public class AbstractModelTest {
 		assertEquals(typeParameters, method.getTypeParameters());
 	}
 
-	protected void checkClass(JavaClass clazz, ClassModifiers modifiers,
-			String name, JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields, List<JavaConstructor> constructors,
-			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
-		checkStructural(clazz, superclass, interfaces);
-
-		assertEquals(modifiers, clazz.getModifiers());
-		assertEquals(fields, clazz.getFields());
-		assertEquals(constructors, clazz.getConstructors());
-		assertEquals(methods, clazz.getMethods());
-		assertEquals(parameters, clazz.getParameters());
-	}
-
 	private void checkStructural(AbstractJavaStructure type,
 			JavaType superclass, List<JavaType> interfaces) {
 		checkCodeModel(type);
@@ -146,19 +150,30 @@ public class AbstractModelTest {
 		assertEquals(interfaces, type.getInterfaces());
 	}
 
-	private static <T> void info(String operation, T[] values, int target) {
-		log.debug("%(%): % -> %", new Object[] { operation,
-				values.getClass().getComponentType(), values.length, target });
+	protected void checkClass(JavaClass clazz, ClassModifiers modifiers,
+			String name, JavaType superclass, List<JavaType> interfaces,
+			List<JavaField> fields, List<JavaConstructor> constructors,
+			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
+		checkStructural(clazz, superclass, interfaces);
+		checkElementName(clazz, name);
+
+		assertEquals(modifiers, clazz.getModifiers());
+		assertEquals(fields, clazz.getFields());
+		assertEquals(constructors, clazz.getConstructors());
+		assertEquals(methods, clazz.getMethods());
+		assertEquals(parameters, clazz.getParameters());
 	}
 
-	protected static <T> T[] less(T[] values) {
-		info("Less", values, LESS);
-		return Arrays.copyOf(values, LESS);
-	}
+	protected void checkInterface(JavaInterface interfacee,
+			InterfaceModifiers modifiers, String name,
+			List<JavaType> interfaces, List<JavaMethod> methods,
+			List<JavaTypeParameter> parameters) {
+		checkStructural(interfacee, null, interfaces);
+		checkElementName(interfacee, name);
 
-	protected static <T> T[] few(T[] values) {
-		info("Less", values, FEW);
-		return Arrays.copyOf(values, FEW);
+		assertEquals(modifiers, interfacee.getModifiers());
+		assertEquals(methods, interfacee.getMethods());
+		assertEquals(parameters, interfacee.getParameters());
 	}
 
 	protected void checkAllEquall(JavaCodeModel... models) {

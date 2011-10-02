@@ -8,6 +8,7 @@ import net.sf.twip.AutoTwip;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
@@ -15,6 +16,7 @@ import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Constructors;
 import org.jannocessor.model.util.Fields;
+import org.jannocessor.model.util.Interfaces;
 import org.jannocessor.model.util.Methods;
 
 public class Param {
@@ -49,6 +51,11 @@ public class Param {
 	public static ClassModifiers[] classModifiers() {
 		return new ClassModifiers[] { Classes.DEFAULT_MODIFIER,
 				Classes.ABSTRACT, Classes.PUBLIC_FINAL };
+	}
+
+	public static InterfaceModifiers[] interfaceModifiers() {
+		return new InterfaceModifiers[] { Interfaces.DEFAULT_MODIFIER,
+				Interfaces.PUBLIC, Interfaces.PUBLIC_ABSTRACT };
 	}
 
 	public static MethodModifiers[] methodModifiers() {

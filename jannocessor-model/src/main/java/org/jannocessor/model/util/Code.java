@@ -30,6 +30,7 @@ import org.jannocessor.model.bean.executable.JavaStaticInitBean;
 import org.jannocessor.model.bean.modifier.ClassModifiersBean;
 import org.jannocessor.model.bean.modifier.ConstructorModifiersBean;
 import org.jannocessor.model.bean.modifier.FieldModifiersBean;
+import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
 import org.jannocessor.model.bean.modifier.MethodModifiersBean;
 import org.jannocessor.model.bean.modifier.NestedClassModifiersBean;
 import org.jannocessor.model.bean.structure.JavaAnnotationBean;
@@ -56,11 +57,13 @@ import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
+import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
 import org.jannocessor.model.modifier.value.NestedClassModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
@@ -105,8 +108,6 @@ public class Code {
 	public static final List<JavaConstructor> NO_CONSTRUCTORS = Power
 			.unmodifiableList();
 	public static final List<JavaField> NO_FIELDS = Power.unmodifiableList();
-	public static final List<JavaType> NO_INTERFACES = Power
-			.unmodifiableList();
 
 	private static Name name(String name) {
 		return new NameBean(name);
@@ -192,13 +193,14 @@ public class Code {
 		return new JavaEnumBean(name, isFinal);
 	}
 
-	public static JavaInterface interfacee(String name) {
-		return new JavaInterfaceBean(name);
-	}
-
 	public static ClassModifiers classModifiers(
 			final ClassModifierValue... values) {
 		return new ClassModifiersBean(values);
+	}
+
+	public static InterfaceModifiers interfaceModifiers(
+			final InterfaceModifierValue... values) {
+		return new InterfaceModifiersBean(values);
 	}
 
 	public static FieldModifiers fieldModifiers(
@@ -409,31 +411,31 @@ public class Code {
 			List<JavaField> fields, List<JavaConstructor> constructors,
 			List<JavaMethod> methods) {
 		return classs(modifiers, name, superclass, interfaces, fields,
-				constructors, methods, Code.NO_TYPE_PARAMS);
+				constructors, methods, NO_TYPE_PARAMS);
 	}
 
 	public static JavaClass classs(ClassModifiers modifiers, String name,
 			JavaType superclass, List<JavaType> interfaces,
 			List<JavaField> fields, List<JavaConstructor> constructors) {
 		return classs(modifiers, name, superclass, interfaces, fields,
-				constructors, Code.NO_METHODS);
+				constructors, NO_METHODS);
 	}
 
 	public static JavaClass classs(ClassModifiers modifiers, String name,
 			JavaType superclass, List<JavaType> interfaces,
 			List<JavaField> fields) {
 		return classs(modifiers, name, superclass, interfaces, fields,
-				Code.NO_CONSTRUCTORS);
+				NO_CONSTRUCTORS);
 	}
 
 	public static JavaClass classs(ClassModifiers modifiers, String name,
 			JavaType superclass, List<JavaType> interfaces) {
-		return classs(modifiers, name, superclass, interfaces, Code.NO_FIELDS);
+		return classs(modifiers, name, superclass, interfaces, NO_FIELDS);
 	}
 
 	public static JavaClass classs(ClassModifiers modifiers, String name,
 			JavaType superclass) {
-		return classs(modifiers, name, superclass, Code.NO_INTERFACES);
+		return classs(modifiers, name, superclass, NO_TYPES);
 	}
 
 	public static JavaClass classs(ClassModifiers modifiers, String name) {
@@ -442,15 +444,40 @@ public class Code {
 
 	public static JavaClass classs(ClassModifiers modifiers, String name,
 			List<JavaField> fields, List<JavaMethod> methods) {
-		return classs(modifiers, name, null, Code.NO_INTERFACES, fields,
-				Code.NO_CONSTRUCTORS, methods);
+		return classs(modifiers, name, null, NO_TYPES, fields, NO_CONSTRUCTORS,
+				methods);
 	}
 
 	public static JavaClass classs(ClassModifiers modifiers, String name,
 			List<JavaField> fields, List<JavaMethod> methods,
 			List<JavaConstructor> constructors) {
-		return classs(modifiers, name, null, Code.NO_INTERFACES, fields,
-				constructors, methods);
+		return classs(modifiers, name, null, NO_TYPES, fields, constructors,
+				methods);
+	}
+
+	/**************************** INTERFACE *******************************/
+
+	public static JavaInterface interfacee(InterfaceModifiers modifiers,
+			String name, List<JavaType> superInterfaces,
+			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
+		return new JavaInterfaceBean(modifiers, name, superInterfaces, methods,
+				parameters);
+	}
+
+	public static JavaInterface interfacee(InterfaceModifiers modifiers,
+			String name, List<JavaType> superInterfaces,
+			List<JavaMethod> methods) {
+		return interfacee(modifiers, name, superInterfaces, methods,
+				NO_TYPE_PARAMS);
+	}
+
+	public static JavaInterface interfacee(String name,
+			List<JavaType> superInterfaces, List<JavaMethod> methods) {
+		return interfacee(Interfaces.PUBLIC, name, superInterfaces, methods);
+	}
+
+	public static JavaInterface interfacee(String name, List<JavaMethod> methods) {
+		return interfacee(name, NO_TYPES, methods);
 	}
 
 }
