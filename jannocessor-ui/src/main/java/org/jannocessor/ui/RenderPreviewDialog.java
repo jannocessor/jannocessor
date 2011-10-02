@@ -26,6 +26,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
@@ -70,6 +71,8 @@ public class RenderPreviewDialog extends JDialog {
 		logger.debug("Initializing UI...");
 		setTitle("JAnnocessor - Java Annotation Processor");
 		setLayout(new BorderLayout(5, 5));
+
+		listFiles();
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension screenSize = tk.getScreenSize();
@@ -133,7 +136,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private void setActive(int i) {
 		index = i;
-		refresh();
+		reload();
 	}
 
 	private void moveForward() {
@@ -192,7 +195,6 @@ public class RenderPreviewDialog extends JDialog {
 	private void refresh() {
 		try {
 			RenderData current = current();
-			input.setText(readTemplate(current.getTemplateName()));
 			output.setText(renderer.render(input.getText(),
 					current.getAttributes()));
 		} catch (JannocessorException e) {
@@ -200,9 +202,24 @@ public class RenderPreviewDialog extends JDialog {
 		}
 	}
 
+	private void reload() {
+		RenderData current = current();
+		input.setText(readTemplate(current.getTemplateName()));
+		refresh();
+	}
+
 	private RenderData current() {
 		RenderData current = renderRegister.getRenderings().get(index);
 		return current;
 	}
 
+	private void listFiles() {
+		Collection<File> files = FileUtils.listFiles(new File(templatesPath),
+				new String[] { "vm" }, true);
+
+		for (File file : files) {
+			System.out.println(file); // FIXME : handle this!
+		}
+
+	}
 }

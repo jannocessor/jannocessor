@@ -16,6 +16,12 @@
 
 package org.jannocessor.ui;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.util.Classes;
+import org.jannocessor.model.util.Code;
 import org.jannocessor.processor.model.RenderRegister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,4 +38,17 @@ public class RenderPreview {
 		dlg.setVisible(true);
 	}
 
+	public static void main(String[] args) {
+		// FIXME: hard-coded
+		String path = "C:/java/ludvig/jannocessor/jannocessor-templates/src/main/resources/templates";
+
+		Map<String, Object> attr = new HashMap<String, Object>();
+		JavaClass classs = Code.classs(Classes.PUBLIC_FINAL, "MyClass");
+		attr.put("self", classs);
+
+		RenderRegister renderRegister = new RenderRegister();
+		renderRegister.register("default/class", attr);
+
+		showDialog(path, renderRegister);
+	}
 }
