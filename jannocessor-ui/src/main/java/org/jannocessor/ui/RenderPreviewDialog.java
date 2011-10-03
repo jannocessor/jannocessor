@@ -21,6 +21,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -37,6 +40,7 @@ import org.apache.commons.io.FileUtils;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderData;
 import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.service.render.VelocityTemplateRenderer;
 import org.slf4j.Logger;
@@ -48,7 +52,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private final Logger logger = LoggerFactory.getLogger("UI");
 
-	private final TemplateRenderer renderer = new VelocityTemplateRenderer();
+	private final TemplateRenderer renderer;
 
 	private final String templatesPath;
 
@@ -60,10 +64,18 @@ public class RenderPreviewDialog extends JDialog {
 
 	private JEditorPane input;
 
+	private Collection<File> files;
+
+	private JComboBox combo;
+
+	private String activeTemplate;
+
 	public RenderPreviewDialog(String templatesPath,
-			RenderRegister renderRegister) {
+			RenderRegister renderRegister, Configurator configurator) {
 		this.templatesPath = templatesPath;
 		this.renderRegister = renderRegister;
+
+		renderer = new VelocityTemplateRenderer(configurator);
 		initialize();
 	}
 
@@ -101,6 +113,17 @@ public class RenderPreviewDialog extends JDialog {
 				(int) height));
 		add(scroll2, BorderLayout.EAST);
 
+		combo = createCombo();
+
+		combo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				load((File) combo.getSelectedItem());
+			}
+		});
+
+		add(combo, BorderLayout.NORTH);
+
 		KeyListener keyListener = new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -132,6 +155,12 @@ public class RenderPreviewDialog extends JDialog {
 		setModal(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}
+
+	private JComboBox createCombo() {
+		JComboBox combo = new JComboBox(files.toArray());
+
+		return combo;
 	}
 
 	private void setActive(int i) {
@@ -169,23 +198,32 @@ public class RenderPreviewDialog extends JDialog {
 
 	private String readTemplate(String templateName) {
 		String template = "";
+		if (!templateName.endsWith(".vm")) {
+			templateName = fullTemplateName(templateName);
+		}
+		template = readFile(templateName);
+		activeTemplate = templateName;
+		return template;
+	}
+
+	private String readFile(String fileName) {
 		try {
-			String filename = templatesPath + "/" + templateName + ".vm";
-			template = FileUtils.readFileToString(new File(filename));
+			return FileUtils.readFileToString(new File(fileName));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		return template;
+	}
+
+	private String fullTemplateName(String templateName) {
+		return templatesPath + "/" + templateName + ".vm";
 	}
 
 	private void save() {
 		String content = input.getText();
-		System.out.println("Saving...\n" + content);
+		System.out.println("Saving: " + activeTemplate);
 
 		try {
-			String filename = templatesPath + "/" + current().getTemplateName()
-					+ ".vm";
-			FileUtils.writeStringToFile(new File(filename), content);
+			FileUtils.writeStringToFile(new File(activeTemplate), content);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -195,7 +233,8 @@ public class RenderPreviewDialog extends JDialog {
 	private void refresh() {
 		try {
 			RenderData current = current();
-			output.setText(renderer.render(input.getText(),
+			String tmpl = fullTemplateName(current.getTemplateName());
+			output.setText(renderer.render(readFile(tmpl),
 					current.getAttributes()));
 		} catch (JannocessorException e) {
 			e.printStackTrace();
@@ -208,18 +247,22 @@ public class RenderPreviewDialog extends JDialog {
 		refresh();
 	}
 
+	private void load(File file) {
+		try {
+			input.setText(readTemplate(file.getCanonicalPath()));
+			refresh();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private RenderData current() {
 		RenderData current = renderRegister.getRenderings().get(index);
 		return current;
 	}
 
 	private void listFiles() {
-		Collection<File> files = FileUtils.listFiles(new File(templatesPath),
+		files = FileUtils.listFiles(new File(templatesPath),
 				new String[] { "vm" }, true);
-
-		for (File file : files) {
-			System.out.println(file); // FIXME : handle this!
-		}
-
 	}
 }

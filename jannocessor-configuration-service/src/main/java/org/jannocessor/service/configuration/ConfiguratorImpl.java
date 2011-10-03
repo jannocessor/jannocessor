@@ -26,40 +26,41 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import org.jannocessor.processor.model.Config;
+import org.jannocessor.processor.model.Configuration;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.ConfigLoader;
 import org.jannocessor.service.api.Configurator;
-import org.jannocessor.service.api.PathLocator;
+import org.jannocessor.service.api.JannocessorInput;
 import org.jannocessor.util.Settings;
 
 public class ConfiguratorImpl implements Configurator, Settings {
 
-	private Config general;
+	private Configuration general;
 
-	private Config annotations;
+	private Configuration annotations;
 
-	private Config processors;
-
-	private Map<String, String> inputOptions;
+	private Configuration processors;
 
 	private final ConfigLoader loader;
 
-	private final PathLocator locator;
+	private final JannocessorInput input;
 
 	@Inject
-	public ConfiguratorImpl(ConfigLoader loader, PathLocator locator) {
+	public ConfiguratorImpl(JannocessorInput input, ConfigLoader loader)
+			throws JannocessorException {
+		this.input = input;
 		this.loader = loader;
-		this.locator = locator;
+		initialize();
 	}
 
 	private void initialize() throws JannocessorException {
-		String generalFilename = locator.getGeneralConfigFilename();
+		String generalFilename = getGeneralConfigFilename();
 		general = new Config(loader.loadProperties(generalFilename));
 
-		String annotationsFilename = locator.getAnnotationConfigFilename();
+		String annotationsFilename = getAnnotationConfigFilename();
 		annotations = new Config(loader.loadProperties(annotationsFilename));
 
-		String processorsFilename = locator.getProcessorsConfigFilename();
+		String processorsFilename = getProcessorsConfigFilename();
 		processors = new Config(loader.loadProperties(processorsFilename));
 
 	}
@@ -102,15 +103,69 @@ public class ConfiguratorImpl implements Configurator, Settings {
 	}
 
 	@Override
-	public void setInputOptions(Map<String, String> inputOptions)
-			throws JannocessorException {
-		this.inputOptions = inputOptions;
-		initialize();
+	public String getProfile() {
+		return input.getOptions().getOptionalValue(OPTION_PROFILE, null);
 	}
 
 	@Override
-	public String getProfile() {
-		return inputOptions.get("profile");
+	public String getTemplatesPath() throws JannocessorException {
+		return input.getOptions().getOptionalValue(OPTION_TEMPLATES_PATH,
+				mergePath(getResourcesPath(), "templates"));
+	}
+
+	@Override
+	public String getResourcesPath() throws JannocessorException {
+		return "";
+	}
+
+	@Override
+	public String getRulesPath() throws JannocessorException {
+		return mergePath(getResourcesPath(), "rules");
+	}
+
+	@Override
+	public String getConfigPath() throws JannocessorException {
+		return mergePath(getResourcesPath(), "config");
+	}
+
+	@Override
+	public String getAnnotationConfigFilename() throws JannocessorException {
+		return mergePath(getConfigPath(), modeName(ANNOTATIONS_PROPERTIES)
+				+ ".properties");
+	}
+
+	@Override
+	public String getGeneralConfigFilename() throws JannocessorException {
+		return mergePath(getConfigPath(), modeName(GENERAL_PROPERTIES)
+				+ ".properties");
+	}
+
+	@Override
+	public String getProcessorsConfigFilename() throws JannocessorException {
+		return mergePath(getConfigPath(), modeName(PROCESSORS_PROPERTIES)
+				+ ".properties");
+	}
+
+	@Override
+	public final String getKnowledgeBaseFilename() {
+		return KNOWLEDGE_BASE;
+	}
+
+	private String modeName(String filename) {
+		String mode = getProfile();
+		if (mode != null) {
+			return filename + "-" + mode;
+		} else {
+			return filename;
+		}
+	}
+
+	private String mergePath(String part1, String part2) {
+		if (part1.isEmpty() || part1.endsWith("/")) {
+			return part1 + part2;
+		} else {
+			return part1 + "/" + part2;
+		}
 	}
 
 }

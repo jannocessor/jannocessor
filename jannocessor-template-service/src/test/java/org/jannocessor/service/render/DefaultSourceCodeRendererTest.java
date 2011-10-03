@@ -21,18 +21,24 @@ import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.SourceCodeRenderer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class DefaultSourceCodeRendererTest {
 
 	private SourceCodeRenderer renderer;
 
 	@Before
-	public void initialize() {
-		renderer = new DefaultSourceCodeRenderer(new VelocityTemplateRenderer());
+	public void initialize() throws JannocessorException {
+		Configurator configurator = Mockito.mock(Configurator.class);
+		Mockito.when(configurator.getTemplatesPath()).thenReturn("templates");
+
+		renderer = new DefaultSourceCodeRenderer(new VelocityTemplateRenderer(
+				configurator), configurator);
 	}
 
 	@Test

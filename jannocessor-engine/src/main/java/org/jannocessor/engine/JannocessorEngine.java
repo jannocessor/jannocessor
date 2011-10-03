@@ -16,19 +16,12 @@
 
 package org.jannocessor.engine;
 
-import java.util.Map;
-
-import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
-import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.RuleExecutor;
 import org.jannocessor.service.api.RulesGenerator;
 import org.jannocessor.service.api.TemplateRenderer;
 
-public interface JannocessorEngine extends PathLocator, Configurator,
-		RuleExecutor, TemplateRenderer, RulesGenerator {
-
-	void setInputOptions(Map<String, String> options)
-			throws JannocessorException;
+public interface JannocessorEngine extends Configurator, RuleExecutor,
+		TemplateRenderer, RulesGenerator {
 
 }

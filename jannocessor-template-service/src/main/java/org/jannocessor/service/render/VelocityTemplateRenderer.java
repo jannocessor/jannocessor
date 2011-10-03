@@ -16,6 +16,9 @@
 
 package org.jannocessor.service.render;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.List;
@@ -24,10 +27,13 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
+
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.service.imports.ImportOrganizerImpl;
 import org.jannocessor.util.Settings;
@@ -37,8 +43,13 @@ import org.slf4j.LoggerFactory;
 public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 
 	private Logger logger = LoggerFactory.getLogger("RENDERER");
+	private final Configurator configurator;
 
-	public VelocityTemplateRenderer() {
+	@Inject
+	public VelocityTemplateRenderer(Configurator configurator) {
+		this.configurator = configurator;
+
+		System.out.println("*CONFIGURATOR: " + configurator);
 		Properties velocityConfig = new Properties();
 		velocityConfig
 				.setProperty("file.resource.loader.class",
@@ -67,7 +78,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 	}
 
 	private DefaultSourceCodeRenderer createRenderUtils() {
-		return new DefaultSourceCodeRenderer(this);
+		return new DefaultSourceCodeRenderer(this, configurator);
 	}
 
 	private TypeUtils createTypeUtils() {
@@ -78,8 +89,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 	public String renderFromFile(String templateFilename,
 			Map<String, Object> attributes) throws JannocessorException {
 		try {
-			logger.debug("Retrieving template: {}", templateFilename);
-			Template t = Velocity.getTemplate(templateFilename);
+			logger.info("Retrieving template: {}", templateFilename);
 
 			VelocityContext context = createContext(attributes);
 			TypeUtils typeUtils = createTypeUtils();
@@ -89,7 +99,14 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			context.put("types", typeUtils);
 			context.put("render", renderUtils);
 
-			t.merge(context, writer);
+			File file = new File(templateFilename);
+			if (file.exists()) {
+				Reader reader = new FileReader(file);
+				Velocity.evaluate(context, writer, "RENDERER", reader);
+			} else {
+				Template t = Velocity.getTemplate(templateFilename);
+				t.merge(context, writer);
+			}
 			String renderedText = writer.toString();
 
 			logger.debug("Rendered text:\n{}", renderedText);

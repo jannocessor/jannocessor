@@ -65,7 +65,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		// run the rules on the facts
 		engine.executeRules(rules, facts, globals);
 
-		RenderPreview.showDialog(getTemplatesPath(), renderRegister);
+		RenderPreview.showDialog(getTemplatesPath(), renderRegister, engine);
 
 		// generate files
 		generateFiles();

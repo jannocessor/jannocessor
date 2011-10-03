@@ -23,9 +23,6 @@ import org.jannocessor.processor.model.JannocessorException;
 
 public interface Configurator {
 
-	void setInputOptions(Map<String, String> inputOptions)
-			throws JannocessorException;
-
 	String[] getRulesFilenames() throws JannocessorException;
 
 	Set<String> getSupportedAnnotations() throws JannocessorException;
@@ -36,6 +33,22 @@ public interface Configurator {
 
 	Map<String, String> getRulesProcessors() throws JannocessorException;
 
-	String getProfile();
+	String getProfile() throws JannocessorException;
+
+	String getResourcesPath() throws JannocessorException;
+
+	String getRulesPath() throws JannocessorException;
+
+	String getConfigPath() throws JannocessorException;
+
+	String getTemplatesPath() throws JannocessorException;
+
+	String getAnnotationConfigFilename() throws JannocessorException;
+
+	String getGeneralConfigFilename() throws JannocessorException;
+
+	String getKnowledgeBaseFilename() throws JannocessorException;
+
+	String getProcessorsConfigFilename() throws JannocessorException;
 
 }

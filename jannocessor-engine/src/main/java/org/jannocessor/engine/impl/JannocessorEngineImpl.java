@@ -25,24 +25,21 @@ import javax.inject.Inject;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
-import org.jannocessor.service.api.PathLocator;
 import org.jannocessor.service.api.RuleExecutor;
 import org.jannocessor.service.api.RulesGenerator;
 import org.jannocessor.service.api.TemplateRenderer;
 
 public class JannocessorEngineImpl implements JannocessorEngine {
 
-	private final PathLocator locations;
 	private final Configurator config;
 	private final RuleExecutor ruleExecutor;
 	private final TemplateRenderer generator;
 	private final RulesGenerator rulesGenerator;
 
 	@Inject
-	public JannocessorEngineImpl(PathLocator locations, Configurator config,
+	public JannocessorEngineImpl(Configurator config,
 			RuleExecutor ruleExecutor, TemplateRenderer generator,
 			RulesGenerator rulesGenerator) {
-		this.locations = locations;
 		this.config = config;
 		this.ruleExecutor = ruleExecutor;
 		this.generator = generator;
@@ -50,31 +47,31 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	}
 
 	public String getResourcesPath() throws JannocessorException {
-		return locations.getResourcesPath();
+		return config.getResourcesPath();
 	}
 
 	public String getRulesPath() throws JannocessorException {
-		return locations.getRulesPath();
+		return config.getRulesPath();
 	}
 
 	public String getConfigPath() throws JannocessorException {
-		return locations.getConfigPath();
+		return config.getConfigPath();
 	}
 
 	public String getTemplatesPath() throws JannocessorException {
-		return locations.getTemplatesPath();
+		return config.getTemplatesPath();
 	}
 
 	public String getAnnotationConfigFilename() throws JannocessorException {
-		return locations.getAnnotationConfigFilename();
+		return config.getAnnotationConfigFilename();
 	}
 
 	public String getGeneralConfigFilename() throws JannocessorException {
-		return locations.getGeneralConfigFilename();
+		return config.getGeneralConfigFilename();
 	}
 
 	public String getKnowledgeBaseFilename() throws JannocessorException {
-		return locations.getKnowledgeBaseFilename();
+		return config.getKnowledgeBaseFilename();
 	}
 
 	public String[] getRulesFilenames() throws JannocessorException {
@@ -114,7 +111,7 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 
 	@Override
 	public String getProcessorsConfigFilename() throws JannocessorException {
-		return locations.getProcessorsConfigFilename();
+		return config.getProcessorsConfigFilename();
 	}
 
 	@Override
@@ -128,13 +125,7 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	}
 
 	@Override
-	public void setInputOptions(Map<String, String> options)
-			throws JannocessorException {
-		this.config.setInputOptions(options);
-	}
-
-	@Override
-	public String getProfile() {
+	public String getProfile() throws JannocessorException {
 		return config.getProfile();
 	}
 

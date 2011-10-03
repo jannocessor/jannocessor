@@ -19,7 +19,7 @@ package org.jannocessor.processor.model;
 import java.util.Collections;
 import java.util.Map;
 
-public class Config {
+public class Config implements Configuration {
 
 	private static final String SEPARATOR = "\\,";
 
@@ -29,10 +29,12 @@ public class Config {
 		this.values = values;
 	}
 
+	@Override
 	public String[] getMandatoryValues(String key) throws JannocessorException {
 		return splitValues(getMandatoryValue(key));
 	}
 
+	@Override
 	public String getMandatoryValue(String key) throws JannocessorException {
 		String value = getProperty(key, null);
 
@@ -44,6 +46,7 @@ public class Config {
 		return value;
 	}
 
+	@Override
 	public String[] getOptionalValues(String key, String defaultValue) {
 		return splitValues(getOptionalValue(key, defaultValue));
 	}
@@ -56,6 +59,7 @@ public class Config {
 		}
 	}
 
+	@Override
 	public String getOptionalValue(String key, String defaultValue) {
 		return getProperty(key, defaultValue);
 	}
@@ -70,6 +74,7 @@ public class Config {
 		return value;
 	}
 
+	@Override
 	public Map<String, String> getAllProperties() throws JannocessorException {
 		return Collections.unmodifiableMap(values);
 	}

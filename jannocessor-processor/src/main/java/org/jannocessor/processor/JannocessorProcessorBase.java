@@ -47,6 +47,7 @@ import org.jannocessor.inject.ProcessorModule;
 import org.jannocessor.inject.RulesServiceModule;
 import org.jannocessor.inject.TemplateServiceModule;
 import org.jannocessor.processor.model.Config;
+import org.jannocessor.processor.model.Configuration;
 import org.jannocessor.processor.model.Files;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.Problem;
@@ -69,7 +70,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected Elements elementUtils;
 	protected Types typeUtils;
 	protected Filer filer;
-	private Config options;
+	private Configuration options;
 	protected Files files = new Files();
 	protected Problems problems = new Problems();
 	protected Processors processors;
@@ -81,15 +82,14 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	private List<String> globalErrors = new ArrayList<String>();
 	private List<String> globalWarnings = new ArrayList<String>();
 
-	private final Injector injector;
+	private Injector injector;
 
 	public JannocessorProcessorBase() {
 		logger.info("Instantiated Jannocessor");
-		injector = createInjector();
 	}
 
 	private Injector createInjector() {
-		return Guice.createInjector(new ProcessorModule(),
+		return Guice.createInjector(new ProcessorModule(options),
 				new ConfigurationServiceModule(), new ImportsServiceModule(),
 				new IOServiceModule(), new RulesServiceModule(),
 				new TemplateServiceModule());
@@ -137,15 +137,15 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 			elementUtils = env.getElementUtils();
 			typeUtils = env.getTypeUtils();
-			options = new Config(env.getOptions());
 			filer = env.getFiler();
+			options = new Config(env.getOptions());
+			injector = createInjector();
 
 			processOptions();
 
 			logger.info("Initializing services...");
 
 			engine = injector.getInstance(JannocessorEngine.class);
-			engine.setInputOptions(env.getOptions());
 
 			showConfiguration();
 

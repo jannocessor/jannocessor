@@ -22,6 +22,7 @@ import java.util.Map;
 import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.SourceCodeRenderer;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.slf4j.Logger;
@@ -33,8 +34,12 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 
 	private final TemplateRenderer templateRenderer;
 
-	public DefaultSourceCodeRenderer(TemplateRenderer templateRenderer) {
+	private final Configurator configurator;
+
+	public DefaultSourceCodeRenderer(TemplateRenderer templateRenderer,
+			Configurator configurator) {
 		this.templateRenderer = templateRenderer;
+		this.configurator = configurator;
 	}
 
 	@Override
@@ -48,7 +53,8 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 						getAttributes(codeModel));
 			} else if (code.getTemplateName() != null) {
 				return templateRenderer.renderFromFile(
-						"templates/" + code.getTemplateName() + ".vm",
+						configurator.getTemplatesPath() + "/"
+								+ code.getTemplateName() + ".vm",
 						getAttributes(codeModel));
 			} else {
 				return "ERROR (" + codeModel + ")";

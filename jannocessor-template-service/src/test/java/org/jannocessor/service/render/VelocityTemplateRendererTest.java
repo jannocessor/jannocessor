@@ -22,17 +22,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class VelocityTemplateRendererTest {
 
 	private TemplateRenderer renderer;
 
 	@Before
-	public void initialize() {
-		renderer = new VelocityTemplateRenderer();
+	public void initialize() throws JannocessorException {
+		Configurator configurator = Mockito.mock(Configurator.class);
+		Mockito.when(configurator.getTemplatesPath()).thenReturn("templates");
+
+		renderer = new VelocityTemplateRenderer(configurator);
 	}
 
 	@Test

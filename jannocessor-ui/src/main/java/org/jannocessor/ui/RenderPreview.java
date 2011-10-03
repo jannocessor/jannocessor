@@ -22,7 +22,11 @@ import java.util.Map;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.Fields;
+import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.service.api.Configurator;
+import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,14 +35,14 @@ public class RenderPreview {
 	protected static Logger logger = LoggerFactory.getLogger("UI");
 
 	public static void showDialog(String projectPath,
-			RenderRegister renderRegister) {
+			RenderRegister renderRegister, Configurator configurator) {
 		logger.info("Starting UI...");
 		RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
-				renderRegister);
+				renderRegister, configurator);
 		dlg.setVisible(true);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JannocessorException {
 		// FIXME: hard-coded
 		String path = "C:/java/ludvig/jannocessor/jannocessor-templates/src/main/resources/templates";
 
@@ -46,9 +50,15 @@ public class RenderPreview {
 		JavaClass classs = Code.classs(Classes.PUBLIC_FINAL, "MyClass");
 		attr.put("self", classs);
 
+		classs.getFields()
+				.add(Code.field(Fields.PRIVATE, String.class, "prvo"));
+		classs.getFields().add(Code.field(Fields.PRIVATE, int.class, "vtoro"));
+
 		RenderRegister renderRegister = new RenderRegister();
 		renderRegister.register("default/class", attr);
 
-		showDialog(path, renderRegister);
+		Configurator configurator = Mockito.mock(Configurator.class);
+		Mockito.when(configurator.getTemplatesPath()).thenReturn(path);
+		showDialog(path, renderRegister, configurator);
 	}
 }

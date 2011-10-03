@@ -42,7 +42,7 @@ import org.drools.io.impl.ByteArrayResource;
 import org.drools.io.internal.InternalResource;
 import org.drools.runtime.StatelessKnowledgeSession;
 import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.service.api.PathLocator;
+import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.RuleExecutor;
 import org.jannocessor.util.Settings;
 import org.slf4j.Logger;
@@ -52,11 +52,11 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 
 	private Logger logger = LoggerFactory.getLogger("RULES");
 
-	private final PathLocator paths;
+	private final Configurator config;
 
 	@Inject
-	public RuleExecutorImpl(PathLocator paths) {
-		this.paths = paths;
+	public RuleExecutorImpl(Configurator config) {
+		this.config = config;
 	}
 
 	public final void executeRules(String rules, List<Object> facts,
@@ -79,7 +79,7 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 		logger.info("Initializing rules...");
 
 		// String[] files = config.getRulesFilenames();
-		// String path = paths.getRulesPath();
+		// String path = config.getRulesPath();
 		// List<Resource> resources = loadResources(path, files, "drl");
 
 		List<Resource> resources = createInMemoryResources(rules);
@@ -139,7 +139,7 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 	}
 
 	private final long getLastCompiledOn() throws JannocessorException {
-		File file = new File(paths.getKnowledgeBaseFilename());
+		File file = new File(config.getKnowledgeBaseFilename());
 		if (file.exists()) {
 			logger.info("Found file: {}", file.getAbsolutePath());
 			return file.lastModified();
@@ -217,7 +217,7 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 		boolean hasError = false;
 		try {
 			in = new ObjectInputStream(new FileInputStream(
-					paths.getKnowledgeBaseFilename()));
+					config.getKnowledgeBaseFilename()));
 			kbase = (KnowledgeBase) in.readObject();
 		} catch (Exception e) {
 			logger.error("Cannot load pre-compiled rules!");
@@ -241,7 +241,7 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 		ObjectOutputStream out = null;
 		try {
 			out = new ObjectOutputStream(new FileOutputStream(
-					paths.getKnowledgeBaseFilename()));
+					config.getKnowledgeBaseFilename()));
 			out.writeObject(kbase);
 		} catch (Exception e) {
 			logger.error("Cannot save compiled rules!");
@@ -254,7 +254,7 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 	}
 
 	private final void deleteKnowledgeBase() throws JannocessorException {
-		String filename = paths.getKnowledgeBaseFilename();
+		String filename = config.getKnowledgeBaseFilename();
 		File file = new File(filename);
 		if (file.delete()) {
 			logger.info("Deleted file: {}", filename);
