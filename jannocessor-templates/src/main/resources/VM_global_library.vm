@@ -1,0 +1,17 @@
+#macro( smart_import )
+(!PLACEHOLDER:SMART_IMPORT!)
+#end
+
+#macro (type $java_type)$types.useType($java_type)#end
+
+#macro (r $model)$render.render($model)#end
+
+#macro (modifiers $model)
+#foreach($mod in $model.modifiers.values)$mod.toString().toLowerCase() #end
+#end
+
+#macro(body)$!bodyContent#end
+
+#macro(indent $level)
+    #body()
+#end
