@@ -23,6 +23,7 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.bean.modifier.FieldModifiersBean;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
 import org.jannocessor.model.util.Code;
@@ -51,12 +52,7 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 			values[index++] = FieldModifierValue.valueOf(modifier.name());
 		}
 
-		return new FieldModifiers() {
-			@Override
-			public FieldModifierValue[] getValues() {
-				return values;
-			}
-		};
+		return new FieldModifiersBean(values);
 	}
 
 }

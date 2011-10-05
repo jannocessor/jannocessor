@@ -23,6 +23,7 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.bean.modifier.MethodModifiersBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
@@ -51,12 +52,7 @@ public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 			values[index++] = MethodModifierValue.valueOf(modifier.name());
 		}
 
-		return new MethodModifiers() {
-			@Override
-			public MethodModifierValue[] getValues() {
-				return values;
-			}
-		};
+		return new MethodModifiersBean(values);
 	}
 
 }

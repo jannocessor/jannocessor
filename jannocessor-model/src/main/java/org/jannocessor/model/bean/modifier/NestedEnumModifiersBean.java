@@ -1,9 +1,10 @@
 package org.jannocessor.model.bean.modifier;
 
+import java.util.Arrays;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -45,9 +46,9 @@ public class NestedEnumModifiersBean implements NestedEnumModifiers {
 
 	@Override
 	public String toString() {
-		TypeSpecificStyle style = new TypeSpecificStyle(SourceCode.class);
-		return new ToStringBuilder(this, style).append("values", getValues())
-				.toString();
+		TypeSpecificStyle style = new TypeSpecificStyle(NestedEnumModifiers.class);
+		return new ToStringBuilder(this, style).append("values",
+				Arrays.toString(getValues())).toString();
 	}
 
 }

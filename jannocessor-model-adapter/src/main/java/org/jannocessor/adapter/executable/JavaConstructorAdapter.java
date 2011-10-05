@@ -23,6 +23,7 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.bean.modifier.ConstructorModifiersBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
@@ -51,12 +52,7 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 			values[index++] = ConstructorModifierValue.valueOf(modifier.name());
 		}
 
-		return new ConstructorModifiers() {
-			@Override
-			public ConstructorModifierValue[] getValues() {
-				return values;
-			}
-		};
+		return new ConstructorModifiersBean(values);
 	}
 
 }
