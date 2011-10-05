@@ -42,18 +42,24 @@ import org.slf4j.LoggerFactory;
 
 public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 
+	private static final String RESOURCE_LOADER_CLASS = "file.resource.loader.class";
+
+	private static final String CLASSPATH_RESOURCE_LOADER = "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader";
+
+	private static final String INLINE_MACRO_LOCAL_SCOPE = "velocimacro.permissions.allow.inline.local.scope";
+
 	private Logger logger = LoggerFactory.getLogger("RENDERER");
+
 	private final Configurator configurator;
 
 	@Inject
 	public VelocityTemplateRenderer(Configurator configurator) {
 		this.configurator = configurator;
 
-		System.out.println("*CONFIGURATOR: " + configurator);
 		Properties velocityConfig = new Properties();
-		velocityConfig
-				.setProperty("file.resource.loader.class",
-						"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+		velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
+				CLASSPATH_RESOURCE_LOADER);
+		velocityConfig.setProperty(INLINE_MACRO_LOCAL_SCOPE, "true");
 
 		Velocity.init(velocityConfig);
 	}

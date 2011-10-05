@@ -1,0 +1,1 @@
+#macro(global_macro $a)global:$a#end
