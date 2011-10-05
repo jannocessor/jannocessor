@@ -7,7 +7,12 @@ import org.jannocessor.bootstrapped.annotation.BeanModel;
 @BeanModel
 public class BookBeanModel {
 
-	String title;
+	private transient String title;
 
-	PersonBeanModel author;
+	public static PersonBeanModel author;
+
+	{
+		System.err.println("hi!");
+	}
+
 }
