@@ -17,9 +17,7 @@
 package org.jannocessor.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +32,8 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+
+import jsyntaxpane.DefaultSyntaxKit;
 
 import org.apache.commons.io.FileUtils;
 import org.jannocessor.processor.model.JannocessorException;
@@ -60,7 +59,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private int index = 0;
 
-	private JTextArea output;
+	private JEditorPane output;
 
 	private JEditorPane input;
 
@@ -81,6 +80,12 @@ public class RenderPreviewDialog extends JDialog {
 
 	private void initialize() {
 		logger.debug("Initializing UI...");
+		DefaultSyntaxKit.initKit();
+
+		JEditorPane.registerEditorKitForContentType("text/java_template",
+				"org.jannocessor.syntax.JavaTemplateKit", getClass()
+						.getClassLoader());
+
 		setTitle("JAnnocessor - Java Annotation Processor");
 		setLayout(new BorderLayout(5, 5));
 
@@ -91,22 +96,28 @@ public class RenderPreviewDialog extends JDialog {
 		double width = screenSize.getWidth() * 0.95;
 		double height = screenSize.getHeight() * 0.9;
 
-		Font font = new Font("Courier New", Font.PLAIN, 14);
+		// Font font = new Font("Courier New", Font.PLAIN, 14);
 
-		input = createInput("", font);
+		input = createInput();
 		JScrollPane scroll1 = new JScrollPane(input,
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		input.setContentType("text/java_template");
+
+		input.setText("");
 
 		scroll1.setMinimumSize(new Dimension(200, 200));
 		scroll1.setPreferredSize(new Dimension((int) (width * 0.5),
 				(int) height));
 		add(scroll1, BorderLayout.CENTER);
 
-		output = createOutput(font);
+		output = createOutput();
 		JScrollPane scroll2 = new JScrollPane(output,
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		output.setContentType("text/java");
+		output.setEditable(false);
+		output.setText("");
 
 		scroll2.setMinimumSize(new Dimension(200, 200));
 		scroll2.setPreferredSize(new Dimension((int) (width * 0.5),
@@ -155,6 +166,9 @@ public class RenderPreviewDialog extends JDialog {
 		setModal(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+		input.requestFocus();
+		logger.debug("Initialized UI.");
 	}
 
 	private JComboBox createCombo() {
@@ -180,20 +194,14 @@ public class RenderPreviewDialog extends JDialog {
 		}
 	}
 
-	private JEditorPane createInput(String content, Font font) {
+	private JEditorPane createInput() {
 		final JEditorPane editor = new JEditorPane();
-		editor.setFont(font);
-		editor.setBackground(Color.decode("#FFFFFF"));
-		editor.setText(content);
 		return editor;
 	}
 
-	private JTextArea createOutput(Font font) {
-		final JTextArea view = new JTextArea();
-		view.setFont(font);
-		view.setBackground(Color.decode("#EEEEEE"));
-		view.setEditable(false);
-		return view;
+	private JEditorPane createOutput() {
+		final JEditorPane editor = new JEditorPane();
+		return editor;
 	}
 
 	private String readTemplate(String templateName) {
@@ -220,7 +228,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private void save() {
 		String content = input.getText();
-		System.out.println("Saving: " + activeTemplate);
+		logger.debug("Saving: %", activeTemplate);
 
 		try {
 			FileUtils.writeStringToFile(new File(activeTemplate), content);

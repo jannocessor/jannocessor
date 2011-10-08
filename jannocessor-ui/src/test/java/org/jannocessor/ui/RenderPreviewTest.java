@@ -1,3 +1,5 @@
+package org.jannocessor.ui;
+
 /**
  * Copyright 2011 jannocessor.org
  *
@@ -14,8 +16,6 @@
  * limitations under the License.
  */
 
-package org.jannocessor.ui;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,20 +26,9 @@ import org.jannocessor.model.util.Fields;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderRegister;
 import org.jannocessor.service.api.Configurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.mockito.Mockito;
 
-public class RenderPreview {
-
-	protected static Logger logger = LoggerFactory.getLogger("UI");
-
-	public static void showDialog(String projectPath,
-			RenderRegister renderRegister, Configurator configurator) {
-		logger.info("Starting UI...");
-		RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
-				renderRegister, configurator);
-		dlg.setVisible(true);
-	}
+public class RenderPreviewTest {
 
 	public static void main(String[] args) throws JannocessorException {
 		// FIXME: hard-coded
@@ -57,9 +46,8 @@ public class RenderPreview {
 		renderRegister.register("default/class", attr);
 		renderRegister.register("default/class", attr);
 
-		// Configurator configurator = Mockito.mock(Configurator.class);
-		// Mockito.when(configurator.getTemplatesPath()).thenReturn(path);
-		RenderPreview.showDialog(path, renderRegister, null);
+		Configurator configurator = Mockito.mock(Configurator.class);
+		Mockito.when(configurator.getTemplatesPath()).thenReturn(path);
+		RenderPreview.showDialog(path, renderRegister, configurator);
 	}
-
 }
