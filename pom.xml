@@ -240,6 +240,7 @@
 		<module>jannocessor-template-service</module>
 		<module>jannocessor-rules-service</module>
 		<module>jannocessor-imports-service</module>
+		<module>jannocessor-all</module>
 	</modules>
 
 </project>
