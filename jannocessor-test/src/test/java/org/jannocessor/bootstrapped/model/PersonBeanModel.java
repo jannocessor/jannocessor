@@ -8,6 +8,7 @@ import org.jannocessor.bootstrapped.annotation.BeanModel;
 
 @AnotherAnnotation(a = 3, b = "2")
 @BeanModel
+@SuppressWarnings("unused")
 public class PersonBeanModel {
 
 	String name;

@@ -5,6 +5,7 @@ import org.jannocessor.bootstrapped.annotation.BeanModel;
 
 @AnotherAnnotation(a = 105, b = "xx")
 @BeanModel
+@SuppressWarnings("unused")
 public class BookBeanModel {
 
 	private transient String title;
