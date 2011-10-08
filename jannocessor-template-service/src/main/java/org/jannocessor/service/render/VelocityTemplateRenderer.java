@@ -79,7 +79,6 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 
 		String renderedText = writer.toString();
 
-		logger.debug("Rendered text:\n{}", renderedText);
 		return postProcess(renderedText, typeUtils);
 	}
 
@@ -115,7 +114,6 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			}
 			String renderedText = writer.toString();
 
-			logger.debug("Rendered text:\n{}", renderedText);
 			return postProcess(renderedText, typeUtils);
 		} catch (Exception e) {
 			String report = String.format("Rendering of template '%s' failed",
@@ -146,7 +144,6 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 		String text = postProcessImports(renderedText,
 				typeUtils.getTypeImports());
 
-		logger.debug("Post-processed text:\n{}", text);
 		return text;
 	}
 
