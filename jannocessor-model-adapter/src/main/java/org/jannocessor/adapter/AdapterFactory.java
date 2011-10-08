@@ -242,7 +242,9 @@ public class AdapterFactory {
 			if (clazz.isAssignableFrom(model.getClass())) {
 				return (T) model;
 			} else {
-				throw new IllegalStateException("Wrong element type!");
+				String msg = "Wrong element type: %s is not assignable to %s!";
+				throw new IllegalStateException(String.format(msg,
+						model.getClass(), clazz));
 			}
 		} else {
 			return null;

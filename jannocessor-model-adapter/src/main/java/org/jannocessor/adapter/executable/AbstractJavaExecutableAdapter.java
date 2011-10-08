@@ -42,7 +42,7 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 	}
 
 	public PowerList<JavaTypeParameter> getTypeParameters() {
-		return getElementsAdapters(executable.getParameters(),
+		return getElementsAdapters(executable.getTypeParameters(),
 				JavaTypeParameter.class);
 	}
 

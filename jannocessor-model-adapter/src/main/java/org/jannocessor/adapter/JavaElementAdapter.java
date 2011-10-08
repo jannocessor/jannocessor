@@ -17,6 +17,8 @@
 package org.jannocessor.adapter;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.lang.model.element.Element;
@@ -51,11 +53,24 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 		}
 	}
 
+	private List<? extends Element> getEnclosedElements(Element element) {
+		if (element == null) {
+			throw new IllegalArgumentException("The element must not be NULL!");
+		}
+
+		try {
+			// sometimes a strange NPE arises here, it's probably a bug
+			return element.getEnclosedElements();
+		} catch (Exception e) {
+			return new ArrayList<Element>();
+		}
+	}
+
 	@Override
 	public PowerList<JavaElement> getChildren() {
 		PowerList<JavaElement> children = Power.list();
 
-		for (Element enclosedElement : element.getEnclosedElements()) {
+		for (Element enclosedElement : getEnclosedElements(element)) {
 			children.add(getElementAdapter(enclosedElement, JavaElement.class));
 		}
 
