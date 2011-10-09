@@ -25,7 +25,6 @@ import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
-import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaConstructorBean extends JavaConstructorData implements
@@ -42,8 +41,8 @@ public class JavaConstructorBean extends JavaConstructorData implements
 		// TODO: calculate and set isVarArgs
 		this.setVarArgs(false);
 
-		this.setCode(Code.code(JavaField.class));
-		this.setBody(new ExecutableBodyBean());
+		this.setCode(Code.code(JavaConstructor.class));
+		this.setBody(Code.body(JavaConstructor.class));
 	}
 
 }

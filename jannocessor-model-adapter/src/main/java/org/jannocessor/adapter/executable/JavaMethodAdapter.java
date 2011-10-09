@@ -38,6 +38,7 @@ public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 			Types typeUtils) {
 		super(method, elementUtils, typeUtils);
 		this.setCode(Code.code(JavaMethod.class));
+		this.setBody(Code.body(JavaMethod.class));
 		this.method = method;
 	}
 

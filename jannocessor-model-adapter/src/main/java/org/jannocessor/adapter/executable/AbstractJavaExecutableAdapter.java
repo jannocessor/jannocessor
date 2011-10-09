@@ -35,6 +35,8 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 
 	private final ExecutableElement executable;
 
+	private ExecutableBody body;
+
 	public AbstractJavaExecutableAdapter(ExecutableElement executable,
 			Elements elementUtils, Types typeUtils) {
 		super(executable, elementUtils, typeUtils);
@@ -69,9 +71,14 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 		return adapters;
 	}
 
+
+	public void setBody(ExecutableBody body) {
+		this.body = body;
+	}
+
 	@Override
 	public ExecutableBody getBody() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.body;
 	}
+
 }

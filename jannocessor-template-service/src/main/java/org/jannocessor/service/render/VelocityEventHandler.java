@@ -67,7 +67,7 @@ public class VelocityEventHandler implements ReferenceInsertionEventHandler,
 	public Object invalidMethod(Context context, String reference,
 			Object object, String method, Info info) {
 		logger.error(
-				"invalidGetMethod: {ref:{}, obj:{}, method:{}, template:{}}",
+				"Invalid method: {ref:{}, obj:{}, method:{}, template:{}}",
 				new Object[] { reference, object, method, info });
 		return String.format("[INVALID METHOD: \"%s\"!]", method);
 	}

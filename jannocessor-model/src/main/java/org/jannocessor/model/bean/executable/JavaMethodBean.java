@@ -41,7 +41,7 @@ public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 		this.setTypeParameters(Power.list(typeParameters));
 
 		this.setCode(Code.code(JavaMethod.class));
-		this.setBody(new ExecutableBodyBean());
+		this.setBody(Code.body(JavaMethod.class));
 	}
 
 }

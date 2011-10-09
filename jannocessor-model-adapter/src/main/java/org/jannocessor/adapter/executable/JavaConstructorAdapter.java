@@ -38,6 +38,7 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 			Elements elementUtils, Types typeUtils) {
 		super(constructor, elementUtils, typeUtils);
 		this.setCode(Code.code(JavaConstructor.class));
+		this.setBody(Code.body(JavaConstructor.class));
 		this.constructor = constructor;
 	}
 

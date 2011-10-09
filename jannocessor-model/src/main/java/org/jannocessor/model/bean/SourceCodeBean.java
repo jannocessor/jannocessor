@@ -82,7 +82,7 @@ public class SourceCodeBean implements SourceCode {
 		if (obj.getClass() != getClass()) {
 			return false;
 		}
-		SourceCodeBean other = (SourceCodeBean) obj;
+		SourceCode other = (SourceCode) obj;
 		return new EqualsBuilder().append(code, other.getCode())
 				.append(template, other.getTemplate())
 				.append(templateName, other.getTemplateName()).isEquals();

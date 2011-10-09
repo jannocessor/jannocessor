@@ -23,6 +23,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
+import org.jannocessor.model.bean.executable.ExecutableBodyBean;
 import org.jannocessor.model.bean.executable.JavaConstructorBean;
 import org.jannocessor.model.bean.executable.JavaInstanceInitBean;
 import org.jannocessor.model.bean.executable.JavaMethodBean;
@@ -60,6 +61,7 @@ import org.jannocessor.model.bean.variable.JavaLocalVariableBean;
 import org.jannocessor.model.bean.variable.JavaParameterBean;
 import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
+import org.jannocessor.model.executable.ExecutableBody;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
@@ -135,6 +137,11 @@ public class Code {
 
 	public static SourceCodeBean code(Class<? extends JavaCodeModel> model) {
 		return new SourceCodeBean(Templates.defaultName(model));
+	}
+
+	public static ExecutableBody body(Class<? extends JavaCodeModel> model) {
+		ExecutableBodyBean body = new ExecutableBodyBean();
+		return body;
 	}
 
 	public static JavaField field(FieldModifiers modifiers, Class<?> type,

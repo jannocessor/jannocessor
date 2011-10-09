@@ -33,6 +33,7 @@ public final class JavaInstanceInitAdapter extends
 			Elements elementUtils, Types typeUtils) {
 		super(instanceInit, elementUtils, typeUtils);
 		this.setCode(Code.code(JavaInstanceInit.class));
+		this.setBody(Code.body(JavaInstanceInit.class));
 		this.instanceInit = instanceInit;
 	}
 

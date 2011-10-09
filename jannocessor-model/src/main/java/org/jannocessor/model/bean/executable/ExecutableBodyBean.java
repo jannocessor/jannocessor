@@ -16,7 +16,11 @@
 
 package org.jannocessor.model.bean.executable;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.jannocessor.model.executable.ExecutableBody;
+import org.jannocessor.util.TypeSpecificStyle;
 
 public class ExecutableBodyBean implements ExecutableBody {
 
@@ -46,6 +50,35 @@ public class ExecutableBodyBean implements ExecutableBody {
 
 	public void setTemplateName(String templateName) {
 		this.templateName = templateName;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		ExecutableBody other = (ExecutableBody) obj;
+		return new EqualsBuilder().append(code, other.getCode())
+				.append(template, other.getTemplate())
+				.append(templateName, other.getTemplateName()).isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(code).append(template)
+				.append(templateName).toHashCode();
+	}
+
+	@Override
+	public String toString() {
+		TypeSpecificStyle style = new TypeSpecificStyle(ExecutableBody.class);
+		return new ReflectionToStringBuilder(this, style).toString();
 	}
 
 }

@@ -17,9 +17,12 @@
 package org.jannocessor.service.api;
 
 import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.executable.ExecutableBody;
 
 public interface SourceCodeRenderer {
 
 	public String render(JavaCodeModel codeModel);
+
+	public String renderBody(ExecutableBody body);
 
 }
