@@ -37,8 +37,10 @@ public class DefaultSourceCodeRendererTest {
 		Configurator configurator = Mockito.mock(Configurator.class);
 		Mockito.when(configurator.getTemplatesPath()).thenReturn("templates");
 
+		TypeUtils typeUtils = Mockito.mock(TypeUtils.class);
+
 		renderer = new DefaultSourceCodeRenderer(new VelocityTemplateRenderer(
-				configurator), configurator);
+				configurator), configurator, typeUtils);
 	}
 
 	@Test

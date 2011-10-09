@@ -36,14 +36,18 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 
 	private final Configurator configurator;
 
+	private final TypeUtils typeUtils;
+
 	public DefaultSourceCodeRenderer(TemplateRenderer templateRenderer,
-			Configurator configurator) {
+			Configurator configurator, TypeUtils typeUtils) {
 		this.templateRenderer = templateRenderer;
 		this.configurator = configurator;
+		this.typeUtils = typeUtils;
 	}
 
 	@Override
 	public String render(JavaCodeModel codeModel) {
+		logger.debug("Rendering element: {}", codeModel);
 		SourceCode code = codeModel.getCode();
 		try {
 			if (code.getCode() != null) {
@@ -69,6 +73,7 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("self", sourceCode);
+		attributes.put("types", typeUtils);
 
 		return attributes;
 	}

@@ -69,21 +69,26 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			throws JannocessorException {
 		VelocityContext context = createContext(attributes);
 		Writer writer = new StringWriter();
-		TypeUtils typeUtils = createTypeUtils();
-		DefaultSourceCodeRenderer renderUtils = createRenderUtils();
 
-		context.put("types", typeUtils);
-		context.put("render", renderUtils);
+		TypeUtils typeUtils = (TypeUtils) attributes.get("types");
+		if (typeUtils == null) {
+			typeUtils = createTypeUtils();
+			context.put("types", typeUtils);
+		}
 
-		Velocity.evaluate(context, writer, "RENDERER", template);
+		DefaultSourceCodeRenderer renderUtils = createRenderUtils(typeUtils);
+		context.put("renderer", renderUtils);
+
+		Velocity.evaluate(context, writer, '"' + template + '"', template);
 
 		String renderedText = writer.toString();
 
 		return postProcess(renderedText, typeUtils);
 	}
 
-	private DefaultSourceCodeRenderer createRenderUtils() {
-		return new DefaultSourceCodeRenderer(this, configurator);
+	private DefaultSourceCodeRenderer createRenderUtils(TypeUtils typeUtils) {
+		logger.debug("Creating renderer...");
+		return new DefaultSourceCodeRenderer(this, configurator, typeUtils);
 	}
 
 	private TypeUtils createTypeUtils() {
@@ -97,17 +102,22 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			logger.info("Retrieving template: {}", templateFilename);
 
 			VelocityContext context = createContext(attributes);
-			TypeUtils typeUtils = createTypeUtils();
-			DefaultSourceCodeRenderer renderUtils = createRenderUtils();
-			Writer writer = new StringWriter();
 
-			context.put("types", typeUtils);
-			context.put("render", renderUtils);
+			TypeUtils typeUtils = (TypeUtils) attributes.get("types");
+			if (typeUtils == null) {
+				typeUtils = createTypeUtils();
+				context.put("types", typeUtils);
+			}
+
+			DefaultSourceCodeRenderer renderUtils = createRenderUtils(typeUtils);
+			context.put("renderer", renderUtils);
+
+			Writer writer = new StringWriter();
 
 			File file = new File(templateFilename);
 			if (file.exists()) {
 				Reader reader = new FileReader(file);
-				Velocity.evaluate(context, writer, "RENDERER", reader);
+				Velocity.evaluate(context, writer, templateFilename, reader);
 			} else {
 				Template t = Velocity.getTemplate(templateFilename);
 				t.merge(context, writer);
@@ -130,6 +140,9 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 					entry.getValue());
 			context.put(entry.getKey(), entry.getValue());
 		}
+
+		VelocityEventHandler eventHandler = new VelocityEventHandler();
+		eventHandler.listenToContext(context);
 
 		return context;
 	}

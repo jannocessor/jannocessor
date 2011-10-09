@@ -23,8 +23,12 @@ import java.util.List;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.service.api.ImportOrganizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TypeUtils {
+
+	private Logger logger = LoggerFactory.getLogger("TYPES");
 
 	private final ImportOrganizer importOrganizer;
 	private List<String> typeImports = new ArrayList<String>();
@@ -44,10 +48,16 @@ public class TypeUtils {
 	}
 
 	private String getTypeUsage(String type) {
+		logger.debug("Using type: {}", type);
+
 		String[] imports = importOrganizer.getTypeImports(type);
 		String typeUsage = importOrganizer.getTypeUsage(type);
 
-		typeImports.addAll(Arrays.asList(imports));
+		List<String> newImports = Arrays.asList(imports);
+		if (!newImports.isEmpty()) {
+			logger.debug("Adding {} new imports: {}", newImports.size(), newImports);
+		}
+		typeImports.addAll(newImports);
 
 		return typeUsage;
 	}
