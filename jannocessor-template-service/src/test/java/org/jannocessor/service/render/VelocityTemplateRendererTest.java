@@ -50,7 +50,7 @@ public class VelocityTemplateRendererTest {
 
 		String text = renderer.render(template, attributes);
 
-		assertEquals("x=1, foo=bar, $other", text);
+		assertEquals("x=1, foo=bar, [INVALID REFERENCE: \"$other\"!]", text);
 	}
 
 	@Test
