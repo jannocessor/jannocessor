@@ -31,7 +31,10 @@ import javax.inject.Inject;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.apache.velocity.runtime.resource.loader.FileResourceLoader;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.TemplateRenderer;
@@ -40,33 +43,62 @@ import org.jannocessor.util.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
+public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
+		RuntimeConstants {
 
 	private static final String RESOURCE_LOADER_CLASS = "file.resource.loader.class";
-
-	private static final String CLASSPATH_RESOURCE_LOADER = "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader";
-
-	private static final String INLINE_MACRO_LOCAL_SCOPE = "velocimacro.permissions.allow.inline.local.scope";
 
 	private Logger logger = LoggerFactory.getLogger("RENDERER");
 
 	private final Configurator configurator;
 
+	private final VelocityEngine engine;
+
+	private boolean configured = false;
+
 	@Inject
 	public VelocityTemplateRenderer(Configurator configurator) {
 		this.configurator = configurator;
+		this.engine = new VelocityEngine();
+	}
 
+	@Override
+	public void configure(String templatesPath, boolean debugMode) {
 		Properties velocityConfig = new Properties();
-		velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
-				CLASSPATH_RESOURCE_LOADER);
-		velocityConfig.setProperty(INLINE_MACRO_LOCAL_SCOPE, "true");
 
-		Velocity.init(velocityConfig);
+		if (templatesPath != null) {
+			velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
+					FileResourceLoader.class.getCanonicalName());
+			velocityConfig
+					.setProperty(FILE_RESOURCE_LOADER_PATH, templatesPath);
+		} else {
+			velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
+					ClasspathResourceLoader.class.getCanonicalName());
+		}
+
+		velocityConfig.setProperty(VM_PERM_INLINE_LOCAL, "true");
+		velocityConfig.setProperty(VM_CONTEXT_LOCALSCOPE, "true");
+
+		if (debugMode) {
+			velocityConfig.setProperty(VM_LIBRARY_AUTORELOAD, "true");
+			velocityConfig.setProperty(FILE_RESOURCE_LOADER_CACHE, "false");
+		} else {
+			velocityConfig.setProperty(VM_LIBRARY_AUTORELOAD, "false");
+			velocityConfig.setProperty(FILE_RESOURCE_LOADER_CACHE, "true");
+		}
+
+		engine.init(velocityConfig);
+
+		engine.setApplicationAttribute("logger", logger);
+
+		configured = true;
 	}
 
 	@Override
 	public String render(String template, Map<String, Object> attributes)
 			throws JannocessorException {
+		checkWasConfigured();
+
 		VelocityContext context = createContext(attributes);
 		Writer writer = new StringWriter();
 
@@ -76,19 +108,29 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			context.put("types", typeUtils);
 		}
 
-		DefaultSourceCodeRenderer renderUtils = createRenderUtils(typeUtils);
+		DefaultSourceCodeRenderer renderUtils = createRenderUtils(typeUtils,
+				context);
 		context.put("renderer", renderUtils);
 
-		Velocity.evaluate(context, writer, '"' + template + '"', template);
+		engine.evaluate(context, writer, '"' + template + '"', template);
 
 		String renderedText = writer.toString();
 
 		return postProcess(renderedText, typeUtils);
 	}
 
-	private DefaultSourceCodeRenderer createRenderUtils(TypeUtils typeUtils) {
+	private void checkWasConfigured() {
+		if (!configured) {
+			throw new IllegalStateException(
+					"The template renderer is not configured!");
+		}
+	}
+
+	private DefaultSourceCodeRenderer createRenderUtils(TypeUtils typeUtils,
+			VelocityContext context) {
 		logger.debug("Creating renderer...");
-		return new DefaultSourceCodeRenderer(this, configurator, typeUtils);
+		return new DefaultSourceCodeRenderer(this, configurator, typeUtils,
+				context);
 	}
 
 	private TypeUtils createTypeUtils() {
@@ -98,6 +140,8 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 	@Override
 	public String renderFromFile(String templateFilename,
 			Map<String, Object> attributes) throws JannocessorException {
+		checkWasConfigured();
+
 		try {
 			logger.info("Retrieving template: {}", templateFilename);
 
@@ -109,7 +153,8 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 				context.put("types", typeUtils);
 			}
 
-			DefaultSourceCodeRenderer renderUtils = createRenderUtils(typeUtils);
+			DefaultSourceCodeRenderer renderUtils = createRenderUtils(
+					typeUtils, context);
 			context.put("renderer", renderUtils);
 
 			Writer writer = new StringWriter();
@@ -117,9 +162,9 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings {
 			File file = new File(templateFilename);
 			if (file.exists()) {
 				Reader reader = new FileReader(file);
-				Velocity.evaluate(context, writer, templateFilename, reader);
+				engine.evaluate(context, writer, templateFilename, reader);
 			} else {
-				Template t = Velocity.getTemplate(templateFilename);
+				Template t = engine.getTemplate(templateFilename);
 				t.merge(context, writer);
 			}
 			String renderedText = writer.toString();

@@ -75,6 +75,7 @@ public class RenderPreviewDialog extends JDialog {
 		this.renderRegister = renderRegister;
 
 		renderer = new VelocityTemplateRenderer(configurator);
+		renderer.configure(templatesPath, true);
 		initialize();
 	}
 

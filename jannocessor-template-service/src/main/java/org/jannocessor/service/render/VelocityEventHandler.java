@@ -48,11 +48,12 @@ public class VelocityEventHandler implements ReferenceInsertionEventHandler,
 				"Invalid read: {reference:{}, object:{}, property:{}, template:{}}",
 				new Object[] { reference, object, property, info });
 
-		if (property != null) {
-			return String.format("[INVALID PROPERTY: \"%s\"!]", property);
-		} else {
-			return String.format("[INVALID REFERENCE: \"%s\"!]", reference);
-		}
+		return null;
+		// if (property != null) {
+		// return String.format("[INVALID PROPERTY: \"%s\"!]", property);
+		// } else {
+		// return String.format("[INVALID REFERENCE: \"%s\"!]", reference);
+		// }
 	}
 
 	@Override
@@ -69,7 +70,8 @@ public class VelocityEventHandler implements ReferenceInsertionEventHandler,
 		logger.error(
 				"Invalid method: {ref:{}, obj:{}, method:{}, template:{}}",
 				new Object[] { reference, object, method, info });
-		return String.format("[INVALID METHOD: \"%s\"!]", method);
+		return null;
+		// return String.format("[INVALID METHOD: \"%s\"!]", method);
 	}
 
 }

@@ -22,6 +22,8 @@ import org.jannocessor.processor.model.JannocessorException;
 
 public interface TemplateRenderer {
 
+	void configure(String templatesPath, boolean debugMode);
+
 	String render(String template, Map<String, Object> attributes)
 			throws JannocessorException;
 

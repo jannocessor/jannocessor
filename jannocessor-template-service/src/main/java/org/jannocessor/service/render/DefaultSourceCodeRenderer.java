@@ -16,9 +16,14 @@
 
 package org.jannocessor.service.render;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.velocity.VelocityContext;
 import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.model.executable.ExecutableBody;
@@ -39,11 +44,15 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 
 	private final TypeUtils typeUtils;
 
+	private final VelocityContext context;
+
 	public DefaultSourceCodeRenderer(TemplateRenderer templateRenderer,
-			Configurator configurator, TypeUtils typeUtils) {
+			Configurator configurator, TypeUtils typeUtils,
+			VelocityContext context) {
 		this.templateRenderer = templateRenderer;
 		this.configurator = configurator;
 		this.typeUtils = typeUtils;
+		this.context = context;
 	}
 
 	@Override
@@ -145,4 +154,42 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 		return "methods=[render($element),renderBody($body)]";
 	}
 
+	public String join(String separator, List<String> parts) {
+		StringBuilder sb = new StringBuilder();
+		boolean isEmpty = true;
+
+		for (String part : parts) {
+			if (!StringUtils.isEmpty(part)) {
+				if (!isEmpty) {
+					sb.append(separator);
+				}
+				sb.append(part);
+				isEmpty = false;
+			}
+		}
+
+		return sb.toString();
+	}
+
+	public String insight() {
+		String keys = Arrays.toString(context.getKeys());
+		int depth = context.getCurrentMacroCallDepth();
+		String macro = context.getCurrentMacroName();
+		List<?> macros = context.getMacroLibraries();
+		String macroStack = Arrays.toString(context.getMacroNameStack());
+		String info = "INTROSPECTION {\n  keys:%s\n  depth:%s\n  macro:%s\n  macros:%s\n  macroStack:%s\n}";
+		return String.format(info, keys, depth, macro, macros, macroStack);
+	}
+
+	public String locate(String templateName) throws JannocessorException {
+		// File file = new File(configurator.getTemplatesPath() + "/"
+		// + templateName + ".vm");
+		// if (file.exists()) {
+		// return file.getAbsolutePath();
+		// } else {
+		// throw new IllegalArgumentException("Cannot locate template: "
+		// + templateName);
+		// }
+		return templateName + ".vm";
+	}
 }

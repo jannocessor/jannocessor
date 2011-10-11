@@ -49,6 +49,8 @@ public class RulesGeneratorImpl implements RulesGenerator, Settings {
 		this.renderer = renderer;
 		this.fileService = fileService;
 		this.patternService = patternService;
+
+		renderer.configure(null, false);
 	}
 
 	@Override

@@ -16,6 +16,7 @@
 
 package org.jannocessor.service.render;
 
+import org.apache.velocity.VelocityContext;
 import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Fields;
@@ -37,10 +38,13 @@ public class DefaultSourceCodeRendererTest {
 		Configurator configurator = Mockito.mock(Configurator.class);
 		Mockito.when(configurator.getTemplatesPath()).thenReturn("templates");
 
-		TypeUtils typeUtils = Mockito.mock(TypeUtils.class);
+		VelocityTemplateRenderer templateRenderer = new VelocityTemplateRenderer(
+				configurator);
+		templateRenderer.configure(null, false);
 
-		renderer = new DefaultSourceCodeRenderer(new VelocityTemplateRenderer(
-				configurator), configurator, typeUtils);
+		TypeUtils typeUtils = Mockito.mock(TypeUtils.class);
+		renderer = new DefaultSourceCodeRenderer(templateRenderer,
+				configurator, typeUtils, new VelocityContext());
 	}
 
 	@Test

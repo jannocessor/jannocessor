@@ -146,6 +146,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 			logger.info("Initializing services...");
 
 			engine = injector.getInstance(JannocessorEngine.class);
+			engine.configure(engine.getTemplatesPath(), true);
 
 			showConfiguration();
 

@@ -144,8 +144,7 @@ public class ProcessingContext {
 		renderer.register(templateName, attributes);
 
 		try {
-			String template = engine.getTemplatesPath() + "/" + templateName
-					+ ".vm";
+			String template = templateName + ".vm";
 			String content = engine.renderFromFile(template, attributes);
 
 			getFiles().file(packageName, fileName, content);

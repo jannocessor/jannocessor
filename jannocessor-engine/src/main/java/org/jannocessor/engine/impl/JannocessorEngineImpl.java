@@ -93,6 +93,11 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	}
 
 	@Override
+	public void configure(String templatesPath, boolean debugMode) {
+		generator.configure(templatesPath, debugMode);
+	}
+
+	@Override
 	public String render(String template, Map<String, Object> attributes)
 			throws JannocessorException {
 		return generator.render(template, attributes);

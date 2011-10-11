@@ -38,6 +38,7 @@ public class VelocityTemplateRendererTest {
 		Mockito.when(configurator.getTemplatesPath()).thenReturn("templates");
 
 		renderer = new VelocityTemplateRenderer(configurator);
+		renderer.configure(null, false);
 	}
 
 	@Test
@@ -50,7 +51,7 @@ public class VelocityTemplateRendererTest {
 
 		String text = renderer.render(template, attributes);
 
-		assertEquals("x=1, foo=bar, [INVALID REFERENCE: \"$other\"!]", text);
+		assertEquals("x=1, foo=bar, $other", text);
 	}
 
 	@Test

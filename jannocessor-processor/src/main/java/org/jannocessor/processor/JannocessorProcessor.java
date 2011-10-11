@@ -140,6 +140,10 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 			for (Element annotatedElement : annotatedElements) {
 				logger.debug("---- ELEMENT: " + annotatedElement);
+				List<? extends Element> kids = annotatedElement.getEnclosedElements();
+				for (Element kid : kids) {
+					logger.debug("------ CHILD: " + kid);
+				}
 
 				// add each annotation X for each annotated element
 
