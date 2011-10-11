@@ -242,8 +242,8 @@ public class RenderPreviewDialog extends JDialog {
 	private void refresh() {
 		try {
 			RenderData current = current();
-			output.setText(renderer.renderMacro("render",
-					current.getAttributes(), new String[0]));
+			output.setText(renderer.renderMacro("main",
+					current.getAttributes(), new String[] {}));
 		} catch (JannocessorException e) {
 			e.printStackTrace();
 		}

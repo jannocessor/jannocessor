@@ -144,7 +144,7 @@ public class ProcessingContext {
 		renderer.register(attributes);
 
 		try {
-			String content = engine.renderMacro("render", attributes,
+			String content = engine.renderMacro("main", attributes,
 					new String[] {});
 
 			getFiles().file(packageName, fileName, content);
