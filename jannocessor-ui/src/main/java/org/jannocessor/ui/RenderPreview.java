@@ -27,10 +27,12 @@ public class RenderPreview {
 
 	public static void showDialog(String projectPath,
 			RenderRegister renderRegister, Configurator configurator) {
-		logger.info("Starting UI...");
-		RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
-				renderRegister, configurator);
-		dlg.setVisible(true);
+		if (!renderRegister.getRenderings().isEmpty()) {
+			logger.info("Starting UI...");
+			RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
+					renderRegister, configurator);
+			dlg.setVisible(true);
+		}
 	}
 
 }

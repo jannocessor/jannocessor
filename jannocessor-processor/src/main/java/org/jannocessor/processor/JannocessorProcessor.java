@@ -17,11 +17,11 @@
 package org.jannocessor.processor;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.processing.RoundEnvironment;
@@ -37,7 +37,6 @@ import javax.tools.StandardLocation;
 
 import org.jannocessor.adapter.AdapterFactory;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.processor.model.File;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.ProcessingContext;
 import org.jannocessor.processor.model.Processors;
@@ -72,26 +71,23 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 	}
 
 	private void generateFiles() throws JannocessorException {
-		Collection<File> allFiles = files.getAll();
-		logger.info("Generating {} files...", allFiles.size());
+		logger.info("Generating {} files...", files.size());
 
-		for (File file : allFiles) {
-			generateFile(file);
+		for (Entry<String, String> file : files.entrySet()) {
+			generateFile(file.getKey(), file.getValue());
 		}
 
-		logger.info("Total {} files were generated.", allFiles.size());
+		logger.info("Total {} files were generated.", files.size());
 	}
 
-	private void generateFile(File file) throws JannocessorException {
+	private void generateFile(String fileName, String content)
+			throws JannocessorException {
 		Location location = StandardLocation.SOURCE_OUTPUT;
 
-		String filename = file.getFileName();
-		String pkg = file.getPackageName();
-
-		String info = fileInfo(location, pkg, filename);
+		String info = fileInfo(location, "", fileName);
 		logger.debug("- Generating file: {}", info);
 
-		writeToFile(location, pkg, filename, file.getContent());
+		writeToFile(location, "", fileName, content);
 	}
 
 	private Map<String, Object> initGlobals() {
@@ -140,7 +136,8 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 			for (Element annotatedElement : annotatedElements) {
 				logger.debug("---- ELEMENT: " + annotatedElement);
-				List<? extends Element> kids = annotatedElement.getEnclosedElements();
+				List<? extends Element> kids = annotatedElement
+						.getEnclosedElements();
 				for (Element kid : kids) {
 					logger.debug("------ CHILD: " + kid);
 				}

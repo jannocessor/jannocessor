@@ -17,6 +17,7 @@
 package org.jannocessor.processor.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.processing.Filer;
@@ -35,7 +36,9 @@ public class ProcessingContext {
 
 	private Elements elements;
 
-	private Files files;
+	private Map<String, String> files;
+
+	private List<String> contents;
 
 	private Problems problems;
 
@@ -73,14 +76,6 @@ public class ProcessingContext {
 		this.elements = elements;
 	}
 
-	public Files getFiles() {
-		return files;
-	}
-
-	public void setFiles(Files files) {
-		this.files = files;
-	}
-
 	public Problems getProblems() {
 		return problems;
 	}
@@ -103,6 +98,22 @@ public class ProcessingContext {
 
 	public Filer getFiler() {
 		return filer;
+	}
+
+	public Map<String, String> getFiles() {
+		return files;
+	}
+
+	public void setFiles(Map<String, String> files) {
+		this.files = files;
+	}
+
+	public List<String> getContents() {
+		return contents;
+	}
+
+	public void setContents(List<String> contents) {
+		this.contents = contents;
 	}
 
 	public void setProjectPath(String projectPath) {
@@ -133,28 +144,23 @@ public class ProcessingContext {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("self", model);
 
-		String packageName = model.getPackageName().getText();
-		String fileName = model.getName().getText() + ".java";
-
-		generateFile(packageName, fileName, attributes);
+		render(attributes);
 	}
 
-	public void generateFile(String packageName, String fileName,
-			Map<String, Object> attributes) {
+	public void render(Map<String, Object> attributes) {
 		renderer.register(attributes);
 
 		try {
 			String content = engine.renderMacro("main", attributes,
 					new String[] {});
-
-			getFiles().file(packageName, fileName, content);
+			getContents().add(content);
 		} catch (JannocessorException e) {
-			throw new RuntimeException("Cannot generate file: " + fileName, e);
+			throw new RuntimeException("Exception occured while rendering", e);
 		}
 	}
 
-	public void generateFile(String packageName, String fileName, String content) {
-		getFiles().file(packageName, fileName, content);
+	public void generateFile(String fileName, String content) {
+		getFiles().put(fileName, content);
 	}
 
 }

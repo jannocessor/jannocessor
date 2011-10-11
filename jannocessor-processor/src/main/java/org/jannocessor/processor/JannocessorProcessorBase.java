@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -48,7 +50,6 @@ import org.jannocessor.inject.RulesServiceModule;
 import org.jannocessor.inject.TemplateServiceModule;
 import org.jannocessor.processor.model.Config;
 import org.jannocessor.processor.model.Configuration;
-import org.jannocessor.processor.model.Files;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.Problem;
 import org.jannocessor.processor.model.Problems;
@@ -71,7 +72,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected Types typeUtils;
 	protected Filer filer;
 	private Configuration options;
-	protected Files files = new Files();
+	protected Map<String, String> files = new HashMap<String, String>();
 	protected Problems problems = new Problems();
 	protected Processors processors;
 	protected JannocessorEngine engine;

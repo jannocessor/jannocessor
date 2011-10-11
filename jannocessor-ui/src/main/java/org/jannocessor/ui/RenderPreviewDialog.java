@@ -27,6 +27,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Map;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -242,11 +243,15 @@ public class RenderPreviewDialog extends JDialog {
 	private void refresh() {
 		try {
 			RenderData current = current();
-			output.setText(renderer.renderMacro("main",
-					current.getAttributes(), new String[] {}));
+			output.setText(render(current.getAttributes()));
 		} catch (JannocessorException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String render(Map<String, Object> attributes)
+			throws JannocessorException {
+		return renderer.renderMacro("main", attributes, new String[] {});
 	}
 
 	private void load(File file) {
