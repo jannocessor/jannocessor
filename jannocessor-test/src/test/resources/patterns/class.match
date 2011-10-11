@@ -1,1 +1,1 @@
-clazz : JavaClass()
+model : JavaClass()

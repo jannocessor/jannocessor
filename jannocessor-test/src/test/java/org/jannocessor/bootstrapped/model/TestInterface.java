@@ -16,36 +16,15 @@
 
 package org.jannocessor.bootstrapped.model;
 
-import java.util.Date;
-import java.util.EventListener;
-import java.util.List;
+import java.io.Serializable;
 
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-@AnotherAnnotation(a = 3, b = "2")
+@AnotherAnnotation(a = 105, b = "xx")
 @BeanModel
-@SuppressWarnings({ "unused", "serial" })
-public class PersonBeanModel extends AbstractModel implements Runnable,
-		EventListener {
+public interface TestInterface extends Runnable, Serializable {
 
-	String name;
-
-	private int age = 3;
-
-	protected transient Date birthday = null;
-
-	java.sql.Date smartImportTestDate;
-
-	public PersonBeanModel() {
-	}
-
-	private <T> void doSomeStuff(String name, java.sql.Date date, T type,
-			List<T> list) throws IllegalAccessError {
-	}
-
-	@Override
-	public void run() {
-	}
+	void someMethod();
 
 }

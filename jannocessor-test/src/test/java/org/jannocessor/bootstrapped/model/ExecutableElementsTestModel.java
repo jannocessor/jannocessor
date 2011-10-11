@@ -17,35 +17,39 @@
 package org.jannocessor.bootstrapped.model;
 
 import java.util.Date;
-import java.util.EventListener;
 import java.util.List;
 
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-@AnotherAnnotation(a = 3, b = "2")
+@AnotherAnnotation(a = 1, b = "x")
 @BeanModel
-@SuppressWarnings({ "unused", "serial" })
-public class PersonBeanModel extends AbstractModel implements Runnable,
-		EventListener {
+@SuppressWarnings("unused")
+public class ExecutableElementsTestModel {
 
-	String name;
+	static {
+		// some static init
+	}
 
-	private int age = 3;
+	{
+		// some instance init
+	}
 
-	protected transient Date birthday = null;
+	public ExecutableElementsTestModel() {
+	}
 
-	java.sql.Date smartImportTestDate;
-
-	public PersonBeanModel() {
+	public <T> ExecutableElementsTestModel(T foo) {
 	}
 
 	private <T> void doSomeStuff(String name, java.sql.Date date, T type,
 			List<T> list) throws IllegalAccessError {
 	}
 
-	@Override
-	public void run() {
+	public final String getSomething2() {
+		return null;
 	}
 
+	public static void main(String[] args) {
+		new ExecutableElementsTestModel();
+	}
 }

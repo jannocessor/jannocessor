@@ -14,25 +14,12 @@
  * limitations under the License.
  */
 
-package org.jannocessor.bootstrapped.processor;
+package org.jannocessor.bootstrapped.model;
 
-import java.util.Map;
+import java.io.Serializable;
 
-import org.jannocessor.model.structure.AbstractJavaStructure;
-import org.jannocessor.processor.model.CodeProcessor;
-import org.jannocessor.processor.model.ProcessingContext;
+public class AbstractModel implements Serializable {
 
-public class MirrorProcessor implements CodeProcessor {
+	private static final long serialVersionUID = 1L;
 
-	@Override
-	public void process(ProcessingContext context, Map<String, Object> params) {
-		AbstractJavaStructure model = (AbstractJavaStructure) params
-				.get("model");
-
-		context.getLogger().debug(
-				"************** Processing: {} ***************",
-				model.getName());
-
-		context.generateCode(model);
-	}
 }
