@@ -18,8 +18,6 @@ package org.jannocessor.model.modifier;
 
 import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
 
-public interface NestedEnumModifiers {
-
-	NestedEnumModifierValue[] getValues();
-
+public interface NestedEnumModifiers extends
+		AbstractModifiers<NestedEnumModifierValue> {
 }

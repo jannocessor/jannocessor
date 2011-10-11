@@ -18,8 +18,5 @@ package org.jannocessor.model.modifier;
 
 import org.jannocessor.model.modifier.value.MethodModifierValue;
 
-public interface MethodModifiers {
-
-	MethodModifierValue[] getValues();
-
+public interface MethodModifiers extends AbstractModifiers<MethodModifierValue> {
 }

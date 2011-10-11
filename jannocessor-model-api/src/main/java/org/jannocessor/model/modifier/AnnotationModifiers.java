@@ -18,8 +18,7 @@ package org.jannocessor.model.modifier;
 
 import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 
-public interface AnnotationModifiers {
-
-	AnnotationModifierValue[] getValues();
+public interface AnnotationModifiers extends
+		AbstractModifiers<AnnotationModifierValue> {
 
 }

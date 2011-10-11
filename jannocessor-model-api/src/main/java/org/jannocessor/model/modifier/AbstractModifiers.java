@@ -16,9 +16,8 @@
 
 package org.jannocessor.model.modifier;
 
-import org.jannocessor.model.modifier.value.ConstructorModifierValue;
+public interface AbstractModifiers<T> {
 
-public interface ConstructorModifiers extends
-		AbstractModifiers<ConstructorModifierValue> {
+	T[] getValues();
 
 }
