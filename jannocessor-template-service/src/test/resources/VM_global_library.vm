@@ -1,1 +1,3 @@
 #macro(global_macro $a)global:$a#end
+#macro(test_macro1)${x}-${y}#end
+#macro(test_macro2 $a)${a}-${x}-${y}#end

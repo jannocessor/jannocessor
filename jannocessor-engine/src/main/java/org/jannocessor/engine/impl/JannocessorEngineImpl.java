@@ -110,6 +110,12 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	}
 
 	@Override
+	public String renderMacro(String macro, Map<String, Object> attributes,
+			String[] params) throws JannocessorException {
+		return generator.renderMacro(macro, attributes, params);
+	}
+
+	@Override
 	public String generateRules(String[] ruleNames) throws JannocessorException {
 		return rulesGenerator.generateRules(ruleNames);
 	}

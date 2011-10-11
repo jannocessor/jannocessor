@@ -92,4 +92,19 @@ public class VelocityTemplateRendererTest {
 		assertEquals("global:1-global:2", text3);
 	}
 
+	@Test
+	public void shouldRenderMacro() throws JannocessorException {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+		attributes.put("x", 1);
+		attributes.put("y", "2");
+
+		String text = renderer.renderMacro("test_macro1", attributes,
+				new String[0]);
+		assertEquals("1-2", text);
+
+		String text2 = renderer.renderMacro("test_macro2", attributes,
+				new String[] { "x" });
+		assertEquals("1-1-2", text2);
+	}
+
 }

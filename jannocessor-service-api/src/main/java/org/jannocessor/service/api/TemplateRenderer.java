@@ -24,6 +24,9 @@ public interface TemplateRenderer {
 
 	void configure(String templatesPath, boolean debugMode);
 
+	String renderMacro(String macro, Map<String, Object> attributes,
+			String[] params) throws JannocessorException;
+
 	String render(String template, Map<String, Object> attributes)
 			throws JannocessorException;
 

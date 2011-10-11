@@ -100,41 +100,15 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 		checkWasConfigured();
 
 		VelocityContext context = createContext(attributes);
+
+		TypeUtils typeUtils = getTypeUtils(attributes, context);
+		context.put("renderer", createRenderUtils(typeUtils, context));
+
 		Writer writer = new StringWriter();
-
-		TypeUtils typeUtils = (TypeUtils) attributes.get("types");
-		if (typeUtils == null) {
-			typeUtils = createTypeUtils();
-			context.put("types", typeUtils);
-		}
-
-		DefaultSourceCodeRenderer renderUtils = createRenderUtils(typeUtils,
-				context);
-		context.put("renderer", renderUtils);
-
 		engine.evaluate(context, writer, '"' + template + '"', template);
-
 		String renderedText = writer.toString();
 
 		return postProcess(renderedText, typeUtils);
-	}
-
-	private void checkWasConfigured() {
-		if (!configured) {
-			throw new IllegalStateException(
-					"The template renderer is not configured!");
-		}
-	}
-
-	private DefaultSourceCodeRenderer createRenderUtils(TypeUtils typeUtils,
-			VelocityContext context) {
-		logger.debug("Creating renderer...");
-		return new DefaultSourceCodeRenderer(this, configurator, typeUtils,
-				context);
-	}
-
-	private TypeUtils createTypeUtils() {
-		return new TypeUtils(new ImportOrganizerImpl());
 	}
 
 	@Override
@@ -147,15 +121,8 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 			VelocityContext context = createContext(attributes);
 
-			TypeUtils typeUtils = (TypeUtils) attributes.get("types");
-			if (typeUtils == null) {
-				typeUtils = createTypeUtils();
-				context.put("types", typeUtils);
-			}
-
-			DefaultSourceCodeRenderer renderUtils = createRenderUtils(
-					typeUtils, context);
-			context.put("renderer", renderUtils);
+			TypeUtils typeUtils = getTypeUtils(attributes, context);
+			context.put("renderer", createRenderUtils(typeUtils, context));
 
 			Writer writer = new StringWriter();
 
@@ -175,6 +142,52 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 					templateFilename);
 			throw new JannocessorException(report, e);
 		}
+	}
+
+	@Override
+	public String renderMacro(String macro, Map<String, Object> attributes,
+			String[] params) throws JannocessorException {
+		checkWasConfigured();
+
+		VelocityContext context = createContext(attributes);
+
+		TypeUtils typeUtils = getTypeUtils(attributes, context);
+		context.put("renderer", createRenderUtils(typeUtils, context));
+
+		Writer writer = new StringWriter();
+		String logTag = "\"#" + macro + '"';
+		engine.invokeVelocimacro(macro, logTag, params, context, writer);
+		String renderedText = writer.toString();
+
+		return postProcess(renderedText, typeUtils);
+	}
+
+	private TypeUtils getTypeUtils(Map<String, Object> attributes,
+			VelocityContext context) {
+		TypeUtils typeUtils = (TypeUtils) attributes.get("types");
+		if (typeUtils == null) {
+			typeUtils = createTypeUtils();
+			context.put("types", typeUtils);
+		}
+		return typeUtils;
+	}
+
+	private void checkWasConfigured() {
+		if (!configured) {
+			throw new IllegalStateException(
+					"The template renderer is not configured!");
+		}
+	}
+
+	private DefaultSourceCodeRenderer createRenderUtils(TypeUtils typeUtils,
+			VelocityContext context) {
+		logger.debug("Creating renderer...");
+		return new DefaultSourceCodeRenderer(this, configurator, typeUtils,
+				context);
+	}
+
+	private TypeUtils createTypeUtils() {
+		return new TypeUtils(new ImportOrganizerImpl());
 	}
 
 	private VelocityContext createContext(Map<String, Object> attributes) {

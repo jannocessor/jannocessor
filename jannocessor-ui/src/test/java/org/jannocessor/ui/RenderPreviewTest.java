@@ -43,8 +43,7 @@ public class RenderPreviewTest {
 		classs.getFields().add(Code.field(Fields.PRIVATE, int.class, "vtoro"));
 
 		RenderRegister renderRegister = new RenderRegister();
-		renderRegister.register("default/class", attr);
-		renderRegister.register("default/class", attr);
+		renderRegister.register(attr);
 
 		Configurator configurator = Mockito.mock(Configurator.class);
 		Mockito.when(configurator.getTemplatesPath()).thenReturn(path);

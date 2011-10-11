@@ -180,7 +180,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private void setActive(int i) {
 		index = i;
-		reload();
+		refresh();
 	}
 
 	private void moveForward() {
@@ -242,18 +242,11 @@ public class RenderPreviewDialog extends JDialog {
 	private void refresh() {
 		try {
 			RenderData current = current();
-			String tmpl = fullTemplateName(current.getTemplateName());
-			output.setText(renderer.render(readFile(tmpl),
-					current.getAttributes()));
+			output.setText(renderer.renderMacro("render",
+					current.getAttributes(), new String[0]));
 		} catch (JannocessorException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private void reload() {
-		RenderData current = current();
-		input.setText(readTemplate(current.getTemplateName()));
-		refresh();
 	}
 
 	private void load(File file) {
