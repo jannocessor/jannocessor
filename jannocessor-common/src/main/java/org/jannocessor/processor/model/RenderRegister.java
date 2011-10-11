@@ -24,8 +24,8 @@ public class RenderRegister {
 
 	private final List<RenderData> renderings = new ArrayList<RenderData>();
 
-	public void register(String templateName, Map<String, Object> attributes) {
-		renderings.add(new RenderData(templateName, attributes));
+	public void register(Map<String, Object> attributes) {
+		renderings.add(new RenderData(attributes));
 	}
 
 	public List<RenderData> getRenderings() {

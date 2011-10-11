@@ -20,16 +20,10 @@ import java.util.Map;
 
 public class RenderData {
 
-	private final String templateName;
 	private final Map<String, Object> attributes;
 
-	public RenderData(String templateName, Map<String, Object> attributes) {
-		this.templateName = templateName;
+	public RenderData(Map<String, Object> attributes) {
 		this.attributes = attributes;
-	}
-
-	public String getTemplateName() {
-		return templateName;
 	}
 
 	public Map<String, Object> getAttributes() {
@@ -38,8 +32,7 @@ public class RenderData {
 
 	@Override
 	public String toString() {
-		return "RenderData [templateName=" + templateName + ", attributes="
-				+ attributes + "]";
+		return "RenderData [attributes=" + attributes + "]";
 	}
 
 }

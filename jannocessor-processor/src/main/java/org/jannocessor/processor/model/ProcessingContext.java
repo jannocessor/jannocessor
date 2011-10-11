@@ -24,7 +24,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.slf4j.Logger;
 
 public class ProcessingContext {
@@ -129,23 +129,23 @@ public class ProcessingContext {
 		this.renderer = renderer;
 	}
 
-	public void generateClass(JavaClass clazz) {
+	public void generateCode(AbstractJavaStructure model) {
 		Map<String, Object> attributes = new HashMap<String, Object>();
-		attributes.put("self", clazz);
+		attributes.put("self", model);
 
-		String packageName = clazz.getPackageName().getText();
-		String fileName = clazz.getName().getText() + ".java";
+		String packageName = model.getPackageName().getText();
+		String fileName = model.getName().getText() + ".java";
 
-		generateFile(packageName, fileName, "default/class", attributes);
+		generateFile(packageName, fileName, attributes);
 	}
 
 	public void generateFile(String packageName, String fileName,
-			String templateName, Map<String, Object> attributes) {
-		renderer.register(templateName, attributes);
+			Map<String, Object> attributes) {
+		renderer.register(attributes);
 
 		try {
-			String template = templateName + ".vm";
-			String content = engine.renderFromFile(template, attributes);
+			String content = engine.renderMacro("render", attributes,
+					new String[] {});
 
 			getFiles().file(packageName, fileName, content);
 		} catch (JannocessorException e) {
