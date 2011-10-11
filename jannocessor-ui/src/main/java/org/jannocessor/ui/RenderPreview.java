@@ -16,14 +16,6 @@
 
 package org.jannocessor.ui;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.Code;
-import org.jannocessor.model.util.Fields;
-import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderRegister;
 import org.jannocessor.service.api.Configurator;
 import org.slf4j.Logger;
@@ -39,27 +31,6 @@ public class RenderPreview {
 		RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
 				renderRegister, configurator);
 		dlg.setVisible(true);
-	}
-
-	public static void main(String[] args) throws JannocessorException {
-		// FIXME: hard-coded
-		String path = "C:/java/ludvig/jannocessor/jannocessor-templates/src/main/resources/templates";
-
-		Map<String, Object> attr = new HashMap<String, Object>();
-		JavaClass classs = Code.classs(Classes.PUBLIC_FINAL, "MyClass");
-		attr.put("self", classs);
-
-		classs.getFields()
-				.add(Code.field(Fields.PRIVATE, String.class, "prvo"));
-		classs.getFields().add(Code.field(Fields.PRIVATE, int.class, "vtoro"));
-
-		RenderRegister renderRegister = new RenderRegister();
-		renderRegister.register("default/class", attr);
-		renderRegister.register("default/class", attr);
-
-		// Configurator configurator = Mockito.mock(Configurator.class);
-		// Mockito.when(configurator.getTemplatesPath()).thenReturn(path);
-		RenderPreview.showDialog(path, renderRegister, null);
 	}
 
 }
