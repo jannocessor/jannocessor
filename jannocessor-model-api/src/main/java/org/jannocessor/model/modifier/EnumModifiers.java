@@ -18,5 +18,6 @@ package org.jannocessor.model.modifier;
 
 import org.jannocessor.model.modifier.value.EnumModifierValue;
 
-public interface EnumModifiers extends AbstractModifiers<EnumModifierValue> {
+public interface EnumModifiers extends
+		AbstractModifiers<EnumModifierValue, EnumModifiers> {
 }

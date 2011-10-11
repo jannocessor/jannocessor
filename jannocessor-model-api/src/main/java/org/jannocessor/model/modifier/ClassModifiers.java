@@ -18,6 +18,7 @@ package org.jannocessor.model.modifier;
 
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 
-public interface ClassModifiers extends AbstractModifiers<ClassModifierValue> {
+public interface ClassModifiers extends
+		AbstractModifiers<ClassModifierValue, ClassModifiers> {
 
 }

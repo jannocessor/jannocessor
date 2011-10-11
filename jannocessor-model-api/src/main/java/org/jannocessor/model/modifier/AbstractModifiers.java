@@ -16,8 +16,10 @@
 
 package org.jannocessor.model.modifier;
 
-public interface AbstractModifiers<T> {
+public interface AbstractModifiers<T extends Enum<T>, M> {
 
 	T[] getValues();
+
+	boolean contains(M modifiers);
 
 }

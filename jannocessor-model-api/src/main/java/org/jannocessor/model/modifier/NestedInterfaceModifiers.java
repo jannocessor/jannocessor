@@ -18,6 +18,7 @@ package org.jannocessor.model.modifier;
 
 import org.jannocessor.model.modifier.value.NestedInterfaceModifierValue;
 
-public interface NestedInterfaceModifiers extends
-		AbstractModifiers<NestedInterfaceModifierValue> {
+public interface NestedInterfaceModifiers
+		extends
+		AbstractModifiers<NestedInterfaceModifierValue, NestedInterfaceModifiers> {
 }

@@ -18,7 +18,8 @@ package org.jannocessor.model.modifier;
 
 import org.jannocessor.model.modifier.value.NestedAnnotationModifierValue;
 
-public interface NestedAnnotationModifiers extends
-		AbstractModifiers<NestedAnnotationModifierValue> {
+public interface NestedAnnotationModifiers
+		extends
+		AbstractModifiers<NestedAnnotationModifierValue, NestedAnnotationModifiers> {
 
 }

@@ -19,5 +19,5 @@ package org.jannocessor.model.modifier;
 import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 
 public interface InterfaceModifiers extends
-		AbstractModifiers<InterfaceModifierValue> {
+		AbstractModifiers<InterfaceModifierValue, InterfaceModifiers> {
 }
