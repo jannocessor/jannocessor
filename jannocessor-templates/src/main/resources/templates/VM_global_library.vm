@@ -1,0 +1,103 @@
+#macro(main)
+#if($self)
+#render($self)
+#end
+#end
+
+#macro(smart_import)
+(!PLACEHOLDER:SMART_IMPORT!)
+#end
+
+#macro(type $java_type)$types.useType($java_type)#end
+
+#macro(render_x $x $default)
+#if($x.code)
+$x.code#elseif($x.template)
+#evaluate($x.template)
+#elseif($x.templateName)
+#parse("#locate($x.templateName)")
+#elseif($default)
+$default
+#else
+[ERROR: Can't render $x!]#end
+#end
+
+#macro(render $model)
+#set($self = $model)
+#render_x($model.code, false)#end
+
+#macro(body $model)
+#set($self = $model)
+#render_x($model.body, "")#end
+
+#macro(modifiers $model)
+#foreach($mod in $model.modifiers.values)
+$mod.toString().toLowerCase()#sep(" ")
+#end
+#end
+
+#macro(sep $separator)
+#if($foreach.hasNext)$separator#end
+#end
+
+#macro(inside)$!bodyContent#end
+
+#macro(indent $level)
+    #inside()
+#end
+
+#macro(type_parameters $model)
+#render_list($model.typeParameters)
+#end
+
+#macro(parameters $model)
+#render_list($model.parameters)
+#end
+
+#macro(trim)
+#set($s = "#inside()")
+$s.trim()#end
+
+#macro(list $items $template $separator)
+#foreach($it in $items)
+#evaluate($template)#sep($separator)
+#end
+#end
+
+#macro(render_list $items)
+#foreach($item in $items)
+#@trim()
+#render($item)#sep(", ")
+#end
+#end
+#end
+
+#macro(join $sep $items)
+$renderer.join($sep, $items)#end
+
+#macro(help)
+$renderer.insight()#end
+
+#macro(locate $tmpl)
+$renderer.locate($tmpl)#end
+
+#macro(members $members_list)
+#foreach ($m in $members_list)
+#member($m)
+
+#end
+#end
+
+#macro(member $m)
+#@indent()
+#render($m)
+#end
+
+#end
+
+#macro(nestedMembers $model)
+#members($model.nestedClasses)
+#members($model.nestedEnums)
+#members($model.nestedInterfaces)
+#members($model.nestedAnnotations)
+#end

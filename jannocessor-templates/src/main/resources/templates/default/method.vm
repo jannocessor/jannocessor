@@ -1,1 +1,9 @@
-${self}
+#join(" ", [
+  "#modifiers($self)",
+  "#type_parameters($self)",
+  "#render($self.returnType)",
+  "${self.name}(#parameters($self))",
+  "{"
+])
+#body($self)
+}
