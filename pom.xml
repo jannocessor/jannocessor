@@ -241,6 +241,7 @@
 		<module>jannocessor-imports-service</module>
 		<module>jannocessor-all</module>
 		<module>jannocessor-playground</module>
+		<module>jannocessor-splitter-service</module>
 	</modules>
 
 </project>
