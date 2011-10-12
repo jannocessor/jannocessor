@@ -28,10 +28,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import javax.swing.Box;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import jsyntaxpane.DefaultSyntaxKit;
@@ -41,8 +45,10 @@ import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderData;
 import org.jannocessor.processor.model.RenderRegister;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.MultiContentSplitter;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.service.render.VelocityTemplateRenderer;
+import org.jannocessor.service.splitter.MultiContentSplitterImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,7 +66,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private int index = 0;
 
-	private JEditorPane output;
+	private Box output;
 
 	private JEditorPane input;
 
@@ -70,6 +76,10 @@ public class RenderPreviewDialog extends JDialog {
 
 	private String activeTemplate;
 
+	private final MultiContentSplitter splitter;
+
+	private JScrollPane scroll2;
+
 	public RenderPreviewDialog(String templatesPath,
 			RenderRegister renderRegister, Configurator configurator) {
 		this.templatesPath = templatesPath;
@@ -77,6 +87,9 @@ public class RenderPreviewDialog extends JDialog {
 
 		renderer = new VelocityTemplateRenderer(configurator);
 		renderer.configure(templatesPath, true);
+
+		splitter = new MultiContentSplitterImpl();
+
 		initialize();
 	}
 
@@ -113,14 +126,11 @@ public class RenderPreviewDialog extends JDialog {
 				(int) height));
 		add(scroll1, BorderLayout.CENTER);
 
-		output = createOutput();
-		JScrollPane scroll2 = new JScrollPane(output,
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		output.setContentType("text/java");
-		output.setEditable(false);
-		output.setText("");
+		output = Box.createVerticalBox();
 
+		scroll2 = new JScrollPane(output,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll2.setMinimumSize(new Dimension(200, 200));
 		scroll2.setPreferredSize(new Dimension((int) (width * 0.5),
 				(int) height));
@@ -201,9 +211,25 @@ public class RenderPreviewDialog extends JDialog {
 		return editor;
 	}
 
-	private JEditorPane createOutput() {
+	private JComponent createOutput(String title, String content) {
 		final JEditorPane editor = new JEditorPane();
-		return editor;
+
+		JScrollPane scroll = new JScrollPane(editor,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll.setMinimumSize(new Dimension(100, 100));
+
+		editor.setContentType("text/java");
+		editor.setEditable(false);
+		editor.setText(content);
+
+		JLabel header = new JLabel(title);
+
+		Box box = Box.createVerticalBox();
+		box.add(header);
+		box.add(scroll);
+
+		return box;
 	}
 
 	private String readTemplate(String templateName) {
@@ -241,12 +267,23 @@ public class RenderPreviewDialog extends JDialog {
 	}
 
 	private void refresh() {
+		output.removeAll();
 		try {
 			RenderData current = current();
-			output.setText(render(current.getAttributes()));
+			String text = render(current.getAttributes());
+			Map<String, String> contents = splitter.split(text);
+			if (!contents.isEmpty()) {
+				for (Entry<String, String> a : contents.entrySet()) {
+					output.add(createOutput(a.getKey(), a.getValue()));
+				}
+			} else {
+				output.add(createOutput("FILE NAME NOT SPECIFIED!", text));
+			}
 		} catch (JannocessorException e) {
 			e.printStackTrace();
 		}
+		output.revalidate();
+		repaint();
 	}
 
 	private String render(Map<String, Object> attributes)

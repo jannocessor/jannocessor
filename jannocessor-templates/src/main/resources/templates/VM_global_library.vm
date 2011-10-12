@@ -101,3 +101,7 @@ $renderer.locate($tmpl)#end
 #members($model.nestedInterfaces)
 #members($model.nestedAnnotations)
 #end
+
+#macro(file $filename)
+$renderer.fileMark($filename)
+#end

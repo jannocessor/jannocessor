@@ -40,6 +40,7 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.ProcessingContext;
 import org.jannocessor.processor.model.Processors;
+import org.jannocessor.processor.model.RenderData;
 import org.jannocessor.processor.model.Root;
 import org.jannocessor.ui.RenderPreview;
 
@@ -64,10 +65,40 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		// run the rules on the facts
 		engine.executeRules(rules, facts, globals);
 
+		// show graphical user interface
 		RenderPreview.showDialog(getTemplatesPath(), renderRegister, engine);
+
+		// rendered the registered data again after UI processing
+		renderRegistered();
 
 		// generate files
 		generateFiles();
+	}
+
+	private void renderRegistered() throws JannocessorException {
+		List<RenderData> renderings = renderRegister.getRenderings();
+
+		// FIXME: some content will be double-processed (as both in "contents"
+		// and "renderings")
+		for (String content : contents) {
+			processMultiFiles(engine.split(content));
+		}
+
+		for (RenderData renderData : renderings) {
+			String text = engine.renderMacro("main",
+					renderData.getAttributes(), new String[] {});
+			processMultiFiles(engine.split(text));
+		}
+	}
+
+	private void processMultiFiles(Map<String, String> contents) {
+		if (!contents.isEmpty()) {
+			for (Entry<String, String> entry : contents.entrySet()) {
+				files.put(entry.getKey(), entry.getValue());
+			}
+		} else {
+			logger.error("File name not specified!");
+		}
 	}
 
 	private void generateFiles() throws JannocessorException {
@@ -100,6 +131,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		context.setElements(elementUtils);
 		context.setTypes(typeUtils);
 		context.setFiles(files);
+		context.setContents(contents);
 		context.setProblems(problems);
 		context.setProcessors(processors);
 		context.setFiler(filer);

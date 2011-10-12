@@ -16,7 +16,6 @@
 
 package org.jannocessor.service.render;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +28,7 @@ import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.model.executable.ExecutableBody;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.MultiContentSplitter;
 import org.jannocessor.service.api.SourceCodeRenderer;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.slf4j.Logger;
@@ -192,4 +192,10 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 		// }
 		return templateName + ".vm";
 	}
+
+	public String fileMark(String filename) {
+		return String.format("%s %s %s", MultiContentSplitter.PREFIX, filename,
+				MultiContentSplitter.SUFFIX);
+	}
+
 }

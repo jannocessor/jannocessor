@@ -47,6 +47,7 @@ import org.jannocessor.inject.IOServiceModule;
 import org.jannocessor.inject.ImportsServiceModule;
 import org.jannocessor.inject.ProcessorModule;
 import org.jannocessor.inject.RulesServiceModule;
+import org.jannocessor.inject.SplitterServiceModule;
 import org.jannocessor.inject.TemplateServiceModule;
 import org.jannocessor.processor.model.Config;
 import org.jannocessor.processor.model.Configuration;
@@ -73,6 +74,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected Filer filer;
 	private Configuration options;
 	protected Map<String, String> files = new HashMap<String, String>();
+	protected List<String> contents = new ArrayList<String>();
 	protected Problems problems = new Problems();
 	protected Processors processors;
 	protected JannocessorEngine engine;
@@ -93,7 +95,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		return Guice.createInjector(new ProcessorModule(options),
 				new ConfigurationServiceModule(), new ImportsServiceModule(),
 				new IOServiceModule(), new RulesServiceModule(),
-				new TemplateServiceModule());
+				new TemplateServiceModule(), new SplitterServiceModule());
 	}
 
 	protected void logException(JannocessorException e) {
@@ -165,7 +167,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		logger.info("Config path: {}", engine.getConfigPath());
 		logger.info("Rules path: {}", engine.getRulesPath());
 
-		logger.info("Templates path: {}", getTemplatesPath()); // FIXME: refactor
+		logger.info("Templates path: {}", getTemplatesPath()); // FIXME:
+																// refactor
 	}
 
 	private void processOptions() throws JannocessorException {
