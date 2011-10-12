@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package org.jannocessor.engine;
+package org.jannocessor.service.api;
 
-import org.jannocessor.service.api.Configurator;
-import org.jannocessor.service.api.MultiContentSplitter;
-import org.jannocessor.service.api.RuleExecutor;
-import org.jannocessor.service.api.RulesGenerator;
-import org.jannocessor.service.api.TemplateRenderer;
+import java.util.Map;
 
-public interface JannocessorEngine extends Configurator, RuleExecutor,
-		TemplateRenderer, RulesGenerator, MultiContentSplitter {
+public interface MultiContentSplitter {
+
+	public static final String PREFIX = ">>>>>>>";
+	public static final String SUFFIX = "<<<<<<<";
+
+	public Map<String, String> split(String contents);
 
 }

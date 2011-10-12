@@ -1,3 +1,5 @@
+package org.jannocessor.inject;
+
 /**
  * Copyright 2011 Nikolche Mihajlovski
  *
@@ -14,15 +16,16 @@
  * limitations under the License.
  */
 
-package org.jannocessor.engine;
-
-import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.MultiContentSplitter;
-import org.jannocessor.service.api.RuleExecutor;
-import org.jannocessor.service.api.RulesGenerator;
-import org.jannocessor.service.api.TemplateRenderer;
+import org.jannocessor.service.splitter.MultiContentSplitterImpl;
 
-public interface JannocessorEngine extends Configurator, RuleExecutor,
-		TemplateRenderer, RulesGenerator, MultiContentSplitter {
+import com.google.inject.AbstractModule;
+
+public class SplitterServiceModule extends AbstractModule {
+
+	@Override
+	protected void configure() {
+		bind(MultiContentSplitter.class).to(MultiContentSplitterImpl.class);
+	}
 
 }
