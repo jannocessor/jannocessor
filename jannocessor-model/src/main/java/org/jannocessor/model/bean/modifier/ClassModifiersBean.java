@@ -16,55 +16,15 @@
 
 package org.jannocessor.model.bean.modifier;
 
-import java.util.Arrays;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
-import org.jannocessor.util.TypeSpecificStyle;
 
-public class ClassModifiersBean implements ClassModifiers {
-
-	private ClassModifierValue[] values;
+public class ClassModifiersBean extends
+		AbstractModifiersBean<ClassModifierValue, ClassModifiers>
+		implements ClassModifiers {
 
 	public ClassModifiersBean(ClassModifierValue[] values) {
-		this.values = values;
-	}
-
-	@Override
-	public ClassModifierValue[] getValues() {
-		return values;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (obj == this) {
-			return true;
-		}
-		if (!(obj instanceof ClassModifiers)) {
-			return false;
-		}
-
-		ClassModifiers other = (ClassModifiers) obj;
-		EqualsBuilder builder = new EqualsBuilder();
-		return builder.append(getValues(), other.getValues()).isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getValues()).toHashCode();
-	}
-
-	@Override
-	public String toString() {
-		TypeSpecificStyle style = new TypeSpecificStyle(ClassModifiers.class);
-		return new ToStringBuilder(this, style).append("values",
-				Arrays.toString(getValues())).toString();
+		super(values, ClassModifiers.class);
 	}
 
 }
