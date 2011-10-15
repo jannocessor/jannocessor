@@ -1,0 +1,13 @@
+#join(" ", [
+  "#render($self.type)",
+  "${self.name}(#parameters($self))",
+  "#attribute_default($self)",
+  ";"
+])
+#macro(attribute_default $attr)
+#@trim()
+#if($attr.defaultValue)
+default ${attr.defaultValue}
+#end
+#end
+#end
