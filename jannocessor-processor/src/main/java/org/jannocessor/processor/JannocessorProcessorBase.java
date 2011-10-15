@@ -56,6 +56,7 @@ import org.jannocessor.processor.model.Problem;
 import org.jannocessor.processor.model.Problems;
 import org.jannocessor.processor.model.Processors;
 import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.service.representation.RepresentationServiceModule;
 import org.jannocessor.util.Settings;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
@@ -95,7 +96,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		return Guice.createInjector(new ProcessorModule(options),
 				new ConfigurationServiceModule(), new ImportsServiceModule(),
 				new IOServiceModule(), new RulesServiceModule(),
-				new TemplateServiceModule(), new SplitterServiceModule());
+				new TemplateServiceModule(), new SplitterServiceModule(),
+				new RepresentationServiceModule());
 	}
 
 	protected void logException(JannocessorException e) {

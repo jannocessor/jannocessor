@@ -65,6 +65,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-representation-service</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-ui</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
