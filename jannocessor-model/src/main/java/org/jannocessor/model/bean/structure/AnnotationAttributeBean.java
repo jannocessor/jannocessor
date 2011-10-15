@@ -34,6 +34,7 @@ public class AnnotationAttributeBean extends AnnotationAttributeData implements
 		this.type = type;
 		this.name = Code.name(name);
 		this.defaultValue = defaultValue;
+		this.setCode(Code.code(AnnotationAttribute.class));
 	}
 
 	@Override
