@@ -32,6 +32,7 @@ import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Enums;
@@ -50,28 +51,28 @@ public class JavaEnumTest extends AbstractModelTest {
 	public static String[] IDS = less(Param.identifiers());
 
 	@AutoTwip
-	public static JavaType[] TYPES = less(Param.types());
+	public static JavaType[] TYPES = less(ModelParam.types());
 
 	@AutoTwip
 	public static Class<?>[] CLASSES = less(Param.classes());
 
 	@AutoTwip
-	public static JavaEnumConstant[] E_CONST = less(Param.enumConstants());
+	public static JavaEnumConstant[] E_CONST = less(ModelParam.enumConstants());
 
 	@AutoTwip
-	public static JavaTypeParameter[] TYPE_PARAM = less(Param.typeParams());
+	public static JavaTypeParameter[] TYPE_PARAM = less(ModelParam.typeParams());
 
 	@AutoTwip
-	public static EnumModifiers[] E_MODIF = less(Param.enumModifiers());
+	public static EnumModifiers[] E_MODIF = less(ModelParam.enumModifiers());
 
 	@AutoTwip
-	public static FieldModifiers[] F_MODIF = less(Param.fieldModifiers());
+	public static FieldModifiers[] F_MODIF = less(ModelParam.fieldModifiers());
 
 	@AutoTwip
-	public static MethodModifiers[] M_MODIF = less(Param.methodModifiers());
+	public static MethodModifiers[] M_MODIF = less(ModelParam.methodModifiers());
 
 	@AutoTwip
-	public static ConstructorModifiers[] CO_MODIF = less(Param
+	public static ConstructorModifiers[] CO_MODIF = less(ModelParam
 			.constructorModifiers());
 
 	/* ********************** TYPE COMBINATIONS ************************** */

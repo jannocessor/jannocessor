@@ -29,6 +29,7 @@ import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Code;
@@ -45,19 +46,19 @@ public class JavaAnnotationTest extends AbstractModelTest {
 	public static String[] IDS = less(Param.identifiers());
 
 	@AutoTwip
-	public static JavaType[] TYPES = less(Param.types());
+	public static JavaType[] TYPES = less(ModelParam.types());
 
 	@AutoTwip
 	public static Class<?>[] CLASSES = less(Param.classes());
 
 	@AutoTwip
-	public static JavaTypeParameter[] TYPE_PARAM = less(Param.typeParams());
+	public static JavaTypeParameter[] TYPE_PARAM = less(ModelParam.typeParams());
 
 	@AutoTwip
-	public static AnnotationModifiers[] AN_MODIF = Param.annotationModifiers();
+	public static AnnotationModifiers[] AN_MODIF = ModelParam.annotationModifiers();
 
 	@AutoTwip
-	public static MethodModifiers[] M_MODIF = less(Param.methodModifiers());
+	public static MethodModifiers[] M_MODIF = less(ModelParam.methodModifiers());
 
 	/* ********************** TYPE COMBINATIONS ************************** */
 

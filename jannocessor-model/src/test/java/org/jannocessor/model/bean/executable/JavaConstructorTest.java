@@ -25,6 +25,7 @@ import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Constructors;
@@ -40,13 +41,13 @@ public class JavaConstructorTest extends AbstractModelTest {
 	public static String[] IDS = less(Param.identifiers());
 
 	@AutoTwip
-	public static JavaType[] TYPES = Param.types();
+	public static JavaType[] TYPES = ModelParam.types();
 
 	@AutoTwip
-	public static JavaTypeParameter[] TYPE_PARAM = Param.typeParams();
+	public static JavaTypeParameter[] TYPE_PARAM = ModelParam.typeParams();
 
 	@AutoTwip
-	public static ConstructorModifiers[] MODIF = Param.constructorModifiers();
+	public static ConstructorModifiers[] MODIF = ModelParam.constructorModifiers();
 
 	/* ********************* PARAMETER COMBINATIONS ******************** */
 

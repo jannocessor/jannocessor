@@ -29,6 +29,7 @@ import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.util.Interfaces;
@@ -45,20 +46,20 @@ public class JavaInterfaceTest extends AbstractModelTest {
 	public static String[] IDS = less(Param.identifiers());
 
 	@AutoTwip
-	public static JavaType[] TYPES = less(Param.types());
+	public static JavaType[] TYPES = less(ModelParam.types());
 
 	@AutoTwip
 	public static Class<?>[] CLASSES = less(Param.classes());
 
 	@AutoTwip
-	public static JavaTypeParameter[] TYPE_PARAM = less(Param.typeParams());
+	public static JavaTypeParameter[] TYPE_PARAM = less(ModelParam.typeParams());
 
 	@AutoTwip
-	public static InterfaceModifiers[] IN_MODIF = less(Param
+	public static InterfaceModifiers[] IN_MODIF = less(ModelParam
 			.interfaceModifiers());
 
 	@AutoTwip
-	public static MethodModifiers[] M_MODIF = less(Param.methodModifiers());
+	public static MethodModifiers[] M_MODIF = less(ModelParam.methodModifiers());
 
 	/* ********************** TYPE COMBINATIONS ************************** */
 

@@ -16,10 +16,8 @@
 
 package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.data.JavaMetadataData;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.type.JavaType;
 
 public class JavaMetadataBean extends JavaMetadataData implements JavaMetadata {
 

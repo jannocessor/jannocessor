@@ -21,6 +21,7 @@ import net.sf.twip.TwiP;
 import net.sf.twip.Values;
 
 import org.jannocessor.model.bean.AbstractModelTest;
+import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaExceptionParameter;
@@ -35,7 +36,7 @@ public class JavaExceptionParameterTest extends AbstractModelTest {
 	public static String[] IDS = Param.identifiers();
 
 	@AutoTwip
-	public static JavaType[] TYPES = Param.types();
+	public static JavaType[] TYPES = ModelParam.types();
 
 	@AutoTwip
 	public static Class<?>[] CLASSES = Param.classes();

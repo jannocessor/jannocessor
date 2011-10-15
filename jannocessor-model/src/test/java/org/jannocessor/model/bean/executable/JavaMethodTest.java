@@ -25,6 +25,7 @@ import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 import org.jannocessor.model.variable.JavaParameter;
@@ -39,16 +40,16 @@ public class JavaMethodTest extends AbstractModelTest {
 	public static String[] IDS = less(Param.identifiers());
 
 	@AutoTwip
-	public static JavaType[] TYPES = Param.types();
+	public static JavaType[] TYPES = ModelParam.types();
 
 	@AutoTwip
 	public static Class<?>[] CLASSES = Param.classes();
 
 	@AutoTwip
-	public static JavaTypeParameter[] TYPE_PARAM = Param.typeParams();
+	public static JavaTypeParameter[] TYPE_PARAM = ModelParam.typeParams();
 
 	@AutoTwip
-	public static MethodModifiers[] MODIF = less(Param.methodModifiers());
+	public static MethodModifiers[] MODIF = less(ModelParam.methodModifiers());
 
 	/* ********************* PARAMETER COMBINATIONS ******************** */
 
