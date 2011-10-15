@@ -23,13 +23,10 @@ public class VelocityEventHandler implements ReferenceInsertionEventHandler,
 	}
 
 	public Object referenceInsert(String reference, Object data) {
-		// logger.debug("referenceInsert: " + reference + " data: " + data);
 		return data;
 	}
 
 	public boolean shouldLogOnNullSet(String lhs, String rhs) {
-		// logger.debug("shouldLogOnNullSet");
-		// logger.debug("lhs:" + lhs + " rhs:" + rhs);
 		return true;
 	}
 
@@ -44,16 +41,7 @@ public class VelocityEventHandler implements ReferenceInsertionEventHandler,
 	@Override
 	public Object invalidGetMethod(Context context, String reference,
 			Object object, String property, Info info) {
-		logger.error(
-				"Invalid read: {reference:{}, object:{}, property:{}, template:{}}",
-				new Object[] { reference, object, property, info });
-
 		return null;
-		// if (property != null) {
-		// return String.format("[INVALID PROPERTY: \"%s\"!]", property);
-		// } else {
-		// return String.format("[INVALID REFERENCE: \"%s\"!]", reference);
-		// }
 	}
 
 	@Override
@@ -71,7 +59,6 @@ public class VelocityEventHandler implements ReferenceInsertionEventHandler,
 				"Invalid method: {ref:{}, obj:{}, method:{}, template:{}}",
 				new Object[] { reference, object, method, info });
 		return null;
-		// return String.format("[INVALID METHOD: \"%s\"!]", method);
 	}
 
 }
