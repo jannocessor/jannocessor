@@ -1,11 +1,10 @@
-#set($abstract = ${extra.Methods.ABSTRACT})
 #join(" ", [
-  "#modifiers_without($self, $abstract)",
+  "#modifiers_without($self, $Methods.ABSTRACT)",
   "#type_parameters($self)",
   "#render($self.returnType)",
   "${self.name}(#parameters($self))"
 ])
-#if(!$self.modifiers.contains($abstract)) {
-#body($self)
+#if(!$self.modifiers.contains($Methods.ABSTRACT)) {
+#body($self, "#default_body($self)")
 }#else
 ;#end

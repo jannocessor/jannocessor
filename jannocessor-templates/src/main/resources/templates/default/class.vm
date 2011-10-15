@@ -1,3 +1,4 @@
+#java_file($self.packageName, $self.name)
 package $self.packageName;
 
 #smart_import()

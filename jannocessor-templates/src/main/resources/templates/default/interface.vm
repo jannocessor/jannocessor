@@ -1,9 +1,10 @@
+#java_file($self.packageName, $self.name)
 package $self.packageName;
 
 #smart_import()
 
 #join(" ", [
-  "#modifiers_without($self, ${extra.Interfaces.ABSTRACT})",
+  "#modifiers_without($self, $Interfaces.ABSTRACT)",
   "interface",
   "$self.name",
   "#type_parameters($self)",

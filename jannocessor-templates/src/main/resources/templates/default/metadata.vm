@@ -1,6 +1,7 @@
 #@trim()
+
 @#type($self.annotation)#metadata_values($self.values)
-#end
+
 #macro(metadata_values $values)
 #@trim()
 #if($values.size() == 1 && $values.value)
@@ -10,13 +11,15 @@
 #end
 #end
 #end
+
 #macro(annotation_value $x)
 #if($helper.isInstanceOf($x, "java.util.List"))
 #if($x.size()>1)
-#list($x, '#value($it)', ', ')
-#else
+{#list($x, '#value($it)', ', ')}#else
 #value($x[0])
 #end
 #else
 #value($x)#end
+#end
+
 #end

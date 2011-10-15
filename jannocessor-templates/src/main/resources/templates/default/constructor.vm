@@ -4,5 +4,6 @@
   "${self.parent.name}(#parameters($self))",
   "{"
 ])
-#body($self)
+
+#body($self, '')
 }
