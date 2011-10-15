@@ -32,6 +32,8 @@ public interface JavaType extends JavaCodeModel {
 
 	Name getCanonicalName();
 
+	Object getDefaultValue();
+
 	boolean hasError();
 
 	boolean isVoid();

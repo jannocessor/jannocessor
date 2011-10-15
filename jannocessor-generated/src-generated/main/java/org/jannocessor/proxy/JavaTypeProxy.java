@@ -54,6 +54,8 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
 	private boolean getCanonicalNameInitialized = false;
 
+	private boolean getDefaultValueInitialized = false;
+
 	private boolean hasErrorInitialized = false;
 
 	private boolean isVoidInitialized = false;
@@ -120,6 +122,15 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         }
 
         return data.getCanonicalName();
+    }
+
+    public Object getDefaultValue() {
+        if (!getDefaultValueInitialized) {
+            data.setDefaultValue(adapter.getDefaultValue());
+			getDefaultValueInitialized = true;
+        }
+
+        return data.getDefaultValue();
     }
 
     public boolean hasError() {
@@ -320,6 +331,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.append(this.getTypeClass(), other.getTypeClass())
 				.append(this.getSimpleName(), other.getSimpleName())
 				.append(this.getCanonicalName(), other.getCanonicalName())
+				.append(this.getDefaultValue(), other.getDefaultValue())
 				.append(this.isVoid(), other.isVoid())
 				.append(this.isNull(), other.isNull())
 				.append(this.isPrimitive(), other.isPrimitive())
@@ -340,6 +352,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.append(this.getTypeClass())
 				.append(this.getSimpleName())
 				.append(this.getCanonicalName())
+				.append(this.getDefaultValue())
 				.append(this.isVoid())
 				.append(this.isNull())
 				.append(this.isPrimitive())
@@ -368,6 +381,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         builder.append("typeClass", this.getTypeClass());
         builder.append("simpleName", this.getSimpleName());
         builder.append("canonicalName", this.getCanonicalName());
+        builder.append("defaultValue", this.getDefaultValue());
         builder.append("_isVoid", this.isVoid());
         builder.append("_isNull", this.isNull());
         builder.append("_isPrimitive", this.isPrimitive());

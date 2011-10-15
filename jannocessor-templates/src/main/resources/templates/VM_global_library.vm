@@ -25,9 +25,20 @@ $default
 #set($self = $model)
 #render_x($model.code, false)#end
 
-#macro(body $model)
+#macro(body $model $default)
 #set($self = $model)
-#render_x($model.body, "")#end
+#render_x($model.body, $default)#end
+
+#macro(optional $value $default)
+#if($value)
+$value#else
+$default#end
+#end
+
+#macro(default_body $method)
+#if($method.returnType.simpleName.text != 'void')
+return #optional($method.returnType.defaultValue, 'null');#end
+#end
 
 #macro(modifiers $model)
 #foreach($mod in $model.modifiers.values)
@@ -134,3 +145,8 @@ $helper.fileMark($filename)
 
 #macro(value $x)
 $representer.getJavaRepresentation($x)#end
+
+#macro(java_file $pkg $cls)
+#set($package = $pkg.text.replaceAll('\.', '/'))
+#file("${package}/${cls}.java")
+#end

@@ -217,4 +217,17 @@ public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 		return null;
 	}
 
+	@Override
+	public Object getDefaultValue() {
+		if (typeMirror.getKind().isPrimitive()) {
+			if (typeMirror.getKind() == TypeKind.BOOLEAN) {
+				return false;
+			} else {
+				return 0;
+			}
+		} else {
+			return null;
+		}
+	}
+
 }

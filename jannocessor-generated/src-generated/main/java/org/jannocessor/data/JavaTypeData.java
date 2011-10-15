@@ -43,6 +43,8 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 
     private Name canonicalName;
 
+    private Object defaultValue;
+
     private boolean _hasError;
 
     private boolean _isVoid;
@@ -106,6 +108,14 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 
     public void setCanonicalName(Name value) {
         this.canonicalName = value;
+    }
+
+    public Object getDefaultValue() {
+        return this.defaultValue;
+    }
+
+    public void setDefaultValue(Object value) {
+        this.defaultValue = value;
     }
 
     public boolean hasError() {
@@ -286,6 +296,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 				.append(this.getTypeClass(), other.getTypeClass())
 				.append(this.getSimpleName(), other.getSimpleName())
 				.append(this.getCanonicalName(), other.getCanonicalName())
+				.append(this.getDefaultValue(), other.getDefaultValue())
 				.append(this.isVoid(), other.isVoid())
 				.append(this.isNull(), other.isNull())
 				.append(this.isPrimitive(), other.isPrimitive())
@@ -306,6 +317,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 				.append(this.getTypeClass())
 				.append(this.getSimpleName())
 				.append(this.getCanonicalName())
+				.append(this.getDefaultValue())
 				.append(this.isVoid())
 				.append(this.isNull())
 				.append(this.isPrimitive())
@@ -334,6 +346,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
         builder.append("typeClass", this.getTypeClass());
         builder.append("simpleName", this.getSimpleName());
         builder.append("canonicalName", this.getCanonicalName());
+        builder.append("defaultValue", this.getDefaultValue());
         builder.append("_isVoid", this.isVoid());
         builder.append("_isNull", this.isNull());
         builder.append("_isPrimitive", this.isPrimitive());
