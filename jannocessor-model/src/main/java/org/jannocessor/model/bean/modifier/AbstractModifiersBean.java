@@ -18,6 +18,7 @@ package org.jannocessor.model.bean.modifier;
 
 import java.util.Arrays;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -43,7 +44,12 @@ public abstract class AbstractModifiersBean<T extends Enum<T>, M extends Abstrac
 
 	@Override
 	public boolean contains(M modifiers) {
-		return false;
+		for (T modifier : modifiers.getValues()) {
+			if (!ArrayUtils.contains(values, modifier)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
