@@ -12,6 +12,14 @@
 	<artifactId>jannocessor-test-common</artifactId>
 	<version>${project.parent.version}</version>
 
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.twip</groupId>
+			<artifactId>twip</artifactId>
+			<version>3.3</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
