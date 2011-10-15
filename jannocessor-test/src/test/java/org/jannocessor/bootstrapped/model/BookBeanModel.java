@@ -16,10 +16,15 @@
 
 package org.jannocessor.bootstrapped.model;
 
+import java.awt.List;
+
+import javax.annotation.Generated;
+import javax.lang.model.type.TypeKind;
+
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-@AnotherAnnotation(a = 105, b = "xx")
+@AnotherAnnotation(a = 105, b = "xx", cls = List.class, kind = TypeKind.DECLARED, ann = @Generated("gen"))
 @BeanModel
 @SuppressWarnings("unused")
 public class BookBeanModel {
@@ -27,9 +32,5 @@ public class BookBeanModel {
 	private transient String title;
 
 	public static PersonBeanModel author;
-
-	{
-		System.err.println("hi!");
-	}
 
 }

@@ -7,19 +7,29 @@
 #if($values.size() == 1 && $values.value)
 (#annotation_value($values.value))
 #elseif($values.size() > 0)
-(#map($values, '${entry.key}=#annotation_value($entry.value)', ', '))
+(#map($values, '${entry.key} = #annotation_value($entry.value)', ', '))
 #end
 #end
 #end
 
 #macro(annotation_value $x)
+#@trim()
 #if($helper.isInstanceOf($x, "java.util.List"))
 #if($x.size()>1)
-{#list($x, '#value($it)', ', ')}#else
+{#list($x, '#value($it)', ', ')}
+#else
 #value($x[0])
 #end
+#elseif($helper.isInstanceOf($x, "org.jannocessor.model.type.JavaType"))
+#type($x).class
+#elseif($helper.isInstanceOf($x, "org.jannocessor.model.variable.JavaEnumConstant"))
+#type($x.type).$x.name
+#elseif($helper.isInstanceOf($x, "org.jannocessor.model.structure.JavaMetadata"))
+#render($x)
 #else
-#value($x)#end
+#value($x)
+#end
+#end
 #end
 
 #end

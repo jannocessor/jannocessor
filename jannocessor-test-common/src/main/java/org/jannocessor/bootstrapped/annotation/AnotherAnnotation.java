@@ -16,6 +16,11 @@
 
 package org.jannocessor.bootstrapped.annotation;
 
+import java.awt.List;
+
+import javax.annotation.Generated;
+import javax.lang.model.type.TypeKind;
+
 public @interface AnotherAnnotation {
 
 	int a() default -1;
@@ -23,4 +28,11 @@ public @interface AnotherAnnotation {
 	String b() default "";
 
 	String c() default "default value";
+
+	Class<List> cls() default List.class;
+
+	TypeKind kind() default TypeKind.VOID;
+
+	Generated ann() default @Generated("foo");
+
 }
