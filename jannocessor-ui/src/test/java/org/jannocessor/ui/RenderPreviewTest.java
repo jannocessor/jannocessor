@@ -26,6 +26,7 @@ import org.jannocessor.model.util.Fields;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderRegister;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.mockito.Mockito;
 
 public class RenderPreviewTest {
@@ -47,6 +48,10 @@ public class RenderPreviewTest {
 
 		Configurator configurator = Mockito.mock(Configurator.class);
 		Mockito.when(configurator.getTemplatesPath()).thenReturn(path);
-		RenderPreview.showDialog(path, renderRegister, configurator);
+
+		JavaRepresenter representer = Mockito.mock(JavaRepresenter.class);
+
+		RenderPreview.showDialog(path, renderRegister, configurator,
+				representer);
 	}
 }

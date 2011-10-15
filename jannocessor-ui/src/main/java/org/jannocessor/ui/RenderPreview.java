@@ -18,6 +18,7 @@ package org.jannocessor.ui;
 
 import org.jannocessor.processor.model.RenderRegister;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +27,12 @@ public class RenderPreview {
 	protected static Logger logger = LoggerFactory.getLogger("UI");
 
 	public static void showDialog(String projectPath,
-			RenderRegister renderRegister, Configurator configurator) {
+			RenderRegister renderRegister, Configurator configurator,
+			JavaRepresenter representer) {
 		if (!renderRegister.getRenderings().isEmpty()) {
 			logger.info("Starting UI...");
 			RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
-					renderRegister, configurator);
+					renderRegister, configurator, representer);
 			dlg.setVisible(true);
 		}
 	}

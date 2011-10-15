@@ -23,6 +23,7 @@ import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.SourceCodeRenderer;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,8 +39,10 @@ public class DefaultSourceCodeRendererTest {
 		Configurator configurator = Mockito.mock(Configurator.class);
 		Mockito.when(configurator.getTemplatesPath()).thenReturn("templates");
 
+		JavaRepresenter representer = Mockito.mock(JavaRepresenter.class);
+
 		VelocityTemplateRenderer templateRenderer = new VelocityTemplateRenderer(
-				configurator);
+				configurator, representer);
 		templateRenderer.configure(null, false);
 
 		TypeUtils typeUtils = Mockito.mock(TypeUtils.class);

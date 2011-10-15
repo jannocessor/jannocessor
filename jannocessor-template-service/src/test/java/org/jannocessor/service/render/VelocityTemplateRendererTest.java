@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +38,9 @@ public class VelocityTemplateRendererTest {
 		Configurator configurator = Mockito.mock(Configurator.class);
 		Mockito.when(configurator.getTemplatesPath()).thenReturn("templates");
 
-		renderer = new VelocityTemplateRenderer(configurator);
+		JavaRepresenter representer = Mockito.mock(JavaRepresenter.class);
+
+		renderer = new VelocityTemplateRenderer(configurator, representer);
 		renderer.configure(null, false);
 	}
 

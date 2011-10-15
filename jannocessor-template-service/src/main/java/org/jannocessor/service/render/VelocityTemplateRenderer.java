@@ -37,6 +37,7 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.apache.velocity.runtime.resource.loader.FileResourceLoader;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.service.imports.ImportOrganizerImpl;
 import org.jannocessor.util.Settings;
@@ -56,9 +57,13 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 	private boolean configured = false;
 
+	private final JavaRepresenter representer;
+
 	@Inject
-	public VelocityTemplateRenderer(Configurator configurator) {
+	public VelocityTemplateRenderer(Configurator configurator,
+			JavaRepresenter representer) {
 		this.configurator = configurator;
+		this.representer = representer;
 		this.engine = new VelocityEngine();
 	}
 
@@ -90,6 +95,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 		engine.init(velocityConfig);
 
 		engine.setApplicationAttribute("logger", logger);
+		engine.setApplicationAttribute("representer", representer);
 
 		configured = true;
 	}

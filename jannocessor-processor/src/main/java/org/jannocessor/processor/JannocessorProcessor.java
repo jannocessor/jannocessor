@@ -66,7 +66,8 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		engine.executeRules(rules, facts, globals);
 
 		// show graphical user interface
-		RenderPreview.showDialog(getTemplatesPath(), renderRegister, engine);
+		RenderPreview.showDialog(getTemplatesPath(), renderRegister, engine,
+				engine);
 
 		// rendered the registered data again after UI processing
 		renderRegistered();

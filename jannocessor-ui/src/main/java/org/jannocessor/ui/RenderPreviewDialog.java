@@ -45,6 +45,7 @@ import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderData;
 import org.jannocessor.processor.model.RenderRegister;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.MultiContentSplitter;
 import org.jannocessor.service.api.TemplateRenderer;
 import org.jannocessor.service.render.VelocityTemplateRenderer;
@@ -81,11 +82,12 @@ public class RenderPreviewDialog extends JDialog {
 	private JScrollPane scroll2;
 
 	public RenderPreviewDialog(String templatesPath,
-			RenderRegister renderRegister, Configurator configurator) {
+			RenderRegister renderRegister, Configurator configurator,
+			JavaRepresenter representer) {
 		this.templatesPath = templatesPath;
 		this.renderRegister = renderRegister;
 
-		renderer = new VelocityTemplateRenderer(configurator);
+		renderer = new VelocityTemplateRenderer(configurator, representer);
 		renderer.configure(templatesPath, true);
 
 		splitter = new MultiContentSplitterImpl();

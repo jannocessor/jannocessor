@@ -17,12 +17,13 @@
 package org.jannocessor.engine;
 
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.MultiContentSplitter;
 import org.jannocessor.service.api.RuleExecutor;
 import org.jannocessor.service.api.RulesGenerator;
 import org.jannocessor.service.api.TemplateRenderer;
 
 public interface JannocessorEngine extends Configurator, RuleExecutor,
-		TemplateRenderer, RulesGenerator, MultiContentSplitter {
+		TemplateRenderer, RulesGenerator, MultiContentSplitter, JavaRepresenter {
 
 }

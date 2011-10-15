@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
+import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.MultiContentSplitter;
 import org.jannocessor.service.api.RuleExecutor;
 import org.jannocessor.service.api.RulesGenerator;
@@ -37,16 +38,19 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	private final TemplateRenderer generator;
 	private final RulesGenerator rulesGenerator;
 	private final MultiContentSplitter splitter;
+	private final JavaRepresenter representer;
 
 	@Inject
 	public JannocessorEngineImpl(Configurator config,
 			RuleExecutor ruleExecutor, TemplateRenderer generator,
-			RulesGenerator rulesGenerator, MultiContentSplitter splitter) {
+			RulesGenerator rulesGenerator, MultiContentSplitter splitter,
+			JavaRepresenter representer) {
 		this.config = config;
 		this.ruleExecutor = ruleExecutor;
 		this.generator = generator;
 		this.rulesGenerator = rulesGenerator;
 		this.splitter = splitter;
+		this.representer = representer;
 	}
 
 	public String getResourcesPath() throws JannocessorException {
@@ -146,6 +150,11 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	@Override
 	public Map<String, String> split(String contents) {
 		return splitter.split(contents);
+	}
+
+	@Override
+	public String getJavaRepresentation(Object value) {
+		return representer.getJavaRepresentation(value);
 	}
 
 }
