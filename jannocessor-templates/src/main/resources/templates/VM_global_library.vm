@@ -1,5 +1,4 @@
 #macro(main)
-#set($extra = $renderer.extra)
 #if($self)
 #render($self)
 #end
@@ -100,13 +99,13 @@ $s.trim()#end
 #end
 
 #macro(join $sep $items)
-$renderer.join($sep, $items)#end
+$helper.join($sep, $items)#end
 
 #macro(help)
-$renderer.insight()#end
+$helper.insight()#end
 
 #macro(locate $tmpl)
-$renderer.locate($tmpl)#end
+$helper.locate($tmpl)#end
 
 #macro(members $members_list)
 #foreach ($m in $members_list)
@@ -130,8 +129,8 @@ $renderer.locate($tmpl)#end
 #end
 
 #macro(file $filename)
-$renderer.fileMark($filename)
+$helper.fileMark($filename)
 #end
 
 #macro(value $x)
-"$x"#end
+$representer.getJavaRepresentation($x)#end

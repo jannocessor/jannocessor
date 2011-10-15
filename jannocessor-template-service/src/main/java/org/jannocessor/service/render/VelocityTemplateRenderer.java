@@ -21,6 +21,8 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -35,6 +37,19 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.apache.velocity.runtime.resource.loader.FileResourceLoader;
+import org.jannocessor.collection.Power;
+import org.jannocessor.model.util.Annotations;
+import org.jannocessor.model.util.Classes;
+import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.Constructors;
+import org.jannocessor.model.util.Enums;
+import org.jannocessor.model.util.Fields;
+import org.jannocessor.model.util.Interfaces;
+import org.jannocessor.model.util.Methods;
+import org.jannocessor.model.util.NestedAnnotations;
+import org.jannocessor.model.util.NestedClasses;
+import org.jannocessor.model.util.NestedEnums;
+import org.jannocessor.model.util.NestedInterfaces;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
@@ -51,8 +66,6 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 	private Logger logger = LoggerFactory.getLogger("RENDERER");
 
-	private final Configurator configurator;
-
 	private final VelocityEngine engine;
 
 	private boolean configured = false;
@@ -62,7 +75,6 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 	@Inject
 	public VelocityTemplateRenderer(Configurator configurator,
 			JavaRepresenter representer) {
-		this.configurator = configurator;
 		this.representer = representer;
 		this.engine = new VelocityEngine();
 	}
@@ -94,9 +106,6 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 		engine.init(velocityConfig);
 
-		engine.setApplicationAttribute("logger", logger);
-		engine.setApplicationAttribute("representer", representer);
-
 		configured = true;
 	}
 
@@ -107,8 +116,8 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 		VelocityContext context = createContext(attributes);
 
-		TypeUtils typeUtils = getTypeUtils(attributes, context);
-		context.put("renderer", createRenderUtils(typeUtils, context));
+		TypeUtils typeUtils = createTypeUtils();
+		context.put("types", typeUtils);
 
 		Writer writer = new StringWriter();
 		engine.evaluate(context, writer, '"' + template + '"', template);
@@ -127,8 +136,8 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 			VelocityContext context = createContext(attributes);
 
-			TypeUtils typeUtils = getTypeUtils(attributes, context);
-			context.put("renderer", createRenderUtils(typeUtils, context));
+			TypeUtils typeUtils = createTypeUtils();
+			context.put("types", typeUtils);
 
 			Writer writer = new StringWriter();
 
@@ -157,8 +166,8 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 		VelocityContext context = createContext(attributes);
 
-		TypeUtils typeUtils = getTypeUtils(attributes, context);
-		context.put("renderer", createRenderUtils(typeUtils, context));
+		TypeUtils typeUtils = createTypeUtils();
+		context.put("types", typeUtils);
 
 		Writer writer = new StringWriter();
 		String logTag = "\"#" + macro + '"';
@@ -168,28 +177,11 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 		return postProcess(renderedText, typeUtils);
 	}
 
-	private TypeUtils getTypeUtils(Map<String, Object> attributes,
-			VelocityContext context) {
-		TypeUtils typeUtils = (TypeUtils) attributes.get("types");
-		if (typeUtils == null) {
-			typeUtils = createTypeUtils();
-			context.put("types", typeUtils);
-		}
-		return typeUtils;
-	}
-
 	private void checkWasConfigured() {
 		if (!configured) {
 			throw new IllegalStateException(
 					"The template renderer is not configured!");
 		}
-	}
-
-	private DefaultSourceCodeRenderer createRenderUtils(TypeUtils typeUtils,
-			VelocityContext context) {
-		logger.debug("Creating renderer...");
-		return new DefaultSourceCodeRenderer(this, configurator, typeUtils,
-				context);
 	}
 
 	private TypeUtils createTypeUtils() {
@@ -198,6 +190,12 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 	private VelocityContext createContext(Map<String, Object> attributes) {
 		VelocityContext context = new VelocityContext();
+
+		addModifiersToContext(context);
+
+		context.put("logger", logger);
+		context.put("representer", representer);
+		context.put("helper", new TemplateHelper(context));
 
 		for (Entry<String, Object> entry : attributes.entrySet()) {
 			logger.debug("- Attribute {} = '{}'", entry.getKey(),
@@ -209,6 +207,38 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 		eventHandler.listenToContext(context);
 
 		return context;
+	}
+
+	private void addModifiersToContext(VelocityContext context) {
+		context.put("Annotations", getStaticFields(Annotations.class));
+		context.put("Classes", getStaticFields(Classes.class));
+		context.put("Code", getStaticFields(Code.class));
+		context.put("Constructors", getStaticFields(Constructors.class));
+		context.put("Enums", getStaticFields(Enums.class));
+		context.put("Fields", getStaticFields(Fields.class));
+		context.put("Interfaces", getStaticFields(Interfaces.class));
+		context.put("Methods", getStaticFields(Methods.class));
+		context.put("NestedAnnotations",
+				getStaticFields(NestedAnnotations.class));
+		context.put("NestedClasses", getStaticFields(NestedClasses.class));
+		context.put("NestedEnums", getStaticFields(NestedEnums.class));
+		context.put("NestedInterfaces", getStaticFields(NestedInterfaces.class));
+	}
+
+	private Map<String, Object> getStaticFields(Class<?> clazz) {
+		Map<String, Object> map = Power.map();
+
+		for (Field field : clazz.getFields()) {
+			if (Modifier.isStatic(field.getModifiers())) {
+				try {
+					map.put(field.getName(), field.get(null));
+				} catch (Exception e) {
+					logger.error("Cannot access field: " + field.getName(), e);
+				}
+			}
+		}
+
+		return map;
 	}
 
 	private String replacePlaceholder(String text, String placeholder,
