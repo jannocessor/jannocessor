@@ -3,7 +3,7 @@ package $self.packageName;
 #smart_import()
 
 #join(" ", [
-  "#modifiers($self)",
+  "#modifiers_without($self, ${extra.Interfaces.ABSTRACT})",
   "interface",
   "$self.name",
   "#type_parameters($self)",

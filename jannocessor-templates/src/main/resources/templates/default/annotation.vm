@@ -1,9 +1,10 @@
+#set($abstract = ${extra.Annotations.ABSTRACT})
 package $self.packageName;
 
 #smart_import()
 
 #join(" ", [
-  "#modifiers($self)",
+  "#modifiers_without($self, $abstract)",
   "@interface",
   "$self.name",
   "#type_parameters($self)",
