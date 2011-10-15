@@ -93,6 +93,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 					ClasspathResourceLoader.class.getCanonicalName());
 		}
 
+		velocityConfig.setProperty(VM_MAX_DEPTH, "1000");
 		velocityConfig.setProperty(VM_PERM_INLINE_LOCAL, "true");
 		velocityConfig.setProperty(VM_CONTEXT_LOCALSCOPE, "true");
 
