@@ -243,6 +243,7 @@
 		<module>jannocessor-playground</module>
 		<module>jannocessor-splitter-service</module>
 		<module>jannocessor-representation-service</module>
+		<module>jannocessor-test-common</module>
 	</modules>
 
 </project>
