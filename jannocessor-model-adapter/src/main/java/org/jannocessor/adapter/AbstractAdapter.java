@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
@@ -33,6 +34,7 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,6 +80,11 @@ public abstract class AbstractAdapter {
 
 	protected JavaType getTypeAdapter(TypeMirror typeMirror) {
 		return AdapterFactory.getTypeModel(typeMirror, elementUtils, typeUtils);
+	}
+
+	protected JavaMetadata getMetadataAdapter(AnnotationMirror annotationMirror) {
+		return AdapterFactory.getMetadataAdapter(annotationMirror,
+				elementUtils, typeUtils);
 	}
 
 	protected Name getNameAdapter(Object value) {

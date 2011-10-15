@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -43,6 +44,10 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
     private Name qualifiedName;
 
     private JavaType superclass;
+
+    private PowerList<JavaMetadata> metadata;
+
+    private PowerList<JavaMetadata> allMetadata;
 
     private PowerList<JavaType> interfaces;
 
@@ -87,6 +92,22 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 
     public void setSuperclass(JavaType value) {
         this.superclass = value;
+    }
+
+    public PowerList<JavaMetadata> getMetadata() {
+        return this.metadata;
+    }
+
+    public void setMetadata(PowerList<JavaMetadata> value) {
+        this.metadata = value;
+    }
+
+    public PowerList<JavaMetadata> getAllMetadata() {
+        return this.allMetadata;
+    }
+
+    public void setAllMetadata(PowerList<JavaMetadata> value) {
+        this.allMetadata = value;
     }
 
     public PowerList<JavaType> getInterfaces() {
@@ -156,6 +177,8 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 				.append(this.getPackageName(), other.getPackageName())
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
+				.append(this.getMetadata(), other.getMetadata())
+				.append(this.getAllMetadata(), other.getAllMetadata())
 				.append(this.getInterfaces(), other.getInterfaces())
 				.append(this.getMethods(), other.getMethods())
 				.append(this.getNestedClasses(), other.getNestedClasses())
@@ -172,6 +195,8 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 				.append(this.getPackageName())
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
+				.append(this.getMetadata())
+				.append(this.getAllMetadata())
 				.append(this.getInterfaces())
 				.append(this.getMethods())
 				.append(this.getNestedClasses())
@@ -196,6 +221,8 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
         builder.append("packageName", this.getPackageName());
         builder.append("qualifiedName", this.getQualifiedName());
         builder.append("superclass", this.getSuperclass());
+        builder.append("metadata", this.getMetadata());
+        builder.append("allMetadata", this.getAllMetadata());
         builder.append("interfaces", this.getInterfaces());
         builder.append("methods", this.getMethods());
         builder.append("nestedClasses", this.getNestedClasses());

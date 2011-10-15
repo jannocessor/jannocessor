@@ -16,6 +16,7 @@
 
 package org.jannocessor.adapter.structure;
 
+import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
@@ -27,6 +28,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -57,6 +59,29 @@ abstract class AbstractJavaStructureAdapter extends JavaElementAdapter
 	@Override
 	public JavaType getSuperclass() {
 		return getTypeAdapter(type.getSuperclass());
+	}
+
+	@Override
+	public PowerList<JavaMetadata> getMetadata() {
+		PowerList<JavaMetadata> results = Power.list();
+
+		for (AnnotationMirror annotationMirror : type.getAnnotationMirrors()) {
+			results.add(getMetadataAdapter(annotationMirror));
+		}
+
+		return results;
+	}
+
+	@Override
+	public PowerList<JavaMetadata> getAllMetadata() {
+		PowerList<JavaMetadata> results = Power.list();
+
+		for (AnnotationMirror annotationMirror : getElementUtils()
+				.getAllAnnotationMirrors(type)) {
+			results.add(getMetadataAdapter(annotationMirror));
+		}
+
+		return results;
 	}
 
 	@Override

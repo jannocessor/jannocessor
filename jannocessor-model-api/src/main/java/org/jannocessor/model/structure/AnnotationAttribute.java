@@ -14,10 +14,20 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.modifier.value;
+package org.jannocessor.model.structure;
 
-public enum EnumModifierValue {
+import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.model.Name;
+import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.type.JavaType;
 
-	PUBLIC, FINAL;
+@DomainModel
+public interface AnnotationAttribute extends JavaCodeModel {
+
+	Name getName();
+
+	JavaType getType();
+
+	Object getDefaultValue();
 
 }

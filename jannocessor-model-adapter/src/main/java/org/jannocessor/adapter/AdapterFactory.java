@@ -16,6 +16,7 @@
 
 package org.jannocessor.adapter;
 
+import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
@@ -35,6 +36,7 @@ import org.jannocessor.adapter.structure.JavaAnnotationAdapter;
 import org.jannocessor.adapter.structure.JavaClassAdapter;
 import org.jannocessor.adapter.structure.JavaEnumAdapter;
 import org.jannocessor.adapter.structure.JavaInterfaceAdapter;
+import org.jannocessor.adapter.structure.JavaMetadataAdapter;
 import org.jannocessor.adapter.structure.JavaNestedAnnotationAdapter;
 import org.jannocessor.adapter.structure.JavaNestedClassAdapter;
 import org.jannocessor.adapter.structure.JavaNestedEnumAdapter;
@@ -57,6 +59,7 @@ import org.jannocessor.data.JavaFieldData;
 import org.jannocessor.data.JavaInstanceInitData;
 import org.jannocessor.data.JavaInterfaceData;
 import org.jannocessor.data.JavaLocalVariableData;
+import org.jannocessor.data.JavaMetadataData;
 import org.jannocessor.data.JavaMethodData;
 import org.jannocessor.data.JavaNestedAnnotationData;
 import org.jannocessor.data.JavaNestedClassData;
@@ -70,6 +73,7 @@ import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.proxy.JavaAnnotationProxy;
 import org.jannocessor.proxy.JavaClassProxy;
@@ -81,6 +85,7 @@ import org.jannocessor.proxy.JavaFieldProxy;
 import org.jannocessor.proxy.JavaInstanceInitProxy;
 import org.jannocessor.proxy.JavaInterfaceProxy;
 import org.jannocessor.proxy.JavaLocalVariableProxy;
+import org.jannocessor.proxy.JavaMetadataProxy;
 import org.jannocessor.proxy.JavaMethodProxy;
 import org.jannocessor.proxy.JavaNestedAnnotationProxy;
 import org.jannocessor.proxy.JavaNestedClassProxy;
@@ -256,6 +261,18 @@ public class AdapterFactory {
 		if (typeMirror != null) {
 			return new JavaTypeProxy(new JavaTypeAdapter(typeMirror,
 					elementUtils, typeUtils), new JavaTypeData());
+		} else {
+			return null;
+		}
+	}
+
+	public static JavaMetadata getMetadataAdapter(
+			AnnotationMirror annotationMirror, Elements elementUtils,
+			Types typeUtils) {
+		if (annotationMirror != null) {
+			return new JavaMetadataProxy(new JavaMetadataAdapter(
+					annotationMirror, elementUtils, typeUtils),
+					new JavaMetadataData());
 		} else {
 			return null;
 		}

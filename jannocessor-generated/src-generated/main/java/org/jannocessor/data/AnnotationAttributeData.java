@@ -17,10 +17,10 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaStructureData;
-import org.jannocessor.model.structure.AbstractJavaAnnotation;
-import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.structure.AnnotationAttribute;
+import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -28,17 +28,37 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class AbstractJavaAnnotationData extends AbstractJavaStructureData implements AbstractJavaAnnotation {
+public class AnnotationAttributeData extends JavaCodeModelData implements AnnotationAttribute {
 
-    private PowerList<AnnotationAttribute> attributes;
+    private Name name;
+
+    private JavaType type;
+
+    private Object defaultValue;
 
 
-    public PowerList<AnnotationAttribute> getAttributes() {
-        return this.attributes;
+    public Name getName() {
+        return this.name;
     }
 
-    public void setAttributes(PowerList<AnnotationAttribute> value) {
-        this.attributes = value;
+    public void setName(Name value) {
+        this.name = value;
+    }
+
+    public JavaType getType() {
+        return this.type;
+    }
+
+    public void setType(JavaType value) {
+        this.type = value;
+    }
+
+    public Object getDefaultValue() {
+        return this.defaultValue;
+    }
+
+    public void setDefaultValue(Object value) {
+        this.defaultValue = value;
     }
 
 	@Override
@@ -49,27 +69,31 @@ public class AbstractJavaAnnotationData extends AbstractJavaStructureData implem
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof AbstractJavaAnnotation)) {
+		if (!(obj instanceof AnnotationAttribute)) {
 			return false;
 		}
 
-		AbstractJavaAnnotation other = (AbstractJavaAnnotation) obj;
+		AnnotationAttribute other = (AnnotationAttribute) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getAttributes(), other.getAttributes())
+				.append(this.getName(), other.getName())
+				.append(this.getType(), other.getType())
+				.append(this.getDefaultValue(), other.getDefaultValue())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getAttributes())
+				.append(this.getName())
+				.append(this.getType())
+				.append(this.getDefaultValue())
 				.toHashCode();
 	}
 
 	@Override
 	public String toString() {
-		TypeSpecificStyle style = new TypeSpecificStyle(AbstractJavaAnnotation.class);
+		TypeSpecificStyle style = new TypeSpecificStyle(AnnotationAttribute.class);
 		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
@@ -78,7 +102,9 @@ public class AbstractJavaAnnotationData extends AbstractJavaStructureData implem
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("attributes", this.getAttributes());
+        builder.append("name", this.getName());
+        builder.append("type", this.getType());
+        builder.append("defaultValue", this.getDefaultValue());
 	}
 
 }

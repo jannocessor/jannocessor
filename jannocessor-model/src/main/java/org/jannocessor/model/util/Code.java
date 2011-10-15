@@ -131,7 +131,7 @@ public class Code {
 			.unmodifiableList();
 	public static final List<JavaField> NO_FIELDS = Power.unmodifiableList();
 
-	private static Name name(String name) {
+	public static Name name(String name) {
 		return new NameBean(name);
 	}
 

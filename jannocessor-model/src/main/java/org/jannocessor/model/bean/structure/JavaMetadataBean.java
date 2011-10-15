@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.modifier.value;
+package org.jannocessor.model.bean.structure;
 
-public enum EnumModifierValue {
+import org.jannocessor.collection.api.PowerMap;
+import org.jannocessor.data.JavaMetadataData;
+import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.type.JavaType;
 
-	PUBLIC, FINAL;
+public class JavaMetadataBean extends JavaMetadataData implements JavaMetadata {
+
 
 }

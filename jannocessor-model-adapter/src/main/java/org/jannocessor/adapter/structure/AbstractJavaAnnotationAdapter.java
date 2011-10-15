@@ -20,18 +20,41 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.collection.transform.api.Transformation;
+import org.jannocessor.model.bean.structure.AnnotationAttributeBean;
+import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
+import org.jannocessor.model.structure.AnnotationAttribute;
 
 abstract class AbstractJavaAnnotationAdapter extends
 		AbstractJavaStructureAdapter implements AbstractJavaAnnotation {
 
+	private static final Transformation<JavaMethod, AnnotationAttribute> METHOD_TO_ATTRIBUTE;
+
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;
+
+	static {
+		METHOD_TO_ATTRIBUTE = new Transformation<JavaMethod, AnnotationAttribute>() {
+			@Override
+			public AnnotationAttribute transform(JavaMethod method) {
+				return new AnnotationAttributeBean(method.getReturnType(),
+						method.getName().getText(), null);
+			}
+		};
+	}
 
 	public AbstractJavaAnnotationAdapter(TypeElement annotation,
 			Elements elementUtils, Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
 		this.annotation = annotation;
+	}
+
+	@Override
+	public PowerList<AnnotationAttribute> getAttributes() {
+		return findChildrenByType(JavaMethod.class).getTransformed(
+				METHOD_TO_ATTRIBUTE);
 	}
 
 }

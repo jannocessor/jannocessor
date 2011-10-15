@@ -34,6 +34,10 @@ public interface AbstractJavaStructure extends JavaElement {
 
 	JavaType getSuperclass();
 
+	PowerList<JavaMetadata> getMetadata();
+
+	PowerList<JavaMetadata> getAllMetadata();
+
 	PowerList<JavaType> getInterfaces();
 
 	PowerList<JavaMethod> getMethods();

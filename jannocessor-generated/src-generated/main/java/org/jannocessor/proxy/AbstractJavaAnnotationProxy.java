@@ -20,6 +20,8 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaStructureProxy;
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.jannocessor.data.AbstractJavaAnnotationData;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.AnnotationAttribute;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -29,10 +31,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy implements AbstractJavaAnnotation {
 
-    @SuppressWarnings("unused")
     private AbstractJavaAnnotation adapter;
 
-    @SuppressWarnings("unused")
     private AbstractJavaAnnotationData data;
 
     public AbstractJavaAnnotationProxy(AbstractJavaAnnotation adapter, AbstractJavaAnnotationData data) {
@@ -41,6 +41,17 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
         this.data = data;
     }
 
+	private boolean getAttributesInitialized = false;
+
+
+    public PowerList<AnnotationAttribute> getAttributes() {
+        if (!getAttributesInitialized) {
+            data.setAttributes(adapter.getAttributes());
+			getAttributesInitialized = true;
+        }
+
+        return data.getAttributes();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -57,12 +68,14 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
 		AbstractJavaAnnotation other = (AbstractJavaAnnotation) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getAttributes(), other.getAttributes())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getAttributes())
 				.toHashCode();
 	}
 
@@ -77,6 +90,7 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("attributes", this.getAttributes());
 	}
 
 }

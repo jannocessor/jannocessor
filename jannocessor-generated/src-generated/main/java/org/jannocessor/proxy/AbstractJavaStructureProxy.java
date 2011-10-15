@@ -23,6 +23,7 @@ import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -54,6 +55,10 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 	private boolean getQualifiedNameInitialized = false;
 
 	private boolean getSuperclassInitialized = false;
+
+	private boolean getMetadataInitialized = false;
+
+	private boolean getAllMetadataInitialized = false;
 
 	private boolean getInterfacesInitialized = false;
 
@@ -102,6 +107,24 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         }
 
         return data.getSuperclass();
+    }
+
+    public PowerList<JavaMetadata> getMetadata() {
+        if (!getMetadataInitialized) {
+            data.setMetadata(adapter.getMetadata());
+			getMetadataInitialized = true;
+        }
+
+        return data.getMetadata();
+    }
+
+    public PowerList<JavaMetadata> getAllMetadata() {
+        if (!getAllMetadataInitialized) {
+            data.setAllMetadata(adapter.getAllMetadata());
+			getAllMetadataInitialized = true;
+        }
+
+        return data.getAllMetadata();
     }
 
     public PowerList<JavaType> getInterfaces() {
@@ -177,6 +200,8 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 				.append(this.getPackageName(), other.getPackageName())
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
+				.append(this.getMetadata(), other.getMetadata())
+				.append(this.getAllMetadata(), other.getAllMetadata())
 				.append(this.getInterfaces(), other.getInterfaces())
 				.append(this.getMethods(), other.getMethods())
 				.append(this.getNestedClasses(), other.getNestedClasses())
@@ -193,6 +218,8 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 				.append(this.getPackageName())
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
+				.append(this.getMetadata())
+				.append(this.getAllMetadata())
 				.append(this.getInterfaces())
 				.append(this.getMethods())
 				.append(this.getNestedClasses())
@@ -217,6 +244,8 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         builder.append("packageName", this.getPackageName());
         builder.append("qualifiedName", this.getQualifiedName());
         builder.append("superclass", this.getSuperclass());
+        builder.append("metadata", this.getMetadata());
+        builder.append("allMetadata", this.getAllMetadata());
         builder.append("interfaces", this.getInterfaces());
         builder.append("methods", this.getMethods());
         builder.append("nestedClasses", this.getNestedClasses());
