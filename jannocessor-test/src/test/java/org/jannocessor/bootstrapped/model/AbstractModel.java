@@ -18,8 +18,21 @@ package org.jannocessor.bootstrapped.model;
 
 import java.io.Serializable;
 
+import org.jannocessor.bootstrapped.annotation.BeanModel;
+
+@SuppressWarnings("serial")
+@BeanModel
 public class AbstractModel implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	public static int rootMethod() {
+		return 0;
+	}
+
+	public void rootMethod2() {
+	}
+
+	public boolean[] rootMethod3() {
+		return null;
+	}
 
 }

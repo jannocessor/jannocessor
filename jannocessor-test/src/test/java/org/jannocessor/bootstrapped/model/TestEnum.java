@@ -22,18 +22,14 @@ import org.jannocessor.bootstrapped.annotation.BeanModel;
 @AnotherAnnotation(a = 105, b = "xx")
 @BeanModel
 public enum TestEnum {
-
-	A(1), B(2), C(3);
-
-	private final int k;
-
-	private TestEnum(int k) {
-		this.k = k;
-	}
+	A, B, C;
 
 	@Override
 	public String toString() {
-		return "E" + k;
+		return "hi";
 	}
 
+	public void someMethod() {
+
+	}
 }
