@@ -18,6 +18,7 @@ package org.jannocessor.adapter;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -26,6 +27,7 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
@@ -105,13 +107,21 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T extends Enum<T>> T[] getModifierValues(Class<T> enumType) {
+	protected <T extends Enum<T>> T[] getModifierValues(Class<T> enumType,
+			String... exceptValues) {
 		Set<Modifier> modifiers = element.getModifiers();
-		final T[] values = (T[]) Array.newInstance(enumType, modifiers.size());
+		T[] values = (T[]) Array.newInstance(enumType, modifiers.size());
 
 		int index = 0;
 		for (Modifier modifier : modifiers) {
-			values[index++] = Enum.valueOf(enumType, modifier.name());
+			if (!ArrayUtils.contains(exceptValues, modifier.name())) {
+				values[index++] = Enum.valueOf(enumType, modifier.name());
+			}
+		}
+
+		if (index < values.length) {
+			// if some modifier was filtered out, cut the array
+			values = Arrays.copyOf(values, index);
 		}
 
 		return values;
