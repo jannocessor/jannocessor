@@ -18,7 +18,7 @@ package org.jannocessor.data;
 
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaCodeModelData;
-import org.jannocessor.model.structure.AnnotationAttribute;
+import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class AnnotationAttributeData extends JavaCodeModelData implements AnnotationAttribute {
+public class JavaAnnotationAttributeData extends JavaCodeModelData implements JavaAnnotationAttribute {
 
     private Name name;
 
@@ -69,11 +69,11 @@ public class AnnotationAttributeData extends JavaCodeModelData implements Annota
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof AnnotationAttribute)) {
+		if (!(obj instanceof JavaAnnotationAttribute)) {
 			return false;
 		}
 
-		AnnotationAttribute other = (AnnotationAttribute) obj;
+		JavaAnnotationAttribute other = (JavaAnnotationAttribute) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getName(), other.getName())
@@ -93,7 +93,7 @@ public class AnnotationAttributeData extends JavaCodeModelData implements Annota
 
 	@Override
 	public String toString() {
-		TypeSpecificStyle style = new TypeSpecificStyle(AnnotationAttribute.class);
+		TypeSpecificStyle style = new TypeSpecificStyle(JavaAnnotationAttribute.class);
 		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();

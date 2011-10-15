@@ -22,24 +22,24 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.transform.api.Transformation;
-import org.jannocessor.model.bean.structure.AnnotationAttributeBean;
+import org.jannocessor.model.bean.structure.JavaAnnotationAttributeBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
-import org.jannocessor.model.structure.AnnotationAttribute;
+import org.jannocessor.model.structure.JavaAnnotationAttribute;
 
 abstract class AbstractJavaAnnotationAdapter extends
 		AbstractJavaStructureAdapter implements AbstractJavaAnnotation {
 
-	private static final Transformation<JavaMethod, AnnotationAttribute> METHOD_TO_ATTRIBUTE;
+	private static final Transformation<JavaMethod, JavaAnnotationAttribute> METHOD_TO_ATTRIBUTE;
 
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;
 
 	static {
-		METHOD_TO_ATTRIBUTE = new Transformation<JavaMethod, AnnotationAttribute>() {
+		METHOD_TO_ATTRIBUTE = new Transformation<JavaMethod, JavaAnnotationAttribute>() {
 			@Override
-			public AnnotationAttribute transform(JavaMethod method) {
-				return new AnnotationAttributeBean(method.getReturnType(),
+			public JavaAnnotationAttribute transform(JavaMethod method) {
+				return new JavaAnnotationAttributeBean(method.getReturnType(),
 						method.getName().getText(), null);
 			}
 		};
@@ -52,7 +52,7 @@ abstract class AbstractJavaAnnotationAdapter extends
 	}
 
 	@Override
-	public PowerList<AnnotationAttribute> getAttributes() {
+	public PowerList<JavaAnnotationAttribute> getAttributes() {
 		return findChildrenByType(JavaMethod.class).getTransformed(
 				METHOD_TO_ATTRIBUTE);
 	}

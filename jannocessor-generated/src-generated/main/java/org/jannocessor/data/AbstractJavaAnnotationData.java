@@ -20,7 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.AnnotationAttribute;
+import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -30,14 +30,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaAnnotationData extends AbstractJavaStructureData implements AbstractJavaAnnotation {
 
-    private PowerList<AnnotationAttribute> attributes;
+    private PowerList<JavaAnnotationAttribute> attributes;
 
 
-    public PowerList<AnnotationAttribute> getAttributes() {
+    public PowerList<JavaAnnotationAttribute> getAttributes() {
         return this.attributes;
     }
 
-    public void setAttributes(PowerList<AnnotationAttribute> value) {
+    public void setAttributes(PowerList<JavaAnnotationAttribute> value) {
         this.attributes = value;
     }
 

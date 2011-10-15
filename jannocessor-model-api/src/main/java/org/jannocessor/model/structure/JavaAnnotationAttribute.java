@@ -22,7 +22,7 @@ import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.type.JavaType;
 
 @DomainModel
-public interface AnnotationAttribute extends JavaCodeModel {
+public interface JavaAnnotationAttribute extends JavaCodeModel {
 
 	Name getName();
 

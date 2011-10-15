@@ -16,25 +16,25 @@
 
 package org.jannocessor.model.bean.structure;
 
-import org.jannocessor.data.AnnotationAttributeData;
+import org.jannocessor.data.JavaAnnotationAttributeData;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.structure.AnnotationAttribute;
+import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 
-public class AnnotationAttributeBean extends AnnotationAttributeData implements
-		AnnotationAttribute {
+public class JavaAnnotationAttributeBean extends JavaAnnotationAttributeData
+		implements JavaAnnotationAttribute {
 
 	private JavaType type;
 	private Name name;
 	private Object defaultValue;
 
-	public AnnotationAttributeBean(JavaType type, String name,
+	public JavaAnnotationAttributeBean(JavaType type, String name,
 			Object defaultValue) {
 		this.type = type;
 		this.name = Code.name(name);
 		this.defaultValue = defaultValue;
-		this.setCode(Code.code(AnnotationAttribute.class));
+		this.setCode(Code.code(JavaAnnotationAttribute.class));
 	}
 
 	@Override

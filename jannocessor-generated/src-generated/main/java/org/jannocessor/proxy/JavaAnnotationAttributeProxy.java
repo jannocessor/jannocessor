@@ -18,8 +18,8 @@ package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaCodeModelProxy;
-import org.jannocessor.model.structure.AnnotationAttribute;
-import org.jannocessor.data.AnnotationAttributeData;
+import org.jannocessor.model.structure.JavaAnnotationAttribute;
+import org.jannocessor.data.JavaAnnotationAttributeData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -29,13 +29,13 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class AnnotationAttributeProxy extends JavaCodeModelProxy implements AnnotationAttribute {
+public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements JavaAnnotationAttribute {
 
-    private AnnotationAttribute adapter;
+    private JavaAnnotationAttribute adapter;
 
-    private AnnotationAttributeData data;
+    private JavaAnnotationAttributeData data;
 
-    public AnnotationAttributeProxy(AnnotationAttribute adapter, AnnotationAttributeData data) {
+    public JavaAnnotationAttributeProxy(JavaAnnotationAttribute adapter, JavaAnnotationAttributeData data) {
         super(adapter, data);
         this.adapter = adapter;
         this.data = data;
@@ -83,11 +83,11 @@ public class AnnotationAttributeProxy extends JavaCodeModelProxy implements Anno
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof AnnotationAttribute)) {
+		if (!(obj instanceof JavaAnnotationAttribute)) {
 			return false;
 		}
 
-		AnnotationAttribute other = (AnnotationAttribute) obj;
+		JavaAnnotationAttribute other = (JavaAnnotationAttribute) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getName(), other.getName())
@@ -107,7 +107,7 @@ public class AnnotationAttributeProxy extends JavaCodeModelProxy implements Anno
 
 	@Override
 	public String toString() {
-		TypeSpecificStyle style = new TypeSpecificStyle(AnnotationAttribute.class);
+		TypeSpecificStyle style = new TypeSpecificStyle(JavaAnnotationAttribute.class);
 		ToStringBuilder builder = new ToStringBuilder(this, style);
 		appendDescription(builder);
 		return builder.toString();
