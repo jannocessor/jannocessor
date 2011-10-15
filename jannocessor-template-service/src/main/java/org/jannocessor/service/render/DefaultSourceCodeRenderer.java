@@ -16,6 +16,8 @@
 
 package org.jannocessor.service.render;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -23,9 +25,23 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.VelocityContext;
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.model.executable.ExecutableBody;
+import org.jannocessor.model.util.Annotations;
+import org.jannocessor.model.util.Classes;
+import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.Constructors;
+import org.jannocessor.model.util.Enums;
+import org.jannocessor.model.util.Fields;
+import org.jannocessor.model.util.Interfaces;
+import org.jannocessor.model.util.Methods;
+import org.jannocessor.model.util.NestedAnnotations;
+import org.jannocessor.model.util.NestedClasses;
+import org.jannocessor.model.util.NestedEnums;
+import org.jannocessor.model.util.NestedInterfaces;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.MultiContentSplitter;
@@ -182,14 +198,6 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 	}
 
 	public String locate(String templateName) throws JannocessorException {
-		// File file = new File(configurator.getTemplatesPath() + "/"
-		// + templateName + ".vm");
-		// if (file.exists()) {
-		// return file.getAbsolutePath();
-		// } else {
-		// throw new IllegalArgumentException("Cannot locate template: "
-		// + templateName);
-		// }
 		return templateName + ".vm";
 	}
 
@@ -198,4 +206,42 @@ public class DefaultSourceCodeRenderer implements SourceCodeRenderer {
 				MultiContentSplitter.SUFFIX);
 	}
 
+	public Map<String, Object> getExtra() {
+		PowerMap<String, Object> map = Power.map();
+
+		map.put("Annotations", classWrapper(Annotations.class));
+		map.put("Classes", classWrapper(Classes.class));
+		map.put("Code", classWrapper(Code.class));
+		map.put("Constructors", classWrapper(Constructors.class));
+		map.put("Enums", classWrapper(Enums.class));
+		map.put("Fields", classWrapper(Fields.class));
+		map.put("Interfaces", classWrapper(Interfaces.class));
+		map.put("Methods", classWrapper(Methods.class));
+		map.put("NestedAnnotations", classWrapper(NestedAnnotations.class));
+		map.put("NestedClasses", classWrapper(NestedClasses.class));
+		map.put("NestedEnums", classWrapper(NestedEnums.class));
+		map.put("NestedInterfaces", classWrapper(NestedInterfaces.class));
+
+		map.put("r", "\r");
+		map.put("n", "\n");
+		map.put("t", "\t");
+
+		return map;
+	}
+
+	private Map<String, Object> classWrapper(Class<?> clazz) {
+		Map<String, Object> map = Power.map();
+
+		for (Field field : clazz.getFields()) {
+			if (Modifier.isStatic(field.getModifiers())) {
+				try {
+					map.put(field.getName(), field.get(null));
+				} catch (Exception e) {
+					logger.error("Cannot access field: " + field.getName(), e);
+				}
+			}
+		}
+
+		return map;
+	}
 }

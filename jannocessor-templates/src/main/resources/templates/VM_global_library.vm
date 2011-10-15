@@ -1,12 +1,12 @@
 #macro(main)
+#set($extra = $renderer.extra)
 #if($self)
 #render($self)
 #end
 #end
 
 #macro(smart_import)
-(!PLACEHOLDER:SMART_IMPORT!)
-#end
+(!PLACEHOLDER:SMART_IMPORT!)#end
 
 #macro(type $java_type)$types.useType($java_type)#end
 
@@ -33,6 +33,17 @@ $default
 #macro(modifiers $model)
 #foreach($mod in $model.modifiers.values)
 $mod.toString().toLowerCase()#sep(" ")
+#end
+#end
+
+#macro(modifiers_without $model $without)
+#@trim()
+#set($without_values = $without.values)
+#foreach($mod in $model.modifiers.values)
+#if(!$without_values.contains($mod))
+$mod.toString().toLowerCase()#sep(" ")
+#end
+#end
 #end
 #end
 
@@ -64,11 +75,27 @@ $s.trim()#end
 #end
 #end
 
-#macro(render_list $items)
+#macro(map $map $template $separator)
+#foreach($entry in $map.entrySet())
+#evaluate($template)#sep($separator)
+#end
+#end
+
+#macro(render_list $items $sep)
+#if(!$sep)
+#set($sep=", ")
+#end
 #foreach($item in $items)
 #@trim()
-#render($item)#sep(", ")
+#render($item)#sep($sep)
 #end
+#end
+#end
+
+#macro(render_lines $items)
+#foreach($item in $items)
+#render($item)
+
 #end
 #end
 
@@ -105,3 +132,6 @@ $renderer.locate($tmpl)#end
 #macro(file $filename)
 $renderer.fileMark($filename)
 #end
+
+#macro(value $x)
+"$x"#end
