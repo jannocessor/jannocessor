@@ -2,8 +2,7 @@ package $self.packageName;
 
 #smart_import()
 
-#set($foo = "Bar")
-
+#render_lines($self.metadata)
 #join(" ", [
   "#modifiers($self)",
   "class",

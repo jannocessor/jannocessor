@@ -1,0 +1,14 @@
+#@trim()
+@#type($self.annotation)#metadata_values($self.values)
+#end
+#macro(metadata_values $values)
+#@trim()
+#if($values.size() == 1 && $values.value)
+(#annotation_value($values.value))
+#elseif($values.size() > 0)
+(#map($values, '${entry.key}=#annotation_value($entry.value)', ', '))
+#end
+#end
+#end
+#macro(annotation_value $x)
+<<#value($x)>>#end

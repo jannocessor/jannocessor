@@ -1,1 +1,22 @@
-annot:${self}
+package $self.packageName;
+
+#smart_import()
+
+#join(" ", [
+  "#modifiers($self)",
+  "@interface",
+  "$self.name",
+  "#type_parameters($self)",
+  "#extends_interfaces()",
+  "{"
+])
+
+
+#members($self.fields)
+#members($self.attributes)
+#nestedMembers($self)
+}
+
+#macro(extends_interfaces)
+#if(!$self.interfaces.empty)extends #list($self.interfaces, '#type($it)', ', ')#end
+#end
