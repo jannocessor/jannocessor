@@ -68,7 +68,8 @@ $mod.toString().toLowerCase()#sep(" ")
 #end
 
 #macro(type_parameters $model)
-#render_list($model.typeParameters)
+#if($model.typeParameters.size() > 0)
+<#render_list($model.typeParameters)>#end
 #end
 
 #macro(parameters $model)

@@ -1,1 +1,1 @@
-type_var:${self}
+#type(${self})

@@ -1,1 +1,7 @@
-<${self.name}>
+${self.name}#type_bounds($self)
+
+#macro(type_bounds $type_param)
+#if($type_param.bounds.size() > 0)
+ extends #list($type_param.bounds, '#type($it)', ' & ')
+#end
+#end

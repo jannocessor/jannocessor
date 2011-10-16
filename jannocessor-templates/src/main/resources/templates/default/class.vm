@@ -7,8 +7,7 @@ package $self.packageName;
 #join(" ", [
   "#modifiers($self)",
   "class",
-  "$self.name",
-  "#type_parameters($self)",
+  "$self.name#type_parameters($self)",
   "#extends_class()",
   "#implements_interfaces()",
   "{"
