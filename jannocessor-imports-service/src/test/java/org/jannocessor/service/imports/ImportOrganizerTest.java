@@ -79,23 +79,52 @@ public class ImportOrganizerTest {
 		checkImport("int[][]");
 		checkImport("java.lang.String[]");
 		checkImport("java.util.Date[]", "java.util.Date");
-		checkImport("java.util.List<java.util.Map[]>", "java.util.List", "java.util.Map");
+		checkImport("java.util.List<java.util.Map[]>", "java.util.List",
+				"java.util.Map");
 		checkImport("java.sql.Date[]");
 
 		checkUsage("java.lang.String[]", "String[]");
 		checkUsage("int[][]", "int[][]");
 		checkUsage("java.util.Date[]", "Date[]");
 		checkUsage("java.util.List<java.util.Map[]>", "List<Map[]>");
-		checkUsage("java.util.List<java.util.Map[]>[][][][]", "List<Map[]>[][][][]");
+		checkUsage("java.util.List<java.util.Map[]>[][][][]",
+				"List<Map[]>[][][][]");
 		checkUsage("java.sql.Date[]", "java.sql.Date[]");
 	}
 
 	@Test
 	public void testComplexCombinations() {
-		checkImport("java.util.Map<java.util.Set<Integer[]>[],int[]>[]", "java.util.Map", "java.util.Set");
+		checkImport("java.util.Map<java.util.Set<Integer[]>[],int[]>[]",
+				"java.util.Map", "java.util.Set");
 
-		checkUsage("java.util.Map<java.util.Set<Integer[]>[],int[]>[]", "Map<Set<Integer[]>[],int[]>[]");
+		checkUsage("java.util.Map<java.util.Set<Integer[]>[],int[]>[]",
+				"Map<Set<Integer[]>[],int[]>[]");
 	}
+
+	@Test
+	public void testBoundTypes() {
+		String type1 = "m.X<? extends Object>";
+		checkImport(type1, "m.X");
+		checkImport(type1);
+		checkUsage(type1, "X<? extends Object>");
+
+		String type2 = "a.Y<? extends b.Z>";
+		checkImport(type2, "a.Y", "b.Z");
+		checkImport(type2);
+		checkUsage(type2, "Y<? extends Z>");
+	}
+
+	@Test
+	public void testComplexBoundTypes() {
+		String type = "m.Map<x.y.List<? extends Object>, s.Set<? super x.y.List<? extends a.b.X>>>";
+
+		checkImport(type, "m.Map", "x.y.List", "s.Set", "a.b.X");
+
+		checkImport(type);
+
+		checkUsage(type, "Map<List<? extends Object>,Set<? super List<? extends X>>>");
+	}
+
 	@Test
 	public void testSimpleGenerics() {
 		checkImport("java.util.List<java.lang.String,int>", "java.util.List");

@@ -24,11 +24,11 @@ public class ParsedTypeName {
 
 	private final String packageName;
 	private final String className;
-	private final List<String> params;
+	private final List<ParsedTypeNameParam> params;
 	private final int arrayDimensions;
 
 	public ParsedTypeName(String packageName, String className,
-			List<String> generics, int arrayDimensions) {
+			List<ParsedTypeNameParam> generics, int arrayDimensions) {
 		this.packageName = packageName;
 		this.className = className;
 		this.params = generics;
@@ -47,7 +47,7 @@ public class ParsedTypeName {
 		return className;
 	}
 
-	public List<String> getParams() {
+	public List<ParsedTypeNameParam> getParams() {
 		return params;
 	}
 

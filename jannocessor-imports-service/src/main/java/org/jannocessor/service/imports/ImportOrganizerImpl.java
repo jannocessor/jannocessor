@@ -55,8 +55,8 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 			}
 		}
 
-		for (String generic : parsedName.getParams()) {
-			calculateTypeImports(generic, imports);
+		for (ParsedTypeNameParam generic : parsedName.getParams()) {
+			calculateTypeImports(generic.getType(), imports);
 		}
 	}
 
@@ -79,14 +79,21 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 		}
 	}
 
-	private String renderParams(List<String> params) {
+	private String renderParams(List<ParsedTypeNameParam> params) {
 		if (!params.isEmpty()) {
 			StringBuilder sb = new StringBuilder();
 			sb.append("<");
 
-			for (Iterator<String> it = params.iterator(); it.hasNext();) {
-				String type = (String) it.next();
-				sb.append(getTypeUsage(type));
+			for (Iterator<ParsedTypeNameParam> it = params.iterator(); it
+					.hasNext();) {
+				ParsedTypeNameParam type = (ParsedTypeNameParam) it.next();
+
+				if (StringUtils.isNotEmpty(type.getWildcard())) {
+					sb.append(type.getWildcard());
+					sb.append(" ");
+				}
+
+				sb.append(getTypeUsage(type.getType()));
 
 				if (it.hasNext()) {
 					sb.append(",");
@@ -104,7 +111,7 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 		String regex = "^(?:([^<>]+)\\.)?([^.<>]+?)(?:\\s?<(.*)>)?((?:\\[\\])*)?$";
 		Matcher matcher = Pattern.compile(regex).matcher(type);
 		if (matcher.matches()) {
-			List<String> params = extractParams(matcher.group(3));
+			List<ParsedTypeNameParam> params = extractParams(matcher.group(3));
 			int arrayDimensions = calculateArrayDimensions(matcher.group(4));
 			return new ParsedTypeName(matcher.group(1), matcher.group(2),
 					params, arrayDimensions);
@@ -117,8 +124,8 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 		return StringUtils.isNotEmpty(dim) ? dim.length() / 2 : 0;
 	}
 
-	private List<String> extractParams(String params) {
-		List<String> parts = new ArrayList<String>();
+	private List<ParsedTypeNameParam> extractParams(String params) {
+		List<ParsedTypeNameParam> parts = new ArrayList<ParsedTypeNameParam>();
 
 		if (StringUtils.isNotEmpty(params)) {
 
@@ -139,17 +146,38 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 
 			while (pos > 0) {
 				String part = params.substring(from, pos).trim();
-				parts.add(part);
+				parts.add(typeParam(part));
 
 				from = pos + 1;
 				pos = projection.indexOf(',', pos + 1);
 			}
 
 			String part = params.substring(from).trim();
-			parts.add(part);
+			parts.add(typeParam(part));
 		}
 
 		return parts;
+	}
+
+	private ParsedTypeNameParam typeParam(String type) {
+		String regex = "^(\\?\\s(?:extends|super))\\s+(.*)$";
+		Matcher matcher = Pattern.compile(regex).matcher(type);
+		if (matcher.matches()) {
+			return ss(new ParsedTypeNameParam(matcher.group(1),
+					matcher.group(2)));
+		} else {
+			return ss(new ParsedTypeNameParam("", type));
+		}
+
+	}
+
+	/**
+	 * @param parsedTypeNameParam
+	 * @return
+	 */
+	private ParsedTypeNameParam ss(ParsedTypeNameParam x) {
+		System.out.println(x);
+		return x;
 	}
 
 }
