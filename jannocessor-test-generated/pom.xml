@@ -8,15 +8,13 @@
 		<version>0.6.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor-test-generated</artifactId>
-	<version>${project.parent.version}</version>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-test</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

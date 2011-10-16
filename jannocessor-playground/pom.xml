@@ -8,8 +8,6 @@
 		<version>0.6.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor-playground</artifactId>
-	<version>${project.parent.version}</version>
 
 </project>

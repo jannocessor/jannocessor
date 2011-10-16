@@ -8,75 +8,73 @@
 		<version>0.6.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor-processor</artifactId>
-	<version>${project.parent.version}</version>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-common</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-engine</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-model-adapter</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-logging</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-configuration-service</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-imports-service</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-io-service</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-rules-service</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-template-service</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-splitter-service</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-representation-service</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-ui</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-model-api</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.googlecode.jannocessor</groupId>

@@ -8,9 +8,7 @@
 		<version>0.6.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor-collections</artifactId>
-	<version>${project.parent.version}</version>
 
 	<dependencies>
 		<dependency>
@@ -21,7 +19,7 @@
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-collections-api</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
