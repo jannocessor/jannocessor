@@ -16,7 +16,6 @@
 
 package org.jannocessor.adapter.type;
 
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
@@ -25,15 +24,8 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaCodeModelAdapter;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.model.type.JavaArrayType;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.type.JavaWildcardType;
+import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.util.Code;
 
 public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
@@ -63,103 +55,6 @@ public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 		return getCanonicalName().getText();
 	}
 
-	@Override
-	public boolean isPrimitive() {
-		return typeMirror.getKind().isPrimitive();
-	}
-
-	@Override
-	public boolean isArray() {
-		return TypeKind.ARRAY.equals(typeMirror.getKind());
-	}
-
-	@Override
-	public boolean isClass() {
-		DeclaredType declaredType = getDeclaredType();
-		if (declaredType != null) {
-			return declaredType.asElement().getKind().equals(ElementKind.CLASS);
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public JavaClass asClass() {
-		if (isClass()) {
-			return (JavaClass) getDeclaredType().asElement();
-		} else {
-			throw new IllegalStateException("Expected CLASS type, but found: "
-					+ typeMirror.getKind());
-		}
-	}
-
-	@Override
-	public boolean isInterface() {
-		DeclaredType declaredType = getDeclaredType();
-		if (declaredType != null) {
-			return declaredType.asElement().getKind()
-					.equals(ElementKind.INTERFACE);
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public JavaInterface asInterface() {
-		if (isInterface()) {
-			return (JavaInterface) getDeclaredType().asElement();
-		} else {
-			throw new IllegalStateException(
-					"Expected INTERFACE type, but found: "
-							+ typeMirror.getKind());
-		}
-	}
-
-	@Override
-	public boolean isEnum() {
-		DeclaredType declaredType = getDeclaredType();
-		if (declaredType != null) {
-			return declaredType.asElement().getKind().equals(ElementKind.ENUM);
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public JavaEnum asEnum() {
-		if (isEnum()) {
-			return (JavaEnum) getDeclaredType().asElement();
-		} else {
-			throw new IllegalStateException("Expected ENUM type, but found: "
-					+ typeMirror.getKind());
-		}
-	}
-
-	@Override
-	public boolean isNull() {
-		return TypeKind.NULL.equals(typeMirror.getKind());
-	}
-
-	@Override
-	public boolean isDeclared() {
-		return TypeKind.DECLARED.equals(typeMirror.getKind());
-	}
-
-	@Override
-	public boolean isTypeVariable() {
-		return TypeKind.TYPEVAR.equals(typeMirror.getKind());
-	}
-
-	@Override
-	public boolean isWildcard() {
-		return TypeKind.WILDCARD.equals(typeMirror.getKind());
-	}
-
-	@Override
-	public boolean hasError() {
-		return TypeKind.ERROR.equals(typeMirror.getKind());
-	}
-
 	protected DeclaredType getDeclaredType() {
 		if (TypeKind.DECLARED.equals(typeMirror.getKind())) {
 			if (typeMirror instanceof DeclaredType) {
@@ -171,50 +66,12 @@ public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 
 	@Override
 	public Class<?> getTypeClass() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isVoid() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public JavaDeclaredType asDeclared() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public JavaArrayType asArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public JavaWildcardType asWildcard() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public JavaTypeVariable asTypeVariable() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isExecutable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public JavaExecutableType asExecutable() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return Class.forName(getCanonicalName().getText());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -228,6 +85,11 @@ public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public JavaTypeKind getKind() {
+		return JavaTypeKind.valueOf(typeMirror.getKind().toString());
 	}
 
 }

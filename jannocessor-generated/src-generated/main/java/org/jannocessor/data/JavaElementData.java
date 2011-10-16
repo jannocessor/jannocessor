@@ -22,6 +22,7 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.JavaElementKind;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -38,6 +39,8 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement {
     private Name name;
 
     private JavaType type;
+
+    private JavaElementKind kind;
 
 
     public JavaElement getParent() {
@@ -72,6 +75,14 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement {
         this.type = value;
     }
 
+    public JavaElementKind getKind() {
+        return this.kind;
+    }
+
+    public void setKind(JavaElementKind value) {
+        this.kind = value;
+    }
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -90,6 +101,7 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement {
 				.append(this.getChildren(), other.getChildren())
 				.append(this.getName(), other.getName())
 				.append(this.getType(), other.getType())
+				.append(this.getKind(), other.getKind())
 				.isEquals();
 	}
 
@@ -99,6 +111,7 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement {
 				.append(this.getChildren())
 				.append(this.getName())
 				.append(this.getType())
+				.append(this.getKind())
 				.toHashCode();
 	}
 
@@ -116,6 +129,7 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement {
         builder.append("children", this.getChildren());
         builder.append("name", this.getName());
         builder.append("type", this.getType());
+        builder.append("kind", this.getKind());
 	}
 
 }

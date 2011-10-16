@@ -22,6 +22,7 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.bean.ReadonlyNameBean;
 import org.jannocessor.model.bean.SourceCodeBean;
 import org.jannocessor.model.bean.executable.ExecutableBodyBean;
 import org.jannocessor.model.bean.executable.JavaConstructorBean;
@@ -99,6 +100,7 @@ import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.model.type.JavaWildcardType;
 import org.jannocessor.model.variable.JavaEnumConstant;
@@ -133,6 +135,24 @@ public class Code {
 
 	public static Name name(String name) {
 		return new NameBean(name);
+	}
+
+	public static Name readonlyName(String name) {
+		return new ReadonlyNameBean(name);
+	}
+
+	public static JavaTypeKind typeKind(Class<?> type) {
+		if (type == null) {
+			return JavaTypeKind.NULL;
+		} else if (type.equals(void.class)) {
+			return JavaTypeKind.VOID;
+		} else if (type.isPrimitive()) {
+			return JavaTypeKind.valueOf(type.getSimpleName().toUpperCase());
+		} else if (type.isArray()) {
+			return JavaTypeKind.ARRAY;
+		} else {
+			return JavaTypeKind.DECLARED;
+		}
 	}
 
 	public static SourceCodeBean code(Class<? extends JavaCodeModel> model) {

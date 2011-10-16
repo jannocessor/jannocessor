@@ -23,6 +23,7 @@ import org.jannocessor.data.JavaElementData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.JavaElementKind;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -49,6 +50,8 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 	private boolean getNameInitialized = false;
 
 	private boolean getTypeInitialized = false;
+
+	private boolean getKindInitialized = false;
 
 
     public JavaElement getParent() {
@@ -87,6 +90,15 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
         return data.getType();
     }
 
+    public JavaElementKind getKind() {
+        if (!getKindInitialized) {
+            data.setKind(adapter.getKind());
+			getKindInitialized = true;
+        }
+
+        return data.getKind();
+    }
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -105,6 +117,7 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 				.append(this.getChildren(), other.getChildren())
 				.append(this.getName(), other.getName())
 				.append(this.getType(), other.getType())
+				.append(this.getKind(), other.getKind())
 				.isEquals();
 	}
 
@@ -114,6 +127,7 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 				.append(this.getChildren())
 				.append(this.getName())
 				.append(this.getType())
+				.append(this.getKind())
 				.toHashCode();
 	}
 
@@ -131,6 +145,7 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
         builder.append("children", this.getChildren());
         builder.append("name", this.getName());
         builder.append("type", this.getType());
+        builder.append("kind", this.getKind());
 	}
 
 }

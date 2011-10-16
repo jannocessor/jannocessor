@@ -20,14 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.model.type.JavaArrayType;
-import org.jannocessor.model.type.JavaWildcardType;
-import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.type.JavaExecutableType;
+import org.jannocessor.model.type.JavaTypeKind;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -45,45 +38,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 
     private Object defaultValue;
 
-    private boolean _hasError;
-
-    private boolean _isVoid;
-
-    private boolean _isNull;
-
-    private boolean _isPrimitive;
-
-    private boolean _isDeclared;
-
-    private JavaDeclaredType _asDeclared;
-
-    private boolean _isClass;
-
-    private JavaClass _asClass;
-
-    private boolean _isInterface;
-
-    private JavaInterface _asInterface;
-
-    private boolean _isEnum;
-
-    private JavaEnum _asEnum;
-
-    private boolean _isArray;
-
-    private JavaArrayType _asArray;
-
-    private boolean _isWildcard;
-
-    private JavaWildcardType _asWildcard;
-
-    private boolean _isTypeVariable;
-
-    private JavaTypeVariable _asTypeVariable;
-
-    private boolean _isExecutable;
-
-    private JavaExecutableType _asExecutable;
+    private JavaTypeKind kind;
 
 
     public Class<?> getTypeClass() {
@@ -118,164 +73,12 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
         this.defaultValue = value;
     }
 
-    public boolean hasError() {
-        return this._hasError;
+    public JavaTypeKind getKind() {
+        return this.kind;
     }
 
-    public void setError(boolean value) {
-        this._hasError = value;
-    }
-
-    public boolean isVoid() {
-        return this._isVoid;
-    }
-
-    public void setVoid(boolean value) {
-        this._isVoid = value;
-    }
-
-    public boolean isNull() {
-        return this._isNull;
-    }
-
-    public void setNull(boolean value) {
-        this._isNull = value;
-    }
-
-    public boolean isPrimitive() {
-        return this._isPrimitive;
-    }
-
-    public void setPrimitive(boolean value) {
-        this._isPrimitive = value;
-    }
-
-    public boolean isDeclared() {
-        return this._isDeclared;
-    }
-
-    public void setDeclared(boolean value) {
-        this._isDeclared = value;
-    }
-
-    public JavaDeclaredType asDeclared() {
-        return this._asDeclared;
-    }
-
-    public void setDeclared(JavaDeclaredType value) {
-        this._asDeclared = value;
-    }
-
-    public boolean isClass() {
-        return this._isClass;
-    }
-
-    public void setClass(boolean value) {
-        this._isClass = value;
-    }
-
-    public JavaClass asClass() {
-        return this._asClass;
-    }
-
-    public void setClass(JavaClass value) {
-        this._asClass = value;
-    }
-
-    public boolean isInterface() {
-        return this._isInterface;
-    }
-
-    public void setInterface(boolean value) {
-        this._isInterface = value;
-    }
-
-    public JavaInterface asInterface() {
-        return this._asInterface;
-    }
-
-    public void setInterface(JavaInterface value) {
-        this._asInterface = value;
-    }
-
-    public boolean isEnum() {
-        return this._isEnum;
-    }
-
-    public void setEnum(boolean value) {
-        this._isEnum = value;
-    }
-
-    public JavaEnum asEnum() {
-        return this._asEnum;
-    }
-
-    public void setEnum(JavaEnum value) {
-        this._asEnum = value;
-    }
-
-    public boolean isArray() {
-        return this._isArray;
-    }
-
-    public void setArray(boolean value) {
-        this._isArray = value;
-    }
-
-    public JavaArrayType asArray() {
-        return this._asArray;
-    }
-
-    public void setArray(JavaArrayType value) {
-        this._asArray = value;
-    }
-
-    public boolean isWildcard() {
-        return this._isWildcard;
-    }
-
-    public void setWildcard(boolean value) {
-        this._isWildcard = value;
-    }
-
-    public JavaWildcardType asWildcard() {
-        return this._asWildcard;
-    }
-
-    public void setWildcard(JavaWildcardType value) {
-        this._asWildcard = value;
-    }
-
-    public boolean isTypeVariable() {
-        return this._isTypeVariable;
-    }
-
-    public void setTypeVariable(boolean value) {
-        this._isTypeVariable = value;
-    }
-
-    public JavaTypeVariable asTypeVariable() {
-        return this._asTypeVariable;
-    }
-
-    public void setTypeVariable(JavaTypeVariable value) {
-        this._asTypeVariable = value;
-    }
-
-    public boolean isExecutable() {
-        return this._isExecutable;
-    }
-
-    public void setExecutable(boolean value) {
-        this._isExecutable = value;
-    }
-
-    public JavaExecutableType asExecutable() {
-        return this._asExecutable;
-    }
-
-    public void setExecutable(JavaExecutableType value) {
-        this._asExecutable = value;
+    public void setKind(JavaTypeKind value) {
+        this.kind = value;
     }
 
 	@Override
@@ -297,17 +100,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 				.append(this.getSimpleName(), other.getSimpleName())
 				.append(this.getCanonicalName(), other.getCanonicalName())
 				.append(this.getDefaultValue(), other.getDefaultValue())
-				.append(this.isVoid(), other.isVoid())
-				.append(this.isNull(), other.isNull())
-				.append(this.isPrimitive(), other.isPrimitive())
-				.append(this.isDeclared(), other.isDeclared())
-				.append(this.isClass(), other.isClass())
-				.append(this.isInterface(), other.isInterface())
-				.append(this.isEnum(), other.isEnum())
-				.append(this.isArray(), other.isArray())
-				.append(this.isWildcard(), other.isWildcard())
-				.append(this.isTypeVariable(), other.isTypeVariable())
-				.append(this.isExecutable(), other.isExecutable())
+				.append(this.getKind(), other.getKind())
 				.isEquals();
 	}
 
@@ -318,17 +111,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 				.append(this.getSimpleName())
 				.append(this.getCanonicalName())
 				.append(this.getDefaultValue())
-				.append(this.isVoid())
-				.append(this.isNull())
-				.append(this.isPrimitive())
-				.append(this.isDeclared())
-				.append(this.isClass())
-				.append(this.isInterface())
-				.append(this.isEnum())
-				.append(this.isArray())
-				.append(this.isWildcard())
-				.append(this.isTypeVariable())
-				.append(this.isExecutable())
+				.append(this.getKind())
 				.toHashCode();
 	}
 
@@ -347,17 +130,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
         builder.append("simpleName", this.getSimpleName());
         builder.append("canonicalName", this.getCanonicalName());
         builder.append("defaultValue", this.getDefaultValue());
-        builder.append("_isVoid", this.isVoid());
-        builder.append("_isNull", this.isNull());
-        builder.append("_isPrimitive", this.isPrimitive());
-        builder.append("_isDeclared", this.isDeclared());
-        builder.append("_isClass", this.isClass());
-        builder.append("_isInterface", this.isInterface());
-        builder.append("_isEnum", this.isEnum());
-        builder.append("_isArray", this.isArray());
-        builder.append("_isWildcard", this.isWildcard());
-        builder.append("_isTypeVariable", this.isTypeVariable());
-        builder.append("_isExecutable", this.isExecutable());
+        builder.append("kind", this.getKind());
 	}
 
 }

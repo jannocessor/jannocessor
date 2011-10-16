@@ -19,9 +19,6 @@ package org.jannocessor.model.type;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.code.JavaCodeModel;
-import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.model.structure.JavaInterface;
 
 @DomainModel
 public interface JavaType extends JavaCodeModel {
@@ -34,62 +31,6 @@ public interface JavaType extends JavaCodeModel {
 
 	Object getDefaultValue();
 
-	boolean hasError();
-
-	boolean isVoid();
-
-	boolean isNull();
-
-	/* Primitive types: boolean, byte, char, double, float, int, long, short */
-
-	boolean isPrimitive();
-
-	/* Declared types: class, interface, enumeration */
-
-	boolean isDeclared();
-
-	JavaDeclaredType asDeclared();
-
-	/* Class */
-
-	boolean isClass();
-
-	JavaClass asClass();
-
-	/* Interface */
-
-	boolean isInterface();
-
-	JavaInterface asInterface();
-
-	/* Enumeration */
-
-	boolean isEnum();
-
-	JavaEnum asEnum();
-
-	/* Array */
-
-	boolean isArray();
-
-	JavaArrayType asArray();
-
-	/* Wildcard */
-
-	boolean isWildcard();
-
-	JavaWildcardType asWildcard();
-
-	/* Type variable */
-
-	boolean isTypeVariable();
-
-	JavaTypeVariable asTypeVariable();
-
-	/* Executable */
-
-	boolean isExecutable();
-
-	JavaExecutableType asExecutable();
+	JavaTypeKind getKind();
 
 }

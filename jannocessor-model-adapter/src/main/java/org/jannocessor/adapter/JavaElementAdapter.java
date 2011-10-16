@@ -31,6 +31,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 
@@ -125,6 +126,11 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 		}
 
 		return values;
+	}
+
+	@Override
+	public JavaElementKind getKind() {
+		return JavaElementKind.valueOf(element.getKind().toString());
 	}
 
 }

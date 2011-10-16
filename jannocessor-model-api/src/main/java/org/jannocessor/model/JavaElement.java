@@ -32,4 +32,6 @@ public interface JavaElement extends JavaCodeModel {
 
 	JavaType getType();
 
+	JavaElementKind getKind();
+
 }
