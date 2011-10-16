@@ -160,24 +160,14 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 	}
 
 	private ParsedTypeNameParam typeParam(String type) {
-		String regex = "^(\\?\\s(?:extends|super))\\s+(.*)$";
+		String regex = "^((?:\\?|[\\w$]+)\\s(?:extends|super))\\s+(.*)$";
 		Matcher matcher = Pattern.compile(regex).matcher(type);
 		if (matcher.matches()) {
-			return ss(new ParsedTypeNameParam(matcher.group(1),
-					matcher.group(2)));
+			return new ParsedTypeNameParam(matcher.group(1), matcher.group(2));
 		} else {
-			return ss(new ParsedTypeNameParam("", type));
+			return new ParsedTypeNameParam("", type);
 		}
 
-	}
-
-	/**
-	 * @param parsedTypeNameParam
-	 * @return
-	 */
-	private ParsedTypeNameParam ss(ParsedTypeNameParam x) {
-		System.out.println(x);
-		return x;
 	}
 
 }

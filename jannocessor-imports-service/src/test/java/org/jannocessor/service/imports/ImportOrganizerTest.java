@@ -115,6 +115,19 @@ public class ImportOrganizerTest {
 	}
 
 	@Test
+	public void testParameterTypes() {
+		String type1 = "m.X<T extends Object>";
+		checkImport(type1, "m.X");
+		checkImport(type1);
+		checkUsage(type1, "X<T extends Object>");
+
+		String type2 = "a.Y<Ttt extends b.Z>";
+		checkImport(type2, "a.Y", "b.Z");
+		checkImport(type2);
+		checkUsage(type2, "Y<Ttt extends Z>");
+	}
+
+	@Test
 	public void testComplexBoundTypes() {
 		String type = "m.Map<x.y.List<? extends Object>, s.Set<? super x.y.List<? extends a.b.X>>>";
 
