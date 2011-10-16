@@ -14,12 +14,10 @@
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-bootstrap</artifactId>
-			<version>${version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-collections-api</artifactId>
-			<version>${version}</version>
 		</dependency>
 	</dependencies>
 

@@ -122,6 +122,137 @@
 		</dependency>
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-collections</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-generated</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-all</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-service-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-processor</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-templates</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-engine</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-collections-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-model-adapter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-logging</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-configuration-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-imports-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-io-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-rules-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-template-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-splitter-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-representation-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-ui</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-test</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-test-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-bootstrap</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-model-api</artifactId>
+				<version>${project.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.googlecode.jannocessor</groupId>
+						<artifactId>jannocessor</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<profiles>
 		<profile>
 			<id>assembly</id>
@@ -213,7 +344,8 @@
 						<target>1.6</target>
 					</configuration>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>

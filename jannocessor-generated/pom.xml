@@ -14,18 +14,10 @@
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-model-api</artifactId>
-			<version>0.6.0-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.googlecode.jannocessor</groupId>
-					<artifactId>jannocessor</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-common</artifactId>
-			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
