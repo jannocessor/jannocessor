@@ -48,6 +48,7 @@ import org.jannocessor.util.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("unused")
 public class RuleExecutorImpl implements RuleExecutor, Settings {
 
 	private Logger logger = LoggerFactory.getLogger("RULES");
@@ -91,10 +92,10 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 
 			// logger.info("Saving rules...");
 			// saveKnowledgeBase(kbase);
-		} else {
+		} /*else {
 			logger.info("Loading pre-compiled rules...");
 			kbase = loadKnowledgeBase();
-		}
+		}*/
 
 		logger.info("Creating new session");
 
@@ -236,7 +237,6 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 
 	}
 
-	@SuppressWarnings("unused")
 	private final void saveKnowledgeBase(KnowledgeBase kbase) throws Exception {
 		ObjectOutputStream out = null;
 		try {
