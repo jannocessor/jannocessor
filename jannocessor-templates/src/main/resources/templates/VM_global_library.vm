@@ -97,8 +97,8 @@ $s.trim()#end
 #end
 #foreach($item in $items)
 #@trim()
-#render($item)#sep($sep)
-#end
+#render($item)
+#end#sep($sep)
 #end
 #end
 
