@@ -20,6 +20,8 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.data.JavaTypeParameterData;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -29,10 +31,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeParameterProxy extends JavaElementProxy implements JavaTypeParameter {
 
-    @SuppressWarnings("unused")
     private JavaTypeParameter adapter;
 
-    @SuppressWarnings("unused")
     private JavaTypeParameterData data;
 
     public JavaTypeParameterProxy(JavaTypeParameter adapter, JavaTypeParameterData data) {
@@ -41,6 +41,17 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
         this.data = data;
     }
 
+	private boolean getBoundsInitialized = false;
+
+
+    public PowerList<JavaType> getBounds() {
+        if (!getBoundsInitialized) {
+            data.setBounds(adapter.getBounds());
+			getBoundsInitialized = true;
+        }
+
+        return data.getBounds();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -57,12 +68,14 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
 		JavaTypeParameter other = (JavaTypeParameter) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getBounds(), other.getBounds())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getBounds())
 				.toHashCode();
 	}
 
@@ -77,6 +90,7 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("bounds", this.getBounds());
 	}
 
 }

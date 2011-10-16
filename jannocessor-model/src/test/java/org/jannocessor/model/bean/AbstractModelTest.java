@@ -182,7 +182,7 @@ public class AbstractModelTest {
 		assertEquals(fields, clazz.getFields());
 		assertEquals(constructors, clazz.getConstructors());
 		assertEquals(methods, clazz.getMethods());
-		assertEquals(parameters, clazz.getParameters());
+		assertEquals(parameters, clazz.getTypeParameters());
 	}
 
 	protected void checkInterface(JavaInterface interfacee,
@@ -194,7 +194,7 @@ public class AbstractModelTest {
 
 		assertEquals(modifiers, interfacee.getModifiers());
 		assertEquals(methods, interfacee.getMethods());
-		assertEquals(parameters, interfacee.getParameters());
+		assertEquals(parameters, interfacee.getTypeParameters());
 	}
 
 	protected void checkEnum(JavaEnum enumm, EnumModifiers modifiers,

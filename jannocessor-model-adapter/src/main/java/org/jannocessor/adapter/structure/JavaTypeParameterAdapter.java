@@ -21,20 +21,42 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.collection.filter.api.Condition;
+import org.jannocessor.collection.filter.api.Criteria;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.util.Code;
 
 public final class JavaTypeParameterAdapter extends JavaElementAdapter
 		implements JavaTypeParameter {
 
-	@SuppressWarnings("unused")
+	private static final Criteria<JavaType> DEFAULT_BOUND;
+
 	private final TypeParameterElement typeParameter;
+
+	static {
+		DEFAULT_BOUND = Power.criteria(new Condition<JavaType>() {
+			@Override
+			public boolean satisfies(JavaType type) {
+				return type.getKind() == JavaTypeKind.DECLARED
+						&& Object.class.equals(type.getTypeClass());
+			}
+		});
+	}
 
 	public JavaTypeParameterAdapter(TypeParameterElement typeParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(typeParameter, elementUtils, typeUtils);
 		this.setCode(Code.code(JavaTypeParameter.class));
 		this.typeParameter = typeParameter;
+	}
+
+	@Override
+	public PowerList<JavaType> getBounds() {
+		return getTypeAdapters(typeParameter.getBounds()).remove(DEFAULT_BOUND);
 	}
 
 }

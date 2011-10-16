@@ -41,7 +41,7 @@ public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
 		this.setName(new NameBean(name));
 		this.setInterfaces(Power.list(superInterfaces));
 		this.setMethods(Power.list(methods));
-		this.setParameters(Power.list(parameters));
+		this.setTypeParameters(Power.list(parameters));
 		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
 		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));

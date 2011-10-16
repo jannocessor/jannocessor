@@ -139,4 +139,12 @@ public enum JavaTypeKind {
 		}
 	}
 
+	public boolean isDeclared() {
+		return this == DECLARED;
+	}
+
+	public boolean isArray() {
+		return this == ARRAY;
+	}
+
 }

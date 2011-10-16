@@ -49,7 +49,7 @@ public class JavaClassBean extends JavaClassData implements JavaClass {
 		this.setFields(Power.list(fields));
 		this.setConstructors(Power.list(constructors));
 		this.setMethods(Power.list(methods));
-		this.setParameters(Power.list(parameters));
+		this.setTypeParameters(Power.list(parameters));
 		this.setStaticInits(Power.emptyList(JavaStaticInit.class));
 		this.setInstanceInits(Power.emptyList(JavaInstanceInit.class));
 		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));

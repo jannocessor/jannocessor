@@ -24,7 +24,12 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.ArrayType;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.ExecutableType;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.type.TypeVariable;
+import javax.lang.model.type.WildcardType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
@@ -43,18 +48,26 @@ import org.jannocessor.adapter.structure.JavaNestedEnumAdapter;
 import org.jannocessor.adapter.structure.JavaNestedInterfaceAdapter;
 import org.jannocessor.adapter.structure.JavaPackageAdapter;
 import org.jannocessor.adapter.structure.JavaTypeParameterAdapter;
+import org.jannocessor.adapter.type.JavaArrayTypeAdapter;
+import org.jannocessor.adapter.type.JavaDeclaredTypeAdapter;
+import org.jannocessor.adapter.type.JavaExecutableTypeAdapter;
 import org.jannocessor.adapter.type.JavaTypeAdapter;
+import org.jannocessor.adapter.type.JavaTypeVariableAdapter;
+import org.jannocessor.adapter.type.JavaWildcardTypeAdapter;
 import org.jannocessor.adapter.variable.JavaEnumConstantAdapter;
 import org.jannocessor.adapter.variable.JavaExceptionParameterAdapter;
 import org.jannocessor.adapter.variable.JavaFieldAdapter;
 import org.jannocessor.adapter.variable.JavaLocalVariableAdapter;
 import org.jannocessor.adapter.variable.JavaParameterAdapter;
 import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.data.JavaArrayTypeData;
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.data.JavaConstructorData;
+import org.jannocessor.data.JavaDeclaredTypeData;
 import org.jannocessor.data.JavaEnumConstantData;
 import org.jannocessor.data.JavaEnumData;
 import org.jannocessor.data.JavaExceptionParameterData;
+import org.jannocessor.data.JavaExecutableTypeData;
 import org.jannocessor.data.JavaFieldData;
 import org.jannocessor.data.JavaInstanceInitData;
 import org.jannocessor.data.JavaInterfaceData;
@@ -70,17 +83,22 @@ import org.jannocessor.data.JavaParameterData;
 import org.jannocessor.data.JavaStaticInitData;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.data.JavaTypeParameterData;
+import org.jannocessor.data.JavaTypeVariableData;
+import org.jannocessor.data.JavaWildcardTypeData;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.proxy.JavaAnnotationProxy;
+import org.jannocessor.proxy.JavaArrayTypeProxy;
 import org.jannocessor.proxy.JavaClassProxy;
 import org.jannocessor.proxy.JavaConstructorProxy;
+import org.jannocessor.proxy.JavaDeclaredTypeProxy;
 import org.jannocessor.proxy.JavaEnumConstantProxy;
 import org.jannocessor.proxy.JavaEnumProxy;
 import org.jannocessor.proxy.JavaExceptionParameterProxy;
+import org.jannocessor.proxy.JavaExecutableTypeProxy;
 import org.jannocessor.proxy.JavaFieldProxy;
 import org.jannocessor.proxy.JavaInstanceInitProxy;
 import org.jannocessor.proxy.JavaInterfaceProxy;
@@ -96,6 +114,8 @@ import org.jannocessor.proxy.JavaParameterProxy;
 import org.jannocessor.proxy.JavaStaticInitProxy;
 import org.jannocessor.proxy.JavaTypeParameterProxy;
 import org.jannocessor.proxy.JavaTypeProxy;
+import org.jannocessor.proxy.JavaTypeVariableProxy;
+import org.jannocessor.proxy.JavaWildcardTypeProxy;
 
 public class AdapterFactory {
 
@@ -259,8 +279,32 @@ public class AdapterFactory {
 	public static JavaType getTypeModel(TypeMirror typeMirror,
 			Elements elementUtils, Types typeUtils) {
 		if (typeMirror != null) {
-			return new JavaTypeProxy(new JavaTypeAdapter(typeMirror,
-					elementUtils, typeUtils), new JavaTypeData());
+			switch (typeMirror.getKind()) {
+			case ARRAY:
+				return new JavaArrayTypeProxy(new JavaArrayTypeAdapter(
+						(ArrayType) typeMirror, elementUtils, typeUtils),
+						new JavaArrayTypeData());
+			case DECLARED:
+				return new JavaDeclaredTypeProxy(new JavaDeclaredTypeAdapter(
+						(DeclaredType) typeMirror, elementUtils, typeUtils),
+						new JavaDeclaredTypeData());
+			case EXECUTABLE:
+				return new JavaExecutableTypeProxy(
+						new JavaExecutableTypeAdapter(
+								(ExecutableType) typeMirror, elementUtils,
+								typeUtils), new JavaExecutableTypeData());
+			case TYPEVAR:
+				return new JavaTypeVariableProxy(new JavaTypeVariableAdapter(
+						(TypeVariable) typeMirror, elementUtils, typeUtils),
+						new JavaTypeVariableData());
+			case WILDCARD:
+				return new JavaWildcardTypeProxy(new JavaWildcardTypeAdapter(
+						(WildcardType) typeMirror, elementUtils, typeUtils),
+						new JavaWildcardTypeData());
+			default:
+				return new JavaTypeProxy(new JavaTypeAdapter(typeMirror,
+						elementUtils, typeUtils), new JavaTypeData());
+			}
 		} else {
 			return null;
 		}

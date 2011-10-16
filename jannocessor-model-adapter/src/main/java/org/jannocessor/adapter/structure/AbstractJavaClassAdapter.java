@@ -60,7 +60,7 @@ abstract class AbstractJavaClassAdapter extends AbstractJavaStructureAdapter
 	}
 
 	@Override
-	public PowerList<JavaTypeParameter> getParameters() {
+	public PowerList<JavaTypeParameter> getTypeParameters() {
 		return getElementsAdapters(tclass.getTypeParameters(),
 				JavaTypeParameter.class);
 	}

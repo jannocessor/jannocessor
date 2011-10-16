@@ -46,8 +46,12 @@ public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 
 	@Override
 	public Name getSimpleName() {
-		String simpleName = typeMirror.toString().replaceFirst(".+\\.", "");
+		String simpleName = extractGenericType().replaceFirst(".+\\.", "");
 		return getNameAdapter(simpleName);
+	}
+
+	private String extractGenericType() {
+		return typeMirror.toString().replaceFirst("<.*>", "");
 	}
 
 	@Override
@@ -66,12 +70,14 @@ public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
 
 	@Override
 	public Class<?> getTypeClass() {
-		try {
-			return Class.forName(getCanonicalName().getText());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return null;
+		if (getKind().isDeclared()) {
+			try {
+				return Class.forName(extractGenericType());
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
+		return null;
 	}
 
 	@Override

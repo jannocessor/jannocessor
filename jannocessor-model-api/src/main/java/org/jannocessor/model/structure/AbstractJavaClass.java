@@ -26,7 +26,7 @@ import org.jannocessor.model.variable.JavaField;
 @DomainModel
 public interface AbstractJavaClass extends AbstractJavaStructure {
 
-	PowerList<JavaTypeParameter> getParameters();
+	PowerList<JavaTypeParameter> getTypeParameters();
 
 	PowerList<JavaField> getFields();
 

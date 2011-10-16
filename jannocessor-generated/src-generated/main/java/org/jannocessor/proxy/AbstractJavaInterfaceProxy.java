@@ -41,16 +41,16 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
         this.data = data;
     }
 
-	private boolean getParametersInitialized = false;
+	private boolean getTypeParametersInitialized = false;
 
 
-    public PowerList<JavaTypeParameter> getParameters() {
-        if (!getParametersInitialized) {
-            data.setParameters(adapter.getParameters());
-			getParametersInitialized = true;
+    public PowerList<JavaTypeParameter> getTypeParameters() {
+        if (!getTypeParametersInitialized) {
+            data.setTypeParameters(adapter.getTypeParameters());
+			getTypeParametersInitialized = true;
         }
 
-        return data.getParameters();
+        return data.getTypeParameters();
     }
 
 	@Override
@@ -68,14 +68,14 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 		AbstractJavaInterface other = (AbstractJavaInterface) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getParameters(), other.getParameters())
+				.append(this.getTypeParameters(), other.getTypeParameters())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getParameters())
+				.append(this.getTypeParameters())
 				.toHashCode();
 	}
 
@@ -90,7 +90,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameters", this.getParameters());
+        builder.append("typeParameters", this.getTypeParameters());
 	}
 
 }

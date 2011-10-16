@@ -34,7 +34,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaClassData extends AbstractJavaStructureData implements AbstractJavaClass {
 
-    private PowerList<JavaTypeParameter> parameters;
+    private PowerList<JavaTypeParameter> typeParameters;
 
     private PowerList<JavaField> fields;
 
@@ -45,12 +45,12 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
     private PowerList<JavaInstanceInit> instanceInits;
 
 
-    public PowerList<JavaTypeParameter> getParameters() {
-        return this.parameters;
+    public PowerList<JavaTypeParameter> getTypeParameters() {
+        return this.typeParameters;
     }
 
-    public void setParameters(PowerList<JavaTypeParameter> value) {
-        this.parameters = value;
+    public void setTypeParameters(PowerList<JavaTypeParameter> value) {
+        this.typeParameters = value;
     }
 
     public PowerList<JavaField> getFields() {
@@ -100,7 +100,7 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 		AbstractJavaClass other = (AbstractJavaClass) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getParameters(), other.getParameters())
+				.append(this.getTypeParameters(), other.getTypeParameters())
 				.append(this.getFields(), other.getFields())
 				.append(this.getConstructors(), other.getConstructors())
 				.append(this.getStaticInits(), other.getStaticInits())
@@ -111,7 +111,7 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getParameters())
+				.append(this.getTypeParameters())
 				.append(this.getFields())
 				.append(this.getConstructors())
 				.append(this.getStaticInits())
@@ -130,7 +130,7 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameters", this.getParameters());
+        builder.append("typeParameters", this.getTypeParameters());
         builder.append("fields", this.getFields());
         builder.append("constructors", this.getConstructors());
         builder.append("staticInits", this.getStaticInits());

@@ -22,6 +22,6 @@ import org.jannocessor.collection.api.PowerList;
 @DomainModel
 public interface AbstractJavaInterface extends AbstractJavaStructure {
 
-	PowerList<JavaTypeParameter> getParameters();
+	PowerList<JavaTypeParameter> getTypeParameters();
 
 }

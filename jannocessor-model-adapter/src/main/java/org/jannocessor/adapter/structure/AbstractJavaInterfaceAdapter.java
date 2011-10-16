@@ -42,7 +42,7 @@ abstract class AbstractJavaInterfaceAdapter extends
 	}
 
 	@Override
-	public PowerList<JavaTypeParameter> getParameters() {
+	public PowerList<JavaTypeParameter> getTypeParameters() {
 		return getElementsAdapters(tinterface.getTypeParameters(),
 				JavaTypeParameter.class);
 	}

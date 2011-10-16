@@ -30,15 +30,15 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaInterfaceData extends AbstractJavaStructureData implements AbstractJavaInterface {
 
-    private PowerList<JavaTypeParameter> parameters;
+    private PowerList<JavaTypeParameter> typeParameters;
 
 
-    public PowerList<JavaTypeParameter> getParameters() {
-        return this.parameters;
+    public PowerList<JavaTypeParameter> getTypeParameters() {
+        return this.typeParameters;
     }
 
-    public void setParameters(PowerList<JavaTypeParameter> value) {
-        this.parameters = value;
+    public void setTypeParameters(PowerList<JavaTypeParameter> value) {
+        this.typeParameters = value;
     }
 
 	@Override
@@ -56,14 +56,14 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 		AbstractJavaInterface other = (AbstractJavaInterface) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getParameters(), other.getParameters())
+				.append(this.getTypeParameters(), other.getTypeParameters())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getParameters())
+				.append(this.getTypeParameters())
 				.toHashCode();
 	}
 
@@ -78,7 +78,7 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameters", this.getParameters());
+        builder.append("typeParameters", this.getTypeParameters());
 	}
 
 }

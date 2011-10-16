@@ -19,6 +19,8 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -28,6 +30,16 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeParameterData extends JavaElementData implements JavaTypeParameter {
 
+    private PowerList<JavaType> bounds;
+
+
+    public PowerList<JavaType> getBounds() {
+        return this.bounds;
+    }
+
+    public void setBounds(PowerList<JavaType> value) {
+        this.bounds = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -44,12 +56,14 @@ public class JavaTypeParameterData extends JavaElementData implements JavaTypePa
 		JavaTypeParameter other = (JavaTypeParameter) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getBounds(), other.getBounds())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getBounds())
 				.toHashCode();
 	}
 
@@ -64,6 +78,7 @@ public class JavaTypeParameterData extends JavaElementData implements JavaTypePa
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("bounds", this.getBounds());
 	}
 
 }
