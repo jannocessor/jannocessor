@@ -16,42 +16,17 @@
 
 package org.jannocessor.bootstrapped.model;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-
-import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-@AnotherAnnotation(a = 1, b = "x")
 @BeanModel
-@SuppressWarnings("unused")
-public class ExecutableElementsTestModel {
+public class NestedMembersTest {
 
-	static {
-		// some static init
+	static class Nested1 {
+		int foo;
 	}
 
-	{
-		// some instance init
-	}
-
-	public ExecutableElementsTestModel() {
-	}
-
-	public <T> ExecutableElementsTestModel(T foo) {
-	}
-
-	private <T> void doSomeStuff(String name, java.sql.Date date, T type,
-			List<T> list) throws IllegalAccessError {
-	}
-
-	public final String getSomething2() throws RuntimeException, IOException {
-		return null;
-	}
-
-	public static void main(String[] args) {
-		new ExecutableElementsTestModel();
+	class Nested2 {
+		String bar;
 	}
 
 }
