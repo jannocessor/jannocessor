@@ -29,8 +29,8 @@ public class MirrorProcessor implements CodeProcessor {
 		AbstractJavaStructure model = (AbstractJavaStructure) params
 				.get("model");
 
-		context.getLogger().debug("****** Processing: {} ", model.getName());
+		context.getLogger().debug("Processing: {} ", model.getName());
 
-		context.generateCode(model);
+		context.generateCode(model, false);
 	}
 }

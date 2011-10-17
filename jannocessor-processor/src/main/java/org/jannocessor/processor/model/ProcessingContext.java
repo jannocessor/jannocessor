@@ -140,15 +140,17 @@ public class ProcessingContext {
 		this.renderer = renderer;
 	}
 
-	public void generateCode(AbstractJavaStructure model) {
+	public void generateCode(AbstractJavaStructure model, boolean debug) {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("self", model);
 
-		render(attributes);
+		render(attributes, debug);
 	}
 
-	public void render(Map<String, Object> attributes) {
-		renderer.register(attributes);
+	public void render(Map<String, Object> attributes, boolean debug) {
+		if (debug) {
+			renderer.register(attributes);
+		}
 
 		try {
 			String content = engine.renderMacro("main", attributes,

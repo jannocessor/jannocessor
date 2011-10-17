@@ -43,7 +43,7 @@ public class ClassProcessor implements CodeProcessor {
 			showDebugInfo("FIELD: " + field.getName(), field.getType());
 		}
 
-		context.generateCode(clazz);
+		context.generateCode(clazz, true);
 	}
 
 	private void showDebugInfo(String msg, JavaType type) {
