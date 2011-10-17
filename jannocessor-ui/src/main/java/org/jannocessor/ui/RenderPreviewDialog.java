@@ -103,6 +103,10 @@ public class RenderPreviewDialog extends JDialog {
 				"org.jannocessor.syntax.JavaTemplateKit", getClass()
 						.getClassLoader());
 
+		JEditorPane.registerEditorKitForContentType("text/java_output",
+				"org.jannocessor.syntax.JavaOutputKit", getClass()
+						.getClassLoader());
+
 		setTitle("JAnnocessor - Java Annotation Processor");
 		setLayout(new BorderLayout(5, 5));
 
@@ -221,7 +225,7 @@ public class RenderPreviewDialog extends JDialog {
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setMinimumSize(new Dimension(100, 100));
 
-		editor.setContentType("text/java");
+		editor.setContentType("text/java_output");
 		editor.setEditable(false);
 		editor.setText(content);
 
