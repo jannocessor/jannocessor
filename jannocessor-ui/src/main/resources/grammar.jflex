@@ -59,22 +59,22 @@ JavaLineComment = "//" {NonLineTerminator}* {LineTerminator}?
 VelocityLineComment = "##" {NonLineTerminator}* {LineTerminator}?
 
 Letter = [a-zA-Z_]
-Alphanumeric = [a-zA-Z0-9]
+Alphanumeric = [a-zA-Z0-9_]
 Identifier = {Letter} {Alphanumeric}*
-StringLiteral1 = "\"" {Alphanumeric}* "\""
-StringLiteral2 = "'" {Alphanumeric}* "'"
+StringLiteral1 = "\"" [^\"\n\r]* "\""
+StringLiteral2 = "'" [^\'\n\r]* "'"
 NumericLiteral = [0-9]+ ("." [0-9]+)?
 
 Macro = "#" {Letter} {Alphanumeric}*
 Macro2 = "#" "@" {Letter} {Alphanumeric}*
-Variable = "$" {Letter} {Alphanumeric}* ("." {Letter} {Alphanumeric}* ("(" [^(]* ")")? )*
+Variable = "$" {Letter} {Alphanumeric}* ("." {Letter} {Alphanumeric}* ("(" [^()]*? ")")? )*
 Expression = "$" "{" [^}]*? "}"
 
 %%
 
 <YYINITIAL> {
 
-  "class" | "interface" | "enum" |
+  "package" | "class" | "interface" | "enum" |
   "public" | "protected" | "private" | "final" | "abstract" |
   "static" | "strictfp" | "transient" | "volatile" | "synchronized" |
   "extends" | "implements" | "throws" | "switch" | "case" | "default" |
