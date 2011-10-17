@@ -17,14 +17,15 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaCodeModelData;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaTypeKind;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeKind;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -126,11 +127,11 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("typeClass", this.getTypeClass());
-        builder.append("simpleName", this.getSimpleName());
-        builder.append("canonicalName", this.getCanonicalName());
-        builder.append("defaultValue", this.getDefaultValue());
-        builder.append("kind", this.getKind());
+        builder.append("typeClass", ToStringUtil.describe(this.getTypeClass()));
+        builder.append("simpleName", ToStringUtil.describe(this.getSimpleName()));
+        builder.append("canonicalName", ToStringUtil.describe(this.getCanonicalName()));
+        builder.append("defaultValue", ToStringUtil.describe(this.getDefaultValue()));
+        builder.append("kind", ToStringUtil.describe(this.getKind()));
 	}
 
 }

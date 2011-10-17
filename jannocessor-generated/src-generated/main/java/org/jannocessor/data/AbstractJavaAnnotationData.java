@@ -17,14 +17,15 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaStructureData;
-import org.jannocessor.model.structure.AbstractJavaAnnotation;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaAnnotationAttribute;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.AbstractJavaAnnotation;
+import org.jannocessor.model.structure.JavaAnnotationAttribute;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -78,7 +79,7 @@ public class AbstractJavaAnnotationData extends AbstractJavaStructureData implem
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("attributes", this.getAttributes());
+        builder.append("attributes", ToStringUtil.describe(this.getAttributes()));
 	}
 
 }

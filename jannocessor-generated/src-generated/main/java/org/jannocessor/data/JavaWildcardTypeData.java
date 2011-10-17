@@ -17,13 +17,14 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaTypeData;
-import org.jannocessor.model.type.JavaWildcardType;
-import org.jannocessor.model.type.JavaType;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaWildcardType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -89,8 +90,8 @@ public class JavaWildcardTypeData extends JavaTypeData implements JavaWildcardTy
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("extendsBound", this.getExtendsBound());
-        builder.append("superBound", this.getSuperBound());
+        builder.append("extendsBound", ToStringUtil.describe(this.getExtendsBound()));
+        builder.append("superBound", ToStringUtil.describe(this.getSuperBound()));
 	}
 
 }

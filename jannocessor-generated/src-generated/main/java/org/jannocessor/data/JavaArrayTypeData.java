@@ -17,13 +17,14 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaTypeData;
-import org.jannocessor.model.type.JavaArrayType;
-import org.jannocessor.model.type.JavaType;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.type.JavaArrayType;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -77,7 +78,7 @@ public class JavaArrayTypeData extends JavaTypeData implements JavaArrayType {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("componentType", this.getComponentType());
+        builder.append("componentType", ToStringUtil.describe(this.getComponentType()));
 	}
 
 }

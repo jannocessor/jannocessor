@@ -17,14 +17,15 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaEnumProxy;
-import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.data.JavaEnumData;
-import org.jannocessor.model.modifier.EnumModifiers;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.data.JavaEnumData;
+import org.jannocessor.model.modifier.EnumModifiers;
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -89,7 +90,7 @@ public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("modifiers", this.getModifiers());
+        builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
 	}
 
 }

@@ -17,14 +17,15 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaTypeProxy;
-import org.jannocessor.model.type.JavaArrayType;
-import org.jannocessor.data.JavaArrayTypeData;
-import org.jannocessor.model.type.JavaType;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.data.JavaArrayTypeData;
+import org.jannocessor.model.type.JavaArrayType;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -89,7 +90,7 @@ public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("componentType", this.getComponentType());
+        builder.append("componentType", ToStringUtil.describe(this.getComponentType()));
 	}
 
 }

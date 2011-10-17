@@ -17,6 +17,7 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
+
 import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
 

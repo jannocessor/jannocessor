@@ -17,22 +17,23 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaElementProxy;
-import org.jannocessor.model.structure.AbstractJavaStructure;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
-import org.jannocessor.model.structure.JavaNestedAnnotation;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
 import org.jannocessor.util.TypeSpecificStyle;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -240,18 +241,18 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("nesting", this.getNesting());
-        builder.append("packageName", this.getPackageName());
-        builder.append("qualifiedName", this.getQualifiedName());
-        builder.append("superclass", this.getSuperclass());
-        builder.append("metadata", this.getMetadata());
-        builder.append("allMetadata", this.getAllMetadata());
-        builder.append("interfaces", this.getInterfaces());
-        builder.append("methods", this.getMethods());
-        builder.append("nestedClasses", this.getNestedClasses());
-        builder.append("nestedEnums", this.getNestedEnums());
-        builder.append("nestedInterfaces", this.getNestedInterfaces());
-        builder.append("nestedAnnotations", this.getNestedAnnotations());
+        builder.append("nesting", ToStringUtil.describe(this.getNesting()));
+        builder.append("packageName", ToStringUtil.describe(this.getPackageName()));
+        builder.append("qualifiedName", ToStringUtil.describe(this.getQualifiedName()));
+        builder.append("superclass", ToStringUtil.describe(this.getSuperclass()));
+        builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
+        builder.append("allMetadata", ToStringUtil.describe(this.getAllMetadata()));
+        builder.append("interfaces", ToStringUtil.describe(this.getInterfaces()));
+        builder.append("methods", ToStringUtil.describe(this.getMethods()));
+        builder.append("nestedClasses", ToStringUtil.describe(this.getNestedClasses()));
+        builder.append("nestedEnums", ToStringUtil.describe(this.getNestedEnums()));
+        builder.append("nestedInterfaces", ToStringUtil.describe(this.getNestedInterfaces()));
+        builder.append("nestedAnnotations", ToStringUtil.describe(this.getNestedAnnotations()));
 	}
 
 }

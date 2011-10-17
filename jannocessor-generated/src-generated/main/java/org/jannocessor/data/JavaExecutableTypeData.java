@@ -17,16 +17,17 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaTypeData;
-import org.jannocessor.model.type.JavaExecutableType;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.model.type.JavaTypeVariable;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaExecutableType;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -116,10 +117,10 @@ public class JavaExecutableTypeData extends JavaTypeData implements JavaExecutab
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameterTypes", this.getParameterTypes());
-        builder.append("returnType", this.getReturnType());
-        builder.append("thrownTypes", this.getThrownTypes());
-        builder.append("typeVariables", this.getTypeVariables());
+        builder.append("parameterTypes", ToStringUtil.describe(this.getParameterTypes()));
+        builder.append("returnType", ToStringUtil.describe(this.getReturnType()));
+        builder.append("thrownTypes", ToStringUtil.describe(this.getThrownTypes()));
+        builder.append("typeVariables", ToStringUtil.describe(this.getTypeVariables()));
 	}
 
 }

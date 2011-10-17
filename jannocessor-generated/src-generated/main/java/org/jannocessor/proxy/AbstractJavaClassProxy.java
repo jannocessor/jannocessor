@@ -17,19 +17,20 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaStructureProxy;
-import org.jannocessor.model.structure.AbstractJavaClass;
-import org.jannocessor.data.AbstractJavaClassData;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.variable.JavaField;
-import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.executable.JavaInstanceInit;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.data.AbstractJavaClassData;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.structure.AbstractJavaClass;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -146,11 +147,11 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("typeParameters", this.getTypeParameters());
-        builder.append("fields", this.getFields());
-        builder.append("constructors", this.getConstructors());
-        builder.append("staticInits", this.getStaticInits());
-        builder.append("instanceInits", this.getInstanceInits());
+        builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
+        builder.append("fields", ToStringUtil.describe(this.getFields()));
+        builder.append("constructors", ToStringUtil.describe(this.getConstructors()));
+        builder.append("staticInits", ToStringUtil.describe(this.getStaticInits()));
+        builder.append("instanceInits", ToStringUtil.describe(this.getInstanceInits()));
 	}
 
 }

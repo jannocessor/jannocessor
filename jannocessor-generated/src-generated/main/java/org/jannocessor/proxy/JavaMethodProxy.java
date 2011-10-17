@@ -17,18 +17,19 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaExecutableProxy;
-import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.data.JavaMethodData;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.model.modifier.MethodModifiers;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.data.JavaMethodData;
+import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.model.variable.JavaParameter;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -158,12 +159,12 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("typeParameters", this.getTypeParameters());
-        builder.append("returnType", this.getReturnType());
-        builder.append("parameters", this.getParameters());
-        builder.append("_isVarArgs", this.isVarArgs());
-        builder.append("thrownTypes", this.getThrownTypes());
-        builder.append("modifiers", this.getModifiers());
+        builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
+        builder.append("returnType", ToStringUtil.describe(this.getReturnType()));
+        builder.append("parameters", ToStringUtil.describe(this.getParameters()));
+        builder.append("_isVarArgs", ToStringUtil.describe(this.isVarArgs()));
+        builder.append("thrownTypes", ToStringUtil.describe(this.getThrownTypes()));
+        builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
 	}
 
 }

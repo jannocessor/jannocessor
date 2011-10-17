@@ -112,7 +112,7 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 #end
 #foreach ($m in $model.methods)
 #if ($helper.isIdentityProperty($m))
-        builder.append("${helper.fieldName($m)}", this.${m.name}());
+        builder.append("${helper.fieldName($m)}", #type("org.jannocessor.util.ToStringUtil").describe(this.${m.name}()));
 #end
 #end
 	}

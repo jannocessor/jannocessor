@@ -17,14 +17,15 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaTypeData;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaType;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -78,7 +79,7 @@ public class JavaDeclaredTypeData extends JavaTypeData implements JavaDeclaredTy
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameters", this.getParameters());
+        builder.append("parameters", ToStringUtil.describe(this.getParameters()));
 	}
 
 }

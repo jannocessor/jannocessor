@@ -17,14 +17,15 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaElementProxy;
-import org.jannocessor.model.executable.AbstractJavaExecutable;
-import org.jannocessor.data.AbstractJavaExecutableData;
-import org.jannocessor.model.executable.ExecutableBody;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.data.AbstractJavaExecutableData;
+import org.jannocessor.model.executable.AbstractJavaExecutable;
+import org.jannocessor.model.executable.ExecutableBody;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -89,7 +90,7 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("body", this.getBody());
+        builder.append("body", ToStringUtil.describe(this.getBody()));
 	}
 
 }

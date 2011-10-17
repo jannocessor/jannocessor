@@ -17,17 +17,18 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaCodeModelProxy;
-import org.jannocessor.model.JavaElement;
-import org.jannocessor.data.JavaElementData;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.JavaElementKind;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.data.JavaElementData;
+import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.JavaElementKind;
+import org.jannocessor.model.Name;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -142,10 +143,10 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("children", this.getChildren());
-        builder.append("name", this.getName());
-        builder.append("type", this.getType());
-        builder.append("kind", this.getKind());
+        builder.append("children", ToStringUtil.describe(this.getChildren()));
+        builder.append("name", ToStringUtil.describe(this.getName()));
+        builder.append("type", ToStringUtil.describe(this.getType()));
+        builder.append("kind", ToStringUtil.describe(this.getKind()));
 	}
 
 }

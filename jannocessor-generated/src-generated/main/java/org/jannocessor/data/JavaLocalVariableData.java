@@ -17,12 +17,13 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaVariableData;
-import org.jannocessor.model.variable.JavaLocalVariable;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.model.variable.JavaLocalVariable;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -76,7 +77,7 @@ public class JavaLocalVariableData extends AbstractJavaVariableData implements J
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("_isFinal", this.isFinal());
+        builder.append("_isFinal", ToStringUtil.describe(this.isFinal()));
 	}
 
 }

@@ -17,8 +17,9 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.model.code.JavaCodeModel;
+
 import org.jannocessor.data.SourceCodeRepresentationData;
+import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
 
 

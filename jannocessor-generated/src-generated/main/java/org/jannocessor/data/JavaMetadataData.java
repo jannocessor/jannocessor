@@ -17,14 +17,15 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaCodeModelData;
-import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.collection.api.PowerMap;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerMap;
+import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -102,9 +103,9 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("annotation", this.getAnnotation());
-        builder.append("values", this.getValues());
-        builder.append("valuesWithDefaults", this.getValuesWithDefaults());
+        builder.append("annotation", ToStringUtil.describe(this.getAnnotation()));
+        builder.append("values", ToStringUtil.describe(this.getValues()));
+        builder.append("valuesWithDefaults", ToStringUtil.describe(this.getValuesWithDefaults()));
 	}
 
 }

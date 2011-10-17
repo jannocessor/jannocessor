@@ -17,17 +17,18 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.AbstractJavaExecutableData;
-import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.modifier.ConstructorModifiers;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.modifier.ConstructorModifiers;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.model.variable.JavaParameter;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -129,11 +130,11 @@ public class JavaConstructorData extends AbstractJavaExecutableData implements J
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("typeParameters", this.getTypeParameters());
-        builder.append("parameters", this.getParameters());
-        builder.append("_isVarArgs", this.isVarArgs());
-        builder.append("thrownTypes", this.getThrownTypes());
-        builder.append("modifiers", this.getModifiers());
+        builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
+        builder.append("parameters", ToStringUtil.describe(this.getParameters()));
+        builder.append("_isVarArgs", ToStringUtil.describe(this.isVarArgs()));
+        builder.append("thrownTypes", ToStringUtil.describe(this.getThrownTypes()));
+        builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
 	}
 
 }

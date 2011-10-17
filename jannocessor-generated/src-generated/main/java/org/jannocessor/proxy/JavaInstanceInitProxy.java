@@ -17,13 +17,13 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.AbstractJavaExecutableProxy;
-import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.data.JavaInstanceInitData;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.data.JavaInstanceInitData;
+import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")

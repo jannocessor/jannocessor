@@ -17,15 +17,16 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaTypeProxy;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.data.JavaDeclaredTypeData;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaType;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.data.JavaDeclaredTypeData;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -90,7 +91,7 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameters", this.getParameters());
+        builder.append("parameters", ToStringUtil.describe(this.getParameters()));
 	}
 
 }
