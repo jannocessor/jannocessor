@@ -1,9 +1,4 @@
-#java_file($self.packageName, $self.name)
-package $self.packageName;
-
-#smart_import()
-
-#join(" ", [
+#join(' ', [
   "#modifiers_without($self, $Annotations.ABSTRACT)",
   '@interface',
   "$self.name",

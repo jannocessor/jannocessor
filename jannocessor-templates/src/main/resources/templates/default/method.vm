@@ -1,10 +1,10 @@
-#join(" ", [
+#join(' ', [
   "#modifiers_without($self, $Methods.ABSTRACT)",
   "#type_parameters($self)",
   "#render($self.returnType)",
-  "${self.name}(#parameters($self))"
+  "${self.name}(#parameters($self))",
+  "#method_throws($self)"
 ])
 #if(!$self.modifiers.contains($Methods.ABSTRACT)) {
-#body($self, "#default_body($self)")
-}#else
-;#end
+#@indent()#body($self, "#default_body($self)")#end
+}#else;#end

@@ -1,4 +1,4 @@
-#join(" ", [
+#join(' ', [
   "#modifiers($self)",
   "#type(${self.type})",
   "${self.name};"

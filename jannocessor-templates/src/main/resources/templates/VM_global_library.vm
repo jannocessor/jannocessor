@@ -4,8 +4,7 @@
 #end
 #end
 
-#macro(smart_import)
-(!PLACEHOLDER:SMART_IMPORT!)#end
+#macro(smart_import)(!PLACEHOLDER:SMART_IMPORT!)#end
 
 #macro(type $java_type)$types.useType($java_type)#end
 
@@ -16,8 +15,7 @@ $x.code#elseif($x.template)
 #elseif($x.templateName)
 #parse("#locate($x.templateName)")
 #elseif($default)
-$default
-#else
+$default#else
 [ERROR: Can't render $x!]#end
 #end
 
@@ -64,7 +62,7 @@ $mod.toString().toLowerCase()#sep(" ")
 #macro(inside)$!bodyContent#end
 
 #macro(indent $level)
-    #inside()
+$helper.indent("#inside()", "    ")
 #end
 
 #macro(type_parameters $model)
@@ -150,4 +148,10 @@ $representer.getJavaRepresentation($x)#end
 #macro(java_file $pkg $cls)
 #set($package = $pkg.text.replaceAll('\.', '/'))
 #file("${package}/${cls}.java")
+#end
+
+#macro(method_throws $model)
+#if(!$model.thrownTypes.isEmpty())
+throws #list($model.thrownTypes, '#type($it)', ', ')
+#end
 #end

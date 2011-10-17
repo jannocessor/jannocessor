@@ -20,11 +20,11 @@
 #else
 #value($x[0])
 #end
-#elseif($helper.isInstanceOf($x, "org.jannocessor.model.type.JavaType"))
+#elseif($helper.isInstanceOf($x, 'org.jannocessor.model.type.JavaType'))
 #type($x).class
-#elseif($helper.isInstanceOf($x, "org.jannocessor.model.variable.JavaEnumConstant"))
+#elseif($helper.isInstanceOf($x, 'org.jannocessor.model.variable.JavaEnumConstant'))
 #type($x.type).$x.name
-#elseif($helper.isInstanceOf($x, "org.jannocessor.model.structure.JavaMetadata"))
+#elseif($helper.isInstanceOf($x, 'org.jannocessor.model.structure.JavaMetadata'))
 #render($x)
 #else
 #value($x)
