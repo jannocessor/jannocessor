@@ -86,4 +86,24 @@ public class TemplateHelper {
 		return Class.forName(className).isInstance(value);
 	}
 
+	public String indent(String code, String prefix) {
+
+		StringBuilder sb = new StringBuilder();
+
+		String[] lines = StringUtils.splitPreserveAllTokens(code, "\n");
+		for (int i = 0; i < lines.length; i++) {
+			String line = lines[i];
+
+			if (!StringUtils.isWhitespace(line)) {
+				line = prefix + line;
+			}
+			sb.append(line);
+
+			if (i < lines.length - 1) {
+				sb.append("\n");
+			}
+		}
+
+		return sb.toString();
+	}
 }
