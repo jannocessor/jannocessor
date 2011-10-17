@@ -61,7 +61,7 @@ VelocityLineComment = "##" {NonLineTerminator}* {LineTerminator}?
 Letter = [a-zA-Z_]
 Alphanumeric = [a-zA-Z0-9_]
 Identifier = {Letter} {Alphanumeric}*
-StringLiteral1 = "\"" [^\"\n\r]* "\""
+StringLiteral1 = "\""
 StringLiteral2 = "'" [^\'\n\r]* "'"
 NumericLiteral = [0-9]+ ("." [0-9]+)?
 
@@ -78,11 +78,8 @@ Expression = "$" "{" [^}]*? "}"
   "public" | "protected" | "private" | "final" | "abstract" |
   "static" | "strictfp" | "transient" | "volatile" | "synchronized" |
   "extends" | "implements" | "throws" | "switch" | "case" | "default" |
-  "if" | "else" | "while" | "for" | "this" | "new" { return token(TokenType.KEYWORD); }
-
-  "#foreach" | "#if" | "#end" | "in" { return token(TokenType.KEYWORD2); }
-
-  "null" | "void" | "true" | "false" | "String" | "boolean" | "int" | "char" | "long" | "double" { return token(TokenType.TYPE); }
+  "if" | "else" | "while" | "for" | "this" | "new" |
+  "null" | "void" | "true" | "false" | "String" | "boolean" | "int" | "char" | "long" | "double" { return token(TokenType.KEYWORD); }
 
   "{" { return token(TokenType.OPERATOR, 10); }
   "}" { return token(TokenType.OPERATOR, -10); }
@@ -92,6 +89,10 @@ Expression = "$" "{" [^}]*? "}"
   ")" { return token(TokenType.OPERATOR, -30); }
 
   ";" | "," | "." | "=" | "<" | "!" | "&&" | "+" | "-" | "*" { return token(TokenType.OPERATOR); }
+
+  "#if" | "#elseif" | "#else" | "#foreach" | "#end" | "#define" | "#macro" { return token(TokenType.KEYWORD2); }
+
+  "#evaluate" | "#break" | "#stop" | "#parse" | "#include" | "#set" { return token(TokenType.TYPE); }
 
   {Identifier} { return token(TokenType.IDENTIFIER); }
   {Macro} { return token(TokenType.TYPE2); }
