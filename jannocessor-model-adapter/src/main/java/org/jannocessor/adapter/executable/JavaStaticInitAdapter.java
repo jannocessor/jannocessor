@@ -20,6 +20,7 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.util.New;
 
@@ -35,6 +36,11 @@ public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 		this.setCode(New.code(JavaStaticInit.class));
 		this.setBody(New.body(JavaStaticInit.class));
 		this.staticInit = staticInit;
+	}
+
+	@Override
+	public Name getName() {
+		return null;
 	}
 
 }

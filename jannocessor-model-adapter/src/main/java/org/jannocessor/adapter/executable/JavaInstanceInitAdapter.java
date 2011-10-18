@@ -20,6 +20,7 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.util.New;
 
@@ -35,6 +36,11 @@ public final class JavaInstanceInitAdapter extends
 		this.setCode(New.code(JavaInstanceInit.class));
 		this.setBody(New.body(JavaInstanceInit.class));
 		this.instanceInit = instanceInit;
+	}
+
+	@Override
+	public Name getName() {
+		return null;
 	}
 
 }
