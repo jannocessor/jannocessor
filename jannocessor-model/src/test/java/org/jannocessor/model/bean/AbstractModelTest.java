@@ -22,6 +22,7 @@ import static junit.framework.Assert.assertNull;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
@@ -40,6 +41,7 @@ import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaEnumConstant;
@@ -220,6 +222,12 @@ public class AbstractModelTest {
 
 		assertEquals(modifiers, annotation.getModifiers());
 		assertEquals(methods, annotation.getMethods());
+	}
+
+	protected void checkMetadata(JavaMetadata metadata, JavaType annotation,
+			Map<String, ? extends Object> attributes) {
+		assertEquals(annotation, metadata.getAnnotation());
+		assertEquals(attributes, metadata.getValues());
 	}
 
 	protected void checkAllEquall(JavaCodeModel... models) {

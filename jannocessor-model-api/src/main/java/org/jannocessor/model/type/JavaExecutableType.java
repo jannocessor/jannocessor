@@ -22,12 +22,12 @@ import org.jannocessor.collection.api.PowerList;
 @DomainModel
 public interface JavaExecutableType extends JavaType {
 
-    PowerList<JavaType> getParameterTypes();
+	PowerList<JavaType> getParameterTypes();
 
-    PowerList<JavaType> getReturnType();
+	JavaType getReturnType();
 
-    PowerList<JavaDeclaredType> getThrownTypes();
+	PowerList<JavaDeclaredType> getThrownTypes();
 
-    PowerList<JavaTypeVariable> getTypeVariables();
+	PowerList<JavaTypeVariable> getTypeVariables();
 
 }

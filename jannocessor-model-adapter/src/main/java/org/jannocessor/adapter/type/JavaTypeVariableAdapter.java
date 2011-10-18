@@ -24,24 +24,27 @@ import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.model.util.Code;
 
-public class JavaTypeVariableAdapter extends JavaTypeAdapter implements JavaTypeVariable {
+public class JavaTypeVariableAdapter extends JavaTypeAdapter implements
+		JavaTypeVariable {
 
-    public JavaTypeVariableAdapter(TypeVariable typeVariable, Elements elementUtils, Types typeUtils) {
-        super(typeVariable, elementUtils, typeUtils);
+	private final TypeVariable typeVariable;
+
+	public JavaTypeVariableAdapter(TypeVariable typeVariable,
+			Elements elementUtils, Types typeUtils) {
+		super(typeVariable, elementUtils, typeUtils);
+
+		this.typeVariable = typeVariable;
 		this.setCode(Code.code(JavaTypeVariable.class));
-        // TODO Auto-generated constructor stub
-    }
+	}
 
-    @Override
-    public JavaType getUpperBound() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public JavaType getUpperBound() {
+		return getTypeAdapter(typeVariable.getUpperBound());
+	}
 
-    @Override
-    public JavaType getLowerBound() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public JavaType getLowerBound() {
+		return getTypeAdapter(typeVariable.getLowerBound());
+	}
 
 }

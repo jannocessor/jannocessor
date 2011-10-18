@@ -17,19 +17,19 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-
+import org.jannocessor.data.AbstractJavaStructureData;
+import org.jannocessor.model.structure.AbstractJavaClass;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.executable.JavaStaticInit;
+import org.jannocessor.model.executable.JavaInstanceInit;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.executable.JavaConstructor;
-import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.structure.AbstractJavaClass;
-import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.util.ToStringUtil;
-import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")

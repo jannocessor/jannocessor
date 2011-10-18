@@ -17,17 +17,17 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-
+import org.jannocessor.data.JavaTypeData;
+import org.jannocessor.model.type.JavaExecutableType;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaTypeVariable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.model.type.JavaExecutableType;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.util.ToStringUtil;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -35,7 +35,7 @@ public class JavaExecutableTypeData extends JavaTypeData implements JavaExecutab
 
     private PowerList<JavaType> parameterTypes;
 
-    private PowerList<JavaType> returnType;
+    private JavaType returnType;
 
     private PowerList<JavaDeclaredType> thrownTypes;
 
@@ -50,11 +50,11 @@ public class JavaExecutableTypeData extends JavaTypeData implements JavaExecutab
         this.parameterTypes = value;
     }
 
-    public PowerList<JavaType> getReturnType() {
+    public JavaType getReturnType() {
         return this.returnType;
     }
 
-    public void setReturnType(PowerList<JavaType> value) {
+    public void setReturnType(JavaType value) {
         this.returnType = value;
     }
 

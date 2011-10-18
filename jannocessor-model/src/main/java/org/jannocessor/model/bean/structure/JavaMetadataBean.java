@@ -16,10 +16,25 @@
 
 package org.jannocessor.model.bean.structure;
 
+import java.util.Map;
+
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaMetadataData;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.Code;
 
 public class JavaMetadataBean extends JavaMetadataData implements JavaMetadata {
 
+	public JavaMetadataBean(JavaType annotation,
+			Map<String, ? extends Object> attributes) {
+		this.setAnnotation(annotation);
+		this.setValues(Power.map(attributes));
+
+		// FIXME: not implemented
+		this.setValuesWithDefaults(Power.map(String.class, Object.class));
+
+		this.setCode(Code.code(JavaMetadata.class));
+	}
 
 }

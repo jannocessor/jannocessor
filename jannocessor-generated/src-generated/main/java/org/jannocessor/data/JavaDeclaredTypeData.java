@@ -17,29 +17,29 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-
+import org.jannocessor.data.JavaTypeData;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.ToStringUtil;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
 public class JavaDeclaredTypeData extends JavaTypeData implements JavaDeclaredType {
 
-    private PowerList<JavaType> parameters;
+    private PowerList<JavaType> typeArguments;
 
 
-    public PowerList<JavaType> getParameters() {
-        return this.parameters;
+    public PowerList<JavaType> getTypeArguments() {
+        return this.typeArguments;
     }
 
-    public void setParameters(PowerList<JavaType> value) {
-        this.parameters = value;
+    public void setTypeArguments(PowerList<JavaType> value) {
+        this.typeArguments = value;
     }
 
 	@Override
@@ -57,14 +57,14 @@ public class JavaDeclaredTypeData extends JavaTypeData implements JavaDeclaredTy
 		JavaDeclaredType other = (JavaDeclaredType) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getParameters(), other.getParameters())
+				.append(this.getTypeArguments(), other.getTypeArguments())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getParameters())
+				.append(this.getTypeArguments())
 				.toHashCode();
 	}
 
@@ -79,7 +79,7 @@ public class JavaDeclaredTypeData extends JavaTypeData implements JavaDeclaredTy
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameters", ToStringUtil.describe(this.getParameters()));
+        builder.append("typeArguments", ToStringUtil.describe(this.getTypeArguments()));
 	}
 
 }

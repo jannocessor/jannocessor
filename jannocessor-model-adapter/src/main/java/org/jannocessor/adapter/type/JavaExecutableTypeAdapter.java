@@ -27,35 +27,39 @@ import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.model.util.Code;
 
-public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements JavaExecutableType {
+public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
+		JavaExecutableType {
 
-    public JavaExecutableTypeAdapter(ExecutableType executableType, Elements elementUtils, Types typeUtils) {
-        super(executableType, elementUtils, typeUtils);
+	private final ExecutableType executableType;
+
+	public JavaExecutableTypeAdapter(ExecutableType executableType,
+			Elements elementUtils, Types typeUtils) {
+		super(executableType, elementUtils, typeUtils);
+
+		this.executableType = executableType;
 		this.setCode(Code.code(JavaExecutableType.class));
-    }
+	}
 
-    @Override
-    public PowerList<JavaType> getParameterTypes() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public PowerList<JavaType> getParameterTypes() {
+		return getTypeAdapters(executableType.getParameterTypes());
+	}
 
-    @Override
-    public PowerList<JavaType> getReturnType() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public JavaType getReturnType() {
+		return getTypeAdapter(executableType.getReturnType());
+	}
 
-    @Override
-    public PowerList<JavaDeclaredType> getThrownTypes() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public PowerList<JavaDeclaredType> getThrownTypes() {
+		return getTypeAdapters(executableType.getThrownTypes(),
+				JavaDeclaredType.class);
+	}
 
-    @Override
-    public PowerList<JavaTypeVariable> getTypeVariables() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public PowerList<JavaTypeVariable> getTypeVariables() {
+		return getTypeAdapters(executableType.getTypeVariables(),
+				JavaTypeVariable.class);
+	}
 
 }

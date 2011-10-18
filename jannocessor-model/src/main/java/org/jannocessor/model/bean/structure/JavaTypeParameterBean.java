@@ -16,16 +16,21 @@
 
 package org.jannocessor.model.bean.structure;
 
+import java.util.List;
+
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Code;
 
 public class JavaTypeParameterBean extends JavaTypeParameterData implements
 		JavaTypeParameter {
 
-	public JavaTypeParameterBean(String name) {
+	public JavaTypeParameterBean(String name, List<JavaType> bounds) {
 		this.setName(new NameBean(name));
+		this.setBounds(Power.list(bounds));
 
 		this.setCode(Code.code(JavaTypeParameter.class));
 	}

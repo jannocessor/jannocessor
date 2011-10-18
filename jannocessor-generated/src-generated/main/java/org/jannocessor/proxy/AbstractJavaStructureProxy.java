@@ -17,23 +17,23 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.proxy.JavaElementProxy;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")

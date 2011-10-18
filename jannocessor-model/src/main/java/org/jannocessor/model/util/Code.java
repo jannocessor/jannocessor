@@ -17,6 +17,7 @@
 package org.jannocessor.model.util;
 
 import java.util.List;
+import java.util.Map;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
@@ -44,6 +45,7 @@ import org.jannocessor.model.bean.structure.JavaAnnotationBean;
 import org.jannocessor.model.bean.structure.JavaClassBean;
 import org.jannocessor.model.bean.structure.JavaEnumBean;
 import org.jannocessor.model.bean.structure.JavaInterfaceBean;
+import org.jannocessor.model.bean.structure.JavaMetadataBean;
 import org.jannocessor.model.bean.structure.JavaNestedAnnotationBean;
 import org.jannocessor.model.bean.structure.JavaNestedClassBean;
 import org.jannocessor.model.bean.structure.JavaNestedEnumBean;
@@ -93,12 +95,15 @@ import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.type.JavaArrayType;
+import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.type.JavaTypeVariable;
@@ -287,9 +292,7 @@ public class Code {
 		return new JavaPackageBean();
 	}
 
-	public static JavaTypeParameter typeParameter(String name) {
-		return new JavaTypeParameterBean(name);
-	}
+	/******************************** TYPES **********************************/
 
 	public static JavaType type(Class<?> type, Class<?>... typeParams) {
 		return new JavaTypeBean(type, typeParams);
@@ -309,35 +312,35 @@ public class Code {
 		return Power.list(types);
 	}
 
-	public static JavaType arrayType(JavaType type) {
+	public static JavaArrayType arrayType(JavaType type) {
 		return new JavaArrayTypeBean(type);
 	}
 
-	public static JavaType arrayType(Class<?> type, Class<?>... typeParams) {
+	public static JavaArrayType arrayType(Class<?> type, Class<?>... typeParams) {
 		return arrayType(type(type, typeParams));
 	}
 
-	public static JavaType executableType(JavaType returnType,
+	public static JavaExecutableType executableType(JavaType returnType,
 			List<JavaType> parameterTypes, List<JavaType> thrownTypes,
 			List<JavaType> typeVariables) {
 		return new JavaExecutableTypeBean(returnType, parameterTypes,
 				thrownTypes, typeVariables);
 	}
 
-	public static JavaType executableType(JavaType returnType,
+	public static JavaExecutableType executableType(JavaType returnType,
 			List<JavaType> parameterTypes, List<JavaType> thrownTypes) {
 		List<JavaType> noTypeVariables = Power.list();
 		return executableType(returnType, parameterTypes, thrownTypes,
 				noTypeVariables);
 	}
 
-	public static JavaType executableType(JavaType returnType,
+	public static JavaExecutableType executableType(JavaType returnType,
 			PowerList<JavaType> parameterTypes) {
 		PowerList<JavaType> noThrownTypes = Power.list();
 		return executableType(returnType, parameterTypes, noThrownTypes);
 	}
 
-	public static JavaType executableType(Class<?> returnType,
+	public static JavaExecutableType executableType(Class<?> returnType,
 			Class<?>... parameterTypes) {
 		return executableType(type(returnType), types(parameterTypes));
 	}
@@ -364,10 +367,6 @@ public class Code {
 
 	public static JavaTypeVariable typeVarUpperBound(Class<?> clazz) {
 		return new JavaTypeVariableBean(null, clazz);
-	}
-
-	public static SourceCode code(String code) {
-		return new SourceCodeBean(code, null, null);
 	}
 
 	/*************************** CONSTRUCTOR *******************************/
@@ -735,6 +734,57 @@ public class Code {
 
 	public static JavaNestedAnnotation nestedAnnotation(String name) {
 		return nestedAnnotation(name, NO_METHODS);
+	}
+
+	/******************************* METADATA *********************************/
+
+	public static JavaMetadata metadata(JavaType type,
+			Map<String, ? extends Object> attributes) {
+		return new JavaMetadataBean(type, attributes);
+	}
+
+	public static JavaMetadata metadata(Class<?> type,
+			Map<String, ? extends Object> attributes) {
+		return metadata(type(type), attributes);
+	}
+
+	public static <T> JavaMetadata metadata(JavaType type, T... values) {
+		if (values.length == 0) {
+			return metadata(type, Power.map(String.class, Object.class));
+		} else if (values.length == 1) {
+			return metadata(type, Power.map("value", values[0]));
+		} else {
+			return metadata(type, Power.map("value", Power.list(values)));
+		}
+	}
+
+	public static <T> JavaMetadata metadata(Class<?> type, T... values) {
+		return metadata(type(type), values);
+	}
+
+	/*************************** TYPE PARAMETERS *****************************/
+
+	public static JavaTypeParameter typeParameter(String name,
+			List<JavaType> bounds) {
+		return new JavaTypeParameterBean(name, bounds);
+	}
+
+	public static JavaTypeParameter typeParameter(String name) {
+		return typeParameter(name, NO_TYPES);
+	}
+
+	/*************************** SOURCE CODE *****************************/
+
+	public static SourceCode code(String code) {
+		return new SourceCodeBean(code, null, null);
+	}
+
+	public static SourceCode codeByTemplate(String template) {
+		return new SourceCodeBean(null, template, null);
+	}
+
+	public static SourceCode codeByTemplateName(String templateName) {
+		return new SourceCodeBean(null, null, templateName);
 	}
 
 }

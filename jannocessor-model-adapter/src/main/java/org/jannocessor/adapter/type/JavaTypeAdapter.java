@@ -28,7 +28,8 @@ import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.util.Code;
 
-public class JavaTypeAdapter extends JavaCodeModelAdapter implements JavaType {
+public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
+		JavaType {
 
 	private final TypeMirror typeMirror;
 

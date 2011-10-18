@@ -22,6 +22,6 @@ import org.jannocessor.collection.api.PowerList;
 @DomainModel
 public interface JavaDeclaredType extends JavaType {
 
-    PowerList<JavaType> getParameters();
+	PowerList<JavaType> getTypeArguments();
 
 }

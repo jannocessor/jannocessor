@@ -17,18 +17,18 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-
+import org.jannocessor.proxy.JavaTypeProxy;
+import org.jannocessor.model.type.JavaExecutableType;
+import org.jannocessor.data.JavaExecutableTypeData;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaTypeVariable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.data.JavaExecutableTypeData;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.model.type.JavaExecutableType;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.util.ToStringUtil;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -62,7 +62,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
         return data.getParameterTypes();
     }
 
-    public PowerList<JavaType> getReturnType() {
+    public JavaType getReturnType() {
         if (!getReturnTypeInitialized) {
             data.setReturnType(adapter.getReturnType());
 			getReturnTypeInitialized = true;

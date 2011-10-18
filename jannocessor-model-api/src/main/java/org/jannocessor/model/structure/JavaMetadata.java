@@ -26,8 +26,8 @@ public interface JavaMetadata extends JavaCodeModel {
 
 	JavaType getAnnotation();
 
-	PowerMap<String, Object> getValues();
+	PowerMap<String, ? extends Object> getValues();
 
-	PowerMap<String, Object> getValuesWithDefaults();
+	PowerMap<String, ? extends Object> getValuesWithDefaults();
 
 }

@@ -78,19 +78,30 @@ public abstract class AbstractAdapter {
 		return adapters;
 	}
 
+	protected <T extends JavaType> T getTypeAdapter(TypeMirror typeMirror,
+			Class<T> clazz) {
+		return AdapterFactory.getTypeModel(typeMirror, clazz, elementUtils,
+				typeUtils);
+	}
+
 	protected JavaType getTypeAdapter(TypeMirror typeMirror) {
-		return AdapterFactory.getTypeModel(typeMirror, elementUtils, typeUtils);
+		return getTypeAdapter(typeMirror, JavaType.class);
+	}
+
+	protected <T extends JavaType> PowerList<T> getTypeAdapters(
+			List<? extends TypeMirror> typeMirrors, Class<T> clazz) {
+		PowerList<T> types = Power.emptyList();
+
+		for (TypeMirror typeMirror : typeMirrors) {
+			types.add(getTypeAdapter(typeMirror, clazz));
+		}
+
+		return types;
 	}
 
 	protected PowerList<JavaType> getTypeAdapters(
 			List<? extends TypeMirror> typeMirrors) {
-		PowerList<JavaType> types = Power.emptyList();
-
-		for (TypeMirror typeMirror : typeMirrors) {
-			types.add(getTypeAdapter(typeMirror));
-		}
-
-		return types;
+		return getTypeAdapters(typeMirrors, JavaType.class);
 	}
 
 	protected JavaMetadata getMetadataAdapter(AnnotationMirror annotationMirror) {

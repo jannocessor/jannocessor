@@ -28,19 +28,19 @@ import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.ToStringUtil;
 import org.jannocessor.util.TypeSpecificStyle;
 
-
 @Generated("JAnnocessor-bootstraped")
-public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadata {
+public class JavaMetadataProxy extends JavaCodeModelProxy implements
+		JavaMetadata {
 
-    private JavaMetadata adapter;
+	private JavaMetadata adapter;
 
-    private JavaMetadataData data;
+	private JavaMetadataData data;
 
-    public JavaMetadataProxy(JavaMetadata adapter, JavaMetadataData data) {
-        super(adapter, data);
-        this.adapter = adapter;
-        this.data = data;
-    }
+	public JavaMetadataProxy(JavaMetadata adapter, JavaMetadataData data) {
+		super(adapter, data);
+		this.adapter = adapter;
+		this.data = data;
+	}
 
 	private boolean getAnnotationInitialized = false;
 
@@ -48,33 +48,32 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 
 	private boolean getValuesWithDefaultsInitialized = false;
 
-
-    public JavaType getAnnotation() {
-        if (!getAnnotationInitialized) {
-            data.setAnnotation(adapter.getAnnotation());
+	public JavaType getAnnotation() {
+		if (!getAnnotationInitialized) {
+			data.setAnnotation(adapter.getAnnotation());
 			getAnnotationInitialized = true;
-        }
+		}
 
-        return data.getAnnotation();
-    }
+		return data.getAnnotation();
+	}
 
-    public PowerMap<String,Object> getValues() {
-        if (!getValuesInitialized) {
-            data.setValues(adapter.getValues());
+	public PowerMap<String, ? extends Object> getValues() {
+		if (!getValuesInitialized) {
+			data.setValues(adapter.getValues());
 			getValuesInitialized = true;
-        }
+		}
 
-        return data.getValues();
-    }
+		return data.getValues();
+	}
 
-    public PowerMap<String,Object> getValuesWithDefaults() {
-        if (!getValuesWithDefaultsInitialized) {
-            data.setValuesWithDefaults(adapter.getValuesWithDefaults());
+	public PowerMap<String, ? extends Object> getValuesWithDefaults() {
+		if (!getValuesWithDefaultsInitialized) {
+			data.setValuesWithDefaults(adapter.getValuesWithDefaults());
 			getValuesWithDefaultsInitialized = true;
-        }
+		}
 
-        return data.getValuesWithDefaults();
-    }
+		return data.getValuesWithDefaults();
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -93,16 +92,14 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 				.appendSuper(super.equals(other))
 				.append(this.getAnnotation(), other.getAnnotation())
 				.append(this.getValues(), other.getValues())
-				.append(this.getValuesWithDefaults(), other.getValuesWithDefaults())
-				.isEquals();
+				.append(this.getValuesWithDefaults(),
+						other.getValuesWithDefaults()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder()
-				.append(this.getAnnotation())
-				.append(this.getValues())
-				.append(this.getValuesWithDefaults())
+		return new HashCodeBuilder().append(this.getAnnotation())
+				.append(this.getValues()).append(this.getValuesWithDefaults())
 				.toHashCode();
 	}
 
@@ -116,12 +113,12 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
-        super.appendDescription(builder);
-        builder.append("annotation", ToStringUtil.describe(this.getAnnotation()));
-        builder.append("values", ToStringUtil.describe(this.getValues()));
-        builder.append("valuesWithDefaults", ToStringUtil.describe(this.getValuesWithDefaults()));
+		super.appendDescription(builder);
+		builder.append("annotation",
+				ToStringUtil.describe(this.getAnnotation()));
+		builder.append("values", ToStringUtil.describe(this.getValues()));
+		builder.append("valuesWithDefaults",
+				ToStringUtil.describe(this.getValuesWithDefaults()));
 	}
 
 }
-
-

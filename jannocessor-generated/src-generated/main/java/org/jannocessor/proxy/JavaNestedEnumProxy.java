@@ -17,15 +17,15 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.proxy.AbstractJavaEnumProxy;
+import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.data.JavaNestedEnumData;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
-import org.jannocessor.model.structure.JavaNestedEnum;
-import org.jannocessor.model.util.ToStringUtil;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")

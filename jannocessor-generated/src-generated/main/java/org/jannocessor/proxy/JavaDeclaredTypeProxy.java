@@ -17,16 +17,16 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-
+import org.jannocessor.proxy.JavaTypeProxy;
+import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.data.JavaDeclaredTypeData;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.data.JavaDeclaredTypeData;
-import org.jannocessor.model.type.JavaDeclaredType;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.ToStringUtil;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -42,16 +42,16 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
         this.data = data;
     }
 
-	private boolean getParametersInitialized = false;
+	private boolean getTypeArgumentsInitialized = false;
 
 
-    public PowerList<JavaType> getParameters() {
-        if (!getParametersInitialized) {
-            data.setParameters(adapter.getParameters());
-			getParametersInitialized = true;
+    public PowerList<JavaType> getTypeArguments() {
+        if (!getTypeArgumentsInitialized) {
+            data.setTypeArguments(adapter.getTypeArguments());
+			getTypeArgumentsInitialized = true;
         }
 
-        return data.getParameters();
+        return data.getTypeArguments();
     }
 
 	@Override
@@ -69,14 +69,14 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 		JavaDeclaredType other = (JavaDeclaredType) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getParameters(), other.getParameters())
+				.append(this.getTypeArguments(), other.getTypeArguments())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getParameters())
+				.append(this.getTypeArguments())
 				.toHashCode();
 	}
 
@@ -91,7 +91,7 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("parameters", ToStringUtil.describe(this.getParameters()));
+        builder.append("typeArguments", ToStringUtil.describe(this.getTypeArguments()));
 	}
 
 }
