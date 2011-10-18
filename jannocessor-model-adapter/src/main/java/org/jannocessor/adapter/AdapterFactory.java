@@ -16,6 +16,9 @@
 
 package org.jannocessor.adapter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -137,13 +140,22 @@ public class AdapterFactory {
 	protected static final Logger logger = LoggerFactory
 			.getLogger(AdapterFactory.class);
 
+	private static Map<Element, JavaElement> ELEMENT_ADAPTERS = new HashMap<Element, JavaElement>();
+	private static Map<TypeMirror, JavaType> TYPE_ADAPTERS = new HashMap<TypeMirror, JavaType>();
+	private static Map<AnnotationMirror, JavaMetadata> METADATA_ADAPTERS = new HashMap<AnnotationMirror, JavaMetadata>();
+
 	@SuppressWarnings("unchecked")
 	public static <T extends JavaElement> T getElementModel(Element element,
 			Class<T> clazz, Elements elementUtils, Types typeUtils) {
 
 		if (element != null) {
 
-			JavaElement model;
+			JavaElement model = ELEMENT_ADAPTERS.get(element);
+			if (model != null) {
+				// it was in the cache already
+				return (T) model;
+			}
+
 			TypeElement typeElement;
 
 			ElementKind kind = element.getKind();
@@ -283,6 +295,9 @@ public class AdapterFactory {
 			}
 
 			if (clazz.isAssignableFrom(model.getClass())) {
+				// put it to cache
+				ELEMENT_ADAPTERS.put(element, model);
+
 				return (T) model;
 			} else {
 				String msg = "Wrong element type: %s is not assignable to %s!";
@@ -298,7 +313,12 @@ public class AdapterFactory {
 	public static <T extends JavaType> T getTypeModel(TypeMirror typeMirror,
 			Class<T> clazz, Elements elementUtils, Types typeUtils) {
 		if (typeMirror != null) {
-			JavaType type;
+			JavaType type = TYPE_ADAPTERS.get(typeMirror);
+			if (type != null) {
+				// it was in the cache already
+				return (T) type;
+			}
+
 			switch (typeMirror.getKind()) {
 
 			case ARRAY:
@@ -360,6 +380,9 @@ public class AdapterFactory {
 			}
 
 			if (clazz.isAssignableFrom(type.getClass())) {
+				// put it to cache
+				TYPE_ADAPTERS.put(typeMirror, type);
+
 				return (T) type;
 			} else {
 				String msg = "Wrong type: %s is not assignable to %s!";
@@ -375,9 +398,20 @@ public class AdapterFactory {
 			AnnotationMirror annotationMirror, Elements elementUtils,
 			Types typeUtils) {
 		if (annotationMirror != null) {
-			return new JavaMetadataProxy(new JavaMetadataAdapter(
+			JavaMetadata metadata = METADATA_ADAPTERS.get(annotationMirror);
+			if (metadata != null) {
+				// it was in the cache already
+				return metadata;
+			}
+
+			metadata = new JavaMetadataProxy(new JavaMetadataAdapter(
 					annotationMirror, elementUtils, typeUtils),
 					new JavaMetadataData());
+
+			// put it to cache
+			METADATA_ADAPTERS.put(annotationMirror, metadata);
+
+			return metadata;
 		} else {
 			return null;
 		}
