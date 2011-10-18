@@ -101,4 +101,11 @@ public class SourceCodeBean implements SourceCode {
 		return new ReflectionToStringBuilder(this, style).toString();
 	}
 
+	@Override
+	public void assign(SourceCode sourceCode) {
+		setCode(sourceCode.getCode());
+		setTemplate(sourceCode.getTemplate());
+		setTemplateName(sourceCode.getTemplateName());
+	}
+
 }

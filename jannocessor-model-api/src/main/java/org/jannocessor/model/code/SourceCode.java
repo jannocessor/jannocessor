@@ -30,4 +30,6 @@ public interface SourceCode {
 
 	void setTemplateName(String templateName);
 
+	void assign(SourceCode sourceCode);
+
 }
