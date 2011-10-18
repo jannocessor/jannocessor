@@ -3,6 +3,7 @@ package $self.packageName;
 
 #smart_import()
 
+#render_lines($self.metadata)
 #join(' ', [
   "#modifiers_without($self, $Interfaces.ABSTRACT)",
   'interface',
@@ -15,8 +16,6 @@ package $self.packageName;
 
 #members($self.fields)
 #members($self.methods)
-
-// asdasd
 #nestedMembers($self)
 }
 

@@ -3,6 +3,7 @@ package $self.packageName;
 
 #smart_import()
 
+#render_lines($self.metadata)
 #join(" ", [
   "#modifiers_without($self, $Annotations.ABSTRACT)",
   '@interface',
