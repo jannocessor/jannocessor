@@ -68,6 +68,25 @@ public class Power {
 		return PowerLinkedHashMap.powerMap();
 	}
 
+	public static <K, V> PowerMap<K, V> map(Class<K> keyClass,
+			Class<V> valueClass) {
+		return PowerLinkedHashMap.powerMap();
+	}
+
+	public static <K, V> PowerMap<K, V> map(K key, V value) {
+		return PowerLinkedHashMap.powerMap(key, value);
+	}
+
+	public static <K, V> PowerMap<K, V> map(K key1, V value1, K key2, V value2) {
+		return PowerLinkedHashMap.powerMap(key1, value1, key2, value2);
+	}
+
+	public static <K, V> PowerMap<K, V> map(K key1, V value1, K key2, V value2,
+			K key3, V value3) {
+		return PowerLinkedHashMap.powerMap(key1, value1, key2, value2, key3,
+				value3);
+	}
+
 	public static <K, V> PowerMap<K, V> map(Map<K, V> map) {
 		return PowerLinkedHashMap.powerMap(map);
 	}

@@ -34,6 +34,22 @@ public class PowerLinkedHashMap<K, V> extends LinkedHashMap<K, V> implements
 		return new PowerLinkedHashMap<K, V>();
 	}
 
+	public static <K, V> PowerMap<K, V> powerMap(K key, V value) {
+		return new PowerLinkedHashMap<K, V>().set(key, value);
+	}
+
+	public static <K, V> PowerMap<K, V> powerMap(K key1, V value1, K key2,
+			V value2) {
+		return new PowerLinkedHashMap<K, V>().set(key1, value1).set(key2,
+				value2);
+	}
+
+	public static <K, V> PowerMap<K, V> powerMap(K key1, V value1, K key2,
+			V value2, K key3, V value3) {
+		return new PowerLinkedHashMap<K, V>().set(key1, value1)
+				.set(key2, value2).set(key3, value3);
+	}
+
 	public static <K, V> PowerMap<K, V> powerMap(Map<K, V> map) {
 		PowerLinkedHashMap<K, V> powerMap = new PowerLinkedHashMap<K, V>();
 		powerMap.putAll(map);

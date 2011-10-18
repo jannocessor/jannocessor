@@ -32,6 +32,27 @@ public class PowerLinkedHashMapTest {
 		check(map, "b", 2);
 	}
 
+	@Test
+	public void testInstantiations() {
+		PowerMap<String, Integer> map = Power.map("a", 1);
+
+		Assert.assertEquals(map.size(), 1);
+		check(map, "a", 1);
+
+		PowerMap<String, Integer> map2 = Power.map("a", 1, "b", 2);
+
+		Assert.assertEquals(map2.size(), 2);
+		check(map2, "a", 1);
+		check(map2, "b", 2);
+
+		PowerMap<String, Integer> map3 = Power.map("a", 1, "b", 2, "c", 3);
+
+		Assert.assertEquals(map3.size(), 3);
+		check(map3, "a", 1);
+		check(map3, "b", 2);
+		check(map3, "c", 3);
+	}
+
 	private void check(PowerMap<?, ?> map, Object key, Object value) {
 		Assert.assertEquals(value, map.get(key));
 	}
