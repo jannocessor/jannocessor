@@ -16,21 +16,19 @@
 
 package org.jannocessor.util;
 
-import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 @SuppressWarnings("serial")
-public class TypeSpecificStyle extends ToStringStyle {
+public class TypeSpecificInlineStyle extends ToStringStyle {
 
-	public TypeSpecificStyle(Class<?> type) {
+	public TypeSpecificInlineStyle(Class<?> type) {
 		this.setUseClassName(false);
 		this.setUseIdentityHashCode(false);
 
-		this.setFieldNameValueSeparator(" = ");
 		this.setContentStart(type.getSimpleName() + " {");
-		this.setFieldSeparator(SystemUtils.LINE_SEPARATOR + "    ");
-		this.setFieldSeparatorAtStart(true);
-		this.setContentEnd(SystemUtils.LINE_SEPARATOR + "}");
+		this.setFieldSeparator(", ");
+		this.setFieldSeparatorAtStart(false);
+		this.setContentEnd("}");
 	}
 
 }
