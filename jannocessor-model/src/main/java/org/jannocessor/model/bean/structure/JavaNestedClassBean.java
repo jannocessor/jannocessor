@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaNestedClassData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
@@ -57,6 +58,7 @@ public class JavaNestedClassBean extends JavaNestedClassData implements
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
+		this.setKind(JavaElementKind.NESTED_CLASS);
 		this.setCode(New.code(JavaNestedClass.class));
 	}
 

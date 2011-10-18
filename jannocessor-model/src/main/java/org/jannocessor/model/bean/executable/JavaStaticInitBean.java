@@ -17,6 +17,7 @@
 package org.jannocessor.model.bean.executable;
 
 import org.jannocessor.data.JavaStaticInitData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.util.New;
 
@@ -24,6 +25,7 @@ public class JavaStaticInitBean extends JavaStaticInitData implements
 		JavaStaticInit {
 
 	public JavaStaticInitBean() {
+		this.setKind(JavaElementKind.STATIC_INIT);
 		this.setCode(New.code(JavaStaticInit.class));
 		this.setBody(New.body(JavaStaticInit.class));
 	}

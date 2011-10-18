@@ -17,6 +17,7 @@
 package org.jannocessor.model.bean.structure;
 
 import org.jannocessor.data.JavaPackageData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.New;
 
@@ -24,6 +25,7 @@ public class JavaPackageBean extends JavaPackageData implements JavaPackage {
 
 	public JavaPackageBean() {
 		// TODO Auto-generated constructor stub
+		this.setKind(JavaElementKind.PACKAGE);
 		this.setCode(New.code(JavaPackage.class));
 	}
 }

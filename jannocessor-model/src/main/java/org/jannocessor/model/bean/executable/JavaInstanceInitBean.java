@@ -17,6 +17,7 @@
 package org.jannocessor.model.bean.executable;
 
 import org.jannocessor.data.JavaInstanceInitData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.util.New;
 
@@ -24,6 +25,7 @@ public class JavaInstanceInitBean extends JavaInstanceInitData implements
 		JavaInstanceInit {
 
 	public JavaInstanceInitBean() {
+		this.setKind(JavaElementKind.INSTANCE_INIT);
 		this.setCode(New.code(JavaInstanceInit.class));
 		this.setBody(New.body(JavaInstanceInit.class));
 	}

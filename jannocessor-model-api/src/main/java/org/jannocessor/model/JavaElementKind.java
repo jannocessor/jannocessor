@@ -21,43 +21,75 @@ public enum JavaElementKind {
 	/** A package. */
 	PACKAGE,
 
-	// Declared types
+	/* Declared types */
+
 	/** An enum type. */
 	ENUM,
+
 	/** A class not described by a more specific kind (like {@code ENUM}). */
 	CLASS,
+
 	/** An annotation type. */
-	ANNOTATION_TYPE,
+	ANNOTATION,
+
+	/**
+	 * An interface not described by a more specific kind (like
+	 * {@code ANNOTATION}).
+	 */
+	INTERFACE,
+
+	// Nested declared types
+
+	/** An enum type. */
+	NESTED_ENUM,
+
+	/** A class not described by a more specific kind (like {@code ENUM}). */
+	NESTED_CLASS,
+
+	/** An annotation type. */
+	NESTED_ANNOTATION,
+
 	/**
 	 * An interface not described by a more specific kind (like
 	 * {@code ANNOTATION_TYPE}).
 	 */
-	INTERFACE,
+	NESTED_INTERFACE,
 
-	// Variables
+	/* Variables */
+
 	/** An enum constant. */
 	ENUM_CONSTANT,
+
 	/**
 	 * A field not described by a more specific kind (like {@code ENUM_CONSTANT}
 	 * ).
 	 */
 	FIELD,
+
 	/** A parameter of a method or constructor. */
 	PARAMETER,
+
 	/** A local variable. */
 	LOCAL_VARIABLE,
+
 	/** A parameter of an exception handler. */
 	EXCEPTION_PARAMETER,
 
-	// Executables
+	/* Executables */
+
 	/** A method. */
 	METHOD,
+
 	/** A constructor. */
 	CONSTRUCTOR,
+
 	/** A static initializer. */
 	STATIC_INIT,
+
 	/** An instance initializer. */
 	INSTANCE_INIT,
+
+	/* Other */
 
 	/** A type parameter. */
 	TYPE_PARAMETER,

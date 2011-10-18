@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaConstructorData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
@@ -41,6 +42,7 @@ public class JavaConstructorBean extends JavaConstructorData implements
 		// TODO: calculate and set isVarArgs
 		this.setVarArgs(false);
 
+		this.setKind(JavaElementKind.CONSTRUCTOR);
 		this.setCode(New.code(JavaConstructor.class));
 		this.setBody(New.body(JavaConstructor.class));
 	}

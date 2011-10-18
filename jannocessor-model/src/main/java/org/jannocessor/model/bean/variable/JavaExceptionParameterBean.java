@@ -17,6 +17,7 @@
 package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaExceptionParameterData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
@@ -28,6 +29,8 @@ public class JavaExceptionParameterBean extends JavaExceptionParameterData
 	public JavaExceptionParameterBean(JavaType type, String name) {
 		this.setType(type);
 		this.setName(new NameBean(name));
+
+		this.setKind(JavaElementKind.EXCEPTION_PARAMETER);
 		this.setCode(New.code(JavaExceptionParameter.class));
 	}
 

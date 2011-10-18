@@ -17,6 +17,7 @@
 package org.jannocessor.model.bean.variable;
 
 import org.jannocessor.data.JavaLocalVariableData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
@@ -29,6 +30,8 @@ public class JavaLocalVariableBean extends JavaLocalVariableData implements
 		this.setType(type);
 		this.setName(new NameBean(name));
 		this.setFinal(isFinal);
+
+		this.setKind(JavaElementKind.LOCAL_VARIABLE);
 		this.setCode(New.code(JavaLocalVariable.class));
 	}
 

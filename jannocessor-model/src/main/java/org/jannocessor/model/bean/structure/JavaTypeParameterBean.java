@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaTypeParameterData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
@@ -32,6 +33,7 @@ public class JavaTypeParameterBean extends JavaTypeParameterData implements
 		this.setName(new NameBean(name));
 		this.setBounds(Power.list(bounds));
 
+		this.setKind(JavaElementKind.TYPE_PARAMETER);
 		this.setCode(New.code(JavaTypeParameter.class));
 	}
 }

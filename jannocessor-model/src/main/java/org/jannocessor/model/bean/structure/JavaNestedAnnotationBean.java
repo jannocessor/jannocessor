@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaNestedAnnotationData;
+import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
@@ -43,6 +44,7 @@ public class JavaNestedAnnotationBean extends JavaNestedAnnotationData
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
+		this.setKind(JavaElementKind.NESTED_ANNOTATION);
 		this.setCode(New.code(JavaNestedAnnotation.class));
 	}
 }

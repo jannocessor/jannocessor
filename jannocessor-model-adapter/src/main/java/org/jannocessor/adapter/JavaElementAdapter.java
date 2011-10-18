@@ -130,7 +130,22 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 
 	@Override
 	public JavaElementKind getKind() {
-		return JavaElementKind.valueOf(element.getKind().toString());
-	}
+		String kindName = element.getKind().toString();
+		if (kindName.equals("ANNOTATION_TYPE")) {
+			kindName = "ANNOTATION";
+		}
 
+		JavaElementKind kind = JavaElementKind.valueOf(kindName);
+
+		switch (kind) {
+		case CLASS:
+		case INTERFACE:
+		case ENUM:
+		case ANNOTATION:
+			kind = JavaElementKind.valueOf("NESTED_" + kindName);
+			break;
+		}
+
+		return kind;
+	}
 }
