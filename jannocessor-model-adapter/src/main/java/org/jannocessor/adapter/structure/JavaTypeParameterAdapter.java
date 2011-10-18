@@ -28,7 +28,7 @@ import org.jannocessor.collection.filter.api.Criteria;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaTypeParameterAdapter extends JavaElementAdapter
 		implements JavaTypeParameter {
@@ -50,7 +50,7 @@ public final class JavaTypeParameterAdapter extends JavaElementAdapter
 	public JavaTypeParameterAdapter(TypeParameterElement typeParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(typeParameter, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaTypeParameter.class));
+		this.setCode(New.code(JavaTypeParameter.class));
 		this.typeParameter = typeParameter;
 	}
 

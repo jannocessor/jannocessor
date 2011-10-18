@@ -34,7 +34,7 @@ import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Enums;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaField;
@@ -96,7 +96,7 @@ public class JavaEnumTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
-		return new JavaParameter[] { Code.parameter(type, name) };
+		return new JavaParameter[] { New.parameter(type, name) };
 	}
 
 	@AutoTwip
@@ -111,7 +111,7 @@ public class JavaEnumTest extends AbstractModelTest {
 	public static JavaMethod[] methods(MethodModifiers modifiers,
 			JavaType returnType, @Values("IDS") String name,
 			JavaParameter[] params) {
-		return new JavaMethod[] { Code.method(modifiers, returnType, name,
+		return new JavaMethod[] { New.method(modifiers, returnType, name,
 				params) };
 	}
 
@@ -126,7 +126,7 @@ public class JavaEnumTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaField[] fields(FieldModifiers modifiers, JavaType type,
 			@Values("IDS") String name) {
-		return new JavaField[] { Code.field(modifiers, type, name) };
+		return new JavaField[] { New.field(modifiers, type, name) };
 	}
 
 	@AutoTwip
@@ -141,7 +141,7 @@ public class JavaEnumTest extends AbstractModelTest {
 			ConstructorModifiers modifiers, JavaParameter[] params,
 			JavaType[] thrownTypes, JavaTypeParameter[] typeParameters) {
 
-		return new JavaConstructor[] { Code.constructor(modifiers,
+		return new JavaConstructor[] { New.constructor(modifiers,
 				Power.list(params), Power.list(thrownTypes),
 				Power.list(typeParameters)) };
 	}
@@ -205,28 +205,28 @@ public class JavaEnumTest extends AbstractModelTest {
 			List<JavaField> fields, List<JavaConstructor> constructors,
 			List<JavaMethod> methods) {
 
-		JavaEnum obj1 = Code.enumm(modifiers, name, interfaces, values, fields,
+		JavaEnum obj1 = New.enumm(modifiers, name, interfaces, values, fields,
 				constructors, methods);
 		checkEnum(obj1, modifiers, name, interfaces, values, fields,
 				constructors, methods);
 
-		JavaEnum obj2 = Code.enumm(modifiers, name, values, fields,
+		JavaEnum obj2 = New.enumm(modifiers, name, values, fields,
 				constructors, methods);
-		checkEnum(obj2, modifiers, name, Code.NO_TYPES, values, fields,
+		checkEnum(obj2, modifiers, name, New.NO_TYPES, values, fields,
 				constructors, methods);
 
-		JavaEnum obj3 = Code.enumm(modifiers, name, values, fields,
+		JavaEnum obj3 = New.enumm(modifiers, name, values, fields,
 				constructors);
-		checkEnum(obj3, modifiers, name, Code.NO_TYPES, values, fields,
-				constructors, Code.NO_METHODS);
+		checkEnum(obj3, modifiers, name, New.NO_TYPES, values, fields,
+				constructors, New.NO_METHODS);
 
-		JavaEnum obj4 = Code.enumm(modifiers, name, values);
-		checkEnum(obj4, modifiers, name, Code.NO_TYPES, values, Code.NO_FIELDS,
-				Code.NO_CONSTRUCTORS, Code.NO_METHODS);
+		JavaEnum obj4 = New.enumm(modifiers, name, values);
+		checkEnum(obj4, modifiers, name, New.NO_TYPES, values, New.NO_FIELDS,
+				New.NO_CONSTRUCTORS, New.NO_METHODS);
 
-		JavaEnum obj5 = Code.enumm(name, values);
-		checkEnum(obj5, Enums.PUBLIC, name, Code.NO_TYPES, values,
-				Code.NO_FIELDS, Code.NO_CONSTRUCTORS, Code.NO_METHODS);
+		JavaEnum obj5 = New.enumm(name, values);
+		checkEnum(obj5, Enums.PUBLIC, name, New.NO_TYPES, values,
+				New.NO_FIELDS, New.NO_CONSTRUCTORS, New.NO_METHODS);
 
 		return new JavaEnum[] { obj1, obj2, obj3, obj4, obj5 };
 	}

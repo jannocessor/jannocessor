@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaArrayTypeAdapter extends JavaTypeAdapter implements
 		JavaArrayType {
@@ -34,7 +34,7 @@ public class JavaArrayTypeAdapter extends JavaTypeAdapter implements
 		super(arrayType, elementUtils, typeUtils);
 
 		this.arrayType = arrayType;
-		this.setCode(Code.code(JavaArrayType.class));
+		this.setCode(New.code(JavaArrayType.class));
 	}
 
 	@Override

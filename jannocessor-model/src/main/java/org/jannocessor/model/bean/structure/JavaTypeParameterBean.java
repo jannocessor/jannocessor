@@ -23,7 +23,7 @@ import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaTypeParameterBean extends JavaTypeParameterData implements
 		JavaTypeParameter {
@@ -32,6 +32,6 @@ public class JavaTypeParameterBean extends JavaTypeParameterData implements
 		this.setName(new NameBean(name));
 		this.setBounds(Power.list(bounds));
 
-		this.setCode(Code.code(JavaTypeParameter.class));
+		this.setCode(New.code(JavaTypeParameter.class));
 	}
 }

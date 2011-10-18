@@ -25,7 +25,7 @@ import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
 		JavaExecutableType {
@@ -37,7 +37,7 @@ public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
 		super(executableType, elementUtils, typeUtils);
 
 		this.executableType = executableType;
-		this.setCode(Code.code(JavaExecutableType.class));
+		this.setCode(New.code(JavaExecutableType.class));
 	}
 
 	@Override

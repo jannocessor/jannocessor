@@ -25,7 +25,7 @@ import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.test.Param;
 import org.junit.Test;
@@ -50,7 +50,7 @@ public class JavaFieldTest extends AbstractModelTest {
 	@Test
 	public void testFieldConstruction1(FieldModifiers modifiers, JavaType type,
 			@Values("IDS") String name) {
-		JavaField field = Code.field(modifiers, type, name);
+		JavaField field = New.field(modifiers, type, name);
 
 		checkLonelyElement(field, name, type);
 		Assert.assertEquals(modifiers, field.getModifiers());
@@ -59,7 +59,7 @@ public class JavaFieldTest extends AbstractModelTest {
 	@Test
 	public void testFieldConstruction2(FieldModifiers modifiers, Class<?> type,
 			@Values("IDS") String name) {
-		JavaField field = Code.field(modifiers, type, name);
+		JavaField field = New.field(modifiers, type, name);
 		checkLonelyElement(field, name, type);
 
 		Assert.assertEquals(modifiers, field.getModifiers());

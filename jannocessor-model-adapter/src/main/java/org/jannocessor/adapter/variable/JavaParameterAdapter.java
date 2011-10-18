@@ -21,7 +21,7 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 
 public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
@@ -32,7 +32,7 @@ public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 	public JavaParameterAdapter(VariableElement parameter,
 			Elements elementUtils, Types typeUtils) {
 		super(parameter, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaParameter.class));
+		this.setCode(New.code(JavaParameter.class));
 		this.parameter = parameter;
 	}
 

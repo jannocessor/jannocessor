@@ -34,7 +34,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
 public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
@@ -46,7 +46,7 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 			Elements elementUtils, Types typeUtils) {
 		super(elementUtils, typeUtils);
 		this.annotationMirror = annotationMirror;
-		this.setCode(Code.code(JavaMetadata.class));
+		this.setCode(New.code(JavaMetadata.class));
 	}
 
 	@Override

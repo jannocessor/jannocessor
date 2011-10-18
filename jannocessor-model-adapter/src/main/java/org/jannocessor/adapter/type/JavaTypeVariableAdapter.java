@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaTypeVariableAdapter extends JavaTypeAdapter implements
 		JavaTypeVariable {
@@ -34,7 +34,7 @@ public class JavaTypeVariableAdapter extends JavaTypeAdapter implements
 		super(typeVariable, elementUtils, typeUtils);
 
 		this.typeVariable = typeVariable;
-		this.setCode(Code.code(JavaTypeVariable.class));
+		this.setCode(New.code(JavaTypeVariable.class));
 	}
 
 	@Override

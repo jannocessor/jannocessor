@@ -27,7 +27,7 @@ import org.jannocessor.model.bean.modifier.ConstructorModifiersBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		implements JavaConstructor {
@@ -37,8 +37,8 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 	public JavaConstructorAdapter(ExecutableElement constructor,
 			Elements elementUtils, Types typeUtils) {
 		super(constructor, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaConstructor.class));
-		this.setBody(Code.body(JavaConstructor.class));
+		this.setCode(New.code(JavaConstructor.class));
+		this.setBody(New.body(JavaConstructor.class));
 		this.constructor = constructor;
 	}
 

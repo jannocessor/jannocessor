@@ -22,20 +22,20 @@ import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 public class Interfaces {
 
 	/** Represents the default interface modifier. */
-	public static final InterfaceModifiers DEFAULT_MODIFIER = Code
+	public static final InterfaceModifiers DEFAULT_MODIFIER = New
 			.interfaceModifiers();
 
 	/** Represents "public" interface modifier. */
-	public static final InterfaceModifiers PUBLIC = Code
+	public static final InterfaceModifiers PUBLIC = New
 			.interfaceModifiers(InterfaceModifierValue.PUBLIC);
 
 	/** Represents "public abstract" interface modifiers. */
-	public static final InterfaceModifiers PUBLIC_ABSTRACT = Code
+	public static final InterfaceModifiers PUBLIC_ABSTRACT = New
 			.interfaceModifiers(InterfaceModifierValue.PUBLIC,
 					InterfaceModifierValue.ABSTRACT);
 
 	/** Represents "abstract" interface modifier. */
-	public static final InterfaceModifiers ABSTRACT = Code
+	public static final InterfaceModifiers ABSTRACT = New
 			.interfaceModifiers(InterfaceModifierValue.ABSTRACT);
 
 }

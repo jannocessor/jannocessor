@@ -30,7 +30,7 @@ import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.EnumModifierValue;
 import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.variable.JavaParameter;
 
@@ -68,7 +68,7 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 	public JavaEnumAdapter(TypeElement tenum, Elements elementUtils,
 			Types typeUtils) {
 		super(tenum, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaEnum.class));
+		this.setCode(New.code(JavaEnum.class));
 		this.tenum = tenum;
 	}
 

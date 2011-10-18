@@ -28,7 +28,7 @@ import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaAnnotationBean extends JavaAnnotationData implements
 		JavaAnnotation {
@@ -44,6 +44,6 @@ public class JavaAnnotationBean extends JavaAnnotationData implements
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
-		this.setCode(Code.code(JavaAnnotation.class));
+		this.setCode(New.code(JavaAnnotation.class));
 	}
 }

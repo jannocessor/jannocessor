@@ -32,7 +32,7 @@ import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Annotations;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.test.Param;
 import org.junit.Assert;
@@ -80,7 +80,7 @@ public class JavaAnnotationTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
-		return new JavaParameter[] { Code.parameter(type, name) };
+		return new JavaParameter[] { New.parameter(type, name) };
 	}
 
 	@AutoTwip
@@ -95,7 +95,7 @@ public class JavaAnnotationTest extends AbstractModelTest {
 	public static JavaMethod[] methods(MethodModifiers modifiers,
 			JavaType returnType, @Values("IDS") String name,
 			JavaParameter[] params) {
-		return new JavaMethod[] { Code.method(modifiers, returnType, name,
+		return new JavaMethod[] { New.method(modifiers, returnType, name,
 				params) };
 	}
 
@@ -138,13 +138,13 @@ public class JavaAnnotationTest extends AbstractModelTest {
 	private JavaAnnotation[] allInstances(AnnotationModifiers modifiers,
 			String name, List<JavaMethod> methods) {
 
-		JavaAnnotation obj1 = Code.annotation(modifiers, name, methods);
+		JavaAnnotation obj1 = New.annotation(modifiers, name, methods);
 		checkAnnotation(obj1, modifiers, name, methods);
 
-		JavaAnnotation obj2 = Code.annotation(modifiers, name);
-		checkAnnotation(obj2, modifiers, name, Code.NO_METHODS);
+		JavaAnnotation obj2 = New.annotation(modifiers, name);
+		checkAnnotation(obj2, modifiers, name, New.NO_METHODS);
 
-		JavaAnnotation obj3 = Code.annotation(name, methods);
+		JavaAnnotation obj3 = New.annotation(name, methods);
 		checkAnnotation(obj3, Annotations.PUBLIC, name, methods);
 
 		return new JavaAnnotation[] { obj1, obj2, obj3 };

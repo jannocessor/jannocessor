@@ -20,7 +20,7 @@ import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -29,7 +29,7 @@ public class JavaInstanceInitTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaInstanceInit instanceInit = Code.instanceInit();
+		JavaInstanceInit instanceInit = New.instanceInit();
 		checkLonelyElement(instanceInit);
 	}
 

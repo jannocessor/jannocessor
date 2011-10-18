@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.model.structure.JavaPackage;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaPackageAdapter extends JavaElementAdapter implements
 		JavaPackage {
@@ -33,7 +33,7 @@ public final class JavaPackageAdapter extends JavaElementAdapter implements
 	public JavaPackageAdapter(PackageElement tpackage, Elements elementUtils,
 			Types typeUtils) {
 		super(tpackage, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaPackage.class));
+		this.setCode(New.code(JavaPackage.class));
 		this.tpackage = tpackage;
 	}
 

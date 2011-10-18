@@ -27,7 +27,7 @@ import org.jannocessor.model.bean.modifier.MethodModifiersBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 		implements JavaMethod {
@@ -37,8 +37,8 @@ public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 	public JavaMethodAdapter(ExecutableElement method, Elements elementUtils,
 			Types typeUtils) {
 		super(method, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaMethod.class));
-		this.setBody(Code.body(JavaMethod.class));
+		this.setCode(New.code(JavaMethod.class));
+		this.setBody(New.body(JavaMethod.class));
 		this.method = method;
 	}
 

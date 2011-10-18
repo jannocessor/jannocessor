@@ -21,7 +21,7 @@ import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -30,13 +30,13 @@ public class JavaTypeVariableTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaTypeVariable typeVar = Code.typeVar();
+		JavaTypeVariable typeVar = New.typeVar();
 		assertNotNull(typeVar);
 
-		JavaTypeVariable typeVarLower = Code.typeVarLowerBound(String.class);
+		JavaTypeVariable typeVarLower = New.typeVarLowerBound(String.class);
 		assertNotNull(typeVarLower);
 
-		JavaTypeVariable typeVarUpper = Code.typeVarUpperBound(Integer.class);
+		JavaTypeVariable typeVarUpper = New.typeVarUpperBound(Integer.class);
 		assertNotNull(typeVarUpper);
 	}
 

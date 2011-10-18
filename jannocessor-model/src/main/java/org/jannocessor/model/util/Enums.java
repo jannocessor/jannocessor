@@ -22,10 +22,10 @@ import org.jannocessor.model.modifier.value.EnumModifierValue;
 public class Enums {
 
 	/** Represents the default enum modifier. */
-	public static final EnumModifiers DEFAULT_MODIFIER = Code.enumModifiers();
+	public static final EnumModifiers DEFAULT_MODIFIER = New.enumModifiers();
 
 	/** Represents "public" enum modifier. */
-	public static final EnumModifiers PUBLIC = Code
+	public static final EnumModifiers PUBLIC = New
 			.enumModifiers(EnumModifierValue.PUBLIC);
 
 }

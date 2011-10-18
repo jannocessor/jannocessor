@@ -19,7 +19,7 @@ package org.jannocessor.model.bean.variable;
 import org.jannocessor.data.JavaParameterData;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaParameterBean extends JavaParameterData implements
@@ -28,7 +28,7 @@ public class JavaParameterBean extends JavaParameterData implements
 	public JavaParameterBean(JavaType type, String name, boolean isFinal) {
 		this.setType(type);
 		this.setName(new NameBean(name));
-		this.setCode(Code.code(JavaParameter.class));
+		this.setCode(New.code(JavaParameter.class));
 		this.setFinal(isFinal);
 	}
 

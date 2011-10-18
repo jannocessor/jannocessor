@@ -27,7 +27,7 @@ import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Constructors;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.test.Param;
@@ -54,7 +54,7 @@ public class JavaConstructorTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
-		return new JavaParameter[] { Code.parameter(type, name) };
+		return new JavaParameter[] { New.parameter(type, name) };
 	}
 
 	@AutoTwip
@@ -82,54 +82,54 @@ public class JavaConstructorTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation1() {
-		JavaConstructor constructor = Code.constructor();
+		JavaConstructor constructor = New.constructor();
 
-		checkConstructor(constructor, Constructors.PUBLIC, Code.NO_PARAMS,
-				Code.NO_TYPES, Code.NO_TYPE_PARAMS, false);
+		checkConstructor(constructor, Constructors.PUBLIC, New.NO_PARAMS,
+				New.NO_TYPES, New.NO_TYPE_PARAMS, false);
 	}
 
 	@Test
 	public void testInstantiation2(JavaParameter[] params) {
-		JavaConstructor constructor = Code.constructor(params);
+		JavaConstructor constructor = New.constructor(params);
 
 		checkConstructor(constructor, Constructors.PUBLIC, Power.list(params),
-				Code.NO_TYPES, Code.NO_TYPE_PARAMS, false);
+				New.NO_TYPES, New.NO_TYPE_PARAMS, false);
 	}
 
 	@Test
 	public void testInstantiation3(ConstructorModifiers modifiers,
 			JavaParameter[] params) {
-		JavaConstructor constructor = Code.constructor(modifiers, params);
+		JavaConstructor constructor = New.constructor(modifiers, params);
 
 		checkConstructor(constructor, modifiers, Power.list(params),
-				Code.NO_TYPES, Code.NO_TYPE_PARAMS, false);
+				New.NO_TYPES, New.NO_TYPE_PARAMS, false);
 	}
 
 	@Test
 	public void testInstantiation4(ConstructorModifiers modifiers,
 			JavaParameter[] params) {
-		JavaConstructor constructor = Code.constructor(modifiers,
+		JavaConstructor constructor = New.constructor(modifiers,
 				Power.list(params));
 
 		checkConstructor(constructor, modifiers, Power.list(params),
-				Code.NO_TYPES, Code.NO_TYPE_PARAMS, false);
+				New.NO_TYPES, New.NO_TYPE_PARAMS, false);
 	}
 
 	@Test
 	public void testInstantiation5(ConstructorModifiers modifiers,
 			JavaParameter[] params, JavaType[] thrownTypes) {
-		JavaConstructor constructor = Code.constructor(modifiers,
+		JavaConstructor constructor = New.constructor(modifiers,
 				Power.list(params), Power.list(thrownTypes));
 
 		checkConstructor(constructor, modifiers, Power.list(params),
-				Power.list(thrownTypes), Code.NO_TYPE_PARAMS, false);
+				Power.list(thrownTypes), New.NO_TYPE_PARAMS, false);
 	}
 
 	@Test
 	public void testInstantiation6(ConstructorModifiers modifiers,
 			JavaParameter[] params, JavaType[] thrownTypes,
 			JavaTypeParameter[] typeParams) {
-		JavaConstructor constructor = Code.constructor(modifiers,
+		JavaConstructor constructor = New.constructor(modifiers,
 				Power.list(params), Power.list(thrownTypes),
 				Power.list(typeParams));
 

@@ -23,7 +23,7 @@ import net.sf.twip.Values;
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.test.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +36,7 @@ public class JavaTypeParameterTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation(@Values("IDS") String name) {
-		JavaTypeParameter typeParameter = Code.typeParameter(name);
+		JavaTypeParameter typeParameter = New.typeParameter(name);
 		checkLonelyElement(typeParameter, name, (JavaType) null);
 	}
 

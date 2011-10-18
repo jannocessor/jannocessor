@@ -27,7 +27,7 @@ import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.test.Param;
 import org.junit.Test;
@@ -56,7 +56,7 @@ public class JavaMethodTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
-		return new JavaParameter[] { Code.parameter(type, name) };
+		return new JavaParameter[] { New.parameter(type, name) };
 	}
 
 	@AutoTwip
@@ -87,11 +87,11 @@ public class JavaMethodTest extends AbstractModelTest {
 			JavaType returnType, @Values("IDS") String name,
 			JavaParameter[] params) {
 
-		JavaMethod method = Code.method(modifiers, returnType, name,
+		JavaMethod method = New.method(modifiers, returnType, name,
 				Power.list(params));
 
 		checkMethod(method, modifiers, returnType, name, Power.list(params),
-				Code.NO_TYPES, Code.NO_TYPE_PARAMS);
+				New.NO_TYPES, New.NO_TYPE_PARAMS);
 	}
 
 	@Test
@@ -99,11 +99,11 @@ public class JavaMethodTest extends AbstractModelTest {
 			Class<?> returnType, @Values("IDS") String name,
 			JavaParameter[] params) {
 
-		JavaMethod method = Code.method(modifiers, returnType, name,
+		JavaMethod method = New.method(modifiers, returnType, name,
 				Power.list(params));
 
-		checkMethod(method, modifiers, Code.type(returnType), name,
-				Power.list(params), Code.NO_TYPES, Code.NO_TYPE_PARAMS);
+		checkMethod(method, modifiers, New.type(returnType), name,
+				Power.list(params), New.NO_TYPES, New.NO_TYPE_PARAMS);
 	}
 
 	@Test
@@ -111,11 +111,11 @@ public class JavaMethodTest extends AbstractModelTest {
 			JavaType returnType, @Values("IDS") String name,
 			JavaParameter[] params, JavaType[] thrownTypes) {
 
-		JavaMethod method = Code.method(modifiers, returnType, name,
+		JavaMethod method = New.method(modifiers, returnType, name,
 				Power.list(params), Power.list(thrownTypes));
 
 		checkMethod(method, modifiers, returnType, name, Power.list(params),
-				Power.list(thrownTypes), Code.NO_TYPE_PARAMS);
+				Power.list(thrownTypes), New.NO_TYPE_PARAMS);
 	}
 
 	@Test
@@ -123,12 +123,12 @@ public class JavaMethodTest extends AbstractModelTest {
 			Class<?> returnType, @Values("IDS") String name,
 			JavaParameter[] params, JavaType[] thrownTypes) {
 
-		JavaMethod method = Code.method(modifiers, returnType, name,
+		JavaMethod method = New.method(modifiers, returnType, name,
 				Power.list(params), Power.list(thrownTypes));
 
-		checkMethod(method, modifiers, Code.type(returnType), name,
+		checkMethod(method, modifiers, New.type(returnType), name,
 				Power.list(params), Power.list(thrownTypes),
-				Code.NO_TYPE_PARAMS);
+				New.NO_TYPE_PARAMS);
 	}
 
 	@Test
@@ -137,7 +137,7 @@ public class JavaMethodTest extends AbstractModelTest {
 			JavaParameter[] params, JavaType[] thrownTypes,
 			JavaTypeParameter[] typeParams) {
 
-		JavaMethod method = Code.method(modifiers, returnType, name,
+		JavaMethod method = New.method(modifiers, returnType, name,
 				Power.list(params), Power.list(thrownTypes),
 				Power.list(typeParams));
 
@@ -151,11 +151,11 @@ public class JavaMethodTest extends AbstractModelTest {
 			JavaParameter[] params, JavaType[] thrownTypes,
 			JavaTypeParameter[] typeParams) {
 
-		JavaMethod method = Code.method(modifiers, returnType, name,
+		JavaMethod method = New.method(modifiers, returnType, name,
 				Power.list(params), Power.list(thrownTypes),
 				Power.list(typeParams));
 
-		checkMethod(method, modifiers, Code.type(returnType), name,
+		checkMethod(method, modifiers, New.type(returnType), name,
 				Power.list(params), Power.list(thrownTypes),
 				Power.list(typeParams));
 	}

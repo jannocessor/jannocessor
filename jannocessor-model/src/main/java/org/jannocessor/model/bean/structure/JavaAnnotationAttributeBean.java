@@ -20,7 +20,7 @@ import org.jannocessor.data.JavaAnnotationAttributeData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaAnnotationAttributeBean extends JavaAnnotationAttributeData
 		implements JavaAnnotationAttribute {
@@ -32,9 +32,9 @@ public class JavaAnnotationAttributeBean extends JavaAnnotationAttributeData
 	public JavaAnnotationAttributeBean(JavaType type, String name,
 			Object defaultValue) {
 		this.type = type;
-		this.name = Code.name(name);
+		this.name = New.name(name);
 		this.defaultValue = defaultValue;
-		this.setCode(Code.code(JavaAnnotationAttribute.class));
+		this.setCode(New.code(JavaAnnotationAttribute.class));
 	}
 
 	@Override

@@ -26,7 +26,7 @@ import javax.lang.model.util.Types;
 import org.jannocessor.model.bean.modifier.FieldModifiersBean;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
 
 public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
@@ -37,7 +37,7 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
 			Types typeUtils) {
 		super(field, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaField.class));
+		this.setCode(New.code(JavaField.class));
 		this.field = field;
 	}
 

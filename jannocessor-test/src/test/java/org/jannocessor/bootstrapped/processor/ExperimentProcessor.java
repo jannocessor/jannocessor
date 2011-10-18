@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.processor.model.CodeProcessor;
 import org.jannocessor.processor.model.ProcessingContext;
@@ -39,10 +39,10 @@ public class ExperimentProcessor implements CodeProcessor {
 
 		model.getName().appendPart("Gen");
 
-		JavaMetadata meta1 = Code.metadata(Generated.class, "Jannocessor Test");
+		JavaMetadata meta1 = New.metadata(Generated.class, "Jannocessor Test");
 		model.getMetadata().add(meta1);
 
-		JavaMethod method1 = Code.method(Methods.PUBLIC, String.class, "cool");
+		JavaMethod method1 = New.method(Methods.PUBLIC, String.class, "cool");
 		method1.getBody().setCode("return \"COOL!\";");
 		model.getMethods().add(method1);
 

@@ -22,26 +22,26 @@ import org.jannocessor.model.modifier.value.ClassModifierValue;
 public class Classes {
 
 	/** Represents the default class modifier. */
-	public static final ClassModifiers DEFAULT_MODIFIER = Code.classModifiers();
+	public static final ClassModifiers DEFAULT_MODIFIER = New.classModifiers();
 
 	/** Represents "public" class modifier. */
-	public static final ClassModifiers PUBLIC = Code
+	public static final ClassModifiers PUBLIC = New
 			.classModifiers(ClassModifierValue.PUBLIC);
 
 	/** Represents "public abstract" class modifiers. */
-	public static final ClassModifiers PUBLIC_ABSTRACT = Code.classModifiers(
+	public static final ClassModifiers PUBLIC_ABSTRACT = New.classModifiers(
 			ClassModifierValue.PUBLIC, ClassModifierValue.ABSTRACT);
 
 	/** Represents "public final" class modifiers. */
-	public static final ClassModifiers PUBLIC_FINAL = Code.classModifiers(
+	public static final ClassModifiers PUBLIC_FINAL = New.classModifiers(
 			ClassModifierValue.PUBLIC, ClassModifierValue.FINAL);
 
 	/** Represents "abstract" class modifier. */
-	public static final ClassModifiers ABSTRACT = Code
+	public static final ClassModifiers ABSTRACT = New
 			.classModifiers(ClassModifierValue.ABSTRACT);
 
 	/** Represents "final" class modifier. */
-	public static final ClassModifiers FINAL = Code
+	public static final ClassModifiers FINAL = New
 			.classModifiers(ClassModifierValue.FINAL);
 
 }

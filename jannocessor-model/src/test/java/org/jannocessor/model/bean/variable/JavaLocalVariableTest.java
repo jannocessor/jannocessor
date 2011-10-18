@@ -24,7 +24,7 @@ import net.sf.twip.Values;
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaLocalVariable;
 import org.jannocessor.test.Param;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class JavaLocalVariableTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation1(Class<?> type, @Values("IDS") String name) {
-		JavaLocalVariable var = Code.localVariable(type, name);
+		JavaLocalVariable var = New.localVariable(type, name);
 		checkLonelyElement(var, name, type);
 
 		assertEquals(Boolean.FALSE, var.isFinal());
@@ -53,7 +53,7 @@ public class JavaLocalVariableTest extends AbstractModelTest {
 	@Test
 	public void testInstantiation1(Class<?> type, @Values("IDS") String name,
 			Boolean isFinal) {
-		JavaLocalVariable var = Code.localVariable(type, name, isFinal);
+		JavaLocalVariable var = New.localVariable(type, name, isFinal);
 		checkLonelyElement(var, name, type);
 
 		assertEquals(isFinal, var.isFinal());
@@ -61,7 +61,7 @@ public class JavaLocalVariableTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation2(JavaType type, @Values("IDS") String name) {
-		JavaLocalVariable var = Code.localVariable(type, name);
+		JavaLocalVariable var = New.localVariable(type, name);
 		checkLonelyElement(var, name, type);
 
 		assertEquals(Boolean.FALSE, var.isFinal());
@@ -70,7 +70,7 @@ public class JavaLocalVariableTest extends AbstractModelTest {
 	@Test
 	public void testInstantiation2(JavaType type, @Values("IDS") String name,
 			Boolean isFinal) {
-		JavaLocalVariable var = Code.localVariable(type, name, isFinal);
+		JavaLocalVariable var = New.localVariable(type, name, isFinal);
 		checkLonelyElement(var, name, type);
 
 		assertEquals(isFinal, var.isFinal());

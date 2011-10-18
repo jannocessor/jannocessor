@@ -40,7 +40,7 @@ import org.apache.velocity.runtime.resource.loader.FileResourceLoader;
 import org.jannocessor.collection.Power;
 import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Constructors;
 import org.jannocessor.model.util.Enums;
 import org.jannocessor.model.util.Fields;
@@ -213,7 +213,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 	private void addModifiersToContext(VelocityContext context) {
 		context.put("Annotations", getStaticFields(Annotations.class));
 		context.put("Classes", getStaticFields(Classes.class));
-		context.put("Code", getStaticFields(Code.class));
+		context.put("Code", getStaticFields(New.class));
 		context.put("Constructors", getStaticFields(Constructors.class));
 		context.put("Enums", getStaticFields(Enums.class));
 		context.put("Fields", getStaticFields(Fields.class));

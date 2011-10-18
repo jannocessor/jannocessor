@@ -26,7 +26,7 @@ import org.jannocessor.adapter.JavaCodeModelAdapter;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 		JavaType {
@@ -36,7 +36,7 @@ public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 	public JavaTypeAdapter(TypeMirror typeMirror, Elements elementUtils,
 			Types typeUtils) {
 		super(elementUtils, typeUtils);
-		this.setCode(Code.code(JavaType.class));
+		this.setCode(New.code(JavaType.class));
 		this.typeMirror = typeMirror;
 	}
 

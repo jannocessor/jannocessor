@@ -24,7 +24,7 @@ import net.sf.twip.Values;
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.test.Param;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class JavaParameterTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation1(Class<?> type, @Values("IDS") String name) {
-		JavaParameter param = Code.parameter(type, name);
+		JavaParameter param = New.parameter(type, name);
 		checkLonelyElement(param, name, type);
 
 		assertEquals(false, param.isFinal());
@@ -53,7 +53,7 @@ public class JavaParameterTest extends AbstractModelTest {
 	@Test
 	public void testInstantiation2(Class<?> type, @Values("IDS") String name,
 			boolean isFinal) {
-		JavaParameter param = Code.parameter(type, name, isFinal);
+		JavaParameter param = New.parameter(type, name, isFinal);
 		checkLonelyElement(param, name, type);
 
 		assertEquals(isFinal, param.isFinal());
@@ -61,7 +61,7 @@ public class JavaParameterTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation3(JavaType type, @Values("IDS") String name) {
-		JavaParameter param = Code.parameter(type, name);
+		JavaParameter param = New.parameter(type, name);
 		checkLonelyElement(param, name, type);
 
 		assertEquals(false, param.isFinal());
@@ -70,7 +70,7 @@ public class JavaParameterTest extends AbstractModelTest {
 	@Test
 	public void testInstantiation4(JavaType type, @Values("IDS") String name,
 			boolean isFinal) {
-		JavaParameter param = Code.parameter(type, name, isFinal);
+		JavaParameter param = New.parameter(type, name, isFinal);
 		checkLonelyElement(param, name, type);
 
 		assertEquals(isFinal, param.isFinal());

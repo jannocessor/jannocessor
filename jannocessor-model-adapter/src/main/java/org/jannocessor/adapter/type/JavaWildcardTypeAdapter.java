@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaWildcardType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
 		JavaWildcardType {
@@ -34,7 +34,7 @@ public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
 		super(wildcardType, elementUtils, typeUtils);
 
 		this.wildcardType = wildcardType;
-		this.setCode(Code.code(JavaWildcardType.class));
+		this.setCode(New.code(JavaWildcardType.class));
 	}
 
 	@Override

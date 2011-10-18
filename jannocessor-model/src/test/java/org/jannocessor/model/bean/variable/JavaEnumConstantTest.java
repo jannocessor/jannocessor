@@ -22,7 +22,7 @@ import net.sf.twip.Values;
 
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.test.Param;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class JavaEnumConstantTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation(@Values("IDS") String name) {
-		JavaEnumConstant enumConstant = Code.enumConstant(name);
+		JavaEnumConstant enumConstant = New.enumConstant(name);
 		checkLonelyElement(enumConstant, name, (JavaType) null);
 	}
 

@@ -31,7 +31,7 @@ import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaField;
 
@@ -56,7 +56,7 @@ public class JavaNestedEnumBean extends JavaNestedEnumData implements
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
-		this.setCode(Code.code(JavaNestedEnum.class));
+		this.setCode(New.code(JavaNestedEnum.class));
 	}
 
 }

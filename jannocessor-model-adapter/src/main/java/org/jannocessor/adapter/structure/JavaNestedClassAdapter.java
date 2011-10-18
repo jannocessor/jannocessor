@@ -24,7 +24,7 @@ import org.jannocessor.model.bean.modifier.NestedClassModifiersBean;
 import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.jannocessor.model.modifier.value.NestedClassModifierValue;
 import org.jannocessor.model.structure.JavaNestedClass;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 		implements JavaNestedClass {
@@ -35,7 +35,7 @@ public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 	public JavaNestedClassAdapter(TypeElement tclass, Elements elementUtils,
 			Types typeUtils) {
 		super(tclass, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaNestedClass.class));
+		this.setCode(New.code(JavaNestedClass.class));
 		this.tclass = tclass;
 	}
 

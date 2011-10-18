@@ -18,14 +18,14 @@ package org.jannocessor.model.bean.executable;
 
 import org.jannocessor.data.JavaInstanceInitData;
 import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaInstanceInitBean extends JavaInstanceInitData implements
 		JavaInstanceInit {
 
 	public JavaInstanceInitBean() {
-		this.setCode(Code.code(JavaInstanceInit.class));
-		this.setBody(Code.body(JavaInstanceInit.class));
+		this.setCode(New.code(JavaInstanceInit.class));
+		this.setBody(New.body(JavaInstanceInit.class));
 	}
 
 }

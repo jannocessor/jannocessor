@@ -21,7 +21,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaVoidType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaVoidTypeAdapter extends JavaTypeAdapter implements
 		JavaVoidType {
@@ -34,7 +34,7 @@ public class JavaVoidTypeAdapter extends JavaTypeAdapter implements
 		super(noType, elementUtils, typeUtils);
 
 		this.noType = noType;
-		this.setCode(Code.code(JavaVoidType.class));
+		this.setCode(New.code(JavaVoidType.class));
 	}
 
 }

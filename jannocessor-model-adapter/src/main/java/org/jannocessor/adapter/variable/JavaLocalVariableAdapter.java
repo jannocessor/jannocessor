@@ -21,7 +21,7 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaLocalVariable;
 
 public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
@@ -32,7 +32,7 @@ public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 	public JavaLocalVariableAdapter(VariableElement localVariable,
 			Elements elementUtils, Types typeUtils) {
 		super(localVariable, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaLocalVariable.class));
+		this.setCode(New.code(JavaLocalVariable.class));
 		this.localVariable = localVariable;
 	}
 

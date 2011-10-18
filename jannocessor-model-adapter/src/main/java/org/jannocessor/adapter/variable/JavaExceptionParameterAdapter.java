@@ -20,7 +20,7 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 
 public final class JavaExceptionParameterAdapter extends
@@ -32,7 +32,7 @@ public final class JavaExceptionParameterAdapter extends
 	public JavaExceptionParameterAdapter(VariableElement exceptionParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(exceptionParameter, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaExceptionParameter.class));
+		this.setCode(New.code(JavaExceptionParameter.class));
 		this.exceptionParameter = exceptionParameter;
 	}
 

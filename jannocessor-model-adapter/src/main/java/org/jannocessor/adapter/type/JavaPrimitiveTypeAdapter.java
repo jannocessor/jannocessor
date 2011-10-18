@@ -21,7 +21,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaPrimitiveType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaPrimitiveTypeAdapter extends JavaTypeAdapter implements
 		JavaPrimitiveType {
@@ -34,7 +34,7 @@ public class JavaPrimitiveTypeAdapter extends JavaTypeAdapter implements
 		super(primitiveType, elementUtils, typeUtils);
 
 		this.primitiveType = primitiveType;
-		this.setCode(Code.code(JavaPrimitiveType.class));
+		this.setCode(New.code(JavaPrimitiveType.class));
 	}
 
 }

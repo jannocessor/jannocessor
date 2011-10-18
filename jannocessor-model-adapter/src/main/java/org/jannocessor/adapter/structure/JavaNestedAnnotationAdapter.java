@@ -24,7 +24,7 @@ import org.jannocessor.model.bean.modifier.NestedAnnotationModifiersBean;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.modifier.value.NestedAnnotationModifierValue;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaNestedAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		implements JavaNestedAnnotation {
@@ -35,7 +35,7 @@ public final class JavaNestedAnnotationAdapter extends AbstractJavaAnnotationAda
 	public JavaNestedAnnotationAdapter(TypeElement annotation, Elements elementUtils,
 			Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaNestedAnnotation.class));
+		this.setCode(New.code(JavaNestedAnnotation.class));
 		this.annotation = annotation;
 	}
 

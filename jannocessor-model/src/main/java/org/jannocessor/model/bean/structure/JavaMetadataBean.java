@@ -22,7 +22,7 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaMetadataData;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaMetadataBean extends JavaMetadataData implements JavaMetadata {
 
@@ -34,7 +34,7 @@ public class JavaMetadataBean extends JavaMetadataData implements JavaMetadata {
 		// FIXME: not implemented
 		this.setValuesWithDefaults(Power.map(String.class, Object.class));
 
-		this.setCode(Code.code(JavaMetadata.class));
+		this.setCode(New.code(JavaMetadata.class));
 	}
 
 }

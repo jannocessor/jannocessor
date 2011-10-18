@@ -31,7 +31,7 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Interfaces;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.test.Param;
@@ -81,7 +81,7 @@ public class JavaInterfaceTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
-		return new JavaParameter[] { Code.parameter(type, name) };
+		return new JavaParameter[] { New.parameter(type, name) };
 	}
 
 	@AutoTwip
@@ -96,7 +96,7 @@ public class JavaInterfaceTest extends AbstractModelTest {
 	public static JavaMethod[] methods(MethodModifiers modifiers,
 			JavaType returnType, @Values("IDS") String name,
 			JavaParameter[] params) {
-		return new JavaMethod[] { Code.method(modifiers, returnType, name,
+		return new JavaMethod[] { New.method(modifiers, returnType, name,
 				params) };
 	}
 
@@ -146,22 +146,22 @@ public class JavaInterfaceTest extends AbstractModelTest {
 			String name, List<JavaType> interfaces, List<JavaMethod> methods,
 			List<JavaTypeParameter> parameters) {
 
-		JavaInterface obj1 = Code.interfacee(modifiers, name, interfaces,
+		JavaInterface obj1 = New.interfacee(modifiers, name, interfaces,
 				methods, parameters);
 		checkInterface(obj1, modifiers, name, interfaces, methods, parameters);
 
-		JavaInterface obj2 = Code.interfacee(modifiers, name, interfaces,
+		JavaInterface obj2 = New.interfacee(modifiers, name, interfaces,
 				methods);
 		checkInterface(obj2, modifiers, name, interfaces, methods,
-				Code.NO_TYPE_PARAMS);
+				New.NO_TYPE_PARAMS);
 
-		JavaInterface obj3 = Code.interfacee(name, interfaces, methods);
+		JavaInterface obj3 = New.interfacee(name, interfaces, methods);
 		checkInterface(obj3, Interfaces.PUBLIC, name, interfaces, methods,
-				Code.NO_TYPE_PARAMS);
+				New.NO_TYPE_PARAMS);
 
-		JavaInterface obj4 = Code.interfacee(name, methods);
-		checkInterface(obj4, Interfaces.PUBLIC, name, Code.NO_TYPES, methods,
-				Code.NO_TYPE_PARAMS);
+		JavaInterface obj4 = New.interfacee(name, methods);
+		checkInterface(obj4, Interfaces.PUBLIC, name, New.NO_TYPES, methods,
+				New.NO_TYPE_PARAMS);
 
 		return new JavaInterface[] { obj1, obj2, obj3, obj4 };
 	}

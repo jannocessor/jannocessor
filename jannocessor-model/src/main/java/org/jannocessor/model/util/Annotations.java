@@ -22,19 +22,19 @@ import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 public class Annotations {
 
 	/** Represents the default annotation modifier. */
-	public static final AnnotationModifiers DEFAULT_MODIFIER = Code
+	public static final AnnotationModifiers DEFAULT_MODIFIER = New
 			.annotationModifiers();
 
 	/** Represents "public" annotation modifier. */
-	public static final AnnotationModifiers PUBLIC = Code
+	public static final AnnotationModifiers PUBLIC = New
 			.annotationModifiers(AnnotationModifierValue.PUBLIC);
 
 	/** Represents "public abstract" interface modifiers. */
-	public static final AnnotationModifiers PUBLIC_ABSTRACT = Code
+	public static final AnnotationModifiers PUBLIC_ABSTRACT = New
 			.annotationModifiers(AnnotationModifierValue.PUBLIC,
 					AnnotationModifierValue.ABSTRACT);
 
 	/** Represents "abstract" interface modifier. */
-	public static final AnnotationModifiers ABSTRACT = Code
+	public static final AnnotationModifiers ABSTRACT = New
 			.annotationModifiers(AnnotationModifierValue.ABSTRACT);
 }

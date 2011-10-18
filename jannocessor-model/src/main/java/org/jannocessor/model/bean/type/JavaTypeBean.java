@@ -18,7 +18,7 @@ package org.jannocessor.model.bean.type;
 
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaTypeBean extends JavaTypeData implements JavaType {
 
@@ -31,11 +31,11 @@ public class JavaTypeBean extends JavaTypeData implements JavaType {
 	public JavaTypeBean(Class<?> type, Class<?>[] typeParams) {
 		this.type = type;
 		this.typeParams = typeParams;
-		this.setCode(Code.code(JavaType.class));
-		this.setSimpleName(Code.readonlyName(type.getSimpleName()));
-		this.setCanonicalName(Code.readonlyName(type.getCanonicalName()));
+		this.setCode(New.code(JavaType.class));
+		this.setSimpleName(New.readonlyName(type.getSimpleName()));
+		this.setCanonicalName(New.readonlyName(type.getCanonicalName()));
 		this.setTypeClass(type);
-		this.setKind(Code.typeKind(type));
+		this.setKind(New.typeKind(type));
 	}
 
 }

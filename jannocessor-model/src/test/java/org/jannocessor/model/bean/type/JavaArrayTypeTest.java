@@ -24,7 +24,7 @@ import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -33,7 +33,7 @@ public class JavaArrayTypeTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaType elementType = Code.arrayType(List.class, String.class);
+		JavaType elementType = New.arrayType(List.class, String.class);
 		assertNotNull(elementType);
 	}
 

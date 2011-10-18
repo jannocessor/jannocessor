@@ -31,7 +31,7 @@ import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Constructors;
 import org.jannocessor.model.util.Enums;
 import org.jannocessor.model.util.Fields;
@@ -49,13 +49,13 @@ public class ModelParam {
 
 	@AutoTwip
 	public static JavaType[] types() {
-		return new JavaType[] { Code.type(List.class, String.class) };
+		return new JavaType[] { New.type(List.class, String.class) };
 	}
 
 	@AutoTwip
 	public static JavaTypeParameter[] typeParams() {
-		return new JavaTypeParameter[] { Code.typeParameter("E"),
-				Code.typeParameter("TYPE1") };
+		return new JavaTypeParameter[] { New.typeParameter("E"),
+				New.typeParameter("TYPE1") };
 	}
 
 	public static ClassModifiers[] classModifiers() {
@@ -88,8 +88,8 @@ public class ModelParam {
 	}
 
 	public static JavaEnumConstant[] enumConstants() {
-		return new JavaEnumConstant[] { Code.enumConstant("A"),
-				Code.enumConstant("BB") };
+		return new JavaEnumConstant[] { New.enumConstant("A"),
+				New.enumConstant("BB") };
 	}
 
 }

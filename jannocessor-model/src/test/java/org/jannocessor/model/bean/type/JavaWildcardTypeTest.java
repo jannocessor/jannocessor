@@ -21,7 +21,7 @@ import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.type.JavaWildcardType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -30,13 +30,13 @@ public class JavaWildcardTypeTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaWildcardType wildcard = Code.wildcardType();
+		JavaWildcardType wildcard = New.wildcardType();
 		assertNotNull(wildcard);
 
-		JavaWildcardType wildcardSuper = Code.wildcardSuper(String.class);
+		JavaWildcardType wildcardSuper = New.wildcardSuper(String.class);
 		assertNotNull(wildcardSuper);
 
-		JavaWildcardType wildcardExtends = Code.wildcardExtends(String.class);
+		JavaWildcardType wildcardExtends = New.wildcardExtends(String.class);
 		assertNotNull(wildcardExtends);
 	}
 

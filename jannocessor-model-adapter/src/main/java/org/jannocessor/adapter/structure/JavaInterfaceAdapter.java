@@ -24,7 +24,7 @@ import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 		implements JavaInterface {
@@ -35,7 +35,7 @@ public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 	public JavaInterfaceAdapter(TypeElement tinterface, Elements elementUtils,
 			Types typeUtils) {
 		super(tinterface, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaInterface.class));
+		this.setCode(New.code(JavaInterface.class));
 		this.tinterface = tinterface;
 	}
 

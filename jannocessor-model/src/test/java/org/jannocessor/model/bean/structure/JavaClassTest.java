@@ -35,7 +35,7 @@ import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.test.Param;
@@ -92,7 +92,7 @@ public class JavaClassTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaParameter[] parameters(JavaType type,
 			@Values("IDS") String name) {
-		return new JavaParameter[] { Code.parameter(type, name) };
+		return new JavaParameter[] { New.parameter(type, name) };
 	}
 
 	@AutoTwip
@@ -107,7 +107,7 @@ public class JavaClassTest extends AbstractModelTest {
 	public static JavaMethod[] methods(MethodModifiers modifiers,
 			JavaType returnType, @Values("IDS") String name,
 			JavaParameter[] params) {
-		return new JavaMethod[] { Code.method(modifiers, returnType, name,
+		return new JavaMethod[] { New.method(modifiers, returnType, name,
 				params) };
 	}
 
@@ -122,7 +122,7 @@ public class JavaClassTest extends AbstractModelTest {
 	@AutoTwip
 	public static JavaField[] fields(FieldModifiers modifiers, JavaType type,
 			@Values("IDS") String name) {
-		return new JavaField[] { Code.field(modifiers, type, name) };
+		return new JavaField[] { New.field(modifiers, type, name) };
 	}
 
 	@AutoTwip
@@ -137,7 +137,7 @@ public class JavaClassTest extends AbstractModelTest {
 			ConstructorModifiers modifiers, JavaParameter[] params,
 			JavaType[] thrownTypes, JavaTypeParameter[] typeParameters) {
 
-		return new JavaConstructor[] { Code.constructor(modifiers,
+		return new JavaConstructor[] { New.constructor(modifiers,
 				Power.list(params), Power.list(thrownTypes),
 				Power.list(typeParameters)) };
 	}
@@ -196,49 +196,49 @@ public class JavaClassTest extends AbstractModelTest {
 			JavaType superclass, List<JavaType> interfaces,
 			List<JavaField> fields, List<JavaConstructor> constructors,
 			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
-		JavaClass obj1 = Code.classs(modifiers, name, superclass, interfaces,
+		JavaClass obj1 = New.classs(modifiers, name, superclass, interfaces,
 				fields, constructors, methods, parameters);
 		checkClass(obj1, modifiers, name, superclass, interfaces, fields,
 				constructors, methods, parameters);
 
-		JavaClass obj2 = Code.classs(modifiers, name, superclass, interfaces,
+		JavaClass obj2 = New.classs(modifiers, name, superclass, interfaces,
 				fields, constructors, methods);
 		checkClass(obj2, modifiers, name, superclass, interfaces, fields,
-				constructors, methods, Code.NO_TYPE_PARAMS);
+				constructors, methods, New.NO_TYPE_PARAMS);
 
-		JavaClass obj3 = Code.classs(modifiers, name, superclass, interfaces,
+		JavaClass obj3 = New.classs(modifiers, name, superclass, interfaces,
 				fields, constructors);
 		checkClass(obj3, modifiers, name, superclass, interfaces, fields,
-				constructors, Code.NO_METHODS, Code.NO_TYPE_PARAMS);
+				constructors, New.NO_METHODS, New.NO_TYPE_PARAMS);
 
-		JavaClass obj4 = Code.classs(modifiers, name, superclass, interfaces,
+		JavaClass obj4 = New.classs(modifiers, name, superclass, interfaces,
 				fields);
 		checkClass(obj4, modifiers, name, superclass, interfaces, fields,
-				Code.NO_CONSTRUCTORS, Code.NO_METHODS, Code.NO_TYPE_PARAMS);
+				New.NO_CONSTRUCTORS, New.NO_METHODS, New.NO_TYPE_PARAMS);
 
-		JavaClass obj5 = Code.classs(modifiers, name, superclass, interfaces);
+		JavaClass obj5 = New.classs(modifiers, name, superclass, interfaces);
 		checkClass(obj5, modifiers, name, superclass, interfaces,
-				Code.NO_FIELDS, Code.NO_CONSTRUCTORS, Code.NO_METHODS,
-				Code.NO_TYPE_PARAMS);
+				New.NO_FIELDS, New.NO_CONSTRUCTORS, New.NO_METHODS,
+				New.NO_TYPE_PARAMS);
 
-		JavaClass obj6 = Code.classs(modifiers, name, superclass);
-		checkClass(obj6, modifiers, name, superclass, Code.NO_TYPES,
-				Code.NO_FIELDS, Code.NO_CONSTRUCTORS, Code.NO_METHODS,
-				Code.NO_TYPE_PARAMS);
+		JavaClass obj6 = New.classs(modifiers, name, superclass);
+		checkClass(obj6, modifiers, name, superclass, New.NO_TYPES,
+				New.NO_FIELDS, New.NO_CONSTRUCTORS, New.NO_METHODS,
+				New.NO_TYPE_PARAMS);
 
-		JavaClass obj7 = Code.classs(modifiers, name);
-		checkClass(obj7, modifiers, name, null, Code.NO_TYPES,
-				Code.NO_FIELDS, Code.NO_CONSTRUCTORS, Code.NO_METHODS,
-				Code.NO_TYPE_PARAMS);
+		JavaClass obj7 = New.classs(modifiers, name);
+		checkClass(obj7, modifiers, name, null, New.NO_TYPES,
+				New.NO_FIELDS, New.NO_CONSTRUCTORS, New.NO_METHODS,
+				New.NO_TYPE_PARAMS);
 
-		JavaClass obj8 = Code.classs(modifiers, name, fields, methods);
-		checkClass(obj8, modifiers, name, null, Code.NO_TYPES, fields,
-				Code.NO_CONSTRUCTORS, methods, Code.NO_TYPE_PARAMS);
+		JavaClass obj8 = New.classs(modifiers, name, fields, methods);
+		checkClass(obj8, modifiers, name, null, New.NO_TYPES, fields,
+				New.NO_CONSTRUCTORS, methods, New.NO_TYPE_PARAMS);
 
-		JavaClass obj9 = Code.classs(modifiers, name, fields, methods,
+		JavaClass obj9 = New.classs(modifiers, name, fields, methods,
 				constructors);
-		checkClass(obj9, modifiers, name, null, Code.NO_TYPES, fields,
-				constructors, methods, Code.NO_TYPE_PARAMS);
+		checkClass(obj9, modifiers, name, null, New.NO_TYPES, fields,
+				constructors, methods, New.NO_TYPE_PARAMS);
 
 		return new JavaClass[] { obj1, obj2, obj3, obj4, obj5, obj6, obj7,
 				obj8, obj9 };

@@ -22,38 +22,38 @@ import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
 public class NestedEnums {
 
 	/** Represents the default nested class modifier. */
-	public static final NestedEnumModifiers DEFAULT_MODIFIER = Code
+	public static final NestedEnumModifiers DEFAULT_MODIFIER = New
 			.nestedEnumModifiers();
 
 	/** Represents "public" nested class modifiers. */
-	public static final NestedEnumModifiers PUBLIC = Code
+	public static final NestedEnumModifiers PUBLIC = New
 			.nestedEnumModifiers(NestedEnumModifierValue.PUBLIC);
 
 	/** Represents "public static" nested class modifiers. */
-	public static final NestedEnumModifiers PUBLIC_STATIC = Code
+	public static final NestedEnumModifiers PUBLIC_STATIC = New
 			.nestedEnumModifiers(NestedEnumModifierValue.PUBLIC,
 					NestedEnumModifierValue.STATIC);
 
 	/** Represents "private" nested class modifiers. */
-	public static final NestedEnumModifiers PRIVATE = Code
+	public static final NestedEnumModifiers PRIVATE = New
 			.nestedEnumModifiers(NestedEnumModifierValue.PRIVATE);
 
 	/** Represents "private static" nested class modifiers. */
-	public static final NestedEnumModifiers PRIVATE_STATIC = Code
+	public static final NestedEnumModifiers PRIVATE_STATIC = New
 			.nestedEnumModifiers(NestedEnumModifierValue.PRIVATE,
 					NestedEnumModifierValue.STATIC);
 
 	/** Represents "protected" nested class modifiers. */
-	public static final NestedEnumModifiers PROTECTED = Code
+	public static final NestedEnumModifiers PROTECTED = New
 			.nestedEnumModifiers(NestedEnumModifierValue.PROTECTED);
 
 	/** Represents "protected static" nested class modifiers. */
-	public static final NestedEnumModifiers PROTECTED_STATIC = Code
+	public static final NestedEnumModifiers PROTECTED_STATIC = New
 			.nestedEnumModifiers(NestedEnumModifierValue.PROTECTED,
 					NestedEnumModifierValue.STATIC);
 
 	/** Represents "static" nested class modifiers. */
-	public static final NestedEnumModifiers STATIC = Code
+	public static final NestedEnumModifiers STATIC = New
 			.nestedEnumModifiers(NestedEnumModifierValue.STATIC);
 
 }

@@ -21,7 +21,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaErrorType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaErrorTypeAdapter extends JavaTypeAdapter implements
 		JavaErrorType {
@@ -34,7 +34,7 @@ public class JavaErrorTypeAdapter extends JavaTypeAdapter implements
 		super(errorType, elementUtils, typeUtils);
 
 		this.errorType = errorType;
-		this.setCode(Code.code(JavaErrorType.class));
+		this.setCode(New.code(JavaErrorType.class));
 	}
 
 }

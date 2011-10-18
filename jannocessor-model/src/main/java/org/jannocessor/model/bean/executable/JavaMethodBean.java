@@ -25,7 +25,7 @@ import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaMethodBean extends JavaMethodData implements JavaMethod {
@@ -40,8 +40,8 @@ public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 		this.setThrownTypes(Power.list(thrownTypes));
 		this.setTypeParameters(Power.list(typeParameters));
 
-		this.setCode(Code.code(JavaMethod.class));
-		this.setBody(Code.body(JavaMethod.class));
+		this.setCode(New.code(JavaMethod.class));
+		this.setBody(New.body(JavaMethod.class));
 	}
 
 }

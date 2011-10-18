@@ -114,7 +114,7 @@ import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaLocalVariable;
 import org.jannocessor.model.variable.JavaParameter;
 
-public class Code {
+public class New {
 
 	public static final PowerList<JavaParameter> NO_PARAMS = Power
 			.unmodifiableList();

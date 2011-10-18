@@ -21,7 +21,7 @@ import java.util.Map;
 
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Fields;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderRegister;
@@ -36,12 +36,12 @@ public class RenderPreviewTest {
 		String path = "C:/java/ludvig/jannocessor/jannocessor-templates/src/main/resources/templates";
 
 		Map<String, Object> attr = new HashMap<String, Object>();
-		JavaClass classs = Code.classs(Classes.PUBLIC_FINAL, "MyClass");
+		JavaClass classs = New.classs(Classes.PUBLIC_FINAL, "MyClass");
 		attr.put("self", classs);
 
 		classs.getFields()
-				.add(Code.field(Fields.PRIVATE, String.class, "prvo"));
-		classs.getFields().add(Code.field(Fields.PRIVATE, int.class, "vtoro"));
+				.add(New.field(Fields.PRIVATE, String.class, "prvo"));
+		classs.getFields().add(New.field(Fields.PRIVATE, int.class, "vtoro"));
 
 		RenderRegister renderRegister = new RenderRegister();
 		renderRegister.register(attr);

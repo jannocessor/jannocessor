@@ -29,7 +29,7 @@ import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
 		JavaNestedInterface {
@@ -47,7 +47,7 @@ public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
 		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
 		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
 
-		this.setCode(Code.code(JavaNestedInterface.class));
+		this.setCode(New.code(JavaNestedInterface.class));
 	}
 
 }

@@ -22,19 +22,19 @@ import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 public class Constructors {
 
 	/** Represents the default constructor modifier. */
-	public static final ConstructorModifiers DEFAULT_MODIFIER = Code
+	public static final ConstructorModifiers DEFAULT_MODIFIER = New
 			.constructorModifiers();
 
 	/** Represents "public" constructor modifier. */
-	public static final ConstructorModifiers PUBLIC = Code
+	public static final ConstructorModifiers PUBLIC = New
 			.constructorModifiers(ConstructorModifierValue.PUBLIC);
 
 	/** Represents "private" constructor modifier. */
-	public static final ConstructorModifiers PRIVATE = Code
+	public static final ConstructorModifiers PRIVATE = New
 			.constructorModifiers(ConstructorModifierValue.PRIVATE);
 
 	/** Represents "protected" constructor modifier. */
-	public static final ConstructorModifiers PROTECTED = Code
+	public static final ConstructorModifiers PROTECTED = New
 			.constructorModifiers(ConstructorModifierValue.PROTECTED);
 
 }

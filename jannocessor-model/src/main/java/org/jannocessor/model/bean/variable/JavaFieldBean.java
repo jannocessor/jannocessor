@@ -20,7 +20,7 @@ import org.jannocessor.data.JavaFieldData;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
 
 public class JavaFieldBean extends JavaFieldData implements JavaField {
@@ -29,7 +29,7 @@ public class JavaFieldBean extends JavaFieldData implements JavaField {
 		this.setModifiers(modifiers);
 		this.setType(type);
 		this.setName(name);
-		this.setCode(Code.code(JavaField.class));
+		this.setCode(New.code(JavaField.class));
 	}
 
 }

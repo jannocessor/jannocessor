@@ -21,7 +21,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 		implements JavaStaticInit {
@@ -32,8 +32,8 @@ public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 	public JavaStaticInitAdapter(ExecutableElement staticInit,
 			Elements elementUtils, Types typeUtils) {
 		super(staticInit, elementUtils, typeUtils);
-		this.setCode(Code.code(JavaStaticInit.class));
-		this.setBody(Code.body(JavaStaticInit.class));
+		this.setCode(New.code(JavaStaticInit.class));
+		this.setBody(New.body(JavaStaticInit.class));
 		this.staticInit = staticInit;
 	}
 

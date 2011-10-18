@@ -23,7 +23,7 @@ import javax.lang.model.util.Types;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 
 public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
 		JavaDeclaredType {
@@ -35,7 +35,7 @@ public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
 		super(declaredType, elementUtils, typeUtils);
 
 		this.declaredType = declaredType;
-		this.setCode(Code.code(JavaDeclaredType.class));
+		this.setCode(New.code(JavaDeclaredType.class));
 	}
 
 	@Override

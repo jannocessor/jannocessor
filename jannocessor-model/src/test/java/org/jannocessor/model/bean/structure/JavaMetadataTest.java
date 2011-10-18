@@ -27,7 +27,7 @@ import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Code;
+import org.jannocessor.model.util.New;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,16 +57,16 @@ public class JavaMetadataTest extends AbstractModelTest {
 	private JavaMetadata[] allInstances(JavaType type,
 			Map<String, ? extends Object> attributes) {
 
-		JavaMetadata obj1 = Code.metadata(type);
+		JavaMetadata obj1 = New.metadata(type);
 		checkMetadata(obj1, type, Power.map(String.class, Object.class));
 
-		JavaMetadata obj2 = Code.metadata(type, "a");
+		JavaMetadata obj2 = New.metadata(type, "a");
 		checkMetadata(obj2, type, Power.map("value", "a"));
 
-		JavaMetadata obj3 = Code.metadata(type, "a", "b");
+		JavaMetadata obj3 = New.metadata(type, "a", "b");
 		checkMetadata(obj3, type, Power.map("value", Power.list("a", "b")));
 
-		JavaMetadata obj4 = Code.metadata(type, attributes);
+		JavaMetadata obj4 = New.metadata(type, attributes);
 		checkMetadata(obj4, type, attributes);
 
 		return new JavaMetadata[] { obj1, obj2, obj3, obj4 };
