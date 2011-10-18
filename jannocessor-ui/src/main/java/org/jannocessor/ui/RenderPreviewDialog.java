@@ -67,6 +67,8 @@ public class RenderPreviewDialog extends JDialog {
 
 	private int index = 0;
 
+	private KeyListener keyListener;
+
 	private Box output;
 
 	private JEditorPane input;
@@ -153,7 +155,7 @@ public class RenderPreviewDialog extends JDialog {
 
 		add(combo, BorderLayout.NORTH);
 
-		KeyListener keyListener = new KeyAdapter() {
+		keyListener = new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_F5) {
@@ -176,7 +178,7 @@ public class RenderPreviewDialog extends JDialog {
 		};
 
 		input.addKeyListener(keyListener);
-		output.addKeyListener(keyListener);
+		combo.addKeyListener(keyListener);
 
 		setActive(0);
 
@@ -228,6 +230,7 @@ public class RenderPreviewDialog extends JDialog {
 		editor.setContentType("text/java_output");
 		editor.setEditable(false);
 		editor.setText(content);
+		editor.addKeyListener(keyListener);
 
 		JLabel header = new JLabel(title);
 
