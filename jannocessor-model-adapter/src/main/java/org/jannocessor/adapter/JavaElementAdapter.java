@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
@@ -34,6 +35,7 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.ParentedElement;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 
 public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
@@ -159,4 +161,15 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 
 		return kind;
 	}
+
+	protected PowerList<JavaMetadata> getAnnotatedMetadata() {
+		PowerList<JavaMetadata> results = Power.list();
+
+		for (AnnotationMirror annotationMirror : element.getAnnotationMirrors()) {
+			results.add(getMetadataAdapter(annotationMirror));
+		}
+
+		return results;
+	}
+
 }

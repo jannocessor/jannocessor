@@ -29,8 +29,10 @@ import org.jannocessor.bootstrapped.annotation.BeanModel;
 @SuppressWarnings("unused")
 public class BookBeanModel {
 
+	@AnotherAnnotation
 	private transient String title;
 
+	@AnotherAnnotation(b = "field")
 	public static PersonBeanModel author;
 
 }

@@ -19,6 +19,7 @@ package org.jannocessor.model.executable;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
@@ -37,5 +38,7 @@ public interface JavaMethod extends AbstractJavaExecutable {
 	PowerList<JavaType> getThrownTypes();
 
 	MethodModifiers getModifiers();
+
+	PowerList<JavaMetadata> getMetadata();
 
 }

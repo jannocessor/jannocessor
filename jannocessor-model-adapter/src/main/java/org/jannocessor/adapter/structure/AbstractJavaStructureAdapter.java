@@ -63,13 +63,7 @@ abstract class AbstractJavaStructureAdapter extends JavaElementAdapter
 
 	@Override
 	public PowerList<JavaMetadata> getMetadata() {
-		PowerList<JavaMetadata> results = Power.list();
-
-		for (AnnotationMirror annotationMirror : type.getAnnotationMirrors()) {
-			results.add(getMetadataAdapter(annotationMirror));
-		}
-
-		return results;
+		return getAnnotatedMetadata();
 	}
 
 	@Override

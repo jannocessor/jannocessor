@@ -26,6 +26,7 @@ import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,8 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 	private boolean getThrownTypesInitialized = false;
 
 	private boolean getModifiersInitialized = false;
+
+	private boolean getMetadataInitialized = false;
 
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
@@ -113,6 +116,15 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
         return data.getModifiers();
     }
 
+    public PowerList<JavaMetadata> getMetadata() {
+        if (!getMetadataInitialized) {
+            data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
+			getMetadataInitialized = true;
+        }
+
+        return data.getMetadata();
+    }
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -134,6 +146,7 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 				.append(this.isVarArgs(), other.isVarArgs())
 				.append(this.getThrownTypes(), other.getThrownTypes())
 				.append(this.getModifiers(), other.getModifiers())
+				.append(this.getMetadata(), other.getMetadata())
 				.isEquals();
 	}
 
@@ -146,6 +159,7 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 				.append(this.isVarArgs())
 				.append(this.getThrownTypes())
 				.append(this.getModifiers())
+				.append(this.getMetadata())
 				.toHashCode();
 	}
 
@@ -166,6 +180,7 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
         builder.append("_isVarArgs", ToStringUtil.describe(this.isVarArgs()));
         builder.append("thrownTypes", ToStringUtil.describe(this.getThrownTypes()));
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
+        builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
 }

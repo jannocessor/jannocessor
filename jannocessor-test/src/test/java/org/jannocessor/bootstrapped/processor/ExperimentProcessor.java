@@ -58,6 +58,9 @@ public class ExperimentProcessor implements CodeProcessor {
 
 		JavaField x = New.field(Fields.PRIVATE, boolean.class, "x",
 				New.literal(true));
+		JavaMetadata meta2 = New.metadata(SuppressWarnings.class, "unused");
+		x.getMetadata().add(meta2);
+
 		model.getFields().add(x);
 
 		JavaEnumConstant value1 = New.enumConstant("A");
@@ -72,7 +75,8 @@ public class ExperimentProcessor implements CodeProcessor {
 
 		JavaParameter param1 = New.parameter(String.class, "a");
 		JavaParameter param2 = New.parameter(int.class, "b");
-		JavaConstructor constr1 = New.constructor(Constructors.PRIVATE, param1, param2);
+		JavaConstructor constr1 = New.constructor(Constructors.PRIVATE, param1,
+				param2);
 		enum1.getConstructors().add(constr1);
 
 		model.getNestedEnums().add(enum1);

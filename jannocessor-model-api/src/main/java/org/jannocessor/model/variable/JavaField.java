@@ -17,8 +17,10 @@
 package org.jannocessor.model.variable;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.structure.JavaMetadata;
 
 @DomainModel
 public interface JavaField extends AbstractJavaVariable {
@@ -26,5 +28,7 @@ public interface JavaField extends AbstractJavaVariable {
 	FieldModifiers getModifiers();
 
 	JavaExpression getValue();
+
+	PowerList<JavaMetadata> getMetadata();
 
 }

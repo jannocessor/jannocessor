@@ -21,6 +21,8 @@ import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -34,6 +36,8 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
     private FieldModifiers modifiers;
 
     private JavaExpression value;
+
+    private PowerList<JavaMetadata> metadata;
 
 
     public FieldModifiers getModifiers() {
@@ -50,6 +54,14 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 
     public void setValue(JavaExpression value) {
         this.value = value;
+    }
+
+    public PowerList<JavaMetadata> getMetadata() {
+        return this.metadata;
+    }
+
+    public void setMetadata(PowerList<JavaMetadata> value) {
+        this.metadata = value;
     }
 
 	@Override
@@ -69,6 +81,7 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 				.appendSuper(super.equals(other))
 				.append(this.getModifiers(), other.getModifiers())
 				.append(this.getValue(), other.getValue())
+				.append(this.getMetadata(), other.getMetadata())
 				.isEquals();
 	}
 
@@ -77,6 +90,7 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 		return new HashCodeBuilder()
 				.append(this.getModifiers())
 				.append(this.getValue())
+				.append(this.getMetadata())
 				.toHashCode();
 	}
 
@@ -93,6 +107,7 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
         super.appendDescription(builder);
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
         builder.append("value", ToStringUtil.describe(this.getValue()));
+        builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
 }

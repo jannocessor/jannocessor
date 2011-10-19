@@ -23,10 +23,12 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.bean.modifier.MethodModifiersBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.New;
 
 public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
@@ -53,6 +55,11 @@ public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 		}
 
 		return new MethodModifiersBean(values);
+	}
+
+	@Override
+	public PowerList<JavaMetadata> getMetadata() {
+		return getAnnotatedMetadata();
 	}
 
 }

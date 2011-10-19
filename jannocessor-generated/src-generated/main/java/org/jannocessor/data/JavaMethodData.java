@@ -24,6 +24,7 @@ import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -45,6 +46,8 @@ public class JavaMethodData extends AbstractJavaExecutableData implements JavaMe
     private PowerList<JavaType> thrownTypes;
 
     private MethodModifiers modifiers;
+
+    private PowerList<JavaMetadata> metadata;
 
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
@@ -95,6 +98,14 @@ public class JavaMethodData extends AbstractJavaExecutableData implements JavaMe
         this.modifiers = value;
     }
 
+    public PowerList<JavaMetadata> getMetadata() {
+        return this.metadata;
+    }
+
+    public void setMetadata(PowerList<JavaMetadata> value) {
+        this.metadata = value;
+    }
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -116,6 +127,7 @@ public class JavaMethodData extends AbstractJavaExecutableData implements JavaMe
 				.append(this.isVarArgs(), other.isVarArgs())
 				.append(this.getThrownTypes(), other.getThrownTypes())
 				.append(this.getModifiers(), other.getModifiers())
+				.append(this.getMetadata(), other.getMetadata())
 				.isEquals();
 	}
 
@@ -128,6 +140,7 @@ public class JavaMethodData extends AbstractJavaExecutableData implements JavaMe
 				.append(this.isVarArgs())
 				.append(this.getThrownTypes())
 				.append(this.getModifiers())
+				.append(this.getMetadata())
 				.toHashCode();
 	}
 
@@ -148,6 +161,7 @@ public class JavaMethodData extends AbstractJavaExecutableData implements JavaMe
         builder.append("_isVarArgs", ToStringUtil.describe(this.isVarArgs()));
         builder.append("thrownTypes", ToStringUtil.describe(this.getThrownTypes()));
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
+        builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
 }

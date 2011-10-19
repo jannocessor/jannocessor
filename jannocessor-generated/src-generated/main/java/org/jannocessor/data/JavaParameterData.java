@@ -19,6 +19,8 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.variable.JavaParameter;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,6 +33,8 @@ public class JavaParameterData extends AbstractJavaVariableData implements JavaP
 
     private boolean _isFinal;
 
+    private PowerList<JavaMetadata> metadata;
+
 
     public boolean isFinal() {
         return this._isFinal;
@@ -38,6 +42,14 @@ public class JavaParameterData extends AbstractJavaVariableData implements JavaP
 
     public void setFinal(boolean value) {
         this._isFinal = value;
+    }
+
+    public PowerList<JavaMetadata> getMetadata() {
+        return this.metadata;
+    }
+
+    public void setMetadata(PowerList<JavaMetadata> value) {
+        this.metadata = value;
     }
 
 	@Override
@@ -56,6 +68,7 @@ public class JavaParameterData extends AbstractJavaVariableData implements JavaP
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.isFinal(), other.isFinal())
+				.append(this.getMetadata(), other.getMetadata())
 				.isEquals();
 	}
 
@@ -63,6 +76,7 @@ public class JavaParameterData extends AbstractJavaVariableData implements JavaP
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.isFinal())
+				.append(this.getMetadata())
 				.toHashCode();
 	}
 
@@ -78,6 +92,7 @@ public class JavaParameterData extends AbstractJavaVariableData implements JavaP
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("_isFinal", ToStringUtil.describe(this.isFinal()));
+        builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
 }

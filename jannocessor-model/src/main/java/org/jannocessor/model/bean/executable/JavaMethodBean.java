@@ -24,6 +24,7 @@ import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
@@ -41,6 +42,7 @@ public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 		this.setParameters(children(Power.list(params)));
 		this.setThrownTypes(children(Power.list(thrownTypes)));
 		this.setTypeParameters(children(Power.list(typeParameters)));
+		this.setMetadata(children(Power.emptyList(JavaMetadata.class)));
 
 		this.setKind(JavaElementKind.METHOD);
 		this.setCode(New.code(JavaMethod.class));

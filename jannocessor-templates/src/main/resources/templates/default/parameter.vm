@@ -1,1 +1,2 @@
-#type(${self.type}) ${self.name}
+#render_list($self.metadata, ' ')
+ #type(${self.type}) ${self.name}

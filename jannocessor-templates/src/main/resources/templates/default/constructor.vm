@@ -1,3 +1,4 @@
+#render_lines($self.metadata)
 #join(' ', [
   "#modifiers($self)",
   "#type_parameters($self)",

@@ -16,9 +16,11 @@
 
 package org.jannocessor.model.bean.variable;
 
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaParameterData;
 import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
@@ -30,6 +32,7 @@ public class JavaParameterBean extends JavaParameterData implements
 		this.setType(type);
 		this.setName(new NameBean(name));
 		this.setCode(New.code(JavaParameter.class));
+		this.setMetadata(children(Power.emptyList(JavaMetadata.class)));
 
 		this.setKind(JavaElementKind.PARAMETER);
 		this.setFinal(isFinal);

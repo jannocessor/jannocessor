@@ -21,6 +21,8 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 
@@ -39,6 +41,11 @@ public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public boolean isFinal() {
 		return parameter.getModifiers().contains(Modifier.FINAL);
+	}
+
+	@Override
+	public PowerList<JavaMetadata> getMetadata() {
+		return getAnnotatedMetadata();
 	}
 
 }

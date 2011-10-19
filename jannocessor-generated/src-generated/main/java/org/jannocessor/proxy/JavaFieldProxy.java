@@ -22,6 +22,9 @@ import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.data.JavaFieldData;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -46,6 +49,8 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 
 	private boolean getValueInitialized = false;
 
+	private boolean getMetadataInitialized = false;
+
 
     public FieldModifiers getModifiers() {
         if (!getModifiersInitialized) {
@@ -65,6 +70,15 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
         return data.getValue();
     }
 
+    public PowerList<JavaMetadata> getMetadata() {
+        if (!getMetadataInitialized) {
+            data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
+			getMetadataInitialized = true;
+        }
+
+        return data.getMetadata();
+    }
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -82,6 +96,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 				.appendSuper(super.equals(other))
 				.append(this.getModifiers(), other.getModifiers())
 				.append(this.getValue(), other.getValue())
+				.append(this.getMetadata(), other.getMetadata())
 				.isEquals();
 	}
 
@@ -90,6 +105,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 		return new HashCodeBuilder()
 				.append(this.getModifiers())
 				.append(this.getValue())
+				.append(this.getMetadata())
 				.toHashCode();
 	}
 
@@ -106,6 +122,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
         super.appendDescription(builder);
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
         builder.append("value", ToStringUtil.describe(this.getValue()));
+        builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
 }

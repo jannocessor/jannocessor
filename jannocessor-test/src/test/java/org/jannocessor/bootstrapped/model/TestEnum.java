@@ -29,6 +29,7 @@ public enum TestEnum {
 		return "hi";
 	}
 
+	@AnotherAnnotation(b = "method")
 	public void someMethod() {
 
 	}

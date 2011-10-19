@@ -37,6 +37,7 @@ public class PersonBeanModel extends AbstractModel implements Runnable,
 
 	java.sql.Date smartImportTestDate;
 
+	@AnotherAnnotation(b = "constructor")
 	public PersonBeanModel() {
 	}
 
@@ -45,7 +46,12 @@ public class PersonBeanModel extends AbstractModel implements Runnable,
 	}
 
 	@Override
+	@AnotherAnnotation(b = "another annotation")
 	public void run() {
 	}
 
+	private String foo(@AnotherAnnotation @Deprecated int x,
+			@AnotherAnnotation(a = 1, b = "param") boolean y) {
+		return "aa";
+	}
 }

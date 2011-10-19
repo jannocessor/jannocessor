@@ -23,11 +23,13 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.modifier.ConstructorModifiersBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.New;
 
 public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
@@ -59,6 +61,11 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 	@Override
 	public Name getName() {
 		return null;
+	}
+
+	@Override
+	public PowerList<JavaMetadata> getMetadata() {
+		return getAnnotatedMetadata();
 	}
 
 }
