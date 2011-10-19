@@ -32,4 +32,6 @@ public interface SourceCode {
 
 	void assign(SourceCode sourceCode);
 
+	boolean isEmpty();
+
 }

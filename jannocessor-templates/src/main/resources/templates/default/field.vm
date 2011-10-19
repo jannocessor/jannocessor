@@ -1,5 +1,10 @@
 #join(' ', [
   "#modifiers($self)",
   "#type(${self.type})",
-  "${self.name};"
-])
+  "${self.name}",
+  "#field_value($self)"
+]);
+#macro(field_value $model)
+#if(!$model.value.empty)
+= #code($model.value)#end
+#end

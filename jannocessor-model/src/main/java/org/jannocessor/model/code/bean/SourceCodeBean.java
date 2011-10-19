@@ -101,4 +101,10 @@ public class SourceCodeBean implements SourceCode {
 		setTemplateName(sourceCode.getTemplateName());
 	}
 
+	@Override
+	public boolean isEmpty() {
+		return getCode() == null && getTemplate() == null
+				&& getTemplateName() == null;
+	}
+
 }

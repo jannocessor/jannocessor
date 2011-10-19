@@ -1,1 +1,6 @@
-${self.name}
+${self.name}#enum_constant_values($self)
+
+#macro(enum_constant_values $model)
+#if(!$model.values.isEmpty())
+(#list($$model.values, '#code($it)', ', '))#end
+#end
