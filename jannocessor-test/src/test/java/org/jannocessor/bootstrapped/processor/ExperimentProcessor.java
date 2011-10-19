@@ -64,7 +64,7 @@ public class ExperimentProcessor implements CodeProcessor {
 				New.expression("11"));
 
 		JavaEnumConstant value2 = New.enumConstant("B", New.literal("bar"),
-				New.literal(11));
+				New.literal(13));
 
 		JavaNestedEnum enum1 = New.nestedEnum("MyEnum",
 				Power.list(value1, value2));

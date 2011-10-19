@@ -19,7 +19,6 @@ package $self.packageName;
 #render_list($self.values);
 #end
 #end
-
 #members($self.fields)
 #members($self.staticInits)
 #members($self.instanceInits)

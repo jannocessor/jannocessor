@@ -8,7 +8,7 @@
 
 #macro(type $java_type)$types.useType($java_type)#end
 
-#macro(render_x $x $default)
+#macro(code $x $default)
 #if($x.code)
 $x.code#elseif($x.template)
 #evaluate($x.template)
@@ -21,11 +21,11 @@ $default#else
 
 #macro(render $model)
 #set($self = $model)
-#render_x($model.code, false)#end
+#code($model.code, false)#end
 
 #macro(body $model $default)
 #set($self = $model)
-#render_x($model.body, $default)#end
+#code($model.body, $default)#end
 
 #macro(optional $value $default)
 #if($value)
@@ -120,13 +120,14 @@ $helper.locate($tmpl)#end
 #macro(members $members_list)
 #foreach ($m in $members_list)
 #member($m)
-
 #end
 #end
 
 #macro(member $m)
 #@indent()
+#@trim()
 #render($m)
+#end
 #end
 
 #end
