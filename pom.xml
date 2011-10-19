@@ -126,17 +126,17 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
 				<artifactId>jannocessor-collections</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
 				<artifactId>jannocessor-generated</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-all</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -380,6 +380,7 @@
 	</build>
 
 	<modules>
+		<module>jannocessor</module>
 		<module>jannocessor-bootstrap</module>
 		<module>jannocessor-test</module>
 		<module>jannocessor-model-api</module>
@@ -401,7 +402,6 @@
 		<module>jannocessor-template-service</module>
 		<module>jannocessor-rules-service</module>
 		<module>jannocessor-imports-service</module>
-		<module>jannocessor-all</module>
 		<module>jannocessor-playground</module>
 		<module>jannocessor-splitter-service</module>
 		<module>jannocessor-representation-service</module>

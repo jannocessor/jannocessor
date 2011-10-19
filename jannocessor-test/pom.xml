@@ -13,7 +13,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-all</artifactId>
+			<artifactId>jannocessor</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
