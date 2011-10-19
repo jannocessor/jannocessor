@@ -29,7 +29,7 @@ import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.mockito.Mockito;
 
-public class RenderPreviewTest {
+public class RenderPreviewUtil {
 
 	public static void main(String[] args) throws JannocessorException {
 		// FIXME: hard-coded
@@ -39,8 +39,7 @@ public class RenderPreviewTest {
 		JavaClass classs = New.classs(Classes.PUBLIC_FINAL, "MyClass");
 		attr.put("self", classs);
 
-		classs.getFields()
-				.add(New.field(Fields.PRIVATE, String.class, "prvo"));
+		classs.getFields().add(New.field(Fields.PRIVATE, String.class, "prvo"));
 		classs.getFields().add(New.field(Fields.PRIVATE, int.class, "vtoro"));
 
 		RenderRegister renderRegister = new RenderRegister();
@@ -54,4 +53,5 @@ public class RenderPreviewTest {
 		RenderPreview.showDialog(path, renderRegister, configurator,
 				representer);
 	}
+
 }

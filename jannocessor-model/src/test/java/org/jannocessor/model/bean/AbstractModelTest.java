@@ -50,7 +50,7 @@ import org.jannocessor.model.variable.JavaParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractModelTest {
+public abstract class AbstractModelTest {
 
 	private static Logger log = LoggerFactory.getLogger("TEST");
 
