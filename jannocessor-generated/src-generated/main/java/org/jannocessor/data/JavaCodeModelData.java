@@ -17,7 +17,7 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -31,6 +31,8 @@ public class JavaCodeModelData implements JavaCodeModel {
 
     private SourceCode code;
 
+    private SourceCode extraCode;
+
 
     public SourceCode getCode() {
         return this.code;
@@ -38,6 +40,14 @@ public class JavaCodeModelData implements JavaCodeModel {
 
     public void setCode(SourceCode value) {
         this.code = value;
+    }
+
+    public SourceCode getExtraCode() {
+        return this.extraCode;
+    }
+
+    public void setExtraCode(SourceCode value) {
+        this.extraCode = value;
     }
 
 	@Override
@@ -55,6 +65,7 @@ public class JavaCodeModelData implements JavaCodeModel {
 		JavaCodeModel other = (JavaCodeModel) obj;
 		return new EqualsBuilder()
 				.append(this.getCode(), other.getCode())
+				.append(this.getExtraCode(), other.getExtraCode())
 				.isEquals();
 	}
 
@@ -62,6 +73,7 @@ public class JavaCodeModelData implements JavaCodeModel {
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getCode())
+				.append(this.getExtraCode())
 				.toHashCode();
 	}
 
@@ -75,6 +87,7 @@ public class JavaCodeModelData implements JavaCodeModel {
 
 	protected void appendDescription(ToStringBuilder builder) {
         builder.append("code", ToStringUtil.describe(this.getCode()));
+        builder.append("extraCode", ToStringUtil.describe(this.getExtraCode()));
 	}
 
 }

@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.data.JavaFieldData;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.code.JavaExpression;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -43,6 +44,8 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 
 	private boolean getModifiersInitialized = false;
 
+	private boolean getValueInitialized = false;
+
 
     public FieldModifiers getModifiers() {
         if (!getModifiersInitialized) {
@@ -51,6 +54,15 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
         }
 
         return data.getModifiers();
+    }
+
+    public JavaExpression getValue() {
+        if (!getValueInitialized) {
+            data.setValue(adapter.getValue());
+			getValueInitialized = true;
+        }
+
+        return data.getValue();
     }
 
 	@Override
@@ -69,6 +81,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getModifiers(), other.getModifiers())
+				.append(this.getValue(), other.getValue())
 				.isEquals();
 	}
 
@@ -76,6 +89,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getModifiers())
+				.append(this.getValue())
 				.toHashCode();
 	}
 
@@ -91,6 +105,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
+        builder.append("value", ToStringUtil.describe(this.getValue()));
 	}
 
 }

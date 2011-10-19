@@ -17,7 +17,7 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.code.SourceCode;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -41,6 +41,8 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 
 	private boolean getCodeInitialized = false;
 
+	private boolean getExtraCodeInitialized = false;
+
 
     public SourceCode getCode() {
         if (!getCodeInitialized) {
@@ -49,6 +51,15 @@ public class JavaCodeModelProxy implements JavaCodeModel {
         }
 
         return data.getCode();
+    }
+
+    public SourceCode getExtraCode() {
+        if (!getExtraCodeInitialized) {
+            data.setExtraCode(adapter.getExtraCode());
+			getExtraCodeInitialized = true;
+        }
+
+        return data.getExtraCode();
     }
 
 	@Override
@@ -66,6 +77,7 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 		JavaCodeModel other = (JavaCodeModel) obj;
 		return new EqualsBuilder()
 				.append(this.getCode(), other.getCode())
+				.append(this.getExtraCode(), other.getExtraCode())
 				.isEquals();
 	}
 
@@ -73,6 +85,7 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getCode())
+				.append(this.getExtraCode())
 				.toHashCode();
 	}
 
@@ -86,6 +99,7 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 
 	protected void appendDescription(ToStringBuilder builder) {
         builder.append("code", ToStringUtil.describe(this.getCode()));
+        builder.append("extraCode", ToStringUtil.describe(this.getExtraCode()));
 	}
 
 }

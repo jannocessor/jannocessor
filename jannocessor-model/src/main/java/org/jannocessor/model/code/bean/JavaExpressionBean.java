@@ -14,29 +14,15 @@
  * limitations under the License.
  */
 
-package org.jannocessor.data;
+package org.jannocessor.model.code.bean;
 
-import javax.annotation.Generated;
+import org.jannocessor.model.code.JavaExpression;
 
-import org.jannocessor.model.code.JavaCodeModel;
-import org.jannocessor.model.code.SourceCode;
+public class JavaExpressionBean extends SourceCodeBean implements
+		JavaExpression {
 
-
-@Generated("JAnnocessor-bootstraped")
-public class SourceCodeRepresentationData implements JavaCodeModel {
-
-    private SourceCode code;
-
-
-    public SourceCode getCode() {
-        return this.code;
-    }
-
-    public void setCode(SourceCode value) {
-        this.code = value;
-    }
-
+	public JavaExpressionBean(String code, String template, String templateName) {
+		super(code, template, templateName);
+	}
 
 }
-
-

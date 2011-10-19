@@ -33,8 +33,7 @@ public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 	public JavaStaticInitAdapter(ExecutableElement staticInit,
 			Elements elementUtils, Types typeUtils) {
 		super(staticInit, elementUtils, typeUtils);
-		this.setCode(New.code(JavaStaticInit.class));
-		this.setBody(New.body(JavaStaticInit.class));
+		this.getCode().assign(New.code(JavaStaticInit.class));
 		this.staticInit = staticInit;
 	}
 

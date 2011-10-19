@@ -19,6 +19,7 @@ package org.jannocessor.model.bean.executable;
 import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.AbstractModelTest;
+import org.jannocessor.model.code.JavaBody;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.util.New;
 import org.junit.Test;
@@ -29,7 +30,8 @@ public class JavaStaticInitTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaStaticInit staticInit = New.staticInit();
+		JavaBody body = New.body("// do nothing");
+		JavaStaticInit staticInit = New.staticInit(body);
 		checkLonelyElement(staticInit);
 	}
 

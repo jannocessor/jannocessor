@@ -19,13 +19,16 @@ package org.jannocessor.adapter;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
+import org.jannocessor.model.util.New;
 
 public abstract class JavaCodeModelAdapter extends AbstractAdapter implements
 		JavaCodeModel {
 
-	private SourceCode code;
+	private final SourceCode code = New.code();
+
+	private final SourceCode extraCode = New.code();
 
 	public JavaCodeModelAdapter(Elements elementUtils, Types typeUtils) {
 		super(elementUtils, typeUtils);
@@ -36,7 +39,9 @@ public abstract class JavaCodeModelAdapter extends AbstractAdapter implements
 		return code;
 	}
 
-	public void setCode(SourceCode code) {
-		this.code = code;
+	@Override
+	public SourceCode getExtraCode() {
+		return extraCode;
 	}
+
 }

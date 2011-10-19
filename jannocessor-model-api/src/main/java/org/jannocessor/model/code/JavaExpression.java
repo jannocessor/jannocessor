@@ -14,22 +14,8 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.executable;
+package org.jannocessor.model.code;
 
-import org.jannocessor.data.JavaInstanceInitData;
-import org.jannocessor.model.JavaElementKind;
-import org.jannocessor.model.code.JavaBody;
-import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.util.New;
-
-public class JavaInstanceInitBean extends JavaInstanceInitData implements
-		JavaInstanceInit {
-
-	public JavaInstanceInitBean(JavaBody body) {
-		this.setBody(body);
-
-		this.setKind(JavaElementKind.INSTANCE_INIT);
-		this.setCode(New.code(JavaInstanceInit.class));
-	}
+public interface JavaExpression extends SourceCode {
 
 }

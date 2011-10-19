@@ -20,7 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.data.AbstractJavaExecutableData;
-import org.jannocessor.model.executable.ExecutableBody;
+import org.jannocessor.model.code.JavaBody;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,7 +44,7 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
 	private boolean getBodyInitialized = false;
 
 
-    public ExecutableBody getBody() {
+    public JavaBody getBody() {
         if (!getBodyInitialized) {
             data.setBody(adapter.getBody());
 			getBodyInitialized = true;

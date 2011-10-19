@@ -16,7 +16,7 @@
 
 package org.jannocessor.model.util;
 
-import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.JavaCodeModel;
 
 public class Templates {
 

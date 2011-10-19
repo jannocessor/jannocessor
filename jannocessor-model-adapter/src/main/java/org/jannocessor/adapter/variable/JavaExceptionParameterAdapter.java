@@ -32,7 +32,7 @@ public final class JavaExceptionParameterAdapter extends
 	public JavaExceptionParameterAdapter(VariableElement exceptionParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(exceptionParameter, elementUtils, typeUtils);
-		this.setCode(New.code(JavaExceptionParameter.class));
+		this.getCode().assign(New.code(JavaExceptionParameter.class));
 		this.exceptionParameter = exceptionParameter;
 	}
 

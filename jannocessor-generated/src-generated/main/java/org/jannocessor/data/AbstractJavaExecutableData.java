@@ -19,7 +19,7 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
-import org.jannocessor.model.executable.ExecutableBody;
+import org.jannocessor.model.code.JavaBody;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -30,14 +30,14 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaExecutableData extends JavaElementData implements AbstractJavaExecutable {
 
-    private ExecutableBody body;
+    private JavaBody body;
 
 
-    public ExecutableBody getBody() {
+    public JavaBody getBody() {
         return this.body;
     }
 
-    public void setBody(ExecutableBody value) {
+    public void setBody(JavaBody value) {
         this.body = value;
     }
 

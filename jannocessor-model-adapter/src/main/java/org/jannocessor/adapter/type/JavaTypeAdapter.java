@@ -36,7 +36,7 @@ public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 	public JavaTypeAdapter(TypeMirror typeMirror, Elements elementUtils,
 			Types typeUtils) {
 		super(elementUtils, typeUtils);
-		this.setCode(New.code(JavaType.class));
+		this.getCode().assign(New.code(JavaType.class));
 		this.typeMirror = typeMirror;
 	}
 

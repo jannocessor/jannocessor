@@ -68,7 +68,7 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 	public JavaEnumAdapter(TypeElement tenum, Elements elementUtils,
 			Types typeUtils) {
 		super(tenum, elementUtils, typeUtils);
-		this.setCode(New.code(JavaEnum.class));
+		this.getCode().assign(New.code(JavaEnum.class));
 		this.tenum = tenum;
 	}
 

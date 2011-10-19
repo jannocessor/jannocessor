@@ -50,7 +50,7 @@ public final class JavaTypeParameterAdapter extends JavaElementAdapter
 	public JavaTypeParameterAdapter(TypeParameterElement typeParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(typeParameter, elementUtils, typeUtils);
-		this.setCode(New.code(JavaTypeParameter.class));
+		this.getCode().assign(New.code(JavaTypeParameter.class));
 		this.typeParameter = typeParameter;
 	}
 

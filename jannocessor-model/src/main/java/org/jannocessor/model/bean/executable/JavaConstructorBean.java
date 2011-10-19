@@ -34,6 +34,7 @@ public class JavaConstructorBean extends JavaConstructorData implements
 	public JavaConstructorBean(ConstructorModifiers modifiers,
 			List<JavaParameter> params, List<JavaType> thrownTypes,
 			List<JavaTypeParameter> typeParameters) {
+		this.setBody(New.body());
 		this.setModifiers(modifiers);
 		this.setParameters(Power.list(params));
 		this.setThrownTypes(Power.list(thrownTypes));
@@ -44,7 +45,6 @@ public class JavaConstructorBean extends JavaConstructorData implements
 
 		this.setKind(JavaElementKind.CONSTRUCTOR);
 		this.setCode(New.code(JavaConstructor.class));
-		this.setBody(New.body(JavaConstructor.class));
 	}
 
 }

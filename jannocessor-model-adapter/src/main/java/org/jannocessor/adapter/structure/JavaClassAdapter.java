@@ -35,7 +35,7 @@ public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 	public JavaClassAdapter(TypeElement tclass, Elements elementUtils,
 			Types typeUtils) {
 		super(tclass, elementUtils, typeUtils);
-		this.setCode(New.code(JavaClass.class));
+		this.getCode().assign(New.code(JavaClass.class));
 		this.tclass = tclass;
 	}
 

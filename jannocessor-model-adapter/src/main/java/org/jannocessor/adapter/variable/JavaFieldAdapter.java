@@ -24,6 +24,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.bean.modifier.FieldModifiersBean;
+import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
 import org.jannocessor.model.util.New;
@@ -34,10 +35,12 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 
 	private final VariableElement field;
 
+	private final JavaExpression value = New.expression(null);
+
 	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
 			Types typeUtils) {
 		super(field, elementUtils, typeUtils);
-		this.setCode(New.code(JavaField.class));
+		this.getCode().assign(New.code(JavaField.class));
 		this.field = field;
 	}
 
@@ -53,6 +56,11 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 		}
 
 		return new FieldModifiersBean(values);
+	}
+
+	@Override
+	public JavaExpression getValue() {
+		return value;
 	}
 
 }

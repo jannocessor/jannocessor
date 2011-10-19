@@ -35,7 +35,7 @@ public final class JavaNestedAnnotationAdapter extends AbstractJavaAnnotationAda
 	public JavaNestedAnnotationAdapter(TypeElement annotation, Elements elementUtils,
 			Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
-		this.setCode(New.code(JavaNestedAnnotation.class));
+		this.getCode().assign(New.code(JavaNestedAnnotation.class));
 		this.annotation = annotation;
 	}
 

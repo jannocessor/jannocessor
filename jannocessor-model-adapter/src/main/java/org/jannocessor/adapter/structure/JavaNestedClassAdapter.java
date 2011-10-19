@@ -35,7 +35,7 @@ public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 	public JavaNestedClassAdapter(TypeElement tclass, Elements elementUtils,
 			Types typeUtils) {
 		super(tclass, elementUtils, typeUtils);
-		this.setCode(New.code(JavaNestedClass.class));
+		this.getCode().assign(New.code(JavaNestedClass.class));
 		this.tclass = tclass;
 	}
 

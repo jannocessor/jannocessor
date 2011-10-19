@@ -32,7 +32,7 @@ public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 	public JavaParameterAdapter(VariableElement parameter,
 			Elements elementUtils, Types typeUtils) {
 		super(parameter, elementUtils, typeUtils);
-		this.setCode(New.code(JavaParameter.class));
+		this.getCode().assign(New.code(JavaParameter.class));
 		this.parameter = parameter;
 	}
 

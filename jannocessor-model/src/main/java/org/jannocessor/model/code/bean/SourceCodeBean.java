@@ -14,40 +14,52 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.executable;
+package org.jannocessor.model.code.bean;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.jannocessor.model.executable.ExecutableBody;
-import org.jannocessor.util.TypeSpecificStyle;
+import org.jannocessor.model.code.SourceCode;
+import org.jannocessor.util.TypeSpecificInlineStyle;
 
-public class ExecutableBodyBean implements ExecutableBody {
+public class SourceCodeBean implements SourceCode {
 
 	private String code;
 	private String template;
 	private String templateName;
 
+	public SourceCodeBean(String code, String template, String templateName) {
+		this.code = code;
+		this.template = template;
+		this.templateName = templateName;
+	}
+
+	@Override
 	public String getCode() {
 		return code;
 	}
 
+	@Override
 	public void setCode(String code) {
 		this.code = code;
 	}
 
+	@Override
 	public String getTemplate() {
 		return template;
 	}
 
+	@Override
 	public void setTemplate(String template) {
 		this.template = template;
 	}
 
+	@Override
 	public String getTemplateName() {
 		return templateName;
 	}
 
+	@Override
 	public void setTemplateName(String templateName) {
 		this.templateName = templateName;
 	}
@@ -63,7 +75,7 @@ public class ExecutableBodyBean implements ExecutableBody {
 		if (obj.getClass() != getClass()) {
 			return false;
 		}
-		ExecutableBody other = (ExecutableBody) obj;
+		SourceCode other = (SourceCode) obj;
 		return new EqualsBuilder().append(code, other.getCode())
 				.append(template, other.getTemplate())
 				.append(templateName, other.getTemplateName()).isEquals();
@@ -77,8 +89,16 @@ public class ExecutableBodyBean implements ExecutableBody {
 
 	@Override
 	public String toString() {
-		TypeSpecificStyle style = new TypeSpecificStyle(ExecutableBody.class);
+		TypeSpecificInlineStyle style = new TypeSpecificInlineStyle(
+				SourceCode.class);
 		return new ReflectionToStringBuilder(this, style).toString();
+	}
+
+	@Override
+	public void assign(SourceCode sourceCode) {
+		setCode(sourceCode.getCode());
+		setTemplate(sourceCode.getTemplate());
+		setTemplateName(sourceCode.getTemplateName());
 	}
 
 }

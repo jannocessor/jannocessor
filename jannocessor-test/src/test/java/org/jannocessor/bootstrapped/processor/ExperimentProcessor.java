@@ -20,11 +20,18 @@ import java.util.Map;
 
 import javax.annotation.Generated;
 
+import org.jannocessor.collection.Power;
+import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
-import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.New;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.util.Methods;
+import org.jannocessor.model.util.New;
+import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.processor.model.CodeProcessor;
 import org.jannocessor.processor.model.ProcessingContext;
 
@@ -32,8 +39,7 @@ public class ExperimentProcessor implements CodeProcessor {
 
 	@Override
 	public void process(ProcessingContext context, Map<String, Object> params) {
-		AbstractJavaStructure model = (AbstractJavaStructure) params
-				.get("model");
+		JavaClass model = (JavaClass) params.get("model");
 
 		context.getLogger().debug("Processing: {} ", model.getName());
 
@@ -46,7 +52,30 @@ public class ExperimentProcessor implements CodeProcessor {
 		method1.getBody().setCode("return \"COOL!\";");
 		model.getMethods().add(method1);
 
+		model.getInstanceInits().add(New.instanceInit(New.body("// init")));
+		model.getStaticInits().add(New.staticInit(New.body("// static init")));
+
+		JavaField x = New.field(Fields.PRIVATE, boolean.class, "x",
+				New.literal(true));
+		model.getFields().add(x);
+
+		JavaEnumConstant value1 = New.enumConstant("A");
+		value1.getValues().addAll(New.expression("\"foo\""),
+				New.expression("11"));
+
+		JavaEnumConstant value2 = New.enumConstant("B", New.literal("bar"),
+				New.literal(11));
+
+		JavaNestedEnum enum1 = New.nestedEnum("MyEnum",
+				Power.list(value1, value2));
+
+		JavaParameter param1 = New.parameter(String.class, "a");
+		JavaParameter param2 = New.parameter(int.class, "b");
+		JavaConstructor constr1 = New.constructor(param1, param2);
+		enum1.getConstructors().add(constr1);
+
+		model.getNestedEnums().add(enum1);
+
 		context.generateCode(model, true);
 	}
-
 }

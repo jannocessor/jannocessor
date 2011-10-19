@@ -34,7 +34,7 @@ public class JavaPrimitiveTypeAdapter extends JavaTypeAdapter implements
 		super(primitiveType, elementUtils, typeUtils);
 
 		this.primitiveType = primitiveType;
-		this.setCode(New.code(JavaPrimitiveType.class));
+		this.getCode().assign(New.code(JavaPrimitiveType.class));
 	}
 
 }

@@ -35,7 +35,7 @@ public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 	public JavaInterfaceAdapter(TypeElement tinterface, Elements elementUtils,
 			Types typeUtils) {
 		super(tinterface, elementUtils, typeUtils);
-		this.setCode(New.code(JavaInterface.class));
+		this.getCode().assign(New.code(JavaInterface.class));
 		this.tinterface = tinterface;
 	}
 

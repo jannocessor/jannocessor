@@ -19,13 +19,13 @@ package org.jannocessor.model.util;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.bean.ReadonlyNameBean;
-import org.jannocessor.model.bean.SourceCodeBean;
-import org.jannocessor.model.bean.executable.ExecutableBodyBean;
 import org.jannocessor.model.bean.executable.JavaConstructorBean;
 import org.jannocessor.model.bean.executable.JavaInstanceInitBean;
 import org.jannocessor.model.bean.executable.JavaMethodBean;
@@ -62,9 +62,12 @@ import org.jannocessor.model.bean.variable.JavaExceptionParameterBean;
 import org.jannocessor.model.bean.variable.JavaFieldBean;
 import org.jannocessor.model.bean.variable.JavaLocalVariableBean;
 import org.jannocessor.model.bean.variable.JavaParameterBean;
-import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.code.JavaBody;
+import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.code.SourceCode;
-import org.jannocessor.model.executable.ExecutableBody;
+import org.jannocessor.model.code.bean.JavaBodyBean;
+import org.jannocessor.model.code.bean.JavaExpressionBean;
+import org.jannocessor.model.code.bean.SourceCodeBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
@@ -137,6 +140,8 @@ public class New {
 	public static final List<JavaConstructor> NO_CONSTRUCTORS = Power
 			.unmodifiableList();
 	public static final List<JavaField> NO_FIELDS = Power.unmodifiableList();
+	public static final List<JavaExpression> NO_EXPRESSIONS = Power
+			.unmodifiableList();
 
 	public static Name name(String name) {
 		return new NameBean(name);
@@ -160,23 +165,24 @@ public class New {
 		}
 	}
 
-	public static SourceCodeBean code(Class<? extends JavaCodeModel> model) {
-		return new SourceCodeBean(Templates.defaultName(model));
+	public static JavaField field(FieldModifiers modifiers, JavaType type,
+			String name, JavaExpression value) {
+		return new JavaFieldBean(modifiers, type, name(name), value);
 	}
 
-	public static ExecutableBody body(Class<? extends JavaCodeModel> model) {
-		ExecutableBodyBean body = new ExecutableBodyBean();
-		return body;
+	public static JavaField field(FieldModifiers modifiers, Class<?> type,
+			String name, JavaExpression value) {
+		return field(modifiers, type(type), name, value);
 	}
 
 	public static JavaField field(FieldModifiers modifiers, Class<?> type,
 			String name) {
-		return field(modifiers, type(type), name);
+		return field(modifiers, type, name, expression());
 	}
 
 	public static JavaField field(FieldModifiers modifiers, JavaType type,
 			String name) {
-		return new JavaFieldBean(modifiers, type, name(name));
+		return field(modifiers, type, name, expression());
 	}
 
 	public static JavaParameter parameter(Class<?> clazz, String name,
@@ -197,16 +203,26 @@ public class New {
 		return parameter(type, name, false);
 	}
 
-	public static JavaInstanceInit instanceInit() {
-		return new JavaInstanceInitBean();
+	public static JavaInstanceInit instanceInit(JavaBody body) {
+		return new JavaInstanceInitBean(body);
 	}
 
-	public static JavaStaticInit staticInit() {
-		return new JavaStaticInitBean();
+	public static JavaStaticInit staticInit(JavaBody body) {
+		return new JavaStaticInitBean(body);
+	}
+
+	public static JavaEnumConstant enumConstant(String name,
+			List<JavaExpression> values) {
+		return new JavaEnumConstantBean(name, values);
+	}
+
+	public static JavaEnumConstant enumConstant(String name,
+			JavaExpression... values) {
+		return enumConstant(name, Power.list(values));
 	}
 
 	public static JavaEnumConstant enumConstant(String name) {
-		return new JavaEnumConstantBean(name);
+		return enumConstant(name, NO_EXPRESSIONS);
 	}
 
 	public static JavaExceptionParameter exceptionParameter(JavaType type,
@@ -783,6 +799,10 @@ public class New {
 
 	/*************************** SOURCE CODE *****************************/
 
+	public static SourceCode code() {
+		return new SourceCodeBean(null, null, null);
+	}
+
 	public static SourceCode code(String code) {
 		return new SourceCodeBean(code, null, null);
 	}
@@ -793,6 +813,64 @@ public class New {
 
 	public static SourceCode codeByTemplateName(String templateName) {
 		return new SourceCodeBean(null, null, templateName);
+	}
+
+	public static SourceCode code(Class<? extends JavaCodeModel> model) {
+		return codeByTemplateName(Templates.defaultName(model));
+	}
+
+	/***************************** BODY *******************************/
+
+	public static JavaBody body() {
+		return new JavaBodyBean(null, null, null);
+	}
+
+	public static JavaBody body(String code) {
+		return new JavaBodyBean(code, null, null);
+	}
+
+	public static JavaBody bodyByTemplate(String template) {
+		return new JavaBodyBean(null, template, null);
+	}
+
+	public static JavaBody bodyByTemplateName(String templateName) {
+		return new JavaBodyBean(null, null, templateName);
+	}
+
+	/**************************** EXPRESSION ******************************/
+
+	public static JavaExpression expression() {
+		return new JavaExpressionBean(null, null, null);
+	}
+
+	public static JavaExpression expression(String expression) {
+		return new JavaExpressionBean(expression, null, null);
+	}
+
+	public static JavaExpression expressionByTemplate(String template) {
+		return new JavaExpressionBean(null, template, null);
+	}
+
+	public static JavaExpression expressionByTemplateName(String templateName) {
+		return new JavaExpressionBean(null, null, templateName);
+	}
+
+	/**************************** LITERAL ******************************/
+
+	public static JavaExpression literal(String string) {
+		return expression('"' + StringEscapeUtils.escapeJava(string) + '"');
+	}
+
+	public static JavaExpression literal(long number) {
+		return expression(String.valueOf(number));
+	}
+
+	public static JavaExpression literal(boolean bool) {
+		return expression(String.valueOf(bool));
+	}
+
+	public static JavaExpression literal(Class<?> clazz) {
+		return expression(clazz.getSimpleName() + ".class");
 	}
 
 }

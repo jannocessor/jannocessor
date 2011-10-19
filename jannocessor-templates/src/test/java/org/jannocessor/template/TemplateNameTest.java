@@ -18,7 +18,7 @@ package org.jannocessor.template;
 
 import java.net.URL;
 
-import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.introspection.API;
 import org.jannocessor.model.util.Templates;
 import org.junit.Assert;

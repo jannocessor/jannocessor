@@ -35,7 +35,7 @@ public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 	public JavaAnnotationAdapter(TypeElement annotation, Elements elementUtils,
 			Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
-		this.setCode(New.code(JavaAnnotation.class));
+		this.getCode().assign(New.code(JavaAnnotation.class));
 		this.annotation = annotation;
 	}
 

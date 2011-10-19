@@ -24,10 +24,11 @@ import javax.lang.model.util.Types;
 import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.code.JavaBody;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
-import org.jannocessor.model.executable.ExecutableBody;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 
 abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
@@ -35,7 +36,7 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 
 	private final ExecutableElement executable;
 
-	private ExecutableBody body;
+	private final JavaBody body = New.body();
 
 	public AbstractJavaExecutableAdapter(ExecutableElement executable,
 			Elements elementUtils, Types typeUtils) {
@@ -71,13 +72,8 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 		return adapters;
 	}
 
-
-	public void setBody(ExecutableBody body) {
-		this.body = body;
-	}
-
 	@Override
-	public ExecutableBody getBody() {
+	public JavaBody getBody() {
 		return this.body;
 	}
 

@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.executable;
+package org.jannocessor.model;
 
-public interface ExecutableBody {
+import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.model.code.SourceCode;
 
-    String getCode();
+@DomainModel
+public interface JavaCodeModel {
 
-    void setCode(String code);
+	SourceCode getCode();
 
-    String getTemplate();
-
-    void setTemplate(String template);
-
-    String getTemplateName();
-
-    void setTemplateName(String templateName);
+	SourceCode getExtraCode();
 
 }

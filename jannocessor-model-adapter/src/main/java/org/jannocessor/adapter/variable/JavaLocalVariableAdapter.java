@@ -32,7 +32,7 @@ public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 	public JavaLocalVariableAdapter(VariableElement localVariable,
 			Elements elementUtils, Types typeUtils) {
 		super(localVariable, elementUtils, typeUtils);
-		this.setCode(New.code(JavaLocalVariable.class));
+		this.getCode().assign(New.code(JavaLocalVariable.class));
 		this.localVariable = localVariable;
 	}
 

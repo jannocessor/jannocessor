@@ -34,7 +34,7 @@ public class JavaArrayTypeAdapter extends JavaTypeAdapter implements
 		super(arrayType, elementUtils, typeUtils);
 
 		this.arrayType = arrayType;
-		this.setCode(New.code(JavaArrayType.class));
+		this.getCode().assign(New.code(JavaArrayType.class));
 	}
 
 	@Override

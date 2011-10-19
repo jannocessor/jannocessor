@@ -19,15 +19,28 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.code.JavaExpression;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
 public class JavaEnumConstantData extends AbstractJavaVariableData implements JavaEnumConstant {
 
+    private PowerList<JavaExpression> values;
+
+
+    public PowerList<JavaExpression> getValues() {
+        return this.values;
+    }
+
+    public void setValues(PowerList<JavaExpression> value) {
+        this.values = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -44,12 +57,14 @@ public class JavaEnumConstantData extends AbstractJavaVariableData implements Ja
 		JavaEnumConstant other = (JavaEnumConstant) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getValues(), other.getValues())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getValues())
 				.toHashCode();
 	}
 
@@ -64,6 +79,7 @@ public class JavaEnumConstantData extends AbstractJavaVariableData implements Ja
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("values", ToStringUtil.describe(this.getValues()));
 	}
 
 }

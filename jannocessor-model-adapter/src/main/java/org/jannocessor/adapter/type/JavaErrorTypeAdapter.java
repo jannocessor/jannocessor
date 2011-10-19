@@ -34,7 +34,7 @@ public class JavaErrorTypeAdapter extends JavaTypeAdapter implements
 		super(errorType, elementUtils, typeUtils);
 
 		this.errorType = errorType;
-		this.setCode(New.code(JavaErrorType.class));
+		this.getCode().assign(New.code(JavaErrorType.class));
 	}
 
 }

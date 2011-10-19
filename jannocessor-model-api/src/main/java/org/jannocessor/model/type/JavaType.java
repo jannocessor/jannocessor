@@ -17,8 +17,8 @@
 package org.jannocessor.model.type;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.code.JavaCodeModel;
 
 @DomainModel
 public interface JavaType extends JavaCodeModel {

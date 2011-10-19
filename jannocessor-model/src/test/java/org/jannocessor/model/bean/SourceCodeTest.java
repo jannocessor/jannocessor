@@ -19,6 +19,7 @@ package org.jannocessor.model.bean;
 import static junit.framework.Assert.assertEquals;
 import net.sf.twip.TwiP;
 
+import org.jannocessor.model.code.bean.SourceCodeBean;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -27,8 +28,8 @@ public class SourceCodeTest extends AbstractModelTest {
 
 	@Test
 	public void testEquality() {
-		SourceCodeBean code1 = new SourceCodeBean("a");
-		SourceCodeBean code2 = new SourceCodeBean("a");
+		SourceCodeBean code1 = new SourceCodeBean("a", null, null);
+		SourceCodeBean code2 = new SourceCodeBean("a", null, null);
 
 		assertEquals(code1, code2);
 	}

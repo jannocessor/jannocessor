@@ -34,7 +34,7 @@ public class JavaVoidTypeAdapter extends JavaTypeAdapter implements
 		super(noType, elementUtils, typeUtils);
 
 		this.noType = noType;
-		this.setCode(New.code(JavaVoidType.class));
+		this.getCode().assign(New.code(JavaVoidType.class));
 	}
 
 }

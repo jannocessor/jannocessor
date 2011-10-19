@@ -37,7 +37,7 @@ public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
 		super(executableType, elementUtils, typeUtils);
 
 		this.executableType = executableType;
-		this.setCode(New.code(JavaExecutableType.class));
+		this.getCode().assign(New.code(JavaExecutableType.class));
 	}
 
 	@Override

@@ -20,6 +20,9 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
@@ -29,11 +32,18 @@ public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
 	@SuppressWarnings("unused")
 	private final VariableElement enumConstant;
 
+	private final PowerList<JavaExpression> values = Power.list();
+
 	public JavaEnumConstantAdapter(VariableElement enumConstant,
 			Elements elementUtils, Types typeUtils) {
 		super(enumConstant, elementUtils, typeUtils);
-		this.setCode(New.code(JavaEnumConstant.class));
+		this.getCode().assign(New.code(JavaEnumConstant.class));
 		this.enumConstant = enumConstant;
+	}
+
+	@Override
+	public PowerList<JavaExpression> getValues() {
+		return values;
 	}
 
 }

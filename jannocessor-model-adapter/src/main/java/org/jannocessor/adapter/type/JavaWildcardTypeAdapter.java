@@ -34,7 +34,7 @@ public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
 		super(wildcardType, elementUtils, typeUtils);
 
 		this.wildcardType = wildcardType;
-		this.setCode(New.code(JavaWildcardType.class));
+		this.getCode().assign(New.code(JavaWildcardType.class));
 	}
 
 	@Override

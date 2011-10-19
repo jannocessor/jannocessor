@@ -35,7 +35,7 @@ public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
 		super(declaredType, elementUtils, typeUtils);
 
 		this.declaredType = declaredType;
-		this.setCode(New.code(JavaDeclaredType.class));
+		this.getCode().assign(New.code(JavaDeclaredType.class));
 	}
 
 	@Override

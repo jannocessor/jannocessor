@@ -18,7 +18,7 @@ package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerMap;
-import org.jannocessor.model.code.JavaCodeModel;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.type.JavaType;
 
 @DomainModel

@@ -16,11 +16,6 @@
 
 package org.jannocessor.model.code;
 
-import org.jannocessor.annotation.DomainModel;
-
-@DomainModel
-public interface JavaCodeModel {
-
-	SourceCode getCode();
+public interface JavaBody extends SourceCode {
 
 }

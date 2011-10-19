@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;

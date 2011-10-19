@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.code.JavaExpression;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -32,6 +33,8 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 
     private FieldModifiers modifiers;
 
+    private JavaExpression value;
+
 
     public FieldModifiers getModifiers() {
         return this.modifiers;
@@ -39,6 +42,14 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 
     public void setModifiers(FieldModifiers value) {
         this.modifiers = value;
+    }
+
+    public JavaExpression getValue() {
+        return this.value;
+    }
+
+    public void setValue(JavaExpression value) {
+        this.value = value;
     }
 
 	@Override
@@ -57,6 +68,7 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getModifiers(), other.getModifiers())
+				.append(this.getValue(), other.getValue())
 				.isEquals();
 	}
 
@@ -64,6 +76,7 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getModifiers())
+				.append(this.getValue())
 				.toHashCode();
 	}
 
@@ -79,6 +92,7 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
+        builder.append("value", ToStringUtil.describe(this.getValue()));
 	}
 
 }

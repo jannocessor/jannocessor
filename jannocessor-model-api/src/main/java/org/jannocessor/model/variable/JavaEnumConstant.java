@@ -17,8 +17,12 @@
 package org.jannocessor.model.variable;
 
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.code.JavaExpression;
 
 @DomainModel
 public interface JavaEnumConstant extends AbstractJavaVariable {
+
+	PowerList<JavaExpression> getValues();
 
 }

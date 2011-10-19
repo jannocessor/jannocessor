@@ -35,7 +35,7 @@ public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 	public JavaNestedEnumAdapter(TypeElement tenum, Elements elementUtils,
 			Types typeUtils) {
 		super(tenum, elementUtils, typeUtils);
-		this.setCode(New.code(JavaNestedEnum.class));
+		this.getCode().assign(New.code(JavaNestedEnum.class));
 		this.tenum = tenum;
 	}
 

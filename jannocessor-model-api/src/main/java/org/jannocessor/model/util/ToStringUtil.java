@@ -20,9 +20,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.code.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.model.modifier.AbstractModifiers;
 import org.jannocessor.model.type.JavaTypeKind;

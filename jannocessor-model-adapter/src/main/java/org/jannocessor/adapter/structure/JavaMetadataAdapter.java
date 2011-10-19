@@ -46,7 +46,7 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 			Elements elementUtils, Types typeUtils) {
 		super(elementUtils, typeUtils);
 		this.annotationMirror = annotationMirror;
-		this.setCode(New.code(JavaMetadata.class));
+		this.getCode().assign(New.code(JavaMetadata.class));
 	}
 
 	@Override

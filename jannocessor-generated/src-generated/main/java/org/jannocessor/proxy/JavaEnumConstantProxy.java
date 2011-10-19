@@ -20,19 +20,20 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.data.JavaEnumConstantData;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.code.JavaExpression;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
 public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements JavaEnumConstant {
 
-    @SuppressWarnings("unused")
     private JavaEnumConstant adapter;
 
-    @SuppressWarnings("unused")
     private JavaEnumConstantData data;
 
     public JavaEnumConstantProxy(JavaEnumConstant adapter, JavaEnumConstantData data) {
@@ -41,6 +42,17 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
         this.data = data;
     }
 
+	private boolean getValuesInitialized = false;
+
+
+    public PowerList<JavaExpression> getValues() {
+        if (!getValuesInitialized) {
+            data.setValues(adapter.getValues());
+			getValuesInitialized = true;
+        }
+
+        return data.getValues();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -57,12 +69,14 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
 		JavaEnumConstant other = (JavaEnumConstant) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getValues(), other.getValues())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getValues())
 				.toHashCode();
 	}
 
@@ -77,6 +91,7 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("values", ToStringUtil.describe(this.getValues()));
 	}
 
 }

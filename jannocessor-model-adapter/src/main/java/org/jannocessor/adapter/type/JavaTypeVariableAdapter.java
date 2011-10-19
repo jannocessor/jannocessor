@@ -34,7 +34,7 @@ public class JavaTypeVariableAdapter extends JavaTypeAdapter implements
 		super(typeVariable, elementUtils, typeUtils);
 
 		this.typeVariable = typeVariable;
-		this.setCode(New.code(JavaTypeVariable.class));
+		this.getCode().assign(New.code(JavaTypeVariable.class));
 	}
 
 	@Override

@@ -1,1 +1,3 @@
-${self}
+{
+#@indent()#body($self, "#default_body($self)")#end
+}

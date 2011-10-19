@@ -33,8 +33,7 @@ public final class JavaInstanceInitAdapter extends
 	public JavaInstanceInitAdapter(ExecutableElement instanceInit,
 			Elements elementUtils, Types typeUtils) {
 		super(instanceInit, elementUtils, typeUtils);
-		this.setCode(New.code(JavaInstanceInit.class));
-		this.setBody(New.body(JavaInstanceInit.class));
+		this.getCode().assign(New.code(JavaInstanceInit.class));
 		this.instanceInit = instanceInit;
 	}
 

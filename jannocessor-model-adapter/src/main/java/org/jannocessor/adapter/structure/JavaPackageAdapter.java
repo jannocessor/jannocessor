@@ -33,7 +33,7 @@ public final class JavaPackageAdapter extends JavaElementAdapter implements
 	public JavaPackageAdapter(PackageElement tpackage, Elements elementUtils,
 			Types typeUtils) {
 		super(tpackage, elementUtils, typeUtils);
-		this.setCode(New.code(JavaPackage.class));
+		this.getCode().assign(New.code(JavaPackage.class));
 		this.tpackage = tpackage;
 	}
 

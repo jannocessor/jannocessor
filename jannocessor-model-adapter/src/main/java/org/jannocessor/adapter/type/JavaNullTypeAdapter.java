@@ -34,7 +34,7 @@ public class JavaNullTypeAdapter extends JavaTypeAdapter implements
 		super(nullType, elementUtils, typeUtils);
 
 		this.nullType = nullType;
-		this.setCode(New.code(JavaNullType.class));
+		this.getCode().assign(New.code(JavaNullType.class));
 	}
 
 }
