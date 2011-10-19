@@ -18,6 +18,7 @@ package org.jannocessor.service.render;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.jannocessor.model.Name;
@@ -55,7 +56,8 @@ public class TypeUtils {
 
 		List<String> newImports = Arrays.asList(imports);
 		if (!newImports.isEmpty()) {
-			logger.debug("Adding {} new imports: {}", newImports.size(), newImports);
+			logger.debug("Adding {} new imports: {}", newImports.size(),
+					newImports);
 		}
 		typeImports.addAll(newImports);
 
@@ -63,6 +65,7 @@ public class TypeUtils {
 	}
 
 	public List<String> getTypeImports() {
+		Collections.sort(typeImports);
 		return typeImports;
 	}
 
