@@ -100,7 +100,8 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	}
 
 	@Override
-	public void configure(String templatesPath, boolean debugMode) {
+	public void configure(String templatesPath, boolean debugMode)
+			throws JannocessorException {
 		generator.configure(templatesPath, debugMode);
 	}
 

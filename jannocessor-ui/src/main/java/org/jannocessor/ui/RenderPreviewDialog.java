@@ -85,7 +85,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	public RenderPreviewDialog(String templatesPath,
 			RenderRegister renderRegister, Configurator configurator,
-			JavaRepresenter representer) {
+			JavaRepresenter representer) throws JannocessorException {
 		this.templatesPath = templatesPath;
 		this.renderRegister = renderRegister;
 

@@ -80,34 +80,41 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 	}
 
 	@Override
-	public void configure(String templatesPath, boolean debugMode) {
-		Properties velocityConfig = new Properties();
+	public void configure(String templatesPath, boolean debugMode)
+			throws JannocessorException {
+		try {
+			Properties velocityConfig = new Properties();
 
-		if (templatesPath != null) {
-			velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
-					FileResourceLoader.class.getCanonicalName());
-			velocityConfig
-					.setProperty(FILE_RESOURCE_LOADER_PATH, templatesPath);
-		} else {
-			velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
-					ClasspathResourceLoader.class.getCanonicalName());
+			if (templatesPath != null) {
+				velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
+						FileResourceLoader.class.getCanonicalName());
+				velocityConfig.setProperty(FILE_RESOURCE_LOADER_PATH,
+						templatesPath);
+			} else {
+				velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
+						ClasspathResourceLoader.class.getCanonicalName());
+			}
+
+			velocityConfig.setProperty(VM_MAX_DEPTH, "1000");
+			velocityConfig.setProperty(VM_PERM_INLINE_LOCAL, "true");
+			velocityConfig.setProperty(VM_CONTEXT_LOCALSCOPE, "true");
+
+			if (debugMode) {
+				velocityConfig.setProperty(VM_LIBRARY_AUTORELOAD, "true");
+				velocityConfig.setProperty(FILE_RESOURCE_LOADER_CACHE, "false");
+			} else {
+				velocityConfig.setProperty(VM_LIBRARY_AUTORELOAD, "false");
+				velocityConfig.setProperty(FILE_RESOURCE_LOADER_CACHE, "true");
+			}
+
+			engine.init(velocityConfig);
+
+			configured = true;
+		} catch (Exception e) {
+			throw new JannocessorException(
+					"Exception occured while configuring the template renderer",
+					e);
 		}
-
-		velocityConfig.setProperty(VM_MAX_DEPTH, "1000");
-		velocityConfig.setProperty(VM_PERM_INLINE_LOCAL, "true");
-		velocityConfig.setProperty(VM_CONTEXT_LOCALSCOPE, "true");
-
-		if (debugMode) {
-			velocityConfig.setProperty(VM_LIBRARY_AUTORELOAD, "true");
-			velocityConfig.setProperty(FILE_RESOURCE_LOADER_CACHE, "false");
-		} else {
-			velocityConfig.setProperty(VM_LIBRARY_AUTORELOAD, "false");
-			velocityConfig.setProperty(FILE_RESOURCE_LOADER_CACHE, "true");
-		}
-
-		engine.init(velocityConfig);
-
-		configured = true;
 	}
 
 	@Override

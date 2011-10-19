@@ -45,7 +45,8 @@ public class RulesGeneratorImpl implements RulesGenerator, Settings {
 
 	@Inject
 	public RulesGeneratorImpl(TemplateRenderer renderer,
-			FileService fileService, PatternService patternService) {
+			FileService fileService, PatternService patternService)
+			throws JannocessorException {
 		this.renderer = renderer;
 		this.fileService = fileService;
 		this.patternService = patternService;

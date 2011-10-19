@@ -16,6 +16,7 @@
 
 package org.jannocessor.ui;
 
+import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.processor.model.RenderRegister;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
@@ -28,7 +29,7 @@ public class RenderPreview {
 
 	public static void showDialog(String projectPath,
 			RenderRegister renderRegister, Configurator configurator,
-			JavaRepresenter representer) {
+			JavaRepresenter representer) throws JannocessorException {
 		if (!renderRegister.getRenderings().isEmpty()) {
 			logger.info("Starting UI...");
 			RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
