@@ -32,16 +32,18 @@ import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
+import org.jannocessor.model.variable.JavaField;
 
 public class JavaInterfaceBean extends JavaInterfaceData implements
 		JavaInterface {
 
 	public JavaInterfaceBean(InterfaceModifiers modifiers, String name,
-			List<JavaType> superInterfaces, List<JavaMethod> methods,
-			List<JavaTypeParameter> parameters) {
+			List<JavaType> superInterfaces, List<JavaField> fields,
+			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
 		this.setModifiers(modifiers);
 		this.setName(new NameBean(name));
 		this.setInterfaces(Power.list(superInterfaces));
+		this.setFields(Power.list(fields));
 		this.setMethods(Power.list(methods));
 		this.setTypeParameters(Power.list(parameters));
 		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));

@@ -518,8 +518,16 @@ public class New {
 
 	public static JavaInterface interfacee(InterfaceModifiers modifiers,
 			String name, List<JavaType> superInterfaces,
+			List<JavaField> fields, List<JavaMethod> methods,
+			List<JavaTypeParameter> parameters) {
+		return new JavaInterfaceBean(modifiers, name, superInterfaces, fields,
+				methods, parameters);
+	}
+
+	public static JavaInterface interfacee(InterfaceModifiers modifiers,
+			String name, List<JavaType> superInterfaces,
 			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
-		return new JavaInterfaceBean(modifiers, name, superInterfaces, methods,
+		return interfacee(modifiers, name, superInterfaces, NO_FIELDS, methods,
 				parameters);
 	}
 

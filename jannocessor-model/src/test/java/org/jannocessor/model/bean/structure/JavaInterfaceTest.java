@@ -25,6 +25,7 @@ import net.sf.twip.Values;
 import org.jannocessor.collection.Power;
 import org.jannocessor.model.bean.AbstractModelTest;
 import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaInterface;
@@ -33,6 +34,7 @@ import org.jannocessor.model.test.ModelParam;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Interfaces;
+import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.test.Param;
 import org.junit.Assert;
@@ -57,6 +59,9 @@ public class JavaInterfaceTest extends AbstractModelTest {
 	@AutoTwip
 	public static InterfaceModifiers[] IN_MODIF = less(ModelParam
 			.interfaceModifiers());
+
+	@AutoTwip
+	public static FieldModifiers[] F_MODIF = less(ModelParam.fieldModifiers());
 
 	@AutoTwip
 	public static MethodModifiers[] M_MODIF = less(ModelParam.methodModifiers());
@@ -90,6 +95,19 @@ public class JavaInterfaceTest extends AbstractModelTest {
 		return Param.groups(JavaParameter.class, param1, param2);
 	}
 
+	/* ********************* FIELD COMBINATIONS ************************* */
+
+	@AutoTwip
+	public static JavaField[] fields(FieldModifiers modifiers, JavaType type,
+			@Values("IDS") String name) {
+		return new JavaField[] { New.field(modifiers, type, name) };
+	}
+
+	@AutoTwip
+	public static JavaField[][] fieldGroups(JavaField field1, JavaField field2) {
+		return few(Param.groups(JavaField.class, field1, field2));
+	}
+
 	/* *********************** METHOD COMBINATIONS ************************ */
 
 	@AutoTwip
@@ -113,11 +131,12 @@ public class JavaInterfaceTest extends AbstractModelTest {
 		InterfaceModifiers modifiers = Interfaces.PUBLIC;
 		String name = "TestInterface";
 		List<JavaType> interfaces = Power.list();
+		List<JavaField> fields = Power.list();
 		List<JavaMethod> methods = Power.list();
 		List<JavaTypeParameter> parameters = Power.list();
 
 		JavaInterface[] instances = allInstances(modifiers, name, interfaces,
-				methods, parameters);
+				fields, methods, parameters);
 
 		checkAllEquall(instances);
 	}
@@ -125,15 +144,16 @@ public class JavaInterfaceTest extends AbstractModelTest {
 	@Test
 	public void testCombinations(InterfaceModifiers modifiers,
 			@Values("IDS") String name, JavaType[] superInterfaces,
-			JavaMethod[] methods, JavaTypeParameter[] parameters) {
+			JavaField[] fields, JavaMethod[] methods,
+			JavaTypeParameter[] parameters) {
 
 		JavaInterface[] instances1 = allInstances(modifiers, name,
-				Power.list(superInterfaces), Power.list(methods),
-				Power.list(parameters));
+				Power.list(superInterfaces), Power.list(fields),
+				Power.list(methods), Power.list(parameters));
 
 		JavaInterface[] instances2 = allInstances(modifiers, name,
-				Power.list(superInterfaces), Power.list(methods),
-				Power.list(parameters));
+				Power.list(superInterfaces), Power.list(fields),
+				Power.list(methods), Power.list(parameters));
 
 		Assert.assertArrayEquals(instances1, instances2);
 
@@ -143,27 +163,33 @@ public class JavaInterfaceTest extends AbstractModelTest {
 	}
 
 	private JavaInterface[] allInstances(InterfaceModifiers modifiers,
-			String name, List<JavaType> interfaces, List<JavaMethod> methods,
-			List<JavaTypeParameter> parameters) {
+			String name, List<JavaType> interfaces, List<JavaField> fields,
+			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
+
+		JavaInterface obj0 = New.interfacee(modifiers, name, interfaces,
+				fields, methods, parameters);
+		checkInterface(obj0, modifiers, name, interfaces, fields, methods,
+				parameters);
 
 		JavaInterface obj1 = New.interfacee(modifiers, name, interfaces,
 				methods, parameters);
-		checkInterface(obj1, modifiers, name, interfaces, methods, parameters);
+		checkInterface(obj1, modifiers, name, interfaces, New.NO_FIELDS,
+				methods, parameters);
 
 		JavaInterface obj2 = New.interfacee(modifiers, name, interfaces,
 				methods);
-		checkInterface(obj2, modifiers, name, interfaces, methods,
-				New.NO_TYPE_PARAMS);
+		checkInterface(obj2, modifiers, name, interfaces, New.NO_FIELDS,
+				methods, New.NO_TYPE_PARAMS);
 
 		JavaInterface obj3 = New.interfacee(name, interfaces, methods);
-		checkInterface(obj3, Interfaces.PUBLIC, name, interfaces, methods,
-				New.NO_TYPE_PARAMS);
+		checkInterface(obj3, Interfaces.PUBLIC, name, interfaces,
+				New.NO_FIELDS, methods, New.NO_TYPE_PARAMS);
 
 		JavaInterface obj4 = New.interfacee(name, methods);
-		checkInterface(obj4, Interfaces.PUBLIC, name, New.NO_TYPES, methods,
-				New.NO_TYPE_PARAMS);
+		checkInterface(obj4, Interfaces.PUBLIC, name, New.NO_TYPES,
+				New.NO_FIELDS, methods, New.NO_TYPE_PARAMS);
 
-		return new JavaInterface[] { obj1, obj2, obj3, obj4 };
+		return new JavaInterface[] { obj0, obj1, obj2, obj3, obj4 };
 	}
 
 }

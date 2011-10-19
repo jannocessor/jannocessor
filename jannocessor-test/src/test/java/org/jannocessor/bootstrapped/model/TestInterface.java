@@ -25,6 +25,8 @@ import org.jannocessor.bootstrapped.annotation.BeanModel;
 @BeanModel
 public interface TestInterface extends Runnable, Serializable {
 
+	int FOO = 34;
+
 	void someMethod();
 
 }

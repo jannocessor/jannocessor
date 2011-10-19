@@ -21,6 +21,7 @@ import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.structure.AbstractJavaInterface;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.variable.JavaField;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -33,6 +34,8 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 
     private PowerList<JavaTypeParameter> typeParameters;
 
+    private PowerList<JavaField> fields;
+
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         return this.typeParameters;
@@ -40,6 +43,14 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 
     public void setTypeParameters(PowerList<JavaTypeParameter> value) {
         this.typeParameters = value;
+    }
+
+    public PowerList<JavaField> getFields() {
+        return this.fields;
+    }
+
+    public void setFields(PowerList<JavaField> value) {
+        this.fields = value;
     }
 
 	@Override
@@ -58,6 +69,7 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getTypeParameters(), other.getTypeParameters())
+				.append(this.getFields(), other.getFields())
 				.isEquals();
 	}
 
@@ -65,6 +77,7 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getTypeParameters())
+				.append(this.getFields())
 				.toHashCode();
 	}
 
@@ -80,6 +93,7 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
+        builder.append("fields", ToStringUtil.describe(this.getFields()));
 	}
 
 }

@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.AbstractJavaInterface;
 import org.jannocessor.data.AbstractJavaInterfaceData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.variable.JavaField;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,6 +45,8 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 
 	private boolean getTypeParametersInitialized = false;
 
+	private boolean getFieldsInitialized = false;
+
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
@@ -52,6 +55,15 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
         }
 
         return data.getTypeParameters();
+    }
+
+    public PowerList<JavaField> getFields() {
+        if (!getFieldsInitialized) {
+            data.setFields(adapter.getFields());
+			getFieldsInitialized = true;
+        }
+
+        return data.getFields();
     }
 
 	@Override
@@ -70,6 +82,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getTypeParameters(), other.getTypeParameters())
+				.append(this.getFields(), other.getFields())
 				.isEquals();
 	}
 
@@ -77,6 +90,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getTypeParameters())
+				.append(this.getFields())
 				.toHashCode();
 	}
 
@@ -92,6 +106,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
+        builder.append("fields", ToStringUtil.describe(this.getFields()));
 	}
 
 }

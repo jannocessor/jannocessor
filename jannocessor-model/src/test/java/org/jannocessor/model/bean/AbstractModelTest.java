@@ -189,12 +189,13 @@ public class AbstractModelTest {
 
 	protected void checkInterface(JavaInterface interfacee,
 			InterfaceModifiers modifiers, String name,
-			List<JavaType> interfaces, List<JavaMethod> methods,
-			List<JavaTypeParameter> parameters) {
+			List<JavaType> interfaces, List<JavaField> fields,
+			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
 		checkStructural(interfacee, null, interfaces);
 		checkElementName(interfacee, name);
 
 		assertEquals(modifiers, interfacee.getModifiers());
+		assertEquals(fields, interfacee.getFields());
 		assertEquals(methods, interfacee.getMethods());
 		assertEquals(parameters, interfacee.getTypeParameters());
 	}

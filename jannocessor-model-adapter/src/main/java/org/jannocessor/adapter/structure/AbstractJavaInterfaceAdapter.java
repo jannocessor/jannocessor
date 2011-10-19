@@ -24,6 +24,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.AbstractJavaInterface;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.variable.JavaField;
 
 abstract class AbstractJavaInterfaceAdapter extends
 		AbstractJavaStructureAdapter implements AbstractJavaInterface {
@@ -45,6 +46,11 @@ abstract class AbstractJavaInterfaceAdapter extends
 	public PowerList<JavaTypeParameter> getTypeParameters() {
 		return getElementsAdapters(tinterface.getTypeParameters(),
 				JavaTypeParameter.class);
+	}
+
+	@Override
+	public PowerList<JavaField> getFields() {
+		return findChildrenByType(JavaField.class);
 	}
 
 }
