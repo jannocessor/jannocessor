@@ -35,13 +35,14 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 
 	private final VariableElement field;
 
-	private final JavaExpression value = New.expression(null);
+	private final JavaExpression value;
 
 	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
 			Types typeUtils) {
 		super(field, elementUtils, typeUtils);
 		this.getCode().assign(New.code(JavaField.class));
 		this.field = field;
+		this.value = getConstantExpression();
 	}
 
 	@Override

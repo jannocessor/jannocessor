@@ -21,17 +21,32 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
+import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.AbstractJavaVariable;
 
 abstract class AbstractJavaVariableAdapter extends JavaElementAdapter implements
 		AbstractJavaVariable {
 
-	@SuppressWarnings("unused")
 	private final VariableElement variable;
 
 	public AbstractJavaVariableAdapter(VariableElement variable,
 			Elements elementUtils, Types typeUtils) {
 		super(variable, elementUtils, typeUtils);
 		this.variable = variable;
+	}
+
+	protected JavaExpression getConstantExpression() {
+		Object constantValue = variable.getConstantValue();
+		if (constantValue != null) {
+			// it can be String or primitive type
+			if (constantValue instanceof String) {
+				return New.literal((String) constantValue);
+			} else {
+				return New.expression(String.valueOf(constantValue));
+			}
+		} else {
+			return New.expression();
+		}
 	}
 }
