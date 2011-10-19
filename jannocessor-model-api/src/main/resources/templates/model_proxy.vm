@@ -49,14 +49,24 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 #end
 
 #foreach ($m in $model.methods)
+#if($m.name != 'getParent' && $m.name != 'getChildren')
     public #type($m.returnType) ${m.name}() {
         if (!${m.name}Initialized) {
+#if($m.returnType.erasure.toString().endsWith('PowerList'))
+            data.${m.name.replacePart(0, "set")}(#type('org.jannocessor.model.util.ModelUtils').parentedList(adapter.${m.name}(), this));
+#else
             data.${m.name.replacePart(0, "set")}(adapter.${m.name}());
+#end
 			${m.name}Initialized = true;
         }
 
         return data.${m.name}();
     }
+#else
+    public #type($m.returnType) ${m.name}() {
+        return adapter.${m.name}();
+    }
+#end
 
 #end
 	@Override

@@ -22,6 +22,7 @@ import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.data.JavaEnumConstantData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -47,7 +48,7 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
 
     public PowerList<JavaExpression> getValues() {
         if (!getValuesInitialized) {
-            data.setValues(adapter.getValues());
+            data.setValues(ModelUtils.parentedList(adapter.getValues(), this));
 			getValuesInitialized = true;
         }
 

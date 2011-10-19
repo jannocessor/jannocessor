@@ -46,17 +46,19 @@ public class JavaNestedClassBean extends JavaNestedClassData implements
 		this.setModifiers(modifiers);
 		this.setName(new NameBean(name));
 		this.setSuperclass(superclass);
-		this.setInterfaces(Power.list(interfaces));
-		this.setFields(Power.list(fields));
-		this.setConstructors(Power.list(constructors));
-		this.setMethods(Power.list(methods));
-		this.setTypeParameters(Power.list(parameters));
-		this.setStaticInits(Power.emptyList(JavaStaticInit.class));
-		this.setInstanceInits(Power.emptyList(JavaInstanceInit.class));
-		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
-		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
-		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
-		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
+		this.setInterfaces(children(Power.list(interfaces)));
+		this.setFields(children(Power.list(fields)));
+		this.setConstructors(children(Power.list(constructors)));
+		this.setMethods(children(Power.list(methods)));
+		this.setTypeParameters(children(Power.list(parameters)));
+		this.setStaticInits(children(Power.emptyList(JavaStaticInit.class)));
+		this.setInstanceInits(children(Power.emptyList(JavaInstanceInit.class)));
+		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));
+		this.setNestedEnums(children(Power.emptyList(JavaNestedEnum.class)));
+		this.setNestedInterfaces(children(Power
+				.emptyList(JavaNestedInterface.class)));
+		this.setNestedAnnotations(children(Power
+				.emptyList(JavaNestedAnnotation.class)));
 
 		this.setKind(JavaElementKind.NESTED_CLASS);
 		this.setCode(New.code(JavaNestedClass.class));

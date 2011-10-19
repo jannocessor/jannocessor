@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.modifier;
+package org.jannocessor.data;
 
-import org.jannocessor.model.modifier.ClassModifiers;
-import org.jannocessor.model.modifier.value.ClassModifierValue;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.util.ModelUtils;
 
-public class ClassModifiersBean extends
-		AbstractModifiersBean<ClassModifierValue, ClassModifiers> implements
-		ClassModifiers {
+public class AbstractData {
 
-	public ClassModifiersBean(ClassModifierValue[] values) {
-		super(values, ClassModifiers.class);
+	protected <T> PowerList<T> children(PowerList<T> list) {
+		if (this instanceof JavaElement) {
+			return ModelUtils.parentedList(list, (JavaElement) this);
+		} else {
+			throw new IllegalStateException("");
+		}
 	}
 
 }

@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.AbstractJavaInterface;
 import org.jannocessor.data.AbstractJavaInterfaceData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaField;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -50,7 +51,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
-            data.setTypeParameters(adapter.getTypeParameters());
+            data.setTypeParameters(ModelUtils.parentedList(adapter.getTypeParameters(), this));
 			getTypeParametersInitialized = true;
         }
 
@@ -59,7 +60,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
-            data.setFields(adapter.getFields());
+            data.setFields(ModelUtils.parentedList(adapter.getFields(), this));
 			getFieldsInitialized = true;
         }
 

@@ -31,7 +31,7 @@ public class JavaTypeParameterBean extends JavaTypeParameterData implements
 
 	public JavaTypeParameterBean(String name, List<JavaType> bounds) {
 		this.setName(new NameBean(name));
-		this.setBounds(Power.list(bounds));
+		this.setBounds(children(Power.list(bounds)));
 
 		this.setKind(JavaElementKind.TYPE_PARAMETER);
 		this.setCode(New.code(JavaTypeParameter.class));

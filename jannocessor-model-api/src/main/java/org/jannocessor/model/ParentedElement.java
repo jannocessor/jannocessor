@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.bean.modifier;
+package org.jannocessor.model;
 
-import org.jannocessor.model.modifier.ClassModifiers;
-import org.jannocessor.model.modifier.value.ClassModifierValue;
+public interface ParentedElement {
 
-public class ClassModifiersBean extends
-		AbstractModifiersBean<ClassModifierValue, ClassModifiers> implements
-		ClassModifiers {
-
-	public ClassModifiersBean(ClassModifierValue[] values) {
-		super(values, ClassModifiers.class);
-	}
+	void setParent(JavaElement parent);
 
 }

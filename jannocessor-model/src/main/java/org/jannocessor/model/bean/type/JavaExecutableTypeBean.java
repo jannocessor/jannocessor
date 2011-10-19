@@ -27,8 +27,8 @@ public class JavaExecutableTypeBean extends JavaExecutableTypeData implements
 		JavaExecutableType {
 
 	public JavaExecutableTypeBean(JavaType returnType,
-			List<JavaType> parameterTypes,
-			List<JavaType> thrownTypes, List<JavaType> typeVariables) {
+			List<JavaType> parameterTypes, List<JavaType> thrownTypes,
+			List<JavaType> typeVariables) {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaExecutableType.class));
 	}

@@ -27,7 +27,7 @@ import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaCodeModelData implements JavaCodeModel {
+public class JavaCodeModelData extends AbstractData implements JavaCodeModel {
 
     private SourceCode code;
 

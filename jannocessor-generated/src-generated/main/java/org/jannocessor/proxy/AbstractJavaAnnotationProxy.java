@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.jannocessor.data.AbstractJavaAnnotationData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -47,7 +48,7 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
 
     public PowerList<JavaAnnotationAttribute> getAttributes() {
         if (!getAttributesInitialized) {
-            data.setAttributes(adapter.getAttributes());
+            data.setAttributes(ModelUtils.parentedList(adapter.getAttributes(), this));
 			getAttributesInitialized = true;
         }
 

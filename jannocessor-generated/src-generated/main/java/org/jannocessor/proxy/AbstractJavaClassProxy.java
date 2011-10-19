@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.AbstractJavaClass;
 import org.jannocessor.data.AbstractJavaClassData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaStaticInit;
@@ -59,7 +60,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
-            data.setTypeParameters(adapter.getTypeParameters());
+            data.setTypeParameters(ModelUtils.parentedList(adapter.getTypeParameters(), this));
 			getTypeParametersInitialized = true;
         }
 
@@ -68,7 +69,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
-            data.setFields(adapter.getFields());
+            data.setFields(ModelUtils.parentedList(adapter.getFields(), this));
 			getFieldsInitialized = true;
         }
 
@@ -77,7 +78,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 
     public PowerList<JavaConstructor> getConstructors() {
         if (!getConstructorsInitialized) {
-            data.setConstructors(adapter.getConstructors());
+            data.setConstructors(ModelUtils.parentedList(adapter.getConstructors(), this));
 			getConstructorsInitialized = true;
         }
 
@@ -86,7 +87,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 
     public PowerList<JavaStaticInit> getStaticInits() {
         if (!getStaticInitsInitialized) {
-            data.setStaticInits(adapter.getStaticInits());
+            data.setStaticInits(ModelUtils.parentedList(adapter.getStaticInits(), this));
 			getStaticInitsInitialized = true;
         }
 
@@ -95,7 +96,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 
     public PowerList<JavaInstanceInit> getInstanceInits() {
         if (!getInstanceInitsInitialized) {
-            data.setInstanceInits(adapter.getInstanceInits());
+            data.setInstanceInits(ModelUtils.parentedList(adapter.getInstanceInits(), this));
 			getInstanceInitsInitialized = true;
         }
 

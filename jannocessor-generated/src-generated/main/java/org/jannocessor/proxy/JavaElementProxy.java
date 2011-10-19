@@ -56,21 +56,11 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 
 
     public JavaElement getParent() {
-        if (!getParentInitialized) {
-            data.setParent(adapter.getParent());
-			getParentInitialized = true;
-        }
-
-        return data.getParent();
+        return adapter.getParent();
     }
 
     public PowerList<JavaElement> getChildren() {
-        if (!getChildrenInitialized) {
-            data.setChildren(adapter.getChildren());
-			getChildrenInitialized = true;
-        }
-
-        return data.getChildren();
+        return adapter.getChildren();
     }
 
     public Name getName() {

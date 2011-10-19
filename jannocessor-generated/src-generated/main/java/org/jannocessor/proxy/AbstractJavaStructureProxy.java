@@ -24,6 +24,7 @@ import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -112,7 +113,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
-            data.setMetadata(adapter.getMetadata());
+            data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
 			getMetadataInitialized = true;
         }
 
@@ -121,7 +122,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaMetadata> getAllMetadata() {
         if (!getAllMetadataInitialized) {
-            data.setAllMetadata(adapter.getAllMetadata());
+            data.setAllMetadata(ModelUtils.parentedList(adapter.getAllMetadata(), this));
 			getAllMetadataInitialized = true;
         }
 
@@ -130,7 +131,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaType> getInterfaces() {
         if (!getInterfacesInitialized) {
-            data.setInterfaces(adapter.getInterfaces());
+            data.setInterfaces(ModelUtils.parentedList(adapter.getInterfaces(), this));
 			getInterfacesInitialized = true;
         }
 
@@ -139,7 +140,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaMethod> getMethods() {
         if (!getMethodsInitialized) {
-            data.setMethods(adapter.getMethods());
+            data.setMethods(ModelUtils.parentedList(adapter.getMethods(), this));
 			getMethodsInitialized = true;
         }
 
@@ -148,7 +149,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedClass> getNestedClasses() {
         if (!getNestedClassesInitialized) {
-            data.setNestedClasses(adapter.getNestedClasses());
+            data.setNestedClasses(ModelUtils.parentedList(adapter.getNestedClasses(), this));
 			getNestedClassesInitialized = true;
         }
 
@@ -157,7 +158,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedEnum> getNestedEnums() {
         if (!getNestedEnumsInitialized) {
-            data.setNestedEnums(adapter.getNestedEnums());
+            data.setNestedEnums(ModelUtils.parentedList(adapter.getNestedEnums(), this));
 			getNestedEnumsInitialized = true;
         }
 
@@ -166,7 +167,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedInterface> getNestedInterfaces() {
         if (!getNestedInterfacesInitialized) {
-            data.setNestedInterfaces(adapter.getNestedInterfaces());
+            data.setNestedInterfaces(ModelUtils.parentedList(adapter.getNestedInterfaces(), this));
 			getNestedInterfacesInitialized = true;
         }
 
@@ -175,7 +176,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
         if (!getNestedAnnotationsInitialized) {
-            data.setNestedAnnotations(adapter.getNestedAnnotations());
+            data.setNestedAnnotations(ModelUtils.parentedList(adapter.getNestedAnnotations(), this));
 			getNestedAnnotationsInitialized = true;
         }
 

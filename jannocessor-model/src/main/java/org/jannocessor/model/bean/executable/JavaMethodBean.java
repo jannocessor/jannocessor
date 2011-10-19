@@ -38,9 +38,9 @@ public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 		this.setModifiers(modifiers);
 		this.setReturnType(returnType);
 		this.setName(new NameBean(name));
-		this.setParameters(Power.list(params));
-		this.setThrownTypes(Power.list(thrownTypes));
-		this.setTypeParameters(Power.list(typeParameters));
+		this.setParameters(children(Power.list(params)));
+		this.setThrownTypes(children(Power.list(thrownTypes)));
+		this.setTypeParameters(children(Power.list(typeParameters)));
 
 		this.setKind(JavaElementKind.METHOD);
 		this.setCode(New.code(JavaMethod.class));

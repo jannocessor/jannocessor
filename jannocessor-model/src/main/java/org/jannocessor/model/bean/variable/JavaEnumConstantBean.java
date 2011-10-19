@@ -31,7 +31,7 @@ public class JavaEnumConstantBean extends JavaEnumConstantData implements
 
 	public JavaEnumConstantBean(String name, List<JavaExpression> values) {
 		this.setName(new NameBean(name));
-		this.setValues(Power.list(values));
+		this.setValues(children(Power.list(values)));
 
 		this.setKind(JavaElementKind.ENUM_CONSTANT);
 		this.setCode(New.code(JavaEnumConstant.class));

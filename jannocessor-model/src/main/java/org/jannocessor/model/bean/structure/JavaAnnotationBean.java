@@ -38,12 +38,14 @@ public class JavaAnnotationBean extends JavaAnnotationData implements
 			List<JavaMethod> methods) {
 		this.setModifiers(modifiers);
 		this.setName(new NameBean(name));
-		this.setMethods(Power.list(methods));
+		this.setMethods(children(Power.list(methods)));
 
-		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
-		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
-		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
-		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
+		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));
+		this.setNestedEnums(children(Power.emptyList(JavaNestedEnum.class)));
+		this.setNestedInterfaces(children(Power
+				.emptyList(JavaNestedInterface.class)));
+		this.setNestedAnnotations(children(Power
+				.emptyList(JavaNestedAnnotation.class)));
 
 		this.setKind(JavaElementKind.ANNOTATION);
 		this.setCode(New.code(JavaAnnotation.class));

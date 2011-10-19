@@ -21,11 +21,12 @@ import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
 
-public class JavaArrayTypeBean extends JavaArrayTypeData implements JavaArrayType {
+public class JavaArrayTypeBean extends JavaArrayTypeData implements
+		JavaArrayType {
 
-    public JavaArrayTypeBean(JavaType type) {
-        // TODO Auto-generated constructor stub
+	public JavaArrayTypeBean(JavaType type) {
+		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaArrayType.class));
-    }
+	}
 
 }

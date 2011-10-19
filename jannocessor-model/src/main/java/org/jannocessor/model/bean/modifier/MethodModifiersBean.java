@@ -20,8 +20,8 @@ import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
 
 public class MethodModifiersBean extends
-		AbstractModifiersBean<MethodModifierValue, MethodModifiers>
-		implements MethodModifiers {
+		AbstractModifiersBean<MethodModifierValue, MethodModifiers> implements
+		MethodModifiers {
 
 	public MethodModifiersBean(MethodModifierValue[] values) {
 		super(values, MethodModifiers.class);

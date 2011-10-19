@@ -136,9 +136,8 @@ public class Fields {
 					FieldModifierValue.TRANSIENT, FieldModifierValue.VOLATILE);
 
 	/** Represents "protected volatile" field modifiers. */
-	public static final FieldModifiers PROTECTED_VOLATILE = New
-			.fieldModifiers(FieldModifierValue.PROTECTED,
-					FieldModifierValue.VOLATILE);
+	public static final FieldModifiers PROTECTED_VOLATILE = New.fieldModifiers(
+			FieldModifierValue.PROTECTED, FieldModifierValue.VOLATILE);
 
 	/** Represents "private" field modifier. */
 	public static final FieldModifiers PRIVATE = New
@@ -236,9 +235,8 @@ public class Fields {
 			.fieldModifiers(FieldModifierValue.TRANSIENT);
 
 	/** Represents "transient volatile" field modifiers. */
-	public static final FieldModifiers TRANSIENT_VOLATILE = New
-			.fieldModifiers(FieldModifierValue.TRANSIENT,
-					FieldModifierValue.VOLATILE);
+	public static final FieldModifiers TRANSIENT_VOLATILE = New.fieldModifiers(
+			FieldModifierValue.TRANSIENT, FieldModifierValue.VOLATILE);
 
 	/** Represents "volatile" field modifier. */
 	public static final FieldModifiers VOLATILE = New

@@ -20,8 +20,8 @@ import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
 
 public class FieldModifiersBean extends
-		AbstractModifiersBean<FieldModifierValue, FieldModifiers>
-		implements FieldModifiers {
+		AbstractModifiersBean<FieldModifierValue, FieldModifiers> implements
+		FieldModifiers {
 
 	public FieldModifiersBean(FieldModifierValue[] values) {
 		super(values, FieldModifiers.class);

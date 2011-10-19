@@ -26,6 +26,7 @@ import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.util.Constructors;
 import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
@@ -71,10 +72,14 @@ public class ExperimentProcessor implements CodeProcessor {
 
 		JavaParameter param1 = New.parameter(String.class, "a");
 		JavaParameter param2 = New.parameter(int.class, "b");
-		JavaConstructor constr1 = New.constructor(param1, param2);
+		JavaConstructor constr1 = New.constructor(Constructors.PRIVATE, param1, param2);
 		enum1.getConstructors().add(constr1);
 
 		model.getNestedEnums().add(enum1);
+
+		JavaConstructor constr2 = New.constructor(New.parameter(String.class,
+				"xa"));
+		model.getConstructors().add(constr2);
 
 		context.generateCode(model, true);
 	}

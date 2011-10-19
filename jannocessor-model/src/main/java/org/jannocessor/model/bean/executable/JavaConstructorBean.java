@@ -36,9 +36,9 @@ public class JavaConstructorBean extends JavaConstructorData implements
 			List<JavaTypeParameter> typeParameters) {
 		this.setBody(New.body());
 		this.setModifiers(modifiers);
-		this.setParameters(Power.list(params));
-		this.setThrownTypes(Power.list(thrownTypes));
-		this.setTypeParameters(Power.list(typeParameters));
+		this.setParameters(children(Power.list(params)));
+		this.setThrownTypes(children(Power.list(thrownTypes)));
+		this.setTypeParameters(children(Power.list(typeParameters)));
 
 		// TODO: calculate and set isVarArgs
 		this.setVarArgs(false);

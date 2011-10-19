@@ -22,6 +22,7 @@ import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.data.JavaDeclaredTypeData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -47,7 +48,7 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 
     public PowerList<JavaType> getTypeArguments() {
         if (!getTypeArgumentsInitialized) {
-            data.setTypeArguments(adapter.getTypeArguments());
+            data.setTypeArguments(ModelUtils.parentedList(adapter.getTypeArguments(), this));
 			getTypeArgumentsInitialized = true;
         }
 

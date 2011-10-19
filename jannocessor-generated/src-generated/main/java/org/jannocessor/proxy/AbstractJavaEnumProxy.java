@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.AbstractJavaEnum;
 import org.jannocessor.data.AbstractJavaEnumData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.variable.JavaEnumConstant;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaStaticInit;
@@ -59,7 +60,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaEnumConstant> getValues() {
         if (!getValuesInitialized) {
-            data.setValues(adapter.getValues());
+            data.setValues(ModelUtils.parentedList(adapter.getValues(), this));
 			getValuesInitialized = true;
         }
 
@@ -68,7 +69,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
-            data.setFields(adapter.getFields());
+            data.setFields(ModelUtils.parentedList(adapter.getFields(), this));
 			getFieldsInitialized = true;
         }
 
@@ -77,7 +78,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaConstructor> getConstructors() {
         if (!getConstructorsInitialized) {
-            data.setConstructors(adapter.getConstructors());
+            data.setConstructors(ModelUtils.parentedList(adapter.getConstructors(), this));
 			getConstructorsInitialized = true;
         }
 
@@ -86,7 +87,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaStaticInit> getStaticInits() {
         if (!getStaticInitsInitialized) {
-            data.setStaticInits(adapter.getStaticInits());
+            data.setStaticInits(ModelUtils.parentedList(adapter.getStaticInits(), this));
 			getStaticInitsInitialized = true;
         }
 
@@ -95,7 +96,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaInstanceInit> getInstanceInits() {
         if (!getInstanceInitsInitialized) {
-            data.setInstanceInits(adapter.getInstanceInits());
+            data.setInstanceInits(ModelUtils.parentedList(adapter.getInstanceInits(), this));
 			getInstanceInitsInitialized = true;
         }
 

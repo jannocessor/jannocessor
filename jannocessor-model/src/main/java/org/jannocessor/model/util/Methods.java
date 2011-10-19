@@ -167,9 +167,8 @@ public class Methods {
 			.methodModifiers(MethodModifierValue.PROTECTED);
 
 	/** Represents "protected static" method modifiers. */
-	public static final MethodModifiers PROTECTED_STATIC = New
-			.methodModifiers(MethodModifierValue.PROTECTED,
-					MethodModifierValue.STATIC);
+	public static final MethodModifiers PROTECTED_STATIC = New.methodModifiers(
+			MethodModifierValue.PROTECTED, MethodModifierValue.STATIC);
 
 	/** Represents "protected static final" method modifiers. */
 	public static final MethodModifiers PROTECTED_STATIC_FINAL = New
@@ -299,9 +298,8 @@ public class Methods {
 					MethodModifierValue.STRICTFP);
 
 	/** Represents "protected native" method modifiers. */
-	public static final MethodModifiers PROTECTED_NATIVE = New
-			.methodModifiers(MethodModifierValue.PROTECTED,
-					MethodModifierValue.NATIVE);
+	public static final MethodModifiers PROTECTED_NATIVE = New.methodModifiers(
+			MethodModifierValue.PROTECTED, MethodModifierValue.NATIVE);
 
 	/** Represents "protected strictfp" method modifiers. */
 	public static final MethodModifiers PROTECTED_STRICTFP = New
@@ -440,9 +438,8 @@ public class Methods {
 			MethodModifierValue.PRIVATE, MethodModifierValue.NATIVE);
 
 	/** Represents "private strictfp" method modifiers. */
-	public static final MethodModifiers PRIVATE_STRICTFP = New
-			.methodModifiers(MethodModifierValue.PRIVATE,
-					MethodModifierValue.STRICTFP);
+	public static final MethodModifiers PRIVATE_STRICTFP = New.methodModifiers(
+			MethodModifierValue.PRIVATE, MethodModifierValue.STRICTFP);
 
 	/** Represents "static" method modifiers. */
 	public static final MethodModifiers STATIC = New

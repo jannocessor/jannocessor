@@ -20,8 +20,8 @@ import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.value.EnumModifierValue;
 
 public class EnumModifiersBean extends
-		AbstractModifiersBean<EnumModifierValue, EnumModifiers>
-		implements EnumModifiers {
+		AbstractModifiersBean<EnumModifierValue, EnumModifiers> implements
+		EnumModifiers {
 
 	public EnumModifiersBean(EnumModifierValue[] values) {
 		super(values, EnumModifiers.class);

@@ -22,7 +22,7 @@ package $packageName;
 #end
 
 @#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
-public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
+public class $className extends #if($extends)#type(${extends})#{else}AbstractData#end implements #type(${model.qualifiedName})#if($className == 'JavaElementData'), #type('org.jannocessor.model.ParentedElement')#end {
 
 #foreach ($m in $model.methods)
     private #type($m.returnType) ${helper.fieldName($m)};

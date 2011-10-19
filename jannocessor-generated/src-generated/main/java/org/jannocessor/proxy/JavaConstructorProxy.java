@@ -22,6 +22,7 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.data.JavaConstructorData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.modifier.ConstructorModifiers;
@@ -58,7 +59,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
-            data.setTypeParameters(adapter.getTypeParameters());
+            data.setTypeParameters(ModelUtils.parentedList(adapter.getTypeParameters(), this));
 			getTypeParametersInitialized = true;
         }
 
@@ -67,7 +68,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public PowerList<JavaParameter> getParameters() {
         if (!getParametersInitialized) {
-            data.setParameters(adapter.getParameters());
+            data.setParameters(ModelUtils.parentedList(adapter.getParameters(), this));
 			getParametersInitialized = true;
         }
 
@@ -85,7 +86,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public PowerList<JavaType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
-            data.setThrownTypes(adapter.getThrownTypes());
+            data.setThrownTypes(ModelUtils.parentedList(adapter.getThrownTypes(), this));
 			getThrownTypesInitialized = true;
         }
 

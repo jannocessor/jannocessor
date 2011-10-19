@@ -42,14 +42,16 @@ public class JavaInterfaceBean extends JavaInterfaceData implements
 			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
 		this.setModifiers(modifiers);
 		this.setName(new NameBean(name));
-		this.setInterfaces(Power.list(superInterfaces));
-		this.setFields(Power.list(fields));
-		this.setMethods(Power.list(methods));
-		this.setTypeParameters(Power.list(parameters));
-		this.setNestedClasses(Power.emptyList(JavaNestedClass.class));
-		this.setNestedEnums(Power.emptyList(JavaNestedEnum.class));
-		this.setNestedInterfaces(Power.emptyList(JavaNestedInterface.class));
-		this.setNestedAnnotations(Power.emptyList(JavaNestedAnnotation.class));
+		this.setInterfaces(children(Power.list(superInterfaces)));
+		this.setFields(children(Power.list(fields)));
+		this.setMethods(children(Power.list(methods)));
+		this.setTypeParameters(children(Power.list(parameters)));
+		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));
+		this.setNestedEnums(children(Power.emptyList(JavaNestedEnum.class)));
+		this.setNestedInterfaces(children(Power
+				.emptyList(JavaNestedInterface.class)));
+		this.setNestedAnnotations(children(Power
+				.emptyList(JavaNestedAnnotation.class)));
 
 		this.setKind(JavaElementKind.INTERFACE);
 		this.setCode(New.code(JavaInterface.class));

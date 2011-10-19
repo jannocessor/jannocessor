@@ -19,7 +19,8 @@ package org.jannocessor.model.bean.modifier;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.modifier.value.NestedAnnotationModifierValue;
 
-public class NestedAnnotationModifiersBean extends
+public class NestedAnnotationModifiersBean
+		extends
 		AbstractModifiersBean<NestedAnnotationModifierValue, NestedAnnotationModifiers>
 		implements NestedAnnotationModifiers {
 

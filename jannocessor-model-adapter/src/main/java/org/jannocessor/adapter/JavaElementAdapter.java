@@ -33,12 +33,16 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.ParentedElement;
 import org.jannocessor.model.type.JavaType;
 
 public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
-		JavaElement, SourceHolder {
+		JavaElement, SourceHolder, ParentedElement {
 
 	private final Element element;
+
+	private boolean hasOriginalParent = true;
+	private JavaElement newParent;
 
 	public JavaElementAdapter(Element element, Elements elementUtils,
 			Types typeUtils) {
@@ -48,12 +52,18 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 
 	@Override
 	public JavaElement getParent() {
-		Element parent = element.getEnclosingElement();
-		if (parent != null) {
-			return getElementAdapter(parent, JavaElement.class);
+		if (hasOriginalParent) {
+			return getElementAdapter(element.getEnclosingElement(),
+					JavaElement.class);
 		} else {
-			return null;
+			return newParent;
 		}
+	}
+
+	@Override
+	public void setParent(JavaElement parent) {
+		this.newParent = parent;
+		this.hasOriginalParent = false;
 	}
 
 	private List<? extends Element> getEnclosedElements(Element element) {
@@ -104,6 +114,7 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 				results.add((T) child);
 			}
 		}
+
 		return results;
 	}
 

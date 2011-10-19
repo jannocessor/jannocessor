@@ -22,6 +22,7 @@ import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.data.JavaExecutableTypeData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -55,7 +56,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
     public PowerList<JavaType> getParameterTypes() {
         if (!getParameterTypesInitialized) {
-            data.setParameterTypes(adapter.getParameterTypes());
+            data.setParameterTypes(ModelUtils.parentedList(adapter.getParameterTypes(), this));
 			getParameterTypesInitialized = true;
         }
 
@@ -73,7 +74,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
     public PowerList<JavaDeclaredType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
-            data.setThrownTypes(adapter.getThrownTypes());
+            data.setThrownTypes(ModelUtils.parentedList(adapter.getThrownTypes(), this));
 			getThrownTypesInitialized = true;
         }
 
@@ -82,7 +83,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
     public PowerList<JavaTypeVariable> getTypeVariables() {
         if (!getTypeVariablesInitialized) {
-            data.setTypeVariables(adapter.getTypeVariables());
+            data.setTypeVariables(ModelUtils.parentedList(adapter.getTypeVariables(), this));
 			getTypeVariablesInitialized = true;
         }
 
