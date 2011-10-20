@@ -181,37 +181,22 @@
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-configuration-service</artifactId>
+				<artifactId>jannocessor-logic</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-imports-service</artifactId>
+				<artifactId>jannocessor-io</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-io-service</artifactId>
+				<artifactId>jannocessor-rules</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-rules-service</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-template-service</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-splitter-service</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-representation-service</artifactId>
+				<artifactId>jannocessor-render</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -392,14 +377,11 @@
 		<module>jannocessor-test-generated</module>
 		<module>jannocessor-model</module>
 		<module>jannocessor-templates</module>
-		<module>jannocessor-io-service</module>
-		<module>jannocessor-configuration-service</module>
-		<module>jannocessor-template-service</module>
-		<module>jannocessor-rules-service</module>
-		<module>jannocessor-imports-service</module>
+		<module>jannocessor-io</module>
+		<module>jannocessor-render</module>
+		<module>jannocessor-rules</module>
+		<module>jannocessor-logic</module>
 		<module>jannocessor-playground</module>
-		<module>jannocessor-splitter-service</module>
-		<module>jannocessor-representation-service</module>
 		<module>jannocessor-test-common</module>
 	</modules>
 

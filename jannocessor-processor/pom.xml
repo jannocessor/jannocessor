@@ -29,31 +29,15 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-configuration-service</artifactId>
+			<artifactId>jannocessor-io</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-imports-service</artifactId>
+			<artifactId>jannocessor-rules</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-io-service</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-rules-service</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-template-service</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-splitter-service</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-representation-service</artifactId>
+			<artifactId>jannocessor-render</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

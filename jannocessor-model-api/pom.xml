@@ -13,10 +13,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-bootstrap</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-collections-api</artifactId>
 		</dependency>
 	</dependencies>
@@ -27,6 +23,12 @@
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.googlecode.jannocessor</groupId>
+					<artifactId>jannocessor-bootstrap</artifactId>
+				</dependency>
+			</dependencies>
 			<build>
 				<plugins>
 					<plugin>
