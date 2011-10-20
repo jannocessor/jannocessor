@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-playground</artifactId>
 
+	<name>JAnnocessor Playground</name>
+	<description>JAnnocessor Playground</description>
+
 	<build>
 		<plugins>
 			<plugin>

@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-templates</artifactId>
 
+	<name>JAnnocessor Templates</name>
+	<description>JAnnocessor Templates</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

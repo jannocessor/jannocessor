@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-service-api</artifactId>
 
+	<name>JAnnocessor Service API</name>
+	<description>JAnnocessor Service API</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

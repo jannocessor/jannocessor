@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-generated</artifactId>
 
+	<name>JAnnocessor Generated</name>
+	<description>JAnnocessor Generated</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

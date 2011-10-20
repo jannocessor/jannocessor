@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-bootstrap</artifactId>
 
+	<name>JAnnocessor Bootstrap</name>
+	<description>JAnnocessor Bootstrap</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

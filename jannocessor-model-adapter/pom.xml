@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-model-adapter</artifactId>
 
+	<name>JAnnocessor Model Adapter</name>
+	<description>JAnnocessor Model Adapter</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

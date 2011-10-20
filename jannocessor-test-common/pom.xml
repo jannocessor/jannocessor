@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-test-common</artifactId>
 
+	<name>JAnnocessor Test Common</name>
+	<description>JAnnocessor Test Common</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.twip</groupId>

@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-collections</artifactId>
 
+	<name>JAnnocessor Collections</name>
+	<description>JAnnocessor Collections</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>commons-collections</groupId>

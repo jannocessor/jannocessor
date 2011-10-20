@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-logging</artifactId>
 
+	<name>JAnnocessor Logging</name>
+	<description>JAnnocessor Logging</description>
+
 	<build>
 		<plugins>
 			<plugin>

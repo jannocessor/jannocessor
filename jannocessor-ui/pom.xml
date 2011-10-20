@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-ui</artifactId>
 
+	<name>JAnnocessor UI</name>
+	<description>JAnnocessor UI</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>

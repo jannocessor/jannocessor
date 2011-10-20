@@ -10,4 +10,7 @@
 
 	<artifactId>jannocessor-collections-api</artifactId>
 
+	<name>JAnnocessor Collections API</name>
+	<description>JAnnocessor Collections API</description>
+
 </project>

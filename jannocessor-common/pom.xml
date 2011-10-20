@@ -10,6 +10,9 @@
 
 	<artifactId>jannocessor-common</artifactId>
 
+	<name>JAnnocessor Common</name>
+	<description>JAnnocessor Common</description>
+
 	<build>
 		<plugins>
 			<plugin>
