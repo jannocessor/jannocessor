@@ -42,9 +42,13 @@ public class ExperimentProcessor implements CodeProcessor {
 	public void process(ProcessingContext context, Map<String, Object> params) {
 		JavaClass model = (JavaClass) params.get("model");
 
+
 		context.getLogger().debug("Processing: {} ", model.getName());
 
 		model.getName().appendPart("Gen");
+		if (model.getSuperclass() != null) {
+			model.getSuperclass().getSimpleName().appendPart("Gen");
+		}
 
 		JavaMetadata meta1 = New.metadata(Generated.class, "Jannocessor Test");
 		model.getMetadata().add(meta1);
