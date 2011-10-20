@@ -11,7 +11,7 @@
 	<artifactId>jannocessor</artifactId>
 
 	<name>JAnnocessor</name>
-	<description>JAnnocessor</description>
+	<description>Java Annotation Processor</description>
 
 	<dependencies>
 		<dependency>
