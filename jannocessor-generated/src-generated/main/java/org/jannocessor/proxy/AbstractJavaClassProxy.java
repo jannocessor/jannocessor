@@ -60,6 +60,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
 	private boolean getInstanceInitsInitialized = false;
 
 
+	@Override
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
 			if (adapter == null) {
@@ -72,6 +73,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
         return data.getTypeParameters();
     }
 
+	@Override
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
 			if (adapter == null) {
@@ -84,6 +86,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
         return data.getFields();
     }
 
+	@Override
     public PowerList<JavaConstructor> getConstructors() {
         if (!getConstructorsInitialized) {
 			if (adapter == null) {
@@ -96,6 +99,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
         return data.getConstructors();
     }
 
+	@Override
     public PowerList<JavaStaticInit> getStaticInits() {
         if (!getStaticInitsInitialized) {
 			if (adapter == null) {
@@ -108,6 +112,7 @@ public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implement
         return data.getStaticInits();
     }
 
+	@Override
     public PowerList<JavaInstanceInit> getInstanceInits() {
         if (!getInstanceInitsInitialized) {
 			if (adapter == null) {

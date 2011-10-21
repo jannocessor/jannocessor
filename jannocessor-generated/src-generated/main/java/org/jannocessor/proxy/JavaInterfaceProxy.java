@@ -46,6 +46,7 @@ public class JavaInterfaceProxy extends AbstractJavaInterfaceProxy implements Ja
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public InterfaceModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

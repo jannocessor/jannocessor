@@ -48,6 +48,7 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
 	private boolean getAttributesInitialized = false;
 
 
+	@Override
     public PowerList<JavaAnnotationAttribute> getAttributes() {
         if (!getAttributesInitialized) {
 			if (adapter == null) {

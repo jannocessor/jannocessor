@@ -46,6 +46,7 @@ public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy impleme
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public NestedInterfaceModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

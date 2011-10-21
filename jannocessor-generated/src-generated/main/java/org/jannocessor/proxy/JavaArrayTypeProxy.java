@@ -46,6 +46,7 @@ public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
 	private boolean getComponentTypeInitialized = false;
 
 
+	@Override
     public JavaType getComponentType() {
         if (!getComponentTypeInitialized) {
 			if (adapter == null) {

@@ -46,6 +46,7 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
 	private boolean getBodyInitialized = false;
 
 
+	@Override
     public JavaBody getBody() {
         if (!getBodyInitialized) {
 			if (adapter == null) {

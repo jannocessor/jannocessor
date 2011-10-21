@@ -60,6 +60,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 	private boolean getInstanceInitsInitialized = false;
 
 
+	@Override
     public PowerList<JavaEnumConstant> getValues() {
         if (!getValuesInitialized) {
 			if (adapter == null) {
@@ -72,6 +73,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
         return data.getValues();
     }
 
+	@Override
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
 			if (adapter == null) {
@@ -84,6 +86,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
         return data.getFields();
     }
 
+	@Override
     public PowerList<JavaConstructor> getConstructors() {
         if (!getConstructorsInitialized) {
 			if (adapter == null) {
@@ -96,6 +99,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
         return data.getConstructors();
     }
 
+	@Override
     public PowerList<JavaStaticInit> getStaticInits() {
         if (!getStaticInitsInitialized) {
 			if (adapter == null) {
@@ -108,6 +112,7 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
         return data.getStaticInits();
     }
 
+	@Override
     public PowerList<JavaInstanceInit> getInstanceInits() {
         if (!getInstanceInitsInitialized) {
 			if (adapter == null) {

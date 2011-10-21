@@ -48,6 +48,7 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
 	private boolean getBoundsInitialized = false;
 
 
+	@Override
     public PowerList<JavaType> getBounds() {
         if (!getBoundsInitialized) {
 			if (adapter == null) {

@@ -48,6 +48,7 @@ public class JavaWildcardTypeProxy extends JavaTypeProxy implements JavaWildcard
 	private boolean getSuperBoundInitialized = false;
 
 
+	@Override
     public JavaType getExtendsBound() {
         if (!getExtendsBoundInitialized) {
 			if (adapter == null) {
@@ -60,6 +61,7 @@ public class JavaWildcardTypeProxy extends JavaTypeProxy implements JavaWildcard
         return data.getExtendsBound();
     }
 
+	@Override
     public JavaType getSuperBound() {
         if (!getSuperBoundInitialized) {
 			if (adapter == null) {

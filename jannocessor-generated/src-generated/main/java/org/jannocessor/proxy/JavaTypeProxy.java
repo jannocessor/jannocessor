@@ -55,6 +55,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 	private boolean getKindInitialized = false;
 
 
+	@Override
     public Class<?> getTypeClass() {
         if (!getTypeClassInitialized) {
 			if (adapter == null) {
@@ -67,6 +68,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         return data.getTypeClass();
     }
 
+	@Override
     public Name getSimpleName() {
         if (!getSimpleNameInitialized) {
 			if (adapter == null) {
@@ -79,6 +81,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         return data.getSimpleName();
     }
 
+	@Override
     public Name getCanonicalName() {
         if (!getCanonicalNameInitialized) {
 			if (adapter == null) {
@@ -91,6 +94,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         return data.getCanonicalName();
     }
 
+	@Override
     public Object getDefaultValue() {
         if (!getDefaultValueInitialized) {
 			if (adapter == null) {
@@ -103,6 +107,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         return data.getDefaultValue();
     }
 
+	@Override
     public JavaTypeKind getKind() {
         if (!getKindInitialized) {
 			if (adapter == null) {

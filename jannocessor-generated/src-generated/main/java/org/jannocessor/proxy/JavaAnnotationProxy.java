@@ -46,6 +46,7 @@ public class JavaAnnotationProxy extends AbstractJavaAnnotationProxy implements 
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public AnnotationModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

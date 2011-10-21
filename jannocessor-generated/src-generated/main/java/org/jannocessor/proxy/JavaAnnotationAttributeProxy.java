@@ -45,6 +45,7 @@ public class JavaAnnotationAttributeProxy extends JavaElementProxy implements Ja
 	private boolean getDefaultValueInitialized = false;
 
 
+	@Override
     public Object getDefaultValue() {
         if (!getDefaultValueInitialized) {
 			if (adapter == null) {

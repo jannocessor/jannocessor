@@ -46,6 +46,7 @@ public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public EnumModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

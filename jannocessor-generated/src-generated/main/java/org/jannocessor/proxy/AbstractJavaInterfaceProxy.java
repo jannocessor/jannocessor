@@ -51,6 +51,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 	private boolean getFieldsInitialized = false;
 
 
+	@Override
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
 			if (adapter == null) {
@@ -63,6 +64,7 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
         return data.getTypeParameters();
     }
 
+	@Override
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
 			if (adapter == null) {

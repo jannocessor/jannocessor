@@ -56,6 +56,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 	private boolean getTypeVariablesInitialized = false;
 
 
+	@Override
     public PowerList<JavaType> getParameterTypes() {
         if (!getParameterTypesInitialized) {
 			if (adapter == null) {
@@ -68,6 +69,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
         return data.getParameterTypes();
     }
 
+	@Override
     public JavaType getReturnType() {
         if (!getReturnTypeInitialized) {
 			if (adapter == null) {
@@ -80,6 +82,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
         return data.getReturnType();
     }
 
+	@Override
     public PowerList<JavaDeclaredType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
 			if (adapter == null) {
@@ -92,6 +95,7 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
         return data.getThrownTypes();
     }
 
+	@Override
     public PowerList<JavaTypeVariable> getTypeVariables() {
         if (!getTypeVariablesInitialized) {
 			if (adapter == null) {

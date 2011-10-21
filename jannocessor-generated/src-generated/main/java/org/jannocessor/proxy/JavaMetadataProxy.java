@@ -49,6 +49,7 @@ public class JavaMetadataProxy extends JavaElementProxy implements JavaMetadata 
 
 	private boolean getValuesWithDefaultsInitialized = false;
 
+	@Override
 	public JavaType getAnnotation() {
 		if (!getAnnotationInitialized) {
 			if (adapter == null) {
@@ -61,6 +62,7 @@ public class JavaMetadataProxy extends JavaElementProxy implements JavaMetadata 
 		return data.getAnnotation();
 	}
 
+	@Override
 	public PowerMap<String, ? extends Object> getValues() {
 		if (!getValuesInitialized) {
 			if (adapter == null) {
@@ -73,6 +75,7 @@ public class JavaMetadataProxy extends JavaElementProxy implements JavaMetadata 
 		return data.getValues();
 	}
 
+	@Override
 	public PowerMap<String, ? extends Object> getValuesWithDefaults() {
 		if (!getValuesWithDefaultsInitialized) {
 			if (adapter == null) {

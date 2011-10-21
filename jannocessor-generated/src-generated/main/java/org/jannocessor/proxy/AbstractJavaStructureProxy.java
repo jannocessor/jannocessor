@@ -77,6 +77,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 	private boolean getNestedAnnotationsInitialized = false;
 
 
+	@Override
     public String getNesting() {
         if (!getNestingInitialized) {
 			if (adapter == null) {
@@ -89,6 +90,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getNesting();
     }
 
+	@Override
     public Name getPackageName() {
         if (!getPackageNameInitialized) {
 			if (adapter == null) {
@@ -101,6 +103,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getPackageName();
     }
 
+	@Override
     public Name getQualifiedName() {
         if (!getQualifiedNameInitialized) {
 			if (adapter == null) {
@@ -113,6 +116,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getQualifiedName();
     }
 
+	@Override
     public JavaType getSuperclass() {
         if (!getSuperclassInitialized) {
 			if (adapter == null) {
@@ -125,6 +129,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getSuperclass();
     }
 
+	@Override
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
 			if (adapter == null) {
@@ -137,6 +142,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getMetadata();
     }
 
+	@Override
     public PowerList<JavaMetadata> getAllMetadata() {
         if (!getAllMetadataInitialized) {
 			if (adapter == null) {
@@ -149,6 +155,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getAllMetadata();
     }
 
+	@Override
     public PowerList<JavaType> getInterfaces() {
         if (!getInterfacesInitialized) {
 			if (adapter == null) {
@@ -161,6 +168,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getInterfaces();
     }
 
+	@Override
     public PowerList<JavaMethod> getMethods() {
         if (!getMethodsInitialized) {
 			if (adapter == null) {
@@ -173,6 +181,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getMethods();
     }
 
+	@Override
     public PowerList<JavaNestedClass> getNestedClasses() {
         if (!getNestedClassesInitialized) {
 			if (adapter == null) {
@@ -185,6 +194,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getNestedClasses();
     }
 
+	@Override
     public PowerList<JavaNestedEnum> getNestedEnums() {
         if (!getNestedEnumsInitialized) {
 			if (adapter == null) {
@@ -197,6 +207,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getNestedEnums();
     }
 
+	@Override
     public PowerList<JavaNestedInterface> getNestedInterfaces() {
         if (!getNestedInterfacesInitialized) {
 			if (adapter == null) {
@@ -209,6 +220,7 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         return data.getNestedInterfaces();
     }
 
+	@Override
     public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
         if (!getNestedAnnotationsInitialized) {
 			if (adapter == null) {

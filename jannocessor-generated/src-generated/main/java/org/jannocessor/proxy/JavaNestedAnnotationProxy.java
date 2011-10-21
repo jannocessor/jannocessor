@@ -46,6 +46,7 @@ public class JavaNestedAnnotationProxy extends AbstractJavaAnnotationProxy imple
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public NestedAnnotationModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

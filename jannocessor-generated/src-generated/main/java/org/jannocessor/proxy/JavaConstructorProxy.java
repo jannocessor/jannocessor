@@ -62,6 +62,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 	private boolean getMetadataInitialized = false;
 
 
+	@Override
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
 			if (adapter == null) {
@@ -74,6 +75,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
         return data.getTypeParameters();
     }
 
+	@Override
     public PowerList<JavaParameter> getParameters() {
         if (!getParametersInitialized) {
 			if (adapter == null) {
@@ -86,6 +88,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
         return data.getParameters();
     }
 
+	@Override
     public Boolean isVarArgs() {
         if (!isVarArgsInitialized) {
 			if (adapter == null) {
@@ -98,6 +101,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
         return data.isVarArgs();
     }
 
+	@Override
     public PowerList<JavaType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
 			if (adapter == null) {
@@ -110,6 +114,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
         return data.getThrownTypes();
     }
 
+	@Override
     public ConstructorModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {
@@ -122,6 +127,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
         return data.getModifiers();
     }
 
+	@Override
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
 			if (adapter == null) {

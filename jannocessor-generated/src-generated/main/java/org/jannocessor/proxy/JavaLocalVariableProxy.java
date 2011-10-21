@@ -45,6 +45,7 @@ public class JavaLocalVariableProxy extends AbstractJavaVariableProxy implements
 	private boolean isFinalInitialized = false;
 
 
+	@Override
     public Boolean isFinal() {
         if (!isFinalInitialized) {
 			if (adapter == null) {

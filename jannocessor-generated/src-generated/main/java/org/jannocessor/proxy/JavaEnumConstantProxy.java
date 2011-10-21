@@ -48,6 +48,7 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
 	private boolean getValuesInitialized = false;
 
 
+	@Override
     public PowerList<JavaExpression> getValues() {
         if (!getValuesInitialized) {
 			if (adapter == null) {

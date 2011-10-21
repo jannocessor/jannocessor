@@ -46,6 +46,7 @@ public class JavaNestedClassProxy extends AbstractJavaClassProxy implements Java
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public NestedClassModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

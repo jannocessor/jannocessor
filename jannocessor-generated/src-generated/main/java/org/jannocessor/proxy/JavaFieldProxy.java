@@ -54,6 +54,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 	private boolean getMetadataInitialized = false;
 
 
+	@Override
     public FieldModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {
@@ -66,6 +67,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
         return data.getModifiers();
     }
 
+	@Override
     public JavaExpression getValue() {
         if (!getValueInitialized) {
 			if (adapter == null) {
@@ -78,6 +80,7 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
         return data.getValue();
     }
 
+	@Override
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
 			if (adapter == null) {

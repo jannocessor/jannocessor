@@ -46,6 +46,7 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 	private boolean getExtraCodeInitialized = false;
 
 
+	@Override
     public SourceCode getCode() {
         if (!getCodeInitialized) {
 			if (adapter == null) {
@@ -58,6 +59,7 @@ public class JavaCodeModelProxy implements JavaCodeModel {
         return data.getCode();
     }
 
+	@Override
     public SourceCode getExtraCode() {
         if (!getExtraCodeInitialized) {
 			if (adapter == null) {

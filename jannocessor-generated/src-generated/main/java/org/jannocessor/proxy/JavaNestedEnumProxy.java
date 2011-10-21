@@ -46,6 +46,7 @@ public class JavaNestedEnumProxy extends AbstractJavaEnumProxy implements JavaNe
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public NestedEnumModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

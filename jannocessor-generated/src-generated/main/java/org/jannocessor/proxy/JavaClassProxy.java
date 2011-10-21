@@ -46,6 +46,7 @@ public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass 
 	private boolean getModifiersInitialized = false;
 
 
+	@Override
     public ClassModifiers getModifiers() {
         if (!getModifiersInitialized) {
 			if (adapter == null) {

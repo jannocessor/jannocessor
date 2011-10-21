@@ -48,6 +48,7 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 	private boolean getTypeArgumentsInitialized = false;
 
 
+	@Override
     public PowerList<JavaType> getTypeArguments() {
         if (!getTypeArgumentsInitialized) {
 			if (adapter == null) {

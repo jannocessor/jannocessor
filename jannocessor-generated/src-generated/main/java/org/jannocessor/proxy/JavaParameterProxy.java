@@ -50,6 +50,7 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
 	private boolean getMetadataInitialized = false;
 
 
+	@Override
     public boolean isFinal() {
         if (!isFinalInitialized) {
 			if (adapter == null) {
@@ -62,6 +63,7 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
         return data.isFinal();
     }
 
+	@Override
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
 			if (adapter == null) {

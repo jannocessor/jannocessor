@@ -48,6 +48,7 @@ public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVari
 	private boolean getLowerBoundInitialized = false;
 
 
+	@Override
     public JavaType getUpperBound() {
         if (!getUpperBoundInitialized) {
 			if (adapter == null) {
@@ -60,6 +61,7 @@ public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVari
         return data.getUpperBound();
     }
 
+	@Override
     public JavaType getLowerBound() {
         if (!getLowerBoundInitialized) {
 			if (adapter == null) {
