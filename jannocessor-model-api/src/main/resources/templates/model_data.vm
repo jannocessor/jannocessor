@@ -24,6 +24,8 @@ package $packageName;
 @#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
 public class $className extends #if($extends)#type(${extends})#{else}AbstractData#end implements #type(${model.qualifiedName})#if($className == 'JavaElementData'), #type('org.jannocessor.model.ParentedElement')#end {
 
+	private static final long serialVersionUID = 1L;
+
 #foreach ($m in $model.methods)
     private #type($m.returnType) ${helper.fieldName($m)};
 

@@ -31,6 +31,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaArrayType adapter;
 
     private JavaArrayTypeData data;

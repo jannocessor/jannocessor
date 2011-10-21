@@ -32,6 +32,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaType adapter;
 
     private JavaTypeData data;

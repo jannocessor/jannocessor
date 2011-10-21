@@ -31,6 +31,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy implements JavaNestedInterface {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaNestedInterface adapter;
 
     private JavaNestedInterfaceData data;

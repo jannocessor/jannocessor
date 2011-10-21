@@ -36,6 +36,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaFieldData extends AbstractJavaVariableData implements JavaField {
 
+	private static final long serialVersionUID = 1L;
+
     private FieldModifiers modifiers;
 
     private JavaExpression value;

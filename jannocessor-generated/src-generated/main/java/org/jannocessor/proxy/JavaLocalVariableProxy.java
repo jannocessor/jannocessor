@@ -30,6 +30,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaLocalVariableProxy extends AbstractJavaVariableProxy implements JavaLocalVariable {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaLocalVariable adapter;
 
     private JavaLocalVariableData data;

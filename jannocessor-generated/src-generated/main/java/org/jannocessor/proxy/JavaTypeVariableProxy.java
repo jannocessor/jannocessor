@@ -31,6 +31,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVariable {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaTypeVariable adapter;
 
     private JavaTypeVariableData data;

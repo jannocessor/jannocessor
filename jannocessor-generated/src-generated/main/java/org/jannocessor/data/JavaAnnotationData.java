@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaAnnotationData extends AbstractJavaAnnotationData implements JavaAnnotation {
 
+	private static final long serialVersionUID = 1L;
+
     private AnnotationModifiers modifiers;
 
 

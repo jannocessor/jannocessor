@@ -31,6 +31,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaStaticInitData extends AbstractJavaExecutableData implements JavaStaticInit {
 
+	private static final long serialVersionUID = 1L;
+
 
 	@Override
 	public boolean equals(Object obj) {

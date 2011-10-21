@@ -33,6 +33,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclaredType {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaDeclaredType adapter;
 
     private JavaDeclaredTypeData data;

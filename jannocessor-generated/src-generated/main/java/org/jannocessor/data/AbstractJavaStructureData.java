@@ -41,6 +41,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaStructureData extends JavaElementData implements AbstractJavaStructure {
 
+	private static final long serialVersionUID = 1L;
+
     private String nesting;
 
     private Name packageName;

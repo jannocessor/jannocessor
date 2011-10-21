@@ -29,6 +29,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class JavaExceptionParameterProxy extends AbstractJavaVariableProxy implements JavaExceptionParameter {
 
+	private static final long serialVersionUID = 1L;
+
     @SuppressWarnings("unused")
     private transient JavaExceptionParameter adapter;
 

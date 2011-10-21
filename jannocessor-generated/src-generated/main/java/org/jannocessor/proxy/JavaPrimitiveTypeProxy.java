@@ -29,6 +29,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class JavaPrimitiveTypeProxy extends JavaTypeProxy implements JavaPrimitiveType {
 
+	private static final long serialVersionUID = 1L;
+
     @SuppressWarnings("unused")
     private transient JavaPrimitiveType adapter;
 

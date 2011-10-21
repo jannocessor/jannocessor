@@ -29,6 +29,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 
+	private static final long serialVersionUID = 1L;
+
     @SuppressWarnings("unused")
     private transient JavaPackage adapter;
 

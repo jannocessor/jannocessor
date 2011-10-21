@@ -32,6 +32,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaLocalVariableData extends AbstractJavaVariableData implements JavaLocalVariable {
 
+	private static final long serialVersionUID = 1L;
+
     private Boolean _isFinal;
 
 

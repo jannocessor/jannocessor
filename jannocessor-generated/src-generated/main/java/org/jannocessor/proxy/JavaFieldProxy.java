@@ -35,6 +35,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaField {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaField adapter;
 
     private JavaFieldData data;

@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaNestedInterfaceData extends AbstractJavaInterfaceData implements JavaNestedInterface {
 
+	private static final long serialVersionUID = 1L;
+
     private NestedInterfaceModifiers modifiers;
 
 

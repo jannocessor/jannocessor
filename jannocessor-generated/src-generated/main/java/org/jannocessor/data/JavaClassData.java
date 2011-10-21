@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaClassData extends AbstractJavaClassData implements JavaClass {
 
+	private static final long serialVersionUID = 1L;
+
     private ClassModifiers modifiers;
 
 

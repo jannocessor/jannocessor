@@ -34,6 +34,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaParameterData extends AbstractJavaVariableData implements JavaParameter {
 
+	private static final long serialVersionUID = 1L;
+
     private boolean _isFinal;
 
     private PowerList<JavaMetadata> metadata;

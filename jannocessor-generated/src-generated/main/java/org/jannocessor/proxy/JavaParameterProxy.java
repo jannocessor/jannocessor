@@ -33,6 +33,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaParameterProxy extends AbstractJavaVariableProxy implements JavaParameter {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaParameter adapter;
 
     private JavaParameterData data;

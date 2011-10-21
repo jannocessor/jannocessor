@@ -31,6 +31,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaAnnotationProxy extends AbstractJavaAnnotationProxy implements JavaAnnotation {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaAnnotation adapter;
 
     private JavaAnnotationData data;

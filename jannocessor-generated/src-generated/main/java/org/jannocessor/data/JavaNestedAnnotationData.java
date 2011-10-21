@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaNestedAnnotationData extends AbstractJavaAnnotationData implements JavaNestedAnnotation {
 
+	private static final long serialVersionUID = 1L;
+
     private NestedAnnotationModifiers modifiers;
 
 

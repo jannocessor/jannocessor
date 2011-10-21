@@ -29,6 +29,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaVariableProxy extends JavaElementProxy implements AbstractJavaVariable {
 
+	private static final long serialVersionUID = 1L;
+
     @SuppressWarnings("unused")
     private transient AbstractJavaVariable adapter;
 

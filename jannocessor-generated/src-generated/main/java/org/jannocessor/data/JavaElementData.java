@@ -37,6 +37,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaElementData extends JavaCodeModelData implements JavaElement, ParentedElement {
 
+	private static final long serialVersionUID = 1L;
+
     private JavaElement parent;
 
     private PowerList<JavaElement> children;

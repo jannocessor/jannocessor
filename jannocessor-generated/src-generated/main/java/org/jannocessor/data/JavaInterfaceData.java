@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaInterfaceData extends AbstractJavaInterfaceData implements JavaInterface {
 
+	private static final long serialVersionUID = 1L;
+
     private InterfaceModifiers modifiers;
 
 

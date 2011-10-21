@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaExecutableData extends JavaElementData implements AbstractJavaExecutable {
 
+	private static final long serialVersionUID = 1L;
+
     private JavaBody body;
 
 

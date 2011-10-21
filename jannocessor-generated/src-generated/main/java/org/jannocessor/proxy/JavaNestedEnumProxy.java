@@ -31,6 +31,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaNestedEnumProxy extends AbstractJavaEnumProxy implements JavaNestedEnum {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaNestedEnum adapter;
 
     private JavaNestedEnumData data;

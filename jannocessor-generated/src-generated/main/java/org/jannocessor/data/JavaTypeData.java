@@ -34,6 +34,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeData extends JavaCodeModelData implements JavaType {
 
+	private static final long serialVersionUID = 1L;
+
     private Class<?> typeClass;
 
     private Name simpleName;

@@ -25,6 +25,8 @@ package $packageName;
 @#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
 public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
 
+	private static final long serialVersionUID = 1L;
+
 #if($model.methods.size() == 0)
     @SuppressWarnings("unused")
 #end

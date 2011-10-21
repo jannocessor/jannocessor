@@ -17,11 +17,9 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaCodeModelProxy;
+import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.jannocessor.data.JavaAnnotationAttributeData;
-import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -30,7 +28,9 @@ import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements JavaAnnotationAttribute {
+public class JavaAnnotationAttributeProxy extends JavaElementProxy implements JavaAnnotationAttribute {
+
+	private static final long serialVersionUID = 1L;
 
     private transient JavaAnnotationAttribute adapter;
 
@@ -42,36 +42,8 @@ public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements 
         this.data = data;
     }
 
-	private boolean getNameInitialized = false;
-
-	private boolean getTypeInitialized = false;
-
 	private boolean getDefaultValueInitialized = false;
 
-
-    public Name getName() {
-        if (!getNameInitialized) {
-			if (adapter == null) {
-				throw new IllegalStateException("Invalid model copy!");
-			}
-            data.setName(adapter.getName());
-			getNameInitialized = true;
-        }
-
-        return data.getName();
-    }
-
-    public JavaType getType() {
-        if (!getTypeInitialized) {
-			if (adapter == null) {
-				throw new IllegalStateException("Invalid model copy!");
-			}
-            data.setType(adapter.getType());
-			getTypeInitialized = true;
-        }
-
-        return data.getType();
-    }
 
     public Object getDefaultValue() {
         if (!getDefaultValueInitialized) {
@@ -100,8 +72,6 @@ public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements 
 		JavaAnnotationAttribute other = (JavaAnnotationAttribute) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getName(), other.getName())
-				.append(this.getType(), other.getType())
 				.append(this.getDefaultValue(), other.getDefaultValue())
 				.isEquals();
 	}
@@ -109,8 +79,6 @@ public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getName())
-				.append(this.getType())
 				.append(this.getDefaultValue())
 				.toHashCode();
 	}
@@ -126,8 +94,6 @@ public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("name", ToStringUtil.describe(this.getName()));
-        builder.append("type", ToStringUtil.describe(this.getType()));
         builder.append("defaultValue", ToStringUtil.describe(this.getDefaultValue()));
 	}
 

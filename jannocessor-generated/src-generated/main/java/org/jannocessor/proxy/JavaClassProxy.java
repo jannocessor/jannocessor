@@ -31,6 +31,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaClass adapter;
 
     private JavaClassData data;

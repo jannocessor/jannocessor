@@ -37,6 +37,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements JavaConstructor {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaConstructor adapter;
 
     private JavaConstructorData data;

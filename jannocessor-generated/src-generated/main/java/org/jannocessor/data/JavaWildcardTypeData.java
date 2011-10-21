@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaWildcardTypeData extends JavaTypeData implements JavaWildcardType {
 
+	private static final long serialVersionUID = 1L;
+
     private JavaType extendsBound;
 
     private JavaType superBound;

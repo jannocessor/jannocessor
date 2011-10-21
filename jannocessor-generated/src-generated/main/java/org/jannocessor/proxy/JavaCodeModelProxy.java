@@ -30,6 +30,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaCodeModelProxy implements JavaCodeModel {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaCodeModel adapter;
 
     private JavaCodeModelData data;

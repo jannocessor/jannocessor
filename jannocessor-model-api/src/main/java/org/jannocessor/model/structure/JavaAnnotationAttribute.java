@@ -17,16 +17,10 @@
 package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.model.JavaCodeModel;
-import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.JavaElement;
 
 @DomainModel
-public interface JavaAnnotationAttribute extends JavaCodeModel {
-
-	Name getName();
-
-	JavaType getType();
+public interface JavaAnnotationAttribute extends JavaElement {
 
 	Object getDefaultValue();
 

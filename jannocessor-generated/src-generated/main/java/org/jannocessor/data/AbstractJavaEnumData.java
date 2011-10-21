@@ -38,6 +38,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaEnumData extends AbstractJavaStructureData implements AbstractJavaEnum {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaEnumConstant> values;
 
     private PowerList<JavaField> fields;

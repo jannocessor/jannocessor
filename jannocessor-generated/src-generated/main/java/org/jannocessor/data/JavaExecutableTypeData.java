@@ -36,6 +36,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaExecutableTypeData extends JavaTypeData implements JavaExecutableType {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaType> parameterTypes;
 
     private JavaType returnType;

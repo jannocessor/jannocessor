@@ -38,6 +38,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaMethodData extends AbstractJavaExecutableData implements JavaMethod {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaTypeParameter> typeParameters;
 
     private JavaType returnType;

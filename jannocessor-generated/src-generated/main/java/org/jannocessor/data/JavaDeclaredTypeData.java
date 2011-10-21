@@ -34,6 +34,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaDeclaredTypeData extends JavaTypeData implements JavaDeclaredType {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaType> typeArguments;
 
 

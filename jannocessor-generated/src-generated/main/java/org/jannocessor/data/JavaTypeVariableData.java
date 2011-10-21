@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeVariableData extends JavaTypeData implements JavaTypeVariable {
 
+	private static final long serialVersionUID = 1L;
+
     private JavaType upperBound;
 
     private JavaType lowerBound;

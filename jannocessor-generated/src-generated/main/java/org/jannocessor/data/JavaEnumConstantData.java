@@ -34,6 +34,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaEnumConstantData extends AbstractJavaVariableData implements JavaEnumConstant {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaExpression> values;
 
 

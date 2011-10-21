@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaArrayTypeData extends JavaTypeData implements JavaArrayType {
 
+	private static final long serialVersionUID = 1L;
+
     private JavaType componentType;
 
 

@@ -38,6 +38,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaClassData extends AbstractJavaStructureData implements AbstractJavaClass {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaTypeParameter> typeParameters;
 
     private PowerList<JavaField> fields;

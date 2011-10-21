@@ -17,7 +17,7 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-import org.jannocessor.proxy.JavaCodeModelProxy;
+import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.data.JavaMetadataData;
 import org.jannocessor.model.type.JavaType;
@@ -28,19 +28,20 @@ import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
 
-
 @Generated("JAnnocessor-bootstraped")
-public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadata {
+public class JavaMetadataProxy extends JavaElementProxy implements JavaMetadata {
 
-    private transient JavaMetadata adapter;
+	private static final long serialVersionUID = 1L;
 
-    private JavaMetadataData data;
+	private transient JavaMetadata adapter;
 
-    public JavaMetadataProxy(JavaMetadata adapter, JavaMetadataData data) {
-        super(adapter, data);
-        this.adapter = adapter;
-        this.data = data;
-    }
+	private JavaMetadataData data;
+
+	public JavaMetadataProxy(JavaMetadata adapter, JavaMetadataData data) {
+		super(adapter, data);
+		this.adapter = adapter;
+		this.data = data;
+	}
 
 	private boolean getAnnotationInitialized = false;
 
@@ -48,42 +49,41 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 
 	private boolean getValuesWithDefaultsInitialized = false;
 
-
-    public JavaType getAnnotation() {
-        if (!getAnnotationInitialized) {
+	public JavaType getAnnotation() {
+		if (!getAnnotationInitialized) {
 			if (adapter == null) {
 				throw new IllegalStateException("Invalid model copy!");
 			}
-            data.setAnnotation(adapter.getAnnotation());
+			data.setAnnotation(adapter.getAnnotation());
 			getAnnotationInitialized = true;
-        }
+		}
 
-        return data.getAnnotation();
-    }
+		return data.getAnnotation();
+	}
 
 	public PowerMap<String, ? extends Object> getValues() {
-        if (!getValuesInitialized) {
+		if (!getValuesInitialized) {
 			if (adapter == null) {
 				throw new IllegalStateException("Invalid model copy!");
 			}
-            data.setValues(adapter.getValues());
+			data.setValues(adapter.getValues());
 			getValuesInitialized = true;
-        }
+		}
 
-        return data.getValues();
-    }
+		return data.getValues();
+	}
 
 	public PowerMap<String, ? extends Object> getValuesWithDefaults() {
-        if (!getValuesWithDefaultsInitialized) {
+		if (!getValuesWithDefaultsInitialized) {
 			if (adapter == null) {
 				throw new IllegalStateException("Invalid model copy!");
 			}
-            data.setValuesWithDefaults(adapter.getValuesWithDefaults());
+			data.setValuesWithDefaults(adapter.getValuesWithDefaults());
 			getValuesWithDefaultsInitialized = true;
-        }
+		}
 
-        return data.getValuesWithDefaults();
-    }
+		return data.getValuesWithDefaults();
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -102,16 +102,14 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 				.appendSuper(super.equals(other))
 				.append(this.getAnnotation(), other.getAnnotation())
 				.append(this.getValues(), other.getValues())
-				.append(this.getValuesWithDefaults(), other.getValuesWithDefaults())
-				.isEquals();
+				.append(this.getValuesWithDefaults(),
+						other.getValuesWithDefaults()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder()
-				.append(this.getAnnotation())
-				.append(this.getValues())
-				.append(this.getValuesWithDefaults())
+		return new HashCodeBuilder().append(this.getAnnotation())
+				.append(this.getValues()).append(this.getValuesWithDefaults())
 				.toHashCode();
 	}
 
@@ -125,12 +123,12 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
-        super.appendDescription(builder);
-        builder.append("annotation", ToStringUtil.describe(this.getAnnotation()));
-        builder.append("values", ToStringUtil.describe(this.getValues()));
-        builder.append("valuesWithDefaults", ToStringUtil.describe(this.getValuesWithDefaults()));
+		super.appendDescription(builder);
+		builder.append("annotation",
+				ToStringUtil.describe(this.getAnnotation()));
+		builder.append("values", ToStringUtil.describe(this.getValues()));
+		builder.append("valuesWithDefaults",
+				ToStringUtil.describe(this.getValuesWithDefaults()));
 	}
 
 }
-
-

@@ -37,6 +37,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaMethodProxy extends AbstractJavaExecutableProxy implements JavaMethod {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaMethod adapter;
 
     private JavaMethodData data;

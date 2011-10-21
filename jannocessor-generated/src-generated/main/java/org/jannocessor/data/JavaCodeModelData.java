@@ -32,6 +32,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaCodeModelData extends AbstractData implements JavaCodeModel {
 
+	private static final long serialVersionUID = 1L;
+
     private SourceCode code;
 
     private SourceCode extraCode;

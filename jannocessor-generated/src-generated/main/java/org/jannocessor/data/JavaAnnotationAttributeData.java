@@ -17,10 +17,8 @@
 package org.jannocessor.data;
 
 import javax.annotation.Generated;
-import org.jannocessor.data.JavaCodeModelData;
+import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
-import org.jannocessor.model.Name;
-import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -32,30 +30,12 @@ import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaAnnotationAttributeData extends JavaCodeModelData implements JavaAnnotationAttribute {
+public class JavaAnnotationAttributeData extends JavaElementData implements JavaAnnotationAttribute {
 
-    private Name name;
-
-    private JavaType type;
+	private static final long serialVersionUID = 1L;
 
     private Object defaultValue;
 
-
-    public Name getName() {
-        return this.name;
-    }
-
-    public void setName(Name value) {
-        this.name = value;
-    }
-
-    public JavaType getType() {
-        return this.type;
-    }
-
-    public void setType(JavaType value) {
-        this.type = value;
-    }
 
     public Object getDefaultValue() {
         return this.defaultValue;
@@ -80,8 +60,6 @@ public class JavaAnnotationAttributeData extends JavaCodeModelData implements Ja
 		JavaAnnotationAttribute other = (JavaAnnotationAttribute) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getName(), other.getName())
-				.append(this.getType(), other.getType())
 				.append(this.getDefaultValue(), other.getDefaultValue())
 				.isEquals();
 	}
@@ -89,8 +67,6 @@ public class JavaAnnotationAttributeData extends JavaCodeModelData implements Ja
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getName())
-				.append(this.getType())
 				.append(this.getDefaultValue())
 				.toHashCode();
 	}
@@ -106,8 +82,6 @@ public class JavaAnnotationAttributeData extends JavaCodeModelData implements Ja
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("name", ToStringUtil.describe(this.getName()));
-        builder.append("type", ToStringUtil.describe(this.getType()));
         builder.append("defaultValue", ToStringUtil.describe(this.getDefaultValue()));
 	}
 

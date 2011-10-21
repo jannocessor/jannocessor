@@ -31,6 +31,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaExecutableProxy extends JavaElementProxy implements AbstractJavaExecutable {
 
+	private static final long serialVersionUID = 1L;
+
     private transient AbstractJavaExecutable adapter;
 
     private AbstractJavaExecutableData data;

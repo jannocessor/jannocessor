@@ -33,6 +33,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaEnumData extends AbstractJavaEnumData implements JavaEnum {
 
+	private static final long serialVersionUID = 1L;
+
     private EnumModifiers modifiers;
 
 

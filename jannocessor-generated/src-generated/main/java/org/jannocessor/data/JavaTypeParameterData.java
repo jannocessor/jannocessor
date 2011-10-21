@@ -34,6 +34,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeParameterData extends JavaElementData implements JavaTypeParameter {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaType> bounds;
 
 

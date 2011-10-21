@@ -35,6 +35,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecutableType {
 
+	private static final long serialVersionUID = 1L;
+
     private transient JavaExecutableType adapter;
 
     private JavaExecutableTypeData data;

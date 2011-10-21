@@ -38,6 +38,8 @@ import java.io.ObjectInputStream;
 @Generated("JAnnocessor-bootstraped")
 public class JavaConstructorData extends AbstractJavaExecutableData implements JavaConstructor {
 
+	private static final long serialVersionUID = 1L;
+
     private PowerList<JavaTypeParameter> typeParameters;
 
     private PowerList<JavaParameter> parameters;

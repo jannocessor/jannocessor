@@ -37,6 +37,8 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaClassProxy extends AbstractJavaStructureProxy implements AbstractJavaClass {
 
+	private static final long serialVersionUID = 1L;
+
     private transient AbstractJavaClass adapter;
 
     private AbstractJavaClassData data;
