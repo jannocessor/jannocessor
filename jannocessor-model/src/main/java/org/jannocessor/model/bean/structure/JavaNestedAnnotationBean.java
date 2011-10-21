@@ -33,9 +33,7 @@ import org.jannocessor.model.util.New;
 public class JavaNestedAnnotationBean extends JavaNestedAnnotationData
 		implements JavaNestedAnnotation {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2610921005525473363L;
 
 	public JavaNestedAnnotationBean(NestedAnnotationModifiers modifiers,

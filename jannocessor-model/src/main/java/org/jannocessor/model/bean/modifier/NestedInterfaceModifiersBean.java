@@ -24,9 +24,7 @@ public class NestedInterfaceModifiersBean
 		AbstractModifiersBean<NestedInterfaceModifierValue, NestedInterfaceModifiers>
 		implements NestedInterfaceModifiers {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4817893503975295369L;
 
 	public NestedInterfaceModifiersBean(NestedInterfaceModifierValue[] values) {

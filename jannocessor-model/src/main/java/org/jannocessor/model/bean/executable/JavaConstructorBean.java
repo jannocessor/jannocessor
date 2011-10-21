@@ -32,9 +32,7 @@ import org.jannocessor.model.variable.JavaParameter;
 public class JavaConstructorBean extends JavaConstructorData implements
 		JavaConstructor {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 3485905546796025662L;
 
 	public JavaConstructorBean(ConstructorModifiers modifiers,

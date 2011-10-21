@@ -23,9 +23,7 @@ public class MethodModifiersBean extends
 		AbstractModifiersBean<MethodModifierValue, MethodModifiers> implements
 		MethodModifiers {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -3410933377687059753L;
 
 	public MethodModifiersBean(MethodModifierValue[] values) {

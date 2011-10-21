@@ -24,9 +24,7 @@ import org.jannocessor.util.TypeSpecificInlineStyle;
 
 public class SourceCodeBean implements SourceCode {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -387902157887092393L;
 	private String code;
 	private String template;

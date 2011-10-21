@@ -23,9 +23,7 @@ public class FieldModifiersBean extends
 		AbstractModifiersBean<FieldModifierValue, FieldModifiers> implements
 		FieldModifiers {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -7301771399643609972L;
 
 	public FieldModifiersBean(FieldModifierValue[] values) {

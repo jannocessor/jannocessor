@@ -26,9 +26,7 @@ import org.jannocessor.model.util.New;
 public class JavaExecutableTypeBean extends JavaExecutableTypeData implements
 		JavaExecutableType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7921741581335503078L;
 
 	public JavaExecutableTypeBean(JavaType returnType,

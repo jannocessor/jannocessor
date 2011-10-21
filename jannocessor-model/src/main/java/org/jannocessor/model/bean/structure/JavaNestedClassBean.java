@@ -39,9 +39,7 @@ import org.jannocessor.model.variable.JavaField;
 public class JavaNestedClassBean extends JavaNestedClassData implements
 		JavaNestedClass {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5746796059771646454L;
 
 	public JavaNestedClassBean(NestedClassModifiers modifiers, String name,

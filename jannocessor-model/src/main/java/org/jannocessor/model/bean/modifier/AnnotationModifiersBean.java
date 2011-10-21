@@ -23,9 +23,7 @@ public class AnnotationModifiersBean extends
 		AbstractModifiersBean<AnnotationModifierValue, AnnotationModifiers>
 		implements AnnotationModifiers {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7962134341680845802L;
 
 	public AnnotationModifiersBean(AnnotationModifierValue[] values) {

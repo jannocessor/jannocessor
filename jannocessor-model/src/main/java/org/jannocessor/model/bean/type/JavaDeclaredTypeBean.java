@@ -23,9 +23,7 @@ import org.jannocessor.model.util.New;
 public class JavaDeclaredTypeBean extends JavaDeclaredTypeData implements
 		JavaDeclaredType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7284601878080360771L;
 
 	public JavaDeclaredTypeBean() {

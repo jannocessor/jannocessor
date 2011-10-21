@@ -29,9 +29,7 @@ import org.jannocessor.model.variable.JavaEnumConstant;
 public class JavaEnumConstantBean extends JavaEnumConstantData implements
 		JavaEnumConstant {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -1708750074054535347L;
 
 	public JavaEnumConstantBean(String name, List<JavaExpression> values) {

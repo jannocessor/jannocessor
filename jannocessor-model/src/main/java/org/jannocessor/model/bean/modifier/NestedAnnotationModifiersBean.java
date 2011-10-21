@@ -24,9 +24,7 @@ public class NestedAnnotationModifiersBean
 		AbstractModifiersBean<NestedAnnotationModifierValue, NestedAnnotationModifiers>
 		implements NestedAnnotationModifiers {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 4862968293383895919L;
 
 	public NestedAnnotationModifiersBean(NestedAnnotationModifierValue[] values) {

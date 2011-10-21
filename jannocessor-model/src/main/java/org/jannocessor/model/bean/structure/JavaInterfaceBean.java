@@ -37,9 +37,7 @@ import org.jannocessor.model.variable.JavaField;
 public class JavaInterfaceBean extends JavaInterfaceData implements
 		JavaInterface {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -1718102721310923048L;
 
 	public JavaInterfaceBean(InterfaceModifiers modifiers, String name,

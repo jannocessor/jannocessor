@@ -25,9 +25,7 @@ import org.jannocessor.model.util.New;
 public class JavaAnnotationAttributeBean extends JavaAnnotationAttributeData
 		implements JavaAnnotationAttribute {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7511359361247727478L;
 	private JavaType type;
 	private Name name;

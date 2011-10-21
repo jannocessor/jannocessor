@@ -39,9 +39,7 @@ import org.jannocessor.model.variable.JavaField;
 public class JavaNestedEnumBean extends JavaNestedEnumData implements
 		JavaNestedEnum {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2629476425124936333L;
 
 	public JavaNestedEnumBean(NestedEnumModifiers modifiers, String name,

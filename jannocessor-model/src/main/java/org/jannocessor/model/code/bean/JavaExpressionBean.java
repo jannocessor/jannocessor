@@ -21,9 +21,7 @@ import org.jannocessor.model.code.JavaExpression;
 public class JavaExpressionBean extends SourceCodeBean implements
 		JavaExpression {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -8259906961609526297L;
 
 	public JavaExpressionBean(String code, String template, String templateName) {
