@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaNestedAnnotationProxy extends AbstractJavaAnnotationProxy implements JavaNestedAnnotation {
 
-    private JavaNestedAnnotation adapter;
+    private transient JavaNestedAnnotation adapter;
 
     private JavaNestedAnnotationData data;
 
@@ -46,6 +46,9 @@ public class JavaNestedAnnotationProxy extends AbstractJavaAnnotationProxy imple
 
     public NestedAnnotationModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }

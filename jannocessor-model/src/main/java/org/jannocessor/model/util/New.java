@@ -16,9 +16,11 @@
 
 package org.jannocessor.model.util;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.SerializationUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
@@ -871,6 +873,13 @@ public class New {
 
 	public static JavaExpression literal(Class<?> clazz) {
 		return expression(clazz.getSimpleName() + ".class");
+	}
+
+	/**************************** CLONING ******************************/
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Serializable> T copy(T model) {
+		return (T) SerializationUtils.clone(model);
 	}
 
 }

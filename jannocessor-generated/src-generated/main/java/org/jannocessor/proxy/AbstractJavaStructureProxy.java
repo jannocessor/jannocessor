@@ -40,7 +40,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaStructureProxy extends JavaElementProxy implements AbstractJavaStructure {
 
-    private AbstractJavaStructure adapter;
+    private transient AbstractJavaStructure adapter;
 
     private AbstractJavaStructureData data;
 
@@ -77,6 +77,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public String getNesting() {
         if (!getNestingInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setNesting(adapter.getNesting());
 			getNestingInitialized = true;
         }
@@ -86,6 +89,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public Name getPackageName() {
         if (!getPackageNameInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setPackageName(adapter.getPackageName());
 			getPackageNameInitialized = true;
         }
@@ -95,6 +101,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public Name getQualifiedName() {
         if (!getQualifiedNameInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setQualifiedName(adapter.getQualifiedName());
 			getQualifiedNameInitialized = true;
         }
@@ -104,6 +113,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public JavaType getSuperclass() {
         if (!getSuperclassInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setSuperclass(adapter.getSuperclass());
 			getSuperclassInitialized = true;
         }
@@ -113,6 +125,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
 			getMetadataInitialized = true;
         }
@@ -122,6 +137,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaMetadata> getAllMetadata() {
         if (!getAllMetadataInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setAllMetadata(ModelUtils.parentedList(adapter.getAllMetadata(), this));
 			getAllMetadataInitialized = true;
         }
@@ -131,6 +149,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaType> getInterfaces() {
         if (!getInterfacesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setInterfaces(ModelUtils.parentedList(adapter.getInterfaces(), this));
 			getInterfacesInitialized = true;
         }
@@ -140,6 +161,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaMethod> getMethods() {
         if (!getMethodsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setMethods(ModelUtils.parentedList(adapter.getMethods(), this));
 			getMethodsInitialized = true;
         }
@@ -149,6 +173,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedClass> getNestedClasses() {
         if (!getNestedClassesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setNestedClasses(ModelUtils.parentedList(adapter.getNestedClasses(), this));
 			getNestedClassesInitialized = true;
         }
@@ -158,6 +185,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedEnum> getNestedEnums() {
         if (!getNestedEnumsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setNestedEnums(ModelUtils.parentedList(adapter.getNestedEnums(), this));
 			getNestedEnumsInitialized = true;
         }
@@ -167,6 +197,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedInterface> getNestedInterfaces() {
         if (!getNestedInterfacesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setNestedInterfaces(ModelUtils.parentedList(adapter.getNestedInterfaces(), this));
 			getNestedInterfacesInitialized = true;
         }
@@ -176,6 +209,9 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
     public PowerList<JavaNestedAnnotation> getNestedAnnotations() {
         if (!getNestedAnnotationsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setNestedAnnotations(ModelUtils.parentedList(adapter.getNestedAnnotations(), this));
 			getNestedAnnotationsInitialized = true;
         }

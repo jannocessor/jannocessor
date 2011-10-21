@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
 
-    private JavaArrayType adapter;
+    private transient JavaArrayType adapter;
 
     private JavaArrayTypeData data;
 
@@ -46,6 +46,9 @@ public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
 
     public JavaType getComponentType() {
         if (!getComponentTypeInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setComponentType(adapter.getComponentType());
 			getComponentTypeInitialized = true;
         }

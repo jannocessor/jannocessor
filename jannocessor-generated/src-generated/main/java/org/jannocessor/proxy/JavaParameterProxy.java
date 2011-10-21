@@ -33,7 +33,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaParameterProxy extends AbstractJavaVariableProxy implements JavaParameter {
 
-    private JavaParameter adapter;
+    private transient JavaParameter adapter;
 
     private JavaParameterData data;
 
@@ -50,6 +50,9 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
 
     public boolean isFinal() {
         if (!isFinalInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setFinal(adapter.isFinal());
 			isFinalInitialized = true;
         }
@@ -59,6 +62,9 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
 
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
 			getMetadataInitialized = true;
         }

@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaErrorTypeProxy extends JavaTypeProxy implements JavaErrorType {
 
     @SuppressWarnings("unused")
-    private JavaErrorType adapter;
+    private transient JavaErrorType adapter;
 
     @SuppressWarnings("unused")
     private JavaErrorTypeData data;

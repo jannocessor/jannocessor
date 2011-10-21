@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy implements JavaNestedInterface {
 
-    private JavaNestedInterface adapter;
+    private transient JavaNestedInterface adapter;
 
     private JavaNestedInterfaceData data;
 
@@ -46,6 +46,9 @@ public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy impleme
 
     public NestedInterfaceModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }

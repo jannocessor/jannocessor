@@ -16,7 +16,9 @@
 
 package org.jannocessor.model;
 
-public interface Name {
+import java.io.Serializable;
+
+public interface Name extends Serializable {
 
 	String[] getParts();
 

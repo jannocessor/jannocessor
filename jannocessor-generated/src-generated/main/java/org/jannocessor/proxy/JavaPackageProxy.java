@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 
     @SuppressWarnings("unused")
-    private JavaPackage adapter;
+    private transient JavaPackage adapter;
 
     @SuppressWarnings("unused")
     private JavaPackageData data;

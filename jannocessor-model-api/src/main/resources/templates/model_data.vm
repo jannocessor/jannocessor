@@ -17,7 +17,7 @@
 package $packageName;
 
 #smart_import()
-#if($model.interfaces.size() > 0)
+#if($model.interfaces.size() > 0 && $model.interfaces[0].asElement.name != 'Serializable')
 #set($extends = $packageName + "." + $model.interfaces[0].asElement.name.appendPart("Data"))
 #end
 
@@ -95,6 +95,15 @@ public class $className extends #if($extends)#type(${extends})#{else}AbstractDat
         builder.append("${helper.fieldName($m)}", #type("org.jannocessor.model.util.ToStringUtil").describe(this.${m.name}()));
 #end
 #end
+	}
+
+	private void writeObject(#type('java.io.ObjectOutputStream') out) throws #type('java.io.IOException') {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(#type('java.io.ObjectInputStream') in) throws #type('java.io.IOException'),
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }

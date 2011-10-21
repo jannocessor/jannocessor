@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaInstanceInitProxy extends AbstractJavaExecutableProxy implements JavaInstanceInit {
 
     @SuppressWarnings("unused")
-    private JavaInstanceInit adapter;
+    private transient JavaInstanceInit adapter;
 
     @SuppressWarnings("unused")
     private JavaInstanceInitData data;

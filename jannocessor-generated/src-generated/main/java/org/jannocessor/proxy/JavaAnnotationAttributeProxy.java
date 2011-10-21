@@ -32,7 +32,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements JavaAnnotationAttribute {
 
-    private JavaAnnotationAttribute adapter;
+    private transient JavaAnnotationAttribute adapter;
 
     private JavaAnnotationAttributeData data;
 
@@ -51,6 +51,9 @@ public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements 
 
     public Name getName() {
         if (!getNameInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setName(adapter.getName());
 			getNameInitialized = true;
         }
@@ -60,6 +63,9 @@ public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements 
 
     public JavaType getType() {
         if (!getTypeInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setType(adapter.getType());
 			getTypeInitialized = true;
         }
@@ -69,6 +75,9 @@ public class JavaAnnotationAttributeProxy extends JavaCodeModelProxy implements 
 
     public Object getDefaultValue() {
         if (!getDefaultValueInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setDefaultValue(adapter.getDefaultValue());
 			getDefaultValueInitialized = true;
         }

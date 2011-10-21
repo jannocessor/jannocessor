@@ -37,7 +37,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements AbstractJavaEnum {
 
-    private AbstractJavaEnum adapter;
+    private transient AbstractJavaEnum adapter;
 
     private AbstractJavaEnumData data;
 
@@ -60,6 +60,9 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaEnumConstant> getValues() {
         if (!getValuesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setValues(ModelUtils.parentedList(adapter.getValues(), this));
 			getValuesInitialized = true;
         }
@@ -69,6 +72,9 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setFields(ModelUtils.parentedList(adapter.getFields(), this));
 			getFieldsInitialized = true;
         }
@@ -78,6 +84,9 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaConstructor> getConstructors() {
         if (!getConstructorsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setConstructors(ModelUtils.parentedList(adapter.getConstructors(), this));
 			getConstructorsInitialized = true;
         }
@@ -87,6 +96,9 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaStaticInit> getStaticInits() {
         if (!getStaticInitsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setStaticInits(ModelUtils.parentedList(adapter.getStaticInits(), this));
 			getStaticInitsInitialized = true;
         }
@@ -96,6 +108,9 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
     public PowerList<JavaInstanceInit> getInstanceInits() {
         if (!getInstanceInitsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setInstanceInits(ModelUtils.parentedList(adapter.getInstanceInits(), this));
 			getInstanceInitsInitialized = true;
         }

@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVariable {
 
-    private JavaTypeVariable adapter;
+    private transient JavaTypeVariable adapter;
 
     private JavaTypeVariableData data;
 
@@ -48,6 +48,9 @@ public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVari
 
     public JavaType getUpperBound() {
         if (!getUpperBoundInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setUpperBound(adapter.getUpperBound());
 			getUpperBoundInitialized = true;
         }
@@ -57,6 +60,9 @@ public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVari
 
     public JavaType getLowerBound() {
         if (!getLowerBoundInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setLowerBound(adapter.getLowerBound());
 			getLowerBoundInitialized = true;
         }

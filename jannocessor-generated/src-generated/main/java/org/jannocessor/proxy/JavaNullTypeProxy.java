@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaNullTypeProxy extends JavaTypeProxy implements JavaNullType {
 
     @SuppressWarnings("unused")
-    private JavaNullType adapter;
+    private transient JavaNullType adapter;
 
     @SuppressWarnings("unused")
     private JavaNullTypeData data;

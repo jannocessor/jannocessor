@@ -34,7 +34,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement {
 
-    private JavaElement adapter;
+    private transient JavaElement adapter;
 
     private JavaElementData data;
 
@@ -65,6 +65,9 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 
     public Name getName() {
         if (!getNameInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setName(adapter.getName());
 			getNameInitialized = true;
         }
@@ -74,6 +77,9 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 
     public JavaType getType() {
         if (!getTypeInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setType(adapter.getType());
 			getTypeInitialized = true;
         }
@@ -83,6 +89,9 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 
     public JavaElementKind getKind() {
         if (!getKindInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setKind(adapter.getKind());
 			getKindInitialized = true;
         }

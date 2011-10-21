@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass {
 
-    private JavaClass adapter;
+    private transient JavaClass adapter;
 
     private JavaClassData data;
 
@@ -46,6 +46,9 @@ public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass 
 
     public ClassModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }

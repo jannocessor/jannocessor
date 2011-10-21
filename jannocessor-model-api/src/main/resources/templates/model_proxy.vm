@@ -17,7 +17,7 @@
 package $packageName;
 
 #smart_import()
-#if($model.interfaces.size() > 0)
+#if($model.interfaces.size() > 0 && $model.interfaces[0].asElement.name != 'Serializable')
 #set($extends = $packageName + "." + $model.interfaces[0].asElement.name.appendPart("Proxy"))
 #end
 #set($data = "org.jannocessor.data." + $model.name.appendPart("Data"))
@@ -28,7 +28,7 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 #if($model.methods.size() == 0)
     @SuppressWarnings("unused")
 #end
-    private $model.name adapter;
+    private transient $model.name adapter;
 
 #if($model.methods.size() == 0)
     @SuppressWarnings("unused")
@@ -52,6 +52,9 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 #if($m.name != 'getParent' && $m.name != 'getChildren')
     public #type($m.returnType) ${m.name}() {
         if (!${m.name}Initialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
 #if($m.returnType.erasure.toString().endsWith('PowerList'))
             data.${m.name.replacePart(0, "set")}(#type('org.jannocessor.model.util.ModelUtils').parentedList(adapter.${m.name}(), this));
 #else

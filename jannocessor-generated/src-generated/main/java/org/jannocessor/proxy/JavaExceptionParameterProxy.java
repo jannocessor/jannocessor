@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaExceptionParameterProxy extends AbstractJavaVariableProxy implements JavaExceptionParameter {
 
     @SuppressWarnings("unused")
-    private JavaExceptionParameter adapter;
+    private transient JavaExceptionParameter adapter;
 
     @SuppressWarnings("unused")
     private JavaExceptionParameterData data;

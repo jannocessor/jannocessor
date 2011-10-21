@@ -16,7 +16,9 @@
 
 package org.jannocessor.model.code;
 
-public interface SourceCode {
+import java.io.Serializable;
+
+public interface SourceCode extends Serializable {
 
 	String getCode();
 

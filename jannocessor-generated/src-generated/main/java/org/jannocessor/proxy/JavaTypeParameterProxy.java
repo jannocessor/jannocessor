@@ -33,7 +33,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeParameterProxy extends JavaElementProxy implements JavaTypeParameter {
 
-    private JavaTypeParameter adapter;
+    private transient JavaTypeParameter adapter;
 
     private JavaTypeParameterData data;
 
@@ -48,6 +48,9 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
 
     public PowerList<JavaType> getBounds() {
         if (!getBoundsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setBounds(ModelUtils.parentedList(adapter.getBounds(), this));
 			getBoundsInitialized = true;
         }

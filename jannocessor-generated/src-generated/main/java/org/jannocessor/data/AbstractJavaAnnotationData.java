@@ -26,6 +26,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -80,6 +83,15 @@ public class AbstractJavaAnnotationData extends AbstractJavaStructureData implem
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("attributes", ToStringUtil.describe(this.getAttributes()));
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }

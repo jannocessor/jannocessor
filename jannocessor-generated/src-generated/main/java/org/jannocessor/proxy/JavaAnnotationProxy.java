@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaAnnotationProxy extends AbstractJavaAnnotationProxy implements JavaAnnotation {
 
-    private JavaAnnotation adapter;
+    private transient JavaAnnotation adapter;
 
     private JavaAnnotationData data;
 
@@ -46,6 +46,9 @@ public class JavaAnnotationProxy extends AbstractJavaAnnotationProxy implements 
 
     public AnnotationModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }

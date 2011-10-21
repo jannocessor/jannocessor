@@ -24,6 +24,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -78,6 +81,15 @@ public class JavaLocalVariableData extends AbstractJavaVariableData implements J
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("_isFinal", ToStringUtil.describe(this.isFinal()));
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }

@@ -26,6 +26,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -132,6 +135,15 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
         builder.append("canonicalName", ToStringUtil.describe(this.getCanonicalName()));
         builder.append("defaultValue", ToStringUtil.describe(this.getDefaultValue()));
         builder.append("kind", ToStringUtil.describe(this.getKind()));
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }

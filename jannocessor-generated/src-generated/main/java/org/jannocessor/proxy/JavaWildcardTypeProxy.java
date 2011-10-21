@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaWildcardTypeProxy extends JavaTypeProxy implements JavaWildcardType {
 
-    private JavaWildcardType adapter;
+    private transient JavaWildcardType adapter;
 
     private JavaWildcardTypeData data;
 
@@ -48,6 +48,9 @@ public class JavaWildcardTypeProxy extends JavaTypeProxy implements JavaWildcard
 
     public JavaType getExtendsBound() {
         if (!getExtendsBoundInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setExtendsBound(adapter.getExtendsBound());
 			getExtendsBoundInitialized = true;
         }
@@ -57,6 +60,9 @@ public class JavaWildcardTypeProxy extends JavaTypeProxy implements JavaWildcard
 
     public JavaType getSuperBound() {
         if (!getSuperBoundInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setSuperBound(adapter.getSuperBound());
 			getSuperBoundInitialized = true;
         }

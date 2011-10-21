@@ -17,42 +17,15 @@
 package org.jannocessor.model.util;
 
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.collection.api.event.CollectionOperationEvent;
-import org.jannocessor.collection.api.event.CollectionOperationListener;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.ParentedElement;
 import org.jannocessor.model.type.JavaType;
 
 public class ModelUtils {
 
 	public static <T> PowerList<T> parentedList(PowerList<T> results,
 			final JavaElement parent) {
-		results.addCollectionOperationListener(new CollectionOperationListener<T>() {
-			@Override
-			public void itemAdded(CollectionOperationEvent<T> event) {
-				if (event.getElement() instanceof ParentedElement) {
-					System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-					ParentedElement element = (ParentedElement) event
-							.getElement();
-					element.setParent(parent);
-					System.out.println(element + "-" + parent);
-				} else {
-					System.out.println("XXXXX: "
-							+ event.getElement().getClass());
-				}
-			}
-
-			@Override
-			public void itemRemoved(CollectionOperationEvent<T> event) {
-				if (event.getElement() instanceof ParentedElement) {
-					System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-					ParentedElement element = (ParentedElement) event
-							.getElement();
-					element.setParent(null);
-					System.out.println(element + "-" + parent);
-				}
-			}
-		});
+		results.addCollectionOperationListener(new ParentedListOperationListener<T>(
+				parent));
 		return results;
 	}
 

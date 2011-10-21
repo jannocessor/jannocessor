@@ -33,7 +33,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy implements AbstractJavaAnnotation {
 
-    private AbstractJavaAnnotation adapter;
+    private transient AbstractJavaAnnotation adapter;
 
     private AbstractJavaAnnotationData data;
 
@@ -48,6 +48,9 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
 
     public PowerList<JavaAnnotationAttribute> getAttributes() {
         if (!getAttributesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setAttributes(ModelUtils.parentedList(adapter.getAttributes(), this));
 			getAttributesInitialized = true;
         }

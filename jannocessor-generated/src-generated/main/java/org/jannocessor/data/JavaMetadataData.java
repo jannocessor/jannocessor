@@ -16,6 +16,7 @@
 
 package org.jannocessor.data;
 
+
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.structure.JavaMetadata;
@@ -26,39 +27,43 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 
 @Generated("JAnnocessor-bootstraped")
 public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata {
 
-	private JavaType annotation;
+    private JavaType annotation;
 
 	private PowerMap<String, ? extends Object> values;
 
 	private PowerMap<String, ? extends Object> valuesWithDefaults;
 
-	public JavaType getAnnotation() {
-		return this.annotation;
-	}
+    public JavaType getAnnotation() {
+        return this.annotation;
+    }
 
-	public void setAnnotation(JavaType value) {
-		this.annotation = value;
-	}
+    public void setAnnotation(JavaType value) {
+        this.annotation = value;
+    }
 
 	public PowerMap<String, ? extends Object> getValues() {
-		return this.values;
-	}
+        return this.values;
+    }
 
 	public void setValues(PowerMap<String, ? extends Object> value) {
-		this.values = value;
-	}
+        this.values = value;
+    }
 
 	public PowerMap<String, ? extends Object> getValuesWithDefaults() {
-		return this.valuesWithDefaults;
-	}
+        return this.valuesWithDefaults;
+    }
 
 	public void setValuesWithDefaults(PowerMap<String, ? extends Object> value) {
-		this.valuesWithDefaults = value;
-	}
+        this.valuesWithDefaults = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -77,14 +82,16 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 				.appendSuper(super.equals(other))
 				.append(this.getAnnotation(), other.getAnnotation())
 				.append(this.getValues(), other.getValues())
-				.append(this.getValuesWithDefaults(),
-						other.getValuesWithDefaults()).isEquals();
+				.append(this.getValuesWithDefaults(), other.getValuesWithDefaults())
+				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(this.getAnnotation())
-				.append(this.getValues()).append(this.getValuesWithDefaults())
+		return new HashCodeBuilder()
+				.append(this.getAnnotation())
+				.append(this.getValues())
+				.append(this.getValuesWithDefaults())
 				.toHashCode();
 	}
 
@@ -98,12 +105,21 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
-		super.appendDescription(builder);
-		builder.append("annotation",
-				ToStringUtil.describe(this.getAnnotation()));
-		builder.append("values", ToStringUtil.describe(this.getValues()));
-		builder.append("valuesWithDefaults",
-				ToStringUtil.describe(this.getValuesWithDefaults()));
+        super.appendDescription(builder);
+        builder.append("annotation", ToStringUtil.describe(this.getAnnotation()));
+        builder.append("values", ToStringUtil.describe(this.getValues()));
+        builder.append("valuesWithDefaults", ToStringUtil.describe(this.getValuesWithDefaults()));
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }
+
+

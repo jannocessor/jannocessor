@@ -16,11 +16,13 @@
 
 package org.jannocessor.model;
 
+import java.io.Serializable;
+
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.code.SourceCode;
 
 @DomainModel
-public interface JavaCodeModel {
+public interface JavaCodeModel extends Serializable {
 
 	SourceCode getCode();
 

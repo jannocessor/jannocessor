@@ -32,7 +32,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
-    private JavaType adapter;
+    private transient JavaType adapter;
 
     private JavaTypeData data;
 
@@ -55,6 +55,9 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
     public Class<?> getTypeClass() {
         if (!getTypeClassInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setTypeClass(adapter.getTypeClass());
 			getTypeClassInitialized = true;
         }
@@ -64,6 +67,9 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
     public Name getSimpleName() {
         if (!getSimpleNameInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setSimpleName(adapter.getSimpleName());
 			getSimpleNameInitialized = true;
         }
@@ -73,6 +79,9 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
     public Name getCanonicalName() {
         if (!getCanonicalNameInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setCanonicalName(adapter.getCanonicalName());
 			getCanonicalNameInitialized = true;
         }
@@ -82,6 +91,9 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
     public Object getDefaultValue() {
         if (!getDefaultValueInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setDefaultValue(adapter.getDefaultValue());
 			getDefaultValueInitialized = true;
         }
@@ -91,6 +103,9 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
     public JavaTypeKind getKind() {
         if (!getKindInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setKind(adapter.getKind());
 			getKindInitialized = true;
         }

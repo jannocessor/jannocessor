@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 
-    private JavaEnum adapter;
+    private transient JavaEnum adapter;
 
     private JavaEnumData data;
 
@@ -46,6 +46,9 @@ public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 
     public EnumModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }

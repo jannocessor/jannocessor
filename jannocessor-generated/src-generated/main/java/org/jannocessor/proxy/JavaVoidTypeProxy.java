@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaVoidTypeProxy extends JavaTypeProxy implements JavaVoidType {
 
     @SuppressWarnings("unused")
-    private JavaVoidType adapter;
+    private transient JavaVoidType adapter;
 
     @SuppressWarnings("unused")
     private JavaVoidTypeData data;

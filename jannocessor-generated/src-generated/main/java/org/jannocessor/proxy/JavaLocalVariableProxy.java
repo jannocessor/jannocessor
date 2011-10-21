@@ -30,7 +30,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaLocalVariableProxy extends AbstractJavaVariableProxy implements JavaLocalVariable {
 
-    private JavaLocalVariable adapter;
+    private transient JavaLocalVariable adapter;
 
     private JavaLocalVariableData data;
 
@@ -45,6 +45,9 @@ public class JavaLocalVariableProxy extends AbstractJavaVariableProxy implements
 
     public Boolean isFinal() {
         if (!isFinalInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setFinal(adapter.isFinal());
 			isFinalInitialized = true;
         }

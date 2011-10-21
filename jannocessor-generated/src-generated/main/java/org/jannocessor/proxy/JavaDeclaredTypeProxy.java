@@ -33,7 +33,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclaredType {
 
-    private JavaDeclaredType adapter;
+    private transient JavaDeclaredType adapter;
 
     private JavaDeclaredTypeData data;
 
@@ -48,6 +48,9 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 
     public PowerList<JavaType> getTypeArguments() {
         if (!getTypeArgumentsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setTypeArguments(ModelUtils.parentedList(adapter.getTypeArguments(), this));
 			getTypeArgumentsInitialized = true;
         }

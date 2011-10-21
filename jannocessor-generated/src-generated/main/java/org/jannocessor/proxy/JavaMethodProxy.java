@@ -37,7 +37,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaMethodProxy extends AbstractJavaExecutableProxy implements JavaMethod {
 
-    private JavaMethod adapter;
+    private transient JavaMethod adapter;
 
     private JavaMethodData data;
 
@@ -64,6 +64,9 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setTypeParameters(ModelUtils.parentedList(adapter.getTypeParameters(), this));
 			getTypeParametersInitialized = true;
         }
@@ -73,6 +76,9 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
     public JavaType getReturnType() {
         if (!getReturnTypeInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setReturnType(adapter.getReturnType());
 			getReturnTypeInitialized = true;
         }
@@ -82,6 +88,9 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
     public PowerList<JavaParameter> getParameters() {
         if (!getParametersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setParameters(ModelUtils.parentedList(adapter.getParameters(), this));
 			getParametersInitialized = true;
         }
@@ -91,6 +100,9 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
     public Boolean isVarArgs() {
         if (!isVarArgsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setVarArgs(adapter.isVarArgs());
 			isVarArgsInitialized = true;
         }
@@ -100,6 +112,9 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
     public PowerList<JavaType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setThrownTypes(ModelUtils.parentedList(adapter.getThrownTypes(), this));
 			getThrownTypesInitialized = true;
         }
@@ -109,6 +124,9 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
     public MethodModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }
@@ -118,6 +136,9 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
 
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
 			getMetadataInitialized = true;
         }

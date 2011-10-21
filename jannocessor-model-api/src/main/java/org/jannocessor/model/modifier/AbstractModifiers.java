@@ -16,7 +16,9 @@
 
 package org.jannocessor.model.modifier;
 
-public interface AbstractModifiers<T extends Enum<T>, M> {
+import java.io.Serializable;
+
+public interface AbstractModifiers<T extends Enum<T>, M> extends Serializable {
 
 	T[] getValues();
 

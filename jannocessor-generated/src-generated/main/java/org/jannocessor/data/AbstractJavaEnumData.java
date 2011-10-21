@@ -30,6 +30,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -136,6 +139,15 @@ public class AbstractJavaEnumData extends AbstractJavaStructureData implements A
         builder.append("constructors", ToStringUtil.describe(this.getConstructors()));
         builder.append("staticInits", ToStringUtil.describe(this.getStaticInits()));
         builder.append("instanceInits", ToStringUtil.describe(this.getInstanceInits()));
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }

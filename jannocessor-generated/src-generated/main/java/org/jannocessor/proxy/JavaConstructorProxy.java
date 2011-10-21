@@ -37,7 +37,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements JavaConstructor {
 
-    private JavaConstructor adapter;
+    private transient JavaConstructor adapter;
 
     private JavaConstructorData data;
 
@@ -62,6 +62,9 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setTypeParameters(ModelUtils.parentedList(adapter.getTypeParameters(), this));
 			getTypeParametersInitialized = true;
         }
@@ -71,6 +74,9 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public PowerList<JavaParameter> getParameters() {
         if (!getParametersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setParameters(ModelUtils.parentedList(adapter.getParameters(), this));
 			getParametersInitialized = true;
         }
@@ -80,6 +86,9 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public Boolean isVarArgs() {
         if (!isVarArgsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setVarArgs(adapter.isVarArgs());
 			isVarArgsInitialized = true;
         }
@@ -89,6 +98,9 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public PowerList<JavaType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setThrownTypes(ModelUtils.parentedList(adapter.getThrownTypes(), this));
 			getThrownTypesInitialized = true;
         }
@@ -98,6 +110,9 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public ConstructorModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }
@@ -107,6 +122,9 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
 			getMetadataInitialized = true;
         }

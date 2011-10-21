@@ -33,7 +33,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements JavaEnumConstant {
 
-    private JavaEnumConstant adapter;
+    private transient JavaEnumConstant adapter;
 
     private JavaEnumConstantData data;
 
@@ -48,6 +48,9 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
 
     public PowerList<JavaExpression> getValues() {
         if (!getValuesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setValues(ModelUtils.parentedList(adapter.getValues(), this));
 			getValuesInitialized = true;
         }

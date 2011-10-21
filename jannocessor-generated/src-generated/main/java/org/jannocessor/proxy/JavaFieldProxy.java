@@ -35,7 +35,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaField {
 
-    private JavaField adapter;
+    private transient JavaField adapter;
 
     private JavaFieldData data;
 
@@ -54,6 +54,9 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 
     public FieldModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }
@@ -63,6 +66,9 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 
     public JavaExpression getValue() {
         if (!getValueInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setValue(adapter.getValue());
 			getValueInitialized = true;
         }
@@ -72,6 +78,9 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 
     public PowerList<JavaMetadata> getMetadata() {
         if (!getMetadataInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setMetadata(ModelUtils.parentedList(adapter.getMetadata(), this));
 			getMetadataInitialized = true;
         }

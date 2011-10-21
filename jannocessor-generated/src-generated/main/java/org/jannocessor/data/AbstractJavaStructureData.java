@@ -33,6 +33,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -230,6 +233,15 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
         builder.append("nestedEnums", ToStringUtil.describe(this.getNestedEnums()));
         builder.append("nestedInterfaces", ToStringUtil.describe(this.getNestedInterfaces()));
         builder.append("nestedAnnotations", ToStringUtil.describe(this.getNestedAnnotations()));
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }

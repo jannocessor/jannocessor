@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaPrimitiveTypeProxy extends JavaTypeProxy implements JavaPrimitiveType {
 
     @SuppressWarnings("unused")
-    private JavaPrimitiveType adapter;
+    private transient JavaPrimitiveType adapter;
 
     @SuppressWarnings("unused")
     private JavaPrimitiveTypeData data;

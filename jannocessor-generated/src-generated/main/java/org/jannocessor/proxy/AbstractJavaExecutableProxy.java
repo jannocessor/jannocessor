@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaExecutableProxy extends JavaElementProxy implements AbstractJavaExecutable {
 
-    private AbstractJavaExecutable adapter;
+    private transient AbstractJavaExecutable adapter;
 
     private AbstractJavaExecutableData data;
 
@@ -46,6 +46,9 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
 
     public JavaBody getBody() {
         if (!getBodyInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setBody(adapter.getBody());
 			getBodyInitialized = true;
         }

@@ -31,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaInterfaceProxy extends AbstractJavaInterfaceProxy implements JavaInterface {
 
-    private JavaInterface adapter;
+    private transient JavaInterface adapter;
 
     private JavaInterfaceData data;
 
@@ -46,6 +46,9 @@ public class JavaInterfaceProxy extends AbstractJavaInterfaceProxy implements Ja
 
     public InterfaceModifiers getModifiers() {
         if (!getModifiersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setModifiers(adapter.getModifiers());
 			getModifiersInitialized = true;
         }

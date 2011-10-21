@@ -27,6 +27,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.model.util.ToStringUtil;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -94,6 +97,15 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
         super.appendDescription(builder);
         builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
         builder.append("fields", ToStringUtil.describe(this.getFields()));
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
 	}
 
 }

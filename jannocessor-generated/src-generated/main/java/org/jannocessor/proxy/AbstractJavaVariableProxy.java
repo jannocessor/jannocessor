@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class AbstractJavaVariableProxy extends JavaElementProxy implements AbstractJavaVariable {
 
     @SuppressWarnings("unused")
-    private AbstractJavaVariable adapter;
+    private transient AbstractJavaVariable adapter;
 
     @SuppressWarnings("unused")
     private AbstractJavaVariableData data;

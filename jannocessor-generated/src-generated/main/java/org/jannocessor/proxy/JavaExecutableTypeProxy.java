@@ -35,7 +35,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecutableType {
 
-    private JavaExecutableType adapter;
+    private transient JavaExecutableType adapter;
 
     private JavaExecutableTypeData data;
 
@@ -56,6 +56,9 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
     public PowerList<JavaType> getParameterTypes() {
         if (!getParameterTypesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setParameterTypes(ModelUtils.parentedList(adapter.getParameterTypes(), this));
 			getParameterTypesInitialized = true;
         }
@@ -65,6 +68,9 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
     public JavaType getReturnType() {
         if (!getReturnTypeInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setReturnType(adapter.getReturnType());
 			getReturnTypeInitialized = true;
         }
@@ -74,6 +80,9 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
     public PowerList<JavaDeclaredType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setThrownTypes(ModelUtils.parentedList(adapter.getThrownTypes(), this));
 			getThrownTypesInitialized = true;
         }
@@ -83,6 +92,9 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
     public PowerList<JavaTypeVariable> getTypeVariables() {
         if (!getTypeVariablesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setTypeVariables(ModelUtils.parentedList(adapter.getTypeVariables(), this));
 			getTypeVariablesInitialized = true;
         }

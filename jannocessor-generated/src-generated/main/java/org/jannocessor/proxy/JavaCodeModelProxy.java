@@ -30,7 +30,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class JavaCodeModelProxy implements JavaCodeModel {
 
-    private JavaCodeModel adapter;
+    private transient JavaCodeModel adapter;
 
     private JavaCodeModelData data;
 
@@ -46,6 +46,9 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 
     public SourceCode getCode() {
         if (!getCodeInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setCode(adapter.getCode());
 			getCodeInitialized = true;
         }
@@ -55,6 +58,9 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 
     public SourceCode getExtraCode() {
         if (!getExtraCodeInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setExtraCode(adapter.getExtraCode());
 			getExtraCodeInitialized = true;
         }

@@ -34,7 +34,7 @@ import org.jannocessor.model.util.ToStringUtil;
 @Generated("JAnnocessor-bootstraped")
 public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy implements AbstractJavaInterface {
 
-    private AbstractJavaInterface adapter;
+    private transient AbstractJavaInterface adapter;
 
     private AbstractJavaInterfaceData data;
 
@@ -51,6 +51,9 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         if (!getTypeParametersInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setTypeParameters(ModelUtils.parentedList(adapter.getTypeParameters(), this));
 			getTypeParametersInitialized = true;
         }
@@ -60,6 +63,9 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 
     public PowerList<JavaField> getFields() {
         if (!getFieldsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
             data.setFields(ModelUtils.parentedList(adapter.getFields(), this));
 			getFieldsInitialized = true;
         }
