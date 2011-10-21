@@ -16,22 +16,23 @@
 
 package org.jannocessor.data;
 
-import javax.annotation.Generated;
-import org.jannocessor.data.JavaElementData;
-import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.collection.api.PowerMap;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.jannocessor.util.TypeSpecificStyle;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.model.util.ToStringUtil;
-import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import javax.annotation.Generated;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.collection.api.PowerMap;
+import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.util.TypeSpecificStyle;
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaMetadataData extends JavaElementData implements JavaMetadata {
+public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata {
 
 	private static final long serialVersionUID = 1L;
 

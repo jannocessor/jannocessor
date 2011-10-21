@@ -14,8 +14,30 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.code;
+package org.jannocessor.model.util;
 
-public interface JavaBody extends SourceCode {
+import org.jannocessor.collection.api.PowerCollection;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.collection.api.event.CollectionOperationEvent;
+
+public class ParentedListEvent<T> implements CollectionOperationEvent<T> {
+
+	private final T item;
+	private final PowerList<T> list;
+
+	public ParentedListEvent(PowerList<T> list, T item) {
+		this.list = list;
+		this.item = item;
+	}
+
+	@Override
+	public PowerCollection<T> getSource() {
+		return list;
+	}
+
+	@Override
+	public T getElement() {
+		return item;
+	}
 
 }

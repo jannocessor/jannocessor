@@ -17,6 +17,7 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
+import org.jannocessor.proxy.CodeNodeProxy;
 import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.code.SourceCode;
@@ -28,7 +29,7 @@ import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaCodeModelProxy implements JavaCodeModel {
+public class JavaCodeModelProxy extends CodeNodeProxy implements JavaCodeModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +38,7 @@ public class JavaCodeModelProxy implements JavaCodeModel {
     private JavaCodeModelData data;
 
     public JavaCodeModelProxy(JavaCodeModel adapter, JavaCodeModelData data) {
+        super(adapter, data);
         this.adapter = adapter;
         this.data = data;
     }
@@ -86,6 +88,7 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 
 		JavaCodeModel other = (JavaCodeModel) obj;
 		return new EqualsBuilder()
+				.appendSuper(super.equals(other))
 				.append(this.getCode(), other.getCode())
 				.append(this.getExtraCode(), other.getExtraCode())
 				.isEquals();
@@ -107,7 +110,9 @@ public class JavaCodeModelProxy implements JavaCodeModel {
 		return builder.toString();
 	}
 
+	@Override
 	protected void appendDescription(ToStringBuilder builder) {
+        super.appendDescription(builder);
         builder.append("code", ToStringUtil.describe(this.getCode()));
         builder.append("extraCode", ToStringUtil.describe(this.getExtraCode()));
 	}

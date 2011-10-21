@@ -22,11 +22,15 @@ import org.jannocessor.model.type.JavaType;
 
 public class ModelUtils {
 
-	public static <T> PowerList<T> parentedList(PowerList<T> results,
+	public static <T> PowerList<T> parentedList(PowerList<T> list,
 			final JavaElement parent) {
-		results.addCollectionOperationListener(new ParentedListOperationListener<T>(
-				parent));
-		return results;
+		ParentedListOperationListener<T> operationListener = new ParentedListOperationListener<T>(
+				parent);
+		list.addCollectionOperationListener(operationListener);
+		for (T item : list) {
+			operationListener.itemAdded(new ParentedListEvent<T>(list, item));
+		}
+		return list;
 	}
 
 	public static <T> PowerList<T> parentedList(PowerList<T> list, JavaType type) {

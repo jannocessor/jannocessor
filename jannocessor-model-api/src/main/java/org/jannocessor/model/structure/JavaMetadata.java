@@ -18,11 +18,11 @@ package org.jannocessor.model.structure;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerMap;
-import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.type.JavaType;
 
 @DomainModel
-public interface JavaMetadata extends JavaElement {
+public interface JavaMetadata extends JavaCodeModel {
 
 	JavaType getAnnotation();
 

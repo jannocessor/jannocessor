@@ -19,8 +19,6 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.ParentedElement;
-import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.JavaElementKind;
@@ -35,13 +33,9 @@ import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaElementData extends JavaCodeModelData implements JavaElement, ParentedElement {
+public class JavaElementData extends JavaCodeModelData implements JavaElement {
 
 	private static final long serialVersionUID = 1L;
-
-    private JavaElement parent;
-
-    private PowerList<JavaElement> children;
 
     private Name name;
 
@@ -49,22 +43,6 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement, P
 
     private JavaElementKind kind;
 
-
-    public JavaElement getParent() {
-        return this.parent;
-    }
-
-    public void setParent(JavaElement value) {
-        this.parent = value;
-    }
-
-    public PowerList<JavaElement> getChildren() {
-        return this.children;
-    }
-
-    public void setChildren(PowerList<JavaElement> value) {
-        this.children = value;
-    }
 
     public Name getName() {
         return this.name;

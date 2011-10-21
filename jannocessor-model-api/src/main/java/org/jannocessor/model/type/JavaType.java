@@ -27,7 +27,9 @@ public interface JavaType extends JavaCodeModel {
 
 	Name getSimpleName();
 
-	Name getCanonicalName();
+	Name getPackageName();
+
+	String getCanonicalName();
 
 	Object getDefaultValue();
 

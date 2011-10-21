@@ -14,8 +14,18 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model.code;
+package org.jannocessor.model;
 
-public interface JavaBody extends SourceCode {
+import java.io.Serializable;
+
+import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.collection.api.PowerList;
+
+@DomainModel
+public interface CodeNode extends Serializable {
+
+	CodeNode getParent();
+
+	PowerList<CodeNode> getChildren();
 
 }

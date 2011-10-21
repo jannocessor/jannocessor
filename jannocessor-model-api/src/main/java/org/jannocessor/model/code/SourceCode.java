@@ -16,13 +16,13 @@
 
 package org.jannocessor.model.code;
 
-import java.io.Serializable;
+import org.jannocessor.model.CodeNode;
 
-public interface SourceCode extends Serializable {
+public interface SourceCode extends CodeNode {
 
-	String getCode();
+	String getHardcoded();
 
-	void setCode(String code);
+	void setHardcoded(String hardcoded);
 
 	String getTemplate();
 

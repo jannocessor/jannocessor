@@ -18,6 +18,6 @@ package org.jannocessor.model;
 
 public interface ParentedElement {
 
-	void setParent(JavaElement parent);
+	void setParent(CodeNode parent);
 
 }

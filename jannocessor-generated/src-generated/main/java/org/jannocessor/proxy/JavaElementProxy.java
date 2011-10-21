@@ -19,10 +19,7 @@ package org.jannocessor.proxy;
 import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaCodeModelProxy;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.ParentedElement;
 import org.jannocessor.data.JavaElementData;
-import org.jannocessor.collection.api.PowerList;
-import org.apache.commons.lang.NotImplementedException;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.JavaElementKind;
@@ -34,7 +31,7 @@ import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement, ParentedElement {
+public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement {
 
 	private static final long serialVersionUID = 1L;
 
@@ -48,42 +45,12 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement,
         this.data = data;
     }
 
-	private boolean getParentInitialized = false;
-
-	private boolean getChildrenInitialized = false;
-
 	private boolean getNameInitialized = false;
 
 	private boolean getTypeInitialized = false;
 
 	private boolean getKindInitialized = false;
 
-
-
-	private JavaElement parent;
-
-	private boolean hasOriginalParent = true;
-
-	@Override
-	public void setParent(JavaElement parent) {
-		this.parent = parent;
-		hasOriginalParent = false;
-	}
-
-	@Override
-	public JavaElement getParent() {
-		if (hasOriginalParent) {
-			return adapter.getParent();
-		} else {
-			return parent;
-		}
-	}
-
-
-	@Override
-    public PowerList<JavaElement> getChildren() {
-        throw new NotImplementedException();
-    }
 
 	@Override
     public Name getName() {
