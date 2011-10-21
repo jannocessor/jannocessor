@@ -24,16 +24,7 @@ import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.ArrayType;
-import javax.lang.model.type.DeclaredType;
-import javax.lang.model.type.ErrorType;
-import javax.lang.model.type.ExecutableType;
-import javax.lang.model.type.NoType;
-import javax.lang.model.type.NullType;
-import javax.lang.model.type.PrimitiveType;
 import javax.lang.model.type.TypeMirror;
-import javax.lang.model.type.TypeVariable;
-import javax.lang.model.type.WildcardType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
@@ -52,6 +43,7 @@ import org.jannocessor.adapter.structure.JavaNestedEnumAdapter;
 import org.jannocessor.adapter.structure.JavaNestedInterfaceAdapter;
 import org.jannocessor.adapter.structure.JavaPackageAdapter;
 import org.jannocessor.adapter.structure.JavaTypeParameterAdapter;
+import org.jannocessor.adapter.type.AbstractJavaTypeAdapter;
 import org.jannocessor.adapter.type.JavaArrayTypeAdapter;
 import org.jannocessor.adapter.type.JavaDeclaredTypeAdapter;
 import org.jannocessor.adapter.type.JavaErrorTypeAdapter;
@@ -92,6 +84,7 @@ import org.jannocessor.data.JavaPackageData;
 import org.jannocessor.data.JavaParameterData;
 import org.jannocessor.data.JavaPrimitiveTypeData;
 import org.jannocessor.data.JavaStaticInitData;
+import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.data.JavaTypeVariableData;
 import org.jannocessor.data.JavaVoidTypeData;
@@ -128,6 +121,7 @@ import org.jannocessor.proxy.JavaParameterProxy;
 import org.jannocessor.proxy.JavaPrimitiveTypeProxy;
 import org.jannocessor.proxy.JavaStaticInitProxy;
 import org.jannocessor.proxy.JavaTypeParameterProxy;
+import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.proxy.JavaTypeVariableProxy;
 import org.jannocessor.proxy.JavaVoidTypeProxy;
 import org.jannocessor.proxy.JavaWildcardTypeProxy;
@@ -302,112 +296,77 @@ public class AdapterFactory {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T extends JavaElement> T getElementAdapter(Element element,
-			Class<? extends JavaElementAdapter> adapterClass,
-			Class<? extends JavaElementProxy> proxyClass,
-			Class<? extends JavaElementData> dataClass, Elements elementUtils,
-			Types typeUtils) {
-
-		try {
-			JavaElementAdapter adapter = (JavaElementAdapter) ELEMENT_ADAPTERS
-					.get(element);
-
-			if (adapter == null) {
-				Constructor<?> constructor = adapterClass.getConstructors()[0];
-				if (constructor != null) {
-					adapter = (JavaElementAdapter) constructor.newInstance(
-							element, elementUtils, typeUtils);
-					ELEMENT_ADAPTERS.put(element, adapter);
-				} else {
-					throw new RuntimeException(
-							"Cannot find adapter constructor!");
-				}
-			}
-
-			JavaElementData data = dataClass.newInstance();
-			T proxy = (T) proxyClass.getConstructors()[0].newInstance(adapter,
-					data);
-
-			return proxy;
-		} catch (Exception e) {
-			throw new RuntimeException("Cannot create element adapter!", e);
-		}
-	}
-
-	@SuppressWarnings("unchecked")
 	public static <T extends JavaType> T getTypeModel(TypeMirror typeMirror,
 			Class<T> clazz, Elements elementUtils, Types typeUtils) {
 		if (typeMirror != null) {
-			JavaType type = TYPE_ADAPTERS.get(typeMirror);
-			if (type != null) {
-				// it was in the cache already
-				return (T) type;
-			}
+
+			Class<? extends AbstractJavaTypeAdapter> adapterClass;
+			Class<? extends JavaTypeProxy> proxyClass;
+			Class<? extends JavaTypeData> dataClass;
 
 			switch (typeMirror.getKind()) {
 
 			case ARRAY:
-				type = new JavaArrayTypeProxy(new JavaArrayTypeAdapter(
-						(ArrayType) typeMirror, elementUtils, typeUtils),
-						new JavaArrayTypeData());
+				adapterClass = JavaArrayTypeAdapter.class;
+				proxyClass = JavaArrayTypeProxy.class;
+				dataClass = JavaArrayTypeData.class;
 				break;
 
 			case DECLARED:
-				type = new JavaDeclaredTypeProxy(new JavaDeclaredTypeAdapter(
-						(DeclaredType) typeMirror, elementUtils, typeUtils),
-						new JavaDeclaredTypeData());
+				adapterClass = JavaDeclaredTypeAdapter.class;
+				proxyClass = JavaDeclaredTypeProxy.class;
+				dataClass = JavaDeclaredTypeData.class;
 				break;
 
 			case EXECUTABLE:
-				type = new JavaExecutableTypeProxy(
-						new JavaExecutableTypeAdapter(
-								(ExecutableType) typeMirror, elementUtils,
-								typeUtils), new JavaExecutableTypeData());
+				adapterClass = JavaExecutableTypeAdapter.class;
+				proxyClass = JavaExecutableTypeProxy.class;
+				dataClass = JavaExecutableTypeData.class;
 				break;
 
 			case TYPEVAR:
-				type = new JavaTypeVariableProxy(new JavaTypeVariableAdapter(
-						(TypeVariable) typeMirror, elementUtils, typeUtils),
-						new JavaTypeVariableData());
+				adapterClass = JavaTypeVariableAdapter.class;
+				proxyClass = JavaTypeVariableProxy.class;
+				dataClass = JavaTypeVariableData.class;
 				break;
 
 			case WILDCARD:
-				type = new JavaWildcardTypeProxy(new JavaWildcardTypeAdapter(
-						(WildcardType) typeMirror, elementUtils, typeUtils),
-						new JavaWildcardTypeData());
+				adapterClass = JavaWildcardTypeAdapter.class;
+				proxyClass = JavaWildcardTypeProxy.class;
+				dataClass = JavaWildcardTypeData.class;
 				break;
 
 			case NONE:
 			case PACKAGE:
 			case VOID:
-				type = new JavaVoidTypeProxy(new JavaVoidTypeAdapter(
-						(NoType) typeMirror, elementUtils, typeUtils),
-						new JavaVoidTypeData());
+				adapterClass = JavaVoidTypeAdapter.class;
+				proxyClass = JavaVoidTypeProxy.class;
+				dataClass = JavaVoidTypeData.class;
 				break;
 
 			case NULL:
-				type = new JavaNullTypeProxy(new JavaNullTypeAdapter(
-						(NullType) typeMirror, elementUtils, typeUtils),
-						new JavaNullTypeData());
+				adapterClass = JavaNullTypeAdapter.class;
+				proxyClass = JavaNullTypeProxy.class;
+				dataClass = JavaNullTypeData.class;
 				break;
 
 			case ERROR:
-				type = new JavaErrorTypeProxy(new JavaErrorTypeAdapter(
-						(ErrorType) typeMirror, elementUtils, typeUtils),
-						new JavaErrorTypeData());
+				adapterClass = JavaErrorTypeAdapter.class;
+				proxyClass = JavaErrorTypeProxy.class;
+				dataClass = JavaErrorTypeData.class;
 				break;
 
 			default:
-				type = new JavaPrimitiveTypeProxy(new JavaPrimitiveTypeAdapter(
-						(PrimitiveType) typeMirror, elementUtils, typeUtils),
-						new JavaPrimitiveTypeData());
+				adapterClass = JavaPrimitiveTypeAdapter.class;
+				proxyClass = JavaPrimitiveTypeProxy.class;
+				dataClass = JavaPrimitiveTypeData.class;
 				break;
 			}
 
-			if (clazz.isAssignableFrom(type.getClass())) {
-				// put it to cache
-				TYPE_ADAPTERS.put(typeMirror, type);
+			JavaType type = getTypeAdapter(typeMirror, adapterClass,
+					proxyClass, dataClass, elementUtils, typeUtils);
 
+			if (clazz.isAssignableFrom(type.getClass())) {
 				return (T) type;
 			} else {
 				String msg = "Wrong type: %s is not assignable to %s!";
@@ -439,6 +398,56 @@ public class AdapterFactory {
 			return metadata;
 		} else {
 			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private static <T extends JavaElement> T getElementAdapter(Element element,
+			Class<? extends JavaElementAdapter> adapterClass,
+			Class<? extends JavaElementProxy> proxyClass,
+			Class<? extends JavaElementData> dataClass, Elements elementUtils,
+			Types typeUtils) {
+
+		return (T) createModel(ELEMENT_ADAPTERS, element, adapterClass,
+				proxyClass, dataClass, elementUtils, typeUtils);
+	}
+
+	private static JavaType getTypeAdapter(TypeMirror typeMirror,
+			Class<? extends AbstractJavaTypeAdapter> adapterClass,
+			Class<? extends JavaTypeProxy> proxyClass,
+			Class<? extends JavaTypeData> dataClass, Elements elementUtils,
+			Types typeUtils) {
+
+		return (JavaType) createModel(TYPE_ADAPTERS, typeMirror, adapterClass,
+				proxyClass, dataClass, elementUtils, typeUtils);
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private static <T> T createModel(Map map, Object target,
+			Class<?> adapterClass, Class<?> proxyClass, Class<?> dataClass,
+			Elements elementUtils, Types typeUtils) {
+		try {
+			Object adapter = map.get(target);
+
+			if (adapter == null) {
+				Constructor<?> constructor = adapterClass.getConstructors()[0];
+				if (constructor != null) {
+					adapter = constructor.newInstance(target, elementUtils,
+							typeUtils);
+					map.put(target, adapter);
+				} else {
+					throw new RuntimeException(
+							"Cannot find adapter constructor!");
+				}
+			}
+
+			Object data = dataClass.newInstance();
+			T proxy = (T) proxyClass.getConstructors()[0].newInstance(adapter,
+					data);
+
+			return proxy;
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot create element adapter!", e);
 		}
 	}
 

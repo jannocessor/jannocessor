@@ -23,7 +23,7 @@ import javax.lang.model.util.Types;
 import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.type.JavaType;
 
-public class JavaArrayTypeAdapter extends JavaTypeAdapter implements
+public class JavaArrayTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaArrayType {
 
 	private static final long serialVersionUID = -8431107976792077987L;

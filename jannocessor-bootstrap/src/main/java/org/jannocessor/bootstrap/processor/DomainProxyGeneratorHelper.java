@@ -35,4 +35,10 @@ public class DomainProxyGeneratorHelper {
 		return !name.equals("getParent") && !name.equals("getChildren")
 				&& (name.startsWith("get") || name.startsWith("is"));
 	}
+
+	public boolean isCalculated(JavaMethod method) {
+		String name = method.getName().getText();
+		return name.equals("getCanonicalName");
+	}
+
 }

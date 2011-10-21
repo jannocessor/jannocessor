@@ -21,6 +21,7 @@ import org.jannocessor.proxy.JavaCodeModelProxy;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.Name;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaTypeKind;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -48,7 +49,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
 	private boolean getSimpleNameInitialized = false;
 
-	private boolean getCanonicalNameInitialized = false;
+	private boolean getPackageNameInitialized = false;
 
 	private boolean getDefaultValueInitialized = false;
 
@@ -82,16 +83,21 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
     }
 
 	@Override
-    public Name getCanonicalName() {
-        if (!getCanonicalNameInitialized) {
+    public Name getPackageName() {
+        if (!getPackageNameInitialized) {
 			if (adapter == null) {
 				throw new IllegalStateException("Invalid model copy!");
 			}
-            data.setCanonicalName(adapter.getCanonicalName());
-			getCanonicalNameInitialized = true;
+            data.setPackageName(adapter.getPackageName());
+			getPackageNameInitialized = true;
         }
 
-        return data.getCanonicalName();
+        return data.getPackageName();
+    }
+
+	@Override
+    public String getCanonicalName() {
+        return ModelUtils.getCanonicalName(this);
     }
 
 	@Override
@@ -137,6 +143,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.appendSuper(super.equals(other))
 				.append(this.getTypeClass(), other.getTypeClass())
 				.append(this.getSimpleName(), other.getSimpleName())
+				.append(this.getPackageName(), other.getPackageName())
 				.append(this.getCanonicalName(), other.getCanonicalName())
 				.append(this.getDefaultValue(), other.getDefaultValue())
 				.append(this.getKind(), other.getKind())
@@ -148,6 +155,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 		return new HashCodeBuilder()
 				.append(this.getTypeClass())
 				.append(this.getSimpleName())
+				.append(this.getPackageName())
 				.append(this.getCanonicalName())
 				.append(this.getDefaultValue())
 				.append(this.getKind())
@@ -167,6 +175,7 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         super.appendDescription(builder);
         builder.append("typeClass", ToStringUtil.describe(this.getTypeClass()));
         builder.append("simpleName", ToStringUtil.describe(this.getSimpleName()));
+        builder.append("packageName", ToStringUtil.describe(this.getPackageName()));
         builder.append("canonicalName", ToStringUtil.describe(this.getCanonicalName()));
         builder.append("defaultValue", ToStringUtil.describe(this.getDefaultValue()));
         builder.append("kind", ToStringUtil.describe(this.getKind()));

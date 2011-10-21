@@ -26,7 +26,7 @@ import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
 
-public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
+public class JavaExecutableTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaExecutableType {
 
 	private static final long serialVersionUID = 6878540706508272046L;

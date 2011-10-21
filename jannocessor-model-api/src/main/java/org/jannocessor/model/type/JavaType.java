@@ -16,6 +16,7 @@
 
 package org.jannocessor.model.type;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.Name;
@@ -29,6 +30,7 @@ public interface JavaType extends JavaCodeModel {
 
 	Name getPackageName();
 
+	@Calculated
 	String getCanonicalName();
 
 	Object getDefaultValue();

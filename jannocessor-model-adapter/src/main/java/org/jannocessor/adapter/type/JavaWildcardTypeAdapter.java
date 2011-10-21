@@ -23,7 +23,7 @@ import javax.lang.model.util.Types;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaWildcardType;
 
-public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
+public class JavaWildcardTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaWildcardType {
 
 	private static final long serialVersionUID = 6558226673234282372L;

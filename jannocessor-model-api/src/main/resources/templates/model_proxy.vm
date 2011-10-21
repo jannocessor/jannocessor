@@ -46,8 +46,10 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
     }
 
 #foreach ($m in $model.methods)
+#if($m.name != 'getParent' && $m.name != 'getChildren' && !$helper.isCalculated($m))
 	private boolean ${m.name}Initialized = false;
 
+#end
 #end
 
 #if($className == 'CodeNodeProxy')
@@ -73,7 +75,7 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 
 #end
 #foreach ($m in $model.methods)
-#if($m.name != 'getParent' && $m.name != 'getChildren')
+#if($m.name != 'getParent' && $m.name != 'getChildren' && !$helper.isCalculated($m))
 	@Override
     public #type($m.returnType) ${m.name}() {
         if (!${m.name}Initialized) {
@@ -89,6 +91,11 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
         }
 
         return data.${m.name}();
+    }
+#elseif($helper.isCalculated($m))
+	@Override
+    public #type($m.returnType) ${m.name}() {
+        return #type('org.jannocessor.model.util.ModelUtils').${m.name}(this);
     }
 #elseif($m.name == 'getChildren')
 	@Override

@@ -14,24 +14,8 @@
  * limitations under the License.
  */
 
-package org.jannocessor.bootstrapped.processor;
+package org.jannocessor.annotation;
 
-import java.util.Map;
+public @interface Calculated {
 
-import org.jannocessor.model.structure.AbstractJavaStructure;
-import org.jannocessor.processor.model.CodeProcessor;
-import org.jannocessor.processor.model.ProcessingContext;
-
-public class MirrorProcessor implements CodeProcessor {
-
-	@Override
-	public void process(ProcessingContext context, Map<String, Object> params) {
-		AbstractJavaStructure model = (AbstractJavaStructure) params
-				.get("model");
-
-		// context.getLogger().debug("Processing: {} ", model.getName());
-
-		System.out.println(model);
-		context.generateCode(model, true);
-	}
 }

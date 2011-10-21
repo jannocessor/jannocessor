@@ -37,4 +37,10 @@ public class ModelUtils {
 		return list;
 	}
 
+	public static String getCanonicalName(JavaType type) {
+		String prefix = (type.getPackageName() != null) ? type.getPackageName()
+				+ "." : "";
+		return prefix + type.getSimpleName();
+	}
+
 }

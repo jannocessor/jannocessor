@@ -24,7 +24,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaType;
 
-public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
+public class JavaDeclaredTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaDeclaredType {
 
 	private static final long serialVersionUID = -5338242663715964532L;
@@ -33,7 +33,6 @@ public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
 	public JavaDeclaredTypeAdapter(DeclaredType declaredType,
 			Elements elementUtils, Types typeUtils) {
 		super(declaredType, elementUtils, typeUtils);
-
 		this.declaredType = declaredType;
 
 	}

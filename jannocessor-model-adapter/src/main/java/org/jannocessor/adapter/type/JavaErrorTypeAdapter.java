@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaErrorType;
 
-public class JavaErrorTypeAdapter extends JavaTypeAdapter implements
+public class JavaErrorTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaErrorType {
 
 	private static final long serialVersionUID = 7102489934425669952L;

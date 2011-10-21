@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaNullType;
 
-public class JavaNullTypeAdapter extends JavaTypeAdapter implements
+public class JavaNullTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaNullType {
 
 	private static final long serialVersionUID = 3051787962005774833L;

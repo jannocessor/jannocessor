@@ -21,6 +21,7 @@ import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaTypeKind;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -40,7 +41,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 
     private Name simpleName;
 
-    private Name canonicalName;
+    private Name packageName;
 
     private Object defaultValue;
 
@@ -63,12 +64,16 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
         this.simpleName = value;
     }
 
-    public Name getCanonicalName() {
-        return this.canonicalName;
+    public Name getPackageName() {
+        return this.packageName;
     }
 
-    public void setCanonicalName(Name value) {
-        this.canonicalName = value;
+    public void setPackageName(Name value) {
+        this.packageName = value;
+    }
+
+    public String getCanonicalName() {
+        return ModelUtils.getCanonicalName(this);
     }
 
     public Object getDefaultValue() {
@@ -104,6 +109,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 				.appendSuper(super.equals(other))
 				.append(this.getTypeClass(), other.getTypeClass())
 				.append(this.getSimpleName(), other.getSimpleName())
+				.append(this.getPackageName(), other.getPackageName())
 				.append(this.getCanonicalName(), other.getCanonicalName())
 				.append(this.getDefaultValue(), other.getDefaultValue())
 				.append(this.getKind(), other.getKind())
@@ -115,6 +121,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
 		return new HashCodeBuilder()
 				.append(this.getTypeClass())
 				.append(this.getSimpleName())
+				.append(this.getPackageName())
 				.append(this.getCanonicalName())
 				.append(this.getDefaultValue())
 				.append(this.getKind())
@@ -134,6 +141,7 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
         super.appendDescription(builder);
         builder.append("typeClass", ToStringUtil.describe(this.getTypeClass()));
         builder.append("simpleName", ToStringUtil.describe(this.getSimpleName()));
+        builder.append("packageName", ToStringUtil.describe(this.getPackageName()));
         builder.append("canonicalName", ToStringUtil.describe(this.getCanonicalName()));
         builder.append("defaultValue", ToStringUtil.describe(this.getDefaultValue()));
         builder.append("kind", ToStringUtil.describe(this.getKind()));

@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaVoidType;
 
-public class JavaVoidTypeAdapter extends JavaTypeAdapter implements
+public class JavaVoidTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaVoidType {
 
 	private static final long serialVersionUID = 8556334335757463508L;

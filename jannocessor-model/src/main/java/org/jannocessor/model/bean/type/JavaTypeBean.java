@@ -22,7 +22,6 @@ import org.jannocessor.model.util.New;
 
 public class JavaTypeBean extends JavaTypeData implements JavaType {
 
-	
 	private static final long serialVersionUID = 2329697894900332732L;
 
 	@SuppressWarnings("unused")
@@ -35,8 +34,9 @@ public class JavaTypeBean extends JavaTypeData implements JavaType {
 		this.type = type;
 		this.typeParams = typeParams;
 		this.setCode(New.code(JavaType.class));
-		this.setSimpleName(New.readonlyName(type.getSimpleName()));
-		this.setCanonicalName(New.readonlyName(type.getCanonicalName()));
+		this.setSimpleName(New.name(type.getSimpleName()));
+		this.setPackageName(type.getPackage() != null ? New.name(type
+				.getPackage().getName()) : null);
 		this.setTypeClass(type);
 		this.setKind(New.typeKind(type));
 	}

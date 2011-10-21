@@ -40,7 +40,7 @@ public class TypeUtils {
 
 	public String useType(Object type) {
 		if (type instanceof JavaType) {
-			return getTypeUsage(((JavaType) type).getCanonicalName().getText());
+			return getTypeUsage(((JavaType) type).getCanonicalName());
 		} else if (type instanceof Name) {
 			return getTypeUsage(((Name) type).getText());
 		} else {

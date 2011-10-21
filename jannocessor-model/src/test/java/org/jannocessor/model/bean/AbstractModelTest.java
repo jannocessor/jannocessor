@@ -99,7 +99,7 @@ public abstract class AbstractModelTest {
 
 		checkElementName(element, name);
 		assertEquals(type.getCanonicalName(), element.getType()
-				.getCanonicalName().getText());
+				.getCanonicalName());
 	}
 
 	protected void checkElement(JavaElement element, JavaElement parent,

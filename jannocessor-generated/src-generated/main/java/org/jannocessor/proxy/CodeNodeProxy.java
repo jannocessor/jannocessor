@@ -42,10 +42,6 @@ public class CodeNodeProxy implements CodeNode, ParentedElement {
         this.data = data;
     }
 
-	private boolean getParentInitialized = false;
-
-	private boolean getChildrenInitialized = false;
-
 
 
 	private CodeNode parent;

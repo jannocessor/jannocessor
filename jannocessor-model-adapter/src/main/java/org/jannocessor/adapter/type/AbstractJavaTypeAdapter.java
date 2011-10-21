@@ -23,32 +23,46 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaCodeModelAdapter;
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
+import org.jannocessor.model.util.New;
 
-public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
-		JavaType {
+public abstract class AbstractJavaTypeAdapter extends JavaCodeModelAdapter
+		implements JavaType {
 
 	private static final long serialVersionUID = 3107540909724234443L;
 	private final TypeMirror typeMirror;
 
-	public JavaTypeAdapter(TypeMirror typeMirror, Elements elementUtils,
-			Types typeUtils) {
+	public AbstractJavaTypeAdapter(TypeMirror typeMirror,
+			Elements elementUtils, Types typeUtils) {
 		super(elementUtils, typeUtils);
 
 		this.typeMirror = typeMirror;
 	}
 
 	@Override
-	public Name getCanonicalName() {
-		return getNameAdapter(typeMirror.toString());
+	public String getCanonicalName() {
+		return typeMirror.toString();
 	}
 
 	@Override
 	public Name getSimpleName() {
 		String simpleName = extractGenericType().replaceFirst(".+\\.", "");
-		return getNameAdapter(simpleName);
+		return New.name(simpleName);
+	}
+
+	@Override
+	public Name getPackageName() {
+		String generic = extractGenericType();
+		if (generic.contains(".")) {
+			return New.name(generic.replaceFirst("\\.[^\\.]+$", ""));
+		} else {
+			return null;
+		}
 	}
 
 	private String extractGenericType() {
@@ -57,7 +71,7 @@ public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 
 	@Override
 	public String toString() {
-		return getCanonicalName().getText();
+		return getCanonicalName();
 	}
 
 	protected DeclaredType getDeclaredType() {
@@ -102,6 +116,16 @@ public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 	@Override
 	protected Class<? extends JavaType> getAdaptedInterface() {
 		return JavaType.class;
+	}
+
+	@Override
+	public CodeNode getParent() {
+		return null;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return Power.emptyList();
 	}
 
 }

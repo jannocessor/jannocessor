@@ -27,11 +27,14 @@ public class $className extends #if($extends)#type(${extends})#{else}AbstractDat
 	private static final long serialVersionUID = 1L;
 
 #foreach ($m in $model.methods)
+#if(!$helper.isCalculated($m))
     private #type($m.returnType) ${helper.fieldName($m)};
 
 #end
+#end
 
 #foreach ($m in $model.methods)
+#if(!$helper.isCalculated($m))
     public #type($m.returnType) ${m.name}() {
         return this.${helper.fieldName($m)};
     }
@@ -40,6 +43,12 @@ public class $className extends #if($extends)#type(${extends})#{else}AbstractDat
         this.${helper.fieldName($m)} = value;
     }
 
+#else
+    public #type($m.returnType) ${m.name}() {
+        return #type('org.jannocessor.model.util.ModelUtils').${m.name}(this);
+    }
+
+#end
 #end
 	@Override
 	public boolean equals(Object obj) {

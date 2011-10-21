@@ -9,8 +9,8 @@
 #macro(type $java_type)$types.useType($java_type)#end
 
 #macro(code $x $default)
-#if($x.code)
-$x.code#elseif($x.template)
+#if($x.hardcoded)
+$x.hardcoded#elseif($x.template)
 #evaluate($x.template)
 #elseif($x.templateName)
 #parse("#locate($x.templateName)")

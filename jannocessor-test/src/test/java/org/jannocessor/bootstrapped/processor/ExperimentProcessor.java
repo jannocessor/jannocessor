@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.annotation.Generated;
 
 import org.jannocessor.collection.Power;
+import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaClass;
@@ -42,19 +43,22 @@ public class ExperimentProcessor implements CodeProcessor {
 	public void process(ProcessingContext context, Map<String, Object> params) {
 		JavaClass model = (JavaClass) params.get("model");
 
-
 		context.getLogger().debug("Processing: {} ", model.getName());
 
 		model.getName().appendPart("Gen");
+
 		if (model.getSuperclass() != null) {
-			model.getSuperclass().getSimpleName().appendPart("Gen");
+			Name parentName = model.getSuperclass().getSimpleName();
+			if (parentName.getText().equals("AbstractModel")) {
+				parentName.appendPart("Gen");
+			}
 		}
 
 		JavaMetadata meta1 = New.metadata(Generated.class, "Jannocessor Test");
 		model.getMetadata().add(meta1);
 
 		JavaMethod method1 = New.method(Methods.PUBLIC, String.class, "cool");
-		method1.getBody().setCode("return \"COOL!\";");
+		method1.getBody().setHardcoded("return \"COOL!\";");
 		model.getMethods().add(method1);
 
 		model.getInstanceInits().add(New.instanceInit(New.body("// init")));
@@ -89,6 +93,21 @@ public class ExperimentProcessor implements CodeProcessor {
 				"xa"));
 		model.getConstructors().add(constr2);
 
+		JavaClass model2 = New.copy(model);
+		model2.getName().appendPart("Copy");
+
+		if (model.getSuperclass() != null) {
+			System.out.println("===" + model.getSuperclass().hashCode());
+		}
+
+		// System.out.println("--------------------------- 1");
+		// System.out.println(model);
+		// System.out.println("--------------------------- 2");
+		// System.out.println(model2);
+		// System.out.println("--------------------------- 3");
+
 		context.generateCode(model, true);
+		// context.generateCode(model2, true);
 	}
+
 }

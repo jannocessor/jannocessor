@@ -22,7 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaPrimitiveType;
 
-public class JavaPrimitiveTypeAdapter extends JavaTypeAdapter implements
+public class JavaPrimitiveTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaPrimitiveType {
 
 	private static final long serialVersionUID = -6097262015623615699L;
