@@ -33,6 +33,10 @@
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-logic</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
