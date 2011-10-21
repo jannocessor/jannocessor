@@ -36,17 +36,25 @@ public class ParentedListOperationListener<E> implements
 
 	@Override
 	public void itemAdded(CollectionOperationEvent<E> event) {
-		if (event.getElement() instanceof ParentedElement) {
-			ParentedElement element = (ParentedElement) event.getElement();
+		E item = event.getElement();
+		if (item instanceof ParentedElement) {
+			ParentedElement element = (ParentedElement) item;
 			element.setParent(parent);
+		} else {
+			throw new IllegalArgumentException("Could not set the parent of "
+					+ item.getClass().getSimpleName() + " instance: " + item);
 		}
 	}
 
 	@Override
 	public void itemRemoved(CollectionOperationEvent<E> event) {
-		if (event.getElement() instanceof ParentedElement) {
-			ParentedElement element = (ParentedElement) event.getElement();
-			element.setParent(null);
+		E item = event.getElement();
+		if (item instanceof ParentedElement) {
+			ParentedElement element = (ParentedElement) item;
+			element.setParent(parent);
+		} else {
+			throw new IllegalArgumentException("Could not set the parent of "
+					+ item.getClass().getSimpleName() + " instance: " + item);
 		}
 	}
 
