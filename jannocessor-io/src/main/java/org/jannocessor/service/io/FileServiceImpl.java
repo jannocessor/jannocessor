@@ -20,8 +20,6 @@ import java.io.File;
 import java.net.URI;
 
 import org.apache.commons.io.FileUtils;
-import org.drools.io.ResourceFactory;
-import org.drools.io.impl.ClassPathResource;
 import org.jannocessor.service.api.FileService;
 
 public class FileServiceImpl implements FileService {
@@ -29,9 +27,7 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public String readClasspathFile(String filename) {
 		try {
-			ClassPathResource resource = (ClassPathResource) ResourceFactory
-					.newClassPathResource(filename);
-			URI uri = resource.getURL().toURI();
+			URI uri = getClass().getClassLoader().getResource(filename).toURI();
 			return FileUtils.readFileToString(new File(uri));
 		} catch (Exception e) {
 			throw new RuntimeException("Cannot read file: " + filename);

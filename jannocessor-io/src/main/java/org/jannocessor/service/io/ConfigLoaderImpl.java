@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import org.drools.io.ResourceFactory;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.ConfigLoader;
 import org.jannocessor.util.Settings;
@@ -58,7 +57,7 @@ public class ConfigLoaderImpl implements ConfigLoader, Settings {
 	}
 
 	private InputStream read(String filename) throws IOException {
-		return ResourceFactory.newClassPathResource(filename).getInputStream();
+		return getClass().getClassLoader().getResourceAsStream(filename);
 	}
 
 }
