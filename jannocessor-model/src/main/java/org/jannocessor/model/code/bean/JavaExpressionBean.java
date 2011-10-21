@@ -16,29 +16,15 @@
 
 package org.jannocessor.model.code.bean;
 
-import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.ParentedElement;
 import org.jannocessor.model.code.JavaExpression;
 
 public class JavaExpressionBean extends SourceCodeBean implements
-		JavaExpression, ParentedElement {
+		JavaExpression {
 
 	private static final long serialVersionUID = -8259906961609526297L;
 
-	private JavaElement parent;
-
 	public JavaExpressionBean(String code, String template, String templateName) {
 		super(code, template, templateName);
-	}
-
-	@Override
-	public void setParent(JavaElement parent) {
-		this.parent = parent;
-	}
-
-	@Override
-	public JavaElement getParent() {
-		return this.parent;
 	}
 
 }

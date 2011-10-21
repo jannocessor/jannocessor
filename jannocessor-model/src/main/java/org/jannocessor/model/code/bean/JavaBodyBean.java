@@ -16,29 +16,14 @@
 
 package org.jannocessor.model.code.bean;
 
-import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.ParentedElement;
 import org.jannocessor.model.code.JavaBody;
 
-public class JavaBodyBean extends SourceCodeBean implements JavaBody,
-		ParentedElement {
+public class JavaBodyBean extends SourceCodeBean implements JavaBody {
 
 	private static final long serialVersionUID = 1183565189174274163L;
 
-	private JavaElement parent;
-
 	public JavaBodyBean(String code, String template, String templateName) {
 		super(code, template, templateName);
-	}
-
-	@Override
-	public void setParent(JavaElement parent) {
-		this.parent = parent;
-	}
-
-	@Override
-	public JavaElement getParent() {
-		return this.parent;
 	}
 
 }

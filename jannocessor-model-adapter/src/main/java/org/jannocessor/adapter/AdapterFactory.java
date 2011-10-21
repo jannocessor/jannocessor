@@ -16,17 +16,14 @@
 
 package org.jannocessor.adapter;
 
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.TypeParameterElement;
-import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.ArrayType;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.ErrorType;
@@ -74,6 +71,7 @@ import org.jannocessor.data.JavaArrayTypeData;
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.data.JavaConstructorData;
 import org.jannocessor.data.JavaDeclaredTypeData;
+import org.jannocessor.data.JavaElementData;
 import org.jannocessor.data.JavaEnumConstantData;
 import org.jannocessor.data.JavaEnumData;
 import org.jannocessor.data.JavaErrorTypeData;
@@ -108,6 +106,7 @@ import org.jannocessor.proxy.JavaArrayTypeProxy;
 import org.jannocessor.proxy.JavaClassProxy;
 import org.jannocessor.proxy.JavaConstructorProxy;
 import org.jannocessor.proxy.JavaDeclaredTypeProxy;
+import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.proxy.JavaEnumConstantProxy;
 import org.jannocessor.proxy.JavaEnumProxy;
 import org.jannocessor.proxy.JavaErrorTypeProxy;
@@ -140,7 +139,7 @@ public class AdapterFactory {
 	protected static final Logger logger = LoggerFactory
 			.getLogger(AdapterFactory.class);
 
-	private static Map<Element, JavaElement> ELEMENT_ADAPTERS = new HashMap<Element, JavaElement>();
+	private static Map<Element, JavaElementAdapter> ELEMENT_ADAPTERS = new HashMap<Element, JavaElementAdapter>();
 	private static Map<TypeMirror, JavaType> TYPE_ADAPTERS = new HashMap<TypeMirror, JavaType>();
 	private static Map<AnnotationMirror, JavaMetadata> METADATA_ADAPTERS = new HashMap<AnnotationMirror, JavaMetadata>();
 
@@ -150,11 +149,9 @@ public class AdapterFactory {
 
 		if (element != null) {
 
-			JavaElement model = ELEMENT_ADAPTERS.get(element);
-			if (model != null) {
-				// it was in the cache already
-				return (T) model;
-			}
+			Class<? extends JavaElementAdapter> adapterClass;
+			Class<? extends JavaElementProxy> proxyClass;
+			Class<? extends JavaElementData> dataClass;
 
 			TypeElement typeElement;
 
@@ -164,140 +161,135 @@ public class AdapterFactory {
 			/* Package and types */
 
 			case PACKAGE:
-				model = new JavaPackageProxy(new JavaPackageAdapter(
-						(PackageElement) element, elementUtils, typeUtils),
-						new JavaPackageData());
+				adapterClass = JavaPackageAdapter.class;
+				proxyClass = JavaPackageProxy.class;
+				dataClass = JavaPackageData.class;
 				break;
 
 			case ENUM:
 				typeElement = (TypeElement) element;
 				if (typeElement.getNestingKind().isNested()) {
-					model = new JavaNestedEnumProxy(new JavaNestedEnumAdapter(
-							typeElement, elementUtils, typeUtils),
-							new JavaNestedEnumData());
+					adapterClass = JavaNestedEnumAdapter.class;
+					proxyClass = JavaNestedEnumProxy.class;
+					dataClass = JavaNestedEnumData.class;
 				} else {
-					model = new JavaEnumProxy(new JavaEnumAdapter(typeElement,
-							elementUtils, typeUtils), new JavaEnumData());
+					adapterClass = JavaEnumAdapter.class;
+					proxyClass = JavaEnumProxy.class;
+					dataClass = JavaEnumData.class;
 				}
 				break;
 
 			case CLASS:
 				typeElement = (TypeElement) element;
 				if (typeElement.getNestingKind().isNested()) {
-					model = new JavaNestedClassProxy(
-							new JavaNestedClassAdapter(typeElement,
-									elementUtils, typeUtils),
-							new JavaNestedClassData());
+					adapterClass = JavaNestedClassAdapter.class;
+					proxyClass = JavaNestedClassProxy.class;
+					dataClass = JavaNestedClassData.class;
 				} else {
-					model = new JavaClassProxy(new JavaClassAdapter(
-							typeElement, elementUtils, typeUtils),
-							new JavaClassData());
+					adapterClass = JavaClassAdapter.class;
+					proxyClass = JavaClassProxy.class;
+					dataClass = JavaClassData.class;
 				}
 				break;
 
 			case ANNOTATION_TYPE:
 				typeElement = (TypeElement) element;
 				if (typeElement.getNestingKind().isNested()) {
-					model = new JavaNestedAnnotationProxy(
-							new JavaNestedAnnotationAdapter(typeElement,
-									elementUtils, typeUtils),
-							new JavaNestedAnnotationData());
+					adapterClass = JavaNestedAnnotationAdapter.class;
+					proxyClass = JavaNestedAnnotationProxy.class;
+					dataClass = JavaNestedAnnotationData.class;
 				} else {
-					model = new JavaAnnotationProxy(new JavaAnnotationAdapter(
-							typeElement, elementUtils, typeUtils),
-							new JavaAnnotationData());
+					adapterClass = JavaAnnotationAdapter.class;
+					proxyClass = JavaAnnotationProxy.class;
+					dataClass = JavaAnnotationData.class;
 				}
 				break;
 
 			case INTERFACE:
 				typeElement = (TypeElement) element;
 				if (typeElement.getNestingKind().isNested()) {
-					model = new JavaNestedInterfaceProxy(
-							new JavaNestedInterfaceAdapter(typeElement,
-									elementUtils, typeUtils),
-							new JavaNestedInterfaceData());
+					adapterClass = JavaNestedInterfaceAdapter.class;
+					proxyClass = JavaNestedInterfaceProxy.class;
+					dataClass = JavaNestedInterfaceData.class;
 				} else {
-					model = new JavaInterfaceProxy(new JavaInterfaceAdapter(
-							typeElement, elementUtils, typeUtils),
-							new JavaInterfaceData());
+					adapterClass = JavaInterfaceAdapter.class;
+					proxyClass = JavaInterfaceProxy.class;
+					dataClass = JavaInterfaceData.class;
 				}
 				break;
 
 			case TYPE_PARAMETER:
-				model = new JavaTypeParameterProxy(
-						new JavaTypeParameterAdapter(
-								(TypeParameterElement) element, elementUtils,
-								typeUtils), new JavaTypeParameterData());
+				adapterClass = JavaTypeParameterAdapter.class;
+				proxyClass = JavaTypeParameterProxy.class;
+				dataClass = JavaTypeParameterData.class;
 				break;
 
 			/* Variables */
 
 			case ENUM_CONSTANT:
-				model = new JavaEnumConstantProxy(new JavaEnumConstantAdapter(
-						(VariableElement) element, elementUtils, typeUtils),
-						new JavaEnumConstantData());
+				adapterClass = JavaEnumConstantAdapter.class;
+				proxyClass = JavaEnumConstantProxy.class;
+				dataClass = JavaEnumConstantData.class;
 				break;
 
 			case FIELD:
-				model = new JavaFieldProxy(new JavaFieldAdapter(
-						(VariableElement) element, elementUtils, typeUtils),
-						new JavaFieldData());
+				adapterClass = JavaFieldAdapter.class;
+				proxyClass = JavaFieldProxy.class;
+				dataClass = JavaFieldData.class;
 				break;
 
 			case PARAMETER:
-				model = new JavaParameterProxy(new JavaParameterAdapter(
-						(VariableElement) element, elementUtils, typeUtils),
-						new JavaParameterData());
+				adapterClass = JavaParameterAdapter.class;
+				proxyClass = JavaParameterProxy.class;
+				dataClass = JavaParameterData.class;
 				break;
 
 			case LOCAL_VARIABLE:
-				model = new JavaLocalVariableProxy(
-						new JavaLocalVariableAdapter((VariableElement) element,
-								elementUtils, typeUtils),
-						new JavaLocalVariableData());
+				adapterClass = JavaLocalVariableAdapter.class;
+				proxyClass = JavaLocalVariableProxy.class;
+				dataClass = JavaLocalVariableData.class;
 				break;
 
 			case EXCEPTION_PARAMETER:
-				model = new JavaExceptionParameterProxy(
-						new JavaExceptionParameterAdapter(
-								(VariableElement) element, elementUtils,
-								typeUtils), new JavaExceptionParameterData());
+				adapterClass = JavaExceptionParameterAdapter.class;
+				proxyClass = JavaExceptionParameterProxy.class;
+				dataClass = JavaExceptionParameterData.class;
 				break;
 
 			/* Executables */
 
 			case METHOD:
-				model = new JavaMethodProxy(new JavaMethodAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaMethodData());
+				adapterClass = JavaMethodAdapter.class;
+				proxyClass = JavaMethodProxy.class;
+				dataClass = JavaMethodData.class;
 				break;
 
 			case CONSTRUCTOR:
-				model = new JavaConstructorProxy(new JavaConstructorAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaConstructorData());
+				adapterClass = JavaConstructorAdapter.class;
+				proxyClass = JavaConstructorProxy.class;
+				dataClass = JavaConstructorData.class;
 				break;
 
 			case STATIC_INIT:
-				model = new JavaStaticInitProxy(new JavaStaticInitAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaStaticInitData());
+				adapterClass = JavaStaticInitAdapter.class;
+				proxyClass = JavaStaticInitProxy.class;
+				dataClass = JavaStaticInitData.class;
 				break;
 
 			case INSTANCE_INIT:
-				model = new JavaInstanceInitProxy(new JavaInstanceInitAdapter(
-						(ExecutableElement) element, elementUtils, typeUtils),
-						new JavaInstanceInitData());
+				adapterClass = JavaInstanceInitAdapter.class;
+				proxyClass = JavaInstanceInitProxy.class;
+				dataClass = JavaInstanceInitData.class;
 				break;
 
 			default:
 				throw new IllegalStateException("Unexpected element kind!");
 			}
 
-			if (clazz.isAssignableFrom(model.getClass())) {
-				// put it to cache
-				ELEMENT_ADAPTERS.put(element, model);
+			JavaElement model = getElementAdapter(element, adapterClass,
+					proxyClass, dataClass, elementUtils, typeUtils);
 
+			if (clazz.isAssignableFrom(model.getClass())) {
 				return (T) model;
 			} else {
 				String msg = "Wrong element type: %s is not assignable to %s!";
@@ -306,6 +298,39 @@ public class AdapterFactory {
 			}
 		} else {
 			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private static <T extends JavaElement> T getElementAdapter(Element element,
+			Class<? extends JavaElementAdapter> adapterClass,
+			Class<? extends JavaElementProxy> proxyClass,
+			Class<? extends JavaElementData> dataClass, Elements elementUtils,
+			Types typeUtils) {
+
+		try {
+			JavaElementAdapter adapter = (JavaElementAdapter) ELEMENT_ADAPTERS
+					.get(element);
+
+			if (adapter == null) {
+				Constructor<?> constructor = adapterClass.getConstructors()[0];
+				if (constructor != null) {
+					adapter = (JavaElementAdapter) constructor.newInstance(
+							element, elementUtils, typeUtils);
+					ELEMENT_ADAPTERS.put(element, adapter);
+				} else {
+					throw new RuntimeException(
+							"Cannot find adapter constructor!");
+				}
+			}
+
+			JavaElementData data = dataClass.newInstance();
+			T proxy = (T) proxyClass.getConstructors()[0].newInstance(adapter,
+					data);
+
+			return proxy;
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot create element adapter!", e);
 		}
 	}
 

@@ -42,9 +42,6 @@ public abstract class JavaCodeModelAdapter extends AbstractAdapter implements
 		return New.code();
 	}
 
-	@Override
-	protected Class<? extends JavaCodeModel> getAdaptedInterface() {
-		return JavaCodeModel.class;
-	}
+	protected abstract Class<? extends JavaCodeModel> getAdaptedInterface();
 
 }

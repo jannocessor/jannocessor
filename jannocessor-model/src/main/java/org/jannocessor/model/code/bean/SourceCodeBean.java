@@ -19,31 +19,37 @@ package org.jannocessor.model.code.bean;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
+import org.jannocessor.model.ParentedElement;
 import org.jannocessor.model.code.SourceCode;
 import org.jannocessor.util.TypeSpecificInlineStyle;
 
-public class SourceCodeBean implements SourceCode {
+public class SourceCodeBean implements SourceCode, ParentedElement {
 
 	private static final long serialVersionUID = -387902157887092393L;
 
-	private String code;
+	private String hardcoded;
 	private String template;
 	private String templateName;
 
+	private CodeNode parent;
+
 	public SourceCodeBean(String code, String template, String templateName) {
-		this.code = code;
+		this.hardcoded = code;
 		this.template = template;
 		this.templateName = templateName;
 	}
 
 	@Override
-	public String getCode() {
-		return code;
+	public String getHardcoded() {
+		return hardcoded;
 	}
 
 	@Override
-	public void setCode(String code) {
-		this.code = code;
+	public void setHardcoded(String hardcoded) {
+		this.hardcoded = hardcoded;
 	}
 
 	@Override
@@ -78,14 +84,14 @@ public class SourceCodeBean implements SourceCode {
 			return false;
 		}
 		SourceCode other = (SourceCode) obj;
-		return new EqualsBuilder().append(code, other.getCode())
+		return new EqualsBuilder().append(hardcoded, other.getHardcoded())
 				.append(template, other.getTemplate())
 				.append(templateName, other.getTemplateName()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(code).append(template)
+		return new HashCodeBuilder().append(hardcoded).append(template)
 				.append(templateName).toHashCode();
 	}
 
@@ -98,15 +104,30 @@ public class SourceCodeBean implements SourceCode {
 
 	@Override
 	public void assign(SourceCode sourceCode) {
-		setCode(sourceCode.getCode());
+		setHardcoded(sourceCode.getHardcoded());
 		setTemplate(sourceCode.getTemplate());
 		setTemplateName(sourceCode.getTemplateName());
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return getCode() == null && getTemplate() == null
+		return getHardcoded() == null && getTemplate() == null
 				&& getTemplateName() == null;
+	}
+
+	@Override
+	public CodeNode getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return Power.emptyList();
+	}
+
+	@Override
+	public void setParent(CodeNode parent) {
+		this.parent = parent;
 	}
 
 }

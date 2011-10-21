@@ -31,6 +31,7 @@ import javax.lang.model.util.Types;
 import org.apache.commons.lang.ArrayUtils;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.Name;
@@ -70,8 +71,8 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 	}
 
 	@Override
-	public PowerList<JavaElement> getChildren() {
-		PowerList<JavaElement> children = Power.list();
+	public PowerList<CodeNode> getChildren() {
+		PowerList<CodeNode> children = Power.list();
 
 		for (Element enclosedElement : getEnclosedElements(element)) {
 			children.add(getElementAdapter(enclosedElement, JavaElement.class));
@@ -99,7 +100,7 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 	protected <T> PowerList<T> findChildrenByType(Class<T> clazz) {
 		PowerList<T> results = Power.list();
 
-		for (JavaElement child : getChildren()) {
+		for (CodeNode child : getChildren()) {
 			if (clazz.isAssignableFrom(child.getClass())) {
 				results.add((T) child);
 			}

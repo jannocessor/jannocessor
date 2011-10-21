@@ -32,9 +32,7 @@ import org.jannocessor.adapter.JavaCodeModelAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.api.PowerMap;
-import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.JavaElementKind;
-import org.jannocessor.model.Name;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaEnumConstant;
@@ -113,33 +111,13 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 	}
 
 	@Override
-	public JavaElement getParent() {
-		// TODO Auto-generated method stub
+	public CodeNode getParent() {
 		return null;
 	}
 
 	@Override
-	public PowerList<JavaElement> getChildren() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Name getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public JavaType getType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public JavaElementKind getKind() {
-		// TODO Auto-generated method stub
-		return null;
+	public PowerList<CodeNode> getChildren() {
+		return Power.emptyList();
 	}
 
 	@Override
