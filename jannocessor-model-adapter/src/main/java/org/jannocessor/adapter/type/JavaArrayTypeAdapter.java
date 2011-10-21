@@ -27,9 +27,7 @@ import org.jannocessor.model.util.New;
 public class JavaArrayTypeAdapter extends JavaTypeAdapter implements
 		JavaArrayType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -8431107976792077987L;
 	private final ArrayType arrayType;
 

@@ -31,9 +31,7 @@ import org.jannocessor.model.variable.JavaField;
 abstract class AbstractJavaEnumAdapter extends AbstractJavaStructureAdapter
 		implements AbstractJavaEnum {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -95951993222943561L;
 	@SuppressWarnings("unused")
 	private final TypeElement tenum;

@@ -27,9 +27,7 @@ import org.jannocessor.model.util.New;
 public class JavaTypeVariableAdapter extends JavaTypeAdapter implements
 		JavaTypeVariable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -6393738928505508309L;
 	private final TypeVariable typeVariable;
 

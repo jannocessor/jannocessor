@@ -29,9 +29,7 @@ import org.jannocessor.model.util.New;
 public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 		JavaClass {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1860883523822681244L;
 	@SuppressWarnings("unused")
 	private final TypeElement tclass;

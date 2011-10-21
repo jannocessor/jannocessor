@@ -26,9 +26,7 @@ import org.jannocessor.model.util.New;
 public class JavaVoidTypeAdapter extends JavaTypeAdapter implements
 		JavaVoidType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 8556334335757463508L;
 	@SuppressWarnings("unused")
 	private final NoType noType;

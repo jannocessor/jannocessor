@@ -29,9 +29,7 @@ import org.jannocessor.model.util.New;
 public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 		implements JavaInterface {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2461593767762457193L;
 	@SuppressWarnings("unused")
 	private final TypeElement tinterface;

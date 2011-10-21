@@ -29,9 +29,7 @@ import org.jannocessor.model.util.New;
 public final class JavaNestedAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		implements JavaNestedAnnotation {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2448738435842709024L;
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;

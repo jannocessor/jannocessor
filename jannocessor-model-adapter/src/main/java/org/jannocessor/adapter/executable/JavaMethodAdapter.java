@@ -34,9 +34,7 @@ import org.jannocessor.model.util.New;
 public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 		implements JavaMethod {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2502354526306569829L;
 	private final ExecutableElement method;
 

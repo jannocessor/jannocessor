@@ -32,6 +32,9 @@ import org.jannocessor.adapter.JavaCodeModelAdapter;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.api.PowerMap;
+import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.JavaElementKind;
+import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
@@ -40,10 +43,8 @@ import org.jannocessor.model.variable.JavaEnumConstant;
 public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 		JavaMetadata {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7187042825188441175L;
+
 	private final AnnotationMirror annotationMirror;
 
 	public JavaMetadataAdapter(AnnotationMirror annotationMirror,
@@ -110,6 +111,36 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 		}
 
 		return value;
+	}
+
+	@Override
+	public JavaElement getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PowerList<JavaElement> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Name getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JavaType getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JavaElementKind getKind() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

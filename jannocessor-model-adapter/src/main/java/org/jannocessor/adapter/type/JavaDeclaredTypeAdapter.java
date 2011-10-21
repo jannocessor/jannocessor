@@ -28,9 +28,7 @@ import org.jannocessor.model.util.New;
 public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
 		JavaDeclaredType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5338242663715964532L;
 	private final DeclaredType declaredType;
 

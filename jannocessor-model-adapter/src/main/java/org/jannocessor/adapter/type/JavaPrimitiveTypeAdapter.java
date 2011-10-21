@@ -26,9 +26,7 @@ import org.jannocessor.model.util.New;
 public class JavaPrimitiveTypeAdapter extends JavaTypeAdapter implements
 		JavaPrimitiveType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -6097262015623615699L;
 	@SuppressWarnings("unused")
 	private final PrimitiveType primitiveType;

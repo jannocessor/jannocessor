@@ -27,9 +27,7 @@ import org.jannocessor.model.util.New;
 public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 		implements JavaStaticInit {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -6819739210362612616L;
 	@SuppressWarnings("unused")
 	private final ExecutableElement staticInit;

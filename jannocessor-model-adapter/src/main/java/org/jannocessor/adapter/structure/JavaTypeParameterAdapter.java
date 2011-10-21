@@ -33,9 +33,7 @@ import org.jannocessor.model.util.New;
 public final class JavaTypeParameterAdapter extends JavaElementAdapter
 		implements JavaTypeParameter {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2154181045998797757L;
 
 	private static final Criteria<JavaType> DEFAULT_BOUND;

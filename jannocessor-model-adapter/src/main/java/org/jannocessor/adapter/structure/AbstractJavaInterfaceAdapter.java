@@ -29,9 +29,7 @@ import org.jannocessor.model.variable.JavaField;
 abstract class AbstractJavaInterfaceAdapter extends
 		AbstractJavaStructureAdapter implements AbstractJavaInterface {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -3728020235818316455L;
 	private final TypeElement tinterface;
 

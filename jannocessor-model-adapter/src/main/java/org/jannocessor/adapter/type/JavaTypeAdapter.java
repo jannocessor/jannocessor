@@ -31,9 +31,7 @@ import org.jannocessor.model.util.New;
 public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 		JavaType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 3107540909724234443L;
 	private final TypeMirror typeMirror;
 

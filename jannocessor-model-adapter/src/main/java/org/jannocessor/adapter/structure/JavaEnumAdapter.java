@@ -37,9 +37,7 @@ import org.jannocessor.model.variable.JavaParameter;
 public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 		JavaEnum {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7553112665612022952L;
 
 	private static final Criteria<JavaMethod> IMPLICIT_METHODS;

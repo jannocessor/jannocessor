@@ -29,9 +29,7 @@ import org.jannocessor.model.util.New;
 public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 		implements JavaNestedClass {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2252889290671782943L;
 	@SuppressWarnings("unused")
 	private final TypeElement tclass;

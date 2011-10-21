@@ -26,9 +26,7 @@ import org.jannocessor.model.variable.JavaExceptionParameter;
 public final class JavaExceptionParameterAdapter extends
 		AbstractJavaVariableAdapter implements JavaExceptionParameter {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4815832690663017141L;
 	@SuppressWarnings("unused")
 	private final VariableElement exceptionParameter;

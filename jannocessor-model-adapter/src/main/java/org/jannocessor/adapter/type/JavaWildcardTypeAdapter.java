@@ -27,9 +27,7 @@ import org.jannocessor.model.util.New;
 public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
 		JavaWildcardType {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6558226673234282372L;
 	private final WildcardType wildcardType;
 
