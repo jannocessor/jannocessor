@@ -22,12 +22,10 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaInstanceInit;
-import org.jannocessor.model.util.New;
 
 public final class JavaInstanceInitAdapter extends
 		AbstractJavaExecutableAdapter implements JavaInstanceInit {
 
-	
 	private static final long serialVersionUID = -3096070487238690601L;
 	@SuppressWarnings("unused")
 	private final ExecutableElement instanceInit;
@@ -35,13 +33,18 @@ public final class JavaInstanceInitAdapter extends
 	public JavaInstanceInitAdapter(ExecutableElement instanceInit,
 			Elements elementUtils, Types typeUtils) {
 		super(instanceInit, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaInstanceInit.class));
+
 		this.instanceInit = instanceInit;
 	}
 
 	@Override
 	public Name getName() {
 		return null;
+	}
+
+	@Override
+	protected Class<? extends JavaInstanceInit> getAdaptedInterface() {
+		return JavaInstanceInit.class;
 	}
 
 }

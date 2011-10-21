@@ -34,12 +34,17 @@ public abstract class JavaCodeModelAdapter extends AbstractAdapter implements
 
 	@Override
 	public SourceCode getCode() {
-		return New.code();
+		return New.code(getAdaptedInterface());
 	}
 
 	@Override
 	public SourceCode getExtraCode() {
 		return New.code();
+	}
+
+	@Override
+	protected Class<? extends JavaCodeModel> getAdaptedInterface() {
+		return JavaCodeModel.class;
 	}
 
 }

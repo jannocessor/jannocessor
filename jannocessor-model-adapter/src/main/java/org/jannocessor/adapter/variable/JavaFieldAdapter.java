@@ -29,13 +29,11 @@ import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
 
 public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 		implements JavaField {
 
-	
 	private static final long serialVersionUID = 197580621670549990L;
 
 	private final VariableElement field;
@@ -45,7 +43,7 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
 			Types typeUtils) {
 		super(field, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaField.class));
+
 		this.field = field;
 		this.value = getConstantExpression();
 	}
@@ -72,6 +70,11 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public PowerList<JavaMetadata> getMetadata() {
 		return getAnnotatedMetadata();
+	}
+
+	@Override
+	protected Class<? extends JavaField> getAdaptedInterface() {
+		return JavaField.class;
 	}
 
 }

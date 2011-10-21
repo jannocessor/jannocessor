@@ -37,7 +37,6 @@ import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
 public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
@@ -51,7 +50,7 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 			Elements elementUtils, Types typeUtils) {
 		super(elementUtils, typeUtils);
 		this.annotationMirror = annotationMirror;
-		this.getCode().assign(New.code(JavaMetadata.class));
+
 	}
 
 	@Override
@@ -141,6 +140,11 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 	public JavaElementKind getKind() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	protected Class<? extends JavaMetadata> getAdaptedInterface() {
+		return JavaMetadata.class;
 	}
 
 }

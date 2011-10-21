@@ -24,12 +24,10 @@ import org.jannocessor.model.bean.modifier.NestedEnumModifiersBean;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
 import org.jannocessor.model.structure.JavaNestedEnum;
-import org.jannocessor.model.util.New;
 
 public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 		implements JavaNestedEnum {
 
-	
 	private static final long serialVersionUID = 2204313585154783825L;
 	@SuppressWarnings("unused")
 	private final TypeElement tenum;
@@ -37,7 +35,7 @@ public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 	public JavaNestedEnumAdapter(TypeElement tenum, Elements elementUtils,
 			Types typeUtils) {
 		super(tenum, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaNestedEnum.class));
+
 		this.tenum = tenum;
 	}
 
@@ -45,6 +43,11 @@ public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 	public NestedEnumModifiers getModifiers() {
 		return new NestedEnumModifiersBean(
 				getModifierValues(NestedEnumModifierValue.class));
+	}
+
+	@Override
+	protected Class<? extends JavaNestedEnum> getAdaptedInterface() {
+		return JavaNestedEnum.class;
 	}
 
 }

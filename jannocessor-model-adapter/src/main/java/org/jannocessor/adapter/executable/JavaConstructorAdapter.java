@@ -30,19 +30,17 @@ import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.New;
 
 public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		implements JavaConstructor {
 
-	
 	private static final long serialVersionUID = 4244716840887854699L;
 	private final ExecutableElement constructor;
 
 	public JavaConstructorAdapter(ExecutableElement constructor,
 			Elements elementUtils, Types typeUtils) {
 		super(constructor, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaConstructor.class));
+
 		this.constructor = constructor;
 	}
 
@@ -68,6 +66,11 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 	@Override
 	public PowerList<JavaMetadata> getMetadata() {
 		return getAnnotatedMetadata();
+	}
+
+	@Override
+	protected Class<? extends JavaConstructor> getAdaptedInterface() {
+		return JavaConstructor.class;
 	}
 
 }

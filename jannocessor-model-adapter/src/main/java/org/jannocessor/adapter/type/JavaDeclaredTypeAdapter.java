@@ -23,12 +23,10 @@ import javax.lang.model.util.Types;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.New;
 
 public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
 		JavaDeclaredType {
 
-	
 	private static final long serialVersionUID = -5338242663715964532L;
 	private final DeclaredType declaredType;
 
@@ -37,12 +35,17 @@ public class JavaDeclaredTypeAdapter extends JavaTypeAdapter implements
 		super(declaredType, elementUtils, typeUtils);
 
 		this.declaredType = declaredType;
-		this.getCode().assign(New.code(JavaDeclaredType.class));
+
 	}
 
 	@Override
 	public PowerList<JavaType> getTypeArguments() {
 		return getTypeAdapters(declaredType.getTypeArguments());
+	}
+
+	@Override
+	protected Class<? extends JavaDeclaredType> getAdaptedInterface() {
+		return JavaDeclaredType.class;
 	}
 
 }

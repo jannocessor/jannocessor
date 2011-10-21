@@ -24,12 +24,10 @@ import org.jannocessor.model.bean.modifier.AnnotationModifiersBean;
 import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
-import org.jannocessor.model.util.New;
 
 public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		implements JavaAnnotation {
 
-	
 	private static final long serialVersionUID = 2236908518207225010L;
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;
@@ -37,7 +35,7 @@ public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 	public JavaAnnotationAdapter(TypeElement annotation, Elements elementUtils,
 			Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaAnnotation.class));
+
 		this.annotation = annotation;
 	}
 
@@ -45,6 +43,11 @@ public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 	public AnnotationModifiers getModifiers() {
 		return new AnnotationModifiersBean(
 				getModifierValues(AnnotationModifierValue.class));
+	}
+
+	@Override
+	protected Class<? extends JavaAnnotation> getAdaptedInterface() {
+		return JavaAnnotation.class;
 	}
 
 }

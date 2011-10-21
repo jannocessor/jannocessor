@@ -24,12 +24,10 @@ import org.jannocessor.model.bean.modifier.NestedClassModifiersBean;
 import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.jannocessor.model.modifier.value.NestedClassModifierValue;
 import org.jannocessor.model.structure.JavaNestedClass;
-import org.jannocessor.model.util.New;
 
 public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 		implements JavaNestedClass {
 
-	
 	private static final long serialVersionUID = 2252889290671782943L;
 	@SuppressWarnings("unused")
 	private final TypeElement tclass;
@@ -37,7 +35,7 @@ public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 	public JavaNestedClassAdapter(TypeElement tclass, Elements elementUtils,
 			Types typeUtils) {
 		super(tclass, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaNestedClass.class));
+
 		this.tclass = tclass;
 	}
 
@@ -45,6 +43,11 @@ public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 	public NestedClassModifiers getModifiers() {
 		return new NestedClassModifiersBean(
 				getModifierValues(NestedClassModifierValue.class));
+	}
+
+	@Override
+	protected Class<? extends JavaNestedClass> getAdaptedInterface() {
+		return JavaNestedClass.class;
 	}
 
 }

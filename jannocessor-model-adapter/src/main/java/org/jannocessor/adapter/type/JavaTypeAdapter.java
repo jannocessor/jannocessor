@@ -26,19 +26,17 @@ import org.jannocessor.adapter.JavaCodeModelAdapter;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
-import org.jannocessor.model.util.New;
 
 public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 		JavaType {
 
-	
 	private static final long serialVersionUID = 3107540909724234443L;
 	private final TypeMirror typeMirror;
 
 	public JavaTypeAdapter(TypeMirror typeMirror, Elements elementUtils,
 			Types typeUtils) {
 		super(elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaType.class));
+
 		this.typeMirror = typeMirror;
 	}
 
@@ -99,6 +97,11 @@ public abstract class JavaTypeAdapter extends JavaCodeModelAdapter implements
 	@Override
 	public JavaTypeKind getKind() {
 		return JavaTypeKind.valueOf(typeMirror.getKind().toString());
+	}
+
+	@Override
+	protected Class<? extends JavaType> getAdaptedInterface() {
+		return JavaType.class;
 	}
 
 }

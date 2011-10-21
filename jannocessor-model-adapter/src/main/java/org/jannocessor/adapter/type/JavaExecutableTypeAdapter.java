@@ -25,12 +25,10 @@ import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
-import org.jannocessor.model.util.New;
 
 public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
 		JavaExecutableType {
 
-	
 	private static final long serialVersionUID = 6878540706508272046L;
 	private final ExecutableType executableType;
 
@@ -39,7 +37,7 @@ public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
 		super(executableType, elementUtils, typeUtils);
 
 		this.executableType = executableType;
-		this.getCode().assign(New.code(JavaExecutableType.class));
+
 	}
 
 	@Override
@@ -62,6 +60,11 @@ public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
 	public PowerList<JavaTypeVariable> getTypeVariables() {
 		return getTypeAdapters(executableType.getTypeVariables(),
 				JavaTypeVariable.class);
+	}
+
+	@Override
+	protected Class<? extends JavaExecutableType> getAdaptedInterface() {
+		return JavaExecutableType.class;
 	}
 
 }

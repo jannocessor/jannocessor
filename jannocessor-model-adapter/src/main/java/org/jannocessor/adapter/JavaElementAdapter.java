@@ -160,4 +160,9 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 		return results;
 	}
 
+	@Override
+	protected Class<? extends JavaElement> getAdaptedInterface() {
+		return JavaElement.class;
+	}
+
 }

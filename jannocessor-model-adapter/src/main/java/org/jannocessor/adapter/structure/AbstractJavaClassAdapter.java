@@ -31,7 +31,6 @@ import org.jannocessor.model.variable.JavaField;
 abstract class AbstractJavaClassAdapter extends AbstractJavaStructureAdapter
 		implements AbstractJavaClass {
 
-	
 	private static final long serialVersionUID = 3057258745502923931L;
 	private final TypeElement tclass;
 
@@ -65,6 +64,11 @@ abstract class AbstractJavaClassAdapter extends AbstractJavaStructureAdapter
 	public PowerList<JavaTypeParameter> getTypeParameters() {
 		return getElementsAdapters(tclass.getTypeParameters(),
 				JavaTypeParameter.class);
+	}
+
+	@Override
+	protected Class<? extends AbstractJavaClass> getAdaptedInterface() {
+		return AbstractJavaClass.class;
 	}
 
 }

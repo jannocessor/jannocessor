@@ -28,12 +28,10 @@ import org.jannocessor.collection.filter.api.Criteria;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
-import org.jannocessor.model.util.New;
 
 public final class JavaTypeParameterAdapter extends JavaElementAdapter
 		implements JavaTypeParameter {
 
-	
 	private static final long serialVersionUID = 2154181045998797757L;
 
 	private static final Criteria<JavaType> DEFAULT_BOUND;
@@ -53,13 +51,18 @@ public final class JavaTypeParameterAdapter extends JavaElementAdapter
 	public JavaTypeParameterAdapter(TypeParameterElement typeParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(typeParameter, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaTypeParameter.class));
+
 		this.typeParameter = typeParameter;
 	}
 
 	@Override
 	public PowerList<JavaType> getBounds() {
 		return getTypeAdapters(typeParameter.getBounds()).remove(DEFAULT_BOUND);
+	}
+
+	@Override
+	protected Class<? extends JavaTypeParameter> getAdaptedInterface() {
+		return JavaTypeParameter.class;
 	}
 
 }

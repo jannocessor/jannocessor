@@ -21,12 +21,10 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaVoidType;
-import org.jannocessor.model.util.New;
 
 public class JavaVoidTypeAdapter extends JavaTypeAdapter implements
 		JavaVoidType {
 
-	
 	private static final long serialVersionUID = 8556334335757463508L;
 	@SuppressWarnings("unused")
 	private final NoType noType;
@@ -36,7 +34,12 @@ public class JavaVoidTypeAdapter extends JavaTypeAdapter implements
 		super(noType, elementUtils, typeUtils);
 
 		this.noType = noType;
-		this.getCode().assign(New.code(JavaVoidType.class));
+
+	}
+
+	@Override
+	protected Class<? extends JavaVoidType> getAdaptedInterface() {
+		return JavaVoidType.class;
 	}
 
 }

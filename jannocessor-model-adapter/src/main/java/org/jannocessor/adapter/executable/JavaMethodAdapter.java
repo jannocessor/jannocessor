@@ -29,19 +29,17 @@ import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.New;
 
 public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 		implements JavaMethod {
 
-	
 	private static final long serialVersionUID = -2502354526306569829L;
 	private final ExecutableElement method;
 
 	public JavaMethodAdapter(ExecutableElement method, Elements elementUtils,
 			Types typeUtils) {
 		super(method, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaMethod.class));
+
 		this.method = method;
 	}
 
@@ -62,6 +60,11 @@ public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 	@Override
 	public PowerList<JavaMetadata> getMetadata() {
 		return getAnnotatedMetadata();
+	}
+
+	@Override
+	protected Class<? extends JavaMethod> getAdaptedInterface() {
+		return JavaMethod.class;
 	}
 
 }

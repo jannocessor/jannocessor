@@ -21,12 +21,10 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaErrorType;
-import org.jannocessor.model.util.New;
 
 public class JavaErrorTypeAdapter extends JavaTypeAdapter implements
 		JavaErrorType {
 
-	
 	private static final long serialVersionUID = 7102489934425669952L;
 	@SuppressWarnings("unused")
 	private final ErrorType errorType;
@@ -36,7 +34,12 @@ public class JavaErrorTypeAdapter extends JavaTypeAdapter implements
 		super(errorType, elementUtils, typeUtils);
 
 		this.errorType = errorType;
-		this.getCode().assign(New.code(JavaErrorType.class));
+
+	}
+
+	@Override
+	protected Class<? extends JavaErrorType> getAdaptedInterface() {
+		return JavaErrorType.class;
 	}
 
 }

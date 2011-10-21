@@ -30,7 +30,6 @@ import org.jannocessor.model.structure.JavaAnnotationAttribute;
 abstract class AbstractJavaAnnotationAdapter extends
 		AbstractJavaStructureAdapter implements AbstractJavaAnnotation {
 
-	
 	private static final long serialVersionUID = -3693116263568298976L;
 
 	private static final Transformation<JavaMethod, JavaAnnotationAttribute> METHOD_TO_ATTRIBUTE;
@@ -58,6 +57,11 @@ abstract class AbstractJavaAnnotationAdapter extends
 	public PowerList<JavaAnnotationAttribute> getAttributes() {
 		return findChildrenByType(JavaMethod.class).getTransformed(
 				METHOD_TO_ATTRIBUTE);
+	}
+
+	@Override
+	protected Class<? extends AbstractJavaAnnotation> getAdaptedInterface() {
+		return AbstractJavaAnnotation.class;
 	}
 
 }

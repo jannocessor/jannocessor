@@ -243,4 +243,6 @@ public abstract class AbstractAdapter {
 		return sb.toString();
 	}
 
+	protected abstract Class<?> getAdaptedInterface();
+
 }

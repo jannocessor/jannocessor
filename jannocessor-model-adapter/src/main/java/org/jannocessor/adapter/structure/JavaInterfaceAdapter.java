@@ -24,12 +24,10 @@ import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.model.util.New;
 
 public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 		implements JavaInterface {
 
-	
 	private static final long serialVersionUID = -2461593767762457193L;
 	@SuppressWarnings("unused")
 	private final TypeElement tinterface;
@@ -37,7 +35,7 @@ public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 	public JavaInterfaceAdapter(TypeElement tinterface, Elements elementUtils,
 			Types typeUtils) {
 		super(tinterface, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaInterface.class));
+
 		this.tinterface = tinterface;
 	}
 
@@ -45,6 +43,11 @@ public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 	public InterfaceModifiers getModifiers() {
 		return new InterfaceModifiersBean(
 				getModifierValues(InterfaceModifierValue.class));
+	}
+
+	@Override
+	protected Class<? extends JavaInterface> getAdaptedInterface() {
+		return JavaInterface.class;
 	}
 
 }

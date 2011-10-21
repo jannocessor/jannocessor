@@ -23,20 +23,18 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 
 public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 		implements JavaParameter {
 
-	
 	private static final long serialVersionUID = 4304123692935787081L;
 	private final VariableElement parameter;
 
 	public JavaParameterAdapter(VariableElement parameter,
 			Elements elementUtils, Types typeUtils) {
 		super(parameter, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaParameter.class));
+
 		this.parameter = parameter;
 	}
 
@@ -48,6 +46,11 @@ public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public PowerList<JavaMetadata> getMetadata() {
 		return getAnnotatedMetadata();
+	}
+
+	@Override
+	protected Class<? extends JavaParameter> getAdaptedInterface() {
+		return JavaParameter.class;
 	}
 
 }

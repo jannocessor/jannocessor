@@ -20,13 +20,11 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 
 public final class JavaExceptionParameterAdapter extends
 		AbstractJavaVariableAdapter implements JavaExceptionParameter {
 
-	
 	private static final long serialVersionUID = -4815832690663017141L;
 	@SuppressWarnings("unused")
 	private final VariableElement exceptionParameter;
@@ -34,8 +32,13 @@ public final class JavaExceptionParameterAdapter extends
 	public JavaExceptionParameterAdapter(VariableElement exceptionParameter,
 			Elements elementUtils, Types typeUtils) {
 		super(exceptionParameter, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaExceptionParameter.class));
+
 		this.exceptionParameter = exceptionParameter;
+	}
+
+	@Override
+	protected Class<? extends JavaExceptionParameter> getAdaptedInterface() {
+		return JavaExceptionParameter.class;
 	}
 
 }

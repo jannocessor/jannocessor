@@ -22,12 +22,10 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaWildcardType;
-import org.jannocessor.model.util.New;
 
 public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
 		JavaWildcardType {
 
-	
 	private static final long serialVersionUID = 6558226673234282372L;
 	private final WildcardType wildcardType;
 
@@ -36,7 +34,7 @@ public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
 		super(wildcardType, elementUtils, typeUtils);
 
 		this.wildcardType = wildcardType;
-		this.getCode().assign(New.code(JavaWildcardType.class));
+
 	}
 
 	@Override
@@ -47,6 +45,11 @@ public class JavaWildcardTypeAdapter extends JavaTypeAdapter implements
 	@Override
 	public JavaType getSuperBound() {
 		return getTypeAdapter(wildcardType.getSuperBound());
+	}
+
+	@Override
+	protected Class<? extends JavaWildcardType> getAdaptedInterface() {
+		return JavaWildcardType.class;
 	}
 
 }

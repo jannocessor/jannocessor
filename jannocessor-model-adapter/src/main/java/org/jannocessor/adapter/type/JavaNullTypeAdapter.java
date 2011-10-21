@@ -21,7 +21,6 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaNullType;
-import org.jannocessor.model.util.New;
 
 public class JavaNullTypeAdapter extends JavaTypeAdapter implements
 		JavaNullType {
@@ -36,7 +35,12 @@ public class JavaNullTypeAdapter extends JavaTypeAdapter implements
 		super(nullType, elementUtils, typeUtils);
 
 		this.nullType = nullType;
-		this.getCode().assign(New.code(JavaNullType.class));
+
+	}
+
+	@Override
+	protected Class<? extends JavaNullType> getAdaptedInterface() {
+		return JavaNullType.class;
 	}
 
 }

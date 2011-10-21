@@ -21,12 +21,10 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaPrimitiveType;
-import org.jannocessor.model.util.New;
 
 public class JavaPrimitiveTypeAdapter extends JavaTypeAdapter implements
 		JavaPrimitiveType {
 
-	
 	private static final long serialVersionUID = -6097262015623615699L;
 	@SuppressWarnings("unused")
 	private final PrimitiveType primitiveType;
@@ -36,7 +34,12 @@ public class JavaPrimitiveTypeAdapter extends JavaTypeAdapter implements
 		super(primitiveType, elementUtils, typeUtils);
 
 		this.primitiveType = primitiveType;
-		this.getCode().assign(New.code(JavaPrimitiveType.class));
+
+	}
+
+	@Override
+	protected Class<? extends JavaPrimitiveType> getAdaptedInterface() {
+		return JavaPrimitiveType.class;
 	}
 
 }

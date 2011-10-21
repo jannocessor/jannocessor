@@ -24,12 +24,10 @@ import org.jannocessor.model.bean.modifier.ClassModifiersBean;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.util.New;
 
 public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 		JavaClass {
 
-	
 	private static final long serialVersionUID = 1860883523822681244L;
 	@SuppressWarnings("unused")
 	private final TypeElement tclass;
@@ -37,7 +35,7 @@ public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 	public JavaClassAdapter(TypeElement tclass, Elements elementUtils,
 			Types typeUtils) {
 		super(tclass, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaClass.class));
+
 		this.tclass = tclass;
 	}
 
@@ -45,6 +43,11 @@ public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 	public ClassModifiers getModifiers() {
 		return new ClassModifiersBean(
 				getModifierValues(ClassModifierValue.class));
+	}
+
+	@Override
+	protected Class<? extends JavaClass> getAdaptedInterface() {
+		return JavaClass.class;
 	}
 
 }

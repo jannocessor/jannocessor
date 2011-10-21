@@ -30,14 +30,12 @@ import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.EnumModifierValue;
 import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.variable.JavaParameter;
 
 public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 		JavaEnum {
 
-	
 	private static final long serialVersionUID = 7553112665612022952L;
 
 	private static final Criteria<JavaMethod> IMPLICIT_METHODS;
@@ -71,7 +69,7 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 	public JavaEnumAdapter(TypeElement tenum, Elements elementUtils,
 			Types typeUtils) {
 		super(tenum, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaEnum.class));
+
 		this.tenum = tenum;
 	}
 
@@ -89,4 +87,10 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 
 		return methods;
 	}
+
+	@Override
+	protected Class<? extends JavaEnum> getAdaptedInterface() {
+		return JavaEnum.class;
+	}
+
 }

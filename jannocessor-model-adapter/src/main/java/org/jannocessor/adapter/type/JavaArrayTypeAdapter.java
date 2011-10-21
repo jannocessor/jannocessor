@@ -22,12 +22,10 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.New;
 
 public class JavaArrayTypeAdapter extends JavaTypeAdapter implements
 		JavaArrayType {
 
-	
 	private static final long serialVersionUID = -8431107976792077987L;
 	private final ArrayType arrayType;
 
@@ -36,12 +34,17 @@ public class JavaArrayTypeAdapter extends JavaTypeAdapter implements
 		super(arrayType, elementUtils, typeUtils);
 
 		this.arrayType = arrayType;
-		this.getCode().assign(New.code(JavaArrayType.class));
+
 	}
 
 	@Override
 	public JavaType getComponentType() {
 		return getTypeAdapter(arrayType.getComponentType());
+	}
+
+	@Override
+	protected Class<? extends JavaArrayType> getAdaptedInterface() {
+		return JavaArrayType.class;
 	}
 
 }

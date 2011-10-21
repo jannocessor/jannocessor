@@ -21,26 +21,29 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaLocalVariable;
 
 public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 		implements JavaLocalVariable {
 
-	
 	private static final long serialVersionUID = -328115801660017048L;
 	private final VariableElement localVariable;
 
 	public JavaLocalVariableAdapter(VariableElement localVariable,
 			Elements elementUtils, Types typeUtils) {
 		super(localVariable, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaLocalVariable.class));
+
 		this.localVariable = localVariable;
 	}
 
 	@Override
 	public Boolean isFinal() {
 		return localVariable.getModifiers().contains(Modifier.FINAL);
+	}
+
+	@Override
+	protected Class<? extends JavaLocalVariable> getAdaptedInterface() {
+		return JavaLocalVariable.class;
 	}
 
 }

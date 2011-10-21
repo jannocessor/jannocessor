@@ -22,12 +22,10 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaStaticInit;
-import org.jannocessor.model.util.New;
 
 public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 		implements JavaStaticInit {
 
-	
 	private static final long serialVersionUID = -6819739210362612616L;
 	@SuppressWarnings("unused")
 	private final ExecutableElement staticInit;
@@ -35,13 +33,18 @@ public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 	public JavaStaticInitAdapter(ExecutableElement staticInit,
 			Elements elementUtils, Types typeUtils) {
 		super(staticInit, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaStaticInit.class));
+
 		this.staticInit = staticInit;
 	}
 
 	@Override
 	public Name getName() {
 		return null;
+	}
+
+	@Override
+	protected Class<? extends JavaStaticInit> getAdaptedInterface() {
+		return JavaStaticInit.class;
 	}
 
 }

@@ -24,20 +24,18 @@ import org.jannocessor.model.bean.modifier.NestedAnnotationModifiersBean;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.modifier.value.NestedAnnotationModifierValue;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
-import org.jannocessor.model.util.New;
 
-public final class JavaNestedAnnotationAdapter extends AbstractJavaAnnotationAdapter
-		implements JavaNestedAnnotation {
+public final class JavaNestedAnnotationAdapter extends
+		AbstractJavaAnnotationAdapter implements JavaNestedAnnotation {
 
-	
 	private static final long serialVersionUID = 2448738435842709024L;
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;
 
-	public JavaNestedAnnotationAdapter(TypeElement annotation, Elements elementUtils,
-			Types typeUtils) {
+	public JavaNestedAnnotationAdapter(TypeElement annotation,
+			Elements elementUtils, Types typeUtils) {
 		super(annotation, elementUtils, typeUtils);
-		this.getCode().assign(New.code(JavaNestedAnnotation.class));
+
 		this.annotation = annotation;
 	}
 
@@ -45,6 +43,11 @@ public final class JavaNestedAnnotationAdapter extends AbstractJavaAnnotationAda
 	public NestedAnnotationModifiers getModifiers() {
 		return new NestedAnnotationModifiersBean(
 				getModifierValues(NestedAnnotationModifierValue.class));
+	}
+
+	@Override
+	protected Class<? extends JavaNestedAnnotation> getAdaptedInterface() {
+		return JavaNestedAnnotation.class;
 	}
 
 }
