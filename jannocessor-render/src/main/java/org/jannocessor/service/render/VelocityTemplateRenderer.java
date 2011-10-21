@@ -40,7 +40,6 @@ import org.apache.velocity.runtime.resource.loader.FileResourceLoader;
 import org.jannocessor.collection.Power;
 import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Constructors;
 import org.jannocessor.model.util.Enums;
 import org.jannocessor.model.util.Fields;
@@ -50,6 +49,7 @@ import org.jannocessor.model.util.NestedAnnotations;
 import org.jannocessor.model.util.NestedClasses;
 import org.jannocessor.model.util.NestedEnums;
 import org.jannocessor.model.util.NestedInterfaces;
+import org.jannocessor.model.util.New;
 import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
@@ -206,8 +206,6 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 		context.put("helper", new TemplateHelper(context));
 
 		for (Entry<String, Object> entry : attributes.entrySet()) {
-			logger.debug("- Attribute {} = '{}'", entry.getKey(),
-					entry.getValue());
 			context.put(entry.getKey(), entry.getValue());
 		}
 

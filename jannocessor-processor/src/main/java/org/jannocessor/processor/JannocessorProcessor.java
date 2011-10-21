@@ -27,10 +27,7 @@ import java.util.Set;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
@@ -161,38 +158,16 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 		// construct annotated elements' facts
 		for (TypeElement annotation : annotations) {
+			logger.debug("Found annotation: " + annotation);
+
 			Set<? extends Element> annotatedElements = env
 					.getElementsAnnotatedWith(annotation);
-			logger.debug("-- ANNOTATION: " + annotation);
-
 			allElements.addAll(annotatedElements);
-
-			for (Element annotatedElement : annotatedElements) {
-				logger.debug("---- ELEMENT: " + annotatedElement);
-				List<? extends Element> kids = annotatedElement
-						.getEnclosedElements();
-				for (Element kid : kids) {
-					logger.debug("------ CHILD: " + kid);
-				}
-
-				// add each annotation X for each annotated element
-
-				List<? extends AnnotationMirror> mirrors = annotatedElement
-						.getAnnotationMirrors();
-				for (AnnotationMirror annotationMirror : mirrors) {
-					Map<? extends ExecutableElement, ? extends AnnotationValue> mapa = annotationMirror
-							.getElementValues();
-					logger.debug("---- ANNOTATION: " + annotationMirror);
-					logger.debug("------ MAP: " + mapa);
-					logger.debug("------ ALL: "
-							+ elementUtils
-									.getElementValuesWithDefaults(annotationMirror));
-				}
-
-			}
 		}
 
 		for (Element element : allElements) {
+			logger.debug("Adding element: " + element);
+
 			JavaElement javaElement = AdapterFactory.getElementModel(element,
 					JavaElement.class, elementUtils, typeUtils);
 			facts.add(javaElement);
