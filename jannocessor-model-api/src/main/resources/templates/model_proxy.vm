@@ -23,7 +23,7 @@ package $packageName;
 #set($data = "org.jannocessor.data." + $model.name.appendPart("Data"))
 
 @#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
-public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName}) {
+public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName})#if($className == 'JavaElementProxy'), #type('org.jannocessor.model.ParentedElement')#end {
 
 	private static final long serialVersionUID = 1L;
 
@@ -50,8 +50,31 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 
 #end
 
+#if($className == 'JavaElementProxy')
+
+	private JavaElement parent;
+
+	private boolean hasOriginalParent = true;
+
+	@Override
+	public void setParent(JavaElement parent) {
+		this.parent = parent;
+		hasOriginalParent = false;
+	}
+
+	@Override
+	public JavaElement getParent() {
+		if (hasOriginalParent) {
+			return adapter.getParent();
+		} else {
+			return parent;
+		}
+	}
+
+#end
 #foreach ($m in $model.methods)
 #if($m.name != 'getParent' && $m.name != 'getChildren')
+	@Override
     public #type($m.returnType) ${m.name}() {
         if (!${m.name}Initialized) {
 			if (adapter == null) {
@@ -67,9 +90,10 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 
         return data.${m.name}();
     }
-#else
+#elseif($m.name == 'getChildren')
+	@Override
     public #type($m.returnType) ${m.name}() {
-        return adapter.${m.name}();
+        throw new #type('org.apache.commons.lang.NotImplementedException')();
     }
 #end
 

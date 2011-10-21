@@ -26,14 +26,7 @@ import org.jannocessor.model.util.New;
 public abstract class JavaCodeModelAdapter extends AbstractAdapter implements
 		JavaCodeModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 132118813722881706L;
-
-	private final SourceCode code = New.code();
-
-	private final SourceCode extraCode = New.code();
 
 	public JavaCodeModelAdapter(Elements elementUtils, Types typeUtils) {
 		super(elementUtils, typeUtils);
@@ -41,12 +34,12 @@ public abstract class JavaCodeModelAdapter extends AbstractAdapter implements
 
 	@Override
 	public SourceCode getCode() {
-		return code;
+		return New.code();
 	}
 
 	@Override
 	public SourceCode getExtraCode() {
-		return extraCode;
+		return New.code();
 	}
 
 }

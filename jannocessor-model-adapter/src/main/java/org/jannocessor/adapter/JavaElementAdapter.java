@@ -34,22 +34,15 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.Name;
-import org.jannocessor.model.ParentedElement;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 
 public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
-		JavaElement, SourceHolder, ParentedElement {
+		JavaElement, SourceHolder {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6260794797849358247L;
 
 	private final Element element;
-
-	private boolean hasOriginalParent = true;
-	private JavaElement newParent;
 
 	public JavaElementAdapter(Element element, Elements elementUtils,
 			Types typeUtils) {
@@ -59,18 +52,8 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 
 	@Override
 	public JavaElement getParent() {
-		if (hasOriginalParent) {
-			return getElementAdapter(element.getEnclosingElement(),
-					JavaElement.class);
-		} else {
-			return newParent;
-		}
-	}
-
-	@Override
-	public void setParent(JavaElement parent) {
-		this.newParent = parent;
-		this.hasOriginalParent = false;
+		return getElementAdapter(element.getEnclosingElement(),
+				JavaElement.class);
 	}
 
 	private List<? extends Element> getEnclosedElements(Element element) {
