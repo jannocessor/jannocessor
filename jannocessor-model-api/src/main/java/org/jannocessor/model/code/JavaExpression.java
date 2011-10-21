@@ -16,6 +16,10 @@
 
 package org.jannocessor.model.code;
 
+import org.jannocessor.model.JavaElement;
+
 public interface JavaExpression extends SourceCode {
+
+	JavaElement getParent();
 
 }
