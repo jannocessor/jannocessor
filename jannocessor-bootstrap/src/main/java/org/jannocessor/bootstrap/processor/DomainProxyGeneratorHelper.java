@@ -32,7 +32,7 @@ public class DomainProxyGeneratorHelper {
 
 	public boolean isIdentityProperty(JavaMethod method) {
 		String name = method.getName().getText();
-		return !name.equals("getParent")
+		return !name.equals("getParent") && !name.equals("getChildren")
 				&& (name.startsWith("get") || name.startsWith("is"));
 	}
 }

@@ -105,7 +105,6 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement, P
 		JavaElement other = (JavaElement) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
-				.append(this.getChildren(), other.getChildren())
 				.append(this.getName(), other.getName())
 				.append(this.getType(), other.getType())
 				.append(this.getKind(), other.getKind())
@@ -115,7 +114,6 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement, P
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(this.getChildren())
 				.append(this.getName())
 				.append(this.getType())
 				.append(this.getKind())
@@ -133,7 +131,6 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement, P
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
-        builder.append("children", ToStringUtil.describe(this.getChildren()));
         builder.append("name", ToStringUtil.describe(this.getName()));
         builder.append("type", ToStringUtil.describe(this.getType()));
         builder.append("kind", ToStringUtil.describe(this.getKind()));
