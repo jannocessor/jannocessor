@@ -46,7 +46,6 @@ public class JannocessorLogger extends MarkerIgnoringBase {
 
 	@Override
 	public void trace(String msg) {
-		System.out.println(msg);
 		messager.printMessage(Diagnostic.Kind.OTHER, msg);
 	}
 
@@ -77,7 +76,6 @@ public class JannocessorLogger extends MarkerIgnoringBase {
 
 	@Override
 	public void debug(String msg) {
-		System.out.println(msg);
 		messager.printMessage(Diagnostic.Kind.OTHER, msg);
 	}
 
@@ -108,7 +106,6 @@ public class JannocessorLogger extends MarkerIgnoringBase {
 
 	@Override
 	public void info(String msg) {
-		System.out.println(msg);
 		messager.printMessage(Diagnostic.Kind.NOTE, msg);
 	}
 
@@ -139,7 +136,6 @@ public class JannocessorLogger extends MarkerIgnoringBase {
 
 	@Override
 	public void warn(String msg) {
-		System.out.println(msg);
 		messager.printMessage(Diagnostic.Kind.WARNING, msg);
 	}
 
@@ -170,7 +166,6 @@ public class JannocessorLogger extends MarkerIgnoringBase {
 
 	@Override
 	public void error(String msg) {
-		System.out.println(msg);
 		messager.printMessage(Diagnostic.Kind.ERROR, msg);
 	}
 
