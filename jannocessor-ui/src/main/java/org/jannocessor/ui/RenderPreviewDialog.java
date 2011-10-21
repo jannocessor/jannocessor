@@ -26,6 +26,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -315,7 +316,11 @@ public class RenderPreviewDialog extends JDialog {
 	}
 
 	private void listFiles() {
-		files = FileUtils.listFiles(new File(templatesPath),
-				new String[] { "vm" }, true);
+		try {
+			files = FileUtils.listFiles(new File(templatesPath),
+					new String[] { "vm" }, true);
+		} catch (Exception e) {
+			files = new ArrayList<File>();
+		}
 	}
 }
