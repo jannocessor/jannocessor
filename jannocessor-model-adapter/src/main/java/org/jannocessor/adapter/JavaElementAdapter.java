@@ -41,6 +41,11 @@ import org.jannocessor.model.type.JavaType;
 public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 		JavaElement, SourceHolder, ParentedElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6260794797849358247L;
+
 	private final Element element;
 
 	private boolean hasOriginalParent = true;

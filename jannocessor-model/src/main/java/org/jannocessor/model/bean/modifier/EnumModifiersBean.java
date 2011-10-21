@@ -23,6 +23,11 @@ public class EnumModifiersBean extends
 		AbstractModifiersBean<EnumModifierValue, EnumModifiers> implements
 		EnumModifiers {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4404722068723318215L;
+
 	public EnumModifiersBean(EnumModifierValue[] values) {
 		super(values, EnumModifiers.class);
 	}

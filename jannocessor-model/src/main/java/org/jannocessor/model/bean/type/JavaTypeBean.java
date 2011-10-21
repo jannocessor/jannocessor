@@ -22,6 +22,11 @@ import org.jannocessor.model.util.New;
 
 public class JavaTypeBean extends JavaTypeData implements JavaType {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2329697894900332732L;
+
 	@SuppressWarnings("unused")
 	private final Class<?> type;
 

@@ -26,6 +26,10 @@ import org.jannocessor.model.util.New;
 public class JavaErrorTypeAdapter extends JavaTypeAdapter implements
 		JavaErrorType {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7102489934425669952L;
 	@SuppressWarnings("unused")
 	private final ErrorType errorType;
 

@@ -28,6 +28,10 @@ import org.jannocessor.model.variable.AbstractJavaVariable;
 abstract class AbstractJavaVariableAdapter extends JavaElementAdapter implements
 		AbstractJavaVariable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 837222250253517508L;
 	private final VariableElement variable;
 
 	public AbstractJavaVariableAdapter(VariableElement variable,

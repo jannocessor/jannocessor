@@ -28,6 +28,8 @@ import org.jannocessor.model.Name;
 
 public class NameBean implements Name {
 
+	private static final long serialVersionUID = -8706143384650266668L;
+	
 	private String name;
 
 	private enum NameCase {

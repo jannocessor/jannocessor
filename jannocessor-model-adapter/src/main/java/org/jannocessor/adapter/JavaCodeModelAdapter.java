@@ -26,6 +26,11 @@ import org.jannocessor.model.util.New;
 public abstract class JavaCodeModelAdapter extends AbstractAdapter implements
 		JavaCodeModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 132118813722881706L;
+
 	private final SourceCode code = New.code();
 
 	private final SourceCode extraCode = New.code();

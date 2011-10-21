@@ -26,6 +26,10 @@ import org.jannocessor.model.util.New;
 public class JavaNullTypeAdapter extends JavaTypeAdapter implements
 		JavaNullType {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3051787962005774833L;
 	@SuppressWarnings("unused")
 	private final NullType nullType;
 

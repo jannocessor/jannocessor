@@ -23,6 +23,11 @@ import org.jannocessor.model.util.New;
 
 public class JavaPackageBean extends JavaPackageData implements JavaPackage {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7490321860868917296L;
+
 	public JavaPackageBean() {
 		// TODO Auto-generated constructor stub
 		this.setKind(JavaElementKind.PACKAGE);

@@ -29,6 +29,10 @@ import org.jannocessor.model.variable.JavaParameter;
 public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 		implements JavaParameter {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4304123692935787081L;
 	private final VariableElement parameter;
 
 	public JavaParameterAdapter(VariableElement parameter,

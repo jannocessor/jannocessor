@@ -29,6 +29,10 @@ import org.jannocessor.model.util.New;
 public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 		implements JavaNestedEnum {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2204313585154783825L;
 	@SuppressWarnings("unused")
 	private final TypeElement tenum;
 

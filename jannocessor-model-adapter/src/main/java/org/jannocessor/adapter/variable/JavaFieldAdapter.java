@@ -35,6 +35,11 @@ import org.jannocessor.model.variable.JavaField;
 public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 		implements JavaField {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 197580621670549990L;
+
 	private final VariableElement field;
 
 	private final JavaExpression value;

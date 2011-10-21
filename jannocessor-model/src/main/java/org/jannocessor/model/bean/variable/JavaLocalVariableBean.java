@@ -26,6 +26,11 @@ import org.jannocessor.model.variable.JavaLocalVariable;
 public class JavaLocalVariableBean extends JavaLocalVariableData implements
 		JavaLocalVariable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8239575414987772790L;
+
 	public JavaLocalVariableBean(JavaType type, String name, boolean isFinal) {
 		this.setType(type);
 		this.setName(new NameBean(name));

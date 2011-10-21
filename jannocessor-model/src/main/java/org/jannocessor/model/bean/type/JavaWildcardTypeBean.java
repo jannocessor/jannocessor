@@ -23,6 +23,11 @@ import org.jannocessor.model.util.New;
 public class JavaWildcardTypeBean extends JavaWildcardTypeData implements
 		JavaWildcardType {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3874230315970645859L;
+
 	public JavaWildcardTypeBean(Class<?> wildcardSuper, Class<?> wildcardExtends) {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaWildcardType.class));

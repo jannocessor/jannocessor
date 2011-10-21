@@ -21,4 +21,6 @@ import org.jannocessor.model.JavaElement;
 
 public class JavaElementBean extends JavaElementData implements JavaElement {
 
+	private static final long serialVersionUID = -4163357590504403901L;
+
 }

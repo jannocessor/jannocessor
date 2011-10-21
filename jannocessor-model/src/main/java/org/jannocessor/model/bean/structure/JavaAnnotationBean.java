@@ -34,6 +34,11 @@ import org.jannocessor.model.util.New;
 public class JavaAnnotationBean extends JavaAnnotationData implements
 		JavaAnnotation {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2321280689778381415L;
+
 	public JavaAnnotationBean(AnnotationModifiers modifiers, String name,
 			List<JavaMethod> methods) {
 		this.setModifiers(modifiers);

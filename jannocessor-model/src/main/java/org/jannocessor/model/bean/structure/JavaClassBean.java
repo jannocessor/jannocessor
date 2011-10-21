@@ -39,6 +39,11 @@ import org.jannocessor.model.variable.JavaField;
 
 public class JavaClassBean extends JavaClassData implements JavaClass {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1857328854048504989L;
+
 	public JavaClassBean(ClassModifiers modifiers, String name,
 			JavaType superclass, List<JavaType> interfaces,
 			List<JavaField> fields, List<JavaConstructor> constructors,

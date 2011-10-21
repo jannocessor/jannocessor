@@ -29,6 +29,11 @@ import org.jannocessor.model.variable.JavaField;
 
 public class JavaFieldBean extends JavaFieldData implements JavaField {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 41860021002962204L;
+
 	public JavaFieldBean(FieldModifiers modifiers, JavaType type, Name name,
 			JavaExpression value) {
 		this.setModifiers(modifiers);

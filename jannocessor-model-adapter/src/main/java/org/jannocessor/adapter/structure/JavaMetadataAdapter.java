@@ -40,6 +40,10 @@ import org.jannocessor.model.variable.JavaEnumConstant;
 public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 		JavaMetadata {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7187042825188441175L;
 	private final AnnotationMirror annotationMirror;
 
 	public JavaMetadataAdapter(AnnotationMirror annotationMirror,

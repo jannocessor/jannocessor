@@ -20,6 +20,11 @@ import org.jannocessor.model.code.JavaBody;
 
 public class JavaBodyBean extends SourceCodeBean implements JavaBody {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1183565189174274163L;
+
 	public JavaBodyBean(String code, String template, String templateName) {
 		super(code, template, templateName);
 	}

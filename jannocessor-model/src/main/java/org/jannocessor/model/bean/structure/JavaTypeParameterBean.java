@@ -29,6 +29,11 @@ import org.jannocessor.model.util.New;
 public class JavaTypeParameterBean extends JavaTypeParameterData implements
 		JavaTypeParameter {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3912037783962709230L;
+
 	public JavaTypeParameterBean(String name, List<JavaType> bounds) {
 		this.setName(new NameBean(name));
 		this.setBounds(children(Power.list(bounds)));

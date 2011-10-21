@@ -27,6 +27,10 @@ import org.jannocessor.model.variable.JavaLocalVariable;
 public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 		implements JavaLocalVariable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -328115801660017048L;
 	private final VariableElement localVariable;
 
 	public JavaLocalVariableAdapter(VariableElement localVariable,

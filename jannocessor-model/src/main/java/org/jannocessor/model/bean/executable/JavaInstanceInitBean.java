@@ -25,6 +25,11 @@ import org.jannocessor.model.util.New;
 public class JavaInstanceInitBean extends JavaInstanceInitData implements
 		JavaInstanceInit {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2553648591898709853L;
+
 	public JavaInstanceInitBean(JavaBody body) {
 		this.setBody(body);
 

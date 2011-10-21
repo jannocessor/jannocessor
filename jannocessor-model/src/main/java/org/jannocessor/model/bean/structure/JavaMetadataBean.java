@@ -26,6 +26,11 @@ import org.jannocessor.model.util.New;
 
 public class JavaMetadataBean extends JavaMetadataData implements JavaMetadata {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8788201421847960314L;
+
 	public JavaMetadataBean(JavaType annotation,
 			Map<String, ? extends Object> attributes) {
 		this.setAnnotation(annotation);

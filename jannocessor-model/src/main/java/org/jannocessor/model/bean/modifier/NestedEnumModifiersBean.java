@@ -23,6 +23,11 @@ public class NestedEnumModifiersBean extends
 		AbstractModifiersBean<NestedEnumModifierValue, NestedEnumModifiers>
 		implements NestedEnumModifiers {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2384290150453952439L;
+
 	public NestedEnumModifiersBean(NestedEnumModifierValue[] values) {
 		super(values, NestedEnumModifiers.class);
 	}

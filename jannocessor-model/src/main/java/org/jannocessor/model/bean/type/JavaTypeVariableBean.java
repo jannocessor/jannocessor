@@ -23,6 +23,11 @@ import org.jannocessor.model.util.New;
 public class JavaTypeVariableBean extends JavaTypeVariableData implements
 		JavaTypeVariable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8480407492208799883L;
+
 	public JavaTypeVariableBean(Class<?> lowerBound, Class<?> upperBound) {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaTypeVariable.class));

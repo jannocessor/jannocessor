@@ -38,6 +38,10 @@ import org.jannocessor.model.type.JavaType;
 abstract class AbstractJavaStructureAdapter extends JavaElementAdapter
 		implements AbstractJavaStructure {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1171708337294305207L;
 	private final TypeElement type;
 
 	public AbstractJavaStructureAdapter(TypeElement type,

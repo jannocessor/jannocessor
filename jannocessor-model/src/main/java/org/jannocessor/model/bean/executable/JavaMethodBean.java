@@ -32,6 +32,11 @@ import org.jannocessor.model.variable.JavaParameter;
 
 public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3450054892240456263L;
+
 	public JavaMethodBean(MethodModifiers modifiers, JavaType returnType,
 			String name, List<JavaParameter> params,
 			List<JavaType> thrownTypes, List<JavaTypeParameter> typeParameters) {

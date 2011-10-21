@@ -28,6 +28,10 @@ import org.jannocessor.util.TypeSpecificStyle;
 public abstract class AbstractModifiersBean<T extends Enum<T>, M extends AbstractModifiers<T, M>>
 		implements AbstractModifiers<T, M> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5244142034285692223L;
 	private T[] values;
 	private final Class<? extends AbstractModifiers<T, M>> interfacee;
 

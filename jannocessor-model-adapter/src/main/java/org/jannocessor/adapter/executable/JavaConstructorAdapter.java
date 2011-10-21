@@ -35,6 +35,10 @@ import org.jannocessor.model.util.New;
 public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		implements JavaConstructor {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4244716840887854699L;
 	private final ExecutableElement constructor;
 
 	public JavaConstructorAdapter(ExecutableElement constructor,

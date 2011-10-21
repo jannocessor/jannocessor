@@ -29,6 +29,11 @@ import org.jannocessor.model.variable.JavaEnumConstant;
 public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
 		implements JavaEnumConstant {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 436532312737957029L;
+
 	@SuppressWarnings("unused")
 	private final VariableElement enumConstant;
 

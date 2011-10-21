@@ -35,6 +35,11 @@ import org.jannocessor.model.util.New;
 public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
 		JavaNestedInterface {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5002487412290379477L;
+
 	public JavaNestedInterfaceBean(NestedInterfaceModifiers modifiers,
 			String name, List<JavaType> superInterfaces,
 			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {

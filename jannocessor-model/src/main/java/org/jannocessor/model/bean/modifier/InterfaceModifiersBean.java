@@ -23,6 +23,11 @@ public class InterfaceModifiersBean extends
 		AbstractModifiersBean<InterfaceModifierValue, InterfaceModifiers>
 		implements InterfaceModifiers {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7388153946344206667L;
+
 	public InterfaceModifiersBean(InterfaceModifierValue[] values) {
 		super(values, InterfaceModifiers.class);
 	}

@@ -29,6 +29,10 @@ import org.jannocessor.model.util.New;
 public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		implements JavaAnnotation {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2236908518207225010L;
 	@SuppressWarnings("unused")
 	private final TypeElement annotation;
 

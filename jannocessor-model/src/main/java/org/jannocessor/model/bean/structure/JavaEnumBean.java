@@ -39,6 +39,11 @@ import org.jannocessor.model.variable.JavaField;
 
 public class JavaEnumBean extends JavaEnumData implements JavaEnum {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -194889084741369043L;
+
 	public JavaEnumBean(EnumModifiers modifiers, String name,
 			List<JavaType> interfaces, List<JavaEnumConstant> values,
 			List<JavaField> fields, List<JavaConstructor> constructors,

@@ -20,6 +20,8 @@ import org.jannocessor.model.Name;
 
 public class ReadonlyNameBean extends NameBean {
 
+	private static final long serialVersionUID = 427742519840634024L;
+	
 	private static final String ERROR_MSG = "Can't modify a read-only name! Try creating a copy of it.";
 
 	public ReadonlyNameBean(String name) {

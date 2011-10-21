@@ -27,6 +27,10 @@ import org.jannocessor.model.util.New;
 public final class JavaPackageAdapter extends JavaElementAdapter implements
 		JavaPackage {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8508618168552956729L;
 	@SuppressWarnings("unused")
 	private final PackageElement tpackage;
 

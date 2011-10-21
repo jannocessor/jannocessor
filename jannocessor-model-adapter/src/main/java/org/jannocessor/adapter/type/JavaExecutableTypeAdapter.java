@@ -30,6 +30,10 @@ import org.jannocessor.model.util.New;
 public class JavaExecutableTypeAdapter extends JavaTypeAdapter implements
 		JavaExecutableType {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6878540706508272046L;
 	private final ExecutableType executableType;
 
 	public JavaExecutableTypeAdapter(ExecutableType executableType,

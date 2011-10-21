@@ -34,6 +34,11 @@ import org.jannocessor.model.variable.JavaParameter;
 abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 		implements AbstractJavaExecutable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5004287664697277125L;
+
 	private final ExecutableElement executable;
 
 	private final JavaBody body = New.body();

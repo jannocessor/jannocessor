@@ -26,6 +26,11 @@ import org.jannocessor.model.variable.JavaExceptionParameter;
 public class JavaExceptionParameterBean extends JavaExceptionParameterData
 		implements JavaExceptionParameter {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2637119654910165235L;
+
 	public JavaExceptionParameterBean(JavaType type, String name) {
 		this.setType(type);
 		this.setName(new NameBean(name));

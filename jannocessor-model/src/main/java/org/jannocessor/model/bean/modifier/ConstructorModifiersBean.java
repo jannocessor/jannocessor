@@ -23,6 +23,11 @@ public class ConstructorModifiersBean extends
 		AbstractModifiersBean<ConstructorModifierValue, ConstructorModifiers>
 		implements ConstructorModifiers {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7249053988606330001L;
+
 	public ConstructorModifiersBean(ConstructorModifierValue[] values) {
 		super(values, ConstructorModifiers.class);
 	}
