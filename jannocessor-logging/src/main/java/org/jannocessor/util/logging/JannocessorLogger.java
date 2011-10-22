@@ -24,6 +24,8 @@ import org.slf4j.helpers.MessageFormatter;
 
 public class JannocessorLogger extends MarkerIgnoringBase {
 
+	public static boolean DEBUG = false;
+
 	private static final long serialVersionUID = 4447256230980716124L;
 
 	public static Messager messager = new ConsoleMessager();
@@ -41,62 +43,82 @@ public class JannocessorLogger extends MarkerIgnoringBase {
 
 	@Override
 	public boolean isTraceEnabled() {
-		return true;
+		return DEBUG;
 	}
 
 	@Override
 	public void trace(String msg) {
-		messager.printMessage(Diagnostic.Kind.OTHER, msg);
+		if (isTraceEnabled()) {
+			messager.printMessage(Diagnostic.Kind.OTHER, msg);
+		}
 	}
 
 	@Override
 	public void trace(String format, Object arg) {
-		trace(formated(format, arg));
+		if (isTraceEnabled()) {
+			trace(formated(format, arg));
+		}
 	}
 
 	@Override
 	public void trace(String format, Object arg1, Object arg2) {
-		trace(formated(format, arg1, arg2));
+		if (isTraceEnabled()) {
+			trace(formated(format, arg1, arg2));
+		}
 	}
 
 	@Override
 	public void trace(String format, Object[] argArray) {
-		trace(formated(format, argArray));
+		if (isTraceEnabled()) {
+			trace(formated(format, argArray));
+		}
 	}
 
 	@Override
 	public void trace(String msg, Throwable t) {
-		trace(reportError(msg, t));
+		if (isTraceEnabled()) {
+			trace(reportError(msg, t));
+		}
 	}
 
 	@Override
 	public boolean isDebugEnabled() {
-		return true;
+		return DEBUG;
 	}
 
 	@Override
 	public void debug(String msg) {
-		messager.printMessage(Diagnostic.Kind.OTHER, msg);
+		if (isDebugEnabled()) {
+			messager.printMessage(Diagnostic.Kind.OTHER, msg);
+		}
 	}
 
 	@Override
 	public void debug(String format, Object arg) {
-		debug(formated(format, arg));
+		if (isDebugEnabled()) {
+			debug(formated(format, arg));
+		}
 	}
 
 	@Override
 	public void debug(String format, Object arg1, Object arg2) {
-		debug(formated(format, arg1, arg2));
+		if (isDebugEnabled()) {
+			debug(formated(format, arg1, arg2));
+		}
 	}
 
 	@Override
 	public void debug(String format, Object[] argArray) {
-		debug(formated(format, argArray));
+		if (isDebugEnabled()) {
+			debug(formated(format, argArray));
+		}
 	}
 
 	@Override
 	public void debug(String msg, Throwable t) {
-		debug(reportError(msg, t));
+		if (isDebugEnabled()) {
+			debug(reportError(msg, t));
+		}
 	}
 
 	@Override
