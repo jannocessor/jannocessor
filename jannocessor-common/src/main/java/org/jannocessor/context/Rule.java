@@ -14,16 +14,46 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.context;
 
 import java.util.List;
-import java.util.Map;
 
-import org.jannocessor.JannocessorException;
+public class Rule {
 
-public interface RuleExecutor {
+	private String name;
 
-	void executeRules(String rules, List<Object> facts,
-			Map<String, Object> globals) throws JannocessorException;
+	private String pattern;
+
+	private List<String> args;
+
+	public Rule(String name, String pattern, List<String> args) {
+		this.name = name;
+		this.pattern = pattern;
+		this.args = args;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPattern() {
+		return pattern;
+	}
+
+	public void setPattern(String pattern) {
+		this.pattern = pattern;
+	}
+
+	public List<String> getArgs() {
+		return args;
+	}
+
+	public void setArgs(List<String> args) {
+		this.args = args;
+	}
 
 }

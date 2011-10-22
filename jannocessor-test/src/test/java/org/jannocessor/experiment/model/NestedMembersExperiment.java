@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.experiment.model;
 
-import org.jannocessor.context.Configuration;
+import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-public interface JannocessorInput {
+@BeanModel
+public class NestedMembersExperiment {
 
-	Configuration getOptions();
+	static class Nested1 {
+		int foo;
+	}
+
+	class Nested2 {
+		String bar;
+	}
 
 }

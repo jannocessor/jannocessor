@@ -16,7 +16,7 @@
 
 package org.jannocessor.service.api;
 
-import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.JannocessorException;
 
 public interface RulesGenerator {
 

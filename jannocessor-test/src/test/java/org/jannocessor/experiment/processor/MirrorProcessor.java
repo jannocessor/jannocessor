@@ -14,27 +14,23 @@
  * limitations under the License.
  */
 
-package org.jannocessor.engine.impl;
+package org.jannocessor.experiment.processor;
 
-import org.jannocessor.context.Configuration;
-import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.service.api.JannocessorInput;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.processor.context.CodeProcessor;
+import org.jannocessor.processor.context.ProcessingContext;
 
-import com.google.inject.AbstractModule;
-
-public class ProcessorModule extends AbstractModule {
-
-	private final Configuration options;
-
-	public ProcessorModule(Configuration options) {
-		this.options = options;
-	}
+public class MirrorProcessor implements CodeProcessor<AbstractJavaStructure> {
 
 	@Override
-	protected void configure() {
-		bind(JannocessorInput.class).toInstance(
-				new JannocessorInputImpl(options));
-		bind(JannocessorEngine.class).to(JannocessorEngineImpl.class);
+	public void process(PowerList<AbstractJavaStructure> elements,
+			ProcessingContext context) {
+		context.getLogger().info("Processing {} elements", elements.size());
+
+		for (AbstractJavaStructure structure : elements) {
+			context.generateCode(structure, true);
+		}
 	}
 
 }

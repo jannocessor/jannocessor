@@ -14,12 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.experiment.model;
 
-import org.jannocessor.context.Configuration;
+import java.awt.List;
 
-public interface JannocessorInput {
+import javax.annotation.Generated;
+import javax.lang.model.type.TypeKind;
 
-	Configuration getOptions();
+import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
+import org.jannocessor.bootstrapped.annotation.BeanModel;
+
+@AnotherAnnotation(a = 105, b = "xx", cls = List.class, kind = TypeKind.DECLARED, ann = @Generated("gen"))
+@BeanModel
+@SuppressWarnings("unused")
+public class BookBeanModel {
+
+	@AnotherAnnotation
+	private transient String title;
+
+	@AnotherAnnotation(b = "field")
+	public static PersonBeanModel author;
 
 }

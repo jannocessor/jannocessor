@@ -14,12 +14,21 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.context;
 
-import org.jannocessor.context.Configuration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-public interface JannocessorInput {
+public class RenderRegister {
 
-	Configuration getOptions();
+	private final List<RenderData> renderings = new ArrayList<RenderData>();
 
+	public void register(Map<String, Object> attributes) {
+		renderings.add(new RenderData(attributes));
+	}
+
+	public List<RenderData> getRenderings() {
+		return renderings;
+	}
 }

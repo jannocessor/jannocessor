@@ -18,12 +18,11 @@ package org.jannocessor.engine.impl;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.jannocessor.JannocessorException;
 import org.jannocessor.engine.JannocessorEngine;
-import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.MultiContentSplitter;
@@ -85,8 +84,8 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 		return config.getRulesFilenames();
 	}
 
-	public Set<String> getSupportedAnnotations() throws JannocessorException {
-		return config.getSupportedAnnotations();
+	public Class<?> getProcessorsConfiguration() throws JannocessorException {
+		return config.getProcessorsConfiguration();
 	}
 
 	public String getAnnotationLabel(String annotation)

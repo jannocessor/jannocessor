@@ -14,12 +14,22 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.context;
 
-import org.jannocessor.context.Configuration;
+import java.util.Map;
 
-public interface JannocessorInput {
+import org.jannocessor.JannocessorException;
 
-	Configuration getOptions();
+public interface Configuration {
+
+	String[] getMandatoryValues(String key) throws JannocessorException;
+
+	String getMandatoryValue(String key) throws JannocessorException;
+
+	String[] getOptionalValues(String key, String defaultValue);
+
+	String getOptionalValue(String key, String defaultValue);
+
+	Map<String, String> getAllProperties() throws JannocessorException;
 
 }

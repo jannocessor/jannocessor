@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.annotation;
 
-import org.jannocessor.context.Configuration;
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-public interface JannocessorInput {
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Annotated {
 
-	Configuration getOptions();
+	Class<? extends Annotation>[] value();
 
 }

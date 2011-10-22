@@ -32,4 +32,6 @@ public interface Settings {
 
 	public static final String OPTION_TEMPLATES_PATH = "templates.path";
 
+	public static final String PROCESSORS_CLASSNAME = "org.jannocessor.config.Processors";
+
 }

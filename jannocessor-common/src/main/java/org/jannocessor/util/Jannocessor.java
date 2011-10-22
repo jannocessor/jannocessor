@@ -14,12 +14,26 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.util;
 
-import org.jannocessor.context.Configuration;
+import org.jannocessor.JannocessorException;
 
-public interface JannocessorInput {
+public class Jannocessor {
 
-	Configuration getOptions();
+	public static JannocessorException error(String message) {
+		return new JannocessorException(message);
+	}
+
+	public static JannocessorException error(String message, Exception cause) {
+		return new JannocessorException(message, cause);
+	}
+
+	public static void ensure(boolean condition, String errorMessage,
+			Object... messageArgs) {
+		if (!condition) {
+			throw new IllegalStateException(String.format(errorMessage,
+					messageArgs));
+		}
+	}
 
 }

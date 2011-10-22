@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.processor.context;
 
-import org.jannocessor.context.Configuration;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.JavaElement;
 
-public interface JannocessorInput {
+public interface CodeProcessor<T extends JavaElement> {
 
-	Configuration getOptions();
+	void process(PowerList<T> code, ProcessingContext context);
 
 }

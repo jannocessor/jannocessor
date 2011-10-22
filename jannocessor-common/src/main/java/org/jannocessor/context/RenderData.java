@@ -14,12 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.context;
 
-import org.jannocessor.context.Configuration;
+import java.util.Map;
 
-public interface JannocessorInput {
+public class RenderData {
 
-	Configuration getOptions();
+	private final Map<String, Object> attributes;
+
+	public RenderData(Map<String, Object> attributes) {
+		this.attributes = attributes;
+	}
+
+	public Map<String, Object> getAttributes() {
+		return attributes;
+	}
+
+	@Override
+	public String toString() {
+		return "RenderData [attributes=" + attributes + "]";
+	}
 
 }

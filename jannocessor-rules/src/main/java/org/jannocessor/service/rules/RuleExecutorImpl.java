@@ -41,7 +41,7 @@ import org.drools.io.ResourceFactory;
 import org.drools.io.impl.ByteArrayResource;
 import org.drools.io.internal.InternalResource;
 import org.drools.runtime.StatelessKnowledgeSession;
-import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.JannocessorException;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.RuleExecutor;
 import org.jannocessor.util.Settings;
@@ -92,10 +92,10 @@ public class RuleExecutorImpl implements RuleExecutor, Settings {
 
 			// logger.info("Saving rules...");
 			// saveKnowledgeBase(kbase);
-		} /*else {
-			logger.info("Loading pre-compiled rules...");
-			kbase = loadKnowledgeBase();
-		}*/
+		} /*
+		 * else { logger.info("Loading pre-compiled rules..."); kbase =
+		 * loadKnowledgeBase(); }
+		 */
 
 		logger.info("Creating new session");
 

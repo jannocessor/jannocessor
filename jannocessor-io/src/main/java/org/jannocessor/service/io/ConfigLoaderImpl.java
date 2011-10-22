@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.JannocessorException;
 import org.jannocessor.service.api.ConfigLoader;
 import org.jannocessor.util.Settings;
 

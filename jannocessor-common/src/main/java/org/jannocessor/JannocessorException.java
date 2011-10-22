@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor;
 
-import org.jannocessor.context.Configuration;
+public class JannocessorException extends Exception {
 
-public interface JannocessorInput {
+	private static final long serialVersionUID = 5283188303234919812L;
 
-	Configuration getOptions();
+	public JannocessorException(String message, Exception e) {
+		super(message, e);
+	}
+
+	public JannocessorException(String message) {
+		super(message);
+	}
 
 }

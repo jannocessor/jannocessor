@@ -20,7 +20,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.util.List;
 
-import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.JannocessorException;
 import org.jannocessor.service.api.PatternService;
 import org.junit.Before;
 import org.junit.Test;

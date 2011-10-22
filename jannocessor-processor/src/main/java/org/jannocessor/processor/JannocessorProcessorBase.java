@@ -40,18 +40,18 @@ import javax.tools.FileObject;
 import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
 
+import org.jannocessor.JannocessorException;
 import org.jannocessor.adapter.SourceHolder;
+import org.jannocessor.context.Config;
+import org.jannocessor.context.Configuration;
+import org.jannocessor.context.RenderRegister;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.engine.impl.ProcessorModule;
 import org.jannocessor.inject.ImportsServiceModule;
 import org.jannocessor.inject.RulesServiceModule;
-import org.jannocessor.processor.model.Config;
-import org.jannocessor.processor.model.Configuration;
-import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.processor.model.Problem;
-import org.jannocessor.processor.model.Problems;
-import org.jannocessor.processor.model.Processors;
-import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.processor.context.Problem;
+import org.jannocessor.processor.context.Problems;
+import org.jannocessor.processor.context.ProcessorsConfiguration;
 import org.jannocessor.service.configuration.ConfigurationServiceModule;
 import org.jannocessor.service.io.IOServiceModule;
 import org.jannocessor.service.render.TemplateServiceModule;
@@ -77,7 +77,6 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected Map<String, String> files = new HashMap<String, String>();
 	protected List<String> contents = new ArrayList<String>();
 	protected Problems problems = new Problems();
-	protected Processors processors;
 	protected JannocessorEngine engine;
 	protected RenderRegister renderRegister = new RenderRegister();
 	private Messager messager;
@@ -87,6 +86,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	private List<String> globalWarnings = new ArrayList<String>();
 
 	private Injector injector;
+
+	protected ProcessorsConfiguration processorsConfig;
 
 	public JannocessorProcessorBase() {
 		logger.info("Instantiated Jannocessor");
@@ -152,6 +153,9 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 			engine = injector.getInstance(JannocessorEngine.class);
 			engine.configure(engine.getTemplatesPath(), true);
+
+			processorsConfig = new ProcessorsConfiguration(
+					engine.getProcessorsConfiguration());
 
 			showConfiguration();
 

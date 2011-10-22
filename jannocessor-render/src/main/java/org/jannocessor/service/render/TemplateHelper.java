@@ -22,9 +22,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.VelocityContext;
+import org.jannocessor.JannocessorException;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerMap;
-import org.jannocessor.processor.model.JannocessorException;
 import org.jannocessor.service.api.MultiContentSplitter;
 
 public class TemplateHelper {

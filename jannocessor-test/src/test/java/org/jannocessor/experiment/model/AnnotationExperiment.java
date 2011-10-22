@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.experiment.model;
 
-import org.jannocessor.context.Configuration;
+import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
+import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-public interface JannocessorInput {
+@AnotherAnnotation(a = 105, b = "xx")
+@BeanModel
+public @interface AnnotationExperiment {
 
-	Configuration getOptions();
+	String value() default "def";
+
+	int[] someMethod();
 
 }

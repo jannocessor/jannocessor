@@ -14,12 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.processor.context;
 
-import org.jannocessor.context.Configuration;
+import org.jannocessor.model.JavaElement;
 
-public interface JannocessorInput {
+public class Root {
 
-	Configuration getOptions();
+	private final JavaElement element;
+
+	public Root(JavaElement element) {
+		this.element = element;
+	}
+
+	public JavaElement getElement() {
+		return element;
+	}
+
+	@Override
+	public String toString() {
+		return "Root [element=" + element + "]";
+	}
 
 }

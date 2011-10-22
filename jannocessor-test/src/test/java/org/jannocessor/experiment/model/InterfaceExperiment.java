@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.experiment.model;
 
-import org.jannocessor.context.Configuration;
+import java.io.Serializable;
 
-public interface JannocessorInput {
+import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
+import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-	Configuration getOptions();
+@AnotherAnnotation(a = 105, b = "xx")
+@BeanModel
+public interface InterfaceExperiment extends Runnable, Serializable {
+
+	int FOO = 34;
+
+	void someMethod();
 
 }

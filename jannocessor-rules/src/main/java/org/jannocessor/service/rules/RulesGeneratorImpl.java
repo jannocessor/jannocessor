@@ -23,8 +23,8 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.processor.model.Rule;
+import org.jannocessor.JannocessorException;
+import org.jannocessor.context.Rule;
 import org.jannocessor.service.api.FileService;
 import org.jannocessor.service.api.PatternService;
 import org.jannocessor.service.api.RulesGenerator;

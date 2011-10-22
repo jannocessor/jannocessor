@@ -17,15 +17,14 @@
 package org.jannocessor.service.api;
 
 import java.util.Map;
-import java.util.Set;
 
-import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.JannocessorException;
 
 public interface Configurator {
 
 	String[] getRulesFilenames() throws JannocessorException;
 
-	Set<String> getSupportedAnnotations() throws JannocessorException;
+	Class<?> getProcessorsConfiguration() throws JannocessorException;
 
 	String getAnnotationLabel(String annotation) throws JannocessorException;
 

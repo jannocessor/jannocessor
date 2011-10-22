@@ -16,7 +16,7 @@
 
 package org.jannocessor.engine.impl;
 
-import org.jannocessor.processor.model.Configuration;
+import org.jannocessor.context.Configuration;
 import org.jannocessor.service.api.JannocessorInput;
 
 public class JannocessorInputImpl implements JannocessorInput {

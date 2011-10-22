@@ -16,8 +16,8 @@
 
 package org.jannocessor.ui;
 
-import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.JannocessorException;
+import org.jannocessor.context.RenderRegister;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.slf4j.Logger;

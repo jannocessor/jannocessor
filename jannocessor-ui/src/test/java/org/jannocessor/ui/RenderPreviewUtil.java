@@ -19,12 +19,12 @@ package org.jannocessor.ui;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jannocessor.JannocessorException;
+import org.jannocessor.context.RenderRegister;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.util.Classes;
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.util.Fields;
-import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.model.util.New;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.mockito.Mockito;

@@ -18,7 +18,7 @@ package org.jannocessor.service.api;
 
 import java.util.Map;
 
-import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.JannocessorException;
 
 public interface TemplateRenderer {
 

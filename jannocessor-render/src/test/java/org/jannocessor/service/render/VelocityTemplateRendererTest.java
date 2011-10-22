@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jannocessor.processor.model.JannocessorException;
+import org.jannocessor.JannocessorException;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.TemplateRenderer;

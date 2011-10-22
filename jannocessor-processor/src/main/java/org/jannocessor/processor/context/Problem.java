@@ -14,12 +14,32 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.processor.context;
 
-import org.jannocessor.context.Configuration;
+import org.jannocessor.model.JavaElement;
 
-public interface JannocessorInput {
+public class Problem {
 
-	Configuration getOptions();
+	private final JavaElement element;
+
+	private final String message;
+
+	public Problem(JavaElement element, String message) {
+		this.element = element;
+		this.message = message;
+	}
+
+	public JavaElement getElement() {
+		return element;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	@Override
+	public String toString() {
+		return "Problem [element=" + element + ", message=" + message + "]";
+	}
 
 }

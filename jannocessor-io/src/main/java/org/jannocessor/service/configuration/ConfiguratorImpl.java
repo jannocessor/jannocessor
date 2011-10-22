@@ -18,19 +18,19 @@ package org.jannocessor.service.configuration;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.inject.Inject;
 
-import org.jannocessor.processor.model.Config;
-import org.jannocessor.processor.model.Configuration;
-import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.service.api.ConfigLoader;
+import org.jannocessor.JannocessorException;
+import org.jannocessor.context.Config;
+import org.jannocessor.context.Configuration;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JannocessorInput;
+import org.jannocessor.util.Jannocessor;
 import org.jannocessor.util.Settings;
 
 public class ConfiguratorImpl implements Configurator, Settings {
@@ -41,28 +41,20 @@ public class ConfiguratorImpl implements Configurator, Settings {
 
 	private Configuration processors;
 
-	private final ConfigLoader loader;
-
 	private final JannocessorInput input;
 
 	@Inject
-	public ConfiguratorImpl(JannocessorInput input, ConfigLoader loader)
-			throws JannocessorException {
+	public ConfiguratorImpl(JannocessorInput input) throws JannocessorException {
 		this.input = input;
-		this.loader = loader;
 		initialize();
 	}
 
 	private void initialize() throws JannocessorException {
-		String generalFilename = getGeneralConfigFilename();
-		general = new Config(loader.loadProperties(generalFilename));
+		general = new Config(new HashMap<String, String>());
 
-		String annotationsFilename = getAnnotationConfigFilename();
-		annotations = new Config(loader.loadProperties(annotationsFilename));
+		annotations = new Config(new HashMap<String, String>());
 
-		String processorsFilename = getProcessorsConfigFilename();
-		processors = new Config(loader.loadProperties(processorsFilename));
-
+		processors = new Config(new HashMap<String, String>());
 	}
 
 	@Override
@@ -71,8 +63,13 @@ public class ConfiguratorImpl implements Configurator, Settings {
 	}
 
 	@Override
-	public Set<String> getSupportedAnnotations() throws JannocessorException {
-		return new HashSet<String>(annotations.getAllProperties().values());
+	public Class<?> getProcessorsConfiguration() throws JannocessorException {
+		try {
+			return Class.forName(PROCESSORS_CLASSNAME);
+		} catch (ClassNotFoundException e) {
+			throw Jannocessor.error("Couldn't find settings class: "
+					+ PROCESSORS_CLASSNAME, e);
+		}
 	}
 
 	@Override

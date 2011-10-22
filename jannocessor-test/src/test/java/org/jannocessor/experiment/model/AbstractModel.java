@@ -14,12 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.service.api;
+package org.jannocessor.experiment.model;
 
-import org.jannocessor.context.Configuration;
+import java.io.Serializable;
 
-public interface JannocessorInput {
+import org.jannocessor.bootstrapped.annotation.BeanModel;
 
-	Configuration getOptions();
+@SuppressWarnings("serial")
+@BeanModel
+public class AbstractModel implements Serializable {
+
+	public static int rootMethod() {
+		return 0;
+	}
+
+	public void rootMethod2() {
+	}
+
+	public boolean[] rootMethod3() {
+		return null;
+	}
 
 }

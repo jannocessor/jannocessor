@@ -42,9 +42,9 @@ import javax.swing.JScrollPane;
 import jsyntaxpane.DefaultSyntaxKit;
 
 import org.apache.commons.io.FileUtils;
-import org.jannocessor.processor.model.JannocessorException;
-import org.jannocessor.processor.model.RenderData;
-import org.jannocessor.processor.model.RenderRegister;
+import org.jannocessor.JannocessorException;
+import org.jannocessor.context.RenderData;
+import org.jannocessor.context.RenderRegister;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.MultiContentSplitter;
