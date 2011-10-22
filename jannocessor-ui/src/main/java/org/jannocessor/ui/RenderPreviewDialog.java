@@ -289,8 +289,18 @@ public class RenderPreviewDialog extends JDialog {
 			} else {
 				output.add(createOutput("FILE NAME NOT SPECIFIED!", text));
 			}
-		} catch (JannocessorException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.warn("Rendering error occured!", e);
+
+			Throwable cause = e;
+			String message = "";
+
+			while (cause != null) {
+				message += cause.getMessage() + "\n\n";
+				cause = cause.getCause();
+			}
+
+			output.add(createOutput("RENDERING ERROR OCCURED!", message));
 		}
 		output.revalidate();
 		repaint();
