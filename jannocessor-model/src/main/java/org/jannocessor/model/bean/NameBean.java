@@ -29,7 +29,7 @@ import org.jannocessor.model.Name;
 public class NameBean implements Name {
 
 	private static final long serialVersionUID = -8706143384650266668L;
-	
+
 	private String name;
 
 	private enum NameCase {
@@ -85,6 +85,8 @@ public class NameBean implements Name {
 	public Name deleteParts(int... positions) {
 		List<String> parts = parts();
 
+		translateNegativePositions(positions, parts.size());
+
 		String deletedStart = null;
 		for (int position : positions) {
 			if (position == 0) {
@@ -130,6 +132,8 @@ public class NameBean implements Name {
 	public Name insertPart(int position, String part) {
 		List<String> parts = parts();
 
+		position = translateNegativePosition(position, parts.size());
+
 		parts.add(position, part);
 
 		String name = mergeParts(parts);
@@ -151,6 +155,8 @@ public class NameBean implements Name {
 	@Override
 	public Name replacePart(int position, String part) {
 		List<String> parts = parts();
+
+		position = translateNegativePosition(position, parts.size());
 
 		parts.set(position, part);
 
@@ -194,6 +200,22 @@ public class NameBean implements Name {
 				return NameCase.UNDERSCORE;
 			} else {
 				return NameCase.CAMELCASE;
+			}
+		}
+	}
+
+	private int translateNegativePosition(int position, int length) {
+		if (position < 0) {
+			return length + position;
+		} else {
+			return position;
+		}
+	}
+
+	private void translateNegativePositions(int[] positions, int length) {
+		for (int i = 0; i < positions.length; i++) {
+			if (positions[i] < 0) {
+				positions[i] = translateNegativePosition(positions[i], length);
 			}
 		}
 	}
@@ -242,5 +264,4 @@ public class NameBean implements Name {
 	public String toString() {
 		return getText();
 	}
-
 }

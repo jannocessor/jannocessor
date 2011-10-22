@@ -70,7 +70,7 @@ public class NameTest extends AbstractModelTest {
 	public void testDeleteCamelcaseParts() {
 		checkDeleteParts(smallCamelCase, "secondThird", 0);
 		checkDeleteParts(smallCamelCase, "firstThird", 1);
-		checkDeleteParts(smallCamelCase, "firstSecond", 2);
+		checkDeleteParts(smallCamelCase, "firstSecond", -1);
 
 		checkDeleteParts(smallCamelCase, "third", 0, 1);
 		checkDeleteParts(smallCamelCase, "first", 1, 2);
@@ -80,12 +80,12 @@ public class NameTest extends AbstractModelTest {
 	@Test
 	public void testDeleteUnderscoreParts() {
 		checkDeleteParts(smallUnderscore, "second_third", 0);
-		checkDeleteParts(smallUnderscore, "first_third", 1);
+		checkDeleteParts(smallUnderscore, "first_third", -2);
 		checkDeleteParts(smallUnderscore, "first_second", 2);
 
 		checkDeleteParts(smallUnderscore, "third", 0, 1);
 		checkDeleteParts(smallUnderscore, "first", 1, 2);
-		checkDeleteParts(smallUnderscore, "second", 0, 2);
+		checkDeleteParts(smallUnderscore, "second", -3, 2);
 	}
 
 	private void checkDeleteParts(String name, String expectedName,
@@ -108,7 +108,7 @@ public class NameTest extends AbstractModelTest {
 	public void testInsertCamelcaseParts() {
 		checkInsertParts(bigCamelCase, 0, "New", "NewFirstSecondThird");
 		checkInsertParts(bigCamelCase, 1, "New", "FirstNewSecondThird");
-		checkInsertParts(bigCamelCase, 2, "New", "FirstSecondNewThird");
+		checkInsertParts(bigCamelCase, -1, "New", "FirstSecondNewThird");
 		checkInsertParts(bigCamelCase, 3, "New", "FirstSecondThirdNew");
 	}
 
