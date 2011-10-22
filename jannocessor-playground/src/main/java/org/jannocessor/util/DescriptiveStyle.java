@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
-package org.jannocessor.test;
+package org.jannocessor.util;
 
-import static org.junit.Assert.*;
+import org.apache.commons.lang.SystemUtils;
+import org.apache.commons.lang.builder.ToStringStyle;
 
-import java.util.List;
+@SuppressWarnings("serial")
+public class DescriptiveStyle extends ToStringStyle {
 
-public abstract class AbstractTest {
+	public DescriptiveStyle(Class<?> type) {
+		this.setUseClassName(false);
+		this.setUseIdentityHashCode(false);
 
-	@SuppressWarnings("unchecked")
-	protected void checkList(Object value, Object... items) {
-		if (value instanceof List) {
-			List<Object> list = (List<Object>) value;
-			assertArrayEquals(items, list.toArray());
-		} else {
-			fail("Expected a list");
-		}
+		this.setContentStart(type.getSimpleName() + "{\n");
+        this.setFieldSeparator(SystemUtils.LINE_SEPARATOR + "  ");
+        this.setFieldSeparatorAtStart(true);
+        this.setContentEnd(SystemUtils.LINE_SEPARATOR + "}");
 	}
+
 
 }

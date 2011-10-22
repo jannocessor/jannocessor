@@ -16,11 +16,15 @@
 
 package org.jannocessor.codegenerator;
 
+import static org.jannocessor.model.modifier.value.NestedClassModifierValue.ABSTRACT;
+import static org.jannocessor.model.modifier.value.NestedClassModifierValue.FINAL;
+import static org.jannocessor.model.modifier.value.NestedClassModifierValue.PRIVATE;
+import static org.jannocessor.model.modifier.value.NestedClassModifierValue.PROTECTED;
+import static org.jannocessor.model.modifier.value.NestedClassModifierValue.PUBLIC;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jannocessor.model.modifier.value.NestedClassModifierValue;
-
-import static org.jannocessor.model.modifier.value.NestedClassModifierValue.*;
 
 @SuppressWarnings("rawtypes")
 public class Generator {

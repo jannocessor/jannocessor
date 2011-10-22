@@ -16,13 +16,16 @@
 
 package org.jannocessor.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.jannocessor.test.AbstractTest;
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FlexyMapTest extends AbstractTest {
+public class FlexyMapTest {
 
 	private static final String A = "A";
 	private static final String B = "B";
@@ -91,6 +94,16 @@ public class FlexyMapTest extends AbstractTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testNotMap() {
 		flexyMap.set(1, A).sub(1);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected void checkList(Object value, Object... items) {
+		if (value instanceof List) {
+			List<Object> list = (List<Object>) value;
+			Assert.assertArrayEquals(items, list.toArray());
+		} else {
+			Assert.fail("Expected a list");
+		}
 	}
 
 }
