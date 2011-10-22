@@ -99,7 +99,8 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	public String toString() {
 		TypeSpecificInlineStyle style = new TypeSpecificInlineStyle(
 				SourceCode.class);
-		return new ReflectionToStringBuilder(this, style).toString();
+		return new ReflectionToStringBuilder(this, style).setExcludeFieldNames(
+				new String[] { "parent" }).toString();
 	}
 
 	@Override
