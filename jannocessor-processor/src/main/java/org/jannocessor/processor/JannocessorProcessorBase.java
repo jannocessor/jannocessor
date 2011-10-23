@@ -57,7 +57,6 @@ import org.jannocessor.service.io.IOServiceModule;
 import org.jannocessor.service.render.TemplateServiceModule;
 import org.jannocessor.service.representation.RepresentationServiceModule;
 import org.jannocessor.service.splitter.SplitterServiceModule;
-import org.jannocessor.util.Settings;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -169,12 +168,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	private void showConfiguration() throws JannocessorException {
 		logger.info("Project path: {}", getProjectPath());
-		logger.info("Resources path: {}", engine.getResourcesPath());
-		logger.info("Config path: {}", engine.getConfigPath());
-		logger.info("Rules path: {}", engine.getRulesPath());
-
-		logger.info("Templates path: {}", getTemplatesPath()); // FIXME:
-																// refactor
+		logger.info("Templates path: {}", engine.getTemplatesPath());
 	}
 
 	private void processOptions() throws JannocessorException {
@@ -182,8 +176,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		Set<Entry<String, String>> entries = options.getAllProperties()
 				.entrySet();
 		for (Entry<String, String> entry : entries) {
-			logger.debug("- Option: {} = '{}'", entry.getKey(),
-					entry.getValue());
+			logger.info("- Option: {} = '{}'", entry.getKey(), entry.getValue());
 			processOption(entry.getKey(), entry.getValue());
 		}
 	}
@@ -309,17 +302,6 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	protected void warning(String msg, Element element) {
 		messager.printMessage(Diagnostic.Kind.WARNING, msg, element);
-	}
-
-	protected String getTemplatesPath() {
-		String path = options.getOptionalValue(Settings.OPTION_TEMPLATES_PATH,
-				null);
-
-		if (path == null) {
-			path = getProjectPath() + "/src/main/resources/templates";
-		}
-
-		return path;
 	}
 
 	protected String getProjectPath() {

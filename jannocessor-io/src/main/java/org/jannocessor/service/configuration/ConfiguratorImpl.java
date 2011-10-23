@@ -106,8 +106,7 @@ public class ConfiguratorImpl implements Configurator, Settings {
 
 	@Override
 	public String getTemplatesPath() throws JannocessorException {
-		return input.getOptions().getOptionalValue(OPTION_TEMPLATES_PATH,
-				mergePath(getResourcesPath(), "templates"));
+		return input.getOptions().getOptionalValue(OPTION_TEMPLATES_PATH, null);
 	}
 
 	@Override

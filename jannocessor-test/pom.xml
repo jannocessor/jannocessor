@@ -61,9 +61,11 @@
 						<phase>test-compile</phase>
 						<configuration>
 							<options>
-								<profile>test</profile>
-								<templates.path>${project.parent.basedir}/jannocessor-templates/src/main/resources/templates</templates.path>
+								<mode>debug</mode>
+								<templates.path>${project.basedir}/src/test/resources</templates.path>
+								<classes.path>${project.build.outputDirectory}</classes.path>
 							</options>
+
 							<processors>
 								<processor>org.jannocessor.processor.JannocessorProcessor</processor>
 							</processors>

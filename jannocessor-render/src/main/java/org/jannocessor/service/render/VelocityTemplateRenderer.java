@@ -35,6 +35,8 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.RuntimeServices;
+import org.apache.velocity.runtime.log.LogChute;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.apache.velocity.runtime.resource.loader.FileResourceLoader;
 import org.jannocessor.JannocessorException;
@@ -60,7 +62,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
-		RuntimeConstants {
+		RuntimeConstants, LogChute {
 
 	private static final String RESOURCE_LOADER_CLASS = "file.resource.loader.class";
 
@@ -82,21 +84,38 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 	@Override
 	public void configure(String templatesPath, boolean debugMode)
 			throws JannocessorException {
+		logger.info(
+				"Configuring Velocity engine: {templates_path={}, debug={}}",
+				templatesPath, debugMode);
+
 		try {
 			Properties velocityConfig = new Properties();
 
 			if (templatesPath != null) {
+				velocityConfig
+						.setProperty("resource.loader", "file, classpath");
+
 				velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
 						FileResourceLoader.class.getCanonicalName());
 				velocityConfig.setProperty(FILE_RESOURCE_LOADER_PATH,
 						templatesPath);
+
+				velocityConfig.setProperty("classpath.resource.loader.class",
+						ClasspathResourceLoader.class.getCanonicalName());
+				velocityConfig.setProperty("classpath.resource.loader.cache","false");
 			} else {
 				velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
 						ClasspathResourceLoader.class.getCanonicalName());
 			}
 
+			velocityConfig.setProperty(VM_LIBRARY, "_global_macros_.vm");
 			velocityConfig.setProperty(VM_MAX_DEPTH, "1000");
-			velocityConfig.setProperty(VM_PERM_INLINE_LOCAL, "true");
+			velocityConfig.setProperty(VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL,
+					"true");
+			velocityConfig.setProperty(VM_PERM_INLINE_LOCAL, "false");
+			velocityConfig.setProperty(VM_PERM_ALLOW_INLINE, "true");
+
+			// FIXME: deprecated
 			velocityConfig.setProperty(VM_CONTEXT_LOCALSCOPE, "true");
 
 			if (debugMode) {
@@ -107,7 +126,20 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 				velocityConfig.setProperty(FILE_RESOURCE_LOADER_CACHE, "true");
 			}
 
+			engine.setProperty(RUNTIME_LOG_LOGSYSTEM, this);
 			engine.init(velocityConfig);
+
+			if (engine.resourceExists(CUSTOM_TEMPLATE)) {
+				if (engine.getTemplate(CUSTOM_TEMPLATE).process()) {
+					logger.info("Successfully processed: {}", CUSTOM_TEMPLATE);
+				} else {
+					logger.info("Couldn't process: {}", CUSTOM_TEMPLATE);
+				}
+			} else {
+				logger.info(
+						"The templates customization file '{}' wasn't found on classpath",
+						CUSTOM_TEMPLATE);
+			}
 
 			configured = true;
 		} catch (Exception e) {
@@ -272,6 +304,33 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 		String text = replacePlaceholder(renderedText, "SMART_IMPORT",
 				replacement);
 		return text;
+	}
+
+	@Override
+	public void init(RuntimeServices rs) throws Exception {
+	}
+
+	@Override
+	public void log(int level, String message) {
+		if (level < ERROR_ID) {
+			logger.info(message);
+		} else {
+			logger.warn(message);
+		}
+	}
+
+	@Override
+	public void log(int level, String message, Throwable t) {
+		if (level < ERROR_ID) {
+			logger.info(message);
+		} else {
+			logger.warn(message);
+		}
+	}
+
+	@Override
+	public boolean isLevelEnabled(int level) {
+		return level >= INFO_ID;
 	}
 
 }

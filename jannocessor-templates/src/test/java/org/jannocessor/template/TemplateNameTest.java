@@ -30,7 +30,7 @@ public class TemplateNameTest {
 	public void testTemplateNames() {
 		for (Class<? extends JavaCodeModel> clazz : API.ALL) {
 			String name = Templates.defaultName(clazz);
-			String fullName = "templates/" + name + ".vm";
+			String fullName = name + ".vm";
 			URL url = getClass().getClassLoader().getResource(fullName);
 			Assert.assertNotNull("Cannot find template: " + fullName, url);
 		}

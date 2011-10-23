@@ -51,7 +51,8 @@ public class RulesGeneratorImpl implements RulesGenerator, Settings {
 		this.fileService = fileService;
 		this.patternService = patternService;
 
-		renderer.configure(null, false);
+		// TODO: enable this when needed
+		// renderer.configure(null, false);
 	}
 
 	@Override

@@ -32,13 +32,12 @@ public class TemplatesTest extends AbstractModelTest {
 
 	@Test
 	public void testDefaultTemplateName() {
-		Assert.assertEquals("default/exception_parameter",
+		Assert.assertEquals("exception_parameter",
 				Templates.defaultName(JavaExceptionParameterBean.class));
 
-		Assert.assertEquals("default/class",
-				Templates.defaultName(JavaClassBean.class));
+		Assert.assertEquals("class", Templates.defaultName(JavaClassBean.class));
 
-		Assert.assertEquals("default/array_type",
+		Assert.assertEquals("array_type",
 				Templates.defaultName(JavaArrayTypeBean.class));
 	}
 

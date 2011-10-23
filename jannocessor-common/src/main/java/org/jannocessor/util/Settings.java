@@ -34,4 +34,6 @@ public interface Settings {
 
 	public static final String PROCESSORS_CLASSNAME = "org.jannocessor.config.Processors";
 
+	public static final String CUSTOM_TEMPLATE = "customize.vm";
+
 }

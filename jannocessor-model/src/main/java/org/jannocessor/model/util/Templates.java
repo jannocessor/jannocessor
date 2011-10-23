@@ -34,7 +34,6 @@ public class Templates {
 
 		name = name.substring(4);
 		name = name.replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase();
-		name = "default/" + name;
 
 		return name;
 	}
