@@ -102,7 +102,8 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 				velocityConfig.setProperty("classpath.resource.loader.class",
 						ClasspathResourceLoader.class.getCanonicalName());
-				velocityConfig.setProperty("classpath.resource.loader.cache","false");
+				velocityConfig.setProperty("classpath.resource.loader.cache",
+						"false");
 			} else {
 				velocityConfig.setProperty(RESOURCE_LOADER_CLASS,
 						ClasspathResourceLoader.class.getCanonicalName());
@@ -129,17 +130,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 			engine.setProperty(RUNTIME_LOG_LOGSYSTEM, this);
 			engine.init(velocityConfig);
 
-			if (engine.resourceExists(CUSTOM_TEMPLATE)) {
-				if (engine.getTemplate(CUSTOM_TEMPLATE).process()) {
-					logger.info("Successfully processed: {}", CUSTOM_TEMPLATE);
-				} else {
-					logger.info("Couldn't process: {}", CUSTOM_TEMPLATE);
-				}
-			} else {
-				logger.info(
-						"The templates customization file '{}' wasn't found on classpath",
-						CUSTOM_TEMPLATE);
-			}
+			customize(true);
 
 			configured = true;
 		} catch (Exception e) {
@@ -149,10 +140,25 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 		}
 	}
 
+	private void customize(boolean verbose) {
+		if (engine.resourceExists(CUSTOM_TEMPLATE)) {
+			if (engine.getTemplate(CUSTOM_TEMPLATE).process() && verbose) {
+				logger.info("Successfully processed: {}", CUSTOM_TEMPLATE);
+			} else {
+				logger.info("Couldn't process: {}", CUSTOM_TEMPLATE);
+			}
+		} else if (verbose) {
+			logger.info(
+					"The templates customization file '{}' wasn't found on classpath",
+					CUSTOM_TEMPLATE);
+		}
+	}
+
 	@Override
 	public String render(String template, Map<String, Object> attributes)
 			throws JannocessorException {
 		checkWasConfigured();
+		customize(false);
 
 		VelocityContext context = createContext(attributes);
 
@@ -170,6 +176,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 	public String renderFromFile(String templateFilename,
 			Map<String, Object> attributes) throws JannocessorException {
 		checkWasConfigured();
+		customize(false);
 
 		try {
 			logger.info("Retrieving template: {}", templateFilename);
@@ -203,6 +210,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 	public String renderMacro(String macro, Map<String, Object> attributes,
 			String[] params) throws JannocessorException {
 		checkWasConfigured();
+		customize(false);
 
 		VelocityContext context = createContext(attributes);
 
