@@ -94,20 +94,10 @@ public class ExperimentProcessor implements CodeProcessor<JavaClass> {
 			clazz.getNestedEnums().add(enum1);
 
 			JavaConstructor constr2 = New.constructor(New.parameter(
-					String.class, "xa"));
+					String.class, "param1"));
 			clazz.getConstructors().add(constr2);
 
-			JavaClass model2 = New.copy(clazz);
-			model2.getName().appendPart("Copy");
-
-			// System.out.println("--------------------------- 1");
-			// System.out.println(model);
-			// System.out.println("--------------------------- 2");
-			// System.out.println(model2);
-			// System.out.println("--------------------------- 3");
-
-			context.generateCode(clazz, true);
-			// context.generateCode(model2, true);
+//			context.generateCode(clazz, true);
 		}
 	}
 
