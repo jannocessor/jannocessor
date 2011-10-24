@@ -17,7 +17,9 @@
 package org.jannocessor.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -117,8 +119,8 @@ public class RenderPreviewDialog extends JDialog {
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension screenSize = tk.getScreenSize();
-		double width = screenSize.getWidth() * 0.95;
-		double height = screenSize.getHeight() * 0.9;
+		double width = screenSize.getWidth() * 0.9;
+		double height = screenSize.getHeight() * 0.8;
 
 		// Font font = new Font("Courier New", Font.PLAIN, 14);
 
@@ -155,6 +157,15 @@ public class RenderPreviewDialog extends JDialog {
 		});
 
 		add(combo, BorderLayout.NORTH);
+		JLabel help = new JLabel(
+				" Choose a template from the drop-down box to edit it. Navigation: Alt + Left & Alt + Right; Refresh = F5, Close = Esc",
+				JLabel.CENTER);
+
+		help.setForeground(Color.WHITE);
+		help.setBackground(Color.BLACK);
+		help.setOpaque(true);
+		help.setFont(new Font("Courier New", Font.BOLD, 14));
+		add(help, BorderLayout.SOUTH);
 
 		keyListener = new KeyAdapter() {
 			@Override
