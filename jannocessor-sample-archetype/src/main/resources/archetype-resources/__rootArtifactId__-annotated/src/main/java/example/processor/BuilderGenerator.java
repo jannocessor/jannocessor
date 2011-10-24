@@ -10,6 +10,7 @@ import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
@@ -40,7 +41,7 @@ public class BuilderGenerator implements CodeProcessor<JavaClass> {
 			clazz.getName().appendPart("Builder");
 
 			// the type representation of the builder class (e.g. PersonBuilder type)
-			JavaType builderType = Utils.type(modelName + "Builder");
+			JavaType builderType = New.type(modelName + "Builder", JavaTypeKind.DECLARED);
 
 			// initialize empty list of methods for the builder
 			PowerList<JavaMethod> methods = Power.list();
