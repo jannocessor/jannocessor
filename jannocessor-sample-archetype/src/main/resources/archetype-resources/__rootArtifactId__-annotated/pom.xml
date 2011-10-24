@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>${rootArtifactId}</artifactId>
+		<groupId>${groupId}</groupId>
+		<version>${version}</version>
+	</parent>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+
+	<profiles>
+		<profile>
+			<id>generate-code</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>2.4.1</version>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>${project.parent.basedir}/${rootArtifactId}-generated/src/main/java</directory>
+									<includes>
+										<include>**/*</include>
+									</includes>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.bsc.maven</groupId>
+						<artifactId>maven-processor-plugin</artifactId>
+						<version>2.0.4</version>
+						<executions>
+							<execution>
+								<id>generate-code</id>
+								<goals>
+									<goal>process</goal>
+								</goals>
+								<phase>compile</phase>
+								<configuration>
+									<processors>
+										<processor>org.jannocessor.processor.JannocessorProcessor</processor>
+									</processors>
+									<options>
+										<templates.path>${project.basedir}/src/main/resources</templates.path>
+									</options>
+									<defaultOutputDirectory>${project.parent.basedir}/${rootArtifactId}-generated/src/main/java</defaultOutputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

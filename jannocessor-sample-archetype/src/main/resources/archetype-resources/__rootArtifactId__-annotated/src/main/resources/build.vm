@@ -1,0 +1,11 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+${symbol_pound}set(${symbol_dollar}cls = ${symbol_dollar}self.parent.name.copy().deleteParts(-1))
+${symbol_dollar}cls instance = new ${symbol_dollar}cls();
+
+${symbol_pound}foreach(${symbol_dollar}f in ${symbol_dollar}self.parent.fields)
+instance.set${symbol_dollar}{f.name.capitalized}(${symbol_dollar}f.name);
+${symbol_pound}end
+
+return instance;

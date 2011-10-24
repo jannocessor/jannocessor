@@ -388,6 +388,7 @@
 		<module>jannocessor-logic</module>
 		<module>jannocessor-playground</module>
 		<module>jannocessor-test-common</module>
+		<module>jannocessor-sample-archetype</module>
 	</modules>
 
 </project>
