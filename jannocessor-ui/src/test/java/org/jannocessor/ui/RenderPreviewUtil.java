@@ -32,9 +32,6 @@ import org.mockito.Mockito;
 public class RenderPreviewUtil {
 
 	public static void main(String[] args) throws JannocessorException {
-		// FIXME: hard-coded
-		String path = "C:/java/ludvig/jannocessor/jannocessor-templates/src/main/resources/templates";
-
 		Map<String, Object> attr = new HashMap<String, Object>();
 		JavaClass classs = New.classs(Classes.PUBLIC_FINAL, "MyClass");
 		attr.put("self", classs);
@@ -46,11 +43,11 @@ public class RenderPreviewUtil {
 		renderRegister.register(attr);
 
 		Configurator configurator = Mockito.mock(Configurator.class);
-		Mockito.when(configurator.getTemplatesPath()).thenReturn(path);
+		Mockito.when(configurator.getTemplatesPath()).thenReturn(null);
 
 		JavaRepresenter representer = Mockito.mock(JavaRepresenter.class);
 
-		RenderPreview.showDialog(path, renderRegister, configurator,
+		RenderPreview.showDialog(null, renderRegister, configurator,
 				representer);
 	}
 

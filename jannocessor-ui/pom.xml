@@ -37,6 +37,11 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-templates</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
