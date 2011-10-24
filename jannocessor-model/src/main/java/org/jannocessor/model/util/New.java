@@ -146,11 +146,11 @@ public class New {
 			.unmodifiableList();
 
 	public static Name name(String name) {
-		return new NameBean(name);
+		return name != null ? new NameBean(name) : null;
 	}
 
 	public static Name readonlyName(String name) {
-		return new ReadonlyNameBean(name);
+		return name != null ? new ReadonlyNameBean(name) : null;
 	}
 
 	public static JavaTypeKind typeKind(Class<?> type) {
@@ -314,6 +314,15 @@ public class New {
 
 	public static JavaType type(Class<?> type, Class<?>... typeParams) {
 		return new JavaTypeBean(type, typeParams);
+	}
+
+	public static JavaType type(String canonicalName, JavaTypeKind kind) {
+		return new JavaTypeBean(canonicalName, kind);
+	}
+
+	public static JavaType type(String packageName, String simpleName,
+			JavaTypeKind kind) {
+		return new JavaTypeBean(packageName, simpleName, kind);
 	}
 
 	public static PowerList<JavaType> types(Class<?>... classes) {

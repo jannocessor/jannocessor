@@ -18,27 +18,49 @@ package org.jannocessor.model.bean.type;
 
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.util.New;
 
 public class JavaTypeBean extends JavaTypeData implements JavaType {
 
 	private static final long serialVersionUID = 2329697894900332732L;
 
-	@SuppressWarnings("unused")
-	private final Class<?> type;
-
-	@SuppressWarnings("unused")
-	private final Class<?>[] typeParams;
-
 	public JavaTypeBean(Class<?> type, Class<?>[] typeParams) {
-		this.type = type;
-		this.typeParams = typeParams;
-		this.setCode(New.code(JavaType.class));
 		this.setSimpleName(New.name(type.getSimpleName()));
 		this.setPackageName(type.getPackage() != null ? New.name(type
 				.getPackage().getName()) : null);
 		this.setTypeClass(type);
 		this.setKind(New.typeKind(type));
+
+		this.setCode(New.code(JavaType.class));
 	}
 
+	public JavaTypeBean(String canonicalName, JavaTypeKind kind) {
+		String packageName = getPackageName(canonicalName);
+		String simpleName = (packageName != null) ? canonicalName
+				.substring(packageName.length() + 1) : canonicalName;
+
+		this.setSimpleName(New.name(simpleName));
+		this.setPackageName(New.name(packageName));
+		this.setKind(kind);
+
+		this.setCode(New.code(JavaType.class));
+	}
+
+	public JavaTypeBean(String packageName, String simpleName, JavaTypeKind kind) {
+		this.setSimpleName(New.name(simpleName));
+		this.setPackageName(New.name(packageName));
+		this.setKind(kind);
+
+		this.setCode(New.code(JavaType.class));
+	}
+
+	private String getPackageName(String canonicalName) {
+		int pos = canonicalName.lastIndexOf('.');
+		return (pos >= 0) ? canonicalName.substring(0, pos) : null;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(New.type("Cnt", JavaTypeKind.INT));
+	}
 }
