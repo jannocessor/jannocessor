@@ -59,8 +59,5 @@ public class JavaTypeBean extends JavaTypeData implements JavaType {
 		int pos = canonicalName.lastIndexOf('.');
 		return (pos >= 0) ? canonicalName.substring(0, pos) : null;
 	}
-
-	public static void main(String[] args) {
-		System.out.println(New.type("Cnt", JavaTypeKind.INT));
-	}
+	
 }
