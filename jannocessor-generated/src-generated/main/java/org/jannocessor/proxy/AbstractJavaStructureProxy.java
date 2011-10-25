@@ -306,6 +306,25 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         builder.append("nestedAnnotations", ToStringUtil.describe(this.getNestedAnnotations()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getNesting();
+		this.getPackageName();
+		this.getQualifiedName();
+		this.getSuperclass();
+		this.getMetadata();
+		this.getAllMetadata();
+		this.getInterfaces();
+		this.getMethods();
+		this.getNestedClasses();
+		this.getNestedEnums();
+		this.getNestedInterfaces();
+		this.getNestedAnnotations();
+	}
+
 }
 
 

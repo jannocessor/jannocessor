@@ -157,6 +157,17 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
         builder.append("typeVariables", ToStringUtil.describe(this.getTypeVariables()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getParameterTypes();
+		this.getReturnType();
+		this.getThrownTypes();
+		this.getTypeVariables();
+	}
+
 }
 
 

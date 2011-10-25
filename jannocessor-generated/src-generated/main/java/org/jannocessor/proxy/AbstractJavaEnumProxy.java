@@ -177,6 +177,18 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
         builder.append("instanceInits", ToStringUtil.describe(this.getInstanceInits()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getValues();
+		this.getFields();
+		this.getConstructors();
+		this.getStaticInits();
+		this.getInstanceInits();
+	}
+
 }
 
 

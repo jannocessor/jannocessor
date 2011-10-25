@@ -213,6 +213,20 @@ public class JavaMethodProxy extends AbstractJavaExecutableProxy implements Java
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getTypeParameters();
+		this.getReturnType();
+		this.getParameters();
+		this.isVarArgs();
+		this.getThrownTypes();
+		this.getModifiers();
+		this.getMetadata();
+	}
+
 }
 
 

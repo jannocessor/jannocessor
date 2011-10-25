@@ -98,6 +98,14 @@ public class JavaLocalVariableProxy extends AbstractJavaVariableProxy implements
         builder.append("_isFinal", ToStringUtil.describe(this.isFinal()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.isFinal();
+	}
+
 }
 
 

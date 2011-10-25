@@ -101,6 +101,14 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
         builder.append("attributes", ToStringUtil.describe(this.getAttributes()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getAttributes();
+	}
+
 }
 
 

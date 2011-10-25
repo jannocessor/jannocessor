@@ -117,6 +117,15 @@ public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVari
         builder.append("lowerBound", ToStringUtil.describe(this.getLowerBound()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getUpperBound();
+		this.getLowerBound();
+	}
+
 }
 
 

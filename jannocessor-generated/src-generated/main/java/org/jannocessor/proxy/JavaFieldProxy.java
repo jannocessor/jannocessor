@@ -139,6 +139,16 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getModifiers();
+		this.getValue();
+		this.getMetadata();
+	}
+
 }
 
 

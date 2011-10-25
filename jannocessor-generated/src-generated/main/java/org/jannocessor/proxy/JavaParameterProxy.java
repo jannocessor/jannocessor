@@ -119,6 +119,15 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.isFinal();
+		this.getMetadata();
+	}
+
 }
 
 

@@ -67,10 +67,33 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 	@Override
 	public CodeNode getParent() {
 		if (hasOriginalParent) {
-			return adapter.getParent();
+			if (parent == null) {
+				parent = adapter.getParent();
+			}
+			return parent;
 		} else {
 			return parent;
 		}
+	}
+
+	private void writeObject(#type('java.io.ObjectOutputStream') out) throws #type('java.io.IOException') {
+		// avoid serialization of the parent
+		CodeNode parentBackup = getParent();
+		setParent(null);
+
+		// pre-load all data for serialization
+		loadAllData();
+
+		out.defaultWriteObject();
+
+		// restore the parent
+		setParent(parentBackup);
+	}
+
+	private void readObject(#type('java.io.ObjectInputStream') in) throws #type('java.io.IOException'),
+			ClassNotFoundException {
+		in.defaultReadObject();
+		// currently doesn't do anything extra
 	}
 
 #end
@@ -159,6 +182,22 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 #foreach ($m in $model.methods)
 #if ($helper.isIdentityProperty($m))
         builder.append("${helper.fieldName($m)}", #type("org.jannocessor.model.util.ToStringUtil").describe(this.${m.name}()));
+#end
+#end
+	}
+
+#if($className != 'CodeNodeProxy')
+	@Override
+#end
+	protected void loadAllData() {
+#if($className != 'CodeNodeProxy')
+		super.loadAllData();
+#end
+
+		// load all values from the adapter to the data bean
+#foreach ($m in $model.methods)
+#if($m.name != 'getParent' && $m.name != 'getChildren' && !$helper.isCalculated($m))
+		this.${m.name}();
 #end
 #end
 	}

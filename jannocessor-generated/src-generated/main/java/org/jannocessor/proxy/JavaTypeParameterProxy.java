@@ -101,6 +101,14 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
         builder.append("bounds", ToStringUtil.describe(this.getBounds()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getBounds();
+	}
+
 }
 
 

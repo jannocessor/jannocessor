@@ -81,6 +81,13 @@ public class JavaErrorTypeProxy extends JavaTypeProxy implements JavaErrorType {
         super.appendDescription(builder);
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+	}
+
 }
 
 

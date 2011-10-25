@@ -99,6 +99,14 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
         builder.append("body", ToStringUtil.describe(this.getBody()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getBody();
+	}
+
 }
 
 

@@ -195,6 +195,19 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getTypeParameters();
+		this.getParameters();
+		this.isVarArgs();
+		this.getThrownTypes();
+		this.getModifiers();
+		this.getMetadata();
+	}
+
 }
 
 

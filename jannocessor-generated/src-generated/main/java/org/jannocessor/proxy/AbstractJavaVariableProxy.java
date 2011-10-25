@@ -81,6 +81,13 @@ public class AbstractJavaVariableProxy extends JavaElementProxy implements Abstr
         super.appendDescription(builder);
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+	}
+
 }
 
 

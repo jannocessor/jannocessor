@@ -17,16 +17,17 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-
+import org.jannocessor.proxy.JavaCodeModelProxy;
+import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.data.JavaMetadataData;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.collection.api.PowerMap;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerMap;
-import org.jannocessor.data.JavaMetadataData;
-import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.ToStringUtil;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
+
 
 @Generated("JAnnocessor-bootstraped")
 public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadata {
@@ -133,6 +134,16 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
         builder.append("annotation", ToStringUtil.describe(this.getAnnotation()));
         builder.append("values", ToStringUtil.describe(this.getValues()));
         builder.append("valuesWithDefaults", ToStringUtil.describe(this.getValuesWithDefaults()));
+	}
+
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getAnnotation();
+		this.getValues();
+		this.getValuesWithDefaults();
 	}
 
 }

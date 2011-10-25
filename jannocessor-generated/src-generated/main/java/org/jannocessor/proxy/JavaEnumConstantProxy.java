@@ -101,6 +101,14 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
         builder.append("values", ToStringUtil.describe(this.getValues()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getValues();
+	}
+
 }
 
 

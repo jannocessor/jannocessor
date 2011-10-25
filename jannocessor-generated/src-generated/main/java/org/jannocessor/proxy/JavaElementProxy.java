@@ -137,6 +137,16 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
         builder.append("kind", ToStringUtil.describe(this.getKind()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getName();
+		this.getType();
+		this.getKind();
+	}
+
 }
 
 

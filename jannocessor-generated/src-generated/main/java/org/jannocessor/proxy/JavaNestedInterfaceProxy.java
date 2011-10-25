@@ -99,6 +99,14 @@ public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy impleme
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getModifiers();
+	}
+
 }
 
 

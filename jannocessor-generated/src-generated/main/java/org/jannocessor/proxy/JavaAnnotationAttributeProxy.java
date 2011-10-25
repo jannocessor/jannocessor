@@ -98,6 +98,14 @@ public class JavaAnnotationAttributeProxy extends JavaElementProxy implements Ja
         builder.append("defaultValue", ToStringUtil.describe(this.getDefaultValue()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getDefaultValue();
+	}
+
 }
 
 

@@ -81,6 +81,13 @@ public class JavaStaticInitProxy extends AbstractJavaExecutableProxy implements 
         super.appendDescription(builder);
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+	}
+
 }
 
 

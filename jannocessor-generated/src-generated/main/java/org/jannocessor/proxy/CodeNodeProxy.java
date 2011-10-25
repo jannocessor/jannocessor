@@ -20,6 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.ParentedElement;
 import org.jannocessor.data.CodeNodeData;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import org.jannocessor.collection.api.PowerList;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -57,10 +60,33 @@ public class CodeNodeProxy implements CodeNode, ParentedElement {
 	@Override
 	public CodeNode getParent() {
 		if (hasOriginalParent) {
-			return adapter.getParent();
+			if (parent == null) {
+				parent = adapter.getParent();
+			}
+			return parent;
 		} else {
 			return parent;
 		}
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		// avoid serialization of the parent
+		CodeNode parentBackup = getParent();
+		setParent(null);
+
+		// pre-load all data for serialization
+		loadAllData();
+
+		out.defaultWriteObject();
+
+		// restore the parent
+		setParent(parentBackup);
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
+		// currently doesn't do anything extra
 	}
 
 
@@ -101,6 +127,11 @@ public class CodeNodeProxy implements CodeNode, ParentedElement {
 	}
 
 	protected void appendDescription(ToStringBuilder builder) {
+	}
+
+	protected void loadAllData() {
+
+		// load all values from the adapter to the data bean
 	}
 
 }

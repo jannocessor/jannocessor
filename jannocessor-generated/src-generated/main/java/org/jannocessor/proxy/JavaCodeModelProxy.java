@@ -117,6 +117,15 @@ public class JavaCodeModelProxy extends CodeNodeProxy implements JavaCodeModel {
         builder.append("extraCode", ToStringUtil.describe(this.getExtraCode()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getCode();
+		this.getExtraCode();
+	}
+
 }
 
 

@@ -99,6 +99,14 @@ public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass 
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getModifiers();
+	}
+
 }
 
 

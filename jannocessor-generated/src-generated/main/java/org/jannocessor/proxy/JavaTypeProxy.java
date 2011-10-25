@@ -181,6 +181,18 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
         builder.append("kind", ToStringUtil.describe(this.getKind()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getTypeClass();
+		this.getSimpleName();
+		this.getPackageName();
+		this.getDefaultValue();
+		this.getKind();
+	}
+
 }
 
 

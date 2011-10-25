@@ -99,6 +99,14 @@ public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
         builder.append("componentType", ToStringUtil.describe(this.getComponentType()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getComponentType();
+	}
+
 }
 
 

@@ -101,6 +101,14 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
         builder.append("typeArguments", ToStringUtil.describe(this.getTypeArguments()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getTypeArguments();
+	}
+
 }
 
 

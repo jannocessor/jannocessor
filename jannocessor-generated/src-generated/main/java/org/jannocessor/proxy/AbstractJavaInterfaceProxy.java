@@ -120,6 +120,15 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
         builder.append("fields", ToStringUtil.describe(this.getFields()));
 	}
 
+	@Override
+	protected void loadAllData() {
+		super.loadAllData();
+
+		// load all values from the adapter to the data bean
+		this.getTypeParameters();
+		this.getFields();
+	}
+
 }
 
 
