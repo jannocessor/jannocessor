@@ -2,10 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<artifactId>jannocessor-root</artifactId>
+		<groupId>com.googlecode.jannocessor</groupId>
+		<version>0.6.2-SNAPSHOT</version>
+	</parent>
+
 	<artifactId>jannocessor-sample-archetype</artifactId>
-	<groupId>com.googlecode.jannocessor</groupId>
-	<version>0.6.2-SNAPSHOT</version>
-	<packaging>maven-archetype</packaging>
 
 	<name>JAnnocessor Sample Archetype</name>
 	<description>JAnnocessor Sample Archetype</description>
