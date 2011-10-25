@@ -86,10 +86,11 @@ public abstract class AbstractJavaTypeAdapter extends JavaCodeModelAdapter
 	@Override
 	public Class<?> getTypeClass() {
 		if (getKind().isDeclared()) {
+			String genericTypeName = extractGenericType();
 			try {
-				return Class.forName(extractGenericType());
+				return Class.forName(genericTypeName);
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				logger.warn("Couldn't find declared type: {}", genericTypeName);
 			}
 		}
 		return null;
