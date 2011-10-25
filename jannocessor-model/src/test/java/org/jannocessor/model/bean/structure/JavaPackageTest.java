@@ -30,7 +30,7 @@ public class JavaPackageTest extends AbstractModelTest {
 
 	@Test
 	public void testInstantiation() {
-		JavaPackage packagee = New.packagee();
+		JavaPackage packagee = New.packagee("a.b.c");
 		assertNotNull(packagee);
 	}
 

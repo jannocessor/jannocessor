@@ -306,8 +306,8 @@ public class New {
 		return new ConstructorModifiersBean(values);
 	}
 
-	public static JavaPackage packagee() {
-		return new JavaPackageBean();
+	public static JavaPackage packagee(String name) {
+		return new JavaPackageBean(name);
 	}
 
 	/******************************** TYPES **********************************/
