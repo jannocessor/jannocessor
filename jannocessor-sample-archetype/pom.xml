@@ -3,7 +3,7 @@
 
 	<artifactId>jannocessor-sample-archetype</artifactId>
 	<groupId>com.googlecode.jannocessor</groupId>
-	<version>0.6.2</version>
+	<version>0.6.3-SNAPSHOT</version>
 	<packaging>maven-archetype</packaging>
 
 	<name>JAnnocessor Sample Archetype</name>
