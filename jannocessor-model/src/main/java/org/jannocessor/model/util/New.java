@@ -884,11 +884,17 @@ public class New {
 		return expression(clazz.getSimpleName() + ".class");
 	}
 
-	/**************************** CLONING ******************************/
+	/****************************** CLONING *********************************/
 
 	@SuppressWarnings("unchecked")
 	public static <T extends Serializable> T copy(T model) {
-		return (T) SerializationUtils.clone(model);
+		T clone = (T) SerializationUtils.clone(model);
+
+		if (!model.equals(clone) || !clone.equals(model)) {
+			throw new IllegalStateException("Couldn't create a correct copy!");
+		}
+
+		return clone;
 	}
 
 }
