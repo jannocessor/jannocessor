@@ -19,12 +19,14 @@ package org.jannocessor.model.bean;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
@@ -44,6 +46,7 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
@@ -73,8 +76,14 @@ public abstract class AbstractModelTest {
 		return Arrays.copyOf(values, FEW);
 	}
 
+	protected void checkCodeNode(CodeNode codeNode) {
+		assertNotNull(codeNode);
+		assertTrue(codeNode.getParent() == codeNode.getParent());
+		New.copy(codeNode); // should clone the object without exceptions
+	}
+
 	protected void checkCodeModel(JavaCodeModel codeModel) {
-		assertNotNull(codeModel);
+		checkCodeNode(codeModel);
 		assertNotNull(codeModel.getCode());
 	}
 
