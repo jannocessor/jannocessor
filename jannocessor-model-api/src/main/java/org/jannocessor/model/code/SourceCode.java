@@ -16,6 +16,8 @@
 
 package org.jannocessor.model.code;
 
+import java.util.Map;
+
 import org.jannocessor.model.CodeNode;
 
 public interface SourceCode extends CodeNode {
@@ -33,6 +35,10 @@ public interface SourceCode extends CodeNode {
 	void setTemplateName(String templateName);
 
 	void assign(SourceCode sourceCode);
+	
+	void setAttributes(Map<String, ? extends Object> attributes);
+	
+	Map<String, ? extends Object> getAttributes();
 
 	boolean isEmpty();
 

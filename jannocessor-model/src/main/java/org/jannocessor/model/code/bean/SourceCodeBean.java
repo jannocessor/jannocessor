@@ -16,6 +16,8 @@
 
 package org.jannocessor.model.code.bean;
 
+import java.util.Map;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -35,6 +37,8 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	private String templateName;
 
 	private CodeNode parent;
+
+	private Map<String, ? extends Object> attributes;
 
 	public SourceCodeBean(String code, String template, String templateName) {
 		this.hardcoded = code;
@@ -129,6 +133,16 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	@Override
 	public void setParent(CodeNode parent) {
 		this.parent = parent;
+	}
+
+	@Override
+	public void setAttributes(Map<String, ? extends Object> attributes) {
+		this.attributes = attributes;
+	}
+
+	@Override
+	public Map<String, ? extends Object> getAttributes() {
+		return this.attributes;
 	}
 
 }

@@ -19,6 +19,7 @@ package org.jannocessor.service.render;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.VelocityContext;
@@ -106,4 +107,17 @@ public class TemplateHelper {
 
 		return sb.toString();
 	}
+
+	public void setAttributes(Map<String, ? extends Object> attributes) {
+		for (Entry<String, ? extends Object> entry : attributes.entrySet()) {
+			context.put(entry.getKey(), entry.getValue());
+		}
+	}
+
+	public void removeAttributes(Map<String, ? extends Object> attributes) {
+		for (String key : attributes.keySet()) {
+			context.remove(key);
+		}
+	}
+	
 }

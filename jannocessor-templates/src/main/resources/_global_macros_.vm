@@ -9,6 +9,7 @@
 #macro(type $java_type)$types.useType($java_type)#end
 
 #macro(code $x $default)
+#if($x.attributes)$helper.setAttributes($x.attributes)#end
 #if($x.hardcoded)
 $x.hardcoded#elseif($x.template)
 #evaluate($x.template)
@@ -17,6 +18,7 @@ $x.hardcoded#elseif($x.template)
 #elseif($default)
 $default#else
 [ERROR: Can't render $x!]#end
+#if($x.attributes)$helper.removeAttributes($x.attributes)#end
 #end
 
 #macro(render $model)
