@@ -142,13 +142,15 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 
 	private void customize(boolean verbose) {
 		if (engine.resourceExists(CUSTOM_TEMPLATE)) {
-			if (engine.getTemplate(CUSTOM_TEMPLATE).process() && verbose) {
-				logger.info("Successfully processed: {}", CUSTOM_TEMPLATE);
+			if (engine.getTemplate(CUSTOM_TEMPLATE).process()) {
+				if (verbose) {
+					logger.info("Successfully processed: {}", CUSTOM_TEMPLATE);
+				}
 			} else {
-				logger.info("Couldn't process: {}", CUSTOM_TEMPLATE);
+				logger.warn("Couldn't process: {}", CUSTOM_TEMPLATE);
 			}
 		} else if (verbose) {
-			logger.info(
+			logger.warn(
 					"The templates customization file '{}' wasn't found on classpath",
 					CUSTOM_TEMPLATE);
 		}
