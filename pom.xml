@@ -9,7 +9,7 @@
 
 	<groupId>com.googlecode.jannocessor</groupId>
 	<artifactId>jannocessor-root</artifactId>
-	<version>0.6.2-SNAPSHOT</version>
+	<version>0.6.2</version>
 	<packaging>pom</packaging>
 
 	<name>JAnnocessor</name>
