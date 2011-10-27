@@ -8,6 +8,7 @@
 	</parent>
 
 	<artifactId>jannocessor-sample-archetype</artifactId>
+	<packaging>maven-archetype</packaging>
 
 	<name>JAnnocessor Sample Archetype</name>
 	<description>JAnnocessor Sample Archetype</description>
