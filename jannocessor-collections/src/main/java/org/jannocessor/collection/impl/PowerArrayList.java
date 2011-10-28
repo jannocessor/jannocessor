@@ -231,19 +231,35 @@ public class PowerArrayList<E> extends ArrayList<E> implements PowerList<E> {
 	}
 
 	private void fireItemAdded(E item) {
+		beforeItemAddedNotification(item);
 		for (CollectionOperationListener<E> listener : listeners) {
 			DefaultCollectionOperationEvent<E> event = new DefaultCollectionOperationEvent<E>(
 					this, item);
 			listener.itemAdded(event);
 		}
+		afterItemAddedNotification(item);
+	}
+
+	protected void beforeItemAddedNotification(E item) {
+	}
+
+	protected void afterItemAddedNotification(E item) {
 	}
 
 	private void fireItemRemoved(E item) {
+		beforeItemRemovedNotification(item);
 		for (CollectionOperationListener<E> listener : listeners) {
 			DefaultCollectionOperationEvent<E> event = new DefaultCollectionOperationEvent<E>(
 					this, item);
 			listener.itemRemoved(event);
 		}
+		afterItemRemovedNotification(item);
+	}
+
+	protected void beforeItemRemovedNotification(E item) {
+	}
+
+	protected void afterItemRemovedNotification(E item) {
 	}
 
 	@Override
