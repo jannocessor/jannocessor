@@ -20,8 +20,10 @@ import org.jannocessor.annotation.Annotated;
 import org.jannocessor.annotation.Types;
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
+import org.jannocessor.bootstrapped.annotation.MyAnnotation;
 import org.jannocessor.experiment.processor.ExperimentProcessor;
 import org.jannocessor.experiment.processor.MirrorProcessor;
+import org.jannocessor.experiment.processor.MyProcessor;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
@@ -39,6 +41,12 @@ public class Processors {
 	@Types({ JavaInterface.class, JavaEnum.class, JavaAnnotation.class })
 	public MirrorProcessor mirrorProcessor() {
 		return new MirrorProcessor();
+	}
+
+	@Annotated(MyAnnotation.class)
+	@Types(JavaClass.class)
+	public MyProcessor willProcessMyAnnotatedClasses() {
+		return new MyProcessor();
 	}
 
 }
