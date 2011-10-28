@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.ParentedElement;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -53,6 +54,10 @@ public class CodeNodeData extends AbstractData implements CodeNode, ParentedElem
 
     public void setChildren(PowerList<CodeNode> value) {
         this.children = value;
+    }
+
+    public CodeNode copy() {
+        return ModelUtils.copy(this);
     }
 
 	@Override

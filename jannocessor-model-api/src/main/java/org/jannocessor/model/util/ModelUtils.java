@@ -16,8 +16,14 @@
 
 package org.jannocessor.model.util;
 
+import java.io.Serializable;
+
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.SerializationUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.executable.JavaConstructor;
+import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 import org.jannocessor.model.type.JavaType;
 
 public class ModelUtils {
@@ -41,6 +47,27 @@ public class ModelUtils {
 		String prefix = (type.getPackageName() != null) ? type.getPackageName()
 				+ "." : "";
 		return prefix + type.getSimpleName();
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Serializable> T copy(T model) {
+		T clone = (T) SerializationUtils.clone(model);
+
+		if (!model.equals(clone) || !clone.equals(model)) {
+			throw new IllegalStateException("Couldn't create a correct copy!");
+		}
+
+		return clone;
+	}
+
+	public static Boolean isDefault(JavaConstructor constructor) {
+		ConstructorModifierValue[] modifiers = constructor.getModifiers()
+				.getValues();
+		boolean isPublic = ArrayUtils.contains(modifiers,
+				ConstructorModifierValue.PUBLIC);
+
+		return isPublic && constructor.getParameters().isEmpty()
+				&& constructor.getThrownTypes().isEmpty();
 	}
 
 }

@@ -46,7 +46,6 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
@@ -79,7 +78,11 @@ public abstract class AbstractModelTest {
 	protected void checkCodeNode(CodeNode codeNode) {
 		assertNotNull(codeNode);
 		assertTrue(codeNode.getParent() == codeNode.getParent());
-		New.copy(codeNode); // should clone the object without exceptions
+
+		CodeNode clone = codeNode.copy();
+		assertTrue(clone != codeNode);
+		assertTrue(clone.equals(codeNode));
+		assertTrue(codeNode.equals(clone));
 	}
 
 	protected void checkCodeModel(JavaCodeModel codeModel) {

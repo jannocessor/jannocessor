@@ -245,4 +245,9 @@ public abstract class AbstractAdapter {
 
 	protected abstract Class<?> getAdaptedInterface();
 
+	protected RuntimeException calculatedMethodException() {
+		return new IllegalStateException(
+				"This method should be automatically calculated by ModelUtils!");
+	}
+
 }

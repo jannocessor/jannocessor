@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-package org.jannocessor.model;
+package org.jannocessor.adapter;
 
-import java.io.Serializable;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
-import org.jannocessor.annotation.Calculated;
-import org.jannocessor.annotation.DomainModel;
-import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 
-@DomainModel
-public interface CodeNode extends Serializable {
+public abstract class CodeNodeAdapter extends AbstractAdapter implements
+		CodeNode {
 
-	CodeNode getParent();
+	private static final long serialVersionUID = 132118137228806L;
 
-	PowerList<CodeNode> getChildren();
+	public CodeNodeAdapter(Elements elementUtils, Types typeUtils) {
+		super(elementUtils, typeUtils);
+	}
 
-	@Calculated
-	CodeNode copy();
+	@Override
+	public CodeNode copy() {
+		throw calculatedMethodException();
+	}
 
 }
