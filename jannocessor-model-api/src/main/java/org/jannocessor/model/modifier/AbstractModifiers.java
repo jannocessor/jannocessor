@@ -24,4 +24,6 @@ public interface AbstractModifiers<T extends Enum<T>, M> extends Serializable {
 
 	boolean contains(M modifiers);
 
+	void assign(AbstractModifiers<T, M> modifiers);
+
 }
