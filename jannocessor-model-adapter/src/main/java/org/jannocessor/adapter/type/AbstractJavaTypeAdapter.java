@@ -46,7 +46,7 @@ public abstract class AbstractJavaTypeAdapter extends JavaCodeModelAdapter
 
 	@Override
 	public String getCanonicalName() {
-		return typeMirror.toString();
+		throw calculatedMethodException();
 	}
 
 	@Override

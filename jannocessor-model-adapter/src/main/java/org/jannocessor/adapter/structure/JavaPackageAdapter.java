@@ -21,7 +21,12 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaPackage;
+import org.jannocessor.model.type.JavaType;
 
 public final class JavaPackageAdapter extends JavaElementAdapter implements
 		JavaPackage {
@@ -40,6 +45,26 @@ public final class JavaPackageAdapter extends JavaElementAdapter implements
 	@Override
 	protected Class<? extends JavaPackage> getAdaptedInterface() {
 		return JavaPackage.class;
+	}
+
+	@Override
+	public PowerList<JavaType> getInterfaces() {
+		return findChildrenByType(JavaType.class);
+	}
+
+	@Override
+	public PowerList<JavaClass> getClasses() {
+		return findChildrenByType(JavaClass.class);
+	}
+
+	@Override
+	public PowerList<JavaEnum> getEnums() {
+		return findChildrenByType(JavaEnum.class);
+	}
+
+	@Override
+	public PowerList<JavaAnnotation> getAnnotations() {
+		return findChildrenByType(JavaAnnotation.class);
 	}
 
 }

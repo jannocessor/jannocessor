@@ -19,10 +19,16 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.structure.JavaPackage;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,6 +39,46 @@ public class JavaPackageData extends JavaElementData implements JavaPackage {
 
 	private static final long serialVersionUID = 1L;
 
+    private PowerList<JavaType> interfaces;
+
+    private PowerList<JavaClass> classes;
+
+    private PowerList<JavaEnum> enums;
+
+    private PowerList<JavaAnnotation> annotations;
+
+
+    public PowerList<JavaType> getInterfaces() {
+        return this.interfaces;
+    }
+
+    public void setInterfaces(PowerList<JavaType> value) {
+        this.interfaces = value;
+    }
+
+    public PowerList<JavaClass> getClasses() {
+        return this.classes;
+    }
+
+    public void setClasses(PowerList<JavaClass> value) {
+        this.classes = value;
+    }
+
+    public PowerList<JavaEnum> getEnums() {
+        return this.enums;
+    }
+
+    public void setEnums(PowerList<JavaEnum> value) {
+        this.enums = value;
+    }
+
+    public PowerList<JavaAnnotation> getAnnotations() {
+        return this.annotations;
+    }
+
+    public void setAnnotations(PowerList<JavaAnnotation> value) {
+        this.annotations = value;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -49,12 +95,20 @@ public class JavaPackageData extends JavaElementData implements JavaPackage {
 		JavaPackage other = (JavaPackage) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getInterfaces(), other.getInterfaces())
+				.append(this.getClasses(), other.getClasses())
+				.append(this.getEnums(), other.getEnums())
+				.append(this.getAnnotations(), other.getAnnotations())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getInterfaces())
+				.append(this.getClasses())
+				.append(this.getEnums())
+				.append(this.getAnnotations())
 				.toHashCode();
 	}
 
@@ -69,6 +123,10 @@ public class JavaPackageData extends JavaElementData implements JavaPackage {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("interfaces", ToStringUtil.describe(this.getInterfaces()));
+        builder.append("classes", ToStringUtil.describe(this.getClasses()));
+        builder.append("enums", ToStringUtil.describe(this.getEnums()));
+        builder.append("annotations", ToStringUtil.describe(this.getAnnotations()));
 	}
 
 	private void writeObject(ObjectOutputStream out) throws IOException {

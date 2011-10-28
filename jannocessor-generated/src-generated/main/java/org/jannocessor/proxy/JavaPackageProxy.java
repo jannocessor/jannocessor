@@ -20,10 +20,17 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.data.JavaPackageData;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
@@ -31,10 +38,8 @@ public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient JavaPackage adapter;
 
-    @SuppressWarnings("unused")
     private JavaPackageData data;
 
     public JavaPackageProxy(JavaPackage adapter, JavaPackageData data) {
@@ -43,6 +48,66 @@ public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
         this.data = data;
     }
 
+	private boolean getInterfacesInitialized = false;
+
+	private boolean getClassesInitialized = false;
+
+	private boolean getEnumsInitialized = false;
+
+	private boolean getAnnotationsInitialized = false;
+
+
+	@Override
+    public PowerList<JavaType> getInterfaces() {
+        if (!getInterfacesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
+            data.setInterfaces(ModelUtils.parentedList(adapter.getInterfaces(), this));
+			getInterfacesInitialized = true;
+        }
+
+        return data.getInterfaces();
+    }
+
+	@Override
+    public PowerList<JavaClass> getClasses() {
+        if (!getClassesInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
+            data.setClasses(ModelUtils.parentedList(adapter.getClasses(), this));
+			getClassesInitialized = true;
+        }
+
+        return data.getClasses();
+    }
+
+	@Override
+    public PowerList<JavaEnum> getEnums() {
+        if (!getEnumsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
+            data.setEnums(ModelUtils.parentedList(adapter.getEnums(), this));
+			getEnumsInitialized = true;
+        }
+
+        return data.getEnums();
+    }
+
+	@Override
+    public PowerList<JavaAnnotation> getAnnotations() {
+        if (!getAnnotationsInitialized) {
+			if (adapter == null) {
+				throw new IllegalStateException("Invalid model copy!");
+			}
+            data.setAnnotations(ModelUtils.parentedList(adapter.getAnnotations(), this));
+			getAnnotationsInitialized = true;
+        }
+
+        return data.getAnnotations();
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -59,12 +124,20 @@ public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 		JavaPackage other = (JavaPackage) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
+				.append(this.getInterfaces(), other.getInterfaces())
+				.append(this.getClasses(), other.getClasses())
+				.append(this.getEnums(), other.getEnums())
+				.append(this.getAnnotations(), other.getAnnotations())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(this.getInterfaces())
+				.append(this.getClasses())
+				.append(this.getEnums())
+				.append(this.getAnnotations())
 				.toHashCode();
 	}
 
@@ -79,6 +152,10 @@ public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 	@Override
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
+        builder.append("interfaces", ToStringUtil.describe(this.getInterfaces()));
+        builder.append("classes", ToStringUtil.describe(this.getClasses()));
+        builder.append("enums", ToStringUtil.describe(this.getEnums()));
+        builder.append("annotations", ToStringUtil.describe(this.getAnnotations()));
 	}
 
 	@Override
@@ -86,6 +163,10 @@ public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 		super.loadAllData();
 
 		// load all values from the adapter to the data bean
+		this.getInterfaces();
+		this.getClasses();
+		this.getEnums();
+		this.getAnnotations();
 	}
 
 }
