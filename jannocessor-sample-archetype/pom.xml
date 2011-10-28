@@ -11,7 +11,7 @@
 	<packaging>maven-archetype</packaging>
 
 	<name>JAnnocessor Sample Archetype</name>
-	<description>JAnnocessor Sample Archetype</description>
+	<description>Multi-module sample project for annotation-driven source code generation with JAnnocessor</description>
 
 	<build>
 		<extensions>
