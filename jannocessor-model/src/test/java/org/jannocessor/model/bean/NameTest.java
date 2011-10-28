@@ -110,6 +110,9 @@ public class NameTest extends AbstractModelTest {
 		checkInsertParts(bigCamelCase, 1, "New", "FirstNewSecondThird");
 		checkInsertParts(bigCamelCase, -1, "New", "FirstSecondNewThird");
 		checkInsertParts(bigCamelCase, 3, "New", "FirstSecondThirdNew");
+
+		checkInsertParts(smallCamelCase, 0, "new", "newFirstSecondThird");
+		checkInsertParts(smallCamelCase, 1, "new", "firstnewSecondThird");
 	}
 
 

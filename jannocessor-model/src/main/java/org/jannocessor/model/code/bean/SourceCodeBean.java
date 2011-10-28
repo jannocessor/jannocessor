@@ -26,6 +26,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.ParentedElement;
 import org.jannocessor.model.code.SourceCode;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.util.TypeSpecificInlineStyle;
 
 public class SourceCodeBean implements SourceCode, ParentedElement {
@@ -143,6 +144,11 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	@Override
 	public Map<String, ? extends Object> getAttributes() {
 		return this.attributes;
+	}
+
+	@Override
+	public CodeNode copy() {
+		return ModelUtils.copy(this);
 	}
 
 }

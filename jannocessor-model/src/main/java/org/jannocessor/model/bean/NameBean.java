@@ -134,6 +134,11 @@ public class NameBean implements Name {
 
 		position = translateNegativePosition(position, parts.size());
 
+		if (getNameCase().equals(NameCase.CAMELCASE) && !parts.isEmpty()
+				&& (position == 0)) {
+			parts.set(0, StringUtils.capitalize(parts.get(0)));
+		}
+
 		parts.add(position, part);
 
 		String name = mergeParts(parts);
