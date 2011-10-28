@@ -16,6 +16,7 @@
 
 package org.jannocessor.model.executable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.modifier.ConstructorModifiers;
@@ -32,6 +33,9 @@ public interface JavaConstructor extends AbstractJavaExecutable {
 	PowerList<JavaParameter> getParameters();
 
 	Boolean isVarArgs();
+
+	@Calculated
+	Boolean isDefault();
 
 	PowerList<JavaType> getThrownTypes();
 

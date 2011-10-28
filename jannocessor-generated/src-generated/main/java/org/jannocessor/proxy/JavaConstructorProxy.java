@@ -102,6 +102,11 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
     }
 
 	@Override
+    public Boolean isDefault() {
+        return ModelUtils.isDefault(this);
+    }
+
+	@Override
     public PowerList<JavaType> getThrownTypes() {
         if (!getThrownTypesInitialized) {
 			if (adapter == null) {
@@ -158,6 +163,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 				.append(this.getTypeParameters(), other.getTypeParameters())
 				.append(this.getParameters(), other.getParameters())
 				.append(this.isVarArgs(), other.isVarArgs())
+				.append(this.isDefault(), other.isDefault())
 				.append(this.getThrownTypes(), other.getThrownTypes())
 				.append(this.getModifiers(), other.getModifiers())
 				.append(this.getMetadata(), other.getMetadata())
@@ -170,6 +176,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 				.append(this.getTypeParameters())
 				.append(this.getParameters())
 				.append(this.isVarArgs())
+				.append(this.isDefault())
 				.append(this.getThrownTypes())
 				.append(this.getModifiers())
 				.append(this.getMetadata())
@@ -190,6 +197,7 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
         builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
         builder.append("parameters", ToStringUtil.describe(this.getParameters()));
         builder.append("_isVarArgs", ToStringUtil.describe(this.isVarArgs()));
+        builder.append("_isDefault", ToStringUtil.describe(this.isDefault()));
         builder.append("thrownTypes", ToStringUtil.describe(this.getThrownTypes()));
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));

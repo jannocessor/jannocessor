@@ -73,4 +73,9 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		return JavaConstructor.class;
 	}
 
+	@Override
+	public Boolean isDefault() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -16,10 +16,13 @@
 
 package org.jannocessor.bootstrap.processor;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jannocessor.domain.executable.JavaMethod;
 
 public class DomainProxyGeneratorHelper {
+
+	private static String[] calculated = { "getCanonicalName", "isDefault", "copy" };
 
 	public String fieldName(JavaMethod method) {
 		String name = method.getName().getText();
@@ -37,8 +40,8 @@ public class DomainProxyGeneratorHelper {
 	}
 
 	public boolean isCalculated(JavaMethod method) {
+		// FIXME: use metadata to check if it is calculated
 		String name = method.getName().getText();
-		return name.equals("getCanonicalName");
+		return ArrayUtils.contains(calculated, name);
 	}
-
 }

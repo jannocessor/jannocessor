@@ -25,6 +25,7 @@ import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -77,6 +78,10 @@ public class JavaConstructorData extends AbstractJavaExecutableData implements J
         this._isVarArgs = value;
     }
 
+    public Boolean isDefault() {
+        return ModelUtils.isDefault(this);
+    }
+
     public PowerList<JavaType> getThrownTypes() {
         return this.thrownTypes;
     }
@@ -119,6 +124,7 @@ public class JavaConstructorData extends AbstractJavaExecutableData implements J
 				.append(this.getTypeParameters(), other.getTypeParameters())
 				.append(this.getParameters(), other.getParameters())
 				.append(this.isVarArgs(), other.isVarArgs())
+				.append(this.isDefault(), other.isDefault())
 				.append(this.getThrownTypes(), other.getThrownTypes())
 				.append(this.getModifiers(), other.getModifiers())
 				.append(this.getMetadata(), other.getMetadata())
@@ -131,6 +137,7 @@ public class JavaConstructorData extends AbstractJavaExecutableData implements J
 				.append(this.getTypeParameters())
 				.append(this.getParameters())
 				.append(this.isVarArgs())
+				.append(this.isDefault())
 				.append(this.getThrownTypes())
 				.append(this.getModifiers())
 				.append(this.getMetadata())
@@ -151,6 +158,7 @@ public class JavaConstructorData extends AbstractJavaExecutableData implements J
         builder.append("typeParameters", ToStringUtil.describe(this.getTypeParameters()));
         builder.append("parameters", ToStringUtil.describe(this.getParameters()));
         builder.append("_isVarArgs", ToStringUtil.describe(this.isVarArgs()));
+        builder.append("_isDefault", ToStringUtil.describe(this.isDefault()));
         builder.append("thrownTypes", ToStringUtil.describe(this.getThrownTypes()));
         builder.append("modifiers", ToStringUtil.describe(this.getModifiers()));
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
