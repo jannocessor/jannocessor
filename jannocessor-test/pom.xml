@@ -62,7 +62,7 @@
 						<configuration>
 							<options>
 								<mode>debug</mode>
-								<templates.path>${project.basedir}/src/test/resources</templates.path>
+								<templates.path>${project.parent.basedir}/jannocessor-templates/src/main/resources</templates.path>
 								<classes.path>${project.build.outputDirectory}</classes.path>
 							</options>
 
