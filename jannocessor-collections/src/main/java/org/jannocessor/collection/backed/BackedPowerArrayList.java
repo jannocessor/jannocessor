@@ -20,10 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jannocessor.collection.api.PowerCollection;
+import org.jannocessor.collection.backed.api.BackedPowerList;
 import org.jannocessor.collection.backed.api.CollectionDispatcher;
 import org.jannocessor.collection.impl.PowerArrayList;
 
-public class BackedPowerList<E> extends PowerArrayList<E> {
+public class BackedPowerArrayList<E> extends PowerArrayList<E> implements
+		BackedPowerList<E> {
 
 	private static final long serialVersionUID = 1955947408216363213L;
 
@@ -31,7 +33,7 @@ public class BackedPowerList<E> extends PowerArrayList<E> {
 
 	private CollectionDispatcher<E> dispatcher;
 
-	public BackedPowerList(CollectionDispatcher<E> dispatcher) {
+	public BackedPowerArrayList(CollectionDispatcher<E> dispatcher) {
 		this.dispatcher = dispatcher;
 	}
 
@@ -54,9 +56,18 @@ public class BackedPowerList<E> extends PowerArrayList<E> {
 	}
 
 	private PowerCollection<E> getTargetCollection(E item) {
-		int collectionIndex = dispatcher.getTargetCollectionIndex(item);
+		int index = dispatcher.getTargetCollectionIndex(item);
 
-		return collections.get(collectionIndex);
+		PowerCollection<E> target = (index < collections.size()) ? collections
+				.get(index) : null;
+
+		if (target == null) {
+			throw new IllegalArgumentException(
+					"Couldn't dispatch item, no back collection specified for index: "
+							+ index);
+		}
+
+		return target;
 	}
 
 }

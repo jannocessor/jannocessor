@@ -20,26 +20,30 @@ import junit.framework.Assert;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.collection.backed.api.BackedPowerList;
 import org.jannocessor.collection.backed.api.CollectionDispatcher;
+import org.junit.Before;
 import org.junit.Test;
 
 public class BackedPowerListTest<E> {
 
-	@Test
-	public void shouldDelegateOperationsToCollections() {
+	private PowerList<String> shortElements;
+	private PowerList<String> mediumElements;
+	private PowerList<String> longElements;
+	private BackedPowerList<String> backed;
 
-		CollectionDispatcher<String> dispatcher = new CollectionDispatcher<String>() {
+	@Before
+	public void init() {
+		shortElements = Power.list();
+		mediumElements = Power.list();
+		longElements = Power.list();
+
+		backed = new BackedPowerArrayList<String>(new CollectionDispatcher<String>() {
 			@Override
 			public int getTargetCollectionIndex(String s) {
 				return s.length();
 			}
-		};
-
-		PowerList<String> shortElements = Power.list();
-		PowerList<String> mediumElements = Power.list();
-		PowerList<String> longElements = Power.list();
-
-		BackedPowerList<String> backed = new BackedPowerList<String>(dispatcher);
+		});
 
 		backed.setIndexedCollection(1, shortElements);
 		backed.setIndexedCollection(2, shortElements);
@@ -49,7 +53,10 @@ public class BackedPowerListTest<E> {
 
 		backed.setIndexedCollection(5, longElements);
 		backed.setIndexedCollection(6, longElements);
+	}
 
+	@Test
+	public void shouldDelegateOperationsToCollections() {
 		backed.add("a");
 		backed.add("bb");
 		backed.add("ccc");
@@ -68,6 +75,16 @@ public class BackedPowerListTest<E> {
 		Assert.assertEquals(2, longElements.size());
 		Assert.assertTrue(longElements.contains("eeeee"));
 		Assert.assertTrue(longElements.contains("ffffff"));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldFailOnIncorrectDispatch() {
+		backed.add("TOO BIG STRING");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldFailOnIncorrectDispatch2() {
+		backed.add("");
 	}
 
 }
