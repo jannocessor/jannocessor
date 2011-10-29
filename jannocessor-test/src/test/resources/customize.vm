@@ -1,3 +1,4 @@
-#macro(ajmo $lst)
-#list($lst, '[$it]', '-')
+#macro(file_header)
+// CUSTOM FILE HEADER
 #end
+
