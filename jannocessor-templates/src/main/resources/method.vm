@@ -1,6 +1,6 @@
 #render_lines($self.metadata)
 #join(' ', [
-  "#modifiers_without($self, $Methods.ABSTRACT)",
+  "#modifiers($self, $Methods.ABSTRACT)",
   "#type_parameters($self)",
   "#render($self.returnType)",
   "${self.name}(#parameters($self))",
