@@ -6,6 +6,8 @@
 
 #macro(smart_import)(!PLACEHOLDER:SMART_IMPORT!)#end
 
+#macro(file_header)#end
+
 #macro(type $java_type)$types.useType($java_type)#end
 
 #macro(code $x $default)
