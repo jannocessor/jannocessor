@@ -28,12 +28,4 @@ public class Jannocessor {
 		return new JannocessorException(message, cause);
 	}
 
-	public static void ensure(boolean condition, String errorMessage,
-			Object... messageArgs) {
-		if (!condition) {
-			throw new IllegalStateException(String.format(errorMessage,
-					messageArgs));
-		}
-	}
-
 }
