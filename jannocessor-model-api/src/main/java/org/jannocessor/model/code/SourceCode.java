@@ -24,7 +24,7 @@ public interface SourceCode extends CodeNode {
 
 	String getHardcoded();
 
-	void setHardcoded(String hardcoded);
+	void setHardcoded(String hardcoded, String... formatArgs);
 
 	String getTemplate();
 
@@ -35,9 +35,9 @@ public interface SourceCode extends CodeNode {
 	void setTemplateName(String templateName);
 
 	void assign(SourceCode sourceCode);
-	
+
 	void setAttributes(Map<String, ? extends Object> attributes);
-	
+
 	Map<String, ? extends Object> getAttributes();
 
 	boolean isEmpty();

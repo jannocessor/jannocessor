@@ -52,8 +52,12 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	}
 
 	@Override
-	public void setHardcoded(String hardcoded) {
-		this.hardcoded = hardcoded;
+	public void setHardcoded(String hardcoded, String... formatArgs) {
+		if (formatArgs.length > 0) {
+			this.hardcoded = String.format(hardcoded, (Object[]) formatArgs);
+		} else {
+			this.hardcoded = hardcoded;
+		}
 	}
 
 	@Override
