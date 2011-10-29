@@ -26,8 +26,8 @@ import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaPackage;
-import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaPackageAdapter extends JavaElementAdapter implements
@@ -50,8 +50,8 @@ public final class JavaPackageAdapter extends JavaElementAdapter implements
 	}
 
 	@Override
-	public PowerList<JavaType> getInterfaces() {
-		return findChildrenByType(JavaType.class);
+	public PowerList<JavaInterface> getInterfaces() {
+		return findChildrenByType(JavaInterface.class);
 	}
 
 	@Override

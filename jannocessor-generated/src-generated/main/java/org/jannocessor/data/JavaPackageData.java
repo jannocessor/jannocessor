@@ -20,7 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaAnnotation;
@@ -39,7 +39,7 @@ public class JavaPackageData extends JavaElementData implements JavaPackage {
 
 	private static final long serialVersionUID = 1L;
 
-    private PowerList<JavaType> interfaces;
+    private PowerList<JavaInterface> interfaces;
 
     private PowerList<JavaClass> classes;
 
@@ -48,11 +48,11 @@ public class JavaPackageData extends JavaElementData implements JavaPackage {
     private PowerList<JavaAnnotation> annotations;
 
 
-    public PowerList<JavaType> getInterfaces() {
+    public PowerList<JavaInterface> getInterfaces() {
         return this.interfaces;
     }
 
-    public void setInterfaces(PowerList<JavaType> value) {
+    public void setInterfaces(PowerList<JavaInterface> value) {
         this.interfaces = value;
     }
 

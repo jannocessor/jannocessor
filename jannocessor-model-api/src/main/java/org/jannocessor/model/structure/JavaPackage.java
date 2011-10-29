@@ -19,12 +19,11 @@ package org.jannocessor.model.structure;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.type.JavaType;
 
 @DomainModel
 public interface JavaPackage extends JavaElement {
 
-	PowerList<JavaType> getInterfaces();
+	PowerList<JavaInterface> getInterfaces();
 
 	PowerList<JavaClass> getClasses();
 

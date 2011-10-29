@@ -16,8 +16,13 @@
 
 package org.jannocessor.model.bean.structure;
 
+import org.jannocessor.collection.Power;
 import org.jannocessor.data.JavaPackageData;
 import org.jannocessor.model.JavaElementKind;
+import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.New;
 
@@ -27,6 +32,10 @@ public class JavaPackageBean extends JavaPackageData implements JavaPackage {
 
 	public JavaPackageBean(String name) {
 		this.setName(New.name(name));
+		this.setAnnotations(children(Power.emptyList(JavaAnnotation.class)));
+		this.setClasses(children(Power.emptyList(JavaClass.class)));
+		this.setEnums(children(Power.emptyList(JavaEnum.class)));
+		this.setInterfaces(children(Power.emptyList(JavaInterface.class)));
 
 		this.setKind(JavaElementKind.PACKAGE);
 		this.setCode(New.code(JavaPackage.class));
