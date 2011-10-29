@@ -23,8 +23,6 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaCodeModelAdapter;
-import org.jannocessor.collection.Power;
-import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
@@ -122,11 +120,6 @@ public abstract class AbstractJavaTypeAdapter extends JavaCodeModelAdapter
 	@Override
 	public CodeNode getParent() {
 		return null;
-	}
-
-	@Override
-	public PowerList<CodeNode> getChildren() {
-		return Power.emptyList();
 	}
 
 }

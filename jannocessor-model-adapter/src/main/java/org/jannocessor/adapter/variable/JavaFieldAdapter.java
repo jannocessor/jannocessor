@@ -24,11 +24,13 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.FieldModifiersBean;
 import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaField;
 
 public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
@@ -75,6 +77,11 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 	@Override
 	protected Class<? extends JavaField> getAdaptedInterface() {
 		return JavaField.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

@@ -22,11 +22,13 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaPackageAdapter extends JavaElementAdapter implements
 		JavaPackage {
@@ -65,6 +67,11 @@ public final class JavaPackageAdapter extends JavaElementAdapter implements
 	@Override
 	public PowerList<JavaAnnotation> getAnnotations() {
 		return findChildrenByType(JavaAnnotation.class);
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

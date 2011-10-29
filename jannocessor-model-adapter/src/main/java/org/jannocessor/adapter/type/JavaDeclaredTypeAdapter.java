@@ -21,8 +21,10 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaDeclaredTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaDeclaredType {
@@ -45,6 +47,11 @@ public class JavaDeclaredTypeAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaDeclaredType> getAdaptedInterface() {
 		return JavaDeclaredType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

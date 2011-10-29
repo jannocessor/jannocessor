@@ -24,6 +24,7 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.filter.api.Condition;
 import org.jannocessor.collection.filter.api.Criteria;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.EnumModifiersBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.EnumModifiers;
@@ -31,6 +32,7 @@ import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.EnumModifierValue;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.util.Methods;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaParameter;
 
 public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
@@ -91,6 +93,11 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 	@Override
 	protected Class<? extends JavaEnum> getAdaptedInterface() {
 		return JavaEnum.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

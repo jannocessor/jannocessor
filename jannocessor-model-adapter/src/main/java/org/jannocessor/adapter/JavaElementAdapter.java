@@ -70,15 +70,15 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 		}
 	}
 
-	@Override
-	public PowerList<CodeNode> getChildren() {
-		PowerList<CodeNode> children = Power.list();
+	protected PowerList<CodeNode> getEnclosedElements() {
+		PowerList<CodeNode> enclosedElements = Power.list();
 
 		for (Element enclosedElement : getEnclosedElements(element)) {
-			children.add(getElementAdapter(enclosedElement, JavaElement.class));
+			enclosedElements.add(getElementAdapter(enclosedElement,
+					JavaElement.class));
 		}
 
-		return children;
+		return enclosedElements;
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 	protected <T> PowerList<T> findChildrenByType(Class<T> clazz) {
 		PowerList<T> results = Power.list();
 
-		for (CodeNode child : getChildren()) {
+		for (CodeNode child : getEnclosedElements()) {
 			if (clazz.isAssignableFrom(child.getClass())) {
 				results.add((T) child);
 			}
@@ -108,6 +108,7 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 
 		return results;
 	}
+
 
 	@SuppressWarnings("unchecked")
 	protected <T extends Enum<T>> T[] getModifierValues(Class<T> enumType,

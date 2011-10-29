@@ -20,7 +20,10 @@ import javax.lang.model.type.PrimitiveType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaPrimitiveType;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaPrimitiveTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaPrimitiveType {
@@ -40,6 +43,11 @@ public class JavaPrimitiveTypeAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaPrimitiveType> getAdaptedInterface() {
 		return JavaPrimitiveType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

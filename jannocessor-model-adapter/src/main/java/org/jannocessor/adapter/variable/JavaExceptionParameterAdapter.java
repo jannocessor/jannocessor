@@ -20,6 +20,9 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 
 public final class JavaExceptionParameterAdapter extends
@@ -39,6 +42,11 @@ public final class JavaExceptionParameterAdapter extends
 	@Override
 	protected Class<? extends JavaExceptionParameter> getAdaptedInterface() {
 		return JavaExceptionParameter.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

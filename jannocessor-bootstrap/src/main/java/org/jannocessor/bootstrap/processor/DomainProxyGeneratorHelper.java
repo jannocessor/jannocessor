@@ -22,7 +22,8 @@ import org.jannocessor.domain.executable.JavaMethod;
 
 public class DomainProxyGeneratorHelper {
 
-	private static String[] calculated = { "getCanonicalName", "isDefault", "copy" };
+	private static String[] calculated = { "getCanonicalName", "isDefault",
+			"copy", "getChildren" };
 
 	public String fieldName(JavaMethod method) {
 		String name = method.getName().getText();

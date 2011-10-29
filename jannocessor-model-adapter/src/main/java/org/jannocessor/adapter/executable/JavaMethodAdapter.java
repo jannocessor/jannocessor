@@ -24,11 +24,13 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.MethodModifiersBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 		implements JavaMethod {
@@ -65,6 +67,11 @@ public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 	@Override
 	protected Class<? extends JavaMethod> getAdaptedInterface() {
 		return JavaMethod.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

@@ -35,6 +35,7 @@ import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
 public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
@@ -117,7 +118,7 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 
 	@Override
 	public PowerList<CodeNode> getChildren() {
-		return Power.emptyList();
+		return ModelUtils.getChildren(this);
 	}
 
 	@Override

@@ -20,8 +20,11 @@ import javax.lang.model.type.ArrayType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaArrayTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaArrayType {
@@ -45,6 +48,11 @@ public class JavaArrayTypeAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaArrayType> getAdaptedInterface() {
 		return JavaArrayType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

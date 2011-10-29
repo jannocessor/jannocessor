@@ -20,10 +20,13 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.ClassModifiersBean;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 		JavaClass {
@@ -48,6 +51,11 @@ public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 	@Override
 	protected Class<? extends JavaClass> getAdaptedInterface() {
 		return JavaClass.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

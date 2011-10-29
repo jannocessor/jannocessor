@@ -16,7 +16,10 @@
 
 package org.jannocessor.model.code.bean;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.code.JavaBody;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaBodyBean extends SourceCodeBean implements JavaBody {
 
@@ -24,6 +27,11 @@ public class JavaBodyBean extends SourceCodeBean implements JavaBody {
 
 	public JavaBodyBean(String code, String template, String templateName) {
 		super(code, template, templateName);
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

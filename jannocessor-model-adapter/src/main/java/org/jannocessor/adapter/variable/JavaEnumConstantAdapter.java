@@ -22,7 +22,9 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
 public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
@@ -50,6 +52,11 @@ public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
 	@Override
 	protected Class<? extends JavaEnumConstant> getAdaptedInterface() {
 		return JavaEnumConstant.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

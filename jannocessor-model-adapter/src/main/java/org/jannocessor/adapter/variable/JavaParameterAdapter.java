@@ -22,7 +22,9 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaParameter;
 
 public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
@@ -51,6 +53,11 @@ public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 	@Override
 	protected Class<? extends JavaParameter> getAdaptedInterface() {
 		return JavaParameter.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

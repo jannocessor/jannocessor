@@ -20,8 +20,11 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaInstanceInitAdapter extends
 		AbstractJavaExecutableAdapter implements JavaInstanceInit {
@@ -45,6 +48,11 @@ public final class JavaInstanceInitAdapter extends
 	@Override
 	protected Class<? extends JavaInstanceInit> getAdaptedInterface() {
 		return JavaInstanceInit.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

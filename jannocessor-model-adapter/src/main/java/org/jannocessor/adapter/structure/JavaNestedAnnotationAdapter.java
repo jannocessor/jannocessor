@@ -20,10 +20,13 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.NestedAnnotationModifiersBean;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.modifier.value.NestedAnnotationModifierValue;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaNestedAnnotationAdapter extends
 		AbstractJavaAnnotationAdapter implements JavaNestedAnnotation {
@@ -48,6 +51,11 @@ public final class JavaNestedAnnotationAdapter extends
 	@Override
 	protected Class<? extends JavaNestedAnnotation> getAdaptedInterface() {
 		return JavaNestedAnnotation.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

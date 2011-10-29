@@ -20,10 +20,13 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.NestedEnumModifiersBean;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
 import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 		implements JavaNestedEnum {
@@ -48,6 +51,11 @@ public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 	@Override
 	protected Class<? extends JavaNestedEnum> getAdaptedInterface() {
 		return JavaNestedEnum.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

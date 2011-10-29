@@ -24,7 +24,6 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import org.jannocessor.collection.api.PowerList;
-import org.apache.commons.lang.NotImplementedException;
 import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -93,7 +92,7 @@ public class CodeNodeProxy implements CodeNode, ParentedElement {
 
 	@Override
     public PowerList<CodeNode> getChildren() {
-        throw new NotImplementedException();
+        return ModelUtils.getChildren(this);
     }
 
 	@Override

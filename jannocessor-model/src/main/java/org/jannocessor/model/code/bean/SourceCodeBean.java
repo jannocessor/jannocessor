@@ -21,7 +21,6 @@ import java.util.Map;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.ParentedElement;
@@ -128,7 +127,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 
 	@Override
 	public PowerList<CodeNode> getChildren() {
-		return Power.emptyList();
+		return ModelUtils.getChildren(this);
 	}
 
 	@Override

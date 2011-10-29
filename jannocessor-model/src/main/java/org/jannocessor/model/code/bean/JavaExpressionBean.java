@@ -16,7 +16,10 @@
 
 package org.jannocessor.model.code.bean;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaExpressionBean extends SourceCodeBean implements
 		JavaExpression {
@@ -26,5 +29,11 @@ public class JavaExpressionBean extends SourceCodeBean implements
 	public JavaExpressionBean(String code, String template, String templateName) {
 		super(code, template, templateName);
 	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
+	}
+
 
 }

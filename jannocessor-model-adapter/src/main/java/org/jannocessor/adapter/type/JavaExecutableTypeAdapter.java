@@ -21,10 +21,12 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaExecutableTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaExecutableType {
@@ -65,6 +67,11 @@ public class JavaExecutableTypeAdapter extends AbstractJavaTypeAdapter implement
 	@Override
 	protected Class<? extends JavaExecutableType> getAdaptedInterface() {
 		return JavaExecutableType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

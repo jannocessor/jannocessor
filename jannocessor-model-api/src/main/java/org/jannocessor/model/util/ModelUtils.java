@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.SerializationUtils;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
@@ -68,6 +69,10 @@ public class ModelUtils {
 
 		return isPublic && constructor.getParameters().isEmpty()
 				&& constructor.getThrownTypes().isEmpty();
+	}
+
+	public static PowerList<CodeNode> getChildren(CodeNode codeNode) {
+		return null; // FIXME: not implemented
 	}
 
 }

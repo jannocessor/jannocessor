@@ -37,8 +37,6 @@ public class CodeNodeData extends AbstractData implements CodeNode, ParentedElem
 
     private CodeNode parent;
 
-    private PowerList<CodeNode> children;
-
 
     public CodeNode getParent() {
         return this.parent;
@@ -49,11 +47,7 @@ public class CodeNodeData extends AbstractData implements CodeNode, ParentedElem
     }
 
     public PowerList<CodeNode> getChildren() {
-        return this.children;
-    }
-
-    public void setChildren(PowerList<CodeNode> value) {
-        this.children = value;
+        return ModelUtils.getChildren(this);
     }
 
     public CodeNode copy() {

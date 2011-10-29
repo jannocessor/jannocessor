@@ -27,6 +27,7 @@ public interface CodeNode extends Serializable {
 
 	CodeNode getParent();
 
+	@Calculated
 	PowerList<CodeNode> getChildren();
 
 	@Calculated

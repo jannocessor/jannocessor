@@ -20,8 +20,11 @@ import javax.lang.model.type.WildcardType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaWildcardType;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaWildcardTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaWildcardType {
@@ -50,6 +53,11 @@ public class JavaWildcardTypeAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaWildcardType> getAdaptedInterface() {
 		return JavaWildcardType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

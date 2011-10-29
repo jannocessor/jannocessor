@@ -20,7 +20,10 @@ import javax.lang.model.type.NullType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaNullType;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaNullTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaNullType {
@@ -41,6 +44,11 @@ public class JavaNullTypeAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaNullType> getAdaptedInterface() {
 		return JavaNullType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

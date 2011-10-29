@@ -20,7 +20,10 @@ import javax.lang.model.type.NoType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaVoidType;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaVoidTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaVoidType {
@@ -40,6 +43,11 @@ public class JavaVoidTypeAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaVoidType> getAdaptedInterface() {
 		return JavaVoidType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

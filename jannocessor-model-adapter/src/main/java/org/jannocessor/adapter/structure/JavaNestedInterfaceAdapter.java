@@ -20,10 +20,13 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.NestedInterfaceModifiersBean;
 import org.jannocessor.model.modifier.NestedInterfaceModifiers;
 import org.jannocessor.model.modifier.value.NestedInterfaceModifierValue;
 import org.jannocessor.model.structure.JavaNestedInterface;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaNestedInterfaceAdapter extends
 		AbstractJavaInterfaceAdapter implements JavaNestedInterface {
@@ -48,6 +51,11 @@ public final class JavaNestedInterfaceAdapter extends
 	@Override
 	protected Class<? extends JavaNestedInterface> getAdaptedInterface() {
 		return JavaNestedInterface.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

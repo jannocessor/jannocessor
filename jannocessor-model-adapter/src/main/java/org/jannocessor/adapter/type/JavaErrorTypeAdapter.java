@@ -20,7 +20,10 @@ import javax.lang.model.type.ErrorType;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaErrorType;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaErrorTypeAdapter extends AbstractJavaTypeAdapter implements
 		JavaErrorType {
@@ -40,6 +43,11 @@ public class JavaErrorTypeAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaErrorType> getAdaptedInterface() {
 		return JavaErrorType.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

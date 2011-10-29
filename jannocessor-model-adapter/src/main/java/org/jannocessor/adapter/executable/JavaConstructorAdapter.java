@@ -24,12 +24,14 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.bean.modifier.ConstructorModifiersBean;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.ConstructorModifiers;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		implements JavaConstructor {
@@ -76,6 +78,11 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 	@Override
 	public Boolean isDefault() {
 		throw calculatedMethodException();
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

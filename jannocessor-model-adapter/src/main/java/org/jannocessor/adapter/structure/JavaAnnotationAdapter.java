@@ -20,10 +20,13 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.AnnotationModifiersBean;
 import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		implements JavaAnnotation {
@@ -48,6 +51,11 @@ public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 	@Override
 	protected Class<? extends JavaAnnotation> getAdaptedInterface() {
 		return JavaAnnotation.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

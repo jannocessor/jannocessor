@@ -25,9 +25,11 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.filter.api.Condition;
 import org.jannocessor.collection.filter.api.Criteria;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
+import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaTypeParameterAdapter extends JavaElementAdapter
 		implements JavaTypeParameter {
@@ -63,6 +65,11 @@ public final class JavaTypeParameterAdapter extends JavaElementAdapter
 	@Override
 	protected Class<? extends JavaTypeParameter> getAdaptedInterface() {
 		return JavaTypeParameter.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

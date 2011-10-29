@@ -21,6 +21,9 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaLocalVariable;
 
 public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
@@ -44,6 +47,11 @@ public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 	@Override
 	protected Class<? extends JavaLocalVariable> getAdaptedInterface() {
 		return JavaLocalVariable.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }

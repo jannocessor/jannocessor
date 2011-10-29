@@ -20,8 +20,11 @@ import javax.lang.model.type.TypeVariable;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.util.ModelUtils;
 
 public class JavaTypeVariableAdapter extends AbstractJavaTypeAdapter implements
 		JavaTypeVariable {
@@ -50,6 +53,11 @@ public class JavaTypeVariableAdapter extends AbstractJavaTypeAdapter implements
 	@Override
 	protected Class<? extends JavaTypeVariable> getAdaptedInterface() {
 		return JavaTypeVariable.class;
+	}
+
+	@Override
+	public PowerList<CodeNode> getChildren() {
+		return ModelUtils.getChildren(this);
 	}
 
 }
