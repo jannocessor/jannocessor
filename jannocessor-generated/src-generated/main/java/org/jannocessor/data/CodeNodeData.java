@@ -31,7 +31,7 @@ import java.io.ObjectInputStream;
 
 
 @Generated("JAnnocessor-bootstraped")
-public class CodeNodeData extends AbstractData implements CodeNode, ParentedElement {
+public class CodeNodeData extends AbstractDataRoot implements CodeNode, ParentedElement {
 
 	private static final long serialVersionUID = 1L;
 

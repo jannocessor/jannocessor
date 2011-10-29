@@ -20,7 +20,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.util.ModelUtils;
 
-public class AbstractData {
+public class AbstractDataRoot {
 
 	protected <T> PowerList<T> children(PowerList<T> list) {
 		if (this instanceof JavaElement) {
