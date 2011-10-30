@@ -98,7 +98,7 @@ public class ImportOrganizerTest {
 				"java.util.Map", "java.util.Set");
 
 		checkUsage("java.util.Map<java.util.Set<Integer[]>[],int[]>[]",
-				"Map<Set<Integer[]>[],int[]>[]");
+				"Map<Set<Integer[]>[], int[]>[]");
 	}
 
 	@Test
@@ -135,7 +135,7 @@ public class ImportOrganizerTest {
 
 		checkImport(type);
 
-		checkUsage(type, "Map<List<? extends Object>,Set<? super List<? extends X>>>");
+		checkUsage(type, "Map<List<? extends Object>, Set<? super List<? extends X>>>");
 	}
 
 	@Test
@@ -147,7 +147,7 @@ public class ImportOrganizerTest {
 		checkImport("java.util.List<java.lang.String,int>");
 		checkImport("java.util.Map<java.lang.Integer, java.lang.Boolean>");
 
-		checkUsage("java.util.List<java.lang.String,int>", "List<String,int>");
+		checkUsage("java.util.List<java.lang.String, int>", "List<String, int>");
 	}
 
 	@Test
@@ -158,7 +158,7 @@ public class ImportOrganizerTest {
 		checkImport("java.util.Map<java.sql.Date, a.b.SomeClass>");
 
 		checkUsage("java.util.Map<java.sql.Date, a.b.SomeClass>",
-				"Map<Date,SomeClass>");
+				"Map<Date, SomeClass>");
 	}
 
 	@Test
@@ -169,7 +169,7 @@ public class ImportOrganizerTest {
 		checkImport("a.X<b.Y<c.Z, java.lang.String>, d.K<b.Y, int, e.L>>");
 
 		checkUsage("a.X<b.Y<c.Z, java.lang.String>, d.K<b.Y, int, e.L>>",
-				"X<Y<Z,String>,K<Y,int,L>>");
+				"X<Y<Z, String>, K<Y, int, L>>");
 	}
 
 	@Test

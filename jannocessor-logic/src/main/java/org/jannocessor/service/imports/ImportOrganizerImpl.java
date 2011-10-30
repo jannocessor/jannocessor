@@ -96,7 +96,7 @@ public class ImportOrganizerImpl implements ImportOrganizer {
 				sb.append(getTypeUsage(type.getType()));
 
 				if (it.hasNext()) {
-					sb.append(",");
+					sb.append(", ");
 				}
 			}
 
