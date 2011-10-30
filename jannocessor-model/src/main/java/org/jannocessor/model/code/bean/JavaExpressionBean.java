@@ -26,8 +26,9 @@ public class JavaExpressionBean extends SourceCodeBean implements
 
 	private static final long serialVersionUID = -8259906961609526297L;
 
-	public JavaExpressionBean(String code, String template, String templateName) {
-		super(code, template, templateName);
+	public JavaExpressionBean(String code, String template,
+			String templateName, String macroName) {
+		super(code, template, templateName, macroName);
 	}
 
 	@Override

@@ -35,14 +35,17 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	private String hardcoded;
 	private String template;
 	private String templateName;
+	private String macroName;
 	private Map<String, ? extends Object> attributes;
 
 	private CodeNode parent;
 
-	public SourceCodeBean(String code, String template, String templateName) {
+	public SourceCodeBean(String code, String template, String templateName,
+			String macroName) {
 		this.hardcoded = code;
 		this.template = template;
 		this.templateName = templateName;
+		this.macroName = macroName;
 	}
 
 	@Override
@@ -80,6 +83,16 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	}
 
 	@Override
+	public String getMacroName() {
+		return macroName;
+	}
+
+	@Override
+	public void setMacroName(String macroName) {
+		this.macroName = macroName;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -87,19 +100,20 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 		if (obj == this) {
 			return true;
 		}
-		if (obj.getClass() != getClass()) {
+		if (!(obj instanceof SourceCode)) {
 			return false;
 		}
 		SourceCode other = (SourceCode) obj;
 		return new EqualsBuilder().append(hardcoded, other.getHardcoded())
 				.append(template, other.getTemplate())
-				.append(templateName, other.getTemplateName()).isEquals();
+				.append(templateName, other.getTemplateName())
+				.append(macroName, other.getMacroName()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder().append(hardcoded).append(template)
-				.append(templateName).toHashCode();
+				.append(templateName).append(macroName).toHashCode();
 	}
 
 	@Override
@@ -111,6 +125,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 				.append("hardcoded", getHardcoded())
 				.append("template", getTemplate())
 				.append("templateName", getTemplateName())
+				.append("macroName", getMacroName())
 				.append("attributes", getAttributes())
 				.append("empty", isEmpty()).toString();
 	}
@@ -120,12 +135,13 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 		setHardcoded(sourceCode.getHardcoded());
 		setTemplate(sourceCode.getTemplate());
 		setTemplateName(sourceCode.getTemplateName());
+		setMacroName(sourceCode.getMacroName());
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return getHardcoded() == null && getTemplate() == null
-				&& getTemplateName() == null;
+		return (getHardcoded() == null) && (getTemplate() == null)
+				&& (getTemplateName() == null) && (getMacroName() == null);
 	}
 
 	@Override

@@ -39,6 +39,10 @@ public interface SourceCode extends CodeNode {
 
 	void setTemplateName(String templateName);
 
+	String getMacroName();
+
+	void setMacroName(String macroName);
+
 	void assign(SourceCode sourceCode);
 
 	void setAttributes(Map<String, ? extends Object> attributes);

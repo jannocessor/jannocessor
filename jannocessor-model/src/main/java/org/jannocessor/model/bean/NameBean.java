@@ -252,7 +252,7 @@ public class NameBean implements Name {
 		if (obj == this) {
 			return true;
 		}
-		if (obj.getClass() != getClass()) {
+		if (!(obj instanceof Name)) {
 			return false;
 		}
 		Name other = (Name) obj;

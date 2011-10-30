@@ -25,8 +25,9 @@ public class JavaBodyBean extends SourceCodeBean implements JavaBody {
 
 	private static final long serialVersionUID = 1183565189174274163L;
 
-	public JavaBodyBean(String code, String template, String templateName) {
-		super(code, template, templateName);
+	public JavaBodyBean(String code, String template, String templateName,
+			String macroName) {
+		super(code, template, templateName, macroName);
 	}
 
 	@Override

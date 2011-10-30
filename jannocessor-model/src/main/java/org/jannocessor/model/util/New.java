@@ -809,59 +809,71 @@ public class New {
 	/*************************** SOURCE CODE *****************************/
 
 	public static SourceCode code() {
-		return new SourceCodeBean(null, null, null);
+		return new SourceCodeBean(null, null, null, null);
 	}
 
 	public static SourceCode code(String code) {
-		return new SourceCodeBean(code, null, null);
+		return new SourceCodeBean(code, null, null, null);
 	}
 
 	public static SourceCode codeByTemplate(String template) {
-		return new SourceCodeBean(null, template, null);
+		return new SourceCodeBean(null, template, null, null);
 	}
 
 	public static SourceCode codeByTemplateName(String templateName) {
-		return new SourceCodeBean(null, null, templateName);
+		return new SourceCodeBean(null, null, templateName, null);
+	}
+
+	public static SourceCode codeByMacroName(String macroName) {
+		return new SourceCodeBean(null, null, null, macroName);
 	}
 
 	public static SourceCode code(Class<? extends JavaCodeModel> model) {
-		return codeByTemplateName(Templates.defaultName(model));
+		return codeByMacroName(Templates.defaultName(model));
 	}
 
 	/***************************** BODY *******************************/
 
 	public static JavaBody body() {
-		return new JavaBodyBean(null, null, null);
+		return new JavaBodyBean(null, null, null, null);
 	}
 
 	public static JavaBody body(String code) {
-		return new JavaBodyBean(code, null, null);
+		return new JavaBodyBean(code, null, null, null);
 	}
 
 	public static JavaBody bodyByTemplate(String template) {
-		return new JavaBodyBean(null, template, null);
+		return new JavaBodyBean(null, template, null, null);
 	}
 
 	public static JavaBody bodyByTemplateName(String templateName) {
-		return new JavaBodyBean(null, null, templateName);
+		return new JavaBodyBean(null, null, templateName, null);
+	}
+
+	public static JavaBody bodyByMacroName(String macroName) {
+		return new JavaBodyBean(null, null, null, macroName);
 	}
 
 	/**************************** EXPRESSION ******************************/
 
 	public static JavaExpression expression() {
-		return new JavaExpressionBean(null, null, null);
+		return new JavaExpressionBean(null, null, null, null);
 	}
 
 	public static JavaExpression expression(String expression) {
-		return new JavaExpressionBean(expression, null, null);
+		return new JavaExpressionBean(expression, null, null, null);
 	}
 
 	public static JavaExpression expressionByTemplate(String template) {
-		return new JavaExpressionBean(null, template, null);
+		return new JavaExpressionBean(null, template, null, null);
 	}
 
 	public static JavaExpression expressionByTemplateName(String templateName) {
-		return new JavaExpressionBean(null, null, templateName);
+		return new JavaExpressionBean(null, null, templateName, null);
+	}
+
+	public static JavaExpression expressionByMacroName(String macroName) {
+		return new JavaExpressionBean(null, null, null, macroName);
 	}
 
 	/**************************** LITERAL ******************************/

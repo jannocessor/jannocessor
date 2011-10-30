@@ -28,8 +28,8 @@ public class SourceCodeTest extends AbstractModelTest {
 
 	@Test
 	public void testEquality() {
-		SourceCodeBean code1 = new SourceCodeBean("a", null, null);
-		SourceCodeBean code2 = new SourceCodeBean("a", null, null);
+		SourceCodeBean code1 = new SourceCodeBean("a", null, null, null);
+		SourceCodeBean code2 = new SourceCodeBean("a", null, null, null);
 
 		assertEquals(code1, code2);
 	}
