@@ -1,29 +1,5 @@
 #macro(render_nested_class)#default_nested_class()#end
 
 #macro(default_nested_class)
-#render_lines($self.metadata)
-#join(' ', [
-  "#modifiers($self)",
-  'class',
-  "$self.name#type_parameters($self)",
-  "#extends_class()",
-  "#implements_interfaces()",
-  '{'
-])
-
-
-#members($self.fields)
-#members($self.staticInits)
-#members($self.instanceInits)
-#members($self.constructors)
-#members($self.methods)
-#nestedMembers($self)
-}#end
-
-#macro(extends_class)
-#if($self.superclass && $self.superclass.canonicalName != "java.lang.Object")extends #type($self.superclass)#end
-#end
-
-#macro(implements_interfaces)
-#if(!$self.interfaces.empty)implements #list($self.interfaces, '#type($it)', ', ')#end
+#java_element('class', true)
 #end

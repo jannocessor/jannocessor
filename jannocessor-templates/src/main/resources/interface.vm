@@ -1,12 +1,21 @@
 #macro(render_interface)#default_interface()#end
 
 #macro(default_interface)
-#java_file($self.parent.name, $self.name)
-#file_header()
-package $self.parent.name;
+#java_header()
+#java_element('interface', false)
+#end
 
-#smart_import()
+#macro(interface_content)
+#interface_members()
+#end
 
+#macro(interface_members)
+#members($self.fields)
+#members($self.attributes)
+#nestedMembers($self)
+#end
+
+#macro(interface_begin)
 #render_lines($self.metadata)
 #join(' ', [
   "#modifiers_without($self, $Interfaces.ABSTRACT)",
@@ -16,13 +25,4 @@ package $self.parent.name;
   "#extends_interfaces()",
   '{'
 ])
-
-
-#members($self.fields)
-#members($self.methods)
-#nestedMembers($self)
-}#end
-
-#macro(extends_interfaces)
-#if(!$self.interfaces.empty)extends #list($self.interfaces, '#type($it)', ', ')#end
 #end

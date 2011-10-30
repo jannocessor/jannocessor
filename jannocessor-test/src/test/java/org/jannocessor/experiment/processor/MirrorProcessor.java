@@ -29,7 +29,7 @@ public class MirrorProcessor implements CodeProcessor<AbstractJavaStructure> {
 		context.getLogger().info("Processing {} elements", elements.size());
 
 		for (AbstractJavaStructure structure : elements) {
-//			context.generateCode(structure, true);
+			context.generateCode(structure, true);
 		}
 	}
 

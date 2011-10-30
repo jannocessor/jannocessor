@@ -1,21 +1,5 @@
 #macro(render_nested_interface)#default_nested_interface()#end
 
 #macro(default_nested_interface)
-#join(' ', [
-  "#modifiers_without($self, $Interfaces.ABSTRACT)",
-  'interface',
-  "$self.name",
-  "#type_parameters($self)",
-  "#extends_interfaces()",
-  '{'
-])
-
-
-#members($self.fields)
-#members($self.methods)
-#nestedMembers($self)
-}#end
-
-#macro(extends_interfaces)
-#if(!$self.interfaces.empty)extends #list($self.interfaces, '#type($it)', ', ')#end
+#java_element('interface', true)
 #end

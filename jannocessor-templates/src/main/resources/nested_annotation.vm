@@ -1,16 +1,5 @@
 #macro(render_nested_annotation)#default_nested_annotation()#end
 
 #macro(default_nested_annotation)
-#join(' ', [
-  "#modifiers_without($self, $Annotations.ABSTRACT)",
-  '@interface',
-  "$self.name",
-  "#type_parameters($self)",
-  '{'
-])
-
-
-#members($self.fields)
-#members($self.attributes)
-#nestedMembers($self)
-}#end
+#java_element('annotation', true)
+#end

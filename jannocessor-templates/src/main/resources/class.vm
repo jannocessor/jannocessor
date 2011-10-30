@@ -1,12 +1,24 @@
 #macro(render_class)#default_class()#end
 
 #macro(default_class)
-#java_file($self.parent.name, $self.name)
-#file_header()
-package $self.parent.name;
+#java_header()
+#java_element('class', false)
+#end
 
-#smart_import()
+#macro(class_content)
+#class_members()
+#end
 
+#macro(class_members)
+#members($self.fields)
+#members($self.staticInits)
+#members($self.instanceInits)
+#members($self.constructors)
+#members($self.methods)
+#nestedMembers($self)
+#end
+
+#macro(class_begin)
 #render_lines($self.metadata)
 #join(' ', [
   "#modifiers($self)",
@@ -16,20 +28,4 @@ package $self.parent.name;
   "#implements_interfaces()",
   '{'
 ])
-
-
-#members($self.fields)
-#members($self.staticInits)
-#members($self.instanceInits)
-#members($self.constructors)
-#members($self.methods)
-#nestedMembers($self)
-}#end
-
-#macro(extends_class)
-#if($self.superclass && $self.superclass.canonicalName != 'java.lang.Object')extends #type($self.superclass)#end
-#end
-
-#macro(implements_interfaces)
-#if(!$self.interfaces.empty)implements #list($self.interfaces, '#type($it)', ', ')#end
 #end

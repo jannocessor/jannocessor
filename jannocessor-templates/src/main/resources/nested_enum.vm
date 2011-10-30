@@ -1,29 +1,5 @@
 #macro(render_nested_enum)#default_nested_enum()#end
 
 #macro(default_nested_enum)
-#join(' ', [
-  "#modifiers($self)",
-  'enum',
-  "$self.name",
-  "#type_parameters($self)",
-  "#implements_interfaces()",
-  '{'
-])
-
-
-#@indent()
-#if($self.values.size() > 0)
-#render_list($self.values);
-#end
-#end
-#members($self.fields)
-#members($self.staticInits)
-#members($self.instanceInits)
-#members($self.constructors)
-#members($self.methods)
-#nestedMembers($self)
-}#end
-
-#macro(implements_interfaces)
-#if(!$self.interfaces.empty)implements #list($self.interfaces, '#type($it)', ', ')#end
+#java_element('enum', true)
 #end

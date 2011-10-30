@@ -2,3 +2,18 @@
 // CUSTOM FILE HEADER
 #end
 
+#macro(before_members)
+
+
+#@indent()
+// BEFORE
+#end
+#end
+
+#macro(after_members)
+#@indent()
+// AFTER
+#end
+#end
+
+#macro(indentation)   #end

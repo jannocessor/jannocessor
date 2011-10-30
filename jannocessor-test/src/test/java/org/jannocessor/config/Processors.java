@@ -24,28 +24,30 @@ import org.jannocessor.bootstrapped.annotation.MyAnnotation;
 import org.jannocessor.experiment.processor.ExperimentProcessor;
 import org.jannocessor.experiment.processor.MirrorProcessor;
 import org.jannocessor.experiment.processor.MyProcessor;
+import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.processor.context.CodeProcessor;
 
 public class Processors {
 
 	@Annotated(BeanModel.class)
 	@Types(JavaClass.class)
-	public ExperimentProcessor experimentProcessor() {
+	public CodeProcessor<? extends JavaElement> experimentProcessor() {
 		return new ExperimentProcessor();
 	}
 
 	@Annotated({ BeanModel.class, AnotherAnnotation.class })
 	@Types({ JavaInterface.class, JavaEnum.class, JavaAnnotation.class })
-	public MirrorProcessor mirrorProcessor() {
+	public CodeProcessor<? extends JavaElement> mirrorProcessor() {
 		return new MirrorProcessor();
 	}
 
 	@Annotated(MyAnnotation.class)
 	@Types(JavaClass.class)
-	public MyProcessor willProcessMyAnnotatedClasses() {
+	public CodeProcessor<? extends JavaElement> willProcessMyAnnotatedClasses() {
 		return new MyProcessor();
 	}
 

@@ -1,12 +1,25 @@
 #macro(render_enum)#default_enum()#end
 
 #macro(default_enum)
-#java_file($self.parent.name, $self.name)
-#file_header()
-package $self.parent.name;
+#java_header()
+#java_element('enum', false)
+#end
 
-#smart_import()
+#macro(enum_content)
+#enum_values()
+#enum_members()
+#end
 
+#macro(enum_members)
+#members($self.fields)
+#members($self.staticInits)
+#members($self.instanceInits)
+#members($self.constructors)
+#members($self.methods)
+#nestedMembers($self)
+#end
+
+#macro(enum_begin)
 #render_lines($self.metadata)
 #join(' ', [
   "#modifiers($self)",
@@ -16,21 +29,12 @@ package $self.parent.name;
   "#implements_interfaces()",
   '{'
 ])
+#end
 
-
+#macro(enum_values)
 #@indent()
 #if($self.values.size() > 0)
 #render_list($self.values);
 #end
 #end
-#members($self.fields)
-#members($self.staticInits)
-#members($self.instanceInits)
-#members($self.constructors)
-#members($self.methods)
-#nestedMembers($self)
-}#end
-
-#macro(implements_interfaces)
-#if(!$self.interfaces.empty)implements #list($self.interfaces, '#type($it)', ', ')#end
 #end

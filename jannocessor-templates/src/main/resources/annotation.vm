@@ -1,12 +1,21 @@
 #macro(render_annotation)#default_annotation()#end
 
 #macro(default_annotation)
-#java_file($self.parent.name, $self.name)
-#file_header()
-package $self.parent.name;
+#java_header()
+#java_element('annotation', false)
+#end
 
-#smart_import()
+#macro(annotation_content)
+#annotation_members()
+#end
 
+#macro(annotation_members)
+#members($self.fields)
+#members($self.attributes)
+#nestedMembers($self)
+#end
+
+#macro(annotation_begin)
 #render_lines($self.metadata)
 #join(" ", [
   "#modifiers_without($self, $Annotations.ABSTRACT)",
@@ -15,9 +24,4 @@ package $self.parent.name;
   "#type_parameters($self)",
   '{'
 ])
-
-
-#members($self.fields)
-#members($self.attributes)
-#nestedMembers($self)
-}#end
+#end
