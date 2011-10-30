@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -109,7 +110,9 @@ public class VelocityTemplateRenderer implements TemplateRenderer, Settings,
 						ClasspathResourceLoader.class.getCanonicalName());
 			}
 
-			velocityConfig.setProperty(VM_LIBRARY, "_global_macros_.vm");
+			velocityConfig.setProperty(VM_LIBRARY,
+					StringUtils.join(VM_LIBRARY_FILES, ","));
+
 			velocityConfig.setProperty(VM_MAX_DEPTH, "1000");
 			velocityConfig.setProperty(VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL,
 					"true");

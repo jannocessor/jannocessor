@@ -1,3 +1,6 @@
+#macro(render_method)#default_method()#end
+
+#macro(default_method)
 #render_lines($self.metadata)
 #join(' ', [
   "#modifiers($self, $Methods.ABSTRACT)",
@@ -9,3 +12,4 @@
 #if(!$self.modifiers.contains($Methods.ABSTRACT)) {
 #@indent()#body($self, "#default_body($self)")#end
 }#else;#end
+#end

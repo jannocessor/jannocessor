@@ -4,6 +4,9 @@
 #end
 #end
 
+#macro(info $msg)$helper.info($msg)#end
+#macro(debug $msg)$helper.debug($msg)#end
+
 #macro(smart_import)(!PLACEHOLDER:SMART_IMPORT!)#end
 
 #macro(file_header)#end
@@ -17,6 +20,8 @@ $x.hardcoded#elseif($x.template)
 #evaluate($x.template)
 #elseif($x.templateName)
 #parse("#locate($x.templateName)")
+#elseif($x.macroName)
+#evaluate("#${x.macroName}()")
 #elseif($default)
 $default#else
 [ERROR: Can't render $x!]#end

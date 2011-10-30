@@ -1,1 +1,4 @@
-${self}
+#macro(render_variable)#default_variable()#end
+
+#macro(default_variable)
+${self}#end

@@ -1,10 +1,13 @@
-#@trim()
+#macro(render_annotation_attribute)#default_annotation_attribute()#end
+
+#macro(default_annotation_attribute)
 #join(' ', [
   "#render($self.type)",
   "${self.name}(#parameters($self))",
   "#attribute_default($self)"
 ]);
 #end
+
 #macro(attribute_default $attr)
 #@trim()
 #if($attr.defaultValue)

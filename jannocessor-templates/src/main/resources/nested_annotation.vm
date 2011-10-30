@@ -1,3 +1,6 @@
+#macro(render_nested_annotation)#default_nested_annotation()#end
+
+#macro(default_nested_annotation)
 #join(' ', [
   "#modifiers_without($self, $Annotations.ABSTRACT)",
   '@interface',
@@ -10,4 +13,4 @@
 #members($self.fields)
 #members($self.attributes)
 #nestedMembers($self)
-}
+}#end

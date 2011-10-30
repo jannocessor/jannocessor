@@ -27,8 +27,12 @@ import org.jannocessor.JannocessorException;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.service.api.MultiContentSplitter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TemplateHelper {
+
+	private Logger logger = LoggerFactory.getLogger("TEMPLATE");
 
 	private final VelocityContext context;
 
@@ -119,5 +123,15 @@ public class TemplateHelper {
 			context.remove(key);
 		}
 	}
-	
+
+	public String info(String msg) {
+		logger.info(msg);
+		return "";
+	}
+
+	public String debug(String msg) {
+		logger.debug(msg);
+		return "";
+	}
+
 }

@@ -38,7 +38,7 @@ public class Templates {
 			name = name.replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase();
 		}
 
-		return name;
+		return "render_" + name;
 	}
 
 }

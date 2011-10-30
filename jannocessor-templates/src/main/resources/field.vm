@@ -1,10 +1,14 @@
+#macro(render_field)#default_field()#end
+
+#macro(default_field)
 #render_lines($self.metadata)
 #join(' ', [
   "#modifiers($self)",
   "#type(${self.type})",
   "${self.name}",
   "#field_value($self)"
-]);
+]);#end
+
 #macro(field_value $model)
 #if(!$model.value.empty)
 = #code($model.value)#end

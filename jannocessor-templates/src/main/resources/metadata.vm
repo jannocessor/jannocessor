@@ -1,6 +1,7 @@
-#@trim()
+#macro(render_metadata)#default_metadata()#end
 
-@#type($self.annotation)#metadata_values($self.values)
+#macro(default_metadata)
+@#type($self.annotation)#metadata_values($self.values)#end
 
 #macro(metadata_values $values)
 #@trim()
@@ -30,6 +31,4 @@
 #value($x)
 #end
 #end
-#end
-
 #end

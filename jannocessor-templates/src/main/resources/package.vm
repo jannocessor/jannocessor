@@ -1,1 +1,4 @@
-${self}
+#macro(render_package)#default_package()#end
+
+#macro(default_package)
+${self}#end

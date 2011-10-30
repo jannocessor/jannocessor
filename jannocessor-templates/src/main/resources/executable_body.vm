@@ -1,1 +1,4 @@
-${self}
+#macro(render_executable_body)#default_executable_body()#end
+
+#macro(default_executable_body)
+${self}#end

@@ -1,3 +1,6 @@
+#macro(render_static_init)#default_static_init()#end
+
+#macro(default_static_init)
 static {
 #@indent()#body($self, "#default_body($self)")#end
-}
+}#end

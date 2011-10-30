@@ -1,3 +1,6 @@
+#macro(render_enum)#default_enum()#end
+
+#macro(default_enum)
 #java_file($self.parent.name, $self.name)
 #file_header()
 package $self.parent.name;
@@ -26,7 +29,7 @@ package $self.parent.name;
 #members($self.constructors)
 #members($self.methods)
 #nestedMembers($self)
-}
+}#end
 
 #macro(implements_interfaces)
 #if(!$self.interfaces.empty)implements #list($self.interfaces, '#type($it)', ', ')#end

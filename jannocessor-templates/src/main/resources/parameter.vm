@@ -1,2 +1,5 @@
+#macro(render_parameter)#default_parameter()#end
+
+#macro(default_parameter)
 #render_list($self.metadata, ' ')
- #type(${self.type}) ${self.name}
+ #type(${self.type}) ${self.name}#end

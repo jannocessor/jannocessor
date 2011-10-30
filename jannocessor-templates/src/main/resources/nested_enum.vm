@@ -1,3 +1,6 @@
+#macro(render_nested_enum)#default_nested_enum()#end
+
+#macro(default_nested_enum)
 #join(' ', [
   "#modifiers($self)",
   'enum',
@@ -19,7 +22,7 @@
 #members($self.constructors)
 #members($self.methods)
 #nestedMembers($self)
-}
+}#end
 
 #macro(implements_interfaces)
 #if(!$self.interfaces.empty)implements #list($self.interfaces, '#type($it)', ', ')#end

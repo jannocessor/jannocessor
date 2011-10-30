@@ -1,4 +1,7 @@
-${self.name}#type_bounds($self)
+#macro(render_type_parameter)#default_type_parameter()#end
+
+#macro(default_type_parameter)
+${self.name}#type_bounds($self)#end
 
 #macro(type_bounds $type_param)
 #if($type_param.bounds.size() > 0)

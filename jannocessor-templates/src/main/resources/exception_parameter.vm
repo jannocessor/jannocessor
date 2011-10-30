@@ -1,1 +1,4 @@
-${self}
+#macro(render_exception_parameter)#default_exception_parameter()#end
+
+#macro(default_exception_parameter)
+${self}#end

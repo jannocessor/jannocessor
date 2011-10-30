@@ -1,4 +1,7 @@
-${self.name}#enum_constant_values($self)
+#macro(render_enum_constant)#default_enum_constant()#end
+
+#macro(default_enum_constant)
+${self.name}#enum_constant_values($self)#end
 
 #macro(enum_constant_values $model)
 #if(!$model.values.isEmpty())

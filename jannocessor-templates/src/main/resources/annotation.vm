@@ -1,3 +1,6 @@
+#macro(render_annotation)#default_annotation()#end
+
+#macro(default_annotation)
 #java_file($self.parent.name, $self.name)
 #file_header()
 package $self.parent.name;
@@ -17,4 +20,4 @@ package $self.parent.name;
 #members($self.fields)
 #members($self.attributes)
 #nestedMembers($self)
-}
+}#end

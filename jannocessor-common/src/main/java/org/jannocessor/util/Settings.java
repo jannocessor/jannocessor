@@ -36,4 +36,14 @@ public interface Settings {
 
 	public static final String CUSTOM_TEMPLATE = "customize.vm";
 
+	public static final String[] VM_LIBRARY_FILES = { "_global_macros_.vm",
+			"annotation_attribute.vm", "annotation.vm", "class.vm",
+			"constructor.vm", "enum_constant.vm", "enum.vm",
+			"exception_parameter.vm", "executable_body.vm", "field.vm",
+			"instance_init.vm", "interface.vm", "local_variable.vm",
+			"metadata.vm", "method.vm", "nested_annotation.vm",
+			"nested_class.vm", "nested_enum.vm", "nested_interface.vm",
+			"package.vm", "parameter.vm", "static_init.vm",
+			"type_parameter.vm", "type_variable.vm", "type.vm", "variable.vm" };
+
 }

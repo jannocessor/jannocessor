@@ -1,3 +1,6 @@
+#macro(render_interface)#default_interface()#end
+
+#macro(default_interface)
 #java_file($self.parent.name, $self.name)
 #file_header()
 package $self.parent.name;
@@ -18,7 +21,7 @@ package $self.parent.name;
 #members($self.fields)
 #members($self.methods)
 #nestedMembers($self)
-}
+}#end
 
 #macro(extends_interfaces)
 #if(!$self.interfaces.empty)extends #list($self.interfaces, '#type($it)', ', ')#end

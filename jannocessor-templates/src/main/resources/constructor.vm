@@ -1,3 +1,6 @@
+#macro(render_constructor)#default_constructor()#end
+
+#macro(default_constructor)
 #if(!$self.default || !$self.body.empty)
 #render_lines($self.metadata)
 #join(' ', [
@@ -9,3 +12,4 @@
 
 #@indent()#body($self, '')#end
 }#end
+#end

@@ -1,3 +1,6 @@
+#macro(render_instance_init)#default_instance_init()#end
+
+#macro(default_instance_init)
 {
 #@indent()#body($self, "#default_body($self)")#end
-}
+}#end
