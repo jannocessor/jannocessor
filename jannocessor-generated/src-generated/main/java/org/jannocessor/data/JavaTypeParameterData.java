@@ -21,6 +21,7 @@ import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -45,6 +46,11 @@ public class JavaTypeParameterData extends JavaElementData implements JavaTypePa
 
     public void setBounds(PowerList<JavaType> value) {
         this.bounds = value;
+    }
+
+    @Override
+    public JavaElement getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

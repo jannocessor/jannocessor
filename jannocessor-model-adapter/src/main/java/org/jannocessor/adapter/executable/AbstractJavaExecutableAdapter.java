@@ -26,6 +26,7 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaBody;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
@@ -82,6 +83,11 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 	@Override
 	protected Class<? extends AbstractJavaExecutable> getAdaptedInterface() {
 		return AbstractJavaExecutable.class;
+	}
+
+	@Override
+	public AbstractJavaStructure getParent() {
+		return super.retrieveParent();
 	}
 
 }

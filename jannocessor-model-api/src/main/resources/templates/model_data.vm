@@ -22,30 +22,43 @@ package $packageName;
 #end
 
 @#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
-public class $className extends #if($extends)#type(${extends})#{else}AbstractData#end implements #type(${model.qualifiedName})#if($className == 'CodeNodeData'), #type('org.jannocessor.model.ParentedElement')#end {
+public class $className extends #if($extends)#type(${extends})#{else}AbstractDataRoot#end implements #type(${model.qualifiedName})#if($className == 'CodeNodeData'), #type('org.jannocessor.model.ParentedElement')#end {
 
 	private static final long serialVersionUID = 1L;
 
 #foreach ($m in $model.methods)
-#if(!$helper.isCalculated($m))
+#if((!$extends || $m.name != 'getParent') && !$helper.isCalculated($m))
     private #type($m.returnType) ${helper.fieldName($m)};
 
 #end
 #end
 
+#if(!$extends)
+	@SuppressWarnings("unchecked")
+	protected <T> T retrieveParent() {
+		return (T) this.parent;
+	}
+
+#end
 #foreach ($m in $model.methods)
-#if(!$helper.isCalculated($m))
+#if($helper.isCalculated($m))
+    public #type($m.returnType) ${m.name}() {
+        return #type('org.jannocessor.model.util.ModelUtils').${m.name}(this);
+    }
+
+#elseif($extends && $m.name == 'getParent')
+    @Override
+    public #type($m.returnType) ${m.name}() {
+        return super.retrieveParent();
+    }
+
+#else
     public #type($m.returnType) ${m.name}() {
         return this.${helper.fieldName($m)};
     }
 
     public void ${m.name.replacePart(0, "set")}(#type($m.returnType) value) {
         this.${helper.fieldName($m)} = value;
-    }
-
-#else
-    public #type($m.returnType) ${m.name}() {
-        return #type('org.jannocessor.model.util.ModelUtils').${m.name}(this);
     }
 
 #end

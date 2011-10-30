@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaEnumProxy;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.data.JavaEnumData;
 import org.jannocessor.model.modifier.EnumModifiers;
+import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
         }
 
         return data.getModifiers();
+    }
+
+	@Override
+    public JavaPackage getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

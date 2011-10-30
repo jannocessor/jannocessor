@@ -26,4 +26,7 @@ public interface JavaTypeParameter extends JavaElement {
 
 	PowerList<JavaType> getBounds();
 
+	@Override
+	JavaElement getParent();
+
 }

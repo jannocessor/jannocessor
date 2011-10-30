@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaClassProxy;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.data.JavaNestedClassData;
 import org.jannocessor.model.modifier.NestedClassModifiers;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class JavaNestedClassProxy extends AbstractJavaClassProxy implements Java
         }
 
         return data.getModifiers();
+    }
+
+	@Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

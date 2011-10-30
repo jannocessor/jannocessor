@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaInterfaceData;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.modifier.InterfaceModifiers;
+import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,6 +45,11 @@ public class JavaInterfaceData extends AbstractJavaInterfaceData implements Java
 
     public void setModifiers(InterfaceModifiers value) {
         this.modifiers = value;
+    }
+
+    @Override
+    public JavaPackage getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

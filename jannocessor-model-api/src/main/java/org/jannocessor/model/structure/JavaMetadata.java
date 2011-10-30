@@ -19,6 +19,7 @@ package org.jannocessor.model.structure;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.model.JavaCodeModel;
+import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.type.JavaType;
 
 @DomainModel
@@ -29,5 +30,8 @@ public interface JavaMetadata extends JavaCodeModel {
 	PowerMap<String, ? extends Object> getValues();
 
 	PowerMap<String, ? extends Object> getValuesWithDefaults();
+
+	@Override
+	JavaElement getParent();
 
 }

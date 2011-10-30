@@ -24,4 +24,7 @@ public interface JavaNestedEnum extends AbstractJavaEnum {
 
 	NestedEnumModifiers getModifiers();
 
+	@Override
+	AbstractJavaStructure getParent();
+
 }

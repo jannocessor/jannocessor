@@ -24,4 +24,7 @@ public interface JavaNestedAnnotation extends AbstractJavaAnnotation {
 
 	NestedAnnotationModifiers getModifiers();
 
+	@Override
+	AbstractJavaStructure getParent();
+
 }

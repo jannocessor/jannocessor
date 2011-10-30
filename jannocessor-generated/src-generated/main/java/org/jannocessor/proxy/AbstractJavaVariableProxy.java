@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.variable.AbstractJavaVariable;
 import org.jannocessor.data.AbstractJavaVariableData;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,10 +32,8 @@ public class AbstractJavaVariableProxy extends JavaElementProxy implements Abstr
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient AbstractJavaVariable adapter;
 
-    @SuppressWarnings("unused")
     private AbstractJavaVariableData data;
 
     public AbstractJavaVariableProxy(AbstractJavaVariable adapter, AbstractJavaVariableData data) {
@@ -43,6 +42,11 @@ public class AbstractJavaVariableProxy extends JavaElementProxy implements Abstr
         this.data = data;
     }
 
+
+	@Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
+    }
 
 	@Override
 	public boolean equals(Object obj) {

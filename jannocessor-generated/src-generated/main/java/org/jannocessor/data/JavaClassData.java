@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaClassData;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,6 +45,11 @@ public class JavaClassData extends AbstractJavaClassData implements JavaClass {
 
     public void setModifiers(ClassModifiers value) {
         this.modifiers = value;
+    }
+
+    @Override
+    public JavaPackage getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

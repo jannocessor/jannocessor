@@ -33,6 +33,7 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.model.CodeNode;
+import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.ModelUtils;
@@ -112,7 +113,7 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 	}
 
 	@Override
-	public CodeNode getParent() {
+	public JavaElement getParent() {
 		return null;
 	}
 

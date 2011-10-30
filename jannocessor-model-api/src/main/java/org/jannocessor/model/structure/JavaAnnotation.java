@@ -24,4 +24,7 @@ public interface JavaAnnotation extends AbstractJavaAnnotation {
 
 	AnnotationModifiers getModifiers();
 
+	@Override
+	JavaPackage getParent();
+
 }

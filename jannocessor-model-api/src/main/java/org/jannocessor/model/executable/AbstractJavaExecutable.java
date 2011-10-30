@@ -19,10 +19,14 @@ package org.jannocessor.model.executable;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.code.JavaBody;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 
 @DomainModel
 public interface AbstractJavaExecutable extends JavaElement {
 
-    JavaBody getBody();
+	JavaBody getBody();
+
+	@Override
+	AbstractJavaStructure getParent();
 
 }

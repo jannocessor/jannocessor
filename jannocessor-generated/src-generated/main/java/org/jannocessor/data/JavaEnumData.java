@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaEnumData;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.modifier.EnumModifiers;
+import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,6 +45,11 @@ public class JavaEnumData extends AbstractJavaEnumData implements JavaEnum {
 
     public void setModifiers(EnumModifiers value) {
         this.modifiers = value;
+    }
+
+    @Override
+    public JavaPackage getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

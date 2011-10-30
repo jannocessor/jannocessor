@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.model.code.JavaBody;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,6 +45,11 @@ public class AbstractJavaExecutableData extends JavaElementData implements Abstr
 
     public void setBody(JavaBody value) {
         this.body = value;
+    }
+
+    @Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

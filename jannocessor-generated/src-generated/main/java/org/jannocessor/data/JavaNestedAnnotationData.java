@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaAnnotationData;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,6 +45,11 @@ public class JavaNestedAnnotationData extends AbstractJavaAnnotationData impleme
 
     public void setModifiers(NestedAnnotationModifiers value) {
         this.modifiers = value;
+    }
+
+    @Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

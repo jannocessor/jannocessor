@@ -23,6 +23,7 @@ import org.jannocessor.data.JavaTypeParameterData;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -59,6 +60,11 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
         }
 
         return data.getBounds();
+    }
+
+	@Override
+    public JavaElement getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

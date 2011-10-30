@@ -26,6 +26,7 @@ import org.jannocessor.model.bean.modifier.InterfaceModifiersBean;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.modifier.value.InterfaceModifierValue;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
@@ -56,6 +57,11 @@ public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 	@Override
 	public PowerList<CodeNode> getChildren() {
 		return ModelUtils.getChildren(this);
+	}
+
+	@Override
+	public JavaPackage getParent() {
+		return super.retrieveParent();
 	}
 
 }

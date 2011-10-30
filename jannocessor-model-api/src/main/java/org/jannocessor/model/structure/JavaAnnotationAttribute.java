@@ -24,4 +24,7 @@ public interface JavaAnnotationAttribute extends JavaElement {
 
 	Object getDefaultValue();
 
+	@Override
+	AbstractJavaAnnotation getParent();
+
 }

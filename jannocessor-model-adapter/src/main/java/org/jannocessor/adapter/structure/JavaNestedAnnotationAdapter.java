@@ -25,6 +25,7 @@ import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.NestedAnnotationModifiersBean;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.modifier.value.NestedAnnotationModifierValue;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.util.ModelUtils;
 
@@ -56,6 +57,11 @@ public final class JavaNestedAnnotationAdapter extends
 	@Override
 	public PowerList<CodeNode> getChildren() {
 		return ModelUtils.getChildren(this);
+	}
+
+	@Override
+	public AbstractJavaStructure getParent() {
+		return super.retrieveParent();
 	}
 
 }

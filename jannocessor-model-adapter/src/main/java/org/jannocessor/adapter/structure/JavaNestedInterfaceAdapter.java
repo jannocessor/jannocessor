@@ -25,6 +25,7 @@ import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.NestedInterfaceModifiersBean;
 import org.jannocessor.model.modifier.NestedInterfaceModifiers;
 import org.jannocessor.model.modifier.value.NestedInterfaceModifierValue;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.util.ModelUtils;
 
@@ -56,6 +57,11 @@ public final class JavaNestedInterfaceAdapter extends
 	@Override
 	public PowerList<CodeNode> getChildren() {
 		return ModelUtils.getChildren(this);
+	}
+
+	@Override
+	public AbstractJavaStructure getParent() {
+		return super.retrieveParent();
 	}
 
 }

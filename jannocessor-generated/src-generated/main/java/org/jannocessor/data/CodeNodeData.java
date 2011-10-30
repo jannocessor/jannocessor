@@ -38,6 +38,11 @@ public class CodeNodeData extends AbstractDataRoot implements CodeNode, Parented
     private CodeNode parent;
 
 
+	@SuppressWarnings("unchecked")
+	protected <T> T retrieveParent() {
+		return (T) this.parent;
+	}
+
     public CodeNode getParent() {
         return this.parent;
     }

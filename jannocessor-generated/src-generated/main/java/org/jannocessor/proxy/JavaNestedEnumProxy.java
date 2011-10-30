@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaEnumProxy;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.data.JavaNestedEnumData;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class JavaNestedEnumProxy extends AbstractJavaEnumProxy implements JavaNe
         }
 
         return data.getModifiers();
+    }
+
+	@Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

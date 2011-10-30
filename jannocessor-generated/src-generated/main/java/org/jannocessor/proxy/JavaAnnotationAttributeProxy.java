@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.jannocessor.data.JavaAnnotationAttributeData;
+import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -56,6 +57,11 @@ public class JavaAnnotationAttributeProxy extends JavaElementProxy implements Ja
         }
 
         return data.getDefaultValue();
+    }
+
+	@Override
+    public AbstractJavaAnnotation getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

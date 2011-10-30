@@ -24,4 +24,7 @@ public interface JavaEnum extends AbstractJavaEnum {
 
 	EnumModifiers getModifiers();
 
+	@Override
+	JavaPackage getParent();
+
 }

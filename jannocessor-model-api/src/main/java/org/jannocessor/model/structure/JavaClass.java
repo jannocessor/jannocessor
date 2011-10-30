@@ -24,4 +24,7 @@ public interface JavaClass extends AbstractJavaClass {
 
 	ClassModifiers getModifiers();
 
+	@Override
+	JavaPackage getParent();
+
 }

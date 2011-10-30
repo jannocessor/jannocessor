@@ -59,13 +59,18 @@ public class CodeNodeProxy implements CodeNode, ParentedElement {
 
 	@Override
 	public CodeNode getParent() {
+		return retrieveParent();
+	}
+
+	@SuppressWarnings("unchecked")
+	protected <T> T retrieveParent() {
 		if (hasOriginalParent) {
 			if (parent == null) {
 				parent = adapter.getParent();
 			}
-			return parent;
+			return (T) parent;
 		} else {
-			return parent;
+			return (T) parent;
 		}
 	}
 

@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaInterfaceProxy;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.data.JavaNestedInterfaceData;
 import org.jannocessor.model.modifier.NestedInterfaceModifiers;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy impleme
         }
 
         return data.getModifiers();
+    }
+
+	@Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

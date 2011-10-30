@@ -80,14 +80,6 @@ abstract class AbstractJavaStructureAdapter extends JavaElementAdapter
 	}
 
 	@Override
-	public Name getPackageName() {
-		String fullName = type.getQualifiedName().toString();
-		int pos = fullName.lastIndexOf('.');
-		String packageName = (pos >= 0) ? fullName.substring(0, pos) : null;
-		return getNameAdapter(packageName);
-	}
-
-	@Override
 	public PowerList<JavaType> getInterfaces() {
 		PowerList<JavaType> adapters = Power.list();
 

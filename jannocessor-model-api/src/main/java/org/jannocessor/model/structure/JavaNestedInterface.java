@@ -24,4 +24,7 @@ public interface JavaNestedInterface extends AbstractJavaInterface {
 
 	NestedInterfaceModifiers getModifiers();
 
+	@Override
+	AbstractJavaStructure getParent();
+
 }

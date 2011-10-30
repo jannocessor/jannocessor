@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaClassProxy;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.data.JavaClassData;
 import org.jannocessor.model.modifier.ClassModifiers;
+import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass 
         }
 
         return data.getModifiers();
+    }
+
+	@Override
+    public JavaPackage getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

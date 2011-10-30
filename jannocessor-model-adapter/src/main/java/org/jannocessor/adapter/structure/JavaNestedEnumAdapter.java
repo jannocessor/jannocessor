@@ -25,6 +25,7 @@ import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.bean.modifier.NestedEnumModifiersBean;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.jannocessor.model.modifier.value.NestedEnumModifierValue;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.util.ModelUtils;
 
@@ -56,6 +57,11 @@ public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 	@Override
 	public PowerList<CodeNode> getChildren() {
 		return ModelUtils.getChildren(this);
+	}
+
+	@Override
+	public AbstractJavaStructure getParent() {
+		return super.retrieveParent();
 	}
 
 }

@@ -18,8 +18,12 @@ package org.jannocessor.model.variable;
 
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 
 @DomainModel
 public interface AbstractJavaVariable extends JavaElement {
+
+	@Override
+	AbstractJavaStructure getParent();
 
 }

@@ -57,6 +57,11 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 				JavaElement.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	protected <T> T retrieveParent() {
+		return (T) getParent();
+	}
+
 	private List<? extends Element> getEnclosedElements(Element element) {
 		if (element == null) {
 			throw new IllegalArgumentException("The element must not be NULL!");

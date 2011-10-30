@@ -24,4 +24,7 @@ public interface JavaInterface extends AbstractJavaInterface {
 
 	InterfaceModifiers getModifiers();
 
+	@Override
+	JavaPackage getParent();
+
 }

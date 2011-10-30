@@ -26,6 +26,7 @@ import org.jannocessor.model.bean.modifier.AnnotationModifiersBean;
 import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.value.AnnotationModifierValue;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
@@ -56,6 +57,11 @@ public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 	@Override
 	public PowerList<CodeNode> getChildren() {
 		return ModelUtils.getChildren(this);
+	}
+
+	@Override
+	public JavaPackage getParent() {
+		return super.retrieveParent();
 	}
 
 }

@@ -50,4 +50,7 @@ public interface AbstractJavaStructure extends JavaElement {
 
 	PowerList<JavaNestedAnnotation> getNestedAnnotations();
 
+	@Override
+	JavaElement getParent();
+
 }

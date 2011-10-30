@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaAnnotationProxy;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.data.JavaNestedAnnotationData;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class JavaNestedAnnotationProxy extends AbstractJavaAnnotationProxy imple
         }
 
         return data.getModifiers();
+    }
+
+	@Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

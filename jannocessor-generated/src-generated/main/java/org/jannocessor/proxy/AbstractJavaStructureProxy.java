@@ -30,6 +30,7 @@ import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -231,6 +232,11 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         }
 
         return data.getNestedAnnotations();
+    }
+
+	@Override
+    public JavaElement getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

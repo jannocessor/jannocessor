@@ -26,6 +26,7 @@ import org.jannocessor.model.bean.modifier.ClassModifiersBean;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.modifier.value.ClassModifierValue;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.ModelUtils;
 
 public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
@@ -58,4 +59,8 @@ public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaPackage getParent() {
+		return super.retrieveParent();
+	}
 }

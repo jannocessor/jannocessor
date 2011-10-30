@@ -23,7 +23,7 @@ package $packageName;
 #set($data = "org.jannocessor.data." + $model.name.appendPart("Data"))
 
 @#type("javax.annotation.Generated")("JAnnocessor-bootstraped")
-public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName})#if($className == 'CodeNodeProxy'), #type('org.jannocessor.model.ParentedElement')#end {
+public class $className#if($extends) extends #type(${extends})#end implements #type(${model.qualifiedName})#if(!$extends), #type('org.jannocessor.model.ParentedElement')#end {
 
 	private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 #end
 #end
 
-#if($className == 'CodeNodeProxy')
+#if(!$extends)
 
 	private CodeNode parent;
 
@@ -66,13 +66,18 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 
 	@Override
 	public CodeNode getParent() {
+		return retrieveParent();
+	}
+
+	@SuppressWarnings("unchecked")
+	protected <T> T retrieveParent() {
 		if (hasOriginalParent) {
 			if (parent == null) {
 				parent = adapter.getParent();
 			}
-			return parent;
+			return (T) parent;
 		} else {
-			return parent;
+			return (T) parent;
 		}
 	}
 
@@ -124,6 +129,11 @@ public class $className#if($extends) extends #type(${extends})#end implements #t
 	@Override
     public #type($m.returnType) ${m.name}() {
         throw new #type('org.apache.commons.lang.NotImplementedException')();
+    }
+#elseif($extends && $m.name == 'getParent')
+	@Override
+    public #type($m.returnType) ${m.name}() {
+        return super.retrieveParent();
     }
 #end
 

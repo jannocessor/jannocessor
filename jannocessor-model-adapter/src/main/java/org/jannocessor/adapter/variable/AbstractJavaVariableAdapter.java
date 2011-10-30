@@ -22,6 +22,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.AbstractJavaVariable;
 
@@ -54,6 +55,11 @@ abstract class AbstractJavaVariableAdapter extends JavaElementAdapter implements
 	@Override
 	protected Class<? extends AbstractJavaVariable> getAdaptedInterface() {
 		return AbstractJavaVariable.class;
+	}
+
+	@Override
+	public AbstractJavaStructure getParent() {
+		return super.retrieveParent();
 	}
 
 }

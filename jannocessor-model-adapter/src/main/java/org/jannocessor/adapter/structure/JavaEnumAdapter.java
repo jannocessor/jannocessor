@@ -31,6 +31,7 @@ import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.EnumModifierValue;
 import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaParameter;
@@ -98,6 +99,11 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 	@Override
 	public PowerList<CodeNode> getChildren() {
 		return ModelUtils.getChildren(this);
+	}
+
+	@Override
+	public JavaPackage getParent() {
+		return super.retrieveParent();
 	}
 
 }

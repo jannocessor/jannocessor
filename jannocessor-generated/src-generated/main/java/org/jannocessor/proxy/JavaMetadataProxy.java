@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.data.JavaMetadataData;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerMap;
+import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -65,7 +66,7 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
     }
 
 	@Override
-	public PowerMap<String, ? extends Object> getValues() {
+    public PowerMap<String,? extends Object> getValues() {
         if (!getValuesInitialized) {
 			if (adapter == null) {
 				throw new IllegalStateException("Invalid model copy!");
@@ -78,7 +79,7 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
     }
 
 	@Override
-	public PowerMap<String, ? extends Object> getValuesWithDefaults() {
+    public PowerMap<String,? extends Object> getValuesWithDefaults() {
         if (!getValuesWithDefaultsInitialized) {
 			if (adapter == null) {
 				throw new IllegalStateException("Invalid model copy!");
@@ -88,6 +89,11 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
         }
 
         return data.getValuesWithDefaults();
+    }
+
+	@Override
+    public JavaElement getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

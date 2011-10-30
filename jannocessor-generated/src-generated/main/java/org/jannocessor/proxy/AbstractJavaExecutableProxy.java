@@ -21,6 +21,7 @@ import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.data.AbstractJavaExecutableData;
 import org.jannocessor.model.code.JavaBody;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
         }
 
         return data.getBody();
+    }
+
+	@Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

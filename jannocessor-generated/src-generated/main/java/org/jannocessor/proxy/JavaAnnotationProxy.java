@@ -21,6 +21,7 @@ import org.jannocessor.proxy.AbstractJavaAnnotationProxy;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.data.JavaAnnotationData;
 import org.jannocessor.model.modifier.AnnotationModifiers;
+import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -57,6 +58,11 @@ public class JavaAnnotationProxy extends AbstractJavaAnnotationProxy implements 
         }
 
         return data.getModifiers();
+    }
+
+	@Override
+    public JavaPackage getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

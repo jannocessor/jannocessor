@@ -19,6 +19,7 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
+import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -43,6 +44,11 @@ public class JavaAnnotationAttributeData extends JavaElementData implements Java
 
     public void setDefaultValue(Object value) {
         this.defaultValue = value;
+    }
+
+    @Override
+    public AbstractJavaAnnotation getParent() {
+        return super.retrieveParent();
     }
 
 	@Override
