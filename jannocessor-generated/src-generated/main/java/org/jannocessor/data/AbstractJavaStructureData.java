@@ -46,8 +46,6 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 
     private String nesting;
 
-    private Name packageName;
-
     private Name qualifiedName;
 
     private JavaType superclass;
@@ -75,14 +73,6 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 
     public void setNesting(String value) {
         this.nesting = value;
-    }
-
-    public Name getPackageName() {
-        return this.packageName;
-    }
-
-    public void setPackageName(Name value) {
-        this.packageName = value;
     }
 
     public Name getQualifiedName() {
@@ -186,7 +176,6 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getNesting(), other.getNesting())
-				.append(this.getPackageName(), other.getPackageName())
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
 				.append(this.getMetadata(), other.getMetadata())
@@ -204,7 +193,6 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getNesting())
-				.append(this.getPackageName())
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
 				.append(this.getMetadata())
@@ -230,7 +218,6 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("nesting", ToStringUtil.describe(this.getNesting()));
-        builder.append("packageName", ToStringUtil.describe(this.getPackageName()));
         builder.append("qualifiedName", ToStringUtil.describe(this.getQualifiedName()));
         builder.append("superclass", ToStringUtil.describe(this.getSuperclass()));
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));

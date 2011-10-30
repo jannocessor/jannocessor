@@ -44,7 +44,7 @@ public class ExperimentProcessor implements CodeProcessor<JavaClass> {
 
 		for (JavaClass clazz : classes) {
 			clazz.getName().appendPart("Gen");
-			clazz.getPackageName().appendPart("generated");
+			clazz.getParent().getName().appendPart("generated");
 
 			if (clazz.getSuperclass() != null) {
 				Name parentName = clazz.getSuperclass().getSimpleName();

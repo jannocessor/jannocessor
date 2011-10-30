@@ -1,6 +1,6 @@
-#java_file($self.packageName, $self.name)
+#java_file($self.parent.name, $self.name)
 #file_header()
-package $self.packageName;
+package $self.parent.name;
 
 #smart_import()
 

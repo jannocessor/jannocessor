@@ -55,8 +55,6 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
 	private boolean getNestingInitialized = false;
 
-	private boolean getPackageNameInitialized = false;
-
 	private boolean getQualifiedNameInitialized = false;
 
 	private boolean getSuperclassInitialized = false;
@@ -89,19 +87,6 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
         }
 
         return data.getNesting();
-    }
-
-	@Override
-    public Name getPackageName() {
-        if (!getPackageNameInitialized) {
-			if (adapter == null) {
-				throw new IllegalStateException("Invalid model copy!");
-			}
-            data.setPackageName(adapter.getPackageName());
-			getPackageNameInitialized = true;
-        }
-
-        return data.getPackageName();
     }
 
 	@Override
@@ -255,7 +240,6 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 		return new EqualsBuilder()
 				.appendSuper(super.equals(other))
 				.append(this.getNesting(), other.getNesting())
-				.append(this.getPackageName(), other.getPackageName())
 				.append(this.getQualifiedName(), other.getQualifiedName())
 				.append(this.getSuperclass(), other.getSuperclass())
 				.append(this.getMetadata(), other.getMetadata())
@@ -273,7 +257,6 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(this.getNesting())
-				.append(this.getPackageName())
 				.append(this.getQualifiedName())
 				.append(this.getSuperclass())
 				.append(this.getMetadata())
@@ -299,7 +282,6 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 	protected void appendDescription(ToStringBuilder builder) {
         super.appendDescription(builder);
         builder.append("nesting", ToStringUtil.describe(this.getNesting()));
-        builder.append("packageName", ToStringUtil.describe(this.getPackageName()));
         builder.append("qualifiedName", ToStringUtil.describe(this.getQualifiedName()));
         builder.append("superclass", ToStringUtil.describe(this.getSuperclass()));
         builder.append("metadata", ToStringUtil.describe(this.getMetadata()));
@@ -318,7 +300,6 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
 		// load all values from the adapter to the data bean
 		this.getNesting();
-		this.getPackageName();
 		this.getQualifiedName();
 		this.getSuperclass();
 		this.getMetadata();

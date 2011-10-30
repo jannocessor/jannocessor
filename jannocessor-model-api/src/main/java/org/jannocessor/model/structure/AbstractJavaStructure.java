@@ -28,8 +28,6 @@ public interface AbstractJavaStructure extends JavaElement {
 
 	String getNesting();
 
-	Name getPackageName();
-
 	Name getQualifiedName();
 
 	JavaType getSuperclass();
