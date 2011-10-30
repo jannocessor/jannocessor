@@ -26,16 +26,25 @@ import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.structure.JavaNestedClass;
+import org.jannocessor.model.structure.JavaNestedEnum;
+import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.type.JavaDeclaredType;
+import org.jannocessor.model.type.JavaErrorType;
 import org.jannocessor.model.type.JavaExecutableType;
-import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.type.JavaNullType;
+import org.jannocessor.model.type.JavaPrimitiveType;
 import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.type.JavaVoidType;
 import org.jannocessor.model.type.JavaWildcardType;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaExceptionParameter;
@@ -60,15 +69,20 @@ public class API {
 		EXECUTABLE = list(JavaConstructor.class, JavaInstanceInit.class,
 				JavaMethod.class, JavaStaticInit.class);
 
-		STRUCTURE = list(JavaAnnotation.class, JavaClass.class, JavaEnum.class,
-				JavaInterface.class, JavaPackage.class, JavaTypeParameter.class);
+		STRUCTURE = list(JavaAnnotation.class, JavaAnnotationAttribute.class,
+				JavaClass.class, JavaEnum.class, JavaInterface.class,
+				JavaNestedAnnotation.class, JavaNestedClass.class,
+				JavaNestedEnum.class, JavaNestedInterface.class,
+				JavaPackage.class, JavaTypeParameter.class, JavaMetadata.class);
 
 		VARIABLE = list(JavaEnumConstant.class, JavaExceptionParameter.class,
 				JavaField.class, JavaLocalVariable.class, JavaParameter.class);
 
 		TYPE = list(JavaArrayType.class, JavaDeclaredType.class,
-				JavaExecutableType.class, JavaType.class,
-				JavaTypeVariable.class, JavaWildcardType.class);
+				JavaErrorType.class, JavaExecutableType.class,
+				JavaNullType.class, JavaPrimitiveType.class,
+				JavaTypeVariable.class, JavaVoidType.class,
+				JavaWildcardType.class);
 
 		ArrayList<Class<? extends JavaCodeModel>> all = new ArrayList<Class<? extends JavaCodeModel>>();
 		all.addAll(EXECUTABLE);
