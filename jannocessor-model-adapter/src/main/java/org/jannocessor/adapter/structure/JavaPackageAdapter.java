@@ -23,18 +23,20 @@ import javax.lang.model.util.Types;
 import org.jannocessor.adapter.JavaElementAdapter;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
+import org.jannocessor.model.Name;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.model.util.New;
 
 public final class JavaPackageAdapter extends JavaElementAdapter implements
 		JavaPackage {
 
 	private static final long serialVersionUID = 8508618168552956729L;
-	@SuppressWarnings("unused")
+
 	private final PackageElement tpackage;
 
 	public JavaPackageAdapter(PackageElement tpackage, Elements elementUtils,
@@ -42,6 +44,11 @@ public final class JavaPackageAdapter extends JavaElementAdapter implements
 		super(tpackage, elementUtils, typeUtils);
 
 		this.tpackage = tpackage;
+	}
+
+	@Override
+	public Name getName() {
+		return New.name(tpackage.getQualifiedName().toString());
 	}
 
 	@Override
