@@ -28,6 +28,7 @@ import org.jannocessor.JannocessorException;
 import org.jannocessor.context.RenderRegister;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.util.ValidationUtils;
 import org.slf4j.Logger;
 
 public class ProcessingContext {
@@ -133,6 +134,9 @@ public class ProcessingContext {
 	}
 
 	public void generateCode(AbstractJavaStructure model, boolean debug) {
+		// check model correctness
+		ValidationUtils.validate(model);
+
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("self", model);
 
