@@ -75,7 +75,7 @@ public class JavaClassTest extends AbstractModelTest {
 
 	@AutoTwip
 	public static JavaType[][] typeGroups(JavaType type1, JavaType type2) {
-		return few(Param.groups(JavaType.class, type1, type2));
+		return less(Param.groups(JavaType.class, type1, type2));
 	}
 
 	/* ********************* TYPE PARAM COMBINATIONS ********************** */
