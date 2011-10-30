@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.ParentedElement;
@@ -35,10 +35,9 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	private String hardcoded;
 	private String template;
 	private String templateName;
+	private Map<String, ? extends Object> attributes;
 
 	private CodeNode parent;
-
-	private Map<String, ? extends Object> attributes;
 
 	public SourceCodeBean(String code, String template, String templateName) {
 		this.hardcoded = code;
@@ -52,7 +51,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	}
 
 	@Override
-	public void setHardcoded(String hardcoded, String... formatArgs) {
+	public void setHardcoded(String hardcoded, Object... formatArgs) {
 		if (formatArgs.length > 0) {
 			this.hardcoded = String.format(hardcoded, (Object[]) formatArgs);
 		} else {
@@ -107,8 +106,13 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	public String toString() {
 		TypeSpecificInlineStyle style = new TypeSpecificInlineStyle(
 				SourceCode.class);
-		return new ReflectionToStringBuilder(this, style).setExcludeFieldNames(
-				new String[] { "parent" }).toString();
+
+		return new ToStringBuilder(this, style)
+				.append("hardcoded", getHardcoded())
+				.append("template", getTemplate())
+				.append("templateName", getTemplateName())
+				.append("attributes", getAttributes())
+				.append("empty", isEmpty()).toString();
 	}
 
 	@Override

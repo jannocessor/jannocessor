@@ -24,7 +24,7 @@ public interface SourceCode extends CodeNode {
 
 	String getHardcoded();
 
-	void setHardcoded(String hardcoded, String... formatArgs);
+	void setHardcoded(String hardcoded, Object... formatArgs);
 
 	String getTemplate();
 
