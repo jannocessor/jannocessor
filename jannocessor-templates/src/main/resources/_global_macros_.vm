@@ -128,12 +128,12 @@ $helper.locate($tmpl)#end
 #end
 
 #macro(member $m)
+#set($output = "#@trim()#render($m)#end")
+#if($output != '')
 #@indent()
-#@trim()
-#render($m)
-#end
-#end
+$output#end
 
+#end
 #end
 
 #macro(nestedMembers $model)

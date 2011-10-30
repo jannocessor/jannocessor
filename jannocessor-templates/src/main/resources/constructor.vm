@@ -1,3 +1,4 @@
+#if(!$self.default || !$self.body.empty)
 #render_lines($self.metadata)
 #join(' ', [
   "#modifiers($self)",
@@ -6,6 +7,5 @@
   '{'
 ])
 
-#body($self, '')
-
-}
+#@indent()#body($self, '')#end
+}#end

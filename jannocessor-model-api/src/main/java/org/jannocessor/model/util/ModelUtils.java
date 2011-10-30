@@ -26,6 +26,8 @@ import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
+import org.jannocessor.model.structure.AbstractJavaClass;
+import org.jannocessor.model.structure.AbstractJavaEnum;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaType;
 
@@ -90,7 +92,19 @@ public class ModelUtils {
 		boolean isPublic = ArrayUtils.contains(modifiers,
 				ConstructorModifierValue.PUBLIC);
 
-		return isPublic && constructor.getParameters().isEmpty()
+		boolean isAlone = false;
+		CodeNode parent = constructor.getParent();
+		if (parent != null) {
+			if (parent instanceof AbstractJavaClass) {
+				AbstractJavaClass classs = (AbstractJavaClass) parent;
+				isAlone = (classs.getConstructors().size() == 1);
+			} else if (parent instanceof AbstractJavaEnum) {
+				AbstractJavaEnum enumm = (AbstractJavaEnum) parent;
+				isAlone = (enumm.getConstructors().size() == 1);
+			}
+		}
+
+		return isPublic && isAlone && constructor.getParameters().isEmpty()
 				&& constructor.getThrownTypes().isEmpty();
 	}
 
