@@ -53,13 +53,13 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 
 	@Override
 	public JavaElement getParent() {
-		return getElementAdapter(element.getEnclosingElement(),
-				JavaElement.class);
+		return retrieveParent();
 	}
 
 	@SuppressWarnings("unchecked")
 	protected <T> T retrieveParent() {
-		return (T) getParent();
+		return (T) getElementAdapter(element.getEnclosingElement(),
+				JavaElement.class);
 	}
 
 	private List<? extends Element> getEnclosedElements(Element element) {
