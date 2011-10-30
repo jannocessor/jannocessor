@@ -17,20 +17,20 @@
 package org.jannocessor.proxy;
 
 import javax.annotation.Generated;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.proxy.JavaElementProxy;
+import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.data.JavaPackageData;
-import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
-import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.model.structure.JavaPackage;
-import org.jannocessor.model.util.ModelUtils;
-import org.jannocessor.model.util.ToStringUtil;
+import org.jannocessor.model.structure.JavaAnnotation;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jannocessor.model.util.ToStringUtil;
 
 
 @Generated("JAnnocessor-bootstraped")
