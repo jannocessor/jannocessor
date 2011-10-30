@@ -127,4 +127,9 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 		return JavaMetadata.class;
 	}
 
+	@Override
+	public JavaMetadata copy() {
+		throw calculatedMethodException();
+	}
+
 }

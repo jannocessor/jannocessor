@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaClassProxy;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.data.JavaClassData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaClassProxy extends AbstractJavaClassProxy implements JavaClass 
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaClass copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public ClassModifiers getModifiers() {

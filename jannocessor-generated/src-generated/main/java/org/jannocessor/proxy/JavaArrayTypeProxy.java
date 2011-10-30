@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.data.JavaArrayTypeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -45,6 +46,11 @@ public class JavaArrayTypeProxy extends JavaTypeProxy implements JavaArrayType {
 
 	private boolean getComponentTypeInitialized = false;
 
+
+	@Override
+    public JavaArrayType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public JavaType getComponentType() {

@@ -16,11 +16,16 @@
 
 package org.jannocessor.model.structure;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.JavaElement;
 
 @DomainModel
 public interface JavaAnnotationAttribute extends JavaElement {
+
+	@Override
+	@Calculated
+	JavaAnnotationAttribute copy();
 
 	Object getDefaultValue();
 

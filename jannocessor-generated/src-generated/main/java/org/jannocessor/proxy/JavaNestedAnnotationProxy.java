@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaAnnotationProxy;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.data.JavaNestedAnnotationData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.NestedAnnotationModifiers;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaNestedAnnotationProxy extends AbstractJavaAnnotationProxy imple
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaNestedAnnotation copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public NestedAnnotationModifiers getModifiers() {

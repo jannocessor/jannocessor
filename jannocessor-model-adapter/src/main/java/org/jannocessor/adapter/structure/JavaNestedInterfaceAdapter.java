@@ -64,4 +64,9 @@ public final class JavaNestedInterfaceAdapter extends
 		return super.retrieveParent();
 	}
 
+	@Override
+	public JavaNestedInterface copy() {
+		throw calculatedMethodException();
+	}
+
 }

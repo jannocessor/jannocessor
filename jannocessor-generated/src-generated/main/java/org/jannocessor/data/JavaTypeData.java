@@ -48,6 +48,10 @@ public class JavaTypeData extends JavaCodeModelData implements JavaType {
     private JavaTypeKind kind;
 
 
+    public JavaType copy() {
+        return ModelUtils.copy(this);
+    }
+
     public Class<?> getTypeClass() {
         return this.typeClass;
     }

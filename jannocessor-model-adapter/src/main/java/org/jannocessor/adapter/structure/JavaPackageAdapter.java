@@ -81,4 +81,9 @@ public final class JavaPackageAdapter extends JavaElementAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaPackage copy() {
+		throw calculatedMethodException();
+	}
+
 }

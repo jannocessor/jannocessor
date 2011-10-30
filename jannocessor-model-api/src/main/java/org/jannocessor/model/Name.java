@@ -18,7 +18,12 @@ package org.jannocessor.model;
 
 import java.io.Serializable;
 
+import org.jannocessor.annotation.Calculated;
+
 public interface Name extends Serializable {
+
+	@Calculated
+	Name copy();
 
 	String[] getParts();
 
@@ -29,8 +34,6 @@ public interface Name extends Serializable {
 	Name appendPart(String part);
 
 	Name replacePart(int position, String part);
-
-	Name copy();
 
 	String getText();
 

@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaExecutableProxy;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.data.JavaStaticInitData;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,10 +32,8 @@ public class JavaStaticInitProxy extends AbstractJavaExecutableProxy implements 
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient JavaStaticInit adapter;
 
-    @SuppressWarnings("unused")
     private JavaStaticInitData data;
 
     public JavaStaticInitProxy(JavaStaticInit adapter, JavaStaticInitData data) {
@@ -43,6 +42,11 @@ public class JavaStaticInitProxy extends AbstractJavaExecutableProxy implements 
         this.data = data;
     }
 
+
+	@Override
+    public JavaStaticInit copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {

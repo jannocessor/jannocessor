@@ -50,4 +50,9 @@ public class JavaVoidTypeAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaVoidType copy() {
+		throw calculatedMethodException();
+	}
+
 }

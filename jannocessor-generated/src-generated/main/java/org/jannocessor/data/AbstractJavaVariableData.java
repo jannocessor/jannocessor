@@ -19,6 +19,7 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.variable.AbstractJavaVariable;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -34,6 +35,10 @@ public class AbstractJavaVariableData extends JavaElementData implements Abstrac
 
 	private static final long serialVersionUID = 1L;
 
+
+    public AbstractJavaVariable copy() {
+        return ModelUtils.copy(this);
+    }
 
     @Override
     public AbstractJavaStructure getParent() {

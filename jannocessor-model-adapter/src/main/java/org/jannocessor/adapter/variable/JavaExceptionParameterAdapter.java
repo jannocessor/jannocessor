@@ -49,4 +49,9 @@ public final class JavaExceptionParameterAdapter extends
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaExceptionParameter copy() {
+		throw calculatedMethodException();
+	}
+
 }

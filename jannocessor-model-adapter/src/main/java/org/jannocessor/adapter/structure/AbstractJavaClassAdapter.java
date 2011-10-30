@@ -71,4 +71,9 @@ abstract class AbstractJavaClassAdapter extends AbstractJavaStructureAdapter
 		return AbstractJavaClass.class;
 	}
 
+	@Override
+	public AbstractJavaClass copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -64,4 +64,9 @@ public final class JavaAnnotationAdapter extends AbstractJavaAnnotationAdapter
 		return super.retrieveParent();
 	}
 
+	@Override
+	public JavaAnnotation copy() {
+		throw calculatedMethodException();
+	}
+
 }

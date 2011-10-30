@@ -62,14 +62,14 @@ public enum JavaTypeKind {
 
 	/**
 	 * The pseudo-type corresponding to the keyword {@code void}.
-	 *
+	 * 
 	 * @see NoType
 	 */
 	VOID,
 
 	/**
 	 * A pseudo-type used where no actual type is appropriate.
-	 *
+	 * 
 	 * @see NoType
 	 */
 	NONE,
@@ -106,7 +106,7 @@ public enum JavaTypeKind {
 
 	/**
 	 * A pseudo-type corresponding to a package element.
-	 *
+	 * 
 	 * @see NoType
 	 */
 	PACKAGE,
@@ -119,7 +119,7 @@ public enum JavaTypeKind {
 	/**
 	 * Returns {@code true} if this kind corresponds to a primitive type and
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @return {@code true} if this kind corresponds to a primitive type
 	 */
 	public boolean isPrimitive() {

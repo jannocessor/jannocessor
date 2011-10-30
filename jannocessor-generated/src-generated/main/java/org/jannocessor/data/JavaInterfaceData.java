@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaInterfaceData;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.modifier.InterfaceModifiers;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -38,6 +39,10 @@ public class JavaInterfaceData extends AbstractJavaInterfaceData implements Java
 
     private InterfaceModifiers modifiers;
 
+
+    public JavaInterface copy() {
+        return ModelUtils.copy(this);
+    }
 
     public InterfaceModifiers getModifiers() {
         return this.modifiers;

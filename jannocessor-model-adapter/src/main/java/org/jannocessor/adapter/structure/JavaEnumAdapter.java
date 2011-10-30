@@ -106,4 +106,9 @@ public final class JavaEnumAdapter extends AbstractJavaEnumAdapter implements
 		return super.retrieveParent();
 	}
 
+	@Override
+	public JavaEnum copy() {
+		throw calculatedMethodException();
+	}
+
 }

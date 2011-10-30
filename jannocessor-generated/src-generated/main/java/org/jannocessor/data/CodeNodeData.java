@@ -19,8 +19,8 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.ParentedElement;
-import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.collection.api.PowerList;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -43,6 +43,10 @@ public class CodeNodeData extends AbstractDataRoot implements CodeNode, Parented
 		return (T) this.parent;
 	}
 
+    public CodeNode copy() {
+        return ModelUtils.copy(this);
+    }
+
     public CodeNode getParent() {
         return this.parent;
     }
@@ -53,10 +57,6 @@ public class CodeNodeData extends AbstractDataRoot implements CodeNode, Parented
 
     public PowerList<CodeNode> getChildren() {
         return ModelUtils.getChildren(this);
-    }
-
-    public CodeNode copy() {
-        return ModelUtils.copy(this);
     }
 
 	@Override

@@ -63,4 +63,10 @@ public final class JavaClassAdapter extends AbstractJavaClassAdapter implements
 	public JavaPackage getParent() {
 		return super.retrieveParent();
 	}
+
+	@Override
+	public JavaClass copy() {
+		throw calculatedMethodException();
+	}
+
 }

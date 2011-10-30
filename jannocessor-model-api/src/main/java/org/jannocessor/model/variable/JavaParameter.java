@@ -16,12 +16,17 @@
 
 package org.jannocessor.model.variable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
 
 @DomainModel
 public interface JavaParameter extends AbstractJavaVariable {
+
+	@Override
+	@Calculated
+	JavaParameter copy();
 
 	boolean isFinal();
 

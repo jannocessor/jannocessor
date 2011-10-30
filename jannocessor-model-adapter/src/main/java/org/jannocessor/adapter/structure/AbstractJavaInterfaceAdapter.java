@@ -59,4 +59,9 @@ abstract class AbstractJavaInterfaceAdapter extends
 		return AbstractJavaInterface.class;
 	}
 
+	@Override
+	public AbstractJavaInterface copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -74,4 +74,9 @@ public class JavaExecutableTypeAdapter extends AbstractJavaTypeAdapter implement
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaExecutableType copy() {
+		throw calculatedMethodException();
+	}
+
 }

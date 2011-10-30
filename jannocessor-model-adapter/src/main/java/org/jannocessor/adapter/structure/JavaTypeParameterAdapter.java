@@ -72,4 +72,9 @@ public final class JavaTypeParameterAdapter extends JavaElementAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaTypeParameter copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaStructureProxy;
 import org.jannocessor.model.structure.AbstractJavaEnum;
 import org.jannocessor.data.AbstractJavaEnumData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.variable.JavaEnumConstant;
-import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaStaticInit;
@@ -59,6 +59,11 @@ public class AbstractJavaEnumProxy extends AbstractJavaStructureProxy implements
 
 	private boolean getInstanceInitsInitialized = false;
 
+
+	@Override
+    public AbstractJavaEnum copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaEnumConstant> getValues() {

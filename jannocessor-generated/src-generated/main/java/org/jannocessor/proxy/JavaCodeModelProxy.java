@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.CodeNodeProxy;
 import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.data.JavaCodeModelData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.code.SourceCode;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -47,6 +48,11 @@ public class JavaCodeModelProxy extends CodeNodeProxy implements JavaCodeModel {
 
 	private boolean getExtraCodeInitialized = false;
 
+
+	@Override
+    public JavaCodeModel copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public SourceCode getCode() {

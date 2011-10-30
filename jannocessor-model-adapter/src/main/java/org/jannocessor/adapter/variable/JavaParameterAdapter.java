@@ -60,4 +60,9 @@ public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaParameter copy() {
+		throw calculatedMethodException();
+	}
+
 }

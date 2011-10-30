@@ -22,6 +22,7 @@ import org.jannocessor.model.structure.AbstractJavaInterface;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.model.variable.JavaField;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -41,6 +42,10 @@ public class AbstractJavaInterfaceData extends AbstractJavaStructureData impleme
 
     private PowerList<JavaField> fields;
 
+
+    public AbstractJavaInterface copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         return this.typeParameters;

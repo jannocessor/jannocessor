@@ -21,6 +21,7 @@ import org.jannocessor.data.JavaCodeModelData;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerMap;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -43,6 +44,9 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 
     private PowerMap<String,? extends Object> valuesWithDefaults;
 
+    public JavaMetadata copy() {
+        return ModelUtils.copy(this);
+    }
 
     public JavaType getAnnotation() {
         return this.annotation;

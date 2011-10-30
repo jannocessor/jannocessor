@@ -84,4 +84,9 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaField copy() {
+		throw calculatedMethodException();
+	}
+
 }

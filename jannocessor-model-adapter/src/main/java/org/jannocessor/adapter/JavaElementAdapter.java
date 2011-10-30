@@ -114,7 +114,6 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 		return results;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	protected <T extends Enum<T>> T[] getModifierValues(Class<T> enumType,
 			String... exceptValues) {
@@ -170,6 +169,11 @@ public abstract class JavaElementAdapter extends JavaCodeModelAdapter implements
 	@Override
 	protected Class<? extends JavaElement> getAdaptedInterface() {
 		return JavaElement.class;
+	}
+
+	@Override
+	public JavaElement copy() {
+		throw calculatedMethodException();
 	}
 
 }

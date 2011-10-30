@@ -16,13 +16,18 @@
 
 package org.jannocessor.model.type;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
 public interface JavaWildcardType extends JavaType {
 
-    JavaType getExtendsBound();
+	@Override
+	@Calculated
+	JavaWildcardType copy();
 
-    JavaType getSuperBound();
+	JavaType getExtendsBound();
+
+	JavaType getSuperBound();
 
 }

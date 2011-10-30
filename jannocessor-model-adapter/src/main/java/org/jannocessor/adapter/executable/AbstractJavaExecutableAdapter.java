@@ -90,4 +90,9 @@ abstract class AbstractJavaExecutableAdapter extends JavaElementAdapter
 		return super.retrieveParent();
 	}
 
+	@Override
+	public AbstractJavaExecutable copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -60,4 +60,9 @@ public class JavaWildcardTypeAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaWildcardType copy() {
+		throw calculatedMethodException();
+	}
+
 }

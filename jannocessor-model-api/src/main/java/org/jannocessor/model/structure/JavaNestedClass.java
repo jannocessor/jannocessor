@@ -16,11 +16,16 @@
 
 package org.jannocessor.model.structure;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.modifier.NestedClassModifiers;
 
 @DomainModel
 public interface JavaNestedClass extends AbstractJavaClass {
+
+	@Override
+	@Calculated
+	JavaNestedClass copy();
 
 	NestedClassModifiers getModifiers();
 

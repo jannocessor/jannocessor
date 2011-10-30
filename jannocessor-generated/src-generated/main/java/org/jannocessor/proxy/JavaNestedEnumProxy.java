@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaEnumProxy;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.data.JavaNestedEnumData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaNestedEnumProxy extends AbstractJavaEnumProxy implements JavaNe
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaNestedEnum copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public NestedEnumModifiers getModifiers() {

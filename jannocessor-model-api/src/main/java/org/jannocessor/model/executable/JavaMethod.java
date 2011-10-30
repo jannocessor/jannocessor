@@ -16,6 +16,7 @@
 
 package org.jannocessor.model.executable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.modifier.MethodModifiers;
@@ -26,6 +27,10 @@ import org.jannocessor.model.variable.JavaParameter;
 
 @DomainModel
 public interface JavaMethod extends AbstractJavaExecutable {
+
+	@Override
+	@Calculated
+	JavaMethod copy();
 
 	PowerList<JavaTypeParameter> getTypeParameters();
 

@@ -28,6 +28,7 @@ import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -66,6 +67,10 @@ public class AbstractJavaStructureData extends JavaElementData implements Abstra
 
     private PowerList<JavaNestedAnnotation> nestedAnnotations;
 
+
+    public AbstractJavaStructure copy() {
+        return ModelUtils.copy(this);
+    }
 
     public String getNesting() {
         return this.nesting;

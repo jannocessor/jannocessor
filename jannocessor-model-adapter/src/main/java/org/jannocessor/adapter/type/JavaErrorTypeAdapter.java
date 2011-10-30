@@ -50,4 +50,9 @@ public class JavaErrorTypeAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaErrorType copy() {
+		throw calculatedMethodException();
+	}
+
 }

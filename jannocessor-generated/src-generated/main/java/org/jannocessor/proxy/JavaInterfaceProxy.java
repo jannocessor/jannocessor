@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaInterfaceProxy;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.data.JavaInterfaceData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaInterfaceProxy extends AbstractJavaInterfaceProxy implements Ja
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaInterface copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public InterfaceModifiers getModifiers() {

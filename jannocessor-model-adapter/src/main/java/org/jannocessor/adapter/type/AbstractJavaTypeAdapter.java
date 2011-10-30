@@ -122,4 +122,9 @@ public abstract class AbstractJavaTypeAdapter extends JavaCodeModelAdapter
 		return null;
 	}
 
+	@Override
+	public JavaType copy() {
+		throw calculatedMethodException();
+	}
+
 }

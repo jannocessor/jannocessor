@@ -21,6 +21,7 @@ import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -38,6 +39,10 @@ public class JavaEnumConstantData extends AbstractJavaVariableData implements Ja
 
     private PowerList<JavaExpression> values;
 
+
+    public JavaEnumConstant copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaExpression> getValues() {
         return this.values;

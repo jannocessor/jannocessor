@@ -16,9 +16,14 @@
 
 package org.jannocessor.model.type;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
 public interface JavaErrorType extends JavaType {
+
+	@Override
+	@Calculated
+	JavaErrorType copy();
 
 }

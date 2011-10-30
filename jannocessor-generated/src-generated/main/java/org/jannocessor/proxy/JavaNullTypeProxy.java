@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaNullType;
 import org.jannocessor.data.JavaNullTypeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,10 +32,8 @@ public class JavaNullTypeProxy extends JavaTypeProxy implements JavaNullType {
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient JavaNullType adapter;
 
-    @SuppressWarnings("unused")
     private JavaNullTypeData data;
 
     public JavaNullTypeProxy(JavaNullType adapter, JavaNullTypeData data) {
@@ -43,6 +42,11 @@ public class JavaNullTypeProxy extends JavaTypeProxy implements JavaNullType {
         this.data = data;
     }
 
+
+	@Override
+    public JavaNullType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {

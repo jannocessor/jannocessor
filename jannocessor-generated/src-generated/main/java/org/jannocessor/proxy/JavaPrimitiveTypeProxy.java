@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaPrimitiveType;
 import org.jannocessor.data.JavaPrimitiveTypeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,10 +32,8 @@ public class JavaPrimitiveTypeProxy extends JavaTypeProxy implements JavaPrimiti
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient JavaPrimitiveType adapter;
 
-    @SuppressWarnings("unused")
     private JavaPrimitiveTypeData data;
 
     public JavaPrimitiveTypeProxy(JavaPrimitiveType adapter, JavaPrimitiveTypeData data) {
@@ -43,6 +42,11 @@ public class JavaPrimitiveTypeProxy extends JavaTypeProxy implements JavaPrimiti
         this.data = data;
     }
 
+
+	@Override
+    public JavaPrimitiveType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {

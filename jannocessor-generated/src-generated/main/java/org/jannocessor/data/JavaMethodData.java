@@ -25,6 +25,7 @@ import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -54,6 +55,10 @@ public class JavaMethodData extends AbstractJavaExecutableData implements JavaMe
 
     private PowerList<JavaMetadata> metadata;
 
+
+    public JavaMethod copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         return this.typeParameters;

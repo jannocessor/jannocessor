@@ -50,4 +50,9 @@ public class JavaPrimitiveTypeAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaPrimitiveType copy() {
+		throw calculatedMethodException();
+	}
+
 }

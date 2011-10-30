@@ -54,4 +54,9 @@ public class JavaDeclaredTypeAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaDeclaredType copy() {
+		throw calculatedMethodException();
+	}
+
 }

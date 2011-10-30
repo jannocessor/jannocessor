@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaExceptionParameter;
 import org.jannocessor.data.JavaExceptionParameterData;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,10 +32,8 @@ public class JavaExceptionParameterProxy extends AbstractJavaVariableProxy imple
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient JavaExceptionParameter adapter;
 
-    @SuppressWarnings("unused")
     private JavaExceptionParameterData data;
 
     public JavaExceptionParameterProxy(JavaExceptionParameter adapter, JavaExceptionParameterData data) {
@@ -43,6 +42,11 @@ public class JavaExceptionParameterProxy extends AbstractJavaVariableProxy imple
         this.data = data;
     }
 
+
+	@Override
+    public JavaExceptionParameter copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {

@@ -120,4 +120,9 @@ abstract class AbstractJavaStructureAdapter extends JavaElementAdapter
 		return AbstractJavaStructure.class;
 	}
 
+	@Override
+	public AbstractJavaStructure copy() {
+		throw calculatedMethodException();
+	}
+
 }

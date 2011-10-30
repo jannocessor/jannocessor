@@ -44,4 +44,9 @@ public abstract class JavaCodeModelAdapter extends CodeNodeAdapter implements
 
 	protected abstract Class<? extends JavaCodeModel> getAdaptedInterface();
 
+	@Override
+	public JavaCodeModel copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -16,6 +16,7 @@
 
 package org.jannocessor.model.executable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.code.JavaBody;
@@ -23,6 +24,10 @@ import org.jannocessor.model.structure.AbstractJavaStructure;
 
 @DomainModel
 public interface AbstractJavaExecutable extends JavaElement {
+
+	@Override
+	@Calculated
+	AbstractJavaExecutable copy();
 
 	JavaBody getBody();
 

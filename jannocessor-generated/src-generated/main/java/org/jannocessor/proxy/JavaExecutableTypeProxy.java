@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaExecutableType;
 import org.jannocessor.data.JavaExecutableTypeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -55,6 +55,11 @@ public class JavaExecutableTypeProxy extends JavaTypeProxy implements JavaExecut
 
 	private boolean getTypeVariablesInitialized = false;
 
+
+	@Override
+    public JavaExecutableType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaType> getParameterTypes() {

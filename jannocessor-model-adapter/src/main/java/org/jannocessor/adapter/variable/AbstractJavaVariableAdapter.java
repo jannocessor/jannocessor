@@ -62,4 +62,9 @@ abstract class AbstractJavaVariableAdapter extends JavaElementAdapter implements
 		return super.retrieveParent();
 	}
 
+	@Override
+	public AbstractJavaVariable copy() {
+		throw calculatedMethodException();
+	}
+
 }

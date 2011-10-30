@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaExecutableProxy;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.data.JavaConstructorData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.modifier.ConstructorModifiers;
@@ -61,6 +61,11 @@ public class JavaConstructorProxy extends AbstractJavaExecutableProxy implements
 
 	private boolean getMetadataInitialized = false;
 
+
+	@Override
+    public JavaConstructor copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaTypeParameter> getTypeParameters() {

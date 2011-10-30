@@ -54,4 +54,9 @@ public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaLocalVariable copy() {
+		throw calculatedMethodException();
+	}
+
 }

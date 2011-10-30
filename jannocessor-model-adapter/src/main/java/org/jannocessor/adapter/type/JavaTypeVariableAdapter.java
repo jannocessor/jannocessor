@@ -60,4 +60,9 @@ public class JavaTypeVariableAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaTypeVariable copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -16,9 +16,14 @@
 
 package org.jannocessor.model.variable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
 public interface JavaExceptionParameter extends AbstractJavaVariable {
+
+	@Override
+	@Calculated
+	JavaExceptionParameter copy();
 
 }

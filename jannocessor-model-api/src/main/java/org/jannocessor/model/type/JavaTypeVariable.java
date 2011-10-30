@@ -16,13 +16,18 @@
 
 package org.jannocessor.model.type;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
 public interface JavaTypeVariable extends JavaType {
 
-    JavaType getUpperBound();
+	@Override
+	@Calculated
+	JavaTypeVariable copy();
 
-    JavaType getLowerBound();
+	JavaType getUpperBound();
+
+	JavaType getLowerBound();
 
 }

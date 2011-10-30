@@ -51,4 +51,9 @@ public class JavaNullTypeAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaNullType copy() {
+		throw calculatedMethodException();
+	}
+
 }

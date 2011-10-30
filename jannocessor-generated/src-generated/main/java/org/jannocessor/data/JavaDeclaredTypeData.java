@@ -21,6 +21,7 @@ import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -38,6 +39,10 @@ public class JavaDeclaredTypeData extends JavaTypeData implements JavaDeclaredTy
 
     private PowerList<JavaType> typeArguments;
 
+
+    public JavaDeclaredType copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaType> getTypeArguments() {
         return this.typeArguments;

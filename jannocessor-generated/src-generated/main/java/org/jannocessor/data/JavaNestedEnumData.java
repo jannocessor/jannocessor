@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaEnumData;
 import org.jannocessor.model.structure.JavaNestedEnum;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -38,6 +39,10 @@ public class JavaNestedEnumData extends AbstractJavaEnumData implements JavaNest
 
     private NestedEnumModifiers modifiers;
 
+
+    public JavaNestedEnum copy() {
+        return ModelUtils.copy(this);
+    }
 
     public NestedEnumModifiers getModifiers() {
         return this.modifiers;

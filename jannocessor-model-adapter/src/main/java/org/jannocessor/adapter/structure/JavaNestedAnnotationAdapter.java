@@ -64,4 +64,9 @@ public final class JavaNestedAnnotationAdapter extends
 		return super.retrieveParent();
 	}
 
+	@Override
+	public JavaNestedAnnotation copy() {
+		throw calculatedMethodException();
+	}
+
 }

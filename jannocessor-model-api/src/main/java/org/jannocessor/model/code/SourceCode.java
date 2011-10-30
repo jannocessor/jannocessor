@@ -18,9 +18,14 @@ package org.jannocessor.model.code;
 
 import java.util.Map;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.model.CodeNode;
 
 public interface SourceCode extends CodeNode {
+
+	@Override
+	@Calculated
+	SourceCode copy();
 
 	String getHardcoded();
 

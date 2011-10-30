@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.data.AbstractJavaExecutableData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.code.JavaBody;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class AbstractJavaExecutableProxy extends JavaElementProxy implements Abs
 
 	private boolean getBodyInitialized = false;
 
+
+	@Override
+    public AbstractJavaExecutable copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public JavaBody getBody() {

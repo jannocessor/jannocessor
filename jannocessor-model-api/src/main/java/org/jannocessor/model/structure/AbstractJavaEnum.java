@@ -16,6 +16,7 @@
 
 package org.jannocessor.model.structure;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaConstructor;
@@ -26,6 +27,10 @@ import org.jannocessor.model.variable.JavaField;
 
 @DomainModel
 public interface AbstractJavaEnum extends AbstractJavaStructure {
+
+	@Override
+	@Calculated
+	AbstractJavaEnum copy();
 
 	PowerList<JavaEnumConstant> getValues();
 

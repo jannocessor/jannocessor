@@ -64,4 +64,9 @@ abstract class AbstractJavaAnnotationAdapter extends
 		return AbstractJavaAnnotation.class;
 	}
 
+	@Override
+	public AbstractJavaAnnotation copy() {
+		throw calculatedMethodException();
+	}
+
 }

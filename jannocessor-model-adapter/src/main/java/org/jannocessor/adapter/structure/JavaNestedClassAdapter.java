@@ -64,4 +64,9 @@ public final class JavaNestedClassAdapter extends AbstractJavaClassAdapter
 		return super.retrieveParent();
 	}
 
+	@Override
+	public JavaNestedClass copy() {
+		throw calculatedMethodException();
+	}
+
 }

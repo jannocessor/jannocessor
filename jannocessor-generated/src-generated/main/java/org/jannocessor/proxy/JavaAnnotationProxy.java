@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaAnnotationProxy;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.data.JavaAnnotationData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaAnnotationProxy extends AbstractJavaAnnotationProxy implements 
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaAnnotation copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public AnnotationModifiers getModifiers() {

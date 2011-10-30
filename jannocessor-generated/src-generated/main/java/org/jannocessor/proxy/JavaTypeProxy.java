@@ -20,8 +20,8 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaCodeModelProxy;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.data.JavaTypeData;
-import org.jannocessor.model.Name;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaTypeKind;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -55,6 +55,11 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 
 	private boolean getKindInitialized = false;
 
+
+	@Override
+    public JavaType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public Class<?> getTypeClass() {

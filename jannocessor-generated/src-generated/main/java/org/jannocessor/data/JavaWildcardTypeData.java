@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.type.JavaWildcardType;
 import org.jannocessor.model.type.JavaType;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -39,6 +40,10 @@ public class JavaWildcardTypeData extends JavaTypeData implements JavaWildcardTy
 
     private JavaType superBound;
 
+
+    public JavaWildcardType copy() {
+        return ModelUtils.copy(this);
+    }
 
     public JavaType getExtendsBound() {
         return this.extendsBound;

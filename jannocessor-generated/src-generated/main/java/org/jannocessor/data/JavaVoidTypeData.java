@@ -19,6 +19,7 @@ package org.jannocessor.data;
 import javax.annotation.Generated;
 import org.jannocessor.data.JavaTypeData;
 import org.jannocessor.model.type.JavaVoidType;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -33,6 +34,10 @@ public class JavaVoidTypeData extends JavaTypeData implements JavaVoidType {
 
 	private static final long serialVersionUID = 1L;
 
+
+    public JavaVoidType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {

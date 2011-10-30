@@ -55,4 +55,9 @@ public class JavaArrayTypeAdapter extends AbstractJavaTypeAdapter implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaArrayType copy() {
+		throw calculatedMethodException();
+	}
+
 }

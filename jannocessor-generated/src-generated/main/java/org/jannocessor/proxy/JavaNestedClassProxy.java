@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaClassProxy;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.data.JavaNestedClassData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.NestedClassModifiers;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaNestedClassProxy extends AbstractJavaClassProxy implements Java
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaNestedClass copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public NestedClassModifiers getModifiers() {

@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaTypeVariable;
 import org.jannocessor.data.JavaTypeVariableData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -47,6 +48,11 @@ public class JavaTypeVariableProxy extends JavaTypeProxy implements JavaTypeVari
 
 	private boolean getLowerBoundInitialized = false;
 
+
+	@Override
+    public JavaTypeVariable copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public JavaType getUpperBound() {

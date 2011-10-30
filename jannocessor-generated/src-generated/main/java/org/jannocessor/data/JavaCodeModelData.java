@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.CodeNodeData;
 import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.code.SourceCode;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -39,6 +40,10 @@ public class JavaCodeModelData extends CodeNodeData implements JavaCodeModel {
 
     private SourceCode extraCode;
 
+
+    public JavaCodeModel copy() {
+        return ModelUtils.copy(this);
+    }
 
     public SourceCode getCode() {
         return this.code;

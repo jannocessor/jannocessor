@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
 import org.jannocessor.data.JavaAnnotationAttributeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -45,6 +46,11 @@ public class JavaAnnotationAttributeProxy extends JavaElementProxy implements Ja
 
 	private boolean getDefaultValueInitialized = false;
 
+
+	@Override
+    public JavaAnnotationAttribute copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public Object getDefaultValue() {

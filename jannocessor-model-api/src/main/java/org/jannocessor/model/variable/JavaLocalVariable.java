@@ -16,10 +16,15 @@
 
 package org.jannocessor.model.variable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
 public interface JavaLocalVariable extends AbstractJavaVariable {
+
+	@Override
+	@Calculated
+	JavaLocalVariable copy();
 
 	public Boolean isFinal();
 

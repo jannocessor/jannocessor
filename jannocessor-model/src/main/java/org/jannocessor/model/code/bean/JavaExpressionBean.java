@@ -35,5 +35,9 @@ public class JavaExpressionBean extends SourceCodeBean implements
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaExpression copy() {
+		return ModelUtils.copy(this);
+	}
 
 }

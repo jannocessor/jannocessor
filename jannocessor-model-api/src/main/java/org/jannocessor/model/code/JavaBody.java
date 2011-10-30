@@ -16,6 +16,12 @@
 
 package org.jannocessor.model.code;
 
+import org.jannocessor.annotation.Calculated;
+
 public interface JavaBody extends SourceCode {
+
+	@Override
+	@Calculated
+	JavaBody copy();
 
 }

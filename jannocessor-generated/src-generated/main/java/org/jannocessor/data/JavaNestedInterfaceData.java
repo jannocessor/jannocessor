@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaInterfaceData;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.model.modifier.NestedInterfaceModifiers;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -38,6 +39,10 @@ public class JavaNestedInterfaceData extends AbstractJavaInterfaceData implement
 
     private NestedInterfaceModifiers modifiers;
 
+
+    public JavaNestedInterface copy() {
+        return ModelUtils.copy(this);
+    }
 
     public NestedInterfaceModifiers getModifiers() {
         return this.modifiers;

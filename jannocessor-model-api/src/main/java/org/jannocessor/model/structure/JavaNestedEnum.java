@@ -16,11 +16,16 @@
 
 package org.jannocessor.model.structure;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.modifier.NestedEnumModifiers;
 
 @DomainModel
 public interface JavaNestedEnum extends AbstractJavaEnum {
+
+	@Override
+	@Calculated
+	JavaNestedEnum copy();
 
 	NestedEnumModifiers getModifiers();
 

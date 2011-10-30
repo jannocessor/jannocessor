@@ -64,4 +64,9 @@ public final class JavaInterfaceAdapter extends AbstractJavaInterfaceAdapter
 		return super.retrieveParent();
 	}
 
+	@Override
+	public JavaInterface copy() {
+		throw calculatedMethodException();
+	}
+
 }

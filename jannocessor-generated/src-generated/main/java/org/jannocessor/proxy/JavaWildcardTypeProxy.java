@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaWildcardType;
 import org.jannocessor.data.JavaWildcardTypeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -47,6 +48,11 @@ public class JavaWildcardTypeProxy extends JavaTypeProxy implements JavaWildcard
 
 	private boolean getSuperBoundInitialized = false;
 
+
+	@Override
+    public JavaWildcardType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public JavaType getExtendsBound() {

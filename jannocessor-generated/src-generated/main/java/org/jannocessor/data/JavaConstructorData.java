@@ -54,6 +54,10 @@ public class JavaConstructorData extends AbstractJavaExecutableData implements J
     private PowerList<JavaMetadata> metadata;
 
 
+    public JavaConstructor copy() {
+        return ModelUtils.copy(this);
+    }
+
     public PowerList<JavaTypeParameter> getTypeParameters() {
         return this.typeParameters;
     }

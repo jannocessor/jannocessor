@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.data.JavaDeclaredTypeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -47,6 +47,11 @@ public class JavaDeclaredTypeProxy extends JavaTypeProxy implements JavaDeclared
 
 	private boolean getTypeArgumentsInitialized = false;
 
+
+	@Override
+    public JavaDeclaredType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaType> getTypeArguments() {

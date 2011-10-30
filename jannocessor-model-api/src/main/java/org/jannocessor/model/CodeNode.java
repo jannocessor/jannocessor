@@ -25,12 +25,12 @@ import org.jannocessor.collection.api.PowerList;
 @DomainModel
 public interface CodeNode extends Serializable {
 
+	@Calculated
+	CodeNode copy();
+
 	CodeNode getParent();
 
 	@Calculated
 	PowerList<CodeNode> getChildren();
-
-	@Calculated
-	CodeNode copy();
 
 }

@@ -28,6 +28,10 @@ import org.jannocessor.model.variable.JavaParameter;
 @DomainModel
 public interface JavaConstructor extends AbstractJavaExecutable {
 
+	@Override
+	@Calculated
+	JavaConstructor copy();
+
 	PowerList<JavaTypeParameter> getTypeParameters();
 
 	PowerList<JavaParameter> getParameters();

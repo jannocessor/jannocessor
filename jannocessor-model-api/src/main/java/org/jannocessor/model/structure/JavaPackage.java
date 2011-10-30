@@ -16,12 +16,17 @@
 
 package org.jannocessor.model.structure;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 
 @DomainModel
 public interface JavaPackage extends JavaElement {
+
+	@Override
+	@Calculated
+	JavaPackage copy();
 
 	PowerList<JavaInterface> getInterfaces();
 

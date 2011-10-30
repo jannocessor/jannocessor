@@ -22,6 +22,7 @@ import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.JavaElementKind;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -43,6 +44,10 @@ public class JavaElementData extends JavaCodeModelData implements JavaElement {
 
     private JavaElementKind kind;
 
+
+    public JavaElement copy() {
+        return ModelUtils.copy(this);
+    }
 
     public Name getName() {
         return this.name;

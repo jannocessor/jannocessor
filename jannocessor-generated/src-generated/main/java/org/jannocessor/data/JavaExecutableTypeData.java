@@ -23,6 +23,7 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaTypeVariable;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -46,6 +47,10 @@ public class JavaExecutableTypeData extends JavaTypeData implements JavaExecutab
 
     private PowerList<JavaTypeVariable> typeVariables;
 
+
+    public JavaExecutableType copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaType> getParameterTypes() {
         return this.parameterTypes;

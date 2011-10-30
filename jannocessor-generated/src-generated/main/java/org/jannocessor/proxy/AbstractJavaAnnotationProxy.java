@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaStructureProxy;
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.jannocessor.data.AbstractJavaAnnotationData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
-import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -47,6 +47,11 @@ public class AbstractJavaAnnotationProxy extends AbstractJavaStructureProxy impl
 
 	private boolean getAttributesInitialized = false;
 
+
+	@Override
+    public AbstractJavaAnnotation copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaAnnotationAttribute> getAttributes() {

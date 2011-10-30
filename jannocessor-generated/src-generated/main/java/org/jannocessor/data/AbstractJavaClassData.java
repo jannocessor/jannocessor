@@ -25,6 +25,7 @@ import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.executable.JavaInstanceInit;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -50,6 +51,10 @@ public class AbstractJavaClassData extends AbstractJavaStructureData implements 
 
     private PowerList<JavaInstanceInit> instanceInits;
 
+
+    public AbstractJavaClass copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaTypeParameter> getTypeParameters() {
         return this.typeParameters;

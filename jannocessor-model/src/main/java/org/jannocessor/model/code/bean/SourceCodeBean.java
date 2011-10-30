@@ -154,7 +154,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 	}
 
 	@Override
-	public CodeNode copy() {
+	public SourceCode copy() {
 		return ModelUtils.copy(this);
 	}
 

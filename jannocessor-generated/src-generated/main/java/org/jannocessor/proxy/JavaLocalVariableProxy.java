@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaLocalVariable;
 import org.jannocessor.data.JavaLocalVariableData;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -44,6 +45,11 @@ public class JavaLocalVariableProxy extends AbstractJavaVariableProxy implements
 
 	private boolean isFinalInitialized = false;
 
+
+	@Override
+    public JavaLocalVariable copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public Boolean isFinal() {

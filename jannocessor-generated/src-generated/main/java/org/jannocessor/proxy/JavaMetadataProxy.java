@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaCodeModelProxy;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.data.JavaMetadataData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerMap;
 import org.jannocessor.model.JavaElement;
@@ -51,6 +52,11 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 
 	private boolean getValuesWithDefaultsInitialized = false;
 
+
+	@Override
+    public JavaMetadata copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public JavaType getAnnotation() {

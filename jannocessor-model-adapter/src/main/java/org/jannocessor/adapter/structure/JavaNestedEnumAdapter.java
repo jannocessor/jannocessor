@@ -64,4 +64,9 @@ public final class JavaNestedEnumAdapter extends AbstractJavaEnumAdapter
 		return super.retrieveParent();
 	}
 
+	@Override
+	public JavaNestedEnum copy() {
+		throw calculatedMethodException();
+	}
+
 }

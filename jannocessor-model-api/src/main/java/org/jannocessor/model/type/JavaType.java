@@ -24,6 +24,10 @@ import org.jannocessor.model.Name;
 @DomainModel
 public interface JavaType extends JavaCodeModel {
 
+	@Override
+	@Calculated
+	JavaType copy();
+
 	Class<?> getTypeClass();
 
 	Name getSimpleName();

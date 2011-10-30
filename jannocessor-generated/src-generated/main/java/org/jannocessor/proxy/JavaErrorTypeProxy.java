@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaTypeProxy;
 import org.jannocessor.model.type.JavaErrorType;
 import org.jannocessor.data.JavaErrorTypeData;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,10 +32,8 @@ public class JavaErrorTypeProxy extends JavaTypeProxy implements JavaErrorType {
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient JavaErrorType adapter;
 
-    @SuppressWarnings("unused")
     private JavaErrorTypeData data;
 
     public JavaErrorTypeProxy(JavaErrorType adapter, JavaErrorTypeData data) {
@@ -43,6 +42,11 @@ public class JavaErrorTypeProxy extends JavaTypeProxy implements JavaErrorType {
         this.data = data;
     }
 
+
+	@Override
+    public JavaErrorType copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {

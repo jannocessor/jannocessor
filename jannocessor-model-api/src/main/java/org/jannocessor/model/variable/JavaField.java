@@ -16,6 +16,7 @@
 
 package org.jannocessor.model.variable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
@@ -24,6 +25,10 @@ import org.jannocessor.model.structure.JavaMetadata;
 
 @DomainModel
 public interface JavaField extends AbstractJavaVariable {
+
+	@Override
+	@Calculated
+	JavaField copy();
 
 	FieldModifiers getModifiers();
 

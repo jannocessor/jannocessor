@@ -16,9 +16,14 @@
 
 package org.jannocessor.model.executable;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
 public interface JavaStaticInit extends AbstractJavaExecutable {
+
+	@Override
+	@Calculated
+	JavaStaticInit copy();
 
 }

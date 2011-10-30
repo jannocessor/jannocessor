@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaTypeParameter;
 import org.jannocessor.data.JavaTypeParameterData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -48,6 +48,11 @@ public class JavaTypeParameterProxy extends JavaElementProxy implements JavaType
 
 	private boolean getBoundsInitialized = false;
 
+
+	@Override
+    public JavaTypeParameter copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaType> getBounds() {

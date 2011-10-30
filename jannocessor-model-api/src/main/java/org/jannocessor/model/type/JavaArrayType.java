@@ -16,11 +16,16 @@
 
 package org.jannocessor.model.type;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 
 @DomainModel
 public interface JavaArrayType extends JavaType {
 
-    JavaType getComponentType();
+	@Override
+	@Calculated
+	JavaArrayType copy();
+
+	JavaType getComponentType();
 
 }

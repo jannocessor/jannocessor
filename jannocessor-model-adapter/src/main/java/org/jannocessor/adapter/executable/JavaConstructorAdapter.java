@@ -85,4 +85,9 @@ public final class JavaConstructorAdapter extends AbstractJavaExecutableAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaConstructor copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -23,8 +23,8 @@ import org.jannocessor.data.CodeNodeData;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.collection.api.PowerList;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -94,15 +94,15 @@ public class CodeNodeProxy implements CodeNode, ParentedElement {
 		// currently doesn't do anything extra
 	}
 
+	@Override
+    public CodeNode copy() {
+        return ModelUtils.copy(this);
+    }
+
 
 	@Override
     public PowerList<CodeNode> getChildren() {
         return ModelUtils.getChildren(this);
-    }
-
-	@Override
-    public CodeNode copy() {
-        return ModelUtils.copy(this);
     }
 
 	@Override

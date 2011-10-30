@@ -21,6 +21,7 @@ import org.jannocessor.data.AbstractJavaStructureData;
 import org.jannocessor.model.structure.AbstractJavaAnnotation;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaAnnotationAttribute;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -38,6 +39,10 @@ public class AbstractJavaAnnotationData extends AbstractJavaStructureData implem
 
     private PowerList<JavaAnnotationAttribute> attributes;
 
+
+    public AbstractJavaAnnotation copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaAnnotationAttribute> getAttributes() {
         return this.attributes;

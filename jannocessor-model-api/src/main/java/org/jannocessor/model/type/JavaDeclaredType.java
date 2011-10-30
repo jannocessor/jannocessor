@@ -16,11 +16,16 @@
 
 package org.jannocessor.model.type;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 
 @DomainModel
 public interface JavaDeclaredType extends JavaType {
+
+	@Override
+	@Calculated
+	JavaDeclaredType copy();
 
 	PowerList<JavaType> getTypeArguments();
 

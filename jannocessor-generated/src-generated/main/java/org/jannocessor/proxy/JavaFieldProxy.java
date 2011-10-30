@@ -20,11 +20,11 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.data.JavaFieldData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -53,6 +53,11 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
 
 	private boolean getMetadataInitialized = false;
 
+
+	@Override
+    public JavaField copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public FieldModifiers getModifiers() {

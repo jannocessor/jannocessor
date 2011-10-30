@@ -34,4 +34,9 @@ public class JavaBodyBean extends SourceCodeBean implements JavaBody {
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaBody copy() {
+		return ModelUtils.copy(this);
+	}
+
 }

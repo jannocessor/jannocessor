@@ -55,4 +55,9 @@ public final class JavaStaticInitAdapter extends AbstractJavaExecutableAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaStaticInit copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -71,4 +71,9 @@ abstract class AbstractJavaEnumAdapter extends AbstractJavaStructureAdapter
 		return AbstractJavaEnum.class;
 	}
 
+	@Override
+	public AbstractJavaEnum copy() {
+		throw calculatedMethodException();
+	}
+
 }

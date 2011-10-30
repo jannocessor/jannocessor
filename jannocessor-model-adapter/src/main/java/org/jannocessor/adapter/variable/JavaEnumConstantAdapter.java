@@ -59,4 +59,9 @@ public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaEnumConstant copy() {
+		throw calculatedMethodException();
+	}
+
 }

@@ -16,11 +16,16 @@
 
 package org.jannocessor.model.structure;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.modifier.ClassModifiers;
 
 @DomainModel
 public interface JavaClass extends AbstractJavaClass {
+
+	@Override
+	@Calculated
+	JavaClass copy();
 
 	ClassModifiers getModifiers();
 

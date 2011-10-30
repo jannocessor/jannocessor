@@ -74,4 +74,9 @@ public final class JavaMethodAdapter extends AbstractJavaExecutableAdapter
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaMethod copy() {
+		throw calculatedMethodException();
+	}
+
 }

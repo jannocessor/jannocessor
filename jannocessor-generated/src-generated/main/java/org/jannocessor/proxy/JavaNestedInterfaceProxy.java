@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaInterfaceProxy;
 import org.jannocessor.model.structure.JavaNestedInterface;
 import org.jannocessor.data.JavaNestedInterfaceData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.NestedInterfaceModifiers;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaNestedInterfaceProxy extends AbstractJavaInterfaceProxy impleme
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaNestedInterface copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public NestedInterfaceModifiers getModifiers() {

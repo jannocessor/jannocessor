@@ -16,11 +16,16 @@
 
 package org.jannocessor.model;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.model.type.JavaType;
 
 @DomainModel
 public interface JavaElement extends JavaCodeModel {
+
+	@Override
+	@Calculated
+	JavaElement copy();
 
 	Name getName();
 

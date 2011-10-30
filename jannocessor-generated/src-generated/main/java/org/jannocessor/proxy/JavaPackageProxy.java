@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.JavaPackage;
 import org.jannocessor.data.JavaPackageData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaAnnotation;
@@ -56,6 +56,11 @@ public class JavaPackageProxy extends JavaElementProxy implements JavaPackage {
 
 	private boolean getAnnotationsInitialized = false;
 
+
+	@Override
+    public JavaPackage copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaInterface> getInterfaces() {

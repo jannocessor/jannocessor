@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaExecutableProxy;
 import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.data.JavaInstanceInitData;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -31,10 +32,8 @@ public class JavaInstanceInitProxy extends AbstractJavaExecutableProxy implement
 
 	private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
     private transient JavaInstanceInit adapter;
 
-    @SuppressWarnings("unused")
     private JavaInstanceInitData data;
 
     public JavaInstanceInitProxy(JavaInstanceInit adapter, JavaInstanceInitData data) {
@@ -43,6 +42,11 @@ public class JavaInstanceInitProxy extends AbstractJavaExecutableProxy implement
         this.data = data;
     }
 
+
+	@Override
+    public JavaInstanceInit copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {

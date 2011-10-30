@@ -55,4 +55,9 @@ public final class JavaInstanceInitAdapter extends
 		return ModelUtils.getChildren(this);
 	}
 
+	@Override
+	public JavaInstanceInit copy() {
+		throw calculatedMethodException();
+	}
+
 }

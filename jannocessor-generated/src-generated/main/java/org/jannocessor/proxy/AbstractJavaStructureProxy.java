@@ -20,11 +20,11 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.data.AbstractJavaStructureData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -75,6 +75,11 @@ public class AbstractJavaStructureProxy extends JavaElementProxy implements Abst
 
 	private boolean getNestedAnnotationsInitialized = false;
 
+
+	@Override
+    public AbstractJavaStructure copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public String getNesting() {

@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaEnumProxy;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.data.JavaEnumData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.modifier.EnumModifiers;
 import org.jannocessor.model.structure.JavaPackage;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -46,6 +47,11 @@ public class JavaEnumProxy extends AbstractJavaEnumProxy implements JavaEnum {
 
 	private boolean getModifiersInitialized = false;
 
+
+	@Override
+    public JavaEnum copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public EnumModifiers getModifiers() {

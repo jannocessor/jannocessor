@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.model.code.JavaBody;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -38,6 +39,10 @@ public class AbstractJavaExecutableData extends JavaElementData implements Abstr
 
     private JavaBody body;
 
+
+    public AbstractJavaExecutable copy() {
+        return ModelUtils.copy(this);
+    }
 
     public JavaBody getBody() {
         return this.body;

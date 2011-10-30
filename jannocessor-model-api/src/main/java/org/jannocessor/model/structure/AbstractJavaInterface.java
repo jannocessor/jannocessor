@@ -16,12 +16,17 @@
 
 package org.jannocessor.model.structure;
 
+import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.variable.JavaField;
 
 @DomainModel
 public interface AbstractJavaInterface extends AbstractJavaStructure {
+
+	@Override
+	@Calculated
+	AbstractJavaInterface copy();
 
 	PowerList<JavaTypeParameter> getTypeParameters();
 

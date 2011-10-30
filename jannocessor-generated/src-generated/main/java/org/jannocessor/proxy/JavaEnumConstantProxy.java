@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.data.JavaEnumConstantData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
-import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -47,6 +47,11 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
 
 	private boolean getValuesInitialized = false;
 
+
+	@Override
+    public JavaEnumConstant copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaExpression> getValues() {

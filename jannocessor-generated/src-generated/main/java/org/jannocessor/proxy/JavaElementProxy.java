@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.JavaCodeModelProxy;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.data.JavaElementData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.JavaElementKind;
@@ -51,6 +52,11 @@ public class JavaElementProxy extends JavaCodeModelProxy implements JavaElement 
 
 	private boolean getKindInitialized = false;
 
+
+	@Override
+    public JavaElement copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public Name getName() {

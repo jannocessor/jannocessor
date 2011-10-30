@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaVariableProxy;
 import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.data.JavaParameterData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
-import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -49,6 +49,11 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
 
 	private boolean getMetadataInitialized = false;
 
+
+	@Override
+    public JavaParameter copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public boolean isFinal() {

@@ -24,6 +24,7 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.util.ModelUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -47,6 +48,10 @@ public class JavaPackageData extends JavaElementData implements JavaPackage {
 
     private PowerList<JavaAnnotation> annotations;
 
+
+    public JavaPackage copy() {
+        return ModelUtils.copy(this);
+    }
 
     public PowerList<JavaInterface> getInterfaces() {
         return this.interfaces;

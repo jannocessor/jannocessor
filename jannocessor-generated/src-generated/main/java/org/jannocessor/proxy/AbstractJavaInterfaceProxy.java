@@ -20,9 +20,9 @@ import javax.annotation.Generated;
 import org.jannocessor.proxy.AbstractJavaStructureProxy;
 import org.jannocessor.model.structure.AbstractJavaInterface;
 import org.jannocessor.data.AbstractJavaInterfaceData;
+import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaTypeParameter;
-import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaField;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -50,6 +50,11 @@ public class AbstractJavaInterfaceProxy extends AbstractJavaStructureProxy imple
 
 	private boolean getFieldsInitialized = false;
 
+
+	@Override
+    public AbstractJavaInterface copy() {
+        return ModelUtils.copy(this);
+    }
 
 	@Override
     public PowerList<JavaTypeParameter> getTypeParameters() {
