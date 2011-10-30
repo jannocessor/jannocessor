@@ -20,10 +20,10 @@ import junit.framework.Assert;
 import net.sf.twip.TwiP;
 
 import org.jannocessor.model.bean.AbstractModelTest;
-import org.jannocessor.model.bean.structure.JavaClassBean;
-import org.jannocessor.model.bean.type.JavaArrayTypeBean;
-import org.jannocessor.model.bean.variable.JavaExceptionParameterBean;
+import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.type.JavaArrayType;
 import org.jannocessor.model.util.Templates;
+import org.jannocessor.model.variable.JavaExceptionParameter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -33,12 +33,11 @@ public class TemplatesTest extends AbstractModelTest {
 	@Test
 	public void testDefaultTemplateName() {
 		Assert.assertEquals("exception_parameter",
-				Templates.defaultName(JavaExceptionParameterBean.class));
+				Templates.defaultName(JavaExceptionParameter.class));
 
-		Assert.assertEquals("class", Templates.defaultName(JavaClassBean.class));
+		Assert.assertEquals("class", Templates.defaultName(JavaClass.class));
 
-		Assert.assertEquals("array_type",
-				Templates.defaultName(JavaArrayTypeBean.class));
+		Assert.assertEquals("type", Templates.defaultName(JavaArrayType.class));
 	}
 
 }

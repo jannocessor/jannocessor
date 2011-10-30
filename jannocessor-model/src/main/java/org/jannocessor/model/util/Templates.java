@@ -17,23 +17,26 @@
 package org.jannocessor.model.util;
 
 import org.jannocessor.model.JavaCodeModel;
+import org.jannocessor.model.introspection.API;
+import org.jannocessor.util.Check;
 
 public class Templates {
 
-	public static String defaultName(Class<? extends JavaCodeModel> clazz) {
-		String name = clazz.getSimpleName();
+	public static String defaultName(Class<? extends JavaCodeModel> interfacee) {
+		String name = interfacee.getSimpleName();
 
-		if (!name.startsWith("Java")) {
-			throw new IllegalArgumentException(
-					"The class name must start with 'Java'!");
+		Check.argument(interfacee.isInterface(),
+				"Expected code model API interface!");
+
+		Check.argument(name.startsWith("Java"),
+				"The interface name must start with 'Java'!");
+
+		if (API.TYPE.contains(interfacee)) {
+			name = "type";
+		} else {
+			name = name.substring(4); // without the "Java" prefix
+			name = name.replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase();
 		}
-
-		if (name.endsWith("Bean")) {
-			name = name.substring(0, name.length() - 4);
-		}
-
-		name = name.substring(4);
-		name = name.replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase();
 
 		return name;
 	}
