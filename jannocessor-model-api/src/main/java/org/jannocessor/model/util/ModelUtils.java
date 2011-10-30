@@ -17,6 +17,7 @@
 package org.jannocessor.model.util;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.SerializationUtils;
@@ -25,6 +26,7 @@ import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.modifier.value.ConstructorModifierValue;
+import org.jannocessor.model.type.JavaDeclaredType;
 import org.jannocessor.model.type.JavaType;
 
 public class ModelUtils {
@@ -45,9 +47,30 @@ public class ModelUtils {
 	}
 
 	public static String getCanonicalName(JavaType type) {
+		String arguments = "";
+		if (type instanceof JavaDeclaredType) {
+			JavaDeclaredType declaredType = (JavaDeclaredType) type;
+			PowerList<JavaType> typeArgs = declaredType.getTypeArguments();
+
+			if (!typeArgs.isEmpty()) {
+				arguments = "<";
+
+				for (Iterator<JavaType> it = typeArgs.iterator(); it.hasNext();) {
+					JavaType typeArg = it.next();
+					arguments += typeArg.getCanonicalName();
+					if (it.hasNext()) {
+						arguments += ", ";
+					}
+				}
+
+				arguments += ">";
+			}
+		}
+
 		String prefix = (type.getPackageName() != null) ? type.getPackageName()
 				+ "." : "";
-		return prefix + type.getSimpleName();
+
+		return prefix + type.getSimpleName() + arguments;
 	}
 
 	@SuppressWarnings("unchecked")

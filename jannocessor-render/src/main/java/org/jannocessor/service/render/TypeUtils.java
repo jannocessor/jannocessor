@@ -49,10 +49,10 @@ public class TypeUtils {
 	}
 
 	private String getTypeUsage(String type) {
-		logger.debug("Using type: {}", type);
-
 		String[] imports = importOrganizer.getTypeImports(type);
 		String typeUsage = importOrganizer.getTypeUsage(type);
+
+		logger.debug("Using type: {} => {}", type, typeUsage);
 
 		List<String> newImports = Arrays.asList(imports);
 		if (!newImports.isEmpty()) {
