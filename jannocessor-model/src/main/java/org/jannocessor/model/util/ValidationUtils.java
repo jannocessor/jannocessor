@@ -25,6 +25,8 @@ import org.jannocessor.util.Check;
 public class ValidationUtils {
 
 	public static void validate(AbstractJavaStructure model) {
+		Check.argument(model.getParent() != null, "A package must be set as a parent!");
+
 		for (JavaMethod member : model.getMethods()) {
 			checkParent(model, member);
 		}
@@ -37,9 +39,8 @@ public class ValidationUtils {
 	private static void checkParent(JavaCodeModel parent, JavaCodeModel child) {
 		Check.notNull(parent, "Parent cannot be null!");
 		Check.notNull(child, "Child cannot be null!");
-		Check.state(child.getParent() == parent,
-				"Invalid member parent! DIFF:=====\n" + parent + "\n=====\n"
-						+ child + "\n=====");
+		Check.state(child.getParent() == parent, "Invalid member parent! DIFF:=====\n" + parent
+				+ "\n=====\n" + child + "\n=====");
 	}
 
 }
