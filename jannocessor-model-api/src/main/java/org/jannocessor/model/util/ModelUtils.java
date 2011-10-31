@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.SerializationUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
@@ -109,7 +110,7 @@ public class ModelUtils {
 	}
 
 	public static PowerList<CodeNode> getChildren(CodeNode codeNode) {
-		return null; // FIXME: not implemented
+		throw new NotImplementedException("This method will be implemented soon!");
 	}
 
 }
