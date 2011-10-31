@@ -37,6 +37,11 @@
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-templates</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
