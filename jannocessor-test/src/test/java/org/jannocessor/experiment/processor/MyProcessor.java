@@ -46,7 +46,7 @@ public class MyProcessor implements CodeProcessor<JavaClass> {
 				clazz.getMethods().add(getter);
 			}
 
-			context.generateCode(clazz, false);
+//			context.generateCode(clazz, false);
 		}
 	}
 
