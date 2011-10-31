@@ -50,8 +50,6 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 
 	private boolean getValuesInitialized = false;
 
-	private boolean getValuesWithDefaultsInitialized = false;
-
 
 	@Override
     public JavaMetadata copy() {
@@ -85,19 +83,6 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
     }
 
 	@Override
-    public PowerMap<String,? extends Object> getValuesWithDefaults() {
-        if (!getValuesWithDefaultsInitialized) {
-			if (adapter == null) {
-				throw new IllegalStateException("Invalid model copy!");
-			}
-            data.setValuesWithDefaults(adapter.getValuesWithDefaults());
-			getValuesWithDefaultsInitialized = true;
-        }
-
-        return data.getValuesWithDefaults();
-    }
-
-	@Override
     public JavaElement getParent() {
         return super.retrieveParent();
     }
@@ -119,7 +104,6 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 				.appendSuper(super.equals(other))
 				.append(this.getAnnotation(), other.getAnnotation())
 				.append(this.getValues(), other.getValues())
-				.append(this.getValuesWithDefaults(), other.getValuesWithDefaults())
 				.isEquals();
 	}
 
@@ -128,7 +112,6 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 		return new HashCodeBuilder()
 				.append(this.getAnnotation())
 				.append(this.getValues())
-				.append(this.getValuesWithDefaults())
 				.toHashCode();
 	}
 
@@ -145,7 +128,6 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
         super.appendDescription(builder);
         builder.append("annotation", ToStringUtil.describe(this.getAnnotation()));
         builder.append("values", ToStringUtil.describe(this.getValues()));
-        builder.append("valuesWithDefaults", ToStringUtil.describe(this.getValuesWithDefaults()));
 	}
 
 	@Override
@@ -155,7 +137,6 @@ public class JavaMetadataProxy extends JavaCodeModelProxy implements JavaMetadat
 		// load all values from the adapter to the data bean
 		this.getAnnotation();
 		this.getValues();
-		this.getValuesWithDefaults();
 	}
 
 }

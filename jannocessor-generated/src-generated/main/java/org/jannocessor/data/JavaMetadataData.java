@@ -42,7 +42,6 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 
     private PowerMap<String,? extends Object> values;
 
-    private PowerMap<String,? extends Object> valuesWithDefaults;
 
     public JavaMetadata copy() {
         return ModelUtils.copy(this);
@@ -62,14 +61,6 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 
     public void setValues(PowerMap<String,? extends Object> value) {
         this.values = value;
-    }
-
-    public PowerMap<String,? extends Object> getValuesWithDefaults() {
-        return this.valuesWithDefaults;
-    }
-
-    public void setValuesWithDefaults(PowerMap<String,? extends Object> value) {
-        this.valuesWithDefaults = value;
     }
 
     @Override
@@ -94,7 +85,6 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 				.appendSuper(super.equals(other))
 				.append(this.getAnnotation(), other.getAnnotation())
 				.append(this.getValues(), other.getValues())
-				.append(this.getValuesWithDefaults(), other.getValuesWithDefaults())
 				.isEquals();
 	}
 
@@ -103,7 +93,6 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
 		return new HashCodeBuilder()
 				.append(this.getAnnotation())
 				.append(this.getValues())
-				.append(this.getValuesWithDefaults())
 				.toHashCode();
 	}
 
@@ -120,7 +109,6 @@ public class JavaMetadataData extends JavaCodeModelData implements JavaMetadata 
         super.appendDescription(builder);
         builder.append("annotation", ToStringUtil.describe(this.getAnnotation()));
         builder.append("values", ToStringUtil.describe(this.getValues()));
-        builder.append("valuesWithDefaults", ToStringUtil.describe(this.getValuesWithDefaults()));
 	}
 
 	private void writeObject(ObjectOutputStream out) throws IOException {

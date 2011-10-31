@@ -63,8 +63,8 @@ public class JavaMetadataAdapter extends JavaCodeModelAdapter implements
 		return extractValues(annotationMirror.getElementValues());
 	}
 
-	@Override
 	public PowerMap<String, Object> getValuesWithDefaults() {
+		// FIXME: publish to the API as read-only property
 		return extractValues(getElementUtils().getElementValuesWithDefaults(
 				annotationMirror));
 	}

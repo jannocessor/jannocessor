@@ -34,8 +34,6 @@ public interface JavaMetadata extends JavaCodeModel {
 
 	PowerMap<String, ? extends Object> getValues();
 
-	PowerMap<String, ? extends Object> getValuesWithDefaults();
-
 	@Override
 	JavaElement getParent();
 
