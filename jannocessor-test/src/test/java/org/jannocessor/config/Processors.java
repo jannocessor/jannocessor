@@ -21,6 +21,10 @@ import org.jannocessor.annotation.Types;
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
 import org.jannocessor.bootstrapped.annotation.MyAnnotation;
+import org.jannocessor.common.annotation.BuilderModel;
+import org.jannocessor.common.annotation.DtoModel;
+import org.jannocessor.common.processor.BuilderGenerator;
+import org.jannocessor.common.processor.DtoGenerator;
 import org.jannocessor.experiment.processor.ExperimentProcessor;
 import org.jannocessor.experiment.processor.MirrorProcessor;
 import org.jannocessor.experiment.processor.MyProcessor;
@@ -32,6 +36,8 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.processor.context.CodeProcessor;
 
 public class Processors {
+
+	private static final boolean DEBUG_MODE = true;
 
 	@Annotated(BeanModel.class)
 	@Types(JavaClass.class)
@@ -49,6 +55,18 @@ public class Processors {
 	@Types(JavaClass.class)
 	public CodeProcessor<? extends JavaElement> willProcessMyAnnotatedClasses() {
 		return new MyProcessor();
+	}
+
+	@Annotated(BuilderModel.class)
+	@Types(JavaClass.class)
+	public BuilderGenerator willGenerateBuilder() {
+		return new BuilderGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(DtoModel.class)
+	@Types(JavaClass.class)
+	public CodeProcessor<JavaClass> willGenerateDto() {
+		return new DtoGenerator(DEBUG_MODE);
 	}
 
 }
