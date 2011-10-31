@@ -10,6 +10,13 @@
 
 	<artifactId>${artifactId}</artifactId>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor</artifactId>
+		</dependency>
+	</dependencies>
+
 	<profiles>
 		<profile>
 			<id>generate-code</id>
