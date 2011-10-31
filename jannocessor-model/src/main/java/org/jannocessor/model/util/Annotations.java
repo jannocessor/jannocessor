@@ -16,8 +16,11 @@
 
 package org.jannocessor.model.util;
 
+import javax.annotation.Generated;
+
 import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.modifier.value.AnnotationModifierValue;
+import org.jannocessor.model.structure.JavaMetadata;
 
 public class Annotations {
 
@@ -37,4 +40,13 @@ public class Annotations {
 	/** Represents "abstract" interface modifier. */
 	public static final AnnotationModifiers ABSTRACT = New
 			.annotationModifiers(AnnotationModifierValue.ABSTRACT);
+
+	public static JavaMetadata generated(String value) {
+		return New.metadata(Generated.class, value);
+	}
+
+	public static JavaMetadata override() {
+		return New.metadata(Override.class);
+	}
+
 }
