@@ -1,0 +1,8 @@
+#set($cls = $self.parent.name.copy().deleteParts(-1))
+$cls instance = new $cls();
+
+#foreach($f in $self.parent.fields)
+instance.set${f.name.capitalized}($f.name);
+#end
+
+return instance;
