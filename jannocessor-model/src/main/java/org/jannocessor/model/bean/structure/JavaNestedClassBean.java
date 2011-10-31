@@ -27,6 +27,7 @@ import org.jannocessor.model.executable.JavaInstanceInit;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.modifier.NestedClassModifiers;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -39,7 +40,7 @@ import org.jannocessor.model.variable.JavaField;
 public class JavaNestedClassBean extends JavaNestedClassData implements
 		JavaNestedClass {
 
-	
+
 	private static final long serialVersionUID = -5746796059771646454L;
 
 	public JavaNestedClassBean(NestedClassModifiers modifiers, String name,
@@ -54,6 +55,7 @@ public class JavaNestedClassBean extends JavaNestedClassData implements
 		this.setConstructors(children(Power.list(constructors)));
 		this.setMethods(children(Power.list(methods)));
 		this.setTypeParameters(children(Power.list(parameters)));
+		this.setMetadata(children(Power.emptyList(JavaMetadata.class)));
 		this.setStaticInits(children(Power.emptyList(JavaStaticInit.class)));
 		this.setInstanceInits(children(Power.emptyList(JavaInstanceInit.class)));
 		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));

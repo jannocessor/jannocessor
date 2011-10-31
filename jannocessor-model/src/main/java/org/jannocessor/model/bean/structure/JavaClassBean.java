@@ -28,6 +28,7 @@ import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.executable.JavaStaticInit;
 import org.jannocessor.model.modifier.ClassModifiers;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -39,7 +40,7 @@ import org.jannocessor.model.variable.JavaField;
 
 public class JavaClassBean extends JavaClassData implements JavaClass {
 
-	
+
 	private static final long serialVersionUID = 1857328854048504989L;
 
 	public JavaClassBean(ClassModifiers modifiers, String name,
@@ -54,6 +55,7 @@ public class JavaClassBean extends JavaClassData implements JavaClass {
 		this.setConstructors(children(Power.list(constructors)));
 		this.setMethods(children(Power.list(methods)));
 		this.setTypeParameters(children(Power.list(parameters)));
+		this.setMetadata(children(Power.emptyList(JavaMetadata.class)));
 		this.setStaticInits(children(Power.emptyList(JavaStaticInit.class)));
 		this.setInstanceInits(children(Power.emptyList(JavaInstanceInit.class)));
 		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));

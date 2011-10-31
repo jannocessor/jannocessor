@@ -25,6 +25,7 @@ import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.InterfaceModifiers;
 import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -37,7 +38,7 @@ import org.jannocessor.model.variable.JavaField;
 public class JavaInterfaceBean extends JavaInterfaceData implements
 		JavaInterface {
 
-	
+
 	private static final long serialVersionUID = -1718102721310923048L;
 
 	public JavaInterfaceBean(InterfaceModifiers modifiers, String name,
@@ -49,6 +50,7 @@ public class JavaInterfaceBean extends JavaInterfaceData implements
 		this.setFields(children(Power.list(fields)));
 		this.setMethods(children(Power.list(methods)));
 		this.setTypeParameters(children(Power.list(parameters)));
+		this.setMetadata(children(Power.emptyList(JavaMetadata.class)));
 		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));
 		this.setNestedEnums(children(Power.emptyList(JavaNestedEnum.class)));
 		this.setNestedInterfaces(children(Power

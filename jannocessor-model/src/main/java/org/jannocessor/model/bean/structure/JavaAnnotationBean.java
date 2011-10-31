@@ -25,6 +25,7 @@ import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.AnnotationModifiers;
 import org.jannocessor.model.structure.JavaAnnotation;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -34,7 +35,7 @@ import org.jannocessor.model.util.New;
 public class JavaAnnotationBean extends JavaAnnotationData implements
 		JavaAnnotation {
 
-	
+
 	private static final long serialVersionUID = 2321280689778381415L;
 
 	public JavaAnnotationBean(AnnotationModifiers modifiers, String name,
@@ -43,6 +44,7 @@ public class JavaAnnotationBean extends JavaAnnotationData implements
 		this.setName(new NameBean(name));
 		this.setMethods(children(Power.list(methods)));
 
+		this.setMetadata(children(Power.emptyList(JavaMetadata.class)));
 		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));
 		this.setNestedEnums(children(Power.emptyList(JavaNestedEnum.class)));
 		this.setNestedInterfaces(children(Power

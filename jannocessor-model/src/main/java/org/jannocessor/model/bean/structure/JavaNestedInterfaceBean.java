@@ -24,6 +24,7 @@ import org.jannocessor.model.JavaElementKind;
 import org.jannocessor.model.bean.NameBean;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.NestedInterfaceModifiers;
+import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.structure.JavaNestedAnnotation;
 import org.jannocessor.model.structure.JavaNestedClass;
 import org.jannocessor.model.structure.JavaNestedEnum;
@@ -35,7 +36,7 @@ import org.jannocessor.model.util.New;
 public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
 		JavaNestedInterface {
 
-	
+
 	private static final long serialVersionUID = 5002487412290379477L;
 
 	public JavaNestedInterfaceBean(NestedInterfaceModifiers modifiers,
@@ -46,6 +47,7 @@ public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
 		this.setInterfaces(children(Power.list(superInterfaces)));
 		this.setMethods(children(Power.list(methods)));
 		this.setTypeParameters(children(Power.list(parameters)));
+		this.setMetadata(children(Power.emptyList(JavaMetadata.class)));
 		this.setNestedClasses(children(Power.emptyList(JavaNestedClass.class)));
 		this.setNestedEnums(children(Power.emptyList(JavaNestedEnum.class)));
 		this.setNestedInterfaces(children(Power
