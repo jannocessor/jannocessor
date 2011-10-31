@@ -49,8 +49,8 @@ import org.jannocessor.ui.RenderPreview;
 public class JannocessorProcessor extends JannocessorProcessorBase {
 
 	@Override
-	protected void processAnnotations(Set<? extends TypeElement> annotations,
-			RoundEnvironment env) throws JannocessorException {
+	protected void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment env)
+			throws JannocessorException {
 		// prepare the facts
 		ProcessingContext context = createProcessingContext();
 
@@ -71,8 +71,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		/**************************************************************************/
 
 		// show graphical user interface
-		RenderPreview.showDialog(engine.getTemplatesPath(), renderRegister,
-				engine, engine);
+		RenderPreview.showDialog(engine.getTemplatesPath(), renderRegister, engine, engine);
 
 		// rendered the registered data again after UI processing
 		renderRegistered();
@@ -91,8 +90,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		}
 
 		for (RenderData renderData : renderings) {
-			String text = engine.renderMacro("main",
-					renderData.getAttributes(), new String[] {});
+			String text = engine.renderMacro("main", renderData.getAttributes(), new String[] {});
 			processMultiFiles(engine.split(text));
 		}
 	}
@@ -117,8 +115,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		logger.info("Total {} files were generated.", files.size());
 	}
 
-	private void generateFile(String fileName, String content)
-			throws JannocessorException {
+	private void generateFile(String fileName, String content) throws JannocessorException {
 		Location location = StandardLocation.SOURCE_OUTPUT;
 
 		String info = fileInfo(location, "", fileName);
@@ -154,37 +151,37 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		return context;
 	}
 
-	private void processElements(Set<? extends TypeElement> annotations,
-			RoundEnvironment env, ProcessingContext context)
-			throws JannocessorException {
+	private void processElements(Set<? extends TypeElement> annotations, RoundEnvironment env,
+			ProcessingContext context) throws JannocessorException {
 		List<Object> facts = new ArrayList<Object>();
 
-		Map<String, Set<? extends Element>> annotated = getAnnotatedElements(
-				annotations, env);
+		Map<String, Set<? extends Element>> annotated = getAnnotatedElements(annotations, env);
 
 		// construct "root" facts
 		Set<? extends Element> roots = env.getRootElements();
 		for (Element rootElement : roots) {
 			// add new "root" wrapper fact for each root element
-			Root root = new Root(AdapterFactory.getElementModel(rootElement,
-					JavaElement.class, elementUtils, typeUtils));
+			Root root = new Root(AdapterFactory.getElementModel(rootElement, JavaElement.class,
+					elementUtils, typeUtils));
 			facts.add(root);
 		}
 
-		for (ProcessingConfiguration config : processorsConfig
-				.getConfiguration()) {
+		for (ProcessingConfiguration config : processorsConfig.getConfiguration()) {
 			HashSet<Element> elements = new HashSet<Element>();
 
-			for (Class<? extends Annotation> annotation : config
-					.getAnnotations()) {
-				elements.addAll(annotated.get(annotation.getCanonicalName()));
+			for (Class<? extends Annotation> annotation : config.getAnnotations()) {
+				Set<? extends Element> annotatedElements = annotated.get(annotation
+						.getCanonicalName());
+				if (annotatedElements != null) {
+					elements.addAll(annotatedElements);
+				}
 			}
 
 			PowerList<JavaElement> list = Power.list();
 
 			for (Element element : elements) {
-				JavaElement model = AdapterFactory.getElementModel(element,
-						JavaElement.class, elementUtils, typeUtils);
+				JavaElement model = AdapterFactory.getElementModel(element, JavaElement.class,
+						elementUtils, typeUtils);
 
 				for (Class<? extends JavaElement> type : config.getTypes()) {
 					if (type.isInstance(model)) {
@@ -204,31 +201,27 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 		for (TypeElement annotation : annotations) {
 			String name = annotation.getQualifiedName().toString();
-			Set<? extends Element> elements = env
-					.getElementsAnnotatedWith(annotation);
+			Set<? extends Element> elements = env.getElementsAnnotatedWith(annotation);
 
 			annotatedElements.put(name, elements);
 
-			logger.info("Total {} elements were annotated with @{}",
-					elements.size(), annotation.getSimpleName());
+			logger.info("Total {} elements were annotated with @{}", elements.size(),
+					annotation.getSimpleName());
 		}
 
 		return annotatedElements;
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T extends JavaElement> void invokeProcessor(
-			CodeProcessor<T> codeProcessor,
+	private <T extends JavaElement> void invokeProcessor(CodeProcessor<T> codeProcessor,
 			PowerList<? extends JavaElement> list, ProcessingContext context) {
 		codeProcessor.process((PowerList<T>) list, context);
 	}
 
 	@Override
-	protected Set<String> retrieveSupportedAnnotations()
-			throws JannocessorException {
+	protected Set<String> retrieveSupportedAnnotations() throws JannocessorException {
 
-		Set<String> supportedAnnotations = processorsConfig
-				.getSupportedAnnotations();
+		Set<String> supportedAnnotations = processorsConfig.getSupportedAnnotations();
 
 		for (String annotation : supportedAnnotations) {
 			logger.debug("- Supported annotation: " + annotation);
