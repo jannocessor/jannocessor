@@ -1,19 +1,6 @@
 #macro(file_header)
-// CUSTOM FILE HEADER
+/* JAnnocessor Sample Generated Code */
+
 #end
 
-#macro(before_members)
-
-
-#@indent()
-// BEFORE
-#end
-#end
-
-#macro(after_members)
-#@indent()
-// AFTER
-#end
-#end
-
-#macro(indentation)   #end
+#macro(indentation)    #end
