@@ -318,6 +318,10 @@ public class New {
 		return new JavaTypeBean(canonicalName, kind);
 	}
 
+	public static JavaType type(String canonicalName) {
+		return new JavaTypeBean(canonicalName, JavaTypeKind.DECLARED);
+	}
+
 	public static JavaType type(String packageName, String simpleName,
 			JavaTypeKind kind) {
 		return new JavaTypeBean(packageName, simpleName, kind);
