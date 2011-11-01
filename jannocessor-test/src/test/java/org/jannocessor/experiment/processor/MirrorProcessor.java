@@ -23,13 +23,18 @@ import org.jannocessor.processor.context.ProcessingContext;
 
 public class MirrorProcessor implements CodeProcessor<AbstractJavaStructure> {
 
+	private final boolean debugMode;
+
+	public MirrorProcessor(boolean debugMode) {
+		this.debugMode = debugMode;
+	}
+
 	@Override
-	public void process(PowerList<AbstractJavaStructure> elements,
-			ProcessingContext context) {
+	public void process(PowerList<AbstractJavaStructure> elements, ProcessingContext context) {
 		context.getLogger().info("Processing {} elements", elements.size());
 
 		for (AbstractJavaStructure structure : elements) {
-//			context.generateCode(structure, true);
+			// context.generateCode(structure, debugMode);
 		}
 	}
 

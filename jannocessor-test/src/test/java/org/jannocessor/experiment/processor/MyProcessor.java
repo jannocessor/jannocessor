@@ -28,6 +28,12 @@ import org.jannocessor.processor.context.ProcessingContext;
 
 public class MyProcessor implements CodeProcessor<JavaClass> {
 
+	private final boolean debugMode;
+
+	public MyProcessor(boolean debugMode) {
+		this.debugMode = debugMode;
+	}
+
 	@Override
 	public void process(PowerList<JavaClass> classes, ProcessingContext context) {
 		context.getLogger().info("Processing {} classes", classes.size());
@@ -46,7 +52,7 @@ public class MyProcessor implements CodeProcessor<JavaClass> {
 				clazz.getMethods().add(getter);
 			}
 
-//			context.generateCode(clazz, false);
+			// context.generateCode(clazz, debugMode);
 		}
 	}
 
