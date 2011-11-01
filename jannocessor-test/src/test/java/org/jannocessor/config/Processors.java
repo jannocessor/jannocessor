@@ -25,6 +25,7 @@ import org.jannocessor.common.annotation.BuilderModel;
 import org.jannocessor.common.annotation.DtoModel;
 import org.jannocessor.common.processor.BuilderGenerator;
 import org.jannocessor.common.processor.DtoGenerator;
+import org.jannocessor.common.processor.MapperGenerator;
 import org.jannocessor.experiment.processor.ExperimentProcessor;
 import org.jannocessor.experiment.processor.MirrorProcessor;
 import org.jannocessor.experiment.processor.MyProcessor;
@@ -37,36 +38,42 @@ import org.jannocessor.processor.context.CodeProcessor;
 
 public class Processors {
 
-	private static final boolean DEBUG_MODE = true;
+	private static final boolean DEBUG_MODE = false;
 
 	@Annotated(BeanModel.class)
 	@Types(JavaClass.class)
 	public CodeProcessor<? extends JavaElement> experimentProcessor() {
-		return new ExperimentProcessor();
+		return new ExperimentProcessor(DEBUG_MODE);
 	}
 
 	@Annotated({ BeanModel.class, AnotherAnnotation.class })
 	@Types({ JavaInterface.class, JavaEnum.class, JavaAnnotation.class })
 	public CodeProcessor<? extends JavaElement> mirrorProcessor() {
-		return new MirrorProcessor();
+		return new MirrorProcessor(DEBUG_MODE);
 	}
 
 	@Annotated(MyAnnotation.class)
 	@Types(JavaClass.class)
-	public CodeProcessor<? extends JavaElement> willProcessMyAnnotatedClasses() {
-		return new MyProcessor();
+	public CodeProcessor<? extends JavaElement> processMyAnnotatedClasses() {
+		return new MyProcessor(DEBUG_MODE);
 	}
 
 	@Annotated(BuilderModel.class)
 	@Types(JavaClass.class)
-	public BuilderGenerator willGenerateBuilder() {
+	public BuilderGenerator generateBuilder() {
 		return new BuilderGenerator(DEBUG_MODE);
 	}
 
 	@Annotated(DtoModel.class)
 	@Types(JavaClass.class)
-	public CodeProcessor<JavaClass> willGenerateDto() {
+	public CodeProcessor<JavaClass> generateDto() {
 		return new DtoGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(DtoModel.class)
+	@Types(JavaClass.class)
+	public CodeProcessor<JavaClass> generateMapper() {
+		return new MapperGenerator(DEBUG_MODE);
 	}
 
 }

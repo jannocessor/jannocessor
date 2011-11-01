@@ -62,6 +62,8 @@ public class BuilderGenerator implements CodeProcessor<JavaClass> {
 
 			// iterate the model fields (e.g. firstName, lastName... in Person)
 			for (JavaField field : clazz.getFields()) {
+				field.getMetadata().clear();
+
 				// the field name, e.g. firstName
 				String fieldName = field.getName().getText();
 
@@ -103,6 +105,7 @@ public class BuilderGenerator implements CodeProcessor<JavaClass> {
 
 			// finally, generated the builder source code (e.g. PersonBuilder.java)
 			// if inDebugMode was set to true, the JAnnocessor UI will be displayed
+			clazz.getParent().getName().appendPart("builder");
 			context.generateCode(clazz, inDebugMode);
 		}
 	}
