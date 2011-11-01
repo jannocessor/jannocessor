@@ -39,7 +39,11 @@ public class RenderPreviewUtil {
 		classs.getFields().add(New.field(Fields.PRIVATE, String.class, "prvo"));
 		classs.getFields().add(New.field(Fields.PRIVATE, int.class, "vtoro"));
 
-		RenderRegister renderRegister = new RenderRegister();
+		RenderRegister renderRegister = new RenderRegister() {
+			@Override
+			public void refresh() throws JannocessorException {
+			}
+		};
 		renderRegister.register(attr);
 
 		Configurator configurator = Mockito.mock(Configurator.class);
@@ -47,8 +51,7 @@ public class RenderPreviewUtil {
 
 		JavaRepresenter representer = Mockito.mock(JavaRepresenter.class);
 
-		RenderPreview.showDialog(null, renderRegister, configurator,
-				representer);
+		RenderPreview.showDialog(null, renderRegister, configurator, representer);
 	}
 
 }

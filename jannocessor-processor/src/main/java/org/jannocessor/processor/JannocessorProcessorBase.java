@@ -77,7 +77,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected List<String> contents = new ArrayList<String>();
 	protected Problems problems = new Problems();
 	protected JannocessorEngine engine;
-	protected RenderRegister renderRegister = new RenderRegister();
+	protected RenderRegister renderRegister;
 	private Messager messager;
 	private String projectPath;
 
@@ -93,9 +93,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	}
 
 	private Injector createInjector() {
-		return Guice.createInjector(new ProcessorModule(options),
-				new ConfigurationServiceModule(), new ImportsServiceModule(),
-				new IOServiceModule(), new RulesServiceModule(),
+		return Guice.createInjector(new ProcessorModule(options), new ConfigurationServiceModule(),
+				new ImportsServiceModule(), new IOServiceModule(), new RulesServiceModule(),
 				new TemplateServiceModule(), new SplitterServiceModule(),
 				new RepresentationServiceModule());
 	}
@@ -153,8 +152,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 			engine = injector.getInstance(JannocessorEngine.class);
 			engine.configure(engine.getTemplatesPath(), true);
 
-			processorsConfig = new ProcessorsConfiguration(
-					engine.getProcessorsConfiguration());
+			processorsConfig = new ProcessorsConfiguration(engine.getProcessorsConfiguration());
 
 			showConfiguration();
 
@@ -173,8 +171,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	private void processOptions() throws JannocessorException {
 		logger.info("Options:");
-		Set<Entry<String, String>> entries = options.getAllProperties()
-				.entrySet();
+		Set<Entry<String, String>> entries = options.getAllProperties().entrySet();
 		for (Entry<String, String> entry : entries) {
 			logger.info("- Option: {} = '{}'", entry.getKey(), entry.getValue());
 			processOption(entry.getKey(), entry.getValue());
@@ -200,12 +197,10 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		}
 	}
 
-	protected abstract Set<String> retrieveSupportedAnnotations()
-			throws JannocessorException;
+	protected abstract Set<String> retrieveSupportedAnnotations() throws JannocessorException;
 
 	@Override
-	public boolean process(Set<? extends TypeElement> annotations,
-			RoundEnvironment env) {
+	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment env) {
 		logger.info("Entering annotation processor...");
 		if (valid) {
 			if (!env.processingOver()) {
@@ -243,8 +238,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		for (Problem warning : problems.getWarnings()) {
 			if (warning.getElement() instanceof SourceHolder) {
 				SourceHolder sourceHolder = (SourceHolder) warning.getElement();
-				warning(warning.getMessage(),
-						sourceHolder.retrieveSourceElement());
+				warning(warning.getMessage(), sourceHolder.retrieveSourceElement());
 			} else {
 				throw new IllegalStateException("Expected source holder");
 			}
@@ -261,11 +255,10 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		}
 	}
 
-	protected void writeToFile(Location location, String pkg, String filename,
-			String text) throws JannocessorException {
+	protected void writeToFile(Location location, String pkg, String filename, String text)
+			throws JannocessorException {
 		String info = fileInfo(location, pkg, filename);
-		logger.debug("Writing text ({} characters) to file: {}", text.length(),
-				info);
+		logger.debug("Writing text ({} characters) to file: {}", text.length(), info);
 
 		FileObject fileRes;
 		Writer writer = null;
@@ -281,16 +274,14 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 				try {
 					writer.close();
 				} catch (IOException e) {
-					throw new JannocessorException("Couldn't close file: "
-							+ info, e);
+					throw new JannocessorException("Couldn't close file: " + info, e);
 				}
 			}
 		}
 	}
 
-	protected abstract void processAnnotations(
-			Set<? extends TypeElement> annotations, RoundEnvironment env)
-			throws JannocessorException;
+	protected abstract void processAnnotations(Set<? extends TypeElement> annotations,
+			RoundEnvironment env) throws JannocessorException;
 
 	protected String fileInfo(Location location, String pkg, String filename) {
 		return String.format("%s/%s", pkg, filename);
@@ -308,8 +299,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		if (projectPath == null) {
 			String path;
 			try {
-				FileObject file = filer.createResource(
-						StandardLocation.SOURCE_OUTPUT, "", "foo.bar");
+				FileObject file = filer.createResource(StandardLocation.SOURCE_OUTPUT, "",
+						"foo.bar");
 				path = file.toUri().getPath();
 			} catch (Exception e1) {
 				throw new RuntimeException("Cannot calculate project path!", e1);
@@ -329,8 +320,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		}
 
 		if (pos < 0) {
-			throw new RuntimeException(
-					"Cannot find 'src' or 'target' folder on path: " + path);
+			throw new RuntimeException("Cannot find 'src' or 'target' folder on path: " + path);
 		}
 
 		String result = path.substring(0, pos);

@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class RenderRegister {
+import org.jannocessor.JannocessorException;
+
+public abstract class RenderRegister {
 
 	private final List<RenderData> renderings = new ArrayList<RenderData>();
 
@@ -31,4 +33,7 @@ public class RenderRegister {
 	public List<RenderData> getRenderings() {
 		return renderings;
 	}
+
+	public abstract void refresh() throws JannocessorException;
+
 }

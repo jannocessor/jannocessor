@@ -16,9 +16,17 @@
 
 package org.jannocessor.util;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.jannocessor.JannocessorException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Jannocessor {
+
+	private static final Logger CLASS_LOADER_LOGGER = LoggerFactory.getLogger("CLASS");
 
 	public static JannocessorException error(String message) {
 		return new JannocessorException(message);
@@ -26,6 +34,24 @@ public class Jannocessor {
 
 	public static JannocessorException error(String message, Exception cause) {
 		return new JannocessorException(message, cause);
+	}
+
+	public static ClassLoader createClassLoader(List<String> classNames) {
+		ClassLoader parentClassLoader = JannocessorClassLoader.class.getClassLoader();
+		return new JannocessorClassLoader(parentClassLoader, classNames, CLASS_LOADER_LOGGER);
+	}
+
+	public static Class<?> reloadClass(String classname, Collection<String> additionalClassnames) {
+		List<String> classnames = new ArrayList<String>();
+		classnames.add(classname);
+		classnames.addAll(additionalClassnames);
+
+		ClassLoader classLoader = Jannocessor.createClassLoader(classnames);
+		try {
+			return classLoader.loadClass(classname);
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Hot swap failed!", e);
+		}
 	}
 
 }

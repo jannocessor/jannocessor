@@ -17,7 +17,6 @@
 package org.jannocessor.processor;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -38,23 +37,31 @@ import org.jannocessor.adapter.AdapterFactory;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.context.RenderData;
+import org.jannocessor.context.RenderRegister;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.processor.context.CodeProcessor;
 import org.jannocessor.processor.context.ProcessingConfiguration;
 import org.jannocessor.processor.context.ProcessingContext;
-import org.jannocessor.processor.context.Root;
+import org.jannocessor.processor.context.ProcessorsConfiguration;
 import org.jannocessor.ui.RenderPreview;
+import org.jannocessor.util.Jannocessor;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class JannocessorProcessor extends JannocessorProcessorBase {
 
 	@Override
-	protected void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment env)
-			throws JannocessorException {
-		// prepare the facts
-		ProcessingContext context = createProcessingContext();
+	protected void processAnnotations(final Set<? extends TypeElement> annotations,
+			final RoundEnvironment env) throws JannocessorException {
 
-		processElements(annotations, env, context);
+		renderRegister = new RenderRegister() {
+			@Override
+			public void refresh() throws JannocessorException {
+				getRenderings().clear();
+				processElements(annotations, env, createProcessingContext());
+			}
+		};
+
+		renderRegister.refresh();
 
 		/******* RULES ENGINE IS CURRENTLY DISABLED FOR SIMPLICITY REASONS *******/
 
@@ -129,7 +136,6 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		Map<String, Object> globals = new HashMap<String, Object>();
 
 		ProcessingContext context = createProcessingContext();
-
 		globals.put("context", context);
 
 		return globals;
@@ -148,23 +154,35 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		context.setFiler(filer);
 		context.setProjectPath(getProjectPath());
 		context.setRenderer(renderRegister);
+
 		return context;
 	}
 
 	private void processElements(Set<? extends TypeElement> annotations, RoundEnvironment env,
 			ProcessingContext context) throws JannocessorException {
-		List<Object> facts = new ArrayList<Object>();
+		// List<Object> facts = new ArrayList<Object>();
+		logger.info("Starting processing iteration...");
 
 		Map<String, Set<? extends Element>> annotated = getAnnotatedElements(annotations, env);
 
-		// construct "root" facts
-		Set<? extends Element> roots = env.getRootElements();
-		for (Element rootElement : roots) {
-			// add new "root" wrapper fact for each root element
-			Root root = new Root(AdapterFactory.getElementModel(rootElement, JavaElement.class,
-					elementUtils, typeUtils));
-			facts.add(root);
+		Set<String> processorClasses = new HashSet<String>();
+		for (ProcessingConfiguration config : processorsConfig.getConfiguration()) {
+			processorClasses.add(config.getProcessor().getClass().getCanonicalName());
 		}
+
+		Class<?> hotConfig = Jannocessor.reloadClass("org.jannocessor.config.Processors",
+				processorClasses);
+		processorsConfig = new ProcessorsConfiguration(hotConfig);
+
+		// construct "root" facts
+		// Set<? extends Element> roots = env.getRootElements();
+		// for (Element rootElement : roots) {
+		// // add new "root" wrapper fact for each root element
+		// Root root = new Root(AdapterFactory.getElementModel(rootElement,
+		// JavaElement.class,
+		// elementUtils, typeUtils));
+		// facts.add(root);
+		// }
 
 		for (ProcessingConfiguration config : processorsConfig.getConfiguration()) {
 			HashSet<Element> elements = new HashSet<Element>();
@@ -193,6 +211,8 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 			invokeProcessor(config.getProcessor(), list, context);
 		}
+
+		logger.info("Finished processing iteration.");
 	}
 
 	private Map<String, Set<? extends Element>> getAnnotatedElements(

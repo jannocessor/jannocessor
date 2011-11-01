@@ -172,6 +172,7 @@ public class RenderPreviewDialog extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_F5) {
 					e.consume();
+					processElements();
 					refresh();
 				} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 					e.consume();
@@ -201,6 +202,14 @@ public class RenderPreviewDialog extends JDialog {
 
 		input.requestFocus();
 		logger.debug("Initialized UI.");
+	}
+
+	protected void processElements() {
+		try {
+			renderRegister.refresh();
+		} catch (JannocessorException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	private JComboBox createCombo() {
