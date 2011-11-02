@@ -16,6 +16,9 @@
 
 package org.jannocessor.model.util;
 
+import org.jannocessor.collection.Power;
+import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.modifier.MethodModifiers;
 import org.jannocessor.model.modifier.value.MethodModifierValue;
@@ -493,6 +496,17 @@ public class Methods {
 		setter.getBody().setHardcoded("this.%s = %s;", fieldName, fieldName);
 
 		return setter;
+	}
+
+	public static JavaMethod delegator(JavaMethod method, JavaField delegate) {
+		JavaMethod delegator = method.copy();
+
+		delegator.getModifiers().assign(Methods.PUBLIC);
+		PowerList<Name> args = method.getParameters().getTransformed(Get.NAME);
+		delegator.getBody().setMacroName("delegator");
+		delegator.getBody().setAttributes(Power.map("delegate", delegate, "args", args));
+
+		return delegator;
 	}
 
 }
