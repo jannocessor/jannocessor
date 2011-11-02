@@ -25,6 +25,7 @@ import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -96,6 +97,11 @@ public class JavaFieldProxy extends AbstractJavaVariableProxy implements JavaFie
         }
 
         return data.getMetadata();
+    }
+
+	@Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

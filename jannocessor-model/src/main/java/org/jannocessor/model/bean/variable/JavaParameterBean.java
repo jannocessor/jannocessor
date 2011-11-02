@@ -25,10 +25,8 @@ import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaParameter;
 
-public class JavaParameterBean extends JavaParameterData implements
-		JavaParameter {
+public class JavaParameterBean extends JavaParameterData implements JavaParameter {
 
-	
 	private static final long serialVersionUID = -726399585570941549L;
 
 	public JavaParameterBean(JavaType type, String name, boolean isFinal) {

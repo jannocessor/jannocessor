@@ -48,6 +48,13 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 		this.macroName = macroName;
 	}
 
+	private void clean() {
+		this.hardcoded = null;
+		this.template = null;
+		this.templateName = null;
+		this.macroName = null;
+	}
+
 	@Override
 	public String getHardcoded() {
 		return hardcoded;
@@ -55,6 +62,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 
 	@Override
 	public void setHardcoded(String hardcoded, Object... formatArgs) {
+		clean();
 		if (formatArgs.length > 0) {
 			this.hardcoded = String.format(hardcoded, (Object[]) formatArgs);
 		} else {
@@ -69,6 +77,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 
 	@Override
 	public void setTemplate(String template) {
+		clean();
 		this.template = template;
 	}
 
@@ -79,6 +88,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 
 	@Override
 	public void setTemplateName(String templateName) {
+		clean();
 		this.templateName = templateName;
 	}
 
@@ -89,6 +99,7 @@ public class SourceCodeBean implements SourceCode, ParentedElement {
 
 	@Override
 	public void setMacroName(String macroName) {
+		clean();
 		this.macroName = macroName;
 	}
 

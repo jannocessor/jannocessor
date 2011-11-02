@@ -23,6 +23,7 @@ import org.jannocessor.data.JavaParameterData;
 import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
+import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -79,6 +80,11 @@ public class JavaParameterProxy extends AbstractJavaVariableProxy implements Jav
         }
 
         return data.getMetadata();
+    }
+
+	@Override
+    public AbstractJavaExecutable getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

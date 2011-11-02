@@ -24,6 +24,7 @@ import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -72,6 +73,11 @@ public class JavaFieldData extends AbstractJavaVariableData implements JavaField
 
     public void setMetadata(PowerList<JavaMetadata> value) {
         this.metadata = value;
+    }
+
+    @Override
+    public AbstractJavaStructure getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

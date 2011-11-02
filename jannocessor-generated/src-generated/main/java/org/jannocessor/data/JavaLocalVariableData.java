@@ -20,6 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.variable.JavaLocalVariable;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -48,6 +49,11 @@ public class JavaLocalVariableData extends AbstractJavaVariableData implements J
 
     public void setFinal(Boolean value) {
         this._isFinal = value;
+    }
+
+    @Override
+    public AbstractJavaExecutable getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

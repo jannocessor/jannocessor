@@ -20,6 +20,7 @@ import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.structure.AbstractJavaEnum;
 
 @DomainModel
 public interface JavaEnumConstant extends AbstractJavaVariable {
@@ -29,5 +30,8 @@ public interface JavaEnumConstant extends AbstractJavaVariable {
 	JavaEnumConstant copy();
 
 	PowerList<JavaExpression> getValues();
+
+	@Override
+	AbstractJavaEnum getParent();
 
 }

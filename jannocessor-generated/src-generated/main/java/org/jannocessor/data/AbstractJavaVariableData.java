@@ -20,7 +20,7 @@ import javax.annotation.Generated;
 import org.jannocessor.data.JavaElementData;
 import org.jannocessor.model.variable.AbstractJavaVariable;
 import org.jannocessor.model.util.ModelUtils;
-import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -41,7 +41,7 @@ public class AbstractJavaVariableData extends JavaElementData implements Abstrac
     }
 
     @Override
-    public AbstractJavaStructure getParent() {
+    public JavaElement getParent() {
         return super.retrieveParent();
     }
 

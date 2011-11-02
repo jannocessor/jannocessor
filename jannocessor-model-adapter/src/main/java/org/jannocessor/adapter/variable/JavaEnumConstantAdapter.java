@@ -24,11 +24,12 @@ import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.structure.AbstractJavaEnum;
 import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaEnumConstant;
 
-public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
-		implements JavaEnumConstant {
+public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter implements
+		JavaEnumConstant {
 
 	private static final long serialVersionUID = 436532312737957029L;
 
@@ -37,8 +38,8 @@ public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
 
 	private final PowerList<JavaExpression> values = Power.list();
 
-	public JavaEnumConstantAdapter(VariableElement enumConstant,
-			Elements elementUtils, Types typeUtils) {
+	public JavaEnumConstantAdapter(VariableElement enumConstant, Elements elementUtils,
+			Types typeUtils) {
 		super(enumConstant, elementUtils, typeUtils);
 
 		this.enumConstant = enumConstant;
@@ -62,6 +63,11 @@ public final class JavaEnumConstantAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public JavaEnumConstant copy() {
 		throw calculatedMethodException();
+	}
+
+	@Override
+	public AbstractJavaEnum getParent() {
+		return retrieveParent();
 	}
 
 }

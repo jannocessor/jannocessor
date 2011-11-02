@@ -21,6 +21,7 @@ import org.jannocessor.annotation.DomainModel;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.modifier.FieldModifiers;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaMetadata;
 
 @DomainModel
@@ -35,5 +36,8 @@ public interface JavaField extends AbstractJavaVariable {
 	JavaExpression getValue();
 
 	PowerList<JavaMetadata> getMetadata();
+
+	@Override
+	AbstractJavaStructure getParent();
 
 }

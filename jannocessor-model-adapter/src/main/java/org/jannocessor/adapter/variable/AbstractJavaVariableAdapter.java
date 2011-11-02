@@ -21,8 +21,8 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.adapter.JavaElementAdapter;
+import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.code.JavaExpression;
-import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.AbstractJavaVariable;
 
@@ -32,8 +32,8 @@ abstract class AbstractJavaVariableAdapter extends JavaElementAdapter implements
 	private static final long serialVersionUID = 837222250253517508L;
 	private final VariableElement variable;
 
-	public AbstractJavaVariableAdapter(VariableElement variable,
-			Elements elementUtils, Types typeUtils) {
+	public AbstractJavaVariableAdapter(VariableElement variable, Elements elementUtils,
+			Types typeUtils) {
 		super(variable, elementUtils, typeUtils);
 		this.variable = variable;
 	}
@@ -58,7 +58,7 @@ abstract class AbstractJavaVariableAdapter extends JavaElementAdapter implements
 	}
 
 	@Override
-	public AbstractJavaStructure getParent() {
+	public JavaElement getParent() {
 		return super.retrieveParent();
 	}
 

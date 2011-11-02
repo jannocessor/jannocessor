@@ -23,17 +23,18 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
+import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaLocalVariable;
 
-public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
-		implements JavaLocalVariable {
+public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter implements
+		JavaLocalVariable {
 
 	private static final long serialVersionUID = -328115801660017048L;
 	private final VariableElement localVariable;
 
-	public JavaLocalVariableAdapter(VariableElement localVariable,
-			Elements elementUtils, Types typeUtils) {
+	public JavaLocalVariableAdapter(VariableElement localVariable, Elements elementUtils,
+			Types typeUtils) {
 		super(localVariable, elementUtils, typeUtils);
 
 		this.localVariable = localVariable;
@@ -57,6 +58,11 @@ public final class JavaLocalVariableAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public JavaLocalVariable copy() {
 		throw calculatedMethodException();
+	}
+
+	@Override
+	public AbstractJavaExecutable getParent() {
+		return retrieveParent();
 	}
 
 }

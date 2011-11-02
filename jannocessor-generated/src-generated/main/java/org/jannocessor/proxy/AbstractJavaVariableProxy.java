@@ -21,7 +21,7 @@ import org.jannocessor.proxy.JavaElementProxy;
 import org.jannocessor.model.variable.AbstractJavaVariable;
 import org.jannocessor.data.AbstractJavaVariableData;
 import org.jannocessor.model.util.ModelUtils;
-import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.jannocessor.model.JavaElement;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -50,7 +50,7 @@ public class AbstractJavaVariableProxy extends JavaElementProxy implements Abstr
     }
 
 	@Override
-    public AbstractJavaStructure getParent() {
+    public JavaElement getParent() {
         return super.retrieveParent();
     }
 

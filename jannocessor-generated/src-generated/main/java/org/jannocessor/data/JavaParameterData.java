@@ -22,6 +22,7 @@ import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.ModelUtils;
+import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -60,6 +61,11 @@ public class JavaParameterData extends AbstractJavaVariableData implements JavaP
 
     public void setMetadata(PowerList<JavaMetadata> value) {
         this.metadata = value;
+    }
+
+    @Override
+    public AbstractJavaExecutable getParent() {
+        return super.retrieveParent();
     }
 
 	@Override

@@ -18,6 +18,7 @@ package org.jannocessor.model.variable;
 
 import org.jannocessor.annotation.Calculated;
 import org.jannocessor.annotation.DomainModel;
+import org.jannocessor.model.executable.AbstractJavaExecutable;
 
 @DomainModel
 public interface JavaLocalVariable extends AbstractJavaVariable {
@@ -27,5 +28,8 @@ public interface JavaLocalVariable extends AbstractJavaVariable {
 	JavaLocalVariable copy();
 
 	public Boolean isFinal();
+
+	@Override
+	AbstractJavaExecutable getParent();
 
 }

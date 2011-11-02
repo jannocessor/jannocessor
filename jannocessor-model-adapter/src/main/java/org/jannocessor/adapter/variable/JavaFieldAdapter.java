@@ -29,12 +29,12 @@ import org.jannocessor.model.bean.modifier.FieldModifiersBean;
 import org.jannocessor.model.code.JavaExpression;
 import org.jannocessor.model.modifier.FieldModifiers;
 import org.jannocessor.model.modifier.value.FieldModifierValue;
+import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaField;
 
-public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
-		implements JavaField {
+public final class JavaFieldAdapter extends AbstractJavaVariableAdapter implements JavaField {
 
 	private static final long serialVersionUID = 197580621670549990L;
 
@@ -42,8 +42,7 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 
 	private final JavaExpression value;
 
-	public JavaFieldAdapter(VariableElement field, Elements elementUtils,
-			Types typeUtils) {
+	public JavaFieldAdapter(VariableElement field, Elements elementUtils, Types typeUtils) {
 		super(field, elementUtils, typeUtils);
 
 		this.field = field;
@@ -53,8 +52,7 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public FieldModifiers getModifiers() {
 		Set<Modifier> modifiers = field.getModifiers();
-		final FieldModifierValue[] values = new FieldModifierValue[modifiers
-				.size()];
+		final FieldModifierValue[] values = new FieldModifierValue[modifiers.size()];
 
 		int index = 0;
 		for (Modifier modifier : modifiers) {
@@ -87,6 +85,11 @@ public final class JavaFieldAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public JavaField copy() {
 		throw calculatedMethodException();
+	}
+
+	@Override
+	public AbstractJavaStructure getParent() {
+		return retrieveParent();
 	}
 
 }

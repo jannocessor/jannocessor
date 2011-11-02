@@ -23,6 +23,7 @@ import javax.lang.model.util.Types;
 
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.CodeNode;
+import org.jannocessor.model.executable.AbstractJavaExecutable;
 import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.model.variable.JavaParameter;
@@ -63,6 +64,11 @@ public final class JavaParameterAdapter extends AbstractJavaVariableAdapter
 	@Override
 	public JavaParameter copy() {
 		throw calculatedMethodException();
+	}
+
+	@Override
+	public AbstractJavaExecutable getParent() {
+		return retrieveParent();
 	}
 
 }

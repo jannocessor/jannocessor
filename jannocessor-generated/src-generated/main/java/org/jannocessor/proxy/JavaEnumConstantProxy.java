@@ -23,6 +23,7 @@ import org.jannocessor.data.JavaEnumConstantData;
 import org.jannocessor.model.util.ModelUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.code.JavaExpression;
+import org.jannocessor.model.structure.AbstractJavaEnum;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.jannocessor.util.TypeSpecificStyle;
@@ -64,6 +65,11 @@ public class JavaEnumConstantProxy extends AbstractJavaVariableProxy implements 
         }
 
         return data.getValues();
+    }
+
+	@Override
+    public AbstractJavaEnum getParent() {
+        return super.retrieveParent();
     }
 
 	@Override
