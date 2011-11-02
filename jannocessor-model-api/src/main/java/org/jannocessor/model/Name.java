@@ -41,6 +41,8 @@ public interface Name extends Serializable {
 
 	String getCapitalized();
 
+	String getUncapitalized();
+
 	boolean containsParts(String... parts);
 
 }

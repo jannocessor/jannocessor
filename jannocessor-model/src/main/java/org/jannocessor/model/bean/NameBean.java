@@ -103,8 +103,7 @@ public class NameBean implements Name {
 		}
 
 		if (parts.isEmpty()) {
-			throw new IllegalStateException(
-					"At least 1 part of the name must not be deleted!");
+			throw new IllegalStateException("At least 1 part of the name must not be deleted!");
 		}
 
 		if (deletedStart != null && getNameCase().equals(NameCase.CAMELCASE)) {
@@ -134,8 +133,7 @@ public class NameBean implements Name {
 
 		position = translateNegativePosition(position, parts.size());
 
-		if (getNameCase().equals(NameCase.CAMELCASE) && !parts.isEmpty()
-				&& (position == 0)) {
+		if (getNameCase().equals(NameCase.CAMELCASE) && !parts.isEmpty() && (position == 0)) {
 			parts.set(0, StringUtils.capitalize(parts.get(0)));
 		}
 
@@ -240,6 +238,11 @@ public class NameBean implements Name {
 	}
 
 	@Override
+	public String getUncapitalized() {
+		return StringUtils.uncapitalize(getText());
+	}
+
+	@Override
 	public void assign(String name) {
 		this.name = name;
 	}
@@ -256,8 +259,7 @@ public class NameBean implements Name {
 			return false;
 		}
 		Name other = (Name) obj;
-		return new EqualsBuilder().append(getText(), other.getText())
-				.isEquals();
+		return new EqualsBuilder().append(getText(), other.getText()).isEquals();
 	}
 
 	@Override
