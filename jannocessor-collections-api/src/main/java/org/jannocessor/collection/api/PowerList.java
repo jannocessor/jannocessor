@@ -44,7 +44,7 @@ public interface PowerList<E> extends List<E>, PowerCollection<E> {
 
 	PowerList<E> getUnion(Collection<E> list);
 
-	<T> PowerList<T> getTransformed(Transformation<E, T> transformation);
+	<T> PowerList<T> getTransformed(Transformation<? super E, T> transformation);
 
 	PowerList<E> each(Operation<? super E> operation);
 

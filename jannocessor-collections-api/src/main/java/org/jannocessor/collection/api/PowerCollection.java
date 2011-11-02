@@ -42,12 +42,14 @@ public interface PowerCollection<E> extends Collection<E> {
 
 	PowerCollection<E> getUnion(Collection<E> list);
 
-	<T> PowerCollection<T> getTransformed(Transformation<E, T> transformation);
+	<T> PowerCollection<T> getTransformed(Transformation<? super E, T> transformation);
 
 	PowerCollection<E> each(Operation<? super E> operation);
 
 	void assign(Collection<? extends E> collection);
 
 	void assign(E... elements);
+
+	String join(String separator);
 
 }

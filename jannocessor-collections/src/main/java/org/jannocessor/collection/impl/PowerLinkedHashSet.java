@@ -23,6 +23,7 @@ import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.collections.Transformer;
+import org.apache.commons.lang.StringUtils;
 import org.jannocessor.collection.api.PowerSet;
 import org.jannocessor.collection.filter.api.Criteria;
 import org.jannocessor.collection.filter.impl.PredicateAdapter;
@@ -88,7 +89,7 @@ public class PowerLinkedHashSet<E> extends LinkedHashSet<E> implements
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public <T> PowerSet<T> getTransformed(
-			final Transformation<E, T> transformation) {
+			final Transformation<? super E, T> transformation) {
 		PowerSet copy = copy();
 		CollectionUtils.transform(copy, new Transformer() {
 			public Object transform(Object input) {
@@ -132,6 +133,11 @@ public class PowerLinkedHashSet<E> extends LinkedHashSet<E> implements
 	public void assign(E... elements) {
 		clear();
 		addAll(elements);
+	}
+
+	@Override
+	public String join(String separator) {
+		return StringUtils.join(this, separator);
 	}
 
 }

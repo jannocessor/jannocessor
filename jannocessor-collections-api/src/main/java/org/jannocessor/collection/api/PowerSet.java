@@ -43,7 +43,7 @@ public interface PowerSet<E> extends Set<E>, PowerCollection<E> {
 
 	PowerSet<E> getUnion(Collection<E> list);
 
-	<T> PowerSet<T> getTransformed(Transformation<E, T> transformation);
+	<T> PowerSet<T> getTransformed(Transformation<? super E, T> transformation);
 
 	PowerSet<E> each(Operation<? super E> operation);
 

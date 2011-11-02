@@ -24,6 +24,7 @@ import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.collections.Transformer;
+import org.apache.commons.lang.StringUtils;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.collection.api.event.CollectionOperationListener;
 import org.jannocessor.collection.event.impl.DefaultCollectionOperationEvent;
@@ -99,8 +100,7 @@ public class PowerArrayList<E> extends ArrayList<E> implements PowerList<E> {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public <T> PowerList<T> getTransformed(
-			final Transformation<E, T> transformation) {
+	public <T> PowerList<T> getTransformed(final Transformation<? super E, T> transformation) {
 		PowerList copy = copy();
 		CollectionUtils.transform(copy, new Transformer() {
 			public Object transform(Object input) {
@@ -219,22 +219,20 @@ public class PowerArrayList<E> extends ArrayList<E> implements PowerList<E> {
 	}
 
 	@Override
-	public void addCollectionOperationListener(
-			CollectionOperationListener<E> listener) {
+	public void addCollectionOperationListener(CollectionOperationListener<E> listener) {
 		listeners.add(listener);
 	}
 
 	@Override
-	public void removeCollectionOperationListener(
-			CollectionOperationListener<E> listener) {
+	public void removeCollectionOperationListener(CollectionOperationListener<E> listener) {
 		listeners.remove(listener);
 	}
 
 	private void fireItemAdded(E item) {
 		beforeItemAddedNotification(item);
 		for (CollectionOperationListener<E> listener : listeners) {
-			DefaultCollectionOperationEvent<E> event = new DefaultCollectionOperationEvent<E>(
-					this, item);
+			DefaultCollectionOperationEvent<E> event = new DefaultCollectionOperationEvent<E>(this,
+					item);
 			listener.itemAdded(event);
 		}
 		afterItemAddedNotification(item);
@@ -249,8 +247,8 @@ public class PowerArrayList<E> extends ArrayList<E> implements PowerList<E> {
 	private void fireItemRemoved(E item) {
 		beforeItemRemovedNotification(item);
 		for (CollectionOperationListener<E> listener : listeners) {
-			DefaultCollectionOperationEvent<E> event = new DefaultCollectionOperationEvent<E>(
-					this, item);
+			DefaultCollectionOperationEvent<E> event = new DefaultCollectionOperationEvent<E>(this,
+					item);
 			listener.itemRemoved(event);
 		}
 		afterItemRemovedNotification(item);
@@ -272,6 +270,11 @@ public class PowerArrayList<E> extends ArrayList<E> implements PowerList<E> {
 	public void assign(E... elements) {
 		clear();
 		addAll(elements);
+	}
+
+	@Override
+	public String join(String separator) {
+		return StringUtils.join(this, separator);
 	}
 
 }
