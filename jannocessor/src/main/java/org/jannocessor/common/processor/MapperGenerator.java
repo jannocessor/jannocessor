@@ -17,10 +17,8 @@
 package org.jannocessor.common.processor;
 
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.common.annotation.DtoIgnore;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Classes;
@@ -44,8 +42,6 @@ public class MapperGenerator implements CodeProcessor<JavaClass> {
 	 * generating a mapper class for each of them.
 	 */
 	public void process(PowerList<JavaClass> classes, ProcessingContext context) {
-		final JavaMetadata ignore = New.metadata(DtoIgnore.class);
-
 		for (JavaClass model : classes) {
 			JavaClass mapper = New.classs(Classes.PUBLIC, model.getName() + "Mapper");
 

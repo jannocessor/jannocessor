@@ -17,10 +17,8 @@
 package org.jannocessor.common.processor;
 
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.common.annotation.DtoIgnore;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Methods;
@@ -42,22 +40,18 @@ public class DtoGenerator implements CodeProcessor<JavaClass> {
 	 * generating a Domain Transfer Object (DTO) class for each of them.
 	 */
 	public void process(PowerList<JavaClass> classes, ProcessingContext context) {
-		final JavaMetadata ignore = New.metadata(DtoIgnore.class);
-
 		for (JavaClass model : classes) {
 			JavaClass dto = New.classs(Classes.PUBLIC, model.getName() + "Dto");
 
 			// iterate the model fields (e.g. firstName, lastName... in Person)
 			for (JavaField field : model.getFields()) {
-				if (!field.getMetadata().contains(ignore)) {
-					JavaMethod getter = Methods.getter(field);
-					JavaMethod setter = Methods.setter(field);
+				JavaMethod getter = Methods.getter(field);
+				JavaMethod setter = Methods.setter(field);
 
-					dto.getMethods().addAll(getter, setter);
+				dto.getMethods().addAll(getter, setter);
 
-					field.getMetadata().clear();
-					dto.getFields().add(field);
-				}
+				field.getMetadata().clear();
+				dto.getFields().add(field);
 			}
 
 			dto.getMetadata().add(Annotations.generated("JAnnocessor"));
