@@ -23,8 +23,10 @@ import org.jannocessor.bootstrapped.annotation.BeanModel;
 import org.jannocessor.bootstrapped.annotation.MyAnnotation;
 import org.jannocessor.common.annotation.BuilderModel;
 import org.jannocessor.common.annotation.DtoModel;
+import org.jannocessor.common.annotation.GenerateFacade;
 import org.jannocessor.common.processor.BuilderGenerator;
 import org.jannocessor.common.processor.DtoGenerator;
+import org.jannocessor.common.processor.FacadeGenerator;
 import org.jannocessor.common.processor.MapperGenerator;
 import org.jannocessor.experiment.processor.ExperimentProcessor;
 import org.jannocessor.experiment.processor.MirrorProcessor;
@@ -74,6 +76,12 @@ public class Processors {
 	@Types(JavaClass.class)
 	public CodeProcessor<JavaClass> generateMapper() {
 		return new MapperGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(GenerateFacade.class)
+	@Types(JavaInterface.class)
+	public CodeProcessor<JavaInterface> generateFacade() {
+		return new FacadeGenerator();
 	}
 
 }
