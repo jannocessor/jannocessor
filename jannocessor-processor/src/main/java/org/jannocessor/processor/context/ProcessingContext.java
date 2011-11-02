@@ -27,6 +27,7 @@ import javax.lang.model.util.Types;
 import org.jannocessor.JannocessorException;
 import org.jannocessor.context.RenderRegister;
 import org.jannocessor.engine.JannocessorEngine;
+import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.util.ValidationUtils;
 import org.slf4j.Logger;
@@ -143,14 +144,23 @@ public class ProcessingContext {
 		render(attributes, debug);
 	}
 
+	public void generateInfo(JavaCodeModel model, boolean debug) {
+		JavaCodeModel clone = model.copy();
+		clone.getCode().setMacroName("info");
+
+		Map<String, Object> attributes = new HashMap<String, Object>();
+		attributes.put("self", clone);
+
+		render(attributes, debug);
+	}
+
 	public void render(Map<String, Object> attributes, boolean debug) {
 		if (debug) {
 			renderer.register(attributes);
 		}
 
 		try {
-			String content = engine.renderMacro("main", attributes,
-					new String[] {});
+			String content = engine.renderMacro("main", attributes, new String[] {});
 			getContents().add(content);
 		} catch (JannocessorException e) {
 			throw new RuntimeException("Exception occured while rendering", e);

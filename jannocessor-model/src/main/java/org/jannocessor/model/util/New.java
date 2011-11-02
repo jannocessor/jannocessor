@@ -119,29 +119,22 @@ import org.jannocessor.model.variable.JavaParameter;
 
 public class New {
 
-	public static final PowerList<JavaParameter> NO_PARAMS = Power
-			.unmodifiableList();
+	public static final PowerList<JavaParameter> NO_PARAMS = Power.unmodifiableList();
 	public static final PowerList<JavaType> NO_TYPES = Power.unmodifiableList();
-	public static final PowerList<JavaTypeParameter> NO_TYPE_PARAMS = Power
-			.unmodifiableList();
-	public static final PowerList<JavaStaticInit> NO_STATIC_INITS = Power
-			.unmodifiableList();
-	public static final PowerList<JavaInstanceInit> NO_INSTANCE_INITS = Power
-			.unmodifiableList();
-	public static final PowerList<JavaNestedClass> NO_NESTED_CLASSES = Power
-			.unmodifiableList();
-	public static final PowerList<JavaNestedEnum> NO_NESTED_ENUMS = Power
-			.unmodifiableList();
+	public static final PowerList<JavaTypeParameter> NO_TYPE_PARAMS = Power.unmodifiableList();
+	public static final PowerList<JavaStaticInit> NO_STATIC_INITS = Power.unmodifiableList();
+	public static final PowerList<JavaInstanceInit> NO_INSTANCE_INITS = Power.unmodifiableList();
+	public static final PowerList<JavaNestedClass> NO_NESTED_CLASSES = Power.unmodifiableList();
+	public static final PowerList<JavaNestedEnum> NO_NESTED_ENUMS = Power.unmodifiableList();
 	public static final PowerList<JavaNestedInterface> NO_NESTED_INTERFACES = Power
 			.unmodifiableList();
 	public static final PowerList<JavaNestedAnnotation> NO_NESTED_ANNOTATIONS = Power
 			.unmodifiableList();
 	public static final List<JavaMethod> NO_METHODS = Power.unmodifiableList();
-	public static final List<JavaConstructor> NO_CONSTRUCTORS = Power
-			.unmodifiableList();
+	public static final List<JavaConstructor> NO_CONSTRUCTORS = Power.unmodifiableList();
 	public static final List<JavaField> NO_FIELDS = Power.unmodifiableList();
-	public static final List<JavaExpression> NO_EXPRESSIONS = Power
-			.unmodifiableList();
+	public static final List<JavaExpression> NO_EXPRESSIONS = Power.unmodifiableList();
+	private static final List<JavaEnumConstant> NO_ENUM_CONSTANTS = Power.unmodifiableList();
 
 	public static Name name(String name) {
 		return name != null ? new NameBean(name) : null;
@@ -165,33 +158,33 @@ public class New {
 		}
 	}
 
-	public static JavaField field(FieldModifiers modifiers, JavaType type,
-			String name, JavaExpression value) {
+	public static JavaField field(FieldModifiers modifiers, JavaType type, String name,
+			JavaExpression value) {
 		return new JavaFieldBean(modifiers, type, name(name), value);
 	}
 
-	public static JavaField field(FieldModifiers modifiers, Class<?> type,
-			String name, JavaExpression value) {
+	public static JavaField field(FieldModifiers modifiers, Class<?> type, String name,
+			JavaExpression value) {
 		return field(modifiers, type(type), name, value);
 	}
 
-	public static JavaField field(FieldModifiers modifiers, Class<?> type,
-			String name) {
+	public static JavaField field(FieldModifiers modifiers, Class<?> type, String name) {
 		return field(modifiers, type, name, expression());
 	}
 
-	public static JavaField field(FieldModifiers modifiers, JavaType type,
-			String name) {
+	public static JavaField field(FieldModifiers modifiers, JavaType type, String name) {
 		return field(modifiers, type, name, expression());
 	}
 
-	public static JavaParameter parameter(Class<?> clazz, String name,
-			boolean isFinal) {
+	public static JavaField field(JavaType type, String name) {
+		return field(Fields.PRIVATE, type, name);
+	}
+
+	public static JavaParameter parameter(Class<?> clazz, String name, boolean isFinal) {
 		return parameter(type(clazz), name, isFinal);
 	}
 
-	public static JavaParameter parameter(JavaType type, String name,
-			boolean isFinal) {
+	public static JavaParameter parameter(JavaType type, String name, boolean isFinal) {
 		return new JavaParameterBean(type, name, isFinal);
 	}
 
@@ -211,13 +204,11 @@ public class New {
 		return new JavaStaticInitBean(body);
 	}
 
-	public static JavaEnumConstant enumConstant(String name,
-			List<JavaExpression> values) {
+	public static JavaEnumConstant enumConstant(String name, List<JavaExpression> values) {
 		return new JavaEnumConstantBean(name, values);
 	}
 
-	public static JavaEnumConstant enumConstant(String name,
-			JavaExpression... values) {
+	public static JavaEnumConstant enumConstant(String name, JavaExpression... values) {
 		return enumConstant(name, Power.list(values));
 	}
 
@@ -225,23 +216,19 @@ public class New {
 		return enumConstant(name, NO_EXPRESSIONS);
 	}
 
-	public static JavaExceptionParameter exceptionParameter(JavaType type,
-			String name) {
+	public static JavaExceptionParameter exceptionParameter(JavaType type, String name) {
 		return new JavaExceptionParameterBean(type, name);
 	}
 
-	public static JavaExceptionParameter exceptionParameter(Class<?> type,
-			String name) {
+	public static JavaExceptionParameter exceptionParameter(Class<?> type, String name) {
 		return exceptionParameter(type(type), name);
 	}
 
-	public static JavaLocalVariable localVariable(JavaType type, String name,
-			boolean isFinal) {
+	public static JavaLocalVariable localVariable(JavaType type, String name, boolean isFinal) {
 		return new JavaLocalVariableBean(type, name, isFinal);
 	}
 
-	public static JavaLocalVariable localVariable(Class<?> clazz, String name,
-			boolean isFinal) {
+	public static JavaLocalVariable localVariable(Class<?> clazz, String name, boolean isFinal) {
 		return localVariable(type(clazz), name, isFinal);
 	}
 
@@ -257,8 +244,7 @@ public class New {
 		return new ClassModifiersBean(values);
 	}
 
-	public static InterfaceModifiers interfaceModifiers(
-			InterfaceModifierValue... values) {
+	public static InterfaceModifiers interfaceModifiers(InterfaceModifierValue... values) {
 		return new InterfaceModifiersBean(values);
 	}
 
@@ -266,8 +252,7 @@ public class New {
 		return new EnumModifiersBean(values);
 	}
 
-	public static AnnotationModifiers annotationModifiers(
-			AnnotationModifierValue... values) {
+	public static AnnotationModifiers annotationModifiers(AnnotationModifierValue... values) {
 		return new AnnotationModifiersBean(values);
 	}
 
@@ -275,8 +260,7 @@ public class New {
 		return new FieldModifiersBean(values);
 	}
 
-	public static NestedClassModifiers nestedClassModifiers(
-			NestedClassModifierValue... values) {
+	public static NestedClassModifiers nestedClassModifiers(NestedClassModifierValue... values) {
 		return new NestedClassModifiersBean(values);
 	}
 
@@ -290,8 +274,7 @@ public class New {
 		return new NestedInterfaceModifiersBean(values);
 	}
 
-	public static NestedEnumModifiers nestedEnumModifiers(
-			NestedEnumModifierValue... values) {
+	public static NestedEnumModifiers nestedEnumModifiers(NestedEnumModifierValue... values) {
 		return new NestedEnumModifiersBean(values);
 	}
 
@@ -299,8 +282,7 @@ public class New {
 		return new MethodModifiersBean(values);
 	}
 
-	public static ConstructorModifiers constructorModifiers(
-			ConstructorModifierValue... values) {
+	public static ConstructorModifiers constructorModifiers(ConstructorModifierValue... values) {
 		return new ConstructorModifiersBean(values);
 	}
 
@@ -322,8 +304,7 @@ public class New {
 		return new JavaTypeBean(canonicalName, JavaTypeKind.DECLARED);
 	}
 
-	public static JavaType type(String packageName, String simpleName,
-			JavaTypeKind kind) {
+	public static JavaType type(String packageName, String simpleName, JavaTypeKind kind) {
 		return new JavaTypeBean(packageName, simpleName, kind);
 	}
 
@@ -350,17 +331,14 @@ public class New {
 	}
 
 	public static JavaExecutableType executableType(JavaType returnType,
-			List<JavaType> parameterTypes, List<JavaType> thrownTypes,
-			List<JavaType> typeVariables) {
-		return new JavaExecutableTypeBean(returnType, parameterTypes,
-				thrownTypes, typeVariables);
+			List<JavaType> parameterTypes, List<JavaType> thrownTypes, List<JavaType> typeVariables) {
+		return new JavaExecutableTypeBean(returnType, parameterTypes, thrownTypes, typeVariables);
 	}
 
 	public static JavaExecutableType executableType(JavaType returnType,
 			List<JavaType> parameterTypes, List<JavaType> thrownTypes) {
 		List<JavaType> noTypeVariables = Power.list();
-		return executableType(returnType, parameterTypes, thrownTypes,
-				noTypeVariables);
+		return executableType(returnType, parameterTypes, thrownTypes, noTypeVariables);
 	}
 
 	public static JavaExecutableType executableType(JavaType returnType,
@@ -369,8 +347,7 @@ public class New {
 		return executableType(returnType, parameterTypes, noThrownTypes);
 	}
 
-	public static JavaExecutableType executableType(Class<?> returnType,
-			Class<?>... parameterTypes) {
+	public static JavaExecutableType executableType(Class<?> returnType, Class<?>... parameterTypes) {
 		return executableType(type(returnType), types(parameterTypes));
 	}
 
@@ -403,8 +380,7 @@ public class New {
 	public static JavaConstructor constructor(ConstructorModifiers modifiers,
 			List<JavaParameter> params, List<JavaType> thrownTypes,
 			List<JavaTypeParameter> typeParameters) {
-		return new JavaConstructorBean(modifiers, params, thrownTypes,
-				typeParameters);
+		return new JavaConstructorBean(modifiers, params, thrownTypes, typeParameters);
 	}
 
 	public static JavaConstructor constructor(ConstructorModifiers modifiers,
@@ -435,94 +411,86 @@ public class New {
 
 	/****************************** METHOD *********************************/
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			JavaType returnType, String name, List<JavaParameter> params,
-			List<JavaType> thrownTypes, List<JavaTypeParameter> typeParameters) {
-		return new JavaMethodBean(modifiers, returnType, name, params,
-				thrownTypes, typeParameters);
+	public static JavaMethod method(MethodModifiers modifiers, JavaType returnType, String name,
+			List<JavaParameter> params, List<JavaType> thrownTypes,
+			List<JavaTypeParameter> typeParameters) {
+		return new JavaMethodBean(modifiers, returnType, name, params, thrownTypes, typeParameters);
 	}
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			Class<?> returnType, String name, List<JavaParameter> params,
-			List<JavaType> thrownTypes, List<JavaTypeParameter> typeParameters) {
-		return method(modifiers, type(returnType), name, params, thrownTypes,
-				typeParameters);
+	public static JavaMethod method(MethodModifiers modifiers, Class<?> returnType, String name,
+			List<JavaParameter> params, List<JavaType> thrownTypes,
+			List<JavaTypeParameter> typeParameters) {
+		return method(modifiers, type(returnType), name, params, thrownTypes, typeParameters);
 	}
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			JavaType returnType, String name, List<JavaParameter> params,
-			List<JavaType> thrownTypes) {
+	public static JavaMethod method(MethodModifiers modifiers, JavaType returnType, String name,
+			List<JavaParameter> params, List<JavaType> thrownTypes) {
 		List<JavaTypeParameter> noTypeParameters = Power.list();
-		return method(modifiers, returnType, name, params, thrownTypes,
-				noTypeParameters);
+		return method(modifiers, returnType, name, params, thrownTypes, noTypeParameters);
 	}
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			Class<?> returnType, String name, List<JavaParameter> params,
-			List<JavaType> thrownTypes) {
+	public static JavaMethod method(MethodModifiers modifiers, Class<?> returnType, String name,
+			List<JavaParameter> params, List<JavaType> thrownTypes) {
 		return method(modifiers, type(returnType), name, params, thrownTypes);
 	}
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			JavaType returnType, String name, List<JavaParameter> params) {
+	public static JavaMethod method(MethodModifiers modifiers, JavaType returnType, String name,
+			List<JavaParameter> params) {
 		List<JavaType> noThrownTypes = Power.list();
 		return method(modifiers, returnType, name, params, noThrownTypes);
 	}
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			Class<?> returnType, String name, List<JavaParameter> params) {
+	public static JavaMethod method(MethodModifiers modifiers, Class<?> returnType, String name,
+			List<JavaParameter> params) {
 		return method(modifiers, type(returnType), name, params);
 	}
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			JavaType returnType, String name, JavaParameter... params) {
+	public static JavaMethod method(MethodModifiers modifiers, JavaType returnType, String name,
+			JavaParameter... params) {
 		return method(modifiers, returnType, name, Power.list(params));
 	}
 
-	public static JavaMethod method(MethodModifiers modifiers,
-			Class<?> returnType, String name, JavaParameter... params) {
+	public static JavaMethod method(MethodModifiers modifiers, Class<?> returnType, String name,
+			JavaParameter... params) {
 		return method(modifiers, type(returnType), name, Power.list(params));
+	}
+
+	public static JavaMethod method(Class<?> returnType, String name, JavaParameter... params) {
+		return method(Methods.PUBLIC, returnType, name, params);
 	}
 
 	/****************************** CLASS *********************************/
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields, List<JavaConstructor> constructors,
+	public static JavaClass classs(ClassModifiers modifiers, String name, JavaType superclass,
+			List<JavaType> interfaces, List<JavaField> fields, List<JavaConstructor> constructors,
 			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
-		return new JavaClassBean(modifiers, name, superclass, interfaces,
-				fields, constructors, methods, parameters);
+		return new JavaClassBean(modifiers, name, superclass, interfaces, fields, constructors,
+				methods, parameters);
 	}
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields, List<JavaConstructor> constructors,
+	public static JavaClass classs(ClassModifiers modifiers, String name, JavaType superclass,
+			List<JavaType> interfaces, List<JavaField> fields, List<JavaConstructor> constructors,
 			List<JavaMethod> methods) {
-		return classs(modifiers, name, superclass, interfaces, fields,
-				constructors, methods, NO_TYPE_PARAMS);
+		return classs(modifiers, name, superclass, interfaces, fields, constructors, methods,
+				NO_TYPE_PARAMS);
 	}
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields, List<JavaConstructor> constructors) {
-		return classs(modifiers, name, superclass, interfaces, fields,
-				constructors, NO_METHODS);
+	public static JavaClass classs(ClassModifiers modifiers, String name, JavaType superclass,
+			List<JavaType> interfaces, List<JavaField> fields, List<JavaConstructor> constructors) {
+		return classs(modifiers, name, superclass, interfaces, fields, constructors, NO_METHODS);
 	}
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields) {
-		return classs(modifiers, name, superclass, interfaces, fields,
-				NO_CONSTRUCTORS);
+	public static JavaClass classs(ClassModifiers modifiers, String name, JavaType superclass,
+			List<JavaType> interfaces, List<JavaField> fields) {
+		return classs(modifiers, name, superclass, interfaces, fields, NO_CONSTRUCTORS);
 	}
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			JavaType superclass, List<JavaType> interfaces) {
+	public static JavaClass classs(ClassModifiers modifiers, String name, JavaType superclass,
+			List<JavaType> interfaces) {
 		return classs(modifiers, name, superclass, interfaces, NO_FIELDS);
 	}
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			JavaType superclass) {
+	public static JavaClass classs(ClassModifiers modifiers, String name, JavaType superclass) {
 		return classs(modifiers, name, superclass, NO_TYPES);
 	}
 
@@ -530,45 +498,41 @@ public class New {
 		return classs(modifiers, name, null);
 	}
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			List<JavaField> fields, List<JavaMethod> methods) {
-		return classs(modifiers, name, null, NO_TYPES, fields, NO_CONSTRUCTORS,
-				methods);
+	public static JavaClass classs(String name) {
+		return classs(Classes.PUBLIC, name, null);
 	}
 
-	public static JavaClass classs(ClassModifiers modifiers, String name,
-			List<JavaField> fields, List<JavaMethod> methods,
-			List<JavaConstructor> constructors) {
-		return classs(modifiers, name, null, NO_TYPES, fields, constructors,
-				methods);
+	public static JavaClass classs(ClassModifiers modifiers, String name, List<JavaField> fields,
+			List<JavaMethod> methods) {
+		return classs(modifiers, name, null, NO_TYPES, fields, NO_CONSTRUCTORS, methods);
+	}
+
+	public static JavaClass classs(ClassModifiers modifiers, String name, List<JavaField> fields,
+			List<JavaMethod> methods, List<JavaConstructor> constructors) {
+		return classs(modifiers, name, null, NO_TYPES, fields, constructors, methods);
 	}
 
 	/**************************** INTERFACE *******************************/
 
-	public static JavaInterface interfacee(InterfaceModifiers modifiers,
-			String name, List<JavaType> superInterfaces,
-			List<JavaField> fields, List<JavaMethod> methods,
+	public static JavaInterface interfacee(InterfaceModifiers modifiers, String name,
+			List<JavaType> superInterfaces, List<JavaField> fields, List<JavaMethod> methods,
 			List<JavaTypeParameter> parameters) {
-		return new JavaInterfaceBean(modifiers, name, superInterfaces, fields,
-				methods, parameters);
+		return new JavaInterfaceBean(modifiers, name, superInterfaces, fields, methods, parameters);
 	}
 
-	public static JavaInterface interfacee(InterfaceModifiers modifiers,
-			String name, List<JavaType> superInterfaces,
-			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
-		return interfacee(modifiers, name, superInterfaces, NO_FIELDS, methods,
-				parameters);
+	public static JavaInterface interfacee(InterfaceModifiers modifiers, String name,
+			List<JavaType> superInterfaces, List<JavaMethod> methods,
+			List<JavaTypeParameter> parameters) {
+		return interfacee(modifiers, name, superInterfaces, NO_FIELDS, methods, parameters);
 	}
 
-	public static JavaInterface interfacee(InterfaceModifiers modifiers,
-			String name, List<JavaType> superInterfaces,
-			List<JavaMethod> methods) {
-		return interfacee(modifiers, name, superInterfaces, methods,
-				NO_TYPE_PARAMS);
-	}
-
-	public static JavaInterface interfacee(String name,
+	public static JavaInterface interfacee(InterfaceModifiers modifiers, String name,
 			List<JavaType> superInterfaces, List<JavaMethod> methods) {
+		return interfacee(modifiers, name, superInterfaces, methods, NO_TYPE_PARAMS);
+	}
+
+	public static JavaInterface interfacee(String name, List<JavaType> superInterfaces,
+			List<JavaMethod> methods) {
 		return interfacee(Interfaces.PUBLIC, name, superInterfaces, methods);
 	}
 
@@ -576,21 +540,22 @@ public class New {
 		return interfacee(name, NO_TYPES, methods);
 	}
 
+	public static JavaInterface interfacee(String name) {
+		return interfacee(name, NO_METHODS);
+	}
+
 	/****************************** ENUM *********************************/
 
-	public static JavaEnum enumm(EnumModifiers modifiers, String name,
-			List<JavaType> interfaces, List<JavaEnumConstant> values,
-			List<JavaField> fields, List<JavaConstructor> constructors,
-			List<JavaMethod> methods) {
-		return new JavaEnumBean(modifiers, name, interfaces, values, fields,
-				constructors, methods);
+	public static JavaEnum enumm(EnumModifiers modifiers, String name, List<JavaType> interfaces,
+			List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods) {
+		return new JavaEnumBean(modifiers, name, interfaces, values, fields, constructors, methods);
 	}
 
 	public static JavaEnum enumm(EnumModifiers modifiers, String name,
 			List<JavaEnumConstant> values, List<JavaField> fields,
 			List<JavaConstructor> constructors, List<JavaMethod> methods) {
-		return enumm(modifiers, name, NO_TYPES, values, fields, constructors,
-				methods);
+		return enumm(modifiers, name, NO_TYPES, values, fields, constructors, methods);
 	}
 
 	public static JavaEnum enumm(EnumModifiers modifiers, String name,
@@ -599,8 +564,7 @@ public class New {
 		return enumm(modifiers, name, values, fields, constructors, NO_METHODS);
 	}
 
-	public static JavaEnum enumm(EnumModifiers modifiers, String name,
-			List<JavaEnumConstant> values) {
+	public static JavaEnum enumm(EnumModifiers modifiers, String name, List<JavaEnumConstant> values) {
 		return enumm(modifiers, name, values, NO_FIELDS, NO_CONSTRUCTORS);
 	}
 
@@ -608,20 +572,22 @@ public class New {
 		return enumm(Enums.PUBLIC, name, values);
 	}
 
+	public static JavaEnum enumm(String name) {
+		return enumm(Enums.PUBLIC, name, NO_ENUM_CONSTANTS);
+	}
+
 	/*************************** ANNOTATION ******************************/
 
-	public static JavaAnnotation annotation(AnnotationModifiers modifiers,
-			String name, List<JavaMethod> methods) {
+	public static JavaAnnotation annotation(AnnotationModifiers modifiers, String name,
+			List<JavaMethod> methods) {
 		return new JavaAnnotationBean(modifiers, name, methods);
 	}
 
-	public static JavaAnnotation annotation(String name,
-			List<JavaMethod> methods) {
+	public static JavaAnnotation annotation(String name, List<JavaMethod> methods) {
 		return annotation(Annotations.PUBLIC, name, methods);
 	}
 
-	public static JavaAnnotation annotation(AnnotationModifiers modifiers,
-			String name) {
+	public static JavaAnnotation annotation(AnnotationModifiers modifiers, String name) {
 		return annotation(modifiers, name, NO_METHODS);
 	}
 
@@ -631,141 +597,122 @@ public class New {
 
 	/************************* NESTED CLASS *****************************/
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields, List<JavaConstructor> constructors,
-			List<JavaMethod> methods, List<JavaTypeParameter> parameters) {
-		return new JavaNestedClassBean(modifiers, name, superclass, interfaces,
-				fields, constructors, methods, parameters);
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods,
+			List<JavaTypeParameter> parameters) {
+		return new JavaNestedClassBean(modifiers, name, superclass, interfaces, fields,
+				constructors, methods, parameters);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields, List<JavaConstructor> constructors,
-			List<JavaMethod> methods) {
-		return nestedClass(modifiers, name, superclass, interfaces, fields,
-				constructors, methods, NO_TYPE_PARAMS);
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods) {
+		return nestedClass(modifiers, name, superclass, interfaces, fields, constructors, methods,
+				NO_TYPE_PARAMS);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields, List<JavaConstructor> constructors) {
-		return nestedClass(modifiers, name, superclass, interfaces, fields,
-				constructors, NO_METHODS);
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces, List<JavaField> fields,
+			List<JavaConstructor> constructors) {
+		return nestedClass(modifiers, name, superclass, interfaces, fields, constructors,
+				NO_METHODS);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, JavaType superclass, List<JavaType> interfaces,
-			List<JavaField> fields) {
-		return nestedClass(modifiers, name, superclass, interfaces, fields,
-				NO_CONSTRUCTORS);
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces, List<JavaField> fields) {
+		return nestedClass(modifiers, name, superclass, interfaces, fields, NO_CONSTRUCTORS);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, JavaType superclass, List<JavaType> interfaces) {
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			JavaType superclass, List<JavaType> interfaces) {
 		return nestedClass(modifiers, name, superclass, interfaces, NO_FIELDS);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, JavaType superclass) {
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			JavaType superclass) {
 		return nestedClass(modifiers, name, superclass, NO_TYPES);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name) {
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name) {
 		return nestedClass(modifiers, name, null);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, List<JavaField> fields, List<JavaMethod> methods) {
-		return nestedClass(modifiers, name, null, NO_TYPES, fields,
-				NO_CONSTRUCTORS, methods);
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			List<JavaField> fields, List<JavaMethod> methods) {
+		return nestedClass(modifiers, name, null, NO_TYPES, fields, NO_CONSTRUCTORS, methods);
 	}
 
-	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers,
-			String name, List<JavaField> fields, List<JavaMethod> methods,
-			List<JavaConstructor> constructors) {
-		return nestedClass(modifiers, name, null, NO_TYPES, fields,
-				constructors, methods);
+	public static JavaNestedClass nestedClass(NestedClassModifiers modifiers, String name,
+			List<JavaField> fields, List<JavaMethod> methods, List<JavaConstructor> constructors) {
+		return nestedClass(modifiers, name, null, NO_TYPES, fields, constructors, methods);
 	}
 
 	/************************ NESTED INTERFACE **************************/
 
-	public static JavaNestedInterface nestedInterface(
-			NestedInterfaceModifiers modifiers, String name,
-			List<JavaType> superInterfaces, List<JavaMethod> methods,
+	public static JavaNestedInterface nestedInterface(NestedInterfaceModifiers modifiers,
+			String name, List<JavaType> superInterfaces, List<JavaMethod> methods,
 			List<JavaTypeParameter> parameters) {
-		return new JavaNestedInterfaceBean(modifiers, name, superInterfaces,
-				methods, parameters);
+		return new JavaNestedInterfaceBean(modifiers, name, superInterfaces, methods, parameters);
 	}
 
-	public static JavaNestedInterface nestedInterface(
-			NestedInterfaceModifiers modifiers, String name,
-			List<JavaType> superInterfaces, List<JavaMethod> methods) {
-		return nestedInterface(modifiers, name, superInterfaces, methods,
-				NO_TYPE_PARAMS);
+	public static JavaNestedInterface nestedInterface(NestedInterfaceModifiers modifiers,
+			String name, List<JavaType> superInterfaces, List<JavaMethod> methods) {
+		return nestedInterface(modifiers, name, superInterfaces, methods, NO_TYPE_PARAMS);
 	}
 
-	public static JavaNestedInterface nestedInterface(String name,
-			List<JavaType> superInterfaces, List<JavaMethod> methods) {
-		return nestedInterface(NestedInterfaces.PUBLIC, name, superInterfaces,
-				methods);
-	}
-
-	public static JavaNestedInterface nestedInterface(String name,
+	public static JavaNestedInterface nestedInterface(String name, List<JavaType> superInterfaces,
 			List<JavaMethod> methods) {
+		return nestedInterface(NestedInterfaces.PUBLIC, name, superInterfaces, methods);
+	}
+
+	public static JavaNestedInterface nestedInterface(String name, List<JavaMethod> methods) {
 		return nestedInterface(name, NO_TYPES, methods);
 	}
 
 	/*************************** NESTED ENUM ******************************/
 
-	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
-			String name, List<JavaType> interfaces,
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers, String name,
+			List<JavaType> interfaces, List<JavaEnumConstant> values, List<JavaField> fields,
+			List<JavaConstructor> constructors, List<JavaMethod> methods) {
+		return new JavaNestedEnumBean(modifiers, name, interfaces, values, fields, constructors,
+				methods);
+	}
+
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers, String name,
 			List<JavaEnumConstant> values, List<JavaField> fields,
 			List<JavaConstructor> constructors, List<JavaMethod> methods) {
-		return new JavaNestedEnumBean(modifiers, name, interfaces, values,
-				fields, constructors, methods);
+		return nestedEnum(modifiers, name, NO_TYPES, values, fields, constructors, methods);
 	}
 
-	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
-			String name, List<JavaEnumConstant> values, List<JavaField> fields,
-			List<JavaConstructor> constructors, List<JavaMethod> methods) {
-		return nestedEnum(modifiers, name, NO_TYPES, values, fields,
-				constructors, methods);
-	}
-
-	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
-			String name, List<JavaEnumConstant> values, List<JavaField> fields,
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers, String name,
+			List<JavaEnumConstant> values, List<JavaField> fields,
 			List<JavaConstructor> constructors) {
-		return nestedEnum(modifiers, name, values, fields, constructors,
-				NO_METHODS);
+		return nestedEnum(modifiers, name, values, fields, constructors, NO_METHODS);
 	}
 
-	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers,
-			String name, List<JavaEnumConstant> values) {
+	public static JavaNestedEnum nestedEnum(NestedEnumModifiers modifiers, String name,
+			List<JavaEnumConstant> values) {
 		return nestedEnum(modifiers, name, values, NO_FIELDS, NO_CONSTRUCTORS);
 	}
 
-	public static JavaNestedEnum nestedEnum(String name,
-			List<JavaEnumConstant> values) {
+	public static JavaNestedEnum nestedEnum(String name, List<JavaEnumConstant> values) {
 		return nestedEnum(NestedEnums.PUBLIC, name, values);
 	}
 
 	/************************ NESTED ANNOTATION **************************/
 
-	public static JavaNestedAnnotation nestedAnnotation(
-			NestedAnnotationModifiers modifiers, String name,
-			List<JavaMethod> methods) {
+	public static JavaNestedAnnotation nestedAnnotation(NestedAnnotationModifiers modifiers,
+			String name, List<JavaMethod> methods) {
 		return new JavaNestedAnnotationBean(modifiers, name, methods);
 	}
 
-	public static JavaNestedAnnotation nestedAnnotation(String name,
-			List<JavaMethod> methods) {
+	public static JavaNestedAnnotation nestedAnnotation(String name, List<JavaMethod> methods) {
 		return nestedAnnotation(NestedAnnotations.PUBLIC, name, methods);
 	}
 
-	public static JavaNestedAnnotation nestedAnnotation(
-			NestedAnnotationModifiers modifiers, String name) {
+	public static JavaNestedAnnotation nestedAnnotation(NestedAnnotationModifiers modifiers,
+			String name) {
 		return nestedAnnotation(modifiers, name, NO_METHODS);
 	}
 
@@ -775,13 +722,11 @@ public class New {
 
 	/******************************* METADATA *********************************/
 
-	public static JavaMetadata metadata(JavaType type,
-			Map<String, ? extends Object> attributes) {
+	public static JavaMetadata metadata(JavaType type, Map<String, ? extends Object> attributes) {
 		return new JavaMetadataBean(type, attributes);
 	}
 
-	public static JavaMetadata metadata(Class<?> type,
-			Map<String, ? extends Object> attributes) {
+	public static JavaMetadata metadata(Class<?> type, Map<String, ? extends Object> attributes) {
 		return metadata(type(type), attributes);
 	}
 
@@ -801,8 +746,7 @@ public class New {
 
 	/*************************** TYPE PARAMETERS *****************************/
 
-	public static JavaTypeParameter typeParameter(String name,
-			List<JavaType> bounds) {
+	public static JavaTypeParameter typeParameter(String name, List<JavaType> bounds) {
 		return new JavaTypeParameterBean(name, bounds);
 	}
 
