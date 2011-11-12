@@ -23,7 +23,6 @@ public class JannocessorClassLoader extends ClassLoader {
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
 		URL res = parent.getResource(getClassRelativePath(name));
-
 		if (res != null) {
 			try {
 				String classPath = res.toURI().getPath().substring(1);
@@ -34,7 +33,7 @@ public class JannocessorClassLoader extends ClassLoader {
 				throw new ClassNotFoundException("Couldn't read class: " + name);
 			}
 		} else {
-			return super.loadClass(name);
+			return super.findClass(name);
 		}
 
 	}
