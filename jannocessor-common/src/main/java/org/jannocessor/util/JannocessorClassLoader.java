@@ -25,12 +25,12 @@ public class JannocessorClassLoader extends ClassLoader {
 		URL res = parent.getResource(getClassRelativePath(name));
 		if (res != null) {
 			try {
-				String classPath = res.toURI().getPath().substring(1);
+				String classPath = res.toURI().getPath();
 				logger.info("Hot swap: " + classPath);
 				byte[] classData = FileUtils.readFileToByteArray(new File(classPath));
 				return defineClass(name, classData, 0, classData.length);
 			} catch (Exception e) {
-				throw new ClassNotFoundException("Couldn't read class: " + name);
+				throw new ClassNotFoundException("Couldn't find class: " + name);
 			}
 		} else {
 			return super.findClass(name);
