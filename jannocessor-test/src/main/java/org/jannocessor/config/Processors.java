@@ -63,28 +63,4 @@ public class Processors {
 		return new MyProcessor(DEBUG_MODE);
 	}
 
-	@Annotated(BuilderModel.class)
-	@Types(JavaClass.class)
-	public BuilderGenerator generateBuilder() {
-		return new BuilderGenerator(DEBUG_MODE);
-	}
-
-	@Annotated(DtoModel.class)
-	@Types(JavaClass.class)
-	public CodeProcessor<JavaClass> generateDto() {
-		return new DtoGenerator(DEBUG_MODE);
-	}
-
-	@Annotated(DtoModel.class)
-	@Types(JavaClass.class)
-	public CodeProcessor<JavaClass> generateMapper() {
-		return new MapperGenerator(DEBUG_MODE);
-	}
-
-	@Annotated(GenerateFacade.class)
-	@Types(JavaInterface.class)
-	public CodeProcessor<JavaInterface> generateFacade() {
-		return new FacadeGenerator();
-	}
-
 }
