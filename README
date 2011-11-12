@@ -1,0 +1,7 @@
+If you want to build the JAnnocessor project from source, you must have the JSyntaxPane library installed in your local Maven repository.
+
+You can download JSyntaxPane here:
+http://jsyntaxpane.googlecode.com/files/jsyntaxpane-0.9.5-b29.jar
+
+Once you download JSyntaxPane, you can install it using this command:
+mvn install:install-file -Dfile=jsyntaxpane-0.9.5-b29.jar -DgroupId=jsyntaxpane -DartifactId=jsyntaxpane -Dversion=0.9.5 -Dpackaging=jar

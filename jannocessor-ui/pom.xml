@@ -38,6 +38,10 @@
 			<artifactId>commons-io</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>jsyntaxpane</groupId>
+			<artifactId>jsyntaxpane</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-templates</artifactId>
 			<scope>test</scope>
