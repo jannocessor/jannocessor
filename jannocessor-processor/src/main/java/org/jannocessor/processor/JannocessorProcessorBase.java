@@ -40,11 +40,14 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.FileObject;
+import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
+import javax.tools.ToolProvider;
 
 import org.jannocessor.JannocessorException;
 import org.jannocessor.adapter.SourceHolder;
+import org.jannocessor.collection.Power;
 import org.jannocessor.context.Config;
 import org.jannocessor.context.Configuration;
 import org.jannocessor.context.RenderRegister;
@@ -60,6 +63,8 @@ import org.jannocessor.service.io.IOServiceModule;
 import org.jannocessor.service.render.TemplateServiceModule;
 import org.jannocessor.service.representation.RepresentationServiceModule;
 import org.jannocessor.service.splitter.SplitterServiceModule;
+import org.jannocessor.util.Jannocessor;
+import org.jannocessor.util.Settings;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -155,7 +160,11 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 			engine = injector.getInstance(JannocessorEngine.class);
 			engine.configure(engine.getTemplatesPath(), true);
 
-			processorsConfig = new ProcessorsConfiguration(engine.getProcessorsConfiguration());
+			// recompileProcessors();
+
+			Class<?> hotConfig = Jannocessor.reloadClass("org.jannocessor.config.Processors",
+					Power.emptyList(String.class));
+			processorsConfig = new ProcessorsConfiguration(hotConfig);
 
 			showConfiguration();
 
@@ -298,12 +307,41 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		messager.printMessage(Diagnostic.Kind.WARNING, msg, element);
 	}
 
+	protected void compile(String path) {
+		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		if (compiler != null) {
+			int result = compiler.run(null, null, null, "-proc:none", "-verbose", "-d",
+					getPath(StandardLocation.CLASS_PATH), "-sourcepath",
+					getPath(StandardLocation.SOURCE_PATH), getPath(StandardLocation.SOURCE_PATH)
+							+ "/" + path);
+			if (result == 0) {
+				logger.info("Compile finished successfully.");
+			} else {
+				logger.error("Compile error!");
+			}
+		} else {
+			logger.error("Couldn't retrieve system Java compiler! Hot code swap won't work!");
+		}
+	}
+
+	private String getPath(Location location) {
+		try {
+			FileObject file = filer.getResource(location, "", "foo");
+			return file.toUri().getPath().replaceFirst("/foo$", "").substring(1);
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot retrieve path: " + location);
+		}
+	}
+
+	protected void recompileProcessors() {
+		compile(Settings.PROCESSORS_CLASSNAME.replace('.', '/') + ".java");
+	}
+
 	protected String getProjectPath() {
 		if (projectPath == null) {
 			String path;
 			try {
-				FileObject file = filer.createResource(StandardLocation.SOURCE_OUTPUT, "",
-						"foo.bar");
+				FileObject file = filer.getResource(StandardLocation.SOURCE_OUTPUT, "", "foo.bar");
 				path = file.toUri().getPath();
 			} catch (Exception e1) {
 				throw new RuntimeException("Cannot calculate project path!", e1);
