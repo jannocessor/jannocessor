@@ -1,9 +1,6 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.example.model;
+package example.domain;
 
-import ${package}.example.annotation.GenerateBuilder;
+import example.annotation.GenerateBuilder;
 
 @GenerateBuilder
 public class Book {

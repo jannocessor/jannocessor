@@ -1,0 +1,6 @@
+#macro(file_header)
+/* JAnnocessor Sample Generated Code */
+
+#end
+
+#macro(indentation)    #end

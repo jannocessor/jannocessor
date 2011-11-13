@@ -1,14 +1,28 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 package org.jannocessor.config;
-
-import ${package}.example.annotation.GenerateBuilder;
-import ${package}.example.processor.BuilderGenerator;
 
 import org.jannocessor.annotation.Annotated;
 import org.jannocessor.annotation.Types;
+import org.jannocessor.common.annotation.BuilderModel;
+import org.jannocessor.common.annotation.DtoModel;
+import org.jannocessor.common.annotation.GenerateFacade;
+import org.jannocessor.common.processor.BuilderGenerator;
+import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
+import org.jannocessor.model.structure.JavaEnum;
+import org.jannocessor.model.structure.JavaInterface;
+import org.jannocessor.processor.context.CodeProcessor;
+
+import example.annotation.BeanModel;
+import example.annotation.GenerateBuilder;
+import example.processor.MyBeanGenerator;
+import example.processor.MyBuilderGenerator;
+import example.processor.MyDtoGenerator;
+import example.processor.MyExperimentProcessor;
+import example.processor.MyFacadeGenerator;
+import example.processor.MyMapperGenerator;
+import example.processor.MyMirrorProcessor;
+
 
 /**
  * This is a configuration class and it must have the name
@@ -18,6 +32,8 @@ import org.jannocessor.model.structure.JavaClass;
  */
 public class Processors {
 
+	private static final boolean DEBUG_MODE = false;
+
 	/**
 	 * All classes annotated with @GenerateBuilder should be processed with the
 	 * {@link BuilderGenerator} code processor.
@@ -25,12 +41,51 @@ public class Processors {
 	 * @return the code processor that will process the annotated classes
 	 */
 	@Annotated(GenerateBuilder.class)
-	// process only elements annotated with @GenerateBuilder
 	@Types(JavaClass.class)
-	// process only classes (not enums, interfaces etc.)
 	public BuilderGenerator willGenerateBuilder() {
-		// use the builder generator in debug mode
-		return new BuilderGenerator(true);
+		return new BuilderGenerator(DEBUG_MODE);
+	}
+
+	@Annotated({ BeanModel.class, GenerateFacade.class })
+	@Types({ JavaInterface.class, JavaEnum.class, JavaAnnotation.class })
+	public CodeProcessor<? extends JavaElement> generateMirror() {
+		return new MyMirrorProcessor(DEBUG_MODE);
+	}
+
+	@Annotated(BeanModel.class)
+	@Types(JavaClass.class)
+	public CodeProcessor<? extends JavaElement> generateBean() {
+		return new MyBeanGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(BuilderModel.class)
+	@Types(JavaClass.class)
+	public MyBuilderGenerator generateBuilder() {
+		return new MyBuilderGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(DtoModel.class)
+	@Types(JavaClass.class)
+	public CodeProcessor<JavaClass> generateDto() {
+		return new MyDtoGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(DtoModel.class)
+	@Types(JavaClass.class)
+	public CodeProcessor<JavaClass> generateMapper() {
+		return new MyMapperGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(GenerateFacade.class)
+	@Types(JavaInterface.class)
+	public CodeProcessor<JavaInterface> generateFacade() {
+		return new MyFacadeGenerator(DEBUG_MODE);
+	}
+
+	@Annotated(BeanModel.class)
+	@Types(JavaClass.class)
+	public CodeProcessor<? extends JavaElement> experiment() {
+		return new MyExperimentProcessor(DEBUG_MODE);
 	}
 
 }

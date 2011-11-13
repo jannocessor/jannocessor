@@ -1,9 +1,26 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.example.processor;
+/**
+ * Copyright 2011 Nikolche Mihajlovski
+ *
+ * This file is part of JAnnocessor.
+ *
+ * JAnnocessor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * JAnnocessor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package example.processor;
 
 import javax.annotation.Generated;
+
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
@@ -18,11 +35,11 @@ import org.jannocessor.model.variable.JavaParameter;
 import org.jannocessor.processor.context.CodeProcessor;
 import org.jannocessor.processor.context.ProcessingContext;
 
-public class BuilderGenerator implements CodeProcessor<JavaClass> {
+public class MyBuilderGenerator implements CodeProcessor<JavaClass> {
 
 	private final boolean inDebugMode;
 
-	public BuilderGenerator(boolean inDebugMode) {
+	public MyBuilderGenerator(boolean inDebugMode) {
 		this.inDebugMode = inDebugMode;
 	}
 
@@ -48,6 +65,8 @@ public class BuilderGenerator implements CodeProcessor<JavaClass> {
 
 			// iterate the model fields (e.g. firstName, lastName... in Person)
 			for (JavaField field : clazz.getFields()) {
+				field.getMetadata().clear();
+
 				// the field name, e.g. firstName
 				String fieldName = field.getName().getText();
 
@@ -60,7 +79,7 @@ public class BuilderGenerator implements CodeProcessor<JavaClass> {
 
 				// specify the method body source code (assigns the param value to the field)
 				// e.g. this.firstName = firstName
-				String body = String.format("this.%s = %s;${symbol_escape}nreturn this;", fieldName, fieldName);
+				String body = String.format("this.%s = %s;\nreturn this;", fieldName, fieldName);
 				method.getBody().setHardcoded(body);
 
 				// add the method to the builder methods list
@@ -89,6 +108,7 @@ public class BuilderGenerator implements CodeProcessor<JavaClass> {
 
 			// finally, generated the builder source code (e.g. PersonBuilder.java)
 			// if inDebugMode was set to true, the JAnnocessor UI will be displayed
+			clazz.getParent().getName().appendPart("builder");
 			context.generateCode(clazz, inDebugMode);
 		}
 	}
