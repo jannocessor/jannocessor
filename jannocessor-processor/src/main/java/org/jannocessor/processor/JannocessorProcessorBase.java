@@ -87,7 +87,6 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected JannocessorEngine engine;
 	protected RenderRegister renderRegister;
 	private Messager messager;
-	private String projectPath;
 
 	private List<String> globalErrors = new ArrayList<String>();
 	private List<String> globalWarnings = new ArrayList<String>();
@@ -177,7 +176,6 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	}
 
 	private void showConfiguration() throws JannocessorException {
-		logger.info("Project path: {}", getProjectPath());
 		logger.info("Templates path: {}", engine.getTemplatesPath());
 	}
 
@@ -335,42 +333,6 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	protected void recompileProcessors() {
 		compile(Settings.PROCESSORS_CLASSNAME.replace('.', '/') + ".java");
-	}
-
-	protected String getProjectPath() {
-		if (projectPath == null) {
-			String path;
-			try {
-				FileObject file = filer.getResource(StandardLocation.SOURCE_OUTPUT, "", "foo.bar");
-				path = file.toUri().getPath();
-			} catch (Exception e1) {
-				throw new RuntimeException("Cannot calculate project path!", e1);
-			}
-
-			projectPath = extractProjectPath(path);
-		}
-
-		return projectPath;
-	}
-
-	private String extractProjectPath(String path) {
-		int pos = path.indexOf("src");
-
-		if (pos < 0) {
-			pos = path.indexOf("target");
-		}
-
-		if (pos < 0) {
-			throw new RuntimeException("Cannot find 'src' or 'target' folder on path: " + path);
-		}
-
-		String result = path.substring(0, pos);
-
-		if (result.startsWith("/")) {
-			result = result.substring(1);
-		}
-
-		return result;
 	}
 
 }

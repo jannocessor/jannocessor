@@ -155,7 +155,6 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		context.setContents(contents);
 		context.setProblems(problems);
 		context.setFiler(filer);
-		context.setProjectPath(getProjectPath());
 		context.setRenderer(renderRegister);
 
 		return context;

@@ -51,8 +51,6 @@ public class ProcessingContext {
 
 	private Filer filer;
 
-	private String projectPath;
-
 	private RenderRegister renderer;
 
 	private JannocessorEngine engine;
@@ -111,14 +109,6 @@ public class ProcessingContext {
 
 	public void setContents(List<String> contents) {
 		this.contents = contents;
-	}
-
-	public void setProjectPath(String projectPath) {
-		this.projectPath = projectPath;
-	}
-
-	public String getProjectPath() {
-		return projectPath;
 	}
 
 	public void setEngine(JannocessorEngine engine) {
