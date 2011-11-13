@@ -40,7 +40,12 @@ public class JannocessorClassLoader extends ClassLoader {
 
 	public Class<?> loadClass(String classname) throws ClassNotFoundException {
 		if (names.contains(classname)) {
-			return findClass(classname);
+			try {
+				return findClass(classname);
+			} catch (ClassNotFoundException e) {
+				logger.warn("Couldn't reload class: " + classname);
+				return super.loadClass(classname);
+			}
 		} else {
 			return super.loadClass(classname);
 		}
