@@ -2,10 +2,12 @@ package example.domain;
 
 import java.util.Date;
 
+import org.jannocessor.common.annotation.DtoModel;
+
 import example.annotation.GenerateBuilder;
 
-
 @GenerateBuilder
+@DtoModel
 public class Person {
 
 	private String firstName;

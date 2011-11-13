@@ -2,14 +2,10 @@ package org.jannocessor.config;
 
 import org.jannocessor.annotation.Annotated;
 import org.jannocessor.annotation.Types;
-import org.jannocessor.common.annotation.BuilderModel;
 import org.jannocessor.common.annotation.DtoModel;
 import org.jannocessor.common.annotation.GenerateFacade;
-import org.jannocessor.common.processor.BuilderGenerator;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.processor.context.CodeProcessor;
 
@@ -21,8 +17,6 @@ import example.processor.MyDtoGenerator;
 import example.processor.MyExperimentProcessor;
 import example.processor.MyFacadeGenerator;
 import example.processor.MyMapperGenerator;
-import example.processor.MyMirrorProcessor;
-
 
 /**
  * This is a configuration class and it must have the name
@@ -32,25 +26,7 @@ import example.processor.MyMirrorProcessor;
  */
 public class Processors {
 
-	private static final boolean DEBUG_MODE = false;
-
-	/**
-	 * All classes annotated with @GenerateBuilder should be processed with the
-	 * {@link BuilderGenerator} code processor.
-	 * 
-	 * @return the code processor that will process the annotated classes
-	 */
-	@Annotated(GenerateBuilder.class)
-	@Types(JavaClass.class)
-	public BuilderGenerator willGenerateBuilder() {
-		return new BuilderGenerator(DEBUG_MODE);
-	}
-
-	@Annotated({ BeanModel.class, GenerateFacade.class })
-	@Types({ JavaInterface.class, JavaEnum.class, JavaAnnotation.class })
-	public CodeProcessor<? extends JavaElement> generateMirror() {
-		return new MyMirrorProcessor(DEBUG_MODE);
-	}
+	private static final boolean DEBUG_MODE = true;
 
 	@Annotated(BeanModel.class)
 	@Types(JavaClass.class)
@@ -58,7 +34,7 @@ public class Processors {
 		return new MyBeanGenerator(DEBUG_MODE);
 	}
 
-	@Annotated(BuilderModel.class)
+	@Annotated(GenerateBuilder.class)
 	@Types(JavaClass.class)
 	public MyBuilderGenerator generateBuilder() {
 		return new MyBuilderGenerator(DEBUG_MODE);

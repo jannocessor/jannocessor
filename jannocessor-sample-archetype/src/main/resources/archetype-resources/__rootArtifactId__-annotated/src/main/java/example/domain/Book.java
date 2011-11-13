@@ -1,8 +1,11 @@
 package example.domain;
 
+import org.jannocessor.common.annotation.DtoModel;
+
 import example.annotation.GenerateBuilder;
 
 @GenerateBuilder
+@DtoModel
 public class Book {
 
 	private String title;
