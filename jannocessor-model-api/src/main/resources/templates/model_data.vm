@@ -118,7 +118,7 @@ public class $className extends #if($extends)#type(${extends})#{else}AbstractDat
         super.appendDescription(builder);
 #end
 #foreach ($m in $model.methods)
-#if ($helper.isIdentityProperty($m))
+#if ($helper.isToStringMember($m))
         builder.append("${helper.fieldName($m)}", #type("org.jannocessor.model.util.ToStringUtil").describe(this.${m.name}()));
 #end
 #end

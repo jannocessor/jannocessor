@@ -25,8 +25,7 @@ import org.jannocessor.domain.executable.JavaMethod;
 
 public class DomainProxyGeneratorHelper {
 
-	private static String[] calculated = { "getCanonicalName", "isDefault",
-			"copy", "getChildren" };
+	private static String[] calculated = { "getCanonicalName", "isDefault", "copy", "getChildren" };
 
 	public String fieldName(JavaMethod method) {
 		String name = method.getName().getText();
@@ -37,10 +36,15 @@ public class DomainProxyGeneratorHelper {
 		}
 	}
 
+	public boolean isGetter(JavaMethod method) {
+		String name = method.getName().getText();
+		return name.startsWith("get") || name.startsWith("is");
+	}
+
 	public boolean isIdentityProperty(JavaMethod method) {
 		String name = method.getName().getText();
-		return !name.equals("getParent") && !name.equals("getChildren")
-				&& (name.startsWith("get") || name.startsWith("is"));
+		return !name.equals("getParent") && !name.equals("getChildren") && isGetter(method)
+				&& !isCalculated(method);
 	}
 
 	public boolean isCalculated(JavaMethod method) {
@@ -48,4 +52,11 @@ public class DomainProxyGeneratorHelper {
 		String name = method.getName().getText();
 		return ArrayUtils.contains(calculated, name);
 	}
+
+	public boolean isToStringMember(JavaMethod method) {
+		String name = method.getName().getText();
+		return isIdentityProperty(method)
+				|| (isCalculated(method) && isGetter(method) && !"getChildren".equals(name));
+	}
+
 }

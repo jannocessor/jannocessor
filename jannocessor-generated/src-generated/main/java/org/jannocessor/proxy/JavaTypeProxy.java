@@ -152,7 +152,6 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.append(this.getTypeClass(), other.getTypeClass())
 				.append(this.getSimpleName(), other.getSimpleName())
 				.append(this.getPackageName(), other.getPackageName())
-				.append(this.getCanonicalName(), other.getCanonicalName())
 				.append(this.getDefaultValue(), other.getDefaultValue())
 				.append(this.getKind(), other.getKind())
 				.isEquals();
@@ -164,7 +163,6 @@ public class JavaTypeProxy extends JavaCodeModelProxy implements JavaType {
 				.append(this.getTypeClass())
 				.append(this.getSimpleName())
 				.append(this.getPackageName())
-				.append(this.getCanonicalName())
 				.append(this.getDefaultValue())
 				.append(this.getKind())
 				.toHashCode();
