@@ -33,6 +33,9 @@ public class MyExperimentProcessor implements CodeProcessor<JavaClass> {
 		context.getLogger().info("Processing {} classes", classes.size());
 
 		for (JavaClass clazz : classes) {
+			// clone the class, so the original model isn't touched
+			clazz = clazz.copy();
+
 			clazz.getName().appendPart("Gen");
 			clazz.getParent().getName().appendPart("generated");
 
@@ -40,51 +43,41 @@ public class MyExperimentProcessor implements CodeProcessor<JavaClass> {
 				Name parentName = clazz.getSuperclass().getSimpleName();
 				if (parentName.getText().equals("AbstractModel")) {
 					parentName.appendPart("Gen");
-					clazz.getSuperclass().getPackageName()
-							.appendPart("generated");
+					clazz.getSuperclass().getPackageName().appendPart("generated");
 				}
 			}
 
-			JavaMetadata meta1 = New.metadata(Generated.class,
-					"Jannocessor Test");
+			JavaMetadata meta1 = New.metadata(Generated.class, "Jannocessor Test");
 			clazz.getMetadata().add(meta1);
 
-			JavaMethod method1 = New.method(Methods.PUBLIC, String.class,
-					"cool");
+			JavaMethod method1 = New.method(Methods.PUBLIC, String.class, "cool");
 			method1.getBody().setHardcoded("return \"COOL!\";");
 			clazz.getMethods().add(method1);
 
 			clazz.getInstanceInits().add(New.instanceInit(New.body("// init")));
-			clazz.getStaticInits().add(
-					New.staticInit(New.body("// static init")));
+			clazz.getStaticInits().add(New.staticInit(New.body("// static init")));
 
-			JavaField x = New.field(Fields.PRIVATE, boolean.class, "x",
-					New.literal(true));
+			JavaField x = New.field(Fields.PRIVATE, boolean.class, "x", New.literal(true));
 			JavaMetadata meta2 = New.metadata(SuppressWarnings.class, "unused");
 			x.getMetadata().add(meta2);
 
 			clazz.getFields().add(x);
 
 			JavaEnumConstant value1 = New.enumConstant("A");
-			value1.getValues().addAll(New.expression("\"foo\""),
-					New.expression("11"));
+			value1.getValues().addAll(New.expression("\"foo\""), New.expression("11"));
 
-			JavaEnumConstant value2 = New.enumConstant("B", New.literal("bar"),
-					New.literal(13));
+			JavaEnumConstant value2 = New.enumConstant("B", New.literal("bar"), New.literal(13));
 
-			JavaNestedEnum enum1 = New.nestedEnum("MyEnum",
-					Power.list(value1, value2));
+			JavaNestedEnum enum1 = New.nestedEnum("MyEnum", Power.list(value1, value2));
 
 			JavaParameter param1 = New.parameter(String.class, "a");
 			JavaParameter param2 = New.parameter(int.class, "b");
-			JavaConstructor constr1 = New.constructor(Constructors.PRIVATE,
-					param1, param2);
+			JavaConstructor constr1 = New.constructor(Constructors.PRIVATE, param1, param2);
 			enum1.getConstructors().add(constr1);
 
 			clazz.getNestedEnums().add(enum1);
 
-			JavaConstructor constr2 = New.constructor(New.parameter(
-					String.class, "param1"));
+			JavaConstructor constr2 = New.constructor(New.parameter(String.class, "param1"));
 			clazz.getConstructors().add(constr2);
 
 			context.generateCode(clazz, debugMode);

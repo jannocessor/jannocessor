@@ -23,6 +23,9 @@ public class MyBeanGenerator implements CodeProcessor<JavaClass> {
 		context.getLogger().info("Processing {} classes", classes.size());
 
 		for (JavaClass clazz : classes) {
+			// clone the class, so the original model isn't touched
+			clazz = clazz.copy();
+
 			clazz.getName().appendPart("Gen");
 			clazz.getMetadata().clear();
 
