@@ -11,7 +11,7 @@
 
 #macro(interface_members)
 #members($self.fields)
-#members($self.attributes)
+#members($self.methods, '#interface_methods($m)')
 #nestedMembers($self)
 #end
 
@@ -25,4 +25,9 @@
   "#extends_interfaces()",
   '{'
 ])
+#end
+
+
+#macro(interface_methods $m)
+#render($m, ['abstract'])
 #end

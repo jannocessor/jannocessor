@@ -1,6 +1,6 @@
-#macro(render_method)#default_method()#end
+#macro(render_method $params)#default_method($params)#end
 
-#macro(default_method)
+#macro(default_method $params)
 #render_lines($self.metadata)
 #join(' ', [
   "#modifiers($self, $Methods.ABSTRACT)",
@@ -9,7 +9,7 @@
   "${self.name}(#parameters($self))",
   "#method_throws($self)"
 ])
-#if(!$self.modifiers.contains($Methods.ABSTRACT)) {
+#if(!$self.modifiers.contains($Methods.ABSTRACT) && !${params.contains('abstract')}) {
 #@indent()#body($self, "#default_body($self)")#end
 }#else;#end
 #end

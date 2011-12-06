@@ -15,7 +15,11 @@
 
 #macro(type $java_type)$types.useType($java_type)#end
 
-#macro(code $x $default)
+#macro(code $x $default $params)
+#if(!$params)
+#set($params='')
+#end
+#set($optionsVar = '$params')
 #if($x.attributes)$helper.setAttributes($x.attributes)#end
 #if($x.hardcoded)
 $x.hardcoded#elseif($x.template)
@@ -23,20 +27,20 @@ $x.hardcoded#elseif($x.template)
 #elseif($x.templateName)
 #parse("#locate($x.templateName)")
 #elseif($x.macroName)
-#evaluate("#${x.macroName}()")
+#evaluate("#${x.macroName}($optionsVar)")
 #elseif($default)
 $default#else
 [ERROR: Can't render $x!]#end
 #if($x.attributes)$helper.removeAttributes($x.attributes)#end
 #end
 
-#macro(render $model)
+#macro(render $model $options)
 #set($self = $model)
-#code($model.code, false)#end
+#code($model.code, false, $options)#end
 
-#macro(body $model $default)
+#macro(body $model $default $options)
 #set($self = $model)
-#code($model.body, $default)#end
+#code($model.body, $default, $options)#end
 
 #macro(optional $value $default)
 #if($value)
@@ -128,14 +132,18 @@ $helper.insight()#end
 #macro(locate $tmpl)
 $helper.locate($tmpl)#end
 
-#macro(members $members_list)
+#macro(members $members_list $template)
 #foreach ($m in $members_list)
-#member($m)
+#member($m, $template)
 #end
 #end
 
-#macro(member $m)
+#macro(member $m $template)
+#if($template)
+#set($output = "#@trim()#evaluate($template)#end")
+#else
 #set($output = "#@trim()#render($m)#end")
+#end
 #if($output != '')
 #@indent()
 $output#end
