@@ -124,7 +124,7 @@ public class NameBean implements Name {
 		if (Character.isUpperCase(deletedStart.charAt(0))) {
 			start = start.substring(0, 1).toUpperCase() + start.substring(1);
 		} else {
-			start = start.substring(0, 1).toLowerCase() + start.substring(1);
+			start = start.toLowerCase();
 		}
 
 		parts.set(0, start);
@@ -242,7 +242,13 @@ public class NameBean implements Name {
 
 	@Override
 	public String getUncapitalized() {
-		return StringUtils.uncapitalize(getText());
+		List<String> parts = parts();
+		if (!parts.isEmpty()) {
+			parts.set(0, parts.get(0).toLowerCase());
+			return mergeParts(parts);
+		} else {
+			return null;
+		}
 	}
 
 	@Override

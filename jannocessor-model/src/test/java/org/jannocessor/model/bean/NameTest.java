@@ -65,6 +65,12 @@ public class NameTest extends AbstractModelTest {
 		return new NameBean(name);
 	}
 
+	@Test
+	public void testGetUncapitalized() {
+		assertEquals("someName", name("SomeName").getUncapitalized());
+		assertEquals("fooBar", name("FOOBar").getUncapitalized());
+	}
+
 	/*
 	 * TEST DELETING NAME PARTS
 	 */
@@ -89,6 +95,17 @@ public class NameTest extends AbstractModelTest {
 		checkDeleteParts(smallUnderscore, "third", 0, 1);
 		checkDeleteParts(smallUnderscore, "first", 1, 2);
 		checkDeleteParts(smallUnderscore, "second", -3, 2);
+	}
+
+	@Test
+	public void testDeleteComplexCamelCaseParts() {
+		checkDeleteParts(complexCamelCase, "secondThird", 0);
+		checkDeleteParts(complexCamelCase, "firstThird", 1);
+		checkDeleteParts(complexCamelCase, "firstSECOND", 2);
+
+		checkDeleteParts(complexCamelCase, "second", 0, 2);
+		checkDeleteParts(complexCamelCase, "first", 1, 2);
+		checkDeleteParts(complexCamelCase, "third", 0, 1);
 	}
 
 	private void checkDeleteParts(String name, String expectedName,
