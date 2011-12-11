@@ -21,3 +21,5 @@ syntax: regexp
 ^jannocessor-test-generated/src-generated$
 syntax: regexp
 ^jannocessor-ui/bin$
+syntax: regexp
+^jannocessor-test-generated/src$

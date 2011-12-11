@@ -8,25 +8,35 @@
 		<version>0.7.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>jannocessor-test-generated</artifactId>
+	<artifactId>jannocessor-maven-plugin</artifactId>
+	<packaging>maven-plugin</packaging>
 
-	<name>JAnnocessor Test Generated</name>
-	<description>JAnnocessor Test Generated</description>
+	<name>JAnnocessor Maven Plugin</name>
+	<description>JAnnocessor Maven Plugin</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-test</artifactId>
+			<artifactId>jannocessor</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-test-common</artifactId>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-core</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -34,15 +44,10 @@
 					<proc>none</proc>
 				</configuration>
 			</plugin>
-
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
+				<artifactId>maven-plugin-plugin</artifactId>
+				<version>2.6</version>
 			</plugin>
-
 		</plugins>
 	</build>
 

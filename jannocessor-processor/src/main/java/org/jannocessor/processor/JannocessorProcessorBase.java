@@ -141,7 +141,11 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	@Override
 	public synchronized void init(ProcessingEnvironment env) {
+		// overwrite the class loader set by the Maven plugin 
+		Thread.currentThread().setContextClassLoader(JannocessorEngine.class.getClassLoader());
+
 		super.init(env);
+
 		try {
 			messager = env.getMessager();
 			JannocessorLogger.messager = messager;

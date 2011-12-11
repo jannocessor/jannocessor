@@ -19,27 +19,27 @@
 
 package org.jannocessor.config;
 
-import org.jannocessor.annotation.Annotated;
-import org.jannocessor.annotation.Types;
 import org.jannocessor.bootstrapped.annotation.AnotherAnnotation;
 import org.jannocessor.bootstrapped.annotation.BeanModel;
 import org.jannocessor.bootstrapped.annotation.MyAnnotation;
-import org.jannocessor.common.annotation.BuilderModel;
-import org.jannocessor.common.annotation.DtoModel;
-import org.jannocessor.common.annotation.GenerateFacade;
-import org.jannocessor.common.processor.BuilderGenerator;
-import org.jannocessor.common.processor.DtoGenerator;
-import org.jannocessor.common.processor.FacadeGenerator;
-import org.jannocessor.common.processor.MapperGenerator;
 import org.jannocessor.experiment.processor.ExperimentProcessor;
 import org.jannocessor.experiment.processor.MirrorProcessor;
 import org.jannocessor.experiment.processor.MyProcessor;
+import org.jannocessor.extra.annotation.BuilderModel;
+import org.jannocessor.extra.annotation.DtoModel;
+import org.jannocessor.extra.annotation.GenerateFacade;
+import org.jannocessor.extra.processor.BuilderGenerator;
+import org.jannocessor.extra.processor.DtoGenerator;
+import org.jannocessor.extra.processor.FacadeGenerator;
+import org.jannocessor.extra.processor.MapperGenerator;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.structure.JavaAnnotation;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaEnum;
 import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.processor.context.CodeProcessor;
+import org.jannocessor.processor.annotation.Annotated;
+import org.jannocessor.processor.annotation.Types;
+import org.jannocessor.processor.api.CodeProcessor;
 
 public class Processors {
 
