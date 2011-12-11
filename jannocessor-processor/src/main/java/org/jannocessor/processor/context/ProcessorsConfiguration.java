@@ -28,9 +28,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.jannocessor.JannocessorException;
-import org.jannocessor.annotation.Annotated;
-import org.jannocessor.annotation.Types;
 import org.jannocessor.model.JavaElement;
+import org.jannocessor.processor.annotation.Annotated;
+import org.jannocessor.processor.annotation.Types;
+import org.jannocessor.processor.api.CodeProcessor;
 import org.jannocessor.util.Check;
 import org.jannocessor.util.Jannocessor;
 
@@ -66,7 +67,7 @@ public class ProcessorsConfiguration {
 					}
 
 					Check.state(result instanceof CodeProcessor,
-							"The method '%s' must implement CodeProcessor!",
+							"The result of method '%s' must implement CodeProcessor!",
 							method.getName());
 
 					CodeProcessor<? extends JavaElement> processor = (CodeProcessor<? extends JavaElement>) result;

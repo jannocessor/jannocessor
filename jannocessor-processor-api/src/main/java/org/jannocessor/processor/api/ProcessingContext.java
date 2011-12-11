@@ -17,13 +17,20 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.processor.context;
+package org.jannocessor.processor.api;
 
-import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.model.JavaElement;
+import org.jannocessor.model.JavaCodeModel;
+import org.jannocessor.model.structure.AbstractJavaStructure;
+import org.slf4j.Logger;
 
-public interface CodeProcessor<T extends JavaElement> {
+public interface ProcessingContext {
 
-	void process(PowerList<T> code, ProcessingContext context);
+	Logger getLogger();
+
+	void generateCode(AbstractJavaStructure model, boolean debug);
+
+	void generateInfo(JavaCodeModel model, boolean debug);
+
+	void generateFile(String fileName, String content);
 
 }

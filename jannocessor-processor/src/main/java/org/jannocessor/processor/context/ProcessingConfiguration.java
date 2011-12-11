@@ -3,6 +3,7 @@ package org.jannocessor.processor.context;
 import java.lang.annotation.Annotation;
 
 import org.jannocessor.model.JavaElement;
+import org.jannocessor.processor.api.CodeProcessor;
 
 public class ProcessingConfiguration {
 

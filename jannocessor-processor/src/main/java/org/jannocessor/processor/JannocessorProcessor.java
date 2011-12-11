@@ -42,9 +42,10 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.context.RenderData;
 import org.jannocessor.context.RenderRegister;
 import org.jannocessor.model.JavaElement;
-import org.jannocessor.processor.context.CodeProcessor;
+import org.jannocessor.processor.api.CodeProcessor;
+import org.jannocessor.processor.api.ProcessingContext;
+import org.jannocessor.processor.context.DefaultProcessingContext;
 import org.jannocessor.processor.context.ProcessingConfiguration;
-import org.jannocessor.processor.context.ProcessingContext;
 import org.jannocessor.processor.context.ProcessorsConfiguration;
 import org.jannocessor.ui.RenderPreview;
 import org.jannocessor.util.Jannocessor;
@@ -145,7 +146,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 	}
 
 	private ProcessingContext createProcessingContext() {
-		ProcessingContext context = new ProcessingContext();
+		DefaultProcessingContext context = new DefaultProcessingContext();
 
 		context.setEngine(engine);
 		context.setLogger(logger);

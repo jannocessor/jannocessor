@@ -33,9 +33,10 @@ import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.util.ValidationUtils;
+import org.jannocessor.processor.api.ProcessingContext;
 import org.slf4j.Logger;
 
-public class ProcessingContext {
+public class DefaultProcessingContext implements ProcessingContext {
 
 	private Logger logger;
 
@@ -55,6 +56,7 @@ public class ProcessingContext {
 
 	private JannocessorEngine engine;
 
+	@Override
 	public Logger getLogger() {
 		return logger;
 	}
@@ -127,6 +129,7 @@ public class ProcessingContext {
 		this.renderer = renderer;
 	}
 
+	@Override
 	public void generateCode(AbstractJavaStructure model, boolean debug) {
 		// check model correctness
 		ValidationUtils.validate(model);
@@ -137,6 +140,7 @@ public class ProcessingContext {
 		render(attributes, debug);
 	}
 
+	@Override
 	public void generateInfo(JavaCodeModel model, boolean debug) {
 		JavaCodeModel clone = model.copy();
 		clone.getCode().setMacroName("info");
@@ -147,7 +151,7 @@ public class ProcessingContext {
 		render(attributes, debug);
 	}
 
-	public void render(Map<String, Object> attributes, boolean debug) {
+	private void render(Map<String, Object> attributes, boolean debug) {
 		if (debug) {
 			renderer.register(attributes);
 		}
@@ -160,6 +164,7 @@ public class ProcessingContext {
 		}
 	}
 
+	@Override
 	public void generateFile(String fileName, String content) {
 		getFiles().put(fileName, content);
 	}

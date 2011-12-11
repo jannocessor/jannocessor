@@ -17,16 +17,15 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.annotation;
+package org.jannocessor.processor.annotation;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import org.jannocessor.model.JavaElement;
-
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Types {
+public @interface Annotated {
 
-	Class<? extends JavaElement>[] value();
+	Class<? extends Annotation>[] value();
 
 }
