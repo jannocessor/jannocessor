@@ -17,9 +17,12 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.common.annotation;
+package org.jannocessor.extra.annotation;
 
 /**
- * A mark for multiple interfaces to generate Facade for.
+ * A simple annotation that is used to mark a JavaBeans model as a target for
+ * DTO source code generation.
  */
-public @interface GenerateFacade { }
+public @interface DtoModel {
+
+}

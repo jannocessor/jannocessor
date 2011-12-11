@@ -19,8 +19,8 @@
 
 package org.jannocessor.example.model;
 
-import org.jannocessor.common.annotation.BuilderModel;
-import org.jannocessor.common.annotation.DtoModel;
+import org.jannocessor.extra.annotation.BuilderModel;
+import org.jannocessor.extra.annotation.DtoModel;
 
 @BuilderModel
 @DtoModel

@@ -1,6 +1,6 @@
 package org.jannocessor.example.calculator;
 
-import org.jannocessor.common.annotation.GenerateFacade;
+import org.jannocessor.extra.annotation.GenerateFacade;
 
 @GenerateFacade
 public interface SubstractionService {

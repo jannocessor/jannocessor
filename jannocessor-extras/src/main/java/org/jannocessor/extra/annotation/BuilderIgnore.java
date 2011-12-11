@@ -17,12 +17,12 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.common.annotation;
+package org.jannocessor.extra.annotation;
 
 /**
  * A simple annotation that is used to mark a member NOT to be included in the
- * generated DTO.
+ * generated builder class.
  */
-public @interface DtoIgnore {
+public @interface BuilderIgnore {
 
 }

@@ -17,7 +17,7 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.common.processor;
+package org.jannocessor.extra.processor;
 
 import javax.annotation.Resource;
 
@@ -28,8 +28,8 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
-import org.jannocessor.processor.context.CodeProcessor;
-import org.jannocessor.processor.context.ProcessingContext;
+import org.jannocessor.processor.api.CodeProcessor;
+import org.jannocessor.processor.api.ProcessingContext;
 
 public class FacadeGenerator implements CodeProcessor<JavaInterface> {
 

@@ -17,12 +17,12 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.common.annotation;
+package org.jannocessor.extra.annotation;
 
 /**
- * A simple annotation that is used to mark a JavaBeans model as a target for
- * DTO source code generation.
+ * A simple annotation that is used to mark a member NOT to be included in the
+ * generated DTO.
  */
-public @interface DtoModel {
+public @interface DtoIgnore {
 
 }

@@ -17,7 +17,7 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.common.annotation;
+package org.jannocessor.extra.annotation;
 
 /**
  * A simple annotation that is used to mark a JavaBeans model as a target for
