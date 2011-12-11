@@ -73,6 +73,26 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-processor-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-extras</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
+				<artifactId>jannocessor-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jannocessor</groupId>
 				<artifactId>jannocessor-collections</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -353,6 +373,10 @@
 		<module>jannocessor-playground</module>
 		<module>jannocessor-test-common</module>
 		<module>jannocessor-sample-archetype</module>
+		<module>jannocessor-maven-plugin</module>
+		<module>jannocessor-client</module>
+		<module>jannocessor-processor-api</module>
+		<module>jannocessor-extras</module>
 	</modules>
 
 </project>
