@@ -21,8 +21,8 @@ package org.jannocessor.experiment.processor;
 
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.structure.AbstractJavaStructure;
-import org.jannocessor.processor.context.CodeProcessor;
-import org.jannocessor.processor.context.ProcessingContext;
+import org.jannocessor.processor.api.CodeProcessor;
+import org.jannocessor.processor.api.ProcessingContext;
 
 public class MirrorProcessor implements CodeProcessor<AbstractJavaStructure> {
 

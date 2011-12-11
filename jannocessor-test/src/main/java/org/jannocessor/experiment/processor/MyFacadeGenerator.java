@@ -25,11 +25,10 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
-import org.jannocessor.processor.context.CodeProcessor;
-import org.jannocessor.processor.context.ProcessingContext;
+import org.jannocessor.processor.api.CodeProcessor;
+import org.jannocessor.processor.api.ProcessingContext;
 
 public class MyFacadeGenerator implements CodeProcessor<JavaInterface> {
 
