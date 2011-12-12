@@ -169,4 +169,14 @@ public class DefaultProcessingContext implements ProcessingContext {
 		getFiles().put(fileName, content);
 	}
 
+	@Override
+	public String getProfile() {
+		try {
+			return engine.getProfile();
+		} catch (JannocessorException e) {
+			logger.error("Cannot retrieve the profile!", e);
+			return null;
+		}
+	}
+
 }

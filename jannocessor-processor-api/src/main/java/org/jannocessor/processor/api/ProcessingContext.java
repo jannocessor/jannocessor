@@ -25,6 +25,8 @@ import org.slf4j.Logger;
 
 public interface ProcessingContext {
 
+	String getProfile();
+
 	Logger getLogger();
 
 	void generateCode(AbstractJavaStructure model, boolean debug);

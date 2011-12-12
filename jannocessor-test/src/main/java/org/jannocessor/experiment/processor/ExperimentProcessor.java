@@ -96,7 +96,7 @@ public class ExperimentProcessor implements CodeProcessor<JavaClass> {
 			JavaConstructor constr2 = New.constructor(New.parameter(String.class, "param1"));
 			clazz.getConstructors().add(constr2);
 
-			// context.generateCode(clazz, debugMode);
+			context.generateCode(clazz, debugMode);
 		}
 
 	}

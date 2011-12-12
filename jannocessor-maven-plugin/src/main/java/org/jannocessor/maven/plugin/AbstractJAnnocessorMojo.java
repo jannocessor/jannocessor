@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.tools.Diagnostic;
@@ -253,17 +254,14 @@ public abstract class AbstractJAnnocessorMojo extends AbstractMojo {
 	}
 
 	private void addCompilerArguments(List<String> options) {
-		if (!StringUtils.isEmpty(getCompilerArguments())) {
-			for (String arg : getCompilerArguments().split(" ")) {
-				if (!StringUtils.isEmpty(arg)) {
-					arg = arg.trim();
-					getLog().info("Adding compiler arg: " + arg);
-					options.add(arg);
-				}
-			}
+		for (Entry<String, String> arg : getArguments().entrySet()) {
+			String argument = String.format("-A%s=%s", arg.getKey(), arg.getValue());
+			getLog().info("Adding compiler arg: " + argument);
+			options.add(argument);
 		}
 
-		String opt = String.format("-A%s=%s", "templates.path", getFilePath(getTemplatesDirectory()));
+		String opt = String.format("-A%s=%s", "templates.path",
+				getFilePath(getTemplatesDirectory()));
 		options.add(opt);
 		getLog().info("Adding compiler arg: " + opt);
 	}
@@ -326,7 +324,7 @@ public abstract class AbstractJAnnocessorMojo extends AbstractMojo {
 
 	protected abstract Map<String, String> getSystemProperties();
 
-	protected abstract String getCompilerArguments();
+	protected abstract Map<String, String> getArguments();
 
 	protected abstract Boolean getProcessOutputSources();
 

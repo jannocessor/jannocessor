@@ -63,7 +63,15 @@ public abstract class AbstractJAnnocessorProcessMojo extends AbstractJAnnocessor
 	 * @parameter
 	 *
 	 */
-	String compilerArguments;
+	Map<String, String> compilerArguments;
+
+	/**
+	 * Execution profile
+	 *
+	 * @parameter
+	 *
+	 */
+	String profile;
 
 	/**
 	 * Name of the module containing the generated source code
@@ -164,8 +172,18 @@ public abstract class AbstractJAnnocessorProcessMojo extends AbstractJAnnocessor
 		}
 	}
 
-	public String getCompilerArguments() {
-		return compilerArguments;
+	public Map<String, String> getCompilerArguments() {
+		Map<String, String> arguments = new HashMap<String, String>();
+
+		if (compilerArguments != null) {
+			arguments.putAll(compilerArguments);
+		}
+
+		if (profile != null) {
+			arguments.put("profile", profile);
+		}
+
+		return arguments;
 	}
 
 	public Boolean getProcessOutputSources() {

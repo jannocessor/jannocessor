@@ -46,6 +46,7 @@
 						</goals>
 						<configuration>
 							<outputModule>jannocessor-test-generated</outputModule>
+							<profile>test</profile>
 						</configuration>
 						<!-- FOR TEMPLATES DEVELOPMENT:
 							<templatesModule>jannocessor-templates</templatesModule>
