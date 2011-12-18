@@ -58,12 +58,12 @@ public abstract class AbstractJAnnocessorProcessMojo extends AbstractJAnnocessor
 	File outputDirectory;
 
 	/**
-	 * Additional compiler arguments
+	 * Additional JAnnocessor arguments
 	 *
 	 * @parameter
 	 *
 	 */
-	Map<String, String> compilerArguments;
+	Map<String, String> arguments;
 
 	/**
 	 * Execution profile
@@ -167,23 +167,24 @@ public abstract class AbstractJAnnocessorProcessMojo extends AbstractJAnnocessor
 			if (templatesModule == null) {
 				return new File(getRelativePath("/src/main/resources"));
 			} else {
-				return new File(getParentRelativePath("/" + templatesModule + "/src/main/resources"));
+				return new File(
+						getParentRelativePath("/" + templatesModule + "/src/main/resources"));
 			}
 		}
 	}
 
-	public Map<String, String> getCompilerArguments() {
-		Map<String, String> arguments = new HashMap<String, String>();
+	public Map<String, String> getArguments() {
+		Map<String, String> allArgs = new HashMap<String, String>();
 
-		if (compilerArguments != null) {
-			arguments.putAll(compilerArguments);
+		if (arguments != null) {
+			allArgs.putAll(arguments);
 		}
 
 		if (profile != null) {
-			arguments.put("profile", profile);
+			allArgs.put("profile", profile);
 		}
 
-		return arguments;
+		return allArgs;
 	}
 
 	public Boolean getProcessOutputSources() {
