@@ -17,28 +17,32 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.ui;
+package org.jannocessor.processor.context;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.jannocessor.JannocessorException;
+import org.jannocessor.processor.api.CodeMerger;
+import org.jannocessor.processor.api.RenderData;
 import org.jannocessor.processor.api.RenderRegister;
-import org.jannocessor.service.api.Configurator;
-import org.jannocessor.service.api.JavaRepresenter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class RenderPreview {
+public abstract class AbstractRenderRegister implements RenderRegister {
 
-	protected static Logger logger = LoggerFactory.getLogger("UI");
+	private final List<RenderData> renderings = new ArrayList<RenderData>();
 
-	public static void showDialog(String projectPath,
-			RenderRegister renderRegister, Configurator configurator,
-			JavaRepresenter representer) throws JannocessorException {
-		if (!renderRegister.getRenderings().isEmpty()) {
-			logger.info("Starting UI...");
-			RenderPreviewDialog dlg = new RenderPreviewDialog(projectPath,
-					renderRegister, configurator, representer);
-			dlg.setVisible(true);
-		}
+	@Override
+	public void register(Map<String, Object> attributes, CodeMerger merger) {
+		renderings.add(new DefaultRenderData(attributes, merger));
 	}
+
+	@Override
+	public List<RenderData> getRenderings() {
+		return renderings;
+	}
+
+	@Override
+	public abstract void refresh() throws JannocessorException;
 
 }

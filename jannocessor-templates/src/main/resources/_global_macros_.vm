@@ -235,3 +235,19 @@ $self
 #macro(delegator)
 #if($self.returnType.kind != 'VOID')return #end
 ${delegate.name}.${self.name}(#list($args, '$it', ', '));#end
+
+#macro(extra_code $extraCode)
+#if($extraCode && !$extraCode.empty)
+#@indent()
+#code($extraCode, '')
+#end
+#end
+#end
+
+#macro(customization)
+// Custom hand-written code starts here
+
+/***** You can insert your custom code here *****/
+
+// Custom hand-written code ends here
+#end

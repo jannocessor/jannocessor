@@ -19,15 +19,18 @@
 
 package org.jannocessor.ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jannocessor.JannocessorException;
-import org.jannocessor.context.RenderRegister;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.util.Classes;
 import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.util.New;
+import org.jannocessor.processor.api.RenderData;
+import org.jannocessor.processor.api.RenderRegister;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.mockito.Mockito;
@@ -42,12 +45,11 @@ public class RenderPreviewUtil {
 		classs.getFields().add(New.field(Fields.PRIVATE, String.class, "prvo"));
 		classs.getFields().add(New.field(Fields.PRIVATE, int.class, "vtoro"));
 
-		RenderRegister renderRegister = new RenderRegister() {
-			@Override
-			public void refresh() throws JannocessorException {
-			}
-		};
-		renderRegister.register(attr);
+		RenderRegister renderRegister = Mockito.mock(RenderRegister.class);
+
+		List<RenderData> renderings = new ArrayList<RenderData>();
+		renderings.add(new SimpleRenderData(attr, null));
+		Mockito.when(renderRegister.getRenderings()).thenReturn(renderings);
 
 		Configurator configurator = Mockito.mock(Configurator.class);
 		Mockito.when(configurator.getTemplatesPath()).thenReturn(null);

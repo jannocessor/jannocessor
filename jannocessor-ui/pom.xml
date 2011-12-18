@@ -23,6 +23,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
+			<artifactId>jannocessor-processor-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-model</artifactId>
 		</dependency>
 		<dependency>

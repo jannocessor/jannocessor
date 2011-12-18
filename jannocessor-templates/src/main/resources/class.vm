@@ -16,6 +16,7 @@
 #members($self.constructors)
 #members($self.methods)
 #nestedMembers($self)
+#extra_code($self.extraCode)
 #end
 
 #macro(class_begin)

@@ -23,6 +23,7 @@ import javax.annotation.Generated;
 
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
+import org.jannocessor.extra.merge.MarkedCodeSegmentMerger;
 import org.jannocessor.model.Name;
 import org.jannocessor.model.executable.JavaConstructor;
 import org.jannocessor.model.executable.JavaMethod;
@@ -36,6 +37,7 @@ import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaEnumConstant;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
+import org.jannocessor.processor.api.CodeMerger;
 import org.jannocessor.processor.api.CodeProcessor;
 import org.jannocessor.processor.api.ProcessingContext;
 
@@ -96,7 +98,10 @@ public class ExperimentProcessor implements CodeProcessor<JavaClass> {
 			JavaConstructor constr2 = New.constructor(New.parameter(String.class, "param1"));
 			clazz.getConstructors().add(constr2);
 
-			context.generateCode(clazz, debugMode);
+			clazz.getExtraCode().assign(New.customization());
+
+			CodeMerger merger = new MarkedCodeSegmentMerger();
+			context.generateCode(clazz, merger, debugMode);
 		}
 
 	}

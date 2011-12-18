@@ -48,8 +48,8 @@ import jsyntaxpane.DefaultSyntaxKit;
 
 import org.apache.commons.io.FileUtils;
 import org.jannocessor.JannocessorException;
-import org.jannocessor.context.RenderData;
-import org.jannocessor.context.RenderRegister;
+import org.jannocessor.processor.api.RenderData;
+import org.jannocessor.processor.api.RenderRegister;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.MultiContentSplitter;

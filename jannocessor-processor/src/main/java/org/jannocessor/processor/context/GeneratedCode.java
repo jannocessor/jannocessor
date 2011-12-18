@@ -17,25 +17,27 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.context;
+package org.jannocessor.processor.context;
 
-import java.util.Map;
+import org.jannocessor.processor.api.CodeMerger;
 
-public class RenderData {
+public class GeneratedCode {
 
-	private final Map<String, Object> attributes;
+	private final String content;
 
-	public RenderData(Map<String, Object> attributes) {
-		this.attributes = attributes;
+	private final CodeMerger merger;
+
+	public GeneratedCode(String content, CodeMerger merger) {
+		this.content = content;
+		this.merger = merger;
 	}
 
-	public Map<String, Object> getAttributes() {
-		return attributes;
+	public String getContent() {
+		return content;
 	}
 
-	@Override
-	public String toString() {
-		return "RenderData [attributes=" + attributes + "]";
+	public CodeMerger getMerger() {
+		return merger;
 	}
 
 }

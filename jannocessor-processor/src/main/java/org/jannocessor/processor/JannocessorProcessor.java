@@ -39,12 +39,15 @@ import org.jannocessor.JannocessorException;
 import org.jannocessor.adapter.AdapterFactory;
 import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
-import org.jannocessor.context.RenderData;
-import org.jannocessor.context.RenderRegister;
 import org.jannocessor.model.JavaElement;
+import org.jannocessor.processor.api.CodeMerger;
 import org.jannocessor.processor.api.CodeProcessor;
 import org.jannocessor.processor.api.ProcessingContext;
+import org.jannocessor.processor.api.RenderData;
+import org.jannocessor.processor.context.AbstractRenderRegister;
 import org.jannocessor.processor.context.DefaultProcessingContext;
+import org.jannocessor.processor.context.GeneratedCode;
+import org.jannocessor.processor.context.GeneratedFile;
 import org.jannocessor.processor.context.ProcessingConfiguration;
 import org.jannocessor.processor.context.ProcessorsConfiguration;
 import org.jannocessor.ui.RenderPreview;
@@ -57,7 +60,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 	protected void processAnnotations(final Set<? extends TypeElement> annotations,
 			final RoundEnvironment env) throws JannocessorException {
 
-		renderRegister = new RenderRegister() {
+		renderRegister = new AbstractRenderRegister() {
 			@Override
 			public void refresh() throws JannocessorException {
 				getRenderings().clear();
@@ -96,20 +99,21 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 		// FIXME: some content will be double-processed (as both in "contents"
 		// and "renderings")
-		for (String content : contents) {
-			processMultiFiles(engine.split(content));
+		for (GeneratedCode code : contents) {
+			processMultiFiles(engine.split(code.getContent()), code.getMerger());
 		}
 
 		for (RenderData renderData : renderings) {
 			String text = engine.renderMacro("main", renderData.getAttributes(), new String[] {});
-			processMultiFiles(engine.split(text));
+			processMultiFiles(engine.split(text), renderData.getCodeMerger());
 		}
 	}
 
-	private void processMultiFiles(Map<String, String> contents) {
+	private void processMultiFiles(Map<String, String> contents, CodeMerger codeMerger) {
 		if (!contents.isEmpty()) {
 			for (Entry<String, String> entry : contents.entrySet()) {
-				files.put(entry.getKey(), entry.getValue());
+				files.put(entry.getKey(), new GeneratedFile(entry.getKey(), entry.getValue(),
+						codeMerger));
 			}
 		} else {
 			logger.error("File name not specified!");
@@ -119,20 +123,20 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 	private void generateFiles() throws JannocessorException {
 		logger.info("Generating {} files...", files.size());
 
-		for (Entry<String, String> file : files.entrySet()) {
-			generateFile(file.getKey(), file.getValue());
+		for (Entry<String, GeneratedFile> file : files.entrySet()) {
+			generateFile(file.getValue());
 		}
 
 		logger.info("Total {} files were generated.", files.size());
 	}
 
-	private void generateFile(String fileName, String content) throws JannocessorException {
+	private void generateFile(GeneratedFile file) throws JannocessorException {
 		Location location = StandardLocation.SOURCE_OUTPUT;
 
-		String info = fileInfo(location, "", fileName);
+		String info = fileInfo(location, "", file.getFilename());
 		logger.debug("- Generating file: {}", info);
 
-		writeToFile(location, "", fileName, content);
+		writeToFile(location, "", file.getFilename(), file.getContent(), file.getMerger());
 	}
 
 	@SuppressWarnings("unused")

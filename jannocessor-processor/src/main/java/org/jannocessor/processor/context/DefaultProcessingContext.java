@@ -28,12 +28,13 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 import org.jannocessor.JannocessorException;
-import org.jannocessor.context.RenderRegister;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.model.JavaCodeModel;
 import org.jannocessor.model.structure.AbstractJavaStructure;
 import org.jannocessor.model.util.ValidationUtils;
+import org.jannocessor.processor.api.CodeMerger;
 import org.jannocessor.processor.api.ProcessingContext;
+import org.jannocessor.processor.api.RenderRegister;
 import org.slf4j.Logger;
 
 public class DefaultProcessingContext implements ProcessingContext {
@@ -44,9 +45,9 @@ public class DefaultProcessingContext implements ProcessingContext {
 
 	private Elements elements;
 
-	private Map<String, String> files;
+	private Map<String, GeneratedFile> files;
 
-	private List<String> contents;
+	private List<GeneratedCode> contents;
 
 	private Problems problems;
 
@@ -97,19 +98,19 @@ public class DefaultProcessingContext implements ProcessingContext {
 		return filer;
 	}
 
-	public Map<String, String> getFiles() {
+	public Map<String, GeneratedFile> getFiles() {
 		return files;
 	}
 
-	public void setFiles(Map<String, String> files) {
+	public void setFiles(Map<String, GeneratedFile> files) {
 		this.files = files;
 	}
 
-	public List<String> getContents() {
+	public List<GeneratedCode> getContents() {
 		return contents;
 	}
 
-	public void setContents(List<String> contents) {
+	public void setContents(List<GeneratedCode> contents) {
 		this.contents = contents;
 	}
 
@@ -131,13 +132,18 @@ public class DefaultProcessingContext implements ProcessingContext {
 
 	@Override
 	public void generateCode(AbstractJavaStructure model, boolean debug) {
+		generateCode(model, null, debug);
+	}
+
+	@Override
+	public void generateCode(AbstractJavaStructure model, CodeMerger merger, boolean debug) {
 		// check model correctness
 		ValidationUtils.validate(model);
 
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("self", model);
 
-		render(attributes, debug);
+		render(attributes, merger, debug);
 	}
 
 	@Override
@@ -148,25 +154,30 @@ public class DefaultProcessingContext implements ProcessingContext {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("self", clone);
 
-		render(attributes, debug);
+		render(attributes, null, debug);
 	}
 
-	private void render(Map<String, Object> attributes, boolean debug) {
+	private void render(Map<String, Object> attributes, CodeMerger merger, boolean debug) {
 		if (debug) {
-			renderer.register(attributes);
+			renderer.register(attributes, merger);
 		}
 
 		try {
 			String content = engine.renderMacro("main", attributes, new String[] {});
-			getContents().add(content);
+			getContents().add(new GeneratedCode(content, merger));
 		} catch (JannocessorException e) {
 			throw new RuntimeException("Exception occured while rendering", e);
 		}
 	}
 
 	@Override
-	public void generateFile(String fileName, String content) {
-		getFiles().put(fileName, content);
+	public void generateFile(String filename, String content) {
+		generateFile(filename, content, null);
+	}
+
+	@Override
+	public void generateFile(String filename, String content, CodeMerger merger) {
+		getFiles().put(filename, new GeneratedFile(filename, content, merger));
 	}
 
 	@Override

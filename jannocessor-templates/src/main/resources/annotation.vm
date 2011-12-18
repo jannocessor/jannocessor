@@ -13,6 +13,7 @@
 #members($self.fields)
 #members($self.attributes)
 #nestedMembers($self)
+#extra_code($self.extraCode)
 #end
 
 #macro(annotation_begin)

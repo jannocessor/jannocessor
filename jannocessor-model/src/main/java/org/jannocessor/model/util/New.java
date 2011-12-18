@@ -845,4 +845,8 @@ public class New {
 		return expression(clazz.getSimpleName() + ".class");
 	}
 
+	public static SourceCode customization() {
+		return codeByMacroName("customization");
+	}
+
 }

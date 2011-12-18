@@ -17,26 +17,34 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.processor.api;
+package org.jannocessor.processor.context;
 
-import org.jannocessor.model.JavaCodeModel;
-import org.jannocessor.model.structure.AbstractJavaStructure;
-import org.slf4j.Logger;
+import org.jannocessor.processor.api.CodeMerger;
 
-public interface ProcessingContext {
+public class GeneratedFile {
 
-	String getProfile();
+	private final String content;
 
-	Logger getLogger();
+	private final CodeMerger merger;
 
-	void generateCode(AbstractJavaStructure model, CodeMerger merger, boolean debug);
+	private final String filename;
 
-	void generateCode(AbstractJavaStructure model, boolean debug);
+	public GeneratedFile(String filename, String content, CodeMerger merger) {
+		this.filename = filename;
+		this.content = content;
+		this.merger = merger;
+	}
 
-	void generateInfo(JavaCodeModel model, boolean debug);
+	public String getFilename() {
+		return filename;
+	}
 
-	void generateFile(String fileName, String content);
+	public String getContent() {
+		return content;
+	}
 
-	void generateFile(String filename, String content, CodeMerger merger);
+	public CodeMerger getMerger() {
+		return merger;
+	}
 
 }

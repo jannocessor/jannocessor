@@ -19,10 +19,13 @@
 
 package org.jannocessor.processor;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,16 +48,22 @@ import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
 import javax.tools.ToolProvider;
 
+import org.apache.commons.io.IOUtils;
 import org.jannocessor.JannocessorException;
 import org.jannocessor.adapter.SourceHolder;
 import org.jannocessor.collection.Power;
 import org.jannocessor.context.Config;
 import org.jannocessor.context.Configuration;
-import org.jannocessor.context.RenderRegister;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.engine.impl.ProcessorModule;
 import org.jannocessor.inject.ImportsServiceModule;
 import org.jannocessor.inject.RulesServiceModule;
+import org.jannocessor.processor.api.FileInformation;
+import org.jannocessor.processor.api.CodeMerger;
+import org.jannocessor.processor.api.RenderRegister;
+import org.jannocessor.processor.context.DefaultFileInformation;
+import org.jannocessor.processor.context.GeneratedCode;
+import org.jannocessor.processor.context.GeneratedFile;
 import org.jannocessor.processor.context.Problem;
 import org.jannocessor.processor.context.Problems;
 import org.jannocessor.processor.context.ProcessorsConfiguration;
@@ -81,8 +90,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 	protected Types typeUtils;
 	protected Filer filer;
 	private Configuration options;
-	protected Map<String, String> files = new HashMap<String, String>();
-	protected List<String> contents = new ArrayList<String>();
+	protected Map<String, GeneratedFile> files = new HashMap<String, GeneratedFile>();
+	protected List<GeneratedCode> contents = new ArrayList<GeneratedCode>();
 	protected Problems problems = new Problems();
 	protected JannocessorEngine engine;
 	protected RenderRegister renderRegister;
@@ -141,7 +150,7 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	@Override
 	public synchronized void init(ProcessingEnvironment env) {
-		// overwrite the class loader set by the Maven plugin 
+		// overwrite the class loader set by the Maven plugin
 		Thread.currentThread().setContextClassLoader(JannocessorEngine.class.getClassLoader());
 
 		super.init(env);
@@ -269,16 +278,31 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		}
 	}
 
-	protected void writeToFile(Location location, String pkg, String filename, String text)
-			throws JannocessorException {
+	protected void writeToFile(Location location, String pkg, String filename, String text,
+			CodeMerger merger) throws JannocessorException {
+		boolean mergeFile = merger != null;
+
 		String info = fileInfo(location, pkg, filename);
-		logger.debug("Writing text ({} characters) to file: {}", text.length(), info);
+		String operation = mergeFile ? "Merging" : "Overwriting";
+		logger.info("{} generated code ({} characters) to file: {}", new Object[] { operation,
+				text.length(), info });
+
+		try {
+			if (mergeFile) {
+				FileInformation oldCode = readFile(location, pkg, filename);
+				FileInformation newCode = new DefaultFileInformation(text, oldCode.getFilename(), new Date());
+				text = merger.mergeCode(oldCode, newCode);
+			}
+		} catch (Exception e) {
+			throw new JannocessorException("Couldn't merge file: " + info, e);
+		}
 
 		FileObject fileRes;
 		Writer writer = null;
 
 		try {
 			fileRes = filer.createResource(location, pkg, filename);
+
 			writer = fileRes.openWriter();
 			writer.write(text);
 		} catch (IOException e) {
@@ -291,6 +315,24 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 					throw new JannocessorException("Couldn't close file: " + info, e);
 				}
 			}
+		}
+	}
+
+	private FileInformation readFile(Location location, String pkg, String filename) {
+		try {
+			FileObject file = filer.getResource(location, pkg, filename);
+
+			InputStream inputStream = file.openInputStream();
+			String content = IOUtils.toString(inputStream);
+			inputStream.close();
+
+			Date lastModified = new Date(file.getLastModified());
+
+			String name = new File(file.toUri()).getCanonicalPath();
+
+			return new DefaultFileInformation(content, name, lastModified);
+		} catch (IOException e) {
+			return null;
 		}
 	}
 
