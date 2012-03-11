@@ -7,8 +7,8 @@ import org.jannocessor.model.util.Fields;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
-import org.jannocessor.processor.context.CodeProcessor;
-import org.jannocessor.processor.context.ProcessingContext;
+import org.jannocessor.processor.api.CodeProcessor;
+import org.jannocessor.processor.api.ProcessingContext;
 
 public class MyBeanGenerator implements CodeProcessor<JavaClass> {
 
@@ -28,6 +28,7 @@ public class MyBeanGenerator implements CodeProcessor<JavaClass> {
 
 			clazz.getName().appendPart("Gen");
 			clazz.getMetadata().clear();
+			clazz.getConstructors().clear();
 
 			for (JavaField field : clazz.getFields()) {
 				field.getModifiers().assign(Fields.PRIVATE);
@@ -39,6 +40,7 @@ public class MyBeanGenerator implements CodeProcessor<JavaClass> {
 				clazz.getMethods().add(getter);
 			}
 
+			New.packagee("example.bean").getClasses().add(clazz);
 			context.generateCode(clazz, debugMode);
 		}
 	}

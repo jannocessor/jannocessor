@@ -2,7 +2,7 @@ package example.domain;
 
 import java.util.Date;
 
-import org.jannocessor.common.annotation.DtoModel;
+import org.jannocessor.extra.annotation.DtoModel;
 
 import example.annotation.GenerateBuilder;
 

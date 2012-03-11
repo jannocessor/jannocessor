@@ -1,13 +1,13 @@
 package org.jannocessor.config;
 
-import org.jannocessor.annotation.Annotated;
-import org.jannocessor.annotation.Types;
-import org.jannocessor.common.annotation.DtoModel;
-import org.jannocessor.common.annotation.GenerateFacade;
+import org.jannocessor.extra.annotation.DtoModel;
+import org.jannocessor.extra.annotation.GenerateFacade;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.structure.JavaInterface;
-import org.jannocessor.processor.context.CodeProcessor;
+import org.jannocessor.processor.annotation.Annotated;
+import org.jannocessor.processor.annotation.Types;
+import org.jannocessor.processor.api.CodeProcessor;
 
 import example.annotation.BeanModel;
 import example.annotation.GenerateBuilder;

@@ -1,6 +1,6 @@
 package example.service;
 
-import org.jannocessor.common.annotation.GenerateFacade;
+import org.jannocessor.extra.annotation.GenerateFacade;
 
 @GenerateFacade
 public interface MultiplicationService {
