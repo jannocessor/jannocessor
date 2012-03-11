@@ -58,8 +58,8 @@ import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.engine.impl.ProcessorModule;
 import org.jannocessor.inject.ImportsServiceModule;
 import org.jannocessor.inject.RulesServiceModule;
-import org.jannocessor.processor.api.FileInformation;
 import org.jannocessor.processor.api.CodeMerger;
+import org.jannocessor.processor.api.FileInformation;
 import org.jannocessor.processor.api.RenderRegister;
 import org.jannocessor.processor.context.DefaultFileInformation;
 import org.jannocessor.processor.context.GeneratedCode;
@@ -290,8 +290,12 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		try {
 			if (mergeFile) {
 				FileInformation oldCode = readFile(location, pkg, filename);
-				FileInformation newCode = new DefaultFileInformation(text, oldCode.getFilename(), new Date());
-				text = merger.mergeCode(oldCode, newCode);
+				if (oldCode != null) {
+					FileInformation newCode = new DefaultFileInformation(text, oldCode.getFilename(), new Date());
+					text = merger.mergeCode(oldCode, newCode);
+				} else {
+					logger.warn("Couldn't merge non-existing file: {}", info);
+				}
 			}
 		} catch (Exception e) {
 			throw new JannocessorException("Couldn't merge file: " + info, e);
