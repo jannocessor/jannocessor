@@ -28,17 +28,22 @@ import org.jannocessor.model.structure.JavaInterface;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
-import org.jannocessor.processor.api.CodeProcessor;
 import org.jannocessor.processor.api.ProcessingContext;
 
-public class FacadeGenerator implements CodeProcessor<JavaInterface> {
+public class FacadeGenerator extends AbstractGenerator<JavaInterface> {
+
+	private final String facadeName;
+
+	public FacadeGenerator(String destPackage, String facadeName, boolean inDebugMode) {
+		super(destPackage, inDebugMode);
+		this.facadeName = facadeName;
+	}
 
 	/**
-	 * Processes all interfaces annotated as target for Facade source code
-	 * generation.
+	 * Generates a Facade implementation class from the specified interfaces.
 	 */
-	public void process(PowerList<JavaInterface> targets, ProcessingContext context) {
-		JavaClass facade = New.classs("Calculator");
+	protected void generateCodeFrom(PowerList<JavaInterface> targets, ProcessingContext context) {
+		JavaClass facade = New.classs(facadeName);
 
 		for (JavaInterface target : targets) {
 			String delegateName = target.getName().getUncapitalized();
@@ -47,15 +52,12 @@ public class FacadeGenerator implements CodeProcessor<JavaInterface> {
 			delegate.getMetadata().add(New.metadata(Resource.class));
 			facade.getFields().add(delegate);
 
-
 			for (JavaMethod method : target.getMethods()) {
 				facade.getMethods().add(Methods.delegator(method, delegate));
-
 			}
 		}
 
-		New.packagee("org.jannocessor.example.calculator.facade").getClasses().add(facade);
-		context.generateCode(facade, true);
+		generate(facade);
 	}
 
 }

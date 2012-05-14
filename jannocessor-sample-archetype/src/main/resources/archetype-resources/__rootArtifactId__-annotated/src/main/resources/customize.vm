@@ -4,3 +4,9 @@
 #end
 
 #macro(indentation)    #end
+
+#macro(caption)
+/**
+ * This file was automatically generated.
+ */
+#end

@@ -191,6 +191,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		// facts.add(root);
 		// }
 
+		logger.info("Executing {} annotation processing configurations...");
 		for (ProcessingConfiguration config : processorsConfig.getConfiguration()) {
 			HashSet<Element> elements = new HashSet<Element>();
 
@@ -208,15 +209,23 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 				JavaElement model = AdapterFactory.getElementModel(element, JavaElement.class,
 						elementUtils, typeUtils);
 
+				boolean matchedByType = false;
 				for (Class<? extends JavaElement> type : config.getTypes()) {
 					if (type.isInstance(model)) {
 						list.add(model);
+						matchedByType = true;
 						break;
 					}
 				}
+				
+				if (!matchedByType) {
+					logger.warn("Didn't match by type the element : " + model);
+				}
 			}
 
-			invokeProcessor(config.getProcessor(), list, context);
+			CodeProcessor<? extends JavaElement> processor = config.getProcessor();
+			logger.info("Invoking processor {} for {} elements", processor, list.size());
+			invokeProcessor(processor, list, context);
 		}
 
 		logger.info("Finished processing iteration.");

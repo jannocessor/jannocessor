@@ -43,8 +43,9 @@ public class JannocessorClassLoader extends ClassLoader {
 			try {
 				return findClass(classname);
 			} catch (ClassNotFoundException e) {
-				logger.warn("Couldn't reload class: " + classname);
-				return super.loadClass(classname);
+				Class<?> fallbackClass = super.loadClass(classname);
+				logger.warn("Couldn't reload class: {}. Fallback: {}", classname, fallbackClass);
+				return fallbackClass;
 			}
 		} else {
 			return super.loadClass(classname);

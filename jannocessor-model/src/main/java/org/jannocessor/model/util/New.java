@@ -307,6 +307,10 @@ public class New {
 		return new JavaTypeBean(canonicalName, JavaTypeKind.DECLARED);
 	}
 
+	public static JavaType type(String canonicalNameFormat, Object... args) {
+		return type(String.format(canonicalNameFormat, args));
+	}
+	
 	public static JavaType type(String packageName, String simpleName, JavaTypeKind kind) {
 		return new JavaTypeBean(packageName, simpleName, kind);
 	}

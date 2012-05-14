@@ -43,15 +43,15 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>org.bsc.maven</groupId>
-										<artifactId>maven-processor-plugin</artifactId>
-										<versionRange>[2.0.4,)</versionRange>
+										<groupId>org.jannocessor.maven.plugin</groupId>
+										<artifactId>jannocessor-maven-plugin</artifactId>
+										<versionRange>[0.7.0,)</versionRange>
 										<goals>
 											<goal>process</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore/>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>

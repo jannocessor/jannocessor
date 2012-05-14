@@ -89,8 +89,9 @@ public class RenderPreviewDialog extends JDialog {
 
 	private JScrollPane scroll2;
 
-	public RenderPreviewDialog(String templatesPath,
-			RenderRegister renderRegister, Configurator configurator,
+	private JEditorPane editor;
+
+	public RenderPreviewDialog(String templatesPath, RenderRegister renderRegister, Configurator configurator,
 			JavaRepresenter representer) throws JannocessorException {
 		this.templatesPath = templatesPath;
 		this.renderRegister = renderRegister;
@@ -108,12 +109,10 @@ public class RenderPreviewDialog extends JDialog {
 		DefaultSyntaxKit.initKit();
 
 		JEditorPane.registerEditorKitForContentType("text/java_template",
-				"org.jannocessor.syntax.JavaTemplateKit", getClass()
-						.getClassLoader());
+				"org.jannocessor.syntax.JavaTemplateKit", getClass().getClassLoader());
 
 		JEditorPane.registerEditorKitForContentType("text/java_output",
-				"org.jannocessor.syntax.JavaOutputKit", getClass()
-						.getClassLoader());
+				"org.jannocessor.syntax.JavaOutputKit", getClass().getClassLoader());
 
 		setTitle("JAnnocessor - Java Annotation Processor");
 		setLayout(new BorderLayout(5, 5));
@@ -128,26 +127,22 @@ public class RenderPreviewDialog extends JDialog {
 		// Font font = new Font("Courier New", Font.PLAIN, 14);
 
 		input = createInput();
-		JScrollPane scroll1 = new JScrollPane(input,
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+		JScrollPane scroll1 = new JScrollPane(input, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		input.setContentType("text/java_template");
 
 		input.setText("");
 
 		scroll1.setMinimumSize(new Dimension(200, 200));
-		scroll1.setPreferredSize(new Dimension((int) (width * 0.5),
-				(int) height));
+		scroll1.setPreferredSize(new Dimension((int) (width * 0.5), (int) height));
 		add(scroll1, BorderLayout.CENTER);
 
 		output = Box.createVerticalBox();
 
-		scroll2 = new JScrollPane(output,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		scroll2 = new JScrollPane(output, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll2.setMinimumSize(new Dimension(200, 200));
-		scroll2.setPreferredSize(new Dimension((int) (width * 0.5),
-				(int) height));
+		scroll2.setPreferredSize(new Dimension((int) (width * 0.5), (int) height));
 		add(scroll2, BorderLayout.EAST);
 
 		combo = createCombo();
@@ -189,6 +184,12 @@ public class RenderPreviewDialog extends JDialog {
 				} else if (e.getKeyCode() == KeyEvent.VK_S && e.isControlDown()) {
 					e.consume();
 					save();
+				} else if (e.getKeyCode() == KeyEvent.VK_I && e.isControlDown()) {
+					e.consume();
+					increase();
+				} else if (e.getKeyCode() == KeyEvent.VK_D && e.isControlDown()) {
+					e.consume();
+					decrease();
 				}
 			}
 		};
@@ -205,6 +206,18 @@ public class RenderPreviewDialog extends JDialog {
 
 		input.requestFocus();
 		logger.debug("Initialized UI.");
+	}
+
+	protected void decrease() {
+		logger.info("Decreasing font size");
+		input.setFont(new Font("Courier New", Font.BOLD, Math.max(input.getFont().getSize() - 1, 8)));
+		editor.setFont(new Font("Courier New", Font.BOLD, Math.max(editor.getFont().getSize() - 1, 8)));
+	}
+
+	protected void increase() {
+		logger.info("Increasing font size");
+		input.setFont(new Font("Courier New", Font.BOLD, input.getFont().getSize() + 1));
+		editor.setFont(new Font("Courier New", Font.BOLD, editor.getFont().getSize() + 1));
 	}
 
 	protected void processElements() {
@@ -244,10 +257,9 @@ public class RenderPreviewDialog extends JDialog {
 	}
 
 	private JComponent createOutput(String title, String content) {
-		final JEditorPane editor = new JEditorPane();
+		editor = new JEditorPane();
 
-		JScrollPane scroll = new JScrollPane(editor,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane scroll = new JScrollPane(editor, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setMinimumSize(new Dimension(100, 100));
 
@@ -329,8 +341,7 @@ public class RenderPreviewDialog extends JDialog {
 		repaint();
 	}
 
-	private String render(Map<String, Object> attributes)
-			throws JannocessorException {
+	private String render(Map<String, Object> attributes) throws JannocessorException {
 		return renderer.renderMacro("main", attributes, new String[] {});
 	}
 
@@ -350,8 +361,7 @@ public class RenderPreviewDialog extends JDialog {
 
 	private void listFiles() {
 		try {
-			files = FileUtils.listFiles(new File(templatesPath),
-					new String[] { "vm" }, true);
+			files = FileUtils.listFiles(new File(templatesPath), new String[] { "vm" }, true);
 		} catch (Exception e) {
 			files = new ArrayList<File>();
 		}

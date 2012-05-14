@@ -21,64 +21,92 @@ package org.jannocessor.extra.processor;
 
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.structure.AbstractJavaClass;
 import org.jannocessor.model.structure.JavaClass;
 import org.jannocessor.model.type.JavaType;
-import org.jannocessor.model.util.Annotations;
 import org.jannocessor.model.util.Classes;
+import org.jannocessor.model.util.Get;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
+import org.jannocessor.model.util.Transform;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.processor.api.CodeProcessor;
 import org.jannocessor.processor.api.ProcessingContext;
 
+public class MapperGenerator extends AbstractGenerator<AbstractJavaClass> {
 
-public class MapperGenerator implements CodeProcessor<JavaClass> {
+	private final String pkg1;
+	private final String pkg2;
+	private final String suffix1;
+	private final String suffix2;
 
-	private final boolean inDebugMode;
-
-	public MapperGenerator(boolean inDebugMode) {
-		this.inDebugMode = inDebugMode;
+	public MapperGenerator(String destPackage, String pkg1, String pkg2, String suffix1, String suffix2,
+			boolean inDebugMode) {
+		super(destPackage, inDebugMode);
+		this.pkg1 = pkg1;
+		this.pkg2 = pkg2;
+		this.suffix1 = suffix1;
+		this.suffix2 = suffix2;
 	}
 
 	/**
-	 * Processes a list of annotated domain model classes (e.g. Person),
-	 * generating a mapper class for each of them.
+	 * Generates a mapper implementation class from the specified model.
 	 */
-	public void process(PowerList<JavaClass> classes, ProcessingContext context) {
-		for (JavaClass model : classes) {
-			JavaClass mapper = New.classs(Classes.PUBLIC, model.getName() + "Mapper");
+	protected void generateCodeFrom(PowerList<AbstractJavaClass> models, ProcessingContext context) {
+		for (AbstractJavaClass model : models) {
+			JavaType superclass = New.type("AbstractMapper");
+			JavaClass mapper = New.classs(Classes.PUBLIC, model.getName() + "Mapper", superclass);
 
-			JavaType type = model.getType();
-			JavaParameter modelParam = New.parameter(type, "model");
+			JavaType typeA = New.type(pkg1 + "." + model.getName() + suffix1);
+			JavaType typeB = New.type(pkg2 + "." + model.getName() + suffix2);
 
-			JavaType dtoType = type.copy();
-			dtoType.getPackageName().appendPart("dto");
-			dtoType.getSimpleName().appendPart("Dto");
-			JavaParameter dtoParam = New.parameter(dtoType, "dto");
+			JavaParameter paramA = New.parameter(typeA, "model");
+			JavaParameter paramB = New.parameter(typeB, "dto");
 
-			JavaMethod modelToDto = New.method(Methods.PUBLIC, void.class, "mapModelToDto",
-					modelParam, dtoParam);
+			JavaMethod mapAB = New.method(Methods.PUBLIC, void.class, "map", paramA, paramB);
+			JavaMethod mapBA = New.method(Methods.PUBLIC, void.class, "map", paramB.copy(), paramA.copy());
 
 			String code = "";
-
+			String code2 = "";
 			// iterate the model fields (e.g. firstName, lastName... in Person)
 			for (JavaField field : model.getFields()) {
 				String getterName = field.getName().copy().insertPart(0, "get").toString();
 				String setterName = field.getName().copy().insertPart(0, "set").toString();
 
+				PowerList<AbstractJavaClass> modelParts = findTypeParts(field.getType(), models);
+
+				// e.g. model.getBook()
+				String modelSrc = String.format("model.%s()", getterName);
+				String dtoSrc = String.format("dto.%s()", getterName);
+
+				if (!modelParts.isEmpty()) {
+					// e.g. convert(model.getFirstName(), BookDTO.class)
+					modelSrc = String.format("convert(%s, " + classes(modelParts, true) + ")", modelSrc,
+							classes(modelParts, true));
+					dtoSrc = String.format("convert(%s, " + classes(modelParts, false) + ")", dtoSrc,
+							classes(modelParts, false));
+				}
+
 				// e.g. dto.setFirstName(model.getFirstName());
-				code += String.format("dto.%s(model.%s());\n", setterName, getterName);
+				code += String.format("dto.%s(%s);\n", setterName, modelSrc);
+				code2 += String.format("model.%s(%s);\n", setterName, dtoSrc);
 			}
 
-			modelToDto.getBody().setHardcoded(code.trim());
+			mapAB.getBody().setTemplate(code.trim());
+			mapBA.getBody().setTemplate(code2.trim());
 
-			mapper.getMethods().add(modelToDto);
+			mapper.getMethods().add(mapAB);
+			mapper.getMethods().add(mapBA);
 
-			mapper.getMetadata().add(Annotations.generated("JAnnocessor"));
-
-			New.packagee(model.getParent().getName() + ".mapper").getClasses().add(mapper);
-			context.generateCode(mapper, inDebugMode);
+			generate(mapper);
 		}
+	}
+
+	private String classes(PowerList<AbstractJavaClass> modelParts, boolean isDTO) {
+		String suffix = isDTO ? "DTO" : "";
+		String pkg = isDTO ? pkg2 : pkg1;
+		String classes = modelParts.getTransformed(Get.NAME).getTransformed(Transform.TO_STRING)
+				.getTransformed(Transform.surround("#type('" + pkg + ".", suffix + "').class")).join(", ");
+		return classes;
 	}
 }

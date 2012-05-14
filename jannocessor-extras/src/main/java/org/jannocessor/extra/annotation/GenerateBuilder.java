@@ -1,4 +1,4 @@
-package example.annotation;
+package org.jannocessor.extra.annotation;
 
 /**
  * A simple annotation that is used to mark a JavaBean model as a target for

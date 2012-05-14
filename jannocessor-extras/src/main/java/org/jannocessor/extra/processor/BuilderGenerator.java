@@ -19,59 +19,50 @@
 
 package org.jannocessor.extra.processor;
 
-import javax.annotation.Generated;
-
-import org.jannocessor.collection.Power;
 import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.executable.JavaMethod;
+import org.jannocessor.model.structure.AbstractJavaClass;
 import org.jannocessor.model.structure.JavaClass;
-import org.jannocessor.model.structure.JavaMetadata;
 import org.jannocessor.model.type.JavaType;
 import org.jannocessor.model.type.JavaTypeKind;
 import org.jannocessor.model.util.Methods;
 import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.model.variable.JavaParameter;
-import org.jannocessor.processor.api.CodeProcessor;
 import org.jannocessor.processor.api.ProcessingContext;
 
-public class BuilderGenerator implements CodeProcessor<JavaClass> {
+public class BuilderGenerator extends AbstractGenerator<AbstractJavaClass> {
 
-	private final boolean inDebugMode;
+	private final String beanPkg;
 
-	public BuilderGenerator(boolean inDebugMode) {
-		this.inDebugMode = inDebugMode;
+	public BuilderGenerator(String destPackage, String beanPkg, boolean inDebugMode) {
+		super(destPackage, inDebugMode);
+		this.beanPkg = beanPkg;
 	}
 
 	/**
-	 * Processes a list of annotated domain model classes (e.g. Person),
-	 * transforming each of them to a new class that represents a builder (e.g.
-	 * PersonBuilder). Finally, the source code of the transformed classes is
-	 * generated.
+	 * Generates a builder class from the specified model.
 	 */
-	public void process(PowerList<JavaClass> classes, ProcessingContext context) {
-		for (final JavaClass clazz : classes) {
-			// the name of the domain model class (e.g. Person)
-			String modelName = clazz.getName().getText();
-
-			// construct the builder name (e.g. PersonBuilder)
-			clazz.getName().appendPart("Builder");
+	protected void generateCodeFrom(PowerList<AbstractJavaClass> models, ProcessingContext context) {
+		for (AbstractJavaClass model : models) {
+			// construct the builder class (e.g. PersonBuilder)
+			String builderName = model.getName() + "Builder";
+			JavaClass builder = New.classs(builderName);
 
 			// the type representation of the builder class (e.g. PersonBuilder type)
-			JavaType builderType = New.type(modelName + "Builder", JavaTypeKind.DECLARED);
-
-			// initialize empty list of methods for the builder
-			PowerList<JavaMethod> methods = Power.list();
+			JavaType builderType = New.type(builderName, JavaTypeKind.DECLARED);
 
 			// iterate the model fields (e.g. firstName, lastName... in Person)
-			for (JavaField field : clazz.getFields()) {
-				field.getMetadata().clear();
-
-				// the field name, e.g. firstName
+			for (JavaField field : model.getFields()) {
+				// the field name (e.g. firstName)
 				String fieldName = field.getName().getText();
 
 				// a parameter for the new method in the builder (e.g. String firstName)
-				JavaParameter param1 = New.parameter(field.getType(), fieldName);
+				JavaType type = replaceModel(field.getType(), beanPkg + ".", "");
+				JavaParameter param1 = New.parameter(type, fieldName);
+
+				// add the field
+				builder.getFields().add(New.field(type, fieldName));
 
 				// create new method names as the field
 				// e.g. public PersonBuilder firstName(String firstName) {...}
@@ -83,33 +74,23 @@ public class BuilderGenerator implements CodeProcessor<JavaClass> {
 				method.getBody().setHardcoded(body);
 
 				// add the method to the builder methods list
-				methods.add(method);
+				builder.getMethods().add(method);
 			}
 
 			// create the builder method that constructs the model
 			// e.g. public Person build() {...)
-			JavaMethod build = New.method(Methods.PUBLIC, clazz.getType(), "build");
+			JavaType beanType = New.type(beanPkg + "." + model.getType().getSimpleName());
+			JavaMethod build = New.method(Methods.PUBLIC, beanType, "build");
 
 			// the method body is non-trivial, so it will be rendered from the build.vm template
 			build.getBody().setTemplateName("build");
 
-			// add the "build" method to the list of methods
-			methods.add(build);
+			// add the "build" method to the builder
+			builder.getMethods().add(build);
 
-			// remove the model class constructors
-			clazz.getConstructors().clear();
-
-			// assign the previously created methods to the builder class
-			clazz.getMethods().assign(methods);
-
-			// annotate the generated class as: @Generated("Easily by JAnnocessor :)")
-			JavaMetadata metadata = New.metadata(Generated.class, "Easily by JAnnocessor :)");
-			clazz.getMetadata().assign(Power.list(metadata));
-
-			// finally, generated the builder source code (e.g. PersonBuilder.java)
+			// finally, generate the builder source code (e.g. PersonBuilder.java)
 			// if inDebugMode was set to true, the JAnnocessor UI will be displayed
-			clazz.getParent().getName().appendPart("builder");
-			context.generateCode(clazz, inDebugMode);
+			generate(builder);
 		}
 	}
 }
