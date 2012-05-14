@@ -36,6 +36,7 @@ public class JavaTypeBean extends JavaTypeData implements JavaType {
 		this.setKind(New.typeKind(type));
 
 		this.setCode(New.code(JavaType.class));
+		this.setExtraCode(New.code());
 	}
 
 	public JavaTypeBean(String canonicalName, JavaTypeKind kind) {
@@ -48,6 +49,7 @@ public class JavaTypeBean extends JavaTypeData implements JavaType {
 		this.setKind(kind);
 
 		this.setCode(New.code(JavaType.class));
+		this.setExtraCode(New.code());
 	}
 
 	public JavaTypeBean(String packageName, String simpleName, JavaTypeKind kind) {
@@ -56,6 +58,7 @@ public class JavaTypeBean extends JavaTypeData implements JavaType {
 		this.setKind(kind);
 
 		this.setCode(New.code(JavaType.class));
+		this.setExtraCode(New.code());
 	}
 
 	private String getPackageName(String canonicalName) {

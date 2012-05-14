@@ -69,6 +69,7 @@ public class JavaEnumBean extends JavaEnumData implements JavaEnum {
 
 		this.setKind(JavaElementKind.ENUM);
 		this.setCode(New.code(JavaEnum.class));
+		this.setExtraCode(New.code());
 	}
 
 }

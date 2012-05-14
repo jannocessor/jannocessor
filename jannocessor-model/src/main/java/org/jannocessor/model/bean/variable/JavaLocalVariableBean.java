@@ -37,6 +37,7 @@ public class JavaLocalVariableBean extends JavaLocalVariableData implements Java
 
 		this.setKind(JavaElementKind.LOCAL_VARIABLE);
 		this.setCode(New.code(JavaLocalVariable.class));
+		this.setExtraCode(New.code());
 	}
 
 }

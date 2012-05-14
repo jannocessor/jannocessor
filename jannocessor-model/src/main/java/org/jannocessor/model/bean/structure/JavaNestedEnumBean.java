@@ -69,6 +69,7 @@ public class JavaNestedEnumBean extends JavaNestedEnumData implements
 
 		this.setKind(JavaElementKind.NESTED_ENUM);
 		this.setCode(New.code(JavaNestedEnum.class));
+		this.setExtraCode(New.code());
 	}
 
 }

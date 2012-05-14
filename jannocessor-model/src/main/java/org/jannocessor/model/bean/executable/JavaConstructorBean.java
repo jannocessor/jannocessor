@@ -53,6 +53,7 @@ public class JavaConstructorBean extends JavaConstructorData implements
 
 		this.setKind(JavaElementKind.CONSTRUCTOR);
 		this.setCode(New.code(JavaConstructor.class));
+		this.setExtraCode(New.code());
 	}
 
 }

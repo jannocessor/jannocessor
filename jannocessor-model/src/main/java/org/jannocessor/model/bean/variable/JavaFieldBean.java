@@ -45,6 +45,7 @@ public class JavaFieldBean extends JavaFieldData implements JavaField {
 
 		this.setKind(JavaElementKind.FIELD);
 		this.setCode(New.code(JavaField.class));
+		this.setExtraCode(New.code());
 	}
 
 }

@@ -70,6 +70,7 @@ public class JavaNestedClassBean extends JavaNestedClassData implements
 
 		this.setKind(JavaElementKind.NESTED_CLASS);
 		this.setCode(New.code(JavaNestedClass.class));
+		this.setExtraCode(New.code());
 	}
 
 }

@@ -36,6 +36,7 @@ public class JavaStaticInitBean extends JavaStaticInitData implements
 
 		this.setKind(JavaElementKind.STATIC_INIT);
 		this.setCode(New.code(JavaStaticInit.class));
+		this.setExtraCode(New.code());
 	}
 
 }

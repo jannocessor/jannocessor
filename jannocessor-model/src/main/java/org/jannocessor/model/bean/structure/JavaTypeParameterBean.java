@@ -41,5 +41,6 @@ public class JavaTypeParameterBean extends JavaTypeParameterData implements
 
 		this.setKind(JavaElementKind.TYPE_PARAMETER);
 		this.setCode(New.code(JavaTypeParameter.class));
+		this.setExtraCode(New.code());
 	}
 }

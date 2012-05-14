@@ -42,5 +42,6 @@ public class JavaPackageBean extends JavaPackageData implements JavaPackage {
 
 		this.setKind(JavaElementKind.PACKAGE);
 		this.setCode(New.code(JavaPackage.class));
+		this.setExtraCode(New.code());
 	}
 }

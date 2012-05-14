@@ -38,6 +38,7 @@ public class JavaExceptionParameterBean extends JavaExceptionParameterData
 
 		this.setKind(JavaElementKind.EXCEPTION_PARAMETER);
 		this.setCode(New.code(JavaExceptionParameter.class));
+		this.setExtraCode(New.code());
 	}
 
 }

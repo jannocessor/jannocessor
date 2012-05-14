@@ -57,5 +57,6 @@ public class JavaAnnotationBean extends JavaAnnotationData implements
 
 		this.setKind(JavaElementKind.ANNOTATION);
 		this.setCode(New.code(JavaAnnotation.class));
+		this.setExtraCode(New.code());
 	}
 }

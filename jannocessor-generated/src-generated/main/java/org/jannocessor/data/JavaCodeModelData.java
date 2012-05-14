@@ -43,7 +43,6 @@ public class JavaCodeModelData extends CodeNodeData implements JavaCodeModel {
 
     private SourceCode extraCode;
 
-
     public JavaCodeModel copy() {
         return ModelUtils.copy(this);
     }

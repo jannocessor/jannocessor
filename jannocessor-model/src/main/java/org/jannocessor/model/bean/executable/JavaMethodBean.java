@@ -52,6 +52,7 @@ public class JavaMethodBean extends JavaMethodData implements JavaMethod {
 
 		this.setKind(JavaElementKind.METHOD);
 		this.setCode(New.code(JavaMethod.class));
+		this.setExtraCode(New.code());
 	}
 
 }

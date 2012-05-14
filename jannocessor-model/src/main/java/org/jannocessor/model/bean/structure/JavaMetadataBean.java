@@ -36,6 +36,7 @@ public class JavaMetadataBean extends JavaMetadataData implements JavaMetadata {
 		this.setValues(Power.map(attributes));
 
 		this.setCode(New.code(JavaMetadata.class));
+		this.setExtraCode(New.code());
 	}
 
 }

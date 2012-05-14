@@ -39,6 +39,7 @@ public class JavaEnumConstantBean extends JavaEnumConstantData implements JavaEn
 
 		this.setKind(JavaElementKind.ENUM_CONSTANT);
 		this.setCode(New.code(JavaEnumConstant.class));
+		this.setExtraCode(New.code());
 	}
 
 }

@@ -56,5 +56,6 @@ public class JavaNestedAnnotationBean extends JavaNestedAnnotationData
 
 		this.setKind(JavaElementKind.NESTED_ANNOTATION);
 		this.setCode(New.code(JavaNestedAnnotation.class));
+		this.setExtraCode(New.code());
 	}
 }

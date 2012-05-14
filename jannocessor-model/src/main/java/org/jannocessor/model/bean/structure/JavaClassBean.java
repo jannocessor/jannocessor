@@ -70,6 +70,7 @@ public class JavaClassBean extends JavaClassData implements JavaClass {
 
 		this.setKind(JavaElementKind.CLASS);
 		this.setCode(New.code(JavaClass.class));
+		this.setExtraCode(New.code());
 	}
 
 }

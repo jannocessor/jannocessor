@@ -32,6 +32,7 @@ public class JavaTypeVariableBean extends JavaTypeVariableData implements
 	public JavaTypeVariableBean(Class<?> lowerBound, Class<?> upperBound) {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaTypeVariable.class));
+		this.setExtraCode(New.code());
 	}
 
 }

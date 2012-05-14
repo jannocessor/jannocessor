@@ -36,6 +36,7 @@ public class JavaInstanceInitBean extends JavaInstanceInitData implements
 
 		this.setKind(JavaElementKind.INSTANCE_INIT);
 		this.setCode(New.code(JavaInstanceInit.class));
+		this.setExtraCode(New.code());
 	}
 
 }

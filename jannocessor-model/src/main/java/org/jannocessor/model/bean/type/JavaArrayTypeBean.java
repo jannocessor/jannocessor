@@ -33,6 +33,7 @@ public class JavaArrayTypeBean extends JavaArrayTypeData implements
 	public JavaArrayTypeBean(JavaType type) {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaArrayType.class));
+		this.setExtraCode(New.code());
 	}
 
 }

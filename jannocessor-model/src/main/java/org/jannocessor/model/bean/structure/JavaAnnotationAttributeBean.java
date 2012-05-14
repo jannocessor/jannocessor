@@ -40,6 +40,7 @@ public class JavaAnnotationAttributeBean extends JavaAnnotationAttributeData
 		this.name = New.name(name);
 		this.defaultValue = defaultValue;
 		this.setCode(New.code(JavaAnnotationAttribute.class));
+		this.setExtraCode(New.code());
 	}
 
 	@Override

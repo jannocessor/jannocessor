@@ -37,6 +37,7 @@ public class JavaExecutableTypeBean extends JavaExecutableTypeData implements
 			List<JavaType> typeVariables) {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaExecutableType.class));
+		this.setExtraCode(New.code());
 	}
 
 }

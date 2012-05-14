@@ -63,6 +63,7 @@ public class JavaInterfaceBean extends JavaInterfaceData implements
 
 		this.setKind(JavaElementKind.INTERFACE);
 		this.setCode(New.code(JavaInterface.class));
+		this.setExtraCode(New.code());
 	}
 
 }

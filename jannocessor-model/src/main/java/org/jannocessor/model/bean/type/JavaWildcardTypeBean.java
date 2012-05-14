@@ -32,6 +32,7 @@ public class JavaWildcardTypeBean extends JavaWildcardTypeData implements
 	public JavaWildcardTypeBean(Class<?> wildcardSuper, Class<?> wildcardExtends) {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaWildcardType.class));
+		this.setExtraCode(New.code());
 	}
 
 }

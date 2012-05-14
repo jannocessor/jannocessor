@@ -40,6 +40,7 @@ public class JavaParameterBean extends JavaParameterData implements JavaParamete
 
 		this.setKind(JavaElementKind.PARAMETER);
 		this.setFinal(isFinal);
+		this.setExtraCode(New.code());
 	}
 
 }

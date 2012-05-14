@@ -32,5 +32,6 @@ public class JavaDeclaredTypeBean extends JavaDeclaredTypeData implements
 	public JavaDeclaredTypeBean() {
 		// TODO Auto-generated constructor stub
 		this.setCode(New.code(JavaDeclaredType.class));
+		this.setExtraCode(New.code());
 	}
 }

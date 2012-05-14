@@ -60,6 +60,7 @@ public class JavaNestedInterfaceBean extends JavaNestedInterfaceData implements
 
 		this.setKind(JavaElementKind.NESTED_INTERFACE);
 		this.setCode(New.code(JavaNestedInterface.class));
+		this.setExtraCode(New.code());
 	}
 
 }
