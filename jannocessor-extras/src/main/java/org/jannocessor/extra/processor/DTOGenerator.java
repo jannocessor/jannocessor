@@ -11,9 +11,9 @@ import org.jannocessor.model.util.New;
 import org.jannocessor.model.variable.JavaField;
 import org.jannocessor.processor.api.ProcessingContext;
 
-public class DTO2Generator extends AbstractGenerator<AbstractJavaClass> {
+public class DTOGenerator extends AbstractGenerator<AbstractJavaClass> {
 
-	public DTO2Generator(String destPackage, boolean inDebugMode) {
+	public DTOGenerator(String destPackage, boolean inDebugMode) {
 		super(destPackage, inDebugMode);
 	}
 
