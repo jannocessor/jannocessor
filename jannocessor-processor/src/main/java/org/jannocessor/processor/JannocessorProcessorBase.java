@@ -57,7 +57,6 @@ import org.jannocessor.context.Configuration;
 import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.engine.impl.ProcessorModule;
 import org.jannocessor.inject.ImportsServiceModule;
-import org.jannocessor.inject.RulesServiceModule;
 import org.jannocessor.processor.api.CodeMerger;
 import org.jannocessor.processor.api.FileInformation;
 import org.jannocessor.processor.api.RenderRegister;
@@ -110,9 +109,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	private Injector createInjector() {
 		return Guice.createInjector(new ProcessorModule(options), new ConfigurationServiceModule(),
-				new ImportsServiceModule(), new IOServiceModule(), new RulesServiceModule(),
-				new TemplateServiceModule(), new SplitterServiceModule(),
-				new RepresentationServiceModule());
+				new ImportsServiceModule(), new IOServiceModule(), new TemplateServiceModule(), 
+				new SplitterServiceModule(), new RepresentationServiceModule());
 	}
 
 	protected void logException(JannocessorException e) {

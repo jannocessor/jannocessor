@@ -39,10 +39,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.jannocessor</groupId>
-			<artifactId>jannocessor-rules</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.jannocessor</groupId>
 			<artifactId>jannocessor-render</artifactId>
 		</dependency>
 		<dependency>

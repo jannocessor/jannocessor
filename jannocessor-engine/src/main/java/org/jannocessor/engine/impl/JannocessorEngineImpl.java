@@ -29,28 +29,22 @@ import org.jannocessor.engine.JannocessorEngine;
 import org.jannocessor.service.api.Configurator;
 import org.jannocessor.service.api.JavaRepresenter;
 import org.jannocessor.service.api.MultiContentSplitter;
-import org.jannocessor.service.api.RuleExecutor;
-import org.jannocessor.service.api.RulesGenerator;
 import org.jannocessor.service.api.TemplateRenderer;
 
 public class JannocessorEngineImpl implements JannocessorEngine {
 
 	private final Configurator config;
-	private final RuleExecutor ruleExecutor;
 	private final TemplateRenderer generator;
-	private final RulesGenerator rulesGenerator;
 	private final MultiContentSplitter splitter;
 	private final JavaRepresenter representer;
 
 	@Inject
 	public JannocessorEngineImpl(Configurator config,
-			RuleExecutor ruleExecutor, TemplateRenderer generator,
-			RulesGenerator rulesGenerator, MultiContentSplitter splitter,
+			TemplateRenderer generator,
+			MultiContentSplitter splitter,
 			JavaRepresenter representer) {
 		this.config = config;
-		this.ruleExecutor = ruleExecutor;
 		this.generator = generator;
-		this.rulesGenerator = rulesGenerator;
 		this.splitter = splitter;
 		this.representer = representer;
 	}
@@ -96,11 +90,6 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 		return config.getAnnotationLabel(annotation);
 	}
 
-	public void executeRules(String rules, List<Object> facts,
-			Map<String, Object> globals) throws JannocessorException {
-		ruleExecutor.executeRules(rules, facts, globals);
-	}
-
 	@Override
 	public void configure(String templatesPath, boolean debugMode)
 			throws JannocessorException {
@@ -123,11 +112,6 @@ public class JannocessorEngineImpl implements JannocessorEngine {
 	public String renderMacro(String macro, Map<String, Object> attributes,
 			String[] params) throws JannocessorException {
 		return generator.renderMacro(macro, attributes, params);
-	}
-
-	@Override
-	public String generateRules(String[] ruleNames) throws JannocessorException {
-		return rulesGenerator.generateRules(ruleNames);
 	}
 
 	@Override

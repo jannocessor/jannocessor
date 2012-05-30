@@ -158,11 +158,6 @@
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.jannocessor</groupId>
-				<artifactId>jannocessor-rules</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode.jannocessor</groupId>
 				<artifactId>jannocessor-render</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -196,11 +191,6 @@
 						<artifactId>jannocessor</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.drools</groupId>
-				<artifactId>drools-compiler</artifactId>
-				<version>5.1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -368,7 +358,6 @@
 		<module>jannocessor-templates</module>
 		<module>jannocessor-io</module>
 		<module>jannocessor-render</module>
-		<module>jannocessor-rules</module>
 		<module>jannocessor-logic</module>
 		<module>jannocessor-playground</module>
 		<module>jannocessor-test-common</module>
