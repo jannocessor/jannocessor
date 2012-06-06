@@ -30,8 +30,10 @@ import java.util.Set;
 import org.jannocessor.JannocessorException;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.processor.annotation.Annotated;
+import org.jannocessor.processor.annotation.OnLifecycleEvents;
 import org.jannocessor.processor.annotation.Types;
 import org.jannocessor.processor.api.CodeProcessor;
+import org.jannocessor.processor.api.LifecycleListener;
 import org.jannocessor.util.Check;
 import org.jannocessor.util.Jannocessor;
 
@@ -41,51 +43,67 @@ public class ProcessorsConfiguration {
 
 	private List<ProcessingConfiguration> configuration = new ArrayList<ProcessingConfiguration>();
 
-	public ProcessorsConfiguration(Class<?> processorsConfig)
-			throws JannocessorException {
+	private List<LifecycleListener> lifecycleListeners = new ArrayList<LifecycleListener>();
+
+	public ProcessorsConfiguration(Class<?> processorsConfig) throws JannocessorException {
 		this.processorsConfig = processorsConfig;
 		initialize();
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initialize() throws JannocessorException {
 		try {
 			Object settings = processorsConfig.newInstance();
 			Method[] methods = processorsConfig.getMethods();
 			for (Method method : methods) {
-				Annotated annotated = method.getAnnotation(Annotated.class);
-				if (annotated != null) {
-					Object result;
-					try {
-						result = method.invoke(settings);
-					} catch (IllegalArgumentException e) {
-						throw Jannocessor.error("Couldn't invoke method: "
-								+ method, e);
-					} catch (InvocationTargetException e) {
-						throw Jannocessor.error("Couldn't invoke method: "
-								+ method, e);
-					}
-
-					Check.state(result instanceof CodeProcessor,
-							"The result of method '%s' must implement CodeProcessor!",
-							method.getName());
-
-					CodeProcessor<? extends JavaElement> processor = (CodeProcessor<? extends JavaElement>) result;
-					Class<? extends Annotation>[] annotations = annotated
-							.value();
-
-					Types types = method.getAnnotation(Types.class);
-
-					configuration.add(new ProcessingConfiguration(annotations,
-							types.value(), processor));
-				}
+				processCodeProcessors(settings, method);
+				processLifecycleListeners(settings, method);
 			}
 		} catch (InstantiationException e) {
-			throw Jannocessor.error("Couldn't instantiate class: "
-					+ processorsConfig, e);
+			throw Jannocessor.error("Couldn't instantiate class: " + processorsConfig, e);
 		} catch (IllegalAccessException e) {
-			throw Jannocessor.error("Couldn't instantiate class: "
-					+ processorsConfig);
+			throw Jannocessor.error("Couldn't instantiate class: " + processorsConfig);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private void processCodeProcessors(Object settings, Method method) throws IllegalAccessException,
+			JannocessorException {
+		Annotated annotated = method.getAnnotation(Annotated.class);
+		if (annotated != null) {
+			Object result = invoke(settings, method);
+
+			Check.state(result instanceof CodeProcessor,
+					"The result of method '%s' must implement CodeProcessor!", method.getName());
+
+			CodeProcessor<? extends JavaElement> processor = (CodeProcessor<? extends JavaElement>) result;
+			Class<? extends Annotation>[] annotations = annotated.value();
+
+			Types types = method.getAnnotation(Types.class);
+
+			configuration.add(new ProcessingConfiguration(annotations, types.value(), processor));
+		}
+	}
+
+	private void processLifecycleListeners(Object settings, Method method) throws IllegalAccessException,
+			JannocessorException {
+		OnLifecycleEvents lifecycleListener = method.getAnnotation(OnLifecycleEvents.class);
+		if (lifecycleListener != null) {
+			Object result = invoke(settings, method);
+
+			Check.state(result instanceof LifecycleListener,
+					"The result of method '%s' must implement LifecycleListener!", method.getName());
+
+			lifecycleListeners.add((LifecycleListener) result);
+		}
+	}
+
+	private Object invoke(Object settings, Method method) throws IllegalAccessException, JannocessorException {
+		try {
+			return method.invoke(settings);
+		} catch (IllegalArgumentException e) {
+			throw Jannocessor.error("Couldn't invoke method: " + method, e);
+		} catch (InvocationTargetException e) {
+			throw Jannocessor.error("Couldn't invoke method: " + method, e);
 		}
 	}
 
@@ -93,8 +111,7 @@ public class ProcessorsConfiguration {
 		Set<String> supportedAnnotations = new HashSet<String>();
 
 		for (ProcessingConfiguration entry : configuration) {
-			for (Class<? extends Annotation> annotation : entry
-					.getAnnotations()) {
+			for (Class<? extends Annotation> annotation : entry.getAnnotations()) {
 				supportedAnnotations.add(annotation.getCanonicalName());
 			}
 		}
@@ -104,6 +121,10 @@ public class ProcessorsConfiguration {
 
 	public List<ProcessingConfiguration> getConfiguration() {
 		return configuration;
+	}
+
+	public List<LifecycleListener> getLifecycleListeners() {
+		return lifecycleListeners;
 	}
 
 }

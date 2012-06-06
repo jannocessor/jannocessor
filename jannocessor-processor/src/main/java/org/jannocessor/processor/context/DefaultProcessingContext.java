@@ -56,6 +56,8 @@ public class DefaultProcessingContext implements ProcessingContext {
 	private RenderRegister renderer;
 
 	private JannocessorEngine engine;
+	
+	private String outputPath;
 
 	@Override
 	public Logger getLogger() {
@@ -190,4 +192,12 @@ public class DefaultProcessingContext implements ProcessingContext {
 		}
 	}
 
+	public String getOutputPath() {
+		return outputPath;
+	}
+
+	public void setOutputPath(String outputPath) {
+		this.outputPath = outputPath;
+	}
+	
 }

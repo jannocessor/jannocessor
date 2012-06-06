@@ -42,6 +42,8 @@ import org.jannocessor.collection.api.PowerList;
 import org.jannocessor.model.JavaElement;
 import org.jannocessor.processor.api.CodeMerger;
 import org.jannocessor.processor.api.CodeProcessor;
+import org.jannocessor.processor.api.LifecycleEvent;
+import org.jannocessor.processor.api.LifecycleListener;
 import org.jannocessor.processor.api.ProcessingContext;
 import org.jannocessor.processor.api.RenderData;
 import org.jannocessor.processor.context.AbstractRenderRegister;
@@ -56,10 +58,16 @@ import org.jannocessor.util.Jannocessor;
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class JannocessorProcessor extends JannocessorProcessorBase {
 
+	private ProcessingContext context;
+
 	@Override
 	protected void processAnnotations(final Set<? extends TypeElement> annotations,
 			final RoundEnvironment env) throws JannocessorException {
 
+		context = createProcessingContext();
+		
+		notifyCodeGenStarted();
+		
 		renderRegister = new AbstractRenderRegister() {
 			@Override
 			public void refresh() throws JannocessorException {
@@ -69,18 +77,6 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		};
 
 		renderRegister.refresh();
-
-		/******* RULES ENGINE IS CURRENTLY DISABLED FOR SIMPLICITY REASONS *******/
-
-		// prepare the globals
-		// Map<String, Object> globals = initGlobals();
-
-		// generate the rules
-		// String[] ruleNames = engine.getProcessedRules();
-		// String rules = engine.generateRules(ruleNames);
-
-		// run the rules on the facts
-		// engine.executeRules(rules, facts, globals);
 
 		/**************************************************************************/
 
@@ -92,6 +88,29 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 
 		// generate files
 		generateFiles();
+		
+		notifyCodeGenFinished();
+	}
+
+	private void notifyCodeGenFinished() {
+		for (LifecycleListener listener : processorsConfig.getLifecycleListeners()) {
+			listener.afterCodeGeneration(event());
+		}
+	}
+	
+	private void notifyCodeGenStarted() {
+		for (LifecycleListener listener : processorsConfig.getLifecycleListeners()) {
+			listener.beforeCodeGeneration(event());
+		}
+	}
+	
+	private LifecycleEvent event() {
+		return new LifecycleEvent() {
+			@Override
+			public ProcessingContext getContext() {
+				return context;
+			}
+		};
 	}
 
 	private void renderRegistered() throws JannocessorException {
@@ -139,16 +158,6 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		writeToFile(location, "", file.getFilename(), file.getContent(), file.getMerger());
 	}
 
-	@SuppressWarnings("unused")
-	private Map<String, Object> initGlobals() {
-		Map<String, Object> globals = new HashMap<String, Object>();
-
-		ProcessingContext context = createProcessingContext();
-		globals.put("context", context);
-
-		return globals;
-	}
-
 	private ProcessingContext createProcessingContext() {
 		DefaultProcessingContext context = new DefaultProcessingContext();
 
@@ -161,6 +170,7 @@ public class JannocessorProcessor extends JannocessorProcessorBase {
 		context.setProblems(problems);
 		context.setFiler(filer);
 		context.setRenderer(renderRegister);
+		context.setOutputPath(getOutputPath());
 
 		return context;
 	}

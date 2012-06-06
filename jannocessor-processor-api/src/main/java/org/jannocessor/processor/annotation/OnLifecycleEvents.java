@@ -17,28 +17,12 @@
  * along with JAnnocessor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jannocessor.processor.api;
+package org.jannocessor.processor.annotation;
 
-import org.jannocessor.model.JavaCodeModel;
-import org.jannocessor.model.structure.AbstractJavaStructure;
-import org.slf4j.Logger;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-public interface ProcessingContext {
-
-	String getProfile();
-
-	String getOutputPath();
-	
-	Logger getLogger();
-
-	void generateCode(AbstractJavaStructure model, CodeMerger merger, boolean debug);
-
-	void generateCode(AbstractJavaStructure model, boolean debug);
-
-	void generateInfo(JavaCodeModel model, boolean debug);
-
-	void generateFile(String fileName, String content);
-
-	void generateFile(String filename, String content, CodeMerger merger);
+@Retention(RetentionPolicy.RUNTIME)
+public @interface OnLifecycleEvents {
 
 }

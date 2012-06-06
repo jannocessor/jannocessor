@@ -383,4 +383,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		compile(Settings.PROCESSORS_CLASSNAME.replace('.', '/') + ".java");
 	}
 
+	protected String getOutputPath() {
+		return getPath(StandardLocation.SOURCE_OUTPUT);		
+	}
+	
 }
