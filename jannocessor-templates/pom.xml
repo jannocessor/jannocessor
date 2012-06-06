@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>jannocessor-root</artifactId>
 		<groupId>com.googlecode.jannocessor</groupId>
-		<version>0.7.3-SNAPSHOT</version>
+		<version>0.7.3</version>
 	</parent>
 
 	<artifactId>jannocessor-templates</artifactId>
