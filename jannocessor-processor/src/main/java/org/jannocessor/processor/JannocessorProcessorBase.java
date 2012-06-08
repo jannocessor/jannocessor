@@ -43,10 +43,8 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.FileObject;
-import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager.Location;
 import javax.tools.StandardLocation;
-import javax.tools.ToolProvider;
 
 import org.apache.commons.io.IOUtils;
 import org.jannocessor.JannocessorException;
@@ -72,7 +70,6 @@ import org.jannocessor.service.render.TemplateServiceModule;
 import org.jannocessor.service.representation.RepresentationServiceModule;
 import org.jannocessor.service.splitter.SplitterServiceModule;
 import org.jannocessor.util.Jannocessor;
-import org.jannocessor.util.Settings;
 import org.jannocessor.util.logging.JannocessorLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,13 +100,15 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 
 	protected ProcessorsConfiguration processorsConfig;
 
+	private String outputPath;
+
 	public JannocessorProcessorBase() {
 		logger.info("Instantiated Jannocessor");
 	}
 
 	private Injector createInjector() {
 		return Guice.createInjector(new ProcessorModule(options), new ConfigurationServiceModule(),
-				new ImportsServiceModule(), new IOServiceModule(), new TemplateServiceModule(), 
+				new ImportsServiceModule(), new IOServiceModule(), new TemplateServiceModule(),
 				new SplitterServiceModule(), new RepresentationServiceModule());
 	}
 
@@ -276,20 +275,21 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		}
 	}
 
-	protected void writeToFile(Location location, String pkg, String filename, String text,
-			CodeMerger merger) throws JannocessorException {
+	protected void writeToFile(Location location, String pkg, String filename, String text, CodeMerger merger)
+			throws JannocessorException {
 		boolean mergeFile = merger != null;
 
 		String info = fileInfo(location, pkg, filename);
-		String operation = mergeFile ? "Merging" : "Overwriting";
-		logger.info("{} generated code ({} characters) to file: {}", new Object[] { operation,
-				text.length(), info });
+		String operation = mergeFile ? "Merging" : "Writing";
+		logger.info("{} generated code ({} characters) to file: {}", new Object[] { operation, text.length(),
+				info });
 
 		try {
 			if (mergeFile) {
 				FileInformation oldCode = readFile(location, pkg, filename);
 				if (oldCode != null) {
-					FileInformation newCode = new DefaultFileInformation(text, oldCode.getFilename(), new Date());
+					FileInformation newCode = new DefaultFileInformation(text, oldCode.getFilename(),
+							new Date());
 					text = merger.mergeCode(oldCode, newCode);
 				} else {
 					logger.warn("Couldn't merge non-existing file: {}", info);
@@ -299,12 +299,9 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 			throw new JannocessorException("Couldn't merge file: " + info, e);
 		}
 
-		FileObject fileRes;
 		Writer writer = null;
-
 		try {
-			fileRes = filer.createResource(location, pkg, filename);
-
+			FileObject fileRes = filer.createResource(location, pkg, filename);
 			writer = fileRes.openWriter();
 			writer.write(text);
 		} catch (IOException e) {
@@ -338,8 +335,8 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		}
 	}
 
-	protected abstract void processAnnotations(Set<? extends TypeElement> annotations,
-			RoundEnvironment env) throws JannocessorException;
+	protected abstract void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment env)
+			throws JannocessorException;
 
 	protected String fileInfo(Location location, String pkg, String filename) {
 		return String.format("%s/%s", pkg, filename);
@@ -353,38 +350,30 @@ public abstract class JannocessorProcessorBase extends AbstractProcessor {
 		messager.printMessage(Diagnostic.Kind.WARNING, msg, element);
 	}
 
-	protected void compile(String path) {
-		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-		if (compiler != null) {
-			int result = compiler.run(null, null, null, "-proc:none", "-verbose", "-d",
-					getPath(StandardLocation.CLASS_PATH), "-sourcepath",
-					getPath(StandardLocation.SOURCE_PATH), getPath(StandardLocation.SOURCE_PATH)
-							+ "/" + path);
-			if (result == 0) {
-				logger.info("Compile finished successfully.");
-			} else {
-				logger.error("Compile error!");
-			}
-		} else {
-			logger.error("Couldn't retrieve system Java compiler! Hot code swap won't work!");
-		}
-	}
-
 	private String getPath(Location location) {
-		try {
-			FileObject file = filer.getResource(location, "", "foo");
-			return file.toUri().getPath().replaceFirst("/foo$", "").substring(1);
-		} catch (Exception e) {
-			throw new RuntimeException("Cannot retrieve path: " + location);
-		}
-	}
+		String path;
 
-	protected void recompileProcessors() {
-		compile(Settings.PROCESSORS_CLASSNAME.replace('.', '/') + ".java");
+		try {
+			FileObject tempFile = filer.getResource(location, "", "jannocessor_temporary");
+			path = tempFile.toUri().getPath().replaceFirst("/jannocessor_temporary$", "").substring(1);
+		} catch (Exception e) {
+			try {
+				FileObject tempFile = filer.createResource(location, "", "jannocessor_temporary");
+				path = tempFile.toUri().getPath().replaceFirst("/jannocessor_temporary$", "").substring(1);
+				tempFile.delete();
+			} catch (Exception e2) {
+				throw new RuntimeException("Cannot calculate path: " + location, e2);
+			}
+		}
+
+		return path;
 	}
 
 	protected String getOutputPath() {
-		return getPath(StandardLocation.SOURCE_OUTPUT);		
+		if (outputPath == null) {
+			outputPath = getPath(StandardLocation.SOURCE_OUTPUT);
+		}
+		return outputPath;
 	}
-	
+
 }
